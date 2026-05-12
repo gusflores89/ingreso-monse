@@ -23,12 +23,12 @@ export default function Home() {
 
   return (
     <main className="app-shell">
-      <nav className="topbar">
-        <div>
-          <p className="eyebrow">Ingreso Monserrat 2027</p>
-          <h1>Abril Quest</h1>
-        </div>
-        {vista !== "tutoria" && (
+      {vista !== "tutoria" && (
+        <nav className="topbar">
+          <div>
+            <p className="eyebrow">Ingreso Monserrat 2027</p>
+            <h1>Abril Quest</h1>
+          </div>
           <div className="nav-actions" aria-label="Secciones">
             <button className={vista === "setup" ? "active" : ""} onClick={() => setVista("setup")}>
               Setup
@@ -40,8 +40,8 @@ export default function Home() {
               Papas
             </button>
           </div>
-        )}
-      </nav>
+        </nav>
+      )}
 
       {vista === "setup" && <PantallaSetup onComplete={handleSetupComplete} />}
 
