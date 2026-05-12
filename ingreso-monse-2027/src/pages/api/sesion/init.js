@@ -1,9 +1,17 @@
 import { daysUntilExam } from "@/lib/date";
+import { getTopicMeta } from "@/lib/curriculum";
+import { getTareaManuscrita } from "@/lib/ejercicios-manuscritos";
 import { parseJsonFromModel } from "@/lib/json";
 import { callOpenRouter } from "@/lib/openrouter";
 import { MODEL_TUTOR, hydratePrompt, SYSTEM_PROMPT_PRACTICE, SYSTEM_PROMPT_TEACHER } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { requireMethod } from "@/lib/http";
+import {
+  crearTareaManuscrita,
+  getTareaManuscritaActiva,
+  isMissingHandwritingTable,
+  tareaToResponse,
+} from "@/lib/tareas-manuscritas";
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
@@ -58,6 +66,14 @@ export default async function handler(req, res) {
 
     const leccion = leccionResult.data;
     const modoSesion = leccion?.completada ? "practica" : "leccion";
+
+    if (modoSesion === "practica") {
+      const tareaResponse = await maybeAsignarTareaManuscrita(supabase, user_id, tema);
+      if (tareaResponse) {
+        return res.status(200).json(tareaResponse);
+      }
+    }
+
     const systemPrompt = hydratePrompt(
       modoSesion === "leccion" ? SYSTEM_PROMPT_TEACHER : SYSTEM_PROMPT_PRACTICE,
       contexto
@@ -137,4 +153,37 @@ export default async function handler(req, res) {
 
 function isMissingLessonsTable(error) {
   return error?.code === "PGRST205" || error?.message?.includes("lecciones_completadas");
+}
+
+async function maybeAsignarTareaManuscrita(supabase, userId, tema) {
+  const topic = getTopicMeta(tema);
+  const ejercicio = getTareaManuscrita(tema);
+
+  if (topic?.materia !== "lengua" || !ejercicio) return null;
+
+  const tareaActiva = await getTareaManuscritaActiva(supabase, userId, tema);
+  if (tareaActiva?.estado === "pendiente") return tareaToResponse(tareaActiva);
+  if (tareaActiva) return null;
+
+  const practicasResult = await supabase
+    .from("sesiones")
+    .select("id")
+    .eq("user_id", userId)
+    .eq("tema", tema)
+    .not("es_correcta", "is", null)
+    .neq("tipo_pregunta", "leccion");
+
+  if (practicasResult.error) {
+    throw new Error(`No se pudieron contar practicas del tema: ${practicasResult.error.message}`);
+  }
+
+  if ((practicasResult.data?.length || 0) < 2) return null;
+
+  try {
+    const nuevaTarea = await crearTareaManuscrita(supabase, userId, tema, ejercicio);
+    return nuevaTarea ? tareaToResponse(nuevaTarea) : null;
+  } catch (error) {
+    if (isMissingHandwritingTable(error)) return null;
+    throw error;
+  }
 }

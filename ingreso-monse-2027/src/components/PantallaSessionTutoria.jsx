@@ -100,6 +100,39 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
     }
   };
 
+  const handleTareaCompletada = async () => {
+    if (!pregunta?.tarea_id) return;
+
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/tarea-manuscrita/completar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tarea_id: pregunta.tarea_id }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "No se pudo completar la tarea.");
+
+      setPregunta((prev) => ({ ...prev, estado: data.tarea.estado }));
+      setEvaluacion({
+        es_correcta: true,
+        retroalimentacion:
+          "Listo, quedo registrada tu tarea a mano. Priscila la revisa con tu cuaderno el fin de semana.",
+        decision: {
+          proximo_tema: tema,
+          proxima_capa: capa,
+          modo_recomendado: modo || "NORMAL",
+        },
+      });
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const theme = themeForTema(tema);
   const pasos = useMemo(() => {
     if (!pregunta || pregunta.tipo !== "leccion") return [];
@@ -144,6 +177,10 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
 
       {loading && <p className="status">Monse esta pensando...</p>}
       {error && <p className="error">{error}</p>}
+
+      {!evaluacion && pregunta?.tipo === "manuscrita" && (
+        <TareaManuscrita pregunta={pregunta} loading={loading} onComplete={handleTareaCompletada} />
+      )}
 
       {!evaluacion && pregunta?.tipo === "leccion" && pasoActualData && (
         <div className="lesson-step-shell">
@@ -243,7 +280,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
         </div>
       )}
 
-      {!evaluacion && pregunta?.tipo !== "leccion" && pregunta && (
+      {!evaluacion && pregunta?.tipo !== "leccion" && pregunta?.tipo !== "manuscrita" && pregunta && (
         <div className="question-area">
           <p className="question-text">{pregunta.pregunta}</p>
 
@@ -277,6 +314,95 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
         </div>
       )}
     </section>
+  );
+}
+
+function TareaManuscrita({ pregunta, loading, onComplete }) {
+  const estaCompletada = pregunta.estado === "completada" || pregunta.estado === "revisada";
+
+  return (
+    <div className="handwriting-shell">
+      <section className="handwriting-hero">
+        <span aria-hidden="true">📝</span>
+        <h2>Ejercicio a mano</h2>
+        <p>Este ejercicio lo haces en tu cuaderno, no en la app.</p>
+      </section>
+
+      <section className="handwriting-card">
+        <h3>Instrucciones</h3>
+        <p className="handwriting-instruction">{pregunta.instruccion}</p>
+
+        {pregunta.tipo_tarea === "dictado" && (
+          <div className="handwriting-panel family">
+            <h4>Para mama o papa</h4>
+            <p>Por favor dictale a Abril estas oraciones:</p>
+            <ol>
+              {pregunta.contenido?.oraciones?.map((oracion, index) => (
+                <li key={`${oracion}-${index}`}>{oracion}</li>
+              ))}
+            </ol>
+          </div>
+        )}
+
+        {pregunta.tipo_tarea === "copia" && (
+          <div className="handwriting-panel copy">
+            <h4>Texto para copiar</h4>
+            <p>{pregunta.contenido?.texto}</p>
+          </div>
+        )}
+
+        {pregunta.tipo_tarea === "narracion" && (
+          <div className="handwriting-stack">
+            <div className="handwriting-panel story">
+              <h4>Inicio de la historia</h4>
+              <p>{pregunta.contenido?.inicio}</p>
+            </div>
+            <div className="handwriting-panel checklist">
+              <h4>Requisitos</h4>
+              <ul>
+                {pregunta.contenido?.requisitos?.map((requisito, index) => (
+                  <li key={`${requisito}-${index}`}>✓ {requisito}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {pregunta.tipo_tarea === "completar" && (
+          <div className="handwriting-panel complete">
+            <h4>Oraciones para completar</h4>
+            <ol>
+              {pregunta.contenido?.oraciones?.map((oracion, index) => (
+                <li key={`${oracion}-${index}`}>{oracion}</li>
+              ))}
+            </ol>
+          </div>
+        )}
+
+        <div className="handwriting-materials">
+          <span>📓 Cuaderno</span>
+          <span>✏️ Lapicera</span>
+          {pregunta.tiempo_estimado && <span>⏱️ {pregunta.tiempo_estimado} min</span>}
+        </div>
+      </section>
+
+      <section className="handwriting-card done">
+        {estaCompletada ? (
+          <>
+            <h3>Tarea entregada</h3>
+            <p>Mama la revisa con Priscila el fin de semana.</p>
+          </>
+        ) : (
+          <>
+            <p>Cuando termines de escribir en tu cuaderno:</p>
+            <button type="button" className="primary" onClick={onComplete} disabled={loading}>
+              {loading ? "Guardando..." : "Ya termine"}
+            </button>
+            <small>Mama va a revisar tu cuaderno este fin de semana.</small>
+          </>
+        )}
+      </section>
+    </div>
   );
 }
 
