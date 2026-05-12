@@ -403,15 +403,24 @@ label {
 .lesson-close {
   margin: 0;
   border-radius: 8px;
-  background: var(--soft);
-  padding: 10px 12px;
+  border-left: 5px solid var(--accent);
+  background: color-mix(in srgb, var(--accent), transparent 88%);
+  padding: 12px 14px;
   color: var(--ink);
   font-weight: 800;
 }
 
 .key-concept {
-  border: 1px solid color-mix(in srgb, var(--accent), white 60%);
-  text-align: center;
+  border: 1px solid color-mix(in srgb, var(--accent), transparent 35%);
+  border-left: 5px solid var(--accent);
+  color: var(--accent);
+  text-align: left;
+}
+
+.key-concept::before {
+  content: "Idea clave: ";
+  color: var(--ink);
+  font-weight: 900;
 }
 
 .lesson-example small {
@@ -425,7 +434,31 @@ label {
 }
 
 .lesson-reinforcement {
-  background: #f0fdf4;
+  border-left-color: #16a34a;
+  background: color-mix(in srgb, #16a34a, transparent 88%);
+}
+
+.lesson-reinforcement::before {
+  content: "Bien: ";
+  color: #16a34a;
+  font-weight: 900;
+}
+
+.lesson-answer {
+  border-left-color: #f59e0b;
+  background: color-mix(in srgb, #f59e0b, transparent 88%);
+}
+
+.lesson-answer::before {
+  content: "Resultado: ";
+  color: #f59e0b;
+  font-weight: 900;
+}
+
+.hint::before {
+  content: "Pista: ";
+  color: var(--accent);
+  font-weight: 900;
 }
 
 .lesson-close {

@@ -128,7 +128,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
                       <p key={`${paso}-${pasoIndex}`}>{paso}</p>
                     ))}
                   </div>
-                  {ejemplo.respuesta && <p className="lesson-answer">Respuesta: {ejemplo.respuesta}</p>}
+                  {ejemplo.respuesta && <p className="lesson-answer">{ejemplo.respuesta}</p>}
                   {ejemplo.refuerzo && <p className="lesson-reinforcement">{ejemplo.refuerzo}</p>}
                 </article>
               ))}
@@ -140,7 +140,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
             <p className="question-text small">
               {pregunta.ejercicio_practica?.enunciado || pregunta.pregunta}
             </p>
-            {pregunta.ejercicio_practica?.pista && <p className="hint">Pista: {pregunta.ejercicio_practica.pista}</p>}
+            {pregunta.ejercicio_practica?.pista && <p className="hint">{pregunta.ejercicio_practica.pista}</p>}
             <textarea
               placeholder="Escribi tu respuesta aca..."
               value={respuesta}
