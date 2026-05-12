@@ -1042,6 +1042,151 @@ label {
   font-size: 0.9rem;
 }
 
+.success-empty {
+  border-color: #bbf7d0;
+  background: #f0fdf4;
+  color: #065f46;
+  font-weight: 850;
+  text-align: center;
+}
+
+.handwriting-review-list {
+  display: grid;
+  gap: 16px;
+}
+
+.handwriting-review-card {
+  display: grid;
+  gap: 16px;
+  border: 2px solid #fed7aa;
+  border-radius: 14px;
+  background: #ffffff;
+  padding: 18px;
+}
+
+.handwriting-review-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.handwriting-review-head h4 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.1rem;
+  text-transform: capitalize;
+}
+
+.handwriting-review-head p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-weight: 750;
+}
+
+.handwriting-review-head > span {
+  border-radius: 999px;
+  background: #ffedd5;
+  color: #c2410c;
+  padding: 6px 10px;
+  font-size: 0.84rem;
+  font-weight: 900;
+}
+
+.handwriting-review-prompt {
+  border-radius: 12px;
+  background: #f8fafc;
+  padding: 14px;
+}
+
+.handwriting-review-prompt strong {
+  color: var(--ink);
+}
+
+.handwriting-review-prompt p {
+  margin: 6px 0 0;
+  color: #475569;
+  font-weight: 700;
+}
+
+.handwriting-review-prompt details {
+  margin-top: 10px;
+}
+
+.handwriting-review-prompt summary {
+  color: #2563eb;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.handwriting-review-prompt ol {
+  margin: 8px 0 0;
+  padding-left: 22px;
+}
+
+.handwriting-review-prompt li {
+  margin: 4px 0;
+  color: #475569;
+  font-weight: 650;
+}
+
+.review-open-button {
+  border: 0;
+  background: var(--tertiary);
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.review-open-button:hover:not(:disabled) {
+  border-color: #d97706;
+  background: #d97706;
+}
+
+.review-form {
+  display: grid;
+  gap: 16px;
+  border-radius: 14px;
+  background: #eff6ff;
+  padding: 16px;
+}
+
+.review-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.review-choice-grid button {
+  min-height: 46px;
+  background: #ffffff;
+}
+
+.review-choice-grid button.selected {
+  border-color: #2563eb;
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.review-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.review-actions button {
+  flex: 1;
+}
+
+.save-review {
+  border-color: #2563eb;
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.save-review:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
 .table-row:last-child {
   border-bottom: 0;
 }
@@ -1220,8 +1365,14 @@ label {
   }
 
   .admin-test-actions,
-  .admin-curriculum-grid {
+  .admin-curriculum-grid,
+  .review-choice-grid {
     grid-template-columns: 1fr;
+  }
+
+  .handwriting-review-head,
+  .review-actions {
+    flex-direction: column;
   }
 
   .lesson-step-shell {

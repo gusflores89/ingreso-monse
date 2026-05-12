@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react";
 
+const EMPTY_REVISION = {
+  resultado: "",
+  cantidad_errores: "",
+  comentario: "",
+};
+
 export default function DashboardPapas({ userId }) {
   const [data, setData] = useState(null);
+  const [tareasPendientes, setTareasPendientes] = useState([]);
+  const [revisandoTarea, setRevisandoTarea] = useState(null);
+  const [formRevision, setFormRevision] = useState(EMPTY_REVISION);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -10,10 +19,19 @@ export default function DashboardPapas({ userId }) {
     setError("");
 
     try {
-      const res = await fetch(`/api/progreso?user_id=${encodeURIComponent(userId)}`);
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error || "No se pudo cargar el dashboard.");
-      setData(json);
+      const [progresoRes, tareasRes] = await Promise.all([
+        fetch(`/api/progreso?user_id=${encodeURIComponent(userId)}`),
+        fetch(`/api/tarea-manuscrita/pendientes?user_id=${encodeURIComponent(userId)}`),
+      ]);
+
+      const progresoJson = await progresoRes.json();
+      const tareasJson = await tareasRes.json();
+
+      if (!progresoRes.ok) throw new Error(progresoJson.error || "No se pudo cargar el dashboard.");
+      if (!tareasRes.ok) throw new Error(tareasJson.error || "No se pudieron cargar las tareas manuscritas.");
+
+      setData(progresoJson);
+      setTareasPendientes(tareasJson.tareas || []);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -24,6 +42,28 @@ export default function DashboardPapas({ userId }) {
   useEffect(() => {
     load();
   }, [userId]);
+
+  const handleRevisar = async (tareaId) => {
+    try {
+      const res = await fetch("/api/tarea-manuscrita/revisar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          tarea_id: tareaId,
+          ...formRevision,
+        }),
+      });
+      const json = await res.json();
+
+      if (!res.ok) throw new Error(json.error || "No se pudo guardar la revision.");
+
+      setTareasPendientes((prev) => prev.filter((tarea) => tarea.id !== tareaId));
+      setRevisandoTarea(null);
+      setFormRevision(EMPTY_REVISION);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
   const diasRestantes = data?.usuario?.fecha_examen ? daysUntil(data.usuario.fecha_examen) : null;
 
@@ -106,6 +146,60 @@ export default function DashboardPapas({ userId }) {
             )}
           </section>
 
+          <section className="dashboard-section handwriting-review-section">
+            <h3>Tareas manuscritas pendientes ({tareasPendientes.length})</h3>
+            {tareasPendientes.length === 0 ? (
+              <p className="empty-state standalone success-empty">No hay tareas manuscritas pendientes de revision.</p>
+            ) : (
+              <div className="handwriting-review-list">
+                {tareasPendientes.map((tarea) => (
+                  <article className="handwriting-review-card" key={tarea.id}>
+                    <div className="handwriting-review-head">
+                      <div>
+                        <h4>{formatTema(tarea.tema)}</h4>
+                        <p>
+                          Tipo: {formatTema(tarea.tipo_tarea)} · Completada: {formatDate(tarea.fecha_completada)}
+                        </p>
+                      </div>
+                      <span>Pendiente</span>
+                    </div>
+
+                    <div className="handwriting-review-prompt">
+                      <strong>Instruccion:</strong>
+                      <p>{tarea.instruccion}</p>
+                      {tarea.tipo_tarea === "dictado" && tarea.contenido?.oraciones && (
+                        <details>
+                          <summary>Ver oraciones dictadas</summary>
+                          <ol>
+                            {tarea.contenido.oraciones.map((oracion, index) => (
+                              <li key={`${oracion}-${index}`}>{oracion}</li>
+                            ))}
+                          </ol>
+                        </details>
+                      )}
+                    </div>
+
+                    {revisandoTarea === tarea.id ? (
+                      <RevisionForm
+                        form={formRevision}
+                        setForm={setFormRevision}
+                        onCancel={() => {
+                          setRevisandoTarea(null);
+                          setFormRevision(EMPTY_REVISION);
+                        }}
+                        onSubmit={() => handleRevisar(tarea.id)}
+                      />
+                    ) : (
+                      <button type="button" className="review-open-button" onClick={() => setRevisandoTarea(tarea.id)}>
+                        Revisar tarea
+                      </button>
+                    )}
+                  </article>
+                ))}
+              </div>
+            )}
+          </section>
+
           {data.insight_markdown && (
             <section className="insight dashboard-section">
               <h3>Insight IA</h3>
@@ -118,6 +212,64 @@ export default function DashboardPapas({ userId }) {
   );
 }
 
+function RevisionForm({ form, setForm, onCancel, onSubmit }) {
+  return (
+    <div className="review-form">
+      <div>
+        <label>Resultado</label>
+        <div className="review-choice-grid">
+          {[
+            ["correcta", "Correcta"],
+            ["con_errores", "Con errores"],
+            ["mejorar_caligrafia", "Mejorar caligrafia"],
+          ].map(([value, label]) => (
+            <button
+              type="button"
+              key={value}
+              className={form.resultado === value ? "selected" : ""}
+              onClick={() => setForm((prev) => ({ ...prev, resultado: value }))}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {form.resultado === "con_errores" && (
+        <label>
+          Cuantos errores
+          <input
+            type="number"
+            min="1"
+            value={form.cantidad_errores}
+            onChange={(event) => setForm((prev) => ({ ...prev, cantidad_errores: event.target.value }))}
+            placeholder="Ej: 3"
+          />
+        </label>
+      )}
+
+      <label>
+        Comentario opcional
+        <textarea
+          rows={3}
+          value={form.comentario}
+          onChange={(event) => setForm((prev) => ({ ...prev, comentario: event.target.value }))}
+          placeholder="Ej: Confunde las terminaciones -aba"
+        />
+      </label>
+
+      <div className="review-actions">
+        <button type="button" className="save-review" onClick={onSubmit} disabled={!form.resultado}>
+          Guardar revision
+        </button>
+        <button type="button" onClick={onCancel}>
+          Cancelar
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function statusFor(tasa) {
   const value = Number(tasa || 0);
   if (value >= 80) return { label: "Bien", className: "good" };
@@ -126,18 +278,20 @@ function statusFor(tasa) {
 }
 
 function alertIcon(tipo) {
-  return /critico|debil|concepto|recurrente/i.test(tipo) ? "🔴" : "⚠️";
+  return /critico|debil|concepto|recurrente/i.test(tipo) ? "Critico" : "Aviso";
 }
 
 function alertClass(tipo) {
   return /critico|debil|concepto|recurrente/i.test(tipo) ? "critical" : "warning";
 }
 
-function formatTema(tema) {
+function formatTema(tema = "") {
   return tema.replaceAll("_", " ");
 }
 
 function formatDate(value) {
+  if (!value) return "Sin fecha";
+
   return new Intl.DateTimeFormat("es-AR", {
     day: "2-digit",
     month: "2-digit",
