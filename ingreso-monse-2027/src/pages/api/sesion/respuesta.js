@@ -2,7 +2,13 @@ import { daysUntilExam } from "@/lib/date";
 import { parseJsonFromModel } from "@/lib/json";
 import { callGroq } from "@/lib/groq";
 import { maybeCreateAlert, refreshTopicProgress } from "@/lib/progress";
-import { MODEL_ANALYZER, MODEL_TUTOR, hydratePrompt, SYSTEM_PROMPT_ANALYZER, SYSTEM_PROMPT_MONSE } from "@/lib/prompts";
+import {
+  MODEL_ANALYZER,
+  MODEL_TUTOR,
+  hydratePrompt,
+  SYSTEM_PROMPT_ANALYZER,
+  SYSTEM_PROMPT_MONSE,
+} from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { requireMethod } from "@/lib/http";
 
@@ -28,10 +34,18 @@ export default async function handler(req, res) {
       capa: sesion.capa,
       modo: sesion.modo,
     };
+    const esLeccion = sesion.tipo_pregunta === "leccion";
+    const evaluacionPrompt = esLeccion
+      ? `${hydratePrompt(SYSTEM_PROMPT_MONSE, contexto)}
+
+IMPORTANTE: Abril esta respondiendo el ejercicio final de una leccion. Evalua con mucha paciencia.
+Si demuestra que entendio la idea central aunque no use palabras perfectas, marca es_correcta true.
+Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error y siguiente_pregunta.`
+      : hydratePrompt(SYSTEM_PROMPT_MONSE, contexto);
 
     const respuestaIa = await callGroq(
       MODEL_TUTOR,
-      hydratePrompt(SYSTEM_PROMPT_MONSE, contexto),
+      evaluacionPrompt,
       `Pregunta: ${sesion.pregunta_generada}\nRespuesta de Abril: ${respuesta_usuario}\n\nEvalua y retroalimenta. Devuelve solo JSON valido.`,
       700
     );
@@ -55,6 +69,23 @@ export default async function handler(req, res) {
         .eq("id", sesion_id),
       "No se pudo guardar la evaluacion"
     );
+
+    if (esLeccion && evaluacion.es_correcta) {
+      const leccionResult = await supabase.from("lecciones_completadas").upsert(
+        {
+          user_id: sesion.user_id,
+          tema: sesion.tema,
+          leccion_numero: 1,
+          completada: true,
+          fecha_completada: new Date().toISOString(),
+        },
+        { onConflict: "user_id,tema,leccion_numero" }
+      );
+
+      if (leccionResult.error && !isMissingLessonsTable(leccionResult.error)) {
+        throw new Error(`No se pudo marcar la leccion como completada: ${leccionResult.error.message}`);
+      }
+    }
 
     const progreso = await refreshTopicProgress(supabase, sesion.user_id, sesion.tema, sesion.capa);
 
@@ -118,4 +149,8 @@ export default async function handler(req, res) {
     console.error(error);
     res.status(500).json({ error: error.message });
   }
+}
+
+function isMissingLessonsTable(error) {
+  return error?.code === "PGRST205" || error?.message?.includes("lecciones_completadas");
 }

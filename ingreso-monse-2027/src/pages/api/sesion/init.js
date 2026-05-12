@@ -1,7 +1,7 @@
 import { daysUntilExam } from "@/lib/date";
 import { parseJsonFromModel } from "@/lib/json";
 import { callGroq } from "@/lib/groq";
-import { MODEL_TUTOR, hydratePrompt, SYSTEM_PROMPT_MONSE } from "@/lib/prompts";
+import { MODEL_TUTOR, hydratePrompt, SYSTEM_PROMPT_PRACTICE, SYSTEM_PROMPT_TEACHER } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { requireMethod } from "@/lib/http";
 
@@ -38,19 +38,49 @@ export default async function handler(req, res) {
       modo,
       estilo_aprendizaje: usuario.estilo_aprendizaje || "visual",
       tasa_acierto: progreso?.tasa_acierto || 0,
+      sesiones_en_tema: progreso?.total_sesiones || 0,
       errores_patrones_json: {},
       racha: 0,
       dias_falta_examen: daysUntilExam(),
     };
 
+    const leccionResult = await supabase
+      .from("lecciones_completadas")
+      .select("*")
+      .eq("user_id", user_id)
+      .eq("tema", tema)
+      .eq("leccion_numero", 1)
+      .maybeSingle();
+
+    if (leccionResult.error && !isMissingLessonsTable(leccionResult.error)) {
+      throw new Error(`No se pudo obtener la leccion: ${leccionResult.error.message}`);
+    }
+
+    const leccion = leccionResult.data;
+    const modoSesion = leccion?.completada ? "practica" : "leccion";
+    const systemPrompt = hydratePrompt(
+      modoSesion === "leccion" ? SYSTEM_PROMPT_TEACHER : SYSTEM_PROMPT_PRACTICE,
+      contexto
+    );
+
     const respuestaIa = await callGroq(
       MODEL_TUTOR,
-      hydratePrompt(SYSTEM_PROMPT_MONSE, contexto),
-      "Genera una pregunta para Abril ahora. Devuelve solo JSON valido.",
+      systemPrompt,
+      modoSesion === "leccion"
+        ? "Ensena este tema a Abril por primera vez. Responde SOLO en JSON."
+        : "Genera un ejercicio de practica. Responde SOLO en JSON.",
       1024
     );
 
     const preguntaJson = parseJsonFromModel(respuestaIa);
+    const preguntaGenerada =
+      modoSesion === "leccion" ? preguntaJson.ejercicio_practica?.enunciado : preguntaJson.pregunta;
+    const tipoPregunta =
+      modoSesion === "leccion" ? "leccion" : preguntaJson.tipo_pregunta || preguntaJson.tipo || "produccion";
+
+    if (!preguntaGenerada) {
+      throw new Error("La IA no devolvio una pregunta o ejercicio valido.");
+    }
 
     const sesion = assertSupabaseOk(
       await supabase
@@ -59,8 +89,8 @@ export default async function handler(req, res) {
           user_id,
           tema,
           capa: Number(capa),
-          tipo_pregunta: preguntaJson.tipo,
-          pregunta_generada: preguntaJson.pregunta,
+          tipo_pregunta: tipoPregunta,
+          pregunta_generada: preguntaGenerada,
           contexto_json: contexto,
           modo,
           ia_parametros_usados: {
@@ -68,6 +98,7 @@ export default async function handler(req, res) {
             model: MODEL_TUTOR,
             max_tokens: 1024,
             endpoint: "/api/sesion/init",
+            modo_sesion: modoSesion,
           },
         })
         .select()
@@ -90,8 +121,10 @@ export default async function handler(req, res) {
 
     res.status(200).json({
       sesion_id: sesion.id,
-      pregunta: preguntaJson.pregunta,
-      tipo: preguntaJson.tipo,
+      ...preguntaJson,
+      pregunta: preguntaGenerada,
+      tipo: modoSesion,
+      tipo_pregunta: tipoPregunta,
       opciones: preguntaJson.opciones || null,
       indicaciones_visuales: preguntaJson.indicaciones_visuales || null,
       tiempo_estimado: preguntaJson.tiempo_estimado || 5,
@@ -100,4 +133,8 @@ export default async function handler(req, res) {
     console.error(error);
     res.status(500).json({ error: error.message });
   }
+}
+
+function isMissingLessonsTable(error) {
+  return error?.code === "PGRST205" || error?.message?.includes("lecciones_completadas");
 }

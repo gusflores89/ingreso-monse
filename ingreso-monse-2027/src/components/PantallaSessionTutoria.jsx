@@ -108,7 +108,48 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
       {loading && <p className="status">Monse esta pensando...</p>}
       {error && <p className="error">{error}</p>}
 
-      {!evaluacion && pregunta && (
+      {!evaluacion && pregunta?.tipo === "leccion" && (
+        <div className="lesson-area">
+          {pregunta.saludo && <p className="lesson-greeting">{pregunta.saludo}</p>}
+          {pregunta.explicacion && <div className="lesson-explanation">{pregunta.explicacion}</div>}
+
+          {pregunta.ejemplos_resueltos?.length > 0 && (
+            <div className="lesson-examples">
+              <h3>Ejemplos</h3>
+              {pregunta.ejemplos_resueltos.map((ejemplo, index) => (
+                <article className="lesson-example" key={`${ejemplo.enunciado}-${index}`}>
+                  <strong>{ejemplo.enunciado}</strong>
+                  <div className="lesson-steps">
+                    {ejemplo.pasos?.map((paso, pasoIndex) => (
+                      <p key={`${paso}-${pasoIndex}`}>{paso}</p>
+                    ))}
+                  </div>
+                  {ejemplo.respuesta && <p className="lesson-answer">Respuesta: {ejemplo.respuesta}</p>}
+                </article>
+              ))}
+            </div>
+          )}
+
+          <div className="practice-card">
+            <h3>Ahora proba vos</h3>
+            <p className="question-text small">
+              {pregunta.ejercicio_practica?.enunciado || pregunta.pregunta}
+            </p>
+            {pregunta.ejercicio_practica?.pista && <p className="hint">Pista: {pregunta.ejercicio_practica.pista}</p>}
+            <textarea
+              placeholder="Escribi tu respuesta aca..."
+              value={respuesta}
+              onChange={(event) => setRespuesta(event.target.value)}
+              rows={5}
+            />
+            <button className="primary" onClick={handleSubmit} disabled={!respuesta.trim() || loading}>
+              Enviar
+            </button>
+          </div>
+        </div>
+      )}
+
+      {!evaluacion && pregunta?.tipo !== "leccion" && pregunta && (
         <div className="question-area">
           <p className="question-text">{pregunta.pregunta}</p>
 
