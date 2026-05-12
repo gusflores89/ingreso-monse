@@ -397,13 +397,39 @@ label {
 }
 
 .lesson-answer,
-.hint {
+.hint,
+.key-concept,
+.lesson-reinforcement,
+.lesson-close {
   margin: 0;
   border-radius: 8px;
   background: var(--soft);
   padding: 10px 12px;
   color: var(--ink);
   font-weight: 800;
+}
+
+.key-concept {
+  border: 1px solid color-mix(in srgb, var(--accent), white 60%);
+  text-align: center;
+}
+
+.lesson-example small {
+  width: fit-content;
+  border-radius: 999px;
+  background: var(--soft);
+  padding: 5px 10px;
+  color: var(--accent);
+  font-weight: 850;
+  text-transform: capitalize;
+}
+
+.lesson-reinforcement {
+  background: #f0fdf4;
+}
+
+.lesson-close {
+  text-align: center;
 }
 
 .practice-card {
@@ -847,6 +873,7 @@ label {
   .lesson-explanation,
   .lesson-example,
   .practice-card,
+  .lesson-reinforcement,
   .table-row,
   .topic-card,
   .insight pre,

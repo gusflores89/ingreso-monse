@@ -111,7 +111,10 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
       {!evaluacion && pregunta?.tipo === "leccion" && (
         <div className="lesson-area">
           {pregunta.saludo && <p className="lesson-greeting">{pregunta.saludo}</p>}
-          {pregunta.explicacion && <div className="lesson-explanation">{pregunta.explicacion}</div>}
+          {(pregunta.explicacion_simple || pregunta.explicacion) && (
+            <div className="lesson-explanation">{pregunta.explicacion_simple || pregunta.explicacion}</div>
+          )}
+          {pregunta.concepto_clave_repetir && <p className="key-concept">{pregunta.concepto_clave_repetir}</p>}
 
           {pregunta.ejemplos_resueltos?.length > 0 && (
             <div className="lesson-examples">
@@ -119,12 +122,14 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
               {pregunta.ejemplos_resueltos.map((ejemplo, index) => (
                 <article className="lesson-example" key={`${ejemplo.enunciado}-${index}`}>
                   <strong>{ejemplo.enunciado}</strong>
+                  {ejemplo.contexto && <small>{ejemplo.contexto}</small>}
                   <div className="lesson-steps">
                     {ejemplo.pasos?.map((paso, pasoIndex) => (
                       <p key={`${paso}-${pasoIndex}`}>{paso}</p>
                     ))}
                   </div>
                   {ejemplo.respuesta && <p className="lesson-answer">Respuesta: {ejemplo.respuesta}</p>}
+                  {ejemplo.refuerzo && <p className="lesson-reinforcement">{ejemplo.refuerzo}</p>}
                 </article>
               ))}
             </div>
@@ -145,6 +150,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
             <button className="primary" onClick={handleSubmit} disabled={!respuesta.trim() || loading}>
               Enviar
             </button>
+            {pregunta.cierre_motivacional && <p className="lesson-close">{pregunta.cierre_motivacional}</p>}
           </div>
         </div>
       )}

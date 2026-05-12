@@ -69,7 +69,7 @@ export default async function handler(req, res) {
       modoSesion === "leccion"
         ? "Ensena este tema a Abril por primera vez. Responde SOLO en JSON."
         : "Genera un ejercicio de practica. Responde SOLO en JSON.",
-      1024
+      modoSesion === "leccion" ? 3200 : 1024
     );
 
     const preguntaJson = parseJsonFromModel(respuestaIa);
@@ -96,7 +96,7 @@ export default async function handler(req, res) {
           ia_parametros_usados: {
             provider: "groq",
             model: MODEL_TUTOR,
-            max_tokens: 1024,
+            max_tokens: modoSesion === "leccion" ? 3200 : 1024,
             endpoint: "/api/sesion/init",
             modo_sesion: modoSesion,
           },
