@@ -137,7 +137,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
   const totalPasos = pasos.length;
 
   return (
-    <section className={`tutoria-panel theme-${theme}`} aria-live="polite">
+    <section className={`tutoria-panel background-decorative theme-${theme}`} aria-live="polite">
       <header className="session-header student-session-header">
         <Monse />
       </header>
@@ -179,18 +179,28 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
 
                 <div className="lesson-steps">
                   {pasoActualData.contenido.pasos?.map((paso, index) => (
-                    <p key={`${paso}-${index}`}>
-                      <span aria-hidden="true">→</span>
-                      {paso}
-                    </p>
+                    <article className="lesson-step-row" key={`${paso}-${index}`}>
+                      <span aria-hidden="true">{index + 1}</span>
+                      <p>{paso}</p>
+                    </article>
                   ))}
                 </div>
 
                 {pasoActualData.contenido.respuesta && (
-                  <div className="lesson-answer">Respuesta: {pasoActualData.contenido.respuesta}</div>
+                  <div className="lesson-answer">
+                    <span aria-hidden="true">✓</span>
+                    <div>
+                      <small>Respuesta</small>
+                      <strong>{pasoActualData.contenido.respuesta}</strong>
+                    </div>
+                  </div>
                 )}
 
-                {pasoActualData.contenido.refuerzo && <p className="lesson-reinforcement">{pasoActualData.contenido.refuerzo}</p>}
+                {pasoActualData.contenido.refuerzo && (
+                  <p className="lesson-reinforcement">
+                    <span>Tip:</span> {pasoActualData.contenido.refuerzo}
+                  </p>
+                )}
               </div>
             )}
 
@@ -198,7 +208,6 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
               <div className="lesson-step-content exercise-step">
                 <h2>Ahora proba vos</h2>
                 <p className="question-text small">{pasoActualData.contenido.enunciado}</p>
-                {pasoActualData.contenido.pista && <div className="hint">Pista: {pasoActualData.contenido.pista}</div>}
                 <textarea
                   placeholder="Escribi tu respuesta aca..."
                   value={respuesta}
@@ -208,6 +217,9 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
                 <button className="primary" onClick={handleSubmit} disabled={!respuesta.trim() || loading}>
                   {loading ? "Enviando..." : "Enviar respuesta"}
                 </button>
+                <div className="exercise-tip">
+                  Tip: {pasoActualData.contenido.pista || "Recorda: primero mira que queda, despues resolve con ese resto."}
+                </div>
                 {pregunta.cierre_motivacional && <p className="lesson-close">{pregunta.cierre_motivacional}</p>}
               </div>
             )}
