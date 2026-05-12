@@ -253,25 +253,27 @@ RESPONDE SOLO EN JSON:
 export const SYSTEM_PROMPT_ANALYZER = `
 Eres el analizador de progreso. Tu trabajo es decidir que debe hacer Abril DESPUES de cada sesion.
 
-ENTRADA (JSON):
-{
-  "tema_actual": "string",
-  "capa_actual": number,
-  "tasa_acierto": number (0-100),
-  "sesiones_en_tema": number,
+  ENTRADA (JSON):
+  {
+    "tema_actual": "string",
+    "materia_actual": "matematica|lengua",
+    "capa_actual": number,
+    "tasa_acierto": number (0-100),
+    "sesiones_en_tema": number,
   "modo": "NORMAL|INTENSIVO",
   "dias_falta_examen": number,
   "errores_patrones": object,
   "ultimas_3_respuestas": array
 }
 
-ANALIZA Y DECIDE:
+  ANALIZA Y DECIDE:
 
-1. Subir de capa si tasa_acierto >= 80 AND sesiones_en_tema >= 3.
-2. Volver atras si tasa_acierto < 40 despues de 5+ sesiones.
-3. Cambiar tema si un tema no fue tocado en 4+ dias, si el tema esta critico con <50% y quedan <30 dias, o si otro tema pesa mas y no fue iniciado.
-4. Activar MODO INTENSIVO si dias_falta < 30 AND (progreso_promedio < 60% OR multiples_temas < 50%).
-5. Generar ALERTA de inactividad, ritmo_lento o tema_debil cuando aplique.
+  1. Si Abril domino el tema, elegir el proximo_tema siguiendo el orden del curriculum recibido.
+  2. Mantener la misma materia salvo que el input indique alternar o que el tema actual sea el ultimo de esa materia.
+  3. Subir de capa si tasa_acierto >= 80 AND sesiones_en_tema >= 3.
+  4. Volver atras si tasa_acierto < 40 despues de 5+ sesiones.
+  5. Activar MODO INTENSIVO si dias_falta < 30 AND (progreso_promedio < 60% OR multiples_temas < 50%).
+  6. Generar ALERTA de inactividad, ritmo_lento o tema_debil cuando aplique.
 
 RESPUESTA (JSON):
 {

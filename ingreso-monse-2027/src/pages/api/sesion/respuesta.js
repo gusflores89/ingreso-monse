@@ -1,5 +1,5 @@
 import { daysUntilExam } from "@/lib/date";
-import { CURRICULUM_LENGUA, CURRICULUM_MATEMATICA } from "@/lib/curriculum";
+import { CURRICULUM_LENGUA, CURRICULUM_MATEMATICA, getNextTopic, getTopicMeta } from "@/lib/curriculum";
 import { parseJsonFromModel } from "@/lib/json";
 import { callOpenRouter } from "@/lib/openrouter";
 import { maybeCreateAlert, refreshTopicProgress } from "@/lib/progress";
@@ -123,6 +123,7 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error y siguiente_p
 
       const analyzerInput = {
         tema_actual: sesion.tema,
+        materia_actual: getTopicMeta(sesion.tema)?.materia || null,
         capa_actual: sesion.capa,
         tasa_acierto: tasaPractica,
         sesiones_en_tema: totalPracticas,
@@ -133,16 +134,17 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error y siguiente_p
         curriculum_matematica: CURRICULUM_MATEMATICA,
         curriculum_lengua: CURRICULUM_LENGUA,
       };
+      const deterministicNextTopic = getNextTopic(sesion.tema);
 
       const analyzerResponse = await callOpenRouter(
         MODEL_ANALYZER,
         SYSTEM_PROMPT_ANALYZER,
-        `Abril domino "${sesion.tema}" con ${tasaPractica}% de acierto en ${totalPracticas} practicas. Segun el curriculum de matematica y lengua, que tema deberia venir despues? Responde SOLO en JSON. Input: ${JSON.stringify(analyzerInput)}`,
+        `Abril domino "${sesion.tema}" con ${tasaPractica}% de acierto en ${totalPracticas} practicas. El proximo tema recomendado por el curriculum deterministico es "${deterministicNextTopic}". Usa ese tema salvo que haya una razon pedagogica fuerte para alternar materia. Responde SOLO en JSON. Input: ${JSON.stringify(analyzerInput)}`,
         1024
       );
 
       decision = parseJsonFromModel(analyzerResponse);
-      decision.proximo_tema = decision.proximo_tema || nextCurriculumTopic(sesion.tema) || sesion.tema;
+      decision.proximo_tema = decision.proximo_tema || deterministicNextTopic || sesion.tema;
       decision.proxima_capa = decision.proxima_capa || 1;
       decision.razon =
         decision.razon ||
@@ -204,12 +206,6 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error y siguiente_p
     console.error(error);
     res.status(500).json({ error: error.message });
   }
-}
-
-function nextCurriculumTopic(tema) {
-  const curriculum = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].sort((a, b) => a.orden - b.orden);
-  const index = curriculum.findIndex((item) => item.tema === tema);
-  return index >= 0 ? curriculum[index + 1]?.tema : null;
 }
 
 function isMissingLessonsTable(error) {

@@ -2,26 +2,20 @@ import { useState } from "react";
 import DashboardPapas from "@/components/DashboardPapas";
 import PantallaSessionTutoria from "@/components/PantallaSessionTutoria";
 import PantallaSetup from "@/components/PantallaSetup";
+import { DEFAULT_TOPIC, isCurriculumTopic } from "@/lib/curriculum";
 
 const DEFAULT_USER_ID = process.env.NEXT_PUBLIC_DEMO_USER_ID || "";
-const INITIAL_TOPIC = "fracciones_del_resto";
-const REAL_TOPICS = new Set([
-  "fracciones_del_resto",
-  "concordancia_sujeto_verbo",
-  "comprension_lectora",
-  "problemas_con_porcentajes",
-]);
 
 export default function Home() {
   const [userId, setUserId] = useState(DEFAULT_USER_ID);
   const [vista, setVista] = useState(DEFAULT_USER_ID ? "tutoria" : "setup");
-  const [tema, setTema] = useState(INITIAL_TOPIC);
+  const [tema, setTema] = useState(DEFAULT_TOPIC);
   const [capa, setCapa] = useState(1);
   const [modo, setModo] = useState("NORMAL");
 
   const handleSetupComplete = ({ usuario, plan }) => {
     setUserId(usuario.id);
-    setTema(REAL_TOPICS.has(plan?.proximo_tema) ? plan.proximo_tema : INITIAL_TOPIC);
+    setTema(isCurriculumTopic(plan?.proximo_tema) ? plan.proximo_tema : DEFAULT_TOPIC);
     setCapa(plan?.proxima_capa || 1);
     setModo(plan?.modo_recomendado || "NORMAL");
     setVista("tutoria");
