@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import DashboardPapas from "@/components/DashboardPapas";
 import PantallaSessionTutoria from "@/components/PantallaSessionTutoria";
 import PantallaSetup from "@/components/PantallaSetup";
@@ -7,11 +8,29 @@ import { DEFAULT_TOPIC, isCurriculumTopic } from "@/lib/curriculum";
 const DEFAULT_USER_ID = process.env.NEXT_PUBLIC_DEMO_USER_ID || "";
 
 export default function Home() {
+  const router = useRouter();
   const [userId, setUserId] = useState(DEFAULT_USER_ID);
   const [vista, setVista] = useState(DEFAULT_USER_ID ? "tutoria" : "setup");
   const [tema, setTema] = useState(DEFAULT_TOPIC);
   const [capa, setCapa] = useState(1);
   const [modo, setModo] = useState("NORMAL");
+
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    const queryUserId = firstQueryValue(router.query.user_id);
+    const queryTema = firstQueryValue(router.query.tema);
+    const queryCapa = Number(firstQueryValue(router.query.capa));
+    const queryModo = firstQueryValue(router.query.modo);
+
+    if (!queryUserId) return;
+
+    setUserId(queryUserId);
+    setTema(isCurriculumTopic(queryTema) ? queryTema : DEFAULT_TOPIC);
+    setCapa(Number.isFinite(queryCapa) && queryCapa >= 1 && queryCapa <= 5 ? queryCapa : 1);
+    setModo(queryModo || "NORMAL");
+    setVista("tutoria");
+  }, [router.isReady, router.query]);
 
   const handleSetupComplete = ({ usuario, plan }) => {
     setUserId(usuario.id);
@@ -54,4 +73,8 @@ export default function Home() {
       {vista === "dashboard" && userId && <DashboardPapas userId={userId} />}
     </main>
   );
+}
+
+function firstQueryValue(value) {
+  return Array.isArray(value) ? value[0] : value;
 }
