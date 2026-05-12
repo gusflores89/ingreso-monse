@@ -1,6 +1,6 @@
-export const MODEL_TUTOR = process.env.NEXT_PUBLIC_MODEL_TUTOR || "llama-3.3-70b-versatile";
-export const MODEL_ANALYZER = process.env.NEXT_PUBLIC_MODEL_ANALYZER || "llama-3.3-70b-versatile";
-export const MODEL_DASHBOARD = process.env.NEXT_PUBLIC_MODEL_DASHBOARD || "llama-3.1-8b-instant";
+export const MODEL_TUTOR = process.env.NEXT_PUBLIC_MODEL_TUTOR || "anthropic/claude-sonnet-4.6";
+export const MODEL_ANALYZER = process.env.NEXT_PUBLIC_MODEL_ANALYZER || "anthropic/claude-sonnet-4.6";
+export const MODEL_DASHBOARD = process.env.NEXT_PUBLIC_MODEL_DASHBOARD || "anthropic/claude-3.5-haiku";
 
 export const SYSTEM_PROMPT_MONSE = `
 Eres Monse, un buho sabio y amable que tutora a Abril (11 anos) para el examen de ingreso Monserrat.

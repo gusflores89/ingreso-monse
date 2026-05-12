@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.99.0",
-    "groq-sdk": "^1.1.2",
     "next": "16.1.6",
+    "openai": "^6.37.0",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },

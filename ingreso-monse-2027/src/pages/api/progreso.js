@@ -1,5 +1,5 @@
 import { requireMethod } from "@/lib/http";
-import { callGroq } from "@/lib/groq";
+import { callOpenRouter } from "@/lib/openrouter";
 import { MODEL_DASHBOARD, SYSTEM_PROMPT_DASHBOARD_IA } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 
@@ -65,7 +65,7 @@ export default async function handler(req, res) {
     let insightError = null;
 
     try {
-      insightMarkdown = await callGroq(
+      insightMarkdown = await callOpenRouter(
         MODEL_DASHBOARD,
         SYSTEM_PROMPT_DASHBOARD_IA,
         JSON.stringify(insightInput),

@@ -1,5 +1,5 @@
 import { getWeekRange } from "@/lib/date";
-import { callGroq } from "@/lib/groq";
+import { callOpenRouter } from "@/lib/openrouter";
 import { MODEL_DASHBOARD, SYSTEM_PROMPT_DASHBOARD_IA } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { requireMethod } from "@/lib/http";
@@ -52,7 +52,7 @@ export default async function handler(req, res) {
       alertas_generadas: alertas,
     };
 
-    const markdown = await callGroq(MODEL_DASHBOARD, SYSTEM_PROMPT_DASHBOARD_IA, JSON.stringify(weeklyInput), 1800);
+    const markdown = await callOpenRouter(MODEL_DASHBOARD, SYSTEM_PROMPT_DASHBOARD_IA, JSON.stringify(weeklyInput), 1800);
 
     const reporte = assertSupabaseOk(
       await supabase

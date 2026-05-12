@@ -1,6 +1,6 @@
 import { daysUntilExam } from "@/lib/date";
 import { parseJsonFromModel } from "@/lib/json";
-import { callGroq } from "@/lib/groq";
+import { callOpenRouter } from "@/lib/openrouter";
 import { MODEL_TUTOR, hydratePrompt, SYSTEM_PROMPT_PRACTICE, SYSTEM_PROMPT_TEACHER } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { requireMethod } from "@/lib/http";
@@ -63,7 +63,7 @@ export default async function handler(req, res) {
       contexto
     );
 
-    const respuestaIa = await callGroq(
+    const respuestaIa = await callOpenRouter(
       MODEL_TUTOR,
       systemPrompt,
       modoSesion === "leccion"
@@ -94,7 +94,7 @@ export default async function handler(req, res) {
           contexto_json: contexto,
           modo,
           ia_parametros_usados: {
-            provider: "groq",
+            provider: "openrouter",
             model: MODEL_TUTOR,
             max_tokens: modoSesion === "leccion" ? 3200 : 1024,
             endpoint: "/api/sesion/init",

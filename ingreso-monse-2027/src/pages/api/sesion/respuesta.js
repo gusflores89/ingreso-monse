@@ -1,6 +1,6 @@
 import { daysUntilExam } from "@/lib/date";
 import { parseJsonFromModel } from "@/lib/json";
-import { callGroq } from "@/lib/groq";
+import { callOpenRouter } from "@/lib/openrouter";
 import { maybeCreateAlert, refreshTopicProgress } from "@/lib/progress";
 import {
   MODEL_ANALYZER,
@@ -43,7 +43,7 @@ Si demuestra que entendio la idea central aunque no use palabras perfectas, marc
 Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error y siguiente_pregunta.`
       : hydratePrompt(SYSTEM_PROMPT_MONSE, contexto);
 
-    const respuestaIa = await callGroq(
+    const respuestaIa = await callOpenRouter(
       MODEL_TUTOR,
       evaluacionPrompt,
       `Pregunta: ${sesion.pregunta_generada}\nRespuesta de Abril: ${respuesta_usuario}\n\nEvalua y retroalimenta. Devuelve solo JSON valido.`,
@@ -63,7 +63,7 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error y siguiente_p
           razon_evaluacion: evaluacion.razon_error || null,
           ia_parametros_usados: {
             ...(sesion.ia_parametros_usados || {}),
-            evaluacion: { provider: "groq", model: MODEL_TUTOR, max_tokens: 700 },
+            evaluacion: { provider: "openrouter", model: MODEL_TUTOR, max_tokens: 700 },
           },
         })
         .eq("id", sesion_id),
@@ -112,7 +112,7 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error y siguiente_p
       ultimas_3_respuestas: ultimas3,
     });
 
-    const analyzerResponse = await callGroq(MODEL_ANALYZER, SYSTEM_PROMPT_ANALYZER, analyzerInput, 700);
+    const analyzerResponse = await callOpenRouter(MODEL_ANALYZER, SYSTEM_PROMPT_ANALYZER, analyzerInput, 700);
 
     const decision = parseJsonFromModel(analyzerResponse);
 
@@ -124,7 +124,7 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error y siguiente_p
           proxima_capa_recomendada: decision.proxima_capa || sesion.capa,
           ia_parametros_usados: {
             ...(sesion.ia_parametros_usados || {}),
-            analyzer: { provider: "groq", model: MODEL_ANALYZER, max_tokens: 700, decision },
+            analyzer: { provider: "openrouter", model: MODEL_ANALYZER, max_tokens: 700, decision },
           },
         })
         .eq("id", sesion_id),

@@ -1,7 +1,7 @@
 import { daysUntilExam } from "@/lib/date";
 import { requireMethod } from "@/lib/http";
 import { parseJsonFromModel } from "@/lib/json";
-import { callGroq } from "@/lib/groq";
+import { callOpenRouter } from "@/lib/openrouter";
 import { MODEL_ANALYZER, SYSTEM_PROMPT_ANALYZER } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 
@@ -51,7 +51,7 @@ export default async function handler(req, res) {
       ultimas_3_respuestas: [],
     });
 
-    const planResponse = await callGroq(MODEL_ANALYZER, SYSTEM_PROMPT_ANALYZER, planInput, 700);
+    const planResponse = await callOpenRouter(MODEL_ANALYZER, SYSTEM_PROMPT_ANALYZER, planInput, 700);
 
     const plan = parseJsonFromModel(planResponse);
 

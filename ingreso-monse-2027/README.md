@@ -48,19 +48,19 @@ Contactar a Gustavo con:
 - Captura de pantalla si es posible.
 - Que accion se intento hacer, por ejemplo "Calcular ruta", "Enviar respuesta" o "Abrir dashboard".
 
-Nota: la generacion de preguntas usa Groq. Si la API key de Groq no esta configurada o falla, el dashboard puede seguir cargando, pero la tutoria con IA puede fallar al pedir una nueva pregunta.
+Nota: la generacion de preguntas usa OpenRouter con modelos Claude. Si la API key de OpenRouter no esta configurada o falla, el dashboard puede seguir cargando, pero la tutoria con IA puede fallar al pedir una nueva pregunta.
 
 ## Stack Tecnico
 
 - Next.js + React
 - Supabase
-- Groq con modelos Llama
+- OpenRouter con modelos Claude
 
 ## Desarrollo Local
 
 1. Crear las tablas ejecutando `supabase/migrations/001_abril_quest_schema.sql` en Supabase.
 2. Copiar `.env.example` a `.env.local` y completar:
-   - `GROQ_API_KEY`
+   - `OPENROUTER_API_KEY`
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
    - `SUPABASE_SERVICE_KEY`
