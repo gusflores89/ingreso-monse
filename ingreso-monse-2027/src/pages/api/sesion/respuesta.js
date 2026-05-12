@@ -1,4 +1,5 @@
 import { daysUntilExam } from "@/lib/date";
+import { CURRICULUM_LENGUA, CURRICULUM_MATEMATICA } from "@/lib/curriculum";
 import { parseJsonFromModel } from "@/lib/json";
 import { callOpenRouter } from "@/lib/openrouter";
 import { maybeCreateAlert, refreshTopicProgress } from "@/lib/progress";
@@ -89,42 +90,92 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error y siguiente_p
 
     const progreso = await refreshTopicProgress(supabase, sesion.user_id, sesion.tema, sesion.capa);
 
-    const ultimas3 = assertSupabaseOk(
+    const practicas = assertSupabaseOk(
       await supabase
         .from("sesiones")
-        .select("pregunta_generada, respuesta_usuario, es_correcta, razon_evaluacion, created_at")
+        .select("id, es_correcta")
         .eq("user_id", sesion.user_id)
         .eq("tema", sesion.tema)
         .not("es_correcta", "is", null)
-        .order("created_at", { ascending: false })
-        .limit(3),
-      "No se pudieron obtener respuestas recientes"
+        .neq("tipo_pregunta", "leccion"),
+      "No se pudieron obtener practicas del tema"
     );
 
-    const analyzerInput = JSON.stringify({
-      tema_actual: sesion.tema,
-      capa_actual: sesion.capa,
-      tasa_acierto: progreso.tasa_acierto,
-      sesiones_en_tema: progreso.total_sesiones,
-      modo: sesion.modo,
-      dias_falta_examen: daysUntilExam(),
-      errores_patrones: ultimas3.filter((item) => !item.es_correcta).map((item) => item.razon_evaluacion),
-      ultimas_3_respuestas: ultimas3,
-    });
+    const totalPracticas = practicas.length;
+    const practicasCorrectas = practicas.filter((item) => item.es_correcta).length;
+    const tasaPractica = totalPracticas ? Number(((practicasCorrectas / totalPracticas) * 100).toFixed(2)) : 0;
+    const dominoTema = tasaPractica >= 80 && totalPracticas >= 3;
 
-    const analyzerResponse = await callOpenRouter(MODEL_ANALYZER, SYSTEM_PROMPT_ANALYZER, analyzerInput, 700);
+    let decision;
 
-    const decision = parseJsonFromModel(analyzerResponse);
+    if (dominoTema) {
+      const ultimas3 = assertSupabaseOk(
+        await supabase
+          .from("sesiones")
+          .select("pregunta_generada, respuesta_usuario, es_correcta, razon_evaluacion, created_at")
+          .eq("user_id", sesion.user_id)
+          .eq("tema", sesion.tema)
+          .not("es_correcta", "is", null)
+          .order("created_at", { ascending: false })
+          .limit(3),
+        "No se pudieron obtener respuestas recientes"
+      );
+
+      const analyzerInput = {
+        tema_actual: sesion.tema,
+        capa_actual: sesion.capa,
+        tasa_acierto: tasaPractica,
+        sesiones_en_tema: totalPracticas,
+        modo: sesion.modo,
+        dias_falta_examen: daysUntilExam(),
+        errores_patrones: ultimas3.filter((item) => !item.es_correcta).map((item) => item.razon_evaluacion),
+        ultimas_3_respuestas: ultimas3,
+        curriculum_matematica: CURRICULUM_MATEMATICA,
+        curriculum_lengua: CURRICULUM_LENGUA,
+      };
+
+      const analyzerResponse = await callOpenRouter(
+        MODEL_ANALYZER,
+        SYSTEM_PROMPT_ANALYZER,
+        `Abril domino "${sesion.tema}" con ${tasaPractica}% de acierto en ${totalPracticas} practicas. Segun el curriculum de matematica y lengua, que tema deberia venir despues? Responde SOLO en JSON. Input: ${JSON.stringify(analyzerInput)}`,
+        1024
+      );
+
+      decision = parseJsonFromModel(analyzerResponse);
+      decision.proximo_tema = decision.proximo_tema || nextCurriculumTopic(sesion.tema) || sesion.tema;
+      decision.proxima_capa = decision.proxima_capa || 1;
+      decision.razon =
+        decision.razon ||
+        `Tema dominado: ${tasaPractica}% de acierto en ${totalPracticas} practicas. Pasar al proximo tema.`;
+      console.log(`Tema dominado. Cambio a: ${decision.proximo_tema}`);
+    } else {
+      const nuevaCapa = tasaPractica >= 70 ? Math.min((sesion.capa || 1) + 1, 5) : sesion.capa || 1;
+
+      decision = {
+        proximo_tema: sesion.tema,
+        proxima_capa: nuevaCapa,
+        modo_recomendado: "NORMAL",
+        razon: `Continuar practicando "${sesion.tema}". Progreso de practica: ${tasaPractica}% de acierto, ${totalPracticas}/3 practicas minimas necesarias.`,
+        alerta: null,
+      };
+
+      console.log(`Continuar con mismo tema. Progreso practica: ${tasaPractica}%, ${totalPracticas}/3 practicas`);
+    }
 
     assertSupabaseOk(
       await supabase
         .from("sesiones")
         .update({
-          proximo_tema_recomendado: decision.proximo_tema || sesion.tema,
-          proxima_capa_recomendada: decision.proxima_capa || sesion.capa,
+          proximo_tema_recomendado: decision.proximo_tema,
+          proxima_capa_recomendada: decision.proxima_capa,
           ia_parametros_usados: {
             ...(sesion.ia_parametros_usados || {}),
-            analyzer: { provider: "openrouter", model: MODEL_ANALYZER, max_tokens: 700, decision },
+            progression: {
+              domino_tema: dominoTema,
+              tasa_practica: tasaPractica,
+              total_practicas: totalPracticas,
+              decision,
+            },
           },
         })
         .eq("id", sesion_id),
@@ -138,17 +189,27 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error y siguiente_p
       retroalimentacion: evaluacion.retroalimentacion,
       razon_error: evaluacion.razon_error || null,
       siguiente_pregunta: evaluacion.siguiente_pregunta || null,
-      siguiente_accion: decision.proximo_tema
-        ? `Siguiente: ${decision.proximo_tema}, Capa ${decision.proxima_capa || sesion.capa}`
-        : "Buen trabajo, descansa",
+      siguiente_accion: `Siguiente: ${decision.proximo_tema}, Capa ${decision.proxima_capa || sesion.capa}`,
       decision,
       alerta,
       progreso,
+      dominio: {
+        domino_tema: dominoTema,
+        tasa_practica: tasaPractica,
+        total_practicas: totalPracticas,
+        practicas_correctas: practicasCorrectas,
+      },
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: error.message });
   }
+}
+
+function nextCurriculumTopic(tema) {
+  const curriculum = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].sort((a, b) => a.orden - b.orden);
+  const index = curriculum.findIndex((item) => item.tema === tema);
+  return index >= 0 ? curriculum[index + 1]?.tema : null;
 }
 
 function isMissingLessonsTable(error) {
