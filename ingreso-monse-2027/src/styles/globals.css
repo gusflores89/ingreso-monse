@@ -114,6 +114,128 @@ label {
   padding: 20px 0 40px;
 }
 
+.login-screen {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 18% 18%, rgb(243 232 255 / 78%), transparent 34%),
+    radial-gradient(circle at 82% 22%, rgb(219 234 254 / 82%), transparent 30%),
+    radial-gradient(circle at 50% 86%, rgb(252 231 243 / 74%), transparent 34%),
+    var(--bg);
+}
+
+.login-shell {
+  width: min(430px, 100%);
+  display: grid;
+  gap: 22px;
+}
+
+.login-brand {
+  text-align: center;
+}
+
+.login-owl {
+  width: 86px;
+  height: 86px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 12px;
+  border: 5px solid #8b5e34;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #c58a4a, #a66f37);
+  color: #fff7ed;
+  font-size: 0.86rem;
+  font-weight: 900;
+  box-shadow: 0 18px 35px rgb(146 64 14 / 22%);
+}
+
+.login-brand h1 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(2.5rem, 12vw, 4rem);
+  line-height: 1;
+}
+
+.login-brand p,
+.login-help {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-weight: 750;
+  text-align: center;
+}
+
+.login-card {
+  display: grid;
+  gap: 18px;
+  border: 2px solid #eadcff;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: var(--shadow);
+  padding: clamp(24px, 6vw, 34px);
+}
+
+.login-card-standalone {
+  width: min(430px, 100%);
+}
+
+.login-card h1,
+.login-card h2 {
+  margin: 0;
+  color: var(--ink);
+  text-align: center;
+  font-size: clamp(1.6rem, 7vw, 2.15rem);
+}
+
+.login-code-field input {
+  min-height: 70px;
+  border-color: #d8b4fe;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--primary);
+  font-size: clamp(1.6rem, 8vw, 2.2rem);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.login-error {
+  margin: 0;
+  text-align: center;
+}
+
+.login-submit {
+  min-height: 60px;
+  font-size: 1.12rem;
+}
+
+.family-access,
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  border-radius: 8px;
+  color: var(--primary);
+  font-weight: 900;
+  text-align: center;
+  text-decoration: none;
+}
+
+.family-access:hover {
+  color: var(--primary-strong);
+}
+
+.family-access.compact {
+  border: 1px solid #e9d5ff;
+  background: #ffffff;
+  padding: 0 16px;
+}
+
+.link-button {
+  color: #ffffff;
+}
+
 .topbar,
 .session-header,
 .workspace,
@@ -186,18 +308,16 @@ label {
 
 .app-shell:has(.student-workspace) {
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
   padding: 0;
 }
 
 .student-workspace {
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
 }
 
 .student-workspace .tutoria-panel {
-  height: 100vh;
+  min-height: 100vh;
   border: 0;
   border-radius: 0;
   box-shadow: none;
@@ -234,6 +354,10 @@ label {
   z-index: 1;
 }
 
+.tutoria-panel.background-decorative {
+  overflow: visible;
+}
+
 .setup-screen {
   display: grid;
   min-height: calc(100vh - 140px);
@@ -249,6 +373,40 @@ label {
 
 .setup-form h2 {
   font-size: clamp(1.65rem, 6vw, 2.4rem);
+}
+
+.setup-form > div > p:not(.eyebrow),
+.setup-success > p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-weight: 750;
+}
+
+.setup-success {
+  text-align: left;
+}
+
+.access-code-card {
+  display: grid;
+  gap: 8px;
+  border: 2px solid #bbf7d0;
+  border-radius: 18px;
+  background: linear-gradient(90deg, #f0fdf4, #ffffff);
+  padding: 18px;
+  text-align: center;
+}
+
+.access-code-card p {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 850;
+}
+
+.access-code-card strong {
+  color: var(--primary);
+  font-size: clamp(2rem, 10vw, 3.1rem);
+  font-weight: 900;
+  letter-spacing: 0.12em;
 }
 
 .level-cards {
@@ -403,8 +561,7 @@ label {
 
 .lesson-step-shell {
   width: min(850px, 100%);
-  height: calc(100vh - 120px);
-  min-height: 0;
+  min-height: calc(100vh - 120px);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -437,10 +594,12 @@ label {
 .lesson-step-card {
   flex: 1;
   min-height: 0;
+  max-height: calc(100vh - 218px);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  overflow: hidden;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
   border: 2px solid #eadcff;
   border-radius: 24px;
   background: #ffffff;
@@ -448,9 +607,23 @@ label {
   padding: clamp(18px, 3vw, 30px);
 }
 
+.lesson-step-card::-webkit-scrollbar {
+  width: 10px;
+}
+
+.lesson-step-card::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: #f8fafc;
+}
+
+.lesson-step-card::-webkit-scrollbar-thumb {
+  border: 2px solid #f8fafc;
+  border-radius: 999px;
+  background: #c4b5fd;
+}
+
 .lesson-step-content {
   width: 100%;
-  max-height: 100%;
   display: grid;
   gap: 10px;
 }
@@ -613,6 +786,203 @@ label {
   color: #c2410c;
   font-weight: 900;
   font-style: normal;
+}
+
+.math-visual,
+.rest-visual,
+.sequence-visual {
+  width: min(100%, 520px);
+  margin: 4px auto 2px;
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+
+.math-visual-title,
+.math-visual-result,
+.sequence-visual p,
+.rest-row p,
+.rest-label {
+  margin: 0;
+  color: #475569;
+  font-weight: 900;
+  text-align: center;
+}
+
+.multiply-grid {
+  display: grid;
+  gap: 5px;
+  max-width: 100%;
+  max-height: 126px;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.multiply-dot {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 2px solid rgb(255 255 255 / 78%);
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 900;
+  box-shadow: 0 8px 18px rgb(15 23 42 / 10%);
+}
+
+.math-visual-svg,
+.pizza-svg {
+  width: 100%;
+  max-width: 360px;
+  max-height: 180px;
+  display: block;
+  margin: 0 auto;
+}
+
+.pizza-svg {
+  max-width: 190px;
+}
+
+.svg-title,
+.svg-label,
+.svg-small {
+  fill: #334155;
+  font-family: "Quicksand", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 900;
+}
+
+.svg-title {
+  font-size: 20px;
+}
+
+.svg-label {
+  font-size: 15px;
+}
+
+.svg-small {
+  font-size: 12px;
+}
+
+.fraction-operation {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.fraction-operation .math-visual {
+  width: auto;
+  max-width: 150px;
+}
+
+.fraction-operation .pizza-svg {
+  max-width: 120px;
+}
+
+.fraction-operation > span {
+  color: var(--primary);
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+
+.rest-visual {
+  max-width: 620px;
+  border: 2px solid #dbeafe;
+  border-radius: 18px;
+  background: linear-gradient(90deg, #eff6ff, #f8fafc);
+  padding: 12px;
+}
+
+.rest-row {
+  width: 100%;
+  display: grid;
+  gap: 5px;
+}
+
+.rest-row > div {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.rest-row span {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #cbd5e1;
+  border-radius: 50%;
+  background: #e2e8f0;
+}
+
+.rest-row span.blue {
+  border-color: #2563eb;
+  background: #60a5fa;
+}
+
+.rest-row span.green {
+  border-color: #16a34a;
+  background: #4ade80;
+}
+
+.rest-label.orange {
+  color: #c2410c;
+}
+
+.rest-label.green {
+  color: #15803d;
+}
+
+.roman-visual {
+  width: min(100%, 420px);
+  margin: 4px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  border: 2px solid #e9d5ff;
+  border-radius: 18px;
+  background: linear-gradient(90deg, #faf5ff, #eff6ff);
+  padding: 16px;
+}
+
+.roman-visual div {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+}
+
+.roman-visual small {
+  color: var(--muted);
+  font-weight: 850;
+}
+
+.roman-visual strong,
+.roman-visual > span {
+  color: var(--primary);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 900;
+}
+
+.sequence-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.sequence-row span {
+  min-width: 48px;
+  min-height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #60a5fa, #a855f7);
+  color: #ffffff;
+  font-weight: 900;
+  box-shadow: 0 10px 18px rgb(79 70 229 / 15%);
 }
 
 .exercise-tip {
@@ -1376,7 +1746,7 @@ label {
   }
 
   .lesson-step-shell {
-    height: calc(100vh - 112px);
+    min-height: calc(100vh - 112px);
   }
 }
 
@@ -1428,7 +1798,7 @@ label {
   }
 
   .lesson-step-shell {
-    height: calc(100vh - 104px);
+    min-height: calc(100vh - 104px);
     gap: 12px;
   }
 

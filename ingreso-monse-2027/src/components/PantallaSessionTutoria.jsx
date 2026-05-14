@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Monse from "./Monse";
+import VisualizacionMatematica from "./VisualizacionMatematica";
 
 export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
   const [pregunta, setPregunta] = useState(null);
@@ -213,6 +214,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
                 </div>
 
                 <p className="example-question">{pasoActualData.contenido.enunciado}</p>
+                <MathExampleVisual tema={tema} ejemplo={pasoActualData.contenido} />
 
                 <div className="lesson-steps">
                   {pasoActualData.contenido.pasos?.map((paso, index) => (
@@ -315,6 +317,191 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
       )}
     </section>
   );
+}
+
+function MathExampleVisual({ tema, ejemplo }) {
+  const textoVisual = [ejemplo?.enunciado, ...(ejemplo?.pasos || []), ejemplo?.respuesta].filter(Boolean).join(" ");
+  const visual = visualizacionParaTema(tema, textoVisual);
+  if (!visual) return null;
+  return <VisualizacionMatematica tipo={visual.tipo} datos={visual.datos} />;
+}
+
+function visualizacionParaTema(tema = "", texto = "") {
+  const temaNormalizado = tema.toLowerCase();
+
+  if (temaNormalizado.includes("tablas_multiplicar")) {
+    const numeros = extraerMultiplicacion(texto) || fallbackTabla(temaNormalizado);
+    return { tipo: "tabla_multiplicar", datos: numeros };
+  }
+
+  if (temaNormalizado.includes("division") || temaNormalizado.includes("divisibilidad")) {
+    return { tipo: "division_repartir", datos: extraerDivision(texto) || { total: 12, grupos: 3 } };
+  }
+
+  if (temaNormalizado.includes("fracciones_operaciones")) {
+    const fracciones = extraerFracciones(texto);
+    if (fracciones.length >= 2) {
+      return {
+        tipo: "fraccion_operacion",
+        datos: {
+          frac1: { num: fracciones[0].numerador, den: fracciones[0].denominador },
+          frac2: { num: fracciones[1].numerador, den: fracciones[1].denominador },
+          operacion: texto.includes("-") ? "-" : "+",
+          resultado: fracciones[2]
+            ? { num: fracciones[2].numerador, den: fracciones[2].denominador }
+            : { num: Math.min(fracciones[0].numerador + fracciones[1].numerador, fracciones[0].denominador), den: fracciones[0].denominador },
+        },
+      };
+    }
+    return { tipo: "fraccion_pizza", datos: { numerador: 1, denominador: 4, titulo: "Partes de un entero" } };
+  }
+
+  if (temaNormalizado.includes("fracciones_del_resto")) {
+    return { tipo: "fraccion_del_resto", datos: extraerFraccionResto(texto) };
+  }
+
+  if (temaNormalizado.includes("fracciones_concepto") || temaNormalizado.includes("decimales_conversion")) {
+    return { tipo: "fraccion_pizza", datos: extraerFracciones(texto)[0] || { numerador: 1, denominador: 2, titulo: "Una parte del total" } };
+  }
+
+  if (temaNormalizado.includes("geometria_angulos")) {
+    return { tipo: "angulo", datos: extraerAngulo(texto) };
+  }
+
+  if (temaNormalizado.includes("geometria_triangulos")) {
+    return { tipo: "triangulo", datos: { tipo: extraerTipoTriangulo(texto) } };
+  }
+
+  if (temaNormalizado.includes("geometria_cuadrilateros") || temaNormalizado.includes("perimetros")) {
+    return { tipo: "perimetro", datos: { lados: extraerLados(texto) } };
+  }
+
+  if (temaNormalizado.includes("graficos_estadisticos")) {
+    return { tipo: "grafico_barras", datos: extraerGrafico(texto) };
+  }
+
+  if (temaNormalizado.includes("numeros_romanos")) {
+    return { tipo: "numeros_romanos", datos: extraerRomano(texto) };
+  }
+
+  if (temaNormalizado.includes("secuencias")) {
+    return { tipo: "secuencia", datos: extraerSecuencia(texto, temaNormalizado) };
+  }
+
+  if (temaNormalizado.includes("si_me_la")) {
+    return { tipo: "secuencia", datos: { numeros: [1, 10, 100, 1000], patron: "Cada paso cambia por 10" } };
+  }
+
+  if (temaNormalizado.includes("proporcionalidad")) {
+    return {
+      tipo: "grafico_barras",
+      datos: {
+        titulo: "Si una cantidad crece, la otra tambien",
+        datos: [
+          { label: "1", valor: 2 },
+          { label: "2", valor: 4 },
+          { label: "3", valor: 6 },
+        ],
+      },
+    };
+  }
+
+  if (temaNormalizado.includes("ecuaciones_con_imagenes")) {
+    return { tipo: "secuencia", datos: { numeros: [2, 4, 6, "?"], patron: "Buscar el valor que falta" } };
+  }
+
+  if (temaNormalizado.includes("numeros_naturales")) {
+    return { tipo: "secuencia", datos: { numeros: extraerTodosLosNumeros(texto).slice(0, 5), patron: "Orden y valor de cada numero" } };
+  }
+
+  return null;
+}
+
+function extraerMultiplicacion(texto) {
+  const match = texto.match(/(\d+)\s*(?:x|por|veces)\s*(\d+)/i);
+  if (!match) return null;
+  return { numero: Number(match[1]), factor: Number(match[2]) };
+}
+
+function fallbackTabla(tema) {
+  const match = tema.match(/tablas_multiplicar_(\d+)/);
+  return { numero: match ? Number(match[1]) : 2, factor: 4 };
+}
+
+function extraerDivision(texto) {
+  const match = texto.match(/(\d+)\s*(?:entre|dividido|\/)\s*(\d+)/i);
+  if (match) return { total: Number(match[1]), grupos: Number(match[2]) };
+
+  const numeros = extraerTodosLosNumeros(texto);
+  if (numeros.length >= 2) return { total: numeros[0], grupos: Math.max(1, Math.min(numeros[1], 6)) };
+  return null;
+}
+
+function extraerFracciones(texto) {
+  return Array.from(texto.matchAll(/(\d+)\s*\/\s*(\d+)/g)).map((match) => ({
+    numerador: Number(match[1]),
+    denominador: Number(match[2]),
+  }));
+}
+
+function extraerFraccionResto(texto) {
+  const numeros = extraerTodosLosNumeros(texto);
+  const total = numeros[0] || 12;
+  const usado = numeros.find((numero, index) => index > 0 && numero < total) || Math.max(1, Math.floor(total / 3));
+  const resto = Math.max(0, total - usado);
+  const final = Math.max(1, Math.floor(resto / 2));
+  return { total, primera_fraccion: usado, resto, segunda_fraccion: "una parte", final };
+}
+
+function extraerAngulo(texto) {
+  const match = texto.match(/(\d+)\s*(?:grados|grado|°)/i);
+  const grados = match ? Number(match[1]) : texto.toLowerCase().includes("recto") ? 90 : 60;
+  const nombre = grados < 90 ? "agudo" : grados === 90 ? "recto" : "obtuso";
+  return { grados, nombre };
+}
+
+function extraerTipoTriangulo(texto) {
+  const lower = texto.toLowerCase();
+  if (lower.includes("rectangulo") || lower.includes("recto")) return "rectangulo";
+  if (lower.includes("equilatero")) return "equilatero";
+  if (lower.includes("isosceles")) return "isosceles";
+  if (lower.includes("escaleno")) return "escaleno";
+  return "triangulo";
+}
+
+function extraerLados(texto) {
+  const numeros = extraerTodosLosNumeros(texto);
+  const arriba = numeros[0] || 8;
+  const derecha = numeros[1] || 5;
+  const abajo = numeros[2] || arriba;
+  const izquierda = numeros[3] || derecha;
+  return { arriba, derecha, abajo, izquierda };
+}
+
+function extraerGrafico(texto) {
+  const numeros = extraerTodosLosNumeros(texto).slice(0, 4);
+  const valores = numeros.length ? numeros : [3, 5, 2, 6];
+  return {
+    titulo: "Comparamos cantidades",
+    datos: valores.map((valor, index) => ({ label: `Dato ${index + 1}`, valor })),
+  };
+}
+
+function extraerRomano(texto) {
+  const romanos = texto.match(/\b[IVXLCDM]{1,8}\b/);
+  const arabigo = extraerTodosLosNumeros(texto)[0] || 12;
+  return { arabigo, romano: romanos?.[0] || "XII" };
+}
+
+function extraerSecuencia(texto, tema) {
+  const numeros = extraerTodosLosNumeros(texto).slice(0, 8);
+  if (numeros.length >= 3) return { numeros, patron: "Mira que cambia de un numero al siguiente" };
+  if (tema.includes("fibonacci")) return { numeros: [1, 1, 2, 3, 5, 8], patron: "Cada numero sale de sumar los dos anteriores" };
+  return { numeros: [2, 4, 6, 8, 10], patron: "Suma 2 cada vez" };
+}
+
+function extraerTodosLosNumeros(texto) {
+  return Array.from(texto.matchAll(/\d+/g)).map((match) => Number(match[0])).filter((numero) => Number.isFinite(numero));
 }
 
 function TareaManuscrita({ pregunta, loading, onComplete }) {

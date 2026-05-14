@@ -19,6 +19,7 @@ export default async function handler(req, res) {
 
   try {
     const supabase = getSupabaseAdmin();
+    const codigo_acceso = await generarCodigoUnico(supabase, nombre);
 
     const usuario = assertSupabaseOk(
       await supabase
@@ -31,6 +32,7 @@ export default async function handler(req, res) {
             nivel_inicial,
             estilo_aprendizaje,
             rasgos_especiales,
+            codigo_acceso,
             updated_at: new Date().toISOString(),
           },
           { onConflict: "email" }
@@ -60,4 +62,29 @@ export default async function handler(req, res) {
     console.error(error);
     res.status(500).json({ error: error.message });
   }
+}
+
+async function generarCodigoUnico(supabase, nombre) {
+  for (let intento = 0; intento < 8; intento += 1) {
+    const codigo = generarCodigo(nombre);
+    const { data } = await supabase.from("usuarios").select("id").eq("codigo_acceso", codigo).maybeSingle();
+    if (!data) return codigo;
+  }
+
+  return `${generarBaseCodigo(nombre)}${Date.now().toString().slice(-4)}`;
+}
+
+function generarCodigo(nombre) {
+  const numero = Math.floor(Math.random() * 99) + 1;
+  return `${generarBaseCodigo(nombre)}${numero}`;
+}
+
+function generarBaseCodigo(nombre) {
+  return String(nombre || "ALUMN")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-zA-Z0-9]/g, "")
+    .toUpperCase()
+    .slice(0, 5)
+    .padEnd(5, "X");
 }

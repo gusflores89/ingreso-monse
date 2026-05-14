@@ -1,80 +1,85 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
-import DashboardPapas from "@/components/DashboardPapas";
-import PantallaSessionTutoria from "@/components/PantallaSessionTutoria";
-import PantallaSetup from "@/components/PantallaSetup";
-import { DEFAULT_TOPIC, isCurriculumTopic } from "@/lib/curriculum";
-
-const DEFAULT_USER_ID = process.env.NEXT_PUBLIC_DEMO_USER_ID || "";
 
 export default function Home() {
+  const [codigo, setCodigo] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const [userId, setUserId] = useState(DEFAULT_USER_ID);
-  const [vista, setVista] = useState(DEFAULT_USER_ID ? "tutoria" : "setup");
-  const [tema, setTema] = useState(DEFAULT_TOPIC);
-  const [capa, setCapa] = useState(1);
-  const [modo, setModo] = useState("NORMAL");
 
-  useEffect(() => {
-    if (!router.isReady) return;
+  const handleLogin = async () => {
+    const normalizedCode = codigo.trim().toUpperCase();
+    setError("");
 
-    const queryUserId = firstQueryValue(router.query.user_id);
-    const queryTema = firstQueryValue(router.query.tema);
-    const queryCapa = Number(firstQueryValue(router.query.capa));
-    const queryModo = firstQueryValue(router.query.modo);
+    if (!normalizedCode) {
+      setError("Ingresa tu codigo para empezar.");
+      return;
+    }
 
-    if (!queryUserId) return;
+    setLoading(true);
 
-    setUserId(queryUserId);
-    setTema(isCurriculumTopic(queryTema) ? queryTema : DEFAULT_TOPIC);
-    setCapa(Number.isFinite(queryCapa) && queryCapa >= 1 && queryCapa <= 5 ? queryCapa : 1);
-    setModo(queryModo || "NORMAL");
-    setVista("tutoria");
-  }, [router.isReady, router.query]);
+    try {
+      const res = await fetch("/api/login-codigo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ codigo: normalizedCode }),
+      });
+      const data = await res.json();
 
-  const handleSetupComplete = ({ usuario, plan }) => {
-    setUserId(usuario.id);
-    setTema(isCurriculumTopic(plan?.proximo_tema) ? plan.proximo_tema : DEFAULT_TOPIC);
-    setCapa(plan?.proxima_capa || 1);
-    setModo(plan?.modo_recomendado || "NORMAL");
-    setVista("tutoria");
+      if (!res.ok) {
+        throw new Error(data.error || "Codigo incorrecto. Pedile ayuda a mama/papa.");
+      }
+
+      router.push(`/tutoria?user_id=${data.userId}`);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <main className="app-shell">
-      {vista !== "tutoria" && (
-        <nav className="topbar">
-          <div>
-            <p className="eyebrow">Ingreso Monserrat 2027</p>
-            <h1>Abril Quest</h1>
+    <main className="login-screen">
+      <section className="login-shell" aria-labelledby="login-title">
+        <div className="login-brand">
+          <div className="login-owl" aria-hidden="true">
+            Monse
           </div>
-          <div className="nav-actions" aria-label="Secciones">
-            <button className={vista === "setup" ? "active" : ""} onClick={() => setVista("setup")}>
-              Setup
-            </button>
-            <button className={vista === "tutoria" ? "active" : ""} onClick={() => setVista("tutoria")} disabled={!userId}>
-              Tutoria
-            </button>
-            <button className={vista === "dashboard" ? "active" : ""} onClick={() => setVista("dashboard")} disabled={!userId}>
-              Papas
-            </button>
-          </div>
-        </nav>
-      )}
+          <h1 id="login-title">Monse</h1>
+          <p>Tu tutora para el ingreso Monserrat</p>
+        </div>
 
-      {vista === "setup" && <PantallaSetup onComplete={handleSetupComplete} />}
+        <div className="login-card">
+          <h2>Hola</h2>
 
-      {vista === "tutoria" && userId && (
-        <section className="workspace student-workspace">
-          <PantallaSessionTutoria key={`${tema}-${capa}-${modo}`} user_id={userId} tema={tema} capa={capa} modo={modo} />
-        </section>
-      )}
+          <label className="login-code-field">
+            Ingresa tu codigo
+            <input
+              type="text"
+              value={codigo}
+              onChange={(event) => setCodigo(event.target.value.toUpperCase())}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") handleLogin();
+              }}
+              placeholder="Ej: ABRIL"
+              maxLength={12}
+              autoFocus
+            />
+          </label>
 
-      {vista === "dashboard" && userId && <DashboardPapas userId={userId} />}
+          {error && <p className="error login-error">{error}</p>}
+
+          <button type="button" className="primary login-submit" onClick={handleLogin} disabled={loading}>
+            {loading ? "Entrando..." : "Empezar a practicar"}
+          </button>
+
+          <p className="login-help">Si no tenes codigo, pedile a mama/papa que configure tu cuenta.</p>
+        </div>
+
+        <a href="/setup" className="family-access">
+          Acceso para padres/tutores
+        </a>
+      </section>
     </main>
   );
-}
-
-function firstQueryValue(value) {
-  return Array.isArray(value) ? value[0] : value;
 }

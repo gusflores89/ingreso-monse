@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 export default function PantallaSetup({ onComplete }) {
+  const router = useRouter();
   const [form, setForm] = useState({
-    nombre: "Abril",
+    nombre: "",
     email: "",
     fecha_examen: "2027-12-01",
     nivel_inicial: "recien_empieza",
@@ -11,6 +13,7 @@ export default function PantallaSetup({ onComplete }) {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [setupExitoso, setSetupExitoso] = useState(null);
 
   const update = (key, value) => setForm((prev) => ({ ...prev, [key]: value }));
 
@@ -34,7 +37,8 @@ export default function PantallaSetup({ onComplete }) {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "No se pudo completar el setup.");
-      onComplete(data);
+      setSetupExitoso(data);
+      onComplete?.(data);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -42,17 +46,54 @@ export default function PantallaSetup({ onComplete }) {
     }
   };
 
+  if (setupExitoso) {
+    const codigoGenerado = setupExitoso.usuario?.codigo_acceso || "";
+    const nombre = setupExitoso.usuario?.nombre || form.nombre || "el estudiante";
+
+    return (
+      <section className="setup-screen">
+        <div className="setup-form setup-success">
+          <div>
+            <p className="eyebrow">Cuenta lista</p>
+            <h2>Cuenta creada exitosamente</h2>
+          </div>
+
+          <div className="access-code-card">
+            <p>Codigo de acceso</p>
+            <strong>{codigoGenerado}</strong>
+          </div>
+
+          <p>Escribi este codigo en un papel y daselo a {nombre}.</p>
+          <p>
+            Para practicar, {nombre} debe ir a la pagina principal, escribir <strong>{codigoGenerado}</strong> y tocar
+            "Empezar a practicar".
+          </p>
+
+          <button type="button" className="primary" onClick={() => router.push("/")}>
+            Ir a la pagina principal
+          </button>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="setup-screen">
       <form className="setup-form" onSubmit={handleSubmit}>
         <div>
           <p className="eyebrow">Primer ingreso</p>
-          <h2>Configurar el plan de Abril</h2>
+          <h2>Configurar cuenta de estudiante</h2>
+          <p>Ingresa los datos del alumno/a para comenzar.</p>
         </div>
 
         <label>
-          Nombre
-          <input value={form.nombre} onChange={(event) => update("nombre", event.target.value)} required />
+          Nombre del estudiante
+          <input
+            value={form.nombre}
+            onChange={(event) => update("nombre", event.target.value)}
+            placeholder="Ej: Abril, Santiago, Lucia..."
+            required
+          />
         </label>
 
         <label>
