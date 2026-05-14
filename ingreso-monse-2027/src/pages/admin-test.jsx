@@ -16,35 +16,20 @@ export default function AdminTest() {
   ];
 
   const iniciarSesion = async () => {
-    setLoading(true);
-    setResultado(null);
+    const url = `/?user_id=${encodeURIComponent(userId)}&tema=${encodeURIComponent(temaSeleccionado)}&capa=${capa}`;
+    const opened = window.open(url, "_blank");
 
-    try {
-      const res = await fetch("/api/sesion/init", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          user_id: userId,
-          tema: temaSeleccionado,
-          capa: Number(capa),
-          modo: "NORMAL",
-        }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        setResultado({ tipo: "error", mensaje: data.error || "No se pudo iniciar la sesion." });
-        return;
-      }
-
-      setResultado({ tipo: "exito", data });
-      window.open(`/?user_id=${encodeURIComponent(userId)}&tema=${encodeURIComponent(temaSeleccionado)}&capa=${capa}`, "_blank");
-    } catch (error) {
-      setResultado({ tipo: "error", mensaje: error.message });
-    } finally {
-      setLoading(false);
-    }
+    setResultado({
+      tipo: opened ? "exito" : "error",
+      data: opened
+        ? {
+            sesion_id: "Abriendo prueba",
+            tipo: "La sesion carga en la nueva pestana",
+            url,
+          }
+        : null,
+      mensaje: opened ? null : `El navegador bloqueo la pestana nueva. Abri manualmente: ${url}`,
+    });
   };
 
   const marcarTemaCompletado = async () => {
@@ -146,6 +131,11 @@ export default function AdminTest() {
                   <p>
                     <span>Tipo:</span> {resultado.data.tipo || "N/A"}
                   </p>
+                  {resultado.data.url && (
+                    <p>
+                      <span>Link:</span> <a href={resultado.data.url}>Abrir prueba</a>
+                    </p>
+                  )}
                 </div>
               ) : (
                 <p>{resultado.mensaje}</p>
