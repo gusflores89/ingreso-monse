@@ -293,11 +293,18 @@ function formatDate(value) {
   if (!value) return "Sin fecha";
 
   return new Intl.DateTimeFormat("es-AR", {
+    timeZone: "America/Argentina/Buenos_Aires",
     day: "2-digit",
     month: "2-digit",
     hour: "2-digit",
     minute: "2-digit",
-  }).format(new Date(value));
+  }).format(parseSupabaseDate(value));
+}
+
+function parseSupabaseDate(value) {
+  const text = String(value);
+  const hasTimezone = /(?:Z|[+-]\d{2}:?\d{2})$/i.test(text);
+  return new Date(hasTimezone ? text : `${text}Z`);
 }
 
 function daysUntil(dateString) {
