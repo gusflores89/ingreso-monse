@@ -10,6 +10,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [pasoActual, setPasoActual] = useState(0);
+  const [respuestasExamen, setRespuestasExamen] = useState({});
   const startTime = useRef(Date.now());
 
   useEffect(() => {
@@ -18,6 +19,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
       setError("");
       setEvaluacion(null);
       setRespuesta("");
+      setRespuestasExamen({});
       startTime.current = Date.now();
 
       try {
@@ -66,6 +68,38 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
     }
   };
 
+  const handleEnviarExamen = async () => {
+    const tienePreguntas = pregunta?.preguntas?.length > 0;
+    const respuestaPayload = tienePreguntas ? respuestasExamen : { texto: respuesta };
+    const hayRespuesta = tienePreguntas
+      ? pregunta.preguntas.every((item) => String(respuestaPayload[item.id] || "").trim())
+      : respuesta.trim();
+
+    if (!hayRespuesta || !sesionId) return;
+
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/sesion/respuesta", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          sesion_id: sesionId,
+          respuesta_usuario: JSON.stringify(respuestaPayload),
+          tiempo_segundos: Math.round((Date.now() - startTime.current) / 1000),
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "No se pudo evaluar el examen.");
+      setEvaluacion(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleSiguiente = async () => {
     const decision = evaluacion?.decision || {};
     const proximoTema = decision.proximo_tema || tema;
@@ -75,6 +109,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
     setLoading(true);
     setError("");
     setRespuesta("");
+    setRespuestasExamen({});
 
     try {
       const res = await fetch("/api/sesion/init", {
@@ -93,6 +128,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
       setSesionId(data.sesion_id);
       setEvaluacion(null);
       setPasoActual(0);
+      setRespuestasExamen({});
       startTime.current = Date.now();
     } catch (err) {
       setError(err.message);
@@ -181,6 +217,19 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
 
       {!evaluacion && pregunta?.tipo === "manuscrita" && (
         <TareaManuscrita pregunta={pregunta} loading={loading} onComplete={handleTareaCompletada} />
+      )}
+
+      {!evaluacion && pregunta?.tipo === "examen_final" && (
+        <ExamenFinal
+          pregunta={pregunta}
+          tema={tema}
+          respuestas={respuestasExamen}
+          respuestaTexto={respuesta}
+          loading={loading}
+          onRespuesta={(id, value) => setRespuestasExamen((prev) => ({ ...prev, [id]: value }))}
+          onRespuestaTexto={setRespuesta}
+          onSubmit={handleEnviarExamen}
+        />
       )}
 
       {!evaluacion && pregunta?.tipo === "leccion" && pasoActualData && (
@@ -282,7 +331,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
         </div>
       )}
 
-      {!evaluacion && pregunta?.tipo !== "leccion" && pregunta?.tipo !== "manuscrita" && pregunta && (
+      {!evaluacion && pregunta?.tipo !== "leccion" && pregunta?.tipo !== "manuscrita" && pregunta?.tipo !== "examen_final" && pregunta && (
         <div className="question-area">
           <p className="question-text">{pregunta.pregunta}</p>
 
@@ -502,6 +551,60 @@ function extraerSecuencia(texto, tema) {
 
 function extraerTodosLosNumeros(texto) {
   return Array.from(texto.matchAll(/\d+/g)).map((match) => Number(match[0])).filter((numero) => Number.isFinite(numero));
+}
+
+function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRespuesta, onRespuestaTexto, onSubmit }) {
+  const tienePreguntas = pregunta.preguntas?.length > 0;
+  const puedeEnviar = tienePreguntas
+    ? pregunta.preguntas.every((item) => String(respuestas[item.id] || "").trim())
+    : String(respuestaTexto || "").trim();
+
+  return (
+    <div className="exam-final-shell">
+      <section className="exam-banner">
+        <p className="eyebrow">Examen Final</p>
+        <h2>{tema.replace(/_/g, " ")}</h2>
+        <p>{pregunta.instrucciones}</p>
+      </section>
+
+      <section className="exam-card">
+        <p className="exam-statement">{pregunta.enunciado}</p>
+        {pregunta.visualizacion && <VisualizacionMatematica tipo={pregunta.visualizacion.tipo} datos={pregunta.visualizacion.datos} />}
+      </section>
+
+      <section className="exam-card exam-answers">
+        {tienePreguntas ? (
+          pregunta.preguntas.map((item) => (
+            <label key={item.id} className="exam-question">
+              <span>
+                {item.id}) {item.texto}
+              </span>
+              <input
+                type="text"
+                value={respuestas[item.id] || ""}
+                onChange={(event) => onRespuesta(item.id, event.target.value)}
+                placeholder="Tu respuesta..."
+              />
+            </label>
+          ))
+        ) : (
+          <label className="exam-question">
+            <span>Escribi tu respuesta completa</span>
+            <textarea
+              value={respuestaTexto}
+              onChange={(event) => onRespuestaTexto(event.target.value)}
+              placeholder="Escribi tu respuesta aca..."
+              rows={7}
+            />
+          </label>
+        )}
+
+        <button type="button" className="primary exam-submit" onClick={onSubmit} disabled={!puedeEnviar || loading}>
+          {loading ? "Enviando examen..." : "Enviar examen final"}
+        </button>
+      </section>
+    </div>
+  );
 }
 
 function TareaManuscrita({ pregunta, loading, onComplete }) {

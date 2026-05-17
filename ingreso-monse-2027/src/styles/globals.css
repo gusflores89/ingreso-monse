@@ -840,6 +840,11 @@ label {
   margin: 0 auto;
 }
 
+.math-visual-svg.wide {
+  max-width: 620px;
+  max-height: 240px;
+}
+
 .pizza-svg {
   max-width: 190px;
 }
@@ -993,6 +998,86 @@ label {
   padding: 14px 16px;
   text-align: center;
   font-weight: 850;
+}
+
+.exam-final-shell {
+  width: min(860px, 100%);
+  max-height: calc(100vh - 96px);
+  margin: 0 auto;
+  display: grid;
+  gap: 14px;
+  overflow: auto;
+  padding: 2px 4px 20px;
+}
+
+.exam-banner,
+.exam-card {
+  border: 2px solid #fed7aa;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: var(--shadow);
+}
+
+.exam-banner {
+  background: linear-gradient(90deg, #fff7ed, #fef3c7);
+  padding: clamp(18px, 4vw, 28px);
+  text-align: center;
+}
+
+.exam-banner h2 {
+  margin: 0;
+  color: #c2410c;
+  font-size: clamp(1.55rem, 5vw, 2.35rem);
+  text-transform: capitalize;
+}
+
+.exam-banner p:not(.eyebrow) {
+  margin: 8px 0 0;
+  color: #92400e;
+  font-weight: 800;
+}
+
+.exam-card {
+  display: grid;
+  gap: 18px;
+  border-color: #e9d5ff;
+  padding: clamp(18px, 4vw, 28px);
+}
+
+.exam-statement {
+  margin: 0;
+  color: #334155;
+  font-size: clamp(1rem, 2.4vw, 1.16rem);
+  font-weight: 760;
+  line-height: 1.58;
+  white-space: pre-line;
+}
+
+.exam-answers {
+  border-color: #dbeafe;
+}
+
+.exam-question {
+  display: grid;
+  gap: 8px;
+  border-radius: 14px;
+  background: #f8fafc;
+  padding: 14px;
+}
+
+.exam-question span {
+  color: #334155;
+  font-weight: 900;
+}
+
+.exam-submit {
+  background: var(--tertiary);
+  border-color: var(--tertiary);
+}
+
+.exam-submit:hover:not(:disabled) {
+  background: #d97706;
+  border-color: #d97706;
 }
 
 .handwriting-shell {

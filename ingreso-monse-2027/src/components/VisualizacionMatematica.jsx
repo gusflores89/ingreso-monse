@@ -63,8 +63,26 @@ export default function VisualizacionMatematica({ tipo, datos }) {
   }
 
   if (tipo === "fraccion_pizza") {
-    const numerador = clampNumber(datos.numerador, 0, 12);
-    const denominador = clampNumber(datos.denominador, 1, 12);
+    if (Array.isArray(datos)) {
+      return (
+        <div className="fraction-operation">
+          {datos.map((item, index) => (
+            <VisualizacionMatematica
+              key={`${item.label || "pizza"}-${index}`}
+              tipo="fraccion_pizza"
+              datos={{
+                numerador: item.numerador ?? item.pintadas,
+                denominador: item.denominador ?? item.total,
+                titulo: item.label,
+              }}
+            />
+          ))}
+        </div>
+      );
+    }
+
+    const numerador = clampNumber(datos.numerador ?? datos.pintadas, 0, 12);
+    const denominador = clampNumber(datos.denominador ?? datos.total, 1, 12);
     const shownNumerator = Math.min(numerador, denominador);
     const anguloPorcion = 360 / denominador;
 
@@ -136,6 +154,20 @@ export default function VisualizacionMatematica({ tipo, datos }) {
   }
 
   if (tipo === "angulo") {
+    if (Array.isArray(datos)) {
+      return (
+        <div className="fraction-operation">
+          {datos.map((item, index) => (
+            <VisualizacionMatematica
+              key={`${item.label || "angulo"}-${index}`}
+              tipo="angulo"
+              datos={{ grados: item.grados ?? item.medida, nombre: item.label }}
+            />
+          ))}
+        </div>
+      );
+    }
+
     const grados = clampNumber(datos.grados, 1, 180);
     const radianes = toRadians(grados);
 
@@ -189,25 +221,32 @@ export default function VisualizacionMatematica({ tipo, datos }) {
   }
 
   if (tipo === "grafico_barras") {
-    const items = Array.isArray(datos.datos) ? datos.datos.slice(0, 5) : [];
+    const normalizedItems = Array.isArray(datos.datos)
+      ? datos.datos
+      : Array.isArray(datos.categorias) && Array.isArray(datos.valores)
+        ? datos.categorias.map((label, index) => ({ label, valor: datos.valores[index] }))
+        : [];
+    const items = normalizedItems.slice(0, 12);
     const maxValor = Math.max(1, ...items.map((item) => item.valor));
 
     return (
       <div className="math-visual">
         {datos.titulo && <p className="math-visual-title">{datos.titulo}</p>}
-        <svg viewBox="0 0 420 300" className="math-visual-svg" role="img" aria-label="Grafico de barras">
+        <svg viewBox="0 0 620 320" className="math-visual-svg wide" role="img" aria-label="Grafico de barras">
           {items.map((item, index) => {
             const altura = (item.valor / maxValor) * 200;
-            const x = 52 + index * 75;
+            const gap = items.length > 6 ? 45 : 75;
+            const width = items.length > 6 ? 34 : 54;
+            const x = 52 + index * gap;
             return (
               <g key={`${item.label}-${index}`}>
-                <rect x={x} y={250 - altura} width="54" height={altura} fill={`hsl(${index * 60}, 70%, 60%)`} stroke="#334155" strokeWidth="2" />
-                <text x={x + 27} y={242 - altura} textAnchor="middle" className="svg-label">{item.valor}</text>
-                <text x={x + 27} y="275" textAnchor="middle" className="svg-small">{item.label}</text>
+                <rect x={x} y={250 - altura} width={width} height={altura} fill={`hsl(${index * 42}, 70%, 60%)`} stroke="#334155" strokeWidth="2" />
+                <text x={x + width / 2} y={242 - altura} textAnchor="middle" className="svg-label">{item.valor}</text>
+                <text x={x + width / 2} y="275" textAnchor="middle" className="svg-small">{item.label}</text>
               </g>
             );
           })}
-          <line x1="40" y1="250" x2="390" y2="250" stroke="#334155" strokeWidth="2" />
+          <line x1="40" y1="250" x2="600" y2="250" stroke="#334155" strokeWidth="2" />
         </svg>
       </div>
     );

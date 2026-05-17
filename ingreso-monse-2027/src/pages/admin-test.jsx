@@ -16,7 +16,7 @@ export default function AdminTest() {
   ];
 
   const iniciarSesion = async () => {
-    const url = `/?user_id=${encodeURIComponent(userId)}&tema=${encodeURIComponent(temaSeleccionado)}&capa=${capa}`;
+    const url = `/tutoria?user_id=${encodeURIComponent(userId)}&tema=${encodeURIComponent(temaSeleccionado)}&capa=${capa}`;
     const opened = window.open(url, "_blank");
 
     setResultado({

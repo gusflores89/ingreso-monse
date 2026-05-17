@@ -1,5 +1,12 @@
 import { daysUntilExam } from "@/lib/date";
-import { CURRICULUM_LENGUA, CURRICULUM_MATEMATICA, getNextTopic, getTopicMeta } from "@/lib/curriculum";
+import {
+  CURRICULUM_LENGUA,
+  CURRICULUM_MATEMATICA,
+  getNextTopic,
+  getProximoTemaAlternando,
+  getTopicMeta,
+} from "@/lib/curriculum";
+import { evaluarExamenFinal, getExamenFinal } from "@/lib/examenes-monserrat";
 import { parseJsonFromModel } from "@/lib/json";
 import { callOpenRouter } from "@/lib/openrouter";
 import { maybeCreateAlert, refreshTopicProgress } from "@/lib/progress";
@@ -36,6 +43,78 @@ export default async function handler(req, res) {
       modo: sesion.modo,
     };
     const esLeccion = sesion.tipo_pregunta === "leccion";
+    const esExamenFinal = sesion.tipo_pregunta === "examen_final";
+
+    if (esExamenFinal) {
+      const examen = getExamenFinal(sesion.tema, sesion.capa) || contexto.examen_final;
+      const resultadoExamen = evaluarExamenFinal(examen, respuesta_usuario);
+      const retroalimentacion = resultadoExamen.es_correcta
+        ? `Examen final aprobado con ${resultadoExamen.puntaje}%. Ahora cambiamos de materia para entrenar de forma equilibrada.`
+        : `Todavia no aprobaste el examen final. Puntaje: ${resultadoExamen.puntaje}%. Vamos a reforzar este tema antes de cambiar.`;
+
+      assertSupabaseOk(
+        await supabase
+          .from("sesiones")
+          .update({
+            respuesta_usuario,
+            tiempo_segundos: Number(tiempo_segundos) || null,
+            es_correcta: resultadoExamen.es_correcta,
+            retroalimentacion_ia: retroalimentacion,
+            razon_evaluacion: JSON.stringify(resultadoExamen.detalle || []),
+            ia_parametros_usados: {
+              ...(sesion.ia_parametros_usados || {}),
+              evaluacion: {
+                provider: "deterministic",
+                tipo: "examen_final",
+                puntaje: resultadoExamen.puntaje,
+                detalle: resultadoExamen.detalle,
+              },
+            },
+          })
+          .eq("id", sesion_id),
+        "No se pudo guardar la evaluacion del examen final"
+      );
+
+      const progreso = await refreshTopicProgress(supabase, sesion.user_id, sesion.tema, sesion.capa);
+      const proximoTema = resultadoExamen.es_correcta
+        ? await getProximoTemaAlternando(supabase, sesion.user_id, sesion.tema)
+        : sesion.tema;
+
+      const decision = {
+        proximo_tema: proximoTema,
+        proxima_capa: resultadoExamen.es_correcta ? 1 : sesion.capa || 1,
+        modo_recomendado: "NORMAL",
+        razon: resultadoExamen.es_correcta
+          ? `Examen final aprobado. Alternar materia hacia "${proximoTema}".`
+          : `Reforzar "${sesion.tema}" antes de volver a intentar el examen final.`,
+        alerta: null,
+      };
+
+      assertSupabaseOk(
+        await supabase
+          .from("sesiones")
+          .update({
+            proximo_tema_recomendado: decision.proximo_tema,
+            proxima_capa_recomendada: decision.proxima_capa,
+          })
+          .eq("id", sesion_id),
+        "No se pudo guardar la decision del examen final"
+      );
+
+      return res.status(200).json({
+        es_correcta: resultadoExamen.es_correcta,
+        retroalimentacion,
+        razon_error: resultadoExamen.es_correcta ? null : "Examen final no aprobado",
+        siguiente_accion: `Siguiente: ${decision.proximo_tema}, Capa ${decision.proxima_capa}`,
+        decision,
+        progreso,
+        examen: {
+          puntaje: resultadoExamen.puntaje,
+          detalle: resultadoExamen.detalle,
+        },
+      });
+    }
+
     const evaluacionPrompt = esLeccion
       ? `${hydratePrompt(SYSTEM_PROMPT_MONSE, contexto)}
 
@@ -109,47 +188,14 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error y siguiente_p
     let decision;
 
     if (dominoTema) {
-      const ultimas3 = assertSupabaseOk(
-        await supabase
-          .from("sesiones")
-          .select("pregunta_generada, respuesta_usuario, es_correcta, razon_evaluacion, created_at")
-          .eq("user_id", sesion.user_id)
-          .eq("tema", sesion.tema)
-          .not("es_correcta", "is", null)
-          .order("created_at", { ascending: false })
-          .limit(3),
-        "No se pudieron obtener respuestas recientes"
-      );
-
-      const analyzerInput = {
-        tema_actual: sesion.tema,
-        materia_actual: getTopicMeta(sesion.tema)?.materia || null,
-        capa_actual: sesion.capa,
-        tasa_acierto: tasaPractica,
-        sesiones_en_tema: totalPracticas,
-        modo: sesion.modo,
-        dias_falta_examen: daysUntilExam(),
-        errores_patrones: ultimas3.filter((item) => !item.es_correcta).map((item) => item.razon_evaluacion),
-        ultimas_3_respuestas: ultimas3,
-        curriculum_matematica: CURRICULUM_MATEMATICA,
-        curriculum_lengua: CURRICULUM_LENGUA,
+      decision = {
+        proximo_tema: sesion.tema,
+        proxima_capa: sesion.capa || 1,
+        modo_recomendado: "NORMAL",
+        razon: `Practicas dominadas: ${tasaPractica}% de acierto en ${totalPracticas} practicas. Ahora corresponde examen final antes de cambiar de tema.`,
+        alerta: null,
       };
-      const deterministicNextTopic = getNextTopic(sesion.tema);
-
-      const analyzerResponse = await callOpenRouter(
-        MODEL_ANALYZER,
-        SYSTEM_PROMPT_ANALYZER,
-        `Abril domino "${sesion.tema}" con ${tasaPractica}% de acierto en ${totalPracticas} practicas. El proximo tema recomendado por el curriculum deterministico es "${deterministicNextTopic}". Usa ese tema salvo que haya una razon pedagogica fuerte para alternar materia. Responde SOLO en JSON. Input: ${JSON.stringify(analyzerInput)}`,
-        1024
-      );
-
-      decision = parseJsonFromModel(analyzerResponse);
-      decision.proximo_tema = decision.proximo_tema || deterministicNextTopic || sesion.tema;
-      decision.proxima_capa = decision.proxima_capa || 1;
-      decision.razon =
-        decision.razon ||
-        `Tema dominado: ${tasaPractica}% de acierto en ${totalPracticas} practicas. Pasar al proximo tema.`;
-      console.log(`Tema dominado. Cambio a: ${decision.proximo_tema}`);
+      console.log(`Practicas dominadas. Siguiente paso: examen final de ${sesion.tema}`);
     } else {
       const nuevaCapa = tasaPractica >= 70 ? Math.min((sesion.capa || 1) + 1, 5) : sesion.capa || 1;
 

@@ -1,6 +1,7 @@
 import { daysUntilExam } from "@/lib/date";
 import { getTopicMeta } from "@/lib/curriculum";
 import { getTareaManuscrita } from "@/lib/ejercicios-manuscritos";
+import { getExamenFinal } from "@/lib/examenes-monserrat";
 import { parseJsonFromModel } from "@/lib/json";
 import { callOpenRouter } from "@/lib/openrouter";
 import { MODEL_TUTOR, hydratePrompt, SYSTEM_PROMPT_PRACTICE, SYSTEM_PROMPT_TEACHER } from "@/lib/prompts";
@@ -66,6 +67,13 @@ export default async function handler(req, res) {
 
     const leccion = leccionResult.data;
     const modoSesion = leccion?.completada ? "practica" : "leccion";
+
+    if (modoSesion === "practica") {
+      const examenResponse = await maybeCrearExamenFinal(supabase, user_id, tema, Number(capa), modo, contexto);
+      if (examenResponse) {
+        return res.status(200).json(examenResponse);
+      }
+    }
 
     if (modoSesion === "practica") {
       const tareaResponse = await maybeAsignarTareaManuscrita(supabase, user_id, tema);
@@ -186,4 +194,116 @@ async function maybeAsignarTareaManuscrita(supabase, userId, tema) {
     if (isMissingHandwritingTable(error)) return null;
     throw error;
   }
+}
+
+async function maybeCrearExamenFinal(supabase, userId, tema, capa, modo, contexto) {
+  const practicas = await getPracticasEvaluadas(supabase, userId, tema);
+  const totalPracticas = practicas.length;
+  const correctas = practicas.filter((item) => item.es_correcta).length;
+  const tasaPractica = totalPracticas ? (correctas / totalPracticas) * 100 : 0;
+
+  if (totalPracticas < 3 || tasaPractica < 80) return null;
+
+  const examenAprobadoResult = await supabase
+    .from("sesiones")
+    .select("id")
+    .eq("user_id", userId)
+    .eq("tema", tema)
+    .eq("tipo_pregunta", "examen_final")
+    .eq("es_correcta", true)
+    .limit(1);
+
+  if (examenAprobadoResult.error) {
+    throw new Error(`No se pudo verificar examen final aprobado: ${examenAprobadoResult.error.message}`);
+  }
+
+  if ((examenAprobadoResult.data || []).length > 0) return null;
+
+  const examenDefinido = getExamenFinal(tema, capa);
+  const examen = examenDefinido || (await generarExamenFinalConIa(tema, capa, contexto));
+
+  const sesion = assertSupabaseOk(
+    await supabase
+      .from("sesiones")
+      .insert({
+        user_id: userId,
+        tema,
+        capa,
+        tipo_pregunta: "examen_final",
+        pregunta_generada: examen.enunciado,
+        contexto_json: { ...contexto, examen_final: examen },
+        modo,
+        ia_parametros_usados: {
+          provider: examenDefinido ? "static" : "openrouter",
+          model: examenDefinido ? null : MODEL_TUTOR,
+          endpoint: "/api/sesion/init",
+          modo_sesion: "examen_final",
+        },
+      })
+      .select()
+      .single(),
+    "No se pudo crear el examen final"
+  );
+
+  return {
+    sesion_id: sesion.id,
+    ...examen,
+    pregunta: examen.enunciado,
+    tipo: "examen_final",
+    tipo_pregunta: "examen_final",
+    tiempo_estimado: examen.tiempo_estimado || 20,
+  };
+}
+
+async function getPracticasEvaluadas(supabase, userId, tema) {
+  const result = await supabase
+    .from("sesiones")
+    .select("id, es_correcta, tipo_pregunta")
+    .eq("user_id", userId)
+    .eq("tema", tema)
+    .not("es_correcta", "is", null)
+    .neq("tipo_pregunta", "leccion")
+    .neq("tipo_pregunta", "examen_final");
+
+  if (result.error) {
+    throw new Error(`No se pudieron contar practicas del tema: ${result.error.message}`);
+  }
+
+  return result.data || [];
+}
+
+async function generarExamenFinalConIa(tema, capa, contexto) {
+  const respuesta = await callOpenRouter(
+    MODEL_TUTOR,
+    `Eres Monse, generadora de examenes finales estilo ingreso Monserrat. Crea un examen final breve y exigente para una estudiante de 11 anos. Responde SOLO JSON valido.`,
+    `Tema: ${tema}
+Capa: ${capa}
+Contexto: ${JSON.stringify(contexto)}
+
+Genera un JSON con esta forma:
+{
+  "tipo": "examen_final",
+  "dificultad": "monserrat",
+  "instrucciones": "Necesitas 70% o mas para aprobar.",
+  "enunciado": "consigna completa",
+  "preguntas": [
+    {"id":"a","texto":"...","respuesta_correcta":"...","alternativas_aceptables":["..."]},
+    {"id":"b","texto":"...","respuesta_correcta":"...","alternativas_aceptables":["..."]},
+    {"id":"c","texto":"...","respuesta_correcta":"...","alternativas_aceptables":["..."]}
+  ]
+}`,
+    1400
+  );
+
+  const examen = parseJsonFromModel(respuesta);
+  if (!examen.enunciado || !Array.isArray(examen.preguntas) || examen.preguntas.length === 0) {
+    throw new Error("La IA no devolvio un examen final valido.");
+  }
+
+  return {
+    tipo: "examen_final",
+    dificultad: "monserrat",
+    instrucciones: "Necesitas 70% o mas para aprobar.",
+    ...examen,
+  };
 }

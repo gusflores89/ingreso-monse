@@ -65,6 +65,41 @@ export function getNextTopic(currentTopic, materia) {
   return curriculum[currentIndex + 1].tema;
 }
 
+export async function getProximoTemaAlternando(supabase, userId, temaActual) {
+  const meta = getTopicMeta(temaActual);
+
+  if (meta?.materia === "matematica") {
+    return getProximoTemaNoCompletado(supabase, userId, "lengua");
+  }
+
+  if (meta?.materia === "lengua") {
+    return getProximoTemaNoCompletado(supabase, userId, "matematica");
+  }
+
+  return CURRICULUM_MATEMATICA[0].tema;
+}
+
+export async function getProximoTemaNoCompletado(supabase, userId, materia) {
+  const curriculum = getCurriculumByMateria(materia);
+  const temas = curriculum.map((item) => item.tema);
+
+  const { data, error } = await supabase
+    .from("sesiones")
+    .select("tema")
+    .eq("user_id", userId)
+    .eq("tipo_pregunta", "examen_final")
+    .eq("es_correcta", true)
+    .in("tema", temas);
+
+  if (error) {
+    throw new Error(`No se pudieron obtener examenes aprobados: ${error.message}`);
+  }
+
+  const temasCompletados = new Set((data || []).map((item) => item.tema));
+  const proximo = curriculum.find((item) => !temasCompletados.has(item.tema));
+  return proximo?.tema || curriculum[0].tema;
+}
+
 export function isCurriculumTopic(tema) {
   return Boolean(getTopicMeta(tema));
 }
