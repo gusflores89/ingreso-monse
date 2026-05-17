@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import PantallaSessionTutoria from "@/components/PantallaSessionTutoria";
-import { DEFAULT_TOPIC, isCurriculumTopic } from "@/lib/curriculum";
+import { isCurriculumTopic } from "@/lib/curriculum";
 
 export default function TutoriaPage() {
   const router = useRouter();
@@ -17,7 +17,7 @@ export default function TutoriaPage() {
   const temaQuery = firstQueryValue(router.query.tema);
   const capaQuery = Number(firstQueryValue(router.query.capa));
   const modo = firstQueryValue(router.query.modo) || "NORMAL";
-  const tema = isCurriculumTopic(temaQuery) ? temaQuery : DEFAULT_TOPIC;
+  const tema = isCurriculumTopic(temaQuery) ? temaQuery : null;
   const capa = Number.isFinite(capaQuery) && capaQuery >= 1 && capaQuery <= 5 ? capaQuery : 1;
 
   if (!userId) {
@@ -37,7 +37,7 @@ export default function TutoriaPage() {
   return (
     <main className="app-shell">
       <section className="workspace student-workspace">
-        <PantallaSessionTutoria key={`${userId}-${tema}-${capa}-${modo}`} user_id={userId} tema={tema} capa={capa} modo={modo} />
+        <PantallaSessionTutoria key={`${userId}-${tema || "auto"}-${capa}-${modo}`} user_id={userId} tema={tema} capa={capa} modo={modo} />
       </section>
     </main>
   );

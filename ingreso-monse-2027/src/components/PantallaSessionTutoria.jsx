@@ -102,7 +102,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
 
   const handleSiguiente = async () => {
     const decision = evaluacion?.decision || {};
-    const proximoTema = decision.proximo_tema || tema;
+    const proximoTema = decision.proximo_tema || pregunta?.tema || tema;
     const proximaCapa = decision.proxima_capa || capa;
     const proximoModo = decision.modo_recomendado || modo || "NORMAL";
 
@@ -158,7 +158,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
         retroalimentacion:
           "Listo, quedo registrada tu tarea a mano. Priscila la revisa con tu cuaderno el fin de semana.",
         decision: {
-          proximo_tema: tema,
+          proximo_tema: pregunta?.tema || tema,
           proxima_capa: capa,
           modo_recomendado: modo || "NORMAL",
         },
@@ -170,7 +170,8 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
     }
   };
 
-  const theme = themeForTema(tema);
+  const activeTema = pregunta?.tema || tema || "";
+  const theme = themeForTema(activeTema);
   const pasos = useMemo(() => {
     if (!pregunta || pregunta.tipo !== "leccion") return [];
 
@@ -222,7 +223,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
       {!evaluacion && pregunta?.tipo === "examen_final" && (
         <ExamenFinal
           pregunta={pregunta}
-          tema={tema}
+          tema={activeTema}
           respuestas={respuestasExamen}
           respuestaTexto={respuesta}
           loading={loading}
@@ -263,7 +264,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
                 </div>
 
                 <p className="example-question">{pasoActualData.contenido.enunciado}</p>
-                <MathExampleVisual tema={tema} ejemplo={pasoActualData.contenido} />
+                <MathExampleVisual tema={activeTema} ejemplo={pasoActualData.contenido} />
 
                 <div className="lesson-steps">
                   {pasoActualData.contenido.pasos?.map((paso, index) => (
@@ -697,9 +698,10 @@ function TareaManuscrita({ pregunta, loading, onComplete }) {
 }
 
 function themeForTema(tema) {
-  if (tema.includes("fraccion") || tema.includes("porcentaje") || tema.includes("numero") || tema.includes("grafico")) return "math";
-  if (tema.includes("concordancia") || tema.includes("lectora") || tema.includes("ortografia") || tema.includes("tilde")) return "language";
-  if (tema.includes("biologia") || tema.includes("ciencias")) return "science";
+  const safeTema = String(tema || "");
+  if (safeTema.includes("fraccion") || safeTema.includes("porcentaje") || safeTema.includes("numero") || safeTema.includes("grafico")) return "math";
+  if (safeTema.includes("concordancia") || safeTema.includes("lectora") || safeTema.includes("ortografia") || safeTema.includes("tilde")) return "language";
+  if (safeTema.includes("biologia") || safeTema.includes("ciencias")) return "science";
   return "general";
 }
 

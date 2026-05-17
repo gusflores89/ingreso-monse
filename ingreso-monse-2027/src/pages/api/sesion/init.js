@@ -1,5 +1,5 @@
 import { daysUntilExam } from "@/lib/date";
-import { getTopicMeta } from "@/lib/curriculum";
+import { DEFAULT_TOPIC, getTopicMeta, isCurriculumTopic } from "@/lib/curriculum";
 import { getTareaManuscrita } from "@/lib/ejercicios-manuscritos";
 import { getExamenFinal } from "@/lib/examenes-monserrat";
 import { parseJsonFromModel } from "@/lib/json";
@@ -19,12 +19,17 @@ export default async function handler(req, res) {
 
   const { user_id, tema, capa = 1, modo = "NORMAL", tiempo_disponible_sesion = 25 } = req.body || {};
 
-  if (!user_id || !tema) {
-    return res.status(400).json({ error: "user_id y tema son obligatorios." });
+  if (!user_id) {
+    return res.status(400).json({ error: "user_id es obligatorio." });
   }
 
   try {
     const supabase = getSupabaseAdmin();
+    const reingreso = isCurriculumTopic(tema)
+      ? { tema, capa: Number(capa) }
+      : await resolverTemaDeReingreso(supabase, user_id);
+    const temaActual = reingreso.tema;
+    const capaActual = Number(reingreso.capa) || Number(capa) || 1;
 
     const usuario = assertSupabaseOk(
       await supabase.from("usuarios").select("*").eq("id", user_id).single(),
@@ -35,15 +40,15 @@ export default async function handler(req, res) {
       .from("progreso")
       .select("*")
       .eq("user_id", user_id)
-      .eq("tema", tema)
+      .eq("tema", temaActual)
       .maybeSingle();
 
     if (progresoResult.error) throw new Error(`No se pudo obtener progreso: ${progresoResult.error.message}`);
     const progreso = progresoResult.data;
 
     const contexto = {
-      tema,
-      capa: Number(capa),
+      tema: temaActual,
+      capa: capaActual,
       modo,
       estilo_aprendizaje: usuario.estilo_aprendizaje || "visual",
       tasa_acierto: progreso?.tasa_acierto || 0,
@@ -57,7 +62,7 @@ export default async function handler(req, res) {
       .from("lecciones_completadas")
       .select("*")
       .eq("user_id", user_id)
-      .eq("tema", tema)
+      .eq("tema", temaActual)
       .eq("leccion_numero", 1)
       .maybeSingle();
 
@@ -69,30 +74,44 @@ export default async function handler(req, res) {
     const modoSesion = leccion?.completada ? "practica" : "leccion";
 
     if (modoSesion === "practica") {
-      const examenResponse = await maybeCrearExamenFinal(supabase, user_id, tema, Number(capa), modo, contexto);
+      const examenResponse = await maybeCrearExamenFinal(supabase, user_id, temaActual, capaActual, modo, contexto);
       if (examenResponse) {
         return res.status(200).json(examenResponse);
       }
     }
 
     if (modoSesion === "practica") {
-      const tareaResponse = await maybeAsignarTareaManuscrita(supabase, user_id, tema);
+      const tareaResponse = await maybeAsignarTareaManuscrita(supabase, user_id, temaActual);
       if (tareaResponse) {
         return res.status(200).json(tareaResponse);
       }
     }
 
+    const preguntasRecientes = await getPreguntasRecientes(supabase, user_id, temaActual);
     const systemPrompt = hydratePrompt(
       modoSesion === "leccion" ? SYSTEM_PROMPT_TEACHER : SYSTEM_PROMPT_PRACTICE,
-      contexto
+      { ...contexto, preguntas_recientes: JSON.stringify(preguntasRecientes) }
     );
+    const userInstruction =
+      modoSesion === "leccion"
+        ? "Ensena este tema a Abril por primera vez. Responde SOLO en JSON."
+        : `Genera un ejercicio de practica. Responde SOLO en JSON.
+
+Tema actual: ${temaActual}
+Capa actual: ${capaActual}
+Preguntas recientes que NO debes repetir ni espejar:
+${preguntasRecientes.map((pregunta, index) => `${index + 1}. ${pregunta}`).join("\n") || "Ninguna"}
+
+IMPORTANTE:
+- No repitas los mismos numeros de las preguntas recientes.
+- No hagas la misma cuenta al reves.
+- Si es multiplicacion, cambia contexto y factores dentro del tema.
+- Si el tema es tablas_multiplicar_2_5, usa solo tablas del 2 al 5.`;
 
     const respuestaIa = await callOpenRouter(
       MODEL_TUTOR,
       systemPrompt,
-      modoSesion === "leccion"
-        ? "Ensena este tema a Abril por primera vez. Responde SOLO en JSON."
-        : "Genera un ejercicio de practica. Responde SOLO en JSON.",
+      userInstruction,
       modoSesion === "leccion" ? 3200 : 1024
     );
 
@@ -111,8 +130,8 @@ export default async function handler(req, res) {
         .from("sesiones")
         .insert({
           user_id,
-          tema,
-          capa: Number(capa),
+          tema: temaActual,
+          capa: capaActual,
           tipo_pregunta: tipoPregunta,
           pregunta_generada: preguntaGenerada,
           contexto_json: contexto,
@@ -132,7 +151,7 @@ export default async function handler(req, res) {
 
     await supabase.from("parametros_sesion").insert({
       sesion_id: sesion.id,
-      capa: Number(capa),
+      capa: capaActual,
       modo,
       estilo_aprendizaje: contexto.estilo_aprendizaje,
       errores_patrones: contexto.errores_patrones_json,
@@ -147,6 +166,7 @@ export default async function handler(req, res) {
       sesion_id: sesion.id,
       ...preguntaJson,
       pregunta: preguntaGenerada,
+      tema: temaActual,
       tipo: modoSesion,
       tipo_pregunta: tipoPregunta,
       opciones: preguntaJson.opciones || null,
@@ -161,6 +181,62 @@ export default async function handler(req, res) {
 
 function isMissingLessonsTable(error) {
   return error?.code === "PGRST205" || error?.message?.includes("lecciones_completadas");
+}
+
+async function resolverTemaDeReingreso(supabase, userId) {
+  const lastRecommended = await supabase
+    .from("sesiones")
+    .select("proximo_tema_recomendado, proxima_capa_recomendada, created_at")
+    .eq("user_id", userId)
+    .not("proximo_tema_recomendado", "is", null)
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (lastRecommended.error) {
+    throw new Error(`No se pudo resolver el tema de reingreso: ${lastRecommended.error.message}`);
+  }
+
+  if (isCurriculumTopic(lastRecommended.data?.proximo_tema_recomendado)) {
+    return {
+      tema: lastRecommended.data.proximo_tema_recomendado,
+      capa: lastRecommended.data.proxima_capa_recomendada || 1,
+    };
+  }
+
+  const lastSession = await supabase
+    .from("sesiones")
+    .select("tema, created_at")
+    .eq("user_id", userId)
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (lastSession.error) {
+    throw new Error(`No se pudo obtener la ultima sesion: ${lastSession.error.message}`);
+  }
+
+  return {
+    tema: isCurriculumTopic(lastSession.data?.tema) ? lastSession.data.tema : DEFAULT_TOPIC,
+    capa: 1,
+  };
+}
+
+async function getPreguntasRecientes(supabase, userId, tema) {
+  const result = await supabase
+    .from("sesiones")
+    .select("pregunta_generada")
+    .eq("user_id", userId)
+    .eq("tema", tema)
+    .not("pregunta_generada", "is", null)
+    .order("created_at", { ascending: false })
+    .limit(8);
+
+  if (result.error) {
+    throw new Error(`No se pudieron obtener preguntas recientes: ${result.error.message}`);
+  }
+
+  return (result.data || []).map((item) => item.pregunta_generada).filter(Boolean);
 }
 
 async function maybeAsignarTareaManuscrita(supabase, userId, tema) {
