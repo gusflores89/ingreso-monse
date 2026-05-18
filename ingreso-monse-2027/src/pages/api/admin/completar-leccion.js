@@ -1,8 +1,10 @@
 import { requireMethod } from "@/lib/http";
+import { requireAccess } from "@/lib/access";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
+  if (!requireAccess(req, res, "admin")) return;
 
   const { user_id, tema } = req.body || {};
 

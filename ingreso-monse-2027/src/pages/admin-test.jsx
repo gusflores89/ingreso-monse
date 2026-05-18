@@ -7,6 +7,7 @@ export default function AdminTest() {
   const [userId, setUserId] = useState(DEFAULT_TEST_USER_ID);
   const [temaSeleccionado, setTemaSeleccionado] = useState("");
   const [capa, setCapa] = useState(1);
+  const [adminPassword, setAdminPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [resultado, setResultado] = useState(null);
 
@@ -16,6 +17,9 @@ export default function AdminTest() {
   ];
 
   const iniciarSesion = async () => {
+    const hasAccess = await ensureAdminAccess();
+    if (!hasAccess) return;
+
     const url = `/tutoria?user_id=${encodeURIComponent(userId)}&tema=${encodeURIComponent(temaSeleccionado)}&capa=${capa}`;
     const opened = window.open(url, "_blank");
 
@@ -37,6 +41,9 @@ export default function AdminTest() {
     setResultado(null);
 
     try {
+      const hasAccess = await ensureAdminAccess();
+      if (!hasAccess) return;
+
       const res = await fetch("/api/admin/completar-leccion", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -67,6 +74,27 @@ export default function AdminTest() {
     }
   };
 
+  const ensureAdminAccess = async () => {
+    if (!adminPassword.trim()) {
+      setResultado({ tipo: "error", mensaje: "Ingresa la contrasena admin primero." });
+      return false;
+    }
+
+    const res = await fetch("/api/admin/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password: adminPassword }),
+    });
+    const data = await res.json();
+
+    if (!res.ok || !data.ok) {
+      setResultado({ tipo: "error", mensaje: data.error || "No se pudo validar la contrasena admin." });
+      return false;
+    }
+
+    return true;
+  };
+
   return (
     <main className="admin-test-page">
       <section className="admin-test-card">
@@ -77,6 +105,16 @@ export default function AdminTest() {
         </header>
 
         <div className="admin-test-form">
+          <label>
+            Contrasena admin
+            <input
+              type="password"
+              value={adminPassword}
+              onChange={(event) => setAdminPassword(event.target.value)}
+              placeholder="Contrasena admin"
+            />
+          </label>
+
           <label>
             User ID (Abril)
             <input type="text" value={userId} onChange={(event) => setUserId(event.target.value)} />

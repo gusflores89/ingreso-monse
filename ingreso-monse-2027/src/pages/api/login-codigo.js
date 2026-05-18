@@ -1,4 +1,5 @@
 import { getSupabaseAdmin } from "@/lib/supabaseAdmin";
+import { setAccessCookie, verifyAccessPassword } from "@/lib/access";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -6,9 +7,14 @@ export default async function handler(req, res) {
   }
 
   const codigo = String(req.body?.codigo || "").trim().toUpperCase();
+  const password = String(req.body?.password || "");
 
   if (!codigo) {
     return res.status(400).json({ error: "Codigo requerido" });
+  }
+
+  if (!verifyAccessPassword("student", password)) {
+    return res.status(401).json({ error: "Contrasena incorrecta. Pedile ayuda a mama/papa." });
   }
 
   try {
@@ -22,6 +28,8 @@ export default async function handler(req, res) {
     if (error || !usuario) {
       return res.status(404).json({ error: "Codigo incorrecto. Pedile ayuda a mama/papa." });
     }
+
+    setAccessCookie(res, "student");
 
     res.status(200).json({
       userId: usuario.id,

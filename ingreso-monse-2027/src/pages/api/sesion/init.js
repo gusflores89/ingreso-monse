@@ -7,6 +7,7 @@ import { callOpenRouter } from "@/lib/openrouter";
 import { MODEL_TUTOR, hydratePrompt, SYSTEM_PROMPT_PRACTICE, SYSTEM_PROMPT_TEACHER } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { requireMethod } from "@/lib/http";
+import { requireAccess } from "@/lib/access";
 import {
   crearTareaManuscrita,
   getTareaManuscritaActiva,
@@ -16,6 +17,7 @@ import {
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
+  if (!requireAccess(req, res, ["student", "admin"])) return;
 
   const { user_id, tema, capa = 1, modo = "NORMAL", tiempo_disponible_sesion = 25 } = req.body || {};
 

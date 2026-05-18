@@ -10,6 +10,7 @@ export default function PantallaSetup({ onComplete }) {
     nivel_inicial: "recien_empieza",
     estilo_aprendizaje: "visual",
     dislexia: false,
+    setup_password: "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -33,6 +34,7 @@ export default function PantallaSetup({ onComplete }) {
           nivel_inicial: form.nivel_inicial,
           estilo_aprendizaje: form.estilo_aprendizaje,
           rasgos_especiales: { dislexia: form.dislexia },
+          setup_password: form.setup_password,
         }),
       });
       const data = await res.json();
@@ -85,6 +87,17 @@ export default function PantallaSetup({ onComplete }) {
           <h2>Configurar cuenta de estudiante</h2>
           <p>Ingresa los datos del alumno/a para comenzar.</p>
         </div>
+
+        <label>
+          Contrasena para padres/tutores
+          <input
+            type="password"
+            value={form.setup_password}
+            onChange={(event) => update("setup_password", event.target.value)}
+            placeholder="Contrasena"
+            required
+          />
+        </label>
 
         <label>
           Nombre del estudiante

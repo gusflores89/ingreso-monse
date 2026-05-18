@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 export default function Home() {
   const [codigo, setCodigo] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -16,13 +17,18 @@ export default function Home() {
       return;
     }
 
+    if (!password.trim()) {
+      setError("Ingresa la contrasena familiar para empezar.");
+      return;
+    }
+
     setLoading(true);
 
     try {
       const res = await fetch("/api/login-codigo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ codigo: normalizedCode }),
+        body: JSON.stringify({ codigo: normalizedCode, password }),
       });
       const data = await res.json();
 
@@ -64,6 +70,19 @@ export default function Home() {
               placeholder="Ej: ABRIL"
               maxLength={12}
               autoFocus
+            />
+          </label>
+
+          <label className="login-code-field">
+            Contrasena familiar
+            <input
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") handleLogin();
+              }}
+              placeholder="Contrasena"
             />
           </label>
 

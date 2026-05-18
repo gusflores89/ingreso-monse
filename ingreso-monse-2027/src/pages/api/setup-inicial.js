@@ -4,6 +4,7 @@ import { parseJsonFromModel } from "@/lib/json";
 import { callOpenRouter } from "@/lib/openrouter";
 import { MODEL_ANALYZER, SYSTEM_PROMPT_ANALYZER } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
+import { setAccessCookie, verifyAccessPassword } from "@/lib/access";
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
@@ -15,7 +16,12 @@ export default async function handler(req, res) {
     nivel_inicial = "recien_empieza",
     estilo_aprendizaje = "visual",
     rasgos_especiales = {},
+    setup_password,
   } = req.body || {};
+
+  if (!verifyAccessPassword("setup", setup_password)) {
+    return res.status(401).json({ error: "Contrasena de padres/tutores incorrecta." });
+  }
 
   try {
     const supabase = getSupabaseAdmin();
@@ -57,6 +63,7 @@ export default async function handler(req, res) {
 
     const plan = parseJsonFromModel(planResponse);
 
+    setAccessCookie(res, "setup");
     res.status(200).json({ usuario, plan });
   } catch (error) {
     console.error(error);

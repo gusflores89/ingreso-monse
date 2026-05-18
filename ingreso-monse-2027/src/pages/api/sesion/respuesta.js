@@ -19,9 +19,11 @@ import {
 } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { requireMethod } from "@/lib/http";
+import { requireAccess } from "@/lib/access";
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
+  if (!requireAccess(req, res, ["student", "admin"])) return;
 
   const { sesion_id, respuesta_usuario, tiempo_segundos } = req.body || {};
 
