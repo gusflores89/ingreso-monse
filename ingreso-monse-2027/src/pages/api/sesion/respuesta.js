@@ -3,6 +3,7 @@ import {
   CURRICULUM_LENGUA,
   CURRICULUM_MATEMATICA,
   getNextTopic,
+  getProximoTemaNoCompletado,
   getProximoTemaAlternando,
   getTopicMeta,
 } from "@/lib/curriculum";
@@ -199,17 +200,21 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error y siguiente_p
       };
       console.log(`Practicas dominadas. Siguiente paso: examen final de ${sesion.tema}`);
     } else {
-      const nuevaCapa = tasaPractica >= 70 ? Math.min((sesion.capa || 1) + 1, 5) : sesion.capa || 1;
+      const materiaActual = getTopicMeta(sesion.tema)?.materia;
+      const materiaAlternada = materiaActual === "matematica" ? "lengua" : "matematica";
+      const temaAlternado = await getProximoTemaNoCompletado(supabase, sesion.user_id, materiaAlternada);
 
       decision = {
-        proximo_tema: sesion.tema,
-        proxima_capa: nuevaCapa,
+        proximo_tema: temaAlternado,
+        proxima_capa: 1,
         modo_recomendado: "NORMAL",
-        razon: `Continuar practicando "${sesion.tema}". Progreso de practica: ${tasaPractica}% de acierto, ${totalPracticas}/3 practicas minimas necesarias.`,
+        razon: `Alternar materias para mantener equilibrio. "${sesion.tema}" sigue en progreso (${tasaPractica}% de acierto, ${totalPracticas}/3 practicas minimas). Ahora toca ${materiaAlternada}: "${temaAlternado}".`,
         alerta: null,
       };
 
-      console.log(`Continuar con mismo tema. Progreso practica: ${tasaPractica}%, ${totalPracticas}/3 practicas`);
+      console.log(
+        `Alternar materia: ${sesion.tema} -> ${temaAlternado}. Progreso practica actual: ${tasaPractica}%, ${totalPracticas}/3 practicas`
+      );
     }
 
     assertSupabaseOk(
