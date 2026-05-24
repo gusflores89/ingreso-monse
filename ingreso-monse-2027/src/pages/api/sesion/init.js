@@ -1,5 +1,5 @@
 import { daysUntilExam } from "@/lib/date";
-import { DEFAULT_TOPIC, getTopicMeta, isCurriculumTopic } from "@/lib/curriculum";
+import { DEFAULT_TOPIC, getProximoTemaNoCompletado, getTopicMeta, isCurriculumTopic } from "@/lib/curriculum";
 import { getTareaManuscrita } from "@/lib/ejercicios-manuscritos";
 import { getExamenFinal } from "@/lib/examenes-monserrat";
 import { parseJsonFromModel } from "@/lib/json";
@@ -200,8 +200,20 @@ async function resolverTemaDeReingreso(supabase, userId) {
   }
 
   if (isCurriculumTopic(lastRecommended.data?.proximo_tema_recomendado)) {
+    const recommendedTopic = lastRecommended.data.proximo_tema_recomendado;
+    const alreadyApproved = await hasApprovedFinalExam(supabase, userId, recommendedTopic);
+
+    if (alreadyApproved) {
+      const materia = getTopicMeta(recommendedTopic)?.materia;
+      const nextMateria = materia === "matematica" ? "lengua" : "matematica";
+      return {
+        tema: await getProximoTemaNoCompletado(supabase, userId, nextMateria),
+        capa: 1,
+      };
+    }
+
     return {
-      tema: lastRecommended.data.proximo_tema_recomendado,
+      tema: recommendedTopic,
       capa: lastRecommended.data.proxima_capa_recomendada || 1,
     };
   }
@@ -222,6 +234,23 @@ async function resolverTemaDeReingreso(supabase, userId) {
     tema: isCurriculumTopic(lastSession.data?.tema) ? lastSession.data.tema : DEFAULT_TOPIC,
     capa: 1,
   };
+}
+
+async function hasApprovedFinalExam(supabase, userId, tema) {
+  const result = await supabase
+    .from("sesiones")
+    .select("id")
+    .eq("user_id", userId)
+    .eq("tema", tema)
+    .eq("tipo_pregunta", "examen_final")
+    .eq("es_correcta", true)
+    .limit(1);
+
+  if (result.error) {
+    throw new Error(`No se pudo verificar examen aprobado: ${result.error.message}`);
+  }
+
+  return (result.data || []).length > 0;
 }
 
 async function getPreguntasRecientes(supabase, userId, tema) {
