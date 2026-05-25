@@ -1,5 +1,6 @@
 import { daysUntilExam } from "@/lib/date";
 import { DEFAULT_TOPIC, getProximoTemaNoCompletado, getTopicMeta, isCurriculumTopic } from "@/lib/curriculum";
+import { getCasoResuelto, getMetodoPasoAPaso } from "@/lib/casos-resueltos";
 import { getTareaManuscrita } from "@/lib/ejercicios-manuscritos";
 import { getExamenFinal } from "@/lib/examenes-monserrat";
 import { parseJsonFromModel } from "@/lib/json";
@@ -19,7 +20,8 @@ export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
   if (!requireAccess(req, res, ["student", "admin"])) return;
 
-  const { user_id, tema, capa = 1, modo = "NORMAL", tiempo_disponible_sesion = 25 } = req.body || {};
+  const { user_id, tema, capa = 1, modo = "NORMAL", tiempo_disponible_sesion = 25, omitir_caso_resuelto = false } =
+    req.body || {};
 
   if (!user_id) {
     return res.status(400).json({ error: "user_id es obligatorio." });
@@ -74,6 +76,24 @@ export default async function handler(req, res) {
 
     const leccion = leccionResult.data;
     const modoSesion = leccion?.completada ? "practica" : "leccion";
+
+    if (modoSesion === "practica" && !omitir_caso_resuelto) {
+      const practicasIniciadas = await getPracticasIniciadas(supabase, user_id, temaActual);
+      const caso = practicasIniciadas.length === 0 ? getCasoResuelto(temaActual, capaActual) : null;
+
+      if (caso) {
+        return res.status(200).json({
+          sesion_id: null,
+          tipo: "caso_resuelto",
+          tipo_pregunta: "caso_resuelto",
+          tema: temaActual,
+          capa: capaActual,
+          metodo: getMetodoPasoAPaso(),
+          caso,
+          tiempo_estimado: 8,
+        });
+      }
+    }
 
     if (modoSesion === "practica") {
       const examenResponse = await maybeCrearExamenFinal(supabase, user_id, temaActual, capaActual, modo, contexto);
@@ -374,6 +394,23 @@ async function getPracticasEvaluadas(supabase, userId, tema) {
 
   if (result.error) {
     throw new Error(`No se pudieron contar practicas del tema: ${result.error.message}`);
+  }
+
+  return result.data || [];
+}
+
+async function getPracticasIniciadas(supabase, userId, tema) {
+  const result = await supabase
+    .from("sesiones")
+    .select("id, tipo_pregunta")
+    .eq("user_id", userId)
+    .eq("tema", tema)
+    .neq("tipo_pregunta", "leccion")
+    .neq("tipo_pregunta", "examen_final")
+    .neq("tipo_pregunta", "caso_resuelto");
+
+  if (result.error) {
+    throw new Error(`No se pudieron contar practicas iniciadas: ${result.error.message}`);
   }
 
   return result.data || [];

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Monse from "./Monse";
+import PantallaCasoResuelto from "./PantallaCasoResuelto";
 import VisualizacionMatematica from "./VisualizacionMatematica";
 
 export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
@@ -137,6 +138,39 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
     }
   };
 
+  const handleContinuarCasoResuelto = async () => {
+    setLoading(true);
+    setError("");
+    setRespuesta("");
+    setRespuestasExamen({});
+
+    try {
+      const res = await fetch("/api/sesion/init", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id,
+          tema: pregunta?.tema || tema,
+          capa: pregunta?.capa || capa,
+          modo: modo || "NORMAL",
+          omitir_caso_resuelto: true,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "No se pudo cargar la practica.");
+      setPregunta(data);
+      setSesionId(data.sesion_id);
+      setEvaluacion(null);
+      setPasoActual(0);
+      setRespuestasExamen({});
+      startTime.current = Date.now();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleTareaCompletada = async () => {
     if (!pregunta?.tarea_id) return;
 
@@ -218,6 +252,15 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
 
       {!evaluacion && pregunta?.tipo === "manuscrita" && (
         <TareaManuscrita pregunta={pregunta} loading={loading} onComplete={handleTareaCompletada} />
+      )}
+
+      {!evaluacion && pregunta?.tipo === "caso_resuelto" && (
+        <PantallaCasoResuelto
+          caso={pregunta.caso}
+          metodo={pregunta.metodo}
+          loading={loading}
+          onContinuar={handleContinuarCasoResuelto}
+        />
       )}
 
       {!evaluacion && pregunta?.tipo === "examen_final" && (
@@ -332,7 +375,12 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
         </div>
       )}
 
-      {!evaluacion && pregunta?.tipo !== "leccion" && pregunta?.tipo !== "manuscrita" && pregunta?.tipo !== "examen_final" && pregunta && (
+      {!evaluacion &&
+        pregunta?.tipo !== "leccion" &&
+        pregunta?.tipo !== "manuscrita" &&
+        pregunta?.tipo !== "examen_final" &&
+        pregunta?.tipo !== "caso_resuelto" &&
+        pregunta && (
         <div className="question-area">
           <p className="question-text">{pregunta.pregunta}</p>
 
