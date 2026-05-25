@@ -5,10 +5,11 @@ import { getTareaManuscrita } from "@/lib/ejercicios-manuscritos";
 import { getExamenFinal } from "@/lib/examenes-monserrat";
 import { parseJsonFromModel } from "@/lib/json";
 import { callOpenRouter } from "@/lib/openrouter";
-import { MODEL_TUTOR, hydratePrompt, SYSTEM_PROMPT_PRACTICE, SYSTEM_PROMPT_TEACHER } from "@/lib/prompts";
+import { MODEL_TUTOR, buildPromptPractice, buildPromptTeacher } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { requireMethod } from "@/lib/http";
 import { requireAccess } from "@/lib/access";
+import { buildAlumnoProfile } from "@/lib/alumno";
 import {
   crearTareaManuscrita,
   getTareaManuscritaActiva,
@@ -39,6 +40,7 @@ export default async function handler(req, res) {
       await supabase.from("usuarios").select("*").eq("id", user_id).single(),
       "No se pudo obtener el usuario"
     );
+    const alumno = buildAlumnoProfile(usuario);
 
     const progresoResult = await supabase
       .from("progreso")
@@ -110,13 +112,13 @@ export default async function handler(req, res) {
     }
 
     const preguntasRecientes = await getPreguntasRecientes(supabase, user_id, temaActual);
-    const systemPrompt = hydratePrompt(
-      modoSesion === "leccion" ? SYSTEM_PROMPT_TEACHER : SYSTEM_PROMPT_PRACTICE,
-      { ...contexto, preguntas_recientes: JSON.stringify(preguntasRecientes) }
-    );
+    const systemPrompt =
+      modoSesion === "leccion"
+        ? buildPromptTeacher(alumno, { ...contexto, preguntas_recientes: JSON.stringify(preguntasRecientes) })
+        : buildPromptPractice(alumno, { ...contexto, preguntas_recientes: JSON.stringify(preguntasRecientes) });
     const userInstruction =
       modoSesion === "leccion"
-        ? "Ensena este tema a Abril por primera vez. Responde SOLO en JSON."
+        ? `Ensena este tema a ${alumno.nombre} por primera vez. Responde SOLO en JSON.`
         : `Genera un ejercicio de practica. Responde SOLO en JSON.
 
 Tema actual: ${temaActual}
@@ -197,7 +199,7 @@ IMPORTANTE:
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: "Error interno del servidor" });
   }
 }
 
@@ -419,7 +421,7 @@ async function getPracticasIniciadas(supabase, userId, tema) {
 async function generarExamenFinalConIa(tema, capa, contexto) {
   const respuesta = await callOpenRouter(
     MODEL_TUTOR,
-    `Eres Monse, generadora de examenes finales estilo ingreso Monserrat. Crea un examen final breve y exigente para una estudiante de 11 anos. Responde SOLO JSON valido.`,
+    `Sos Profe, generadora de examenes finales estilo ingreso Monserrat. Crea un examen final breve y exigente para el perfil del alumno. Responde SOLO JSON valido.`,
     `Tema: ${tema}
 Capa: ${capa}
 Contexto: ${JSON.stringify(contexto)}

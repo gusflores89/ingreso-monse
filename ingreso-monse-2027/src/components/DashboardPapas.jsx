@@ -83,7 +83,7 @@ export default function DashboardPapas({ userId }) {
       <header className="dashboard-hero">
         <div>
           <p className="eyebrow">Panel familiar</p>
-          <h2>{data?.usuario?.nombre || "Abril"}</h2>
+          <h2>{data?.usuario?.nombre || "Alumno/a"}</h2>
           <p>{diasRestantes === null ? "Fecha de examen pendiente" : `Faltan ${diasRestantes} dias para el examen`}</p>
         </div>
         <button type="button" onClick={load} disabled={loading}>

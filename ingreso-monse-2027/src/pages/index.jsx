@@ -49,9 +49,9 @@ export default function Home() {
       <section className="login-shell" aria-labelledby="login-title">
         <div className="login-brand">
           <div className="login-owl" aria-hidden="true">
-            Monse
+            Profe
           </div>
-          <h1 id="login-title">Monse</h1>
+          <h1 id="login-title">IngresoMonse</h1>
           <p>Tu tutora para el ingreso Monserrat</p>
         </div>
 
@@ -67,7 +67,7 @@ export default function Home() {
               onKeyDown={(event) => {
                 if (event.key === "Enter") handleLogin();
               }}
-              placeholder="Ej: ABRIL"
+              placeholder="Tu codigo"
               maxLength={12}
               autoFocus
             />

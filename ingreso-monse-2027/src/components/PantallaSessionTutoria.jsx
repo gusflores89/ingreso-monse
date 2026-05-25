@@ -247,7 +247,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
         <Monse />
       </header>
 
-      {loading && <p className="status">Monse esta pensando...</p>}
+      {loading && <p className="status">Profe esta pensando...</p>}
       {error && <p className="error">{error}</p>}
 
       {!evaluacion && pregunta?.tipo === "manuscrita" && (
@@ -674,7 +674,7 @@ function TareaManuscrita({ pregunta, loading, onComplete }) {
         {pregunta.tipo_tarea === "dictado" && (
           <div className="handwriting-panel family">
             <h4>Para mama o papa</h4>
-            <p>Por favor dictale a Abril estas oraciones:</p>
+            <p>Por favor dictale estas oraciones al alumno/a:</p>
             <ol>
               {pregunta.contenido?.oraciones?.map((oracion, index) => (
                 <li key={`${oracion}-${index}`}>{oracion}</li>

@@ -2,20 +2,24 @@ import { daysUntilExam } from "@/lib/date";
 import { requireMethod } from "@/lib/http";
 import { parseJsonFromModel } from "@/lib/json";
 import { callOpenRouter } from "@/lib/openrouter";
-import { MODEL_ANALYZER, SYSTEM_PROMPT_ANALYZER } from "@/lib/prompts";
+import { MODEL_ANALYZER, buildPromptAnalyzer } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { setAccessCookie, verifyAccessPassword } from "@/lib/access";
+import { buildAlumnoProfile } from "@/lib/alumno";
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
 
   const {
-    nombre = "Abril",
+    nombre,
     email,
     fecha_examen = "2027-12-01",
-    nivel_inicial = "recien_empieza",
+    nivel_inicial,
     estilo_aprendizaje = "visual",
     rasgos_especiales = {},
+    edad,
+    grado,
+    fecha_nacimiento,
     setup_password,
   } = req.body || {};
 
@@ -23,21 +27,28 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: "Contrasena de padres/tutores incorrecta." });
   }
 
+  const validationError = validateSetupInput({ nombre, email, fecha_examen });
+  if (validationError) return res.status(400).json({ error: validationError });
+
   try {
     const supabase = getSupabaseAdmin();
     const codigo_acceso = await generarCodigoUnico(supabase, nombre);
+    const perfilNivel = nivel_inicial || nivelInicialDesdeCapa(calcularCapaInicial(Number(edad), grado, rasgos_especiales));
 
     const usuario = assertSupabaseOk(
       await supabase
         .from("usuarios")
         .upsert(
           {
-            nombre,
+            nombre: String(nombre).trim(),
             email: email || null,
             fecha_examen,
-            nivel_inicial,
+            nivel_inicial: perfilNivel,
             estilo_aprendizaje,
             rasgos_especiales,
+            edad: edad ? Number(edad) : null,
+            grado: grado || null,
+            fecha_nacimiento: fecha_nacimiento || null,
             codigo_acceso,
             updated_at: new Date().toISOString(),
           },
@@ -47,10 +58,11 @@ export default async function handler(req, res) {
         .single(),
       "No se pudo guardar el perfil"
     );
+    const alumno = buildAlumnoProfile(usuario);
 
     const planInput = JSON.stringify({
       tema_actual: "fracciones_del_resto",
-      capa_actual: nivel_inicial === "bien_preparado" ? 3 : 1,
+      capa_actual: calcularCapaInicial(Number(edad), grado, rasgos_especiales),
       tasa_acierto: 0,
       sesiones_en_tema: 0,
       modo: "NORMAL",
@@ -59,7 +71,7 @@ export default async function handler(req, res) {
       ultimas_3_respuestas: [],
     });
 
-    const planResponse = await callOpenRouter(MODEL_ANALYZER, SYSTEM_PROMPT_ANALYZER, planInput, 700);
+    const planResponse = await callOpenRouter(MODEL_ANALYZER, buildPromptAnalyzer(alumno, {}), planInput, 700);
 
     const plan = parseJsonFromModel(planResponse);
 
@@ -67,8 +79,38 @@ export default async function handler(req, res) {
     res.status(200).json({ usuario, plan });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: "Error interno del servidor" });
   }
+}
+
+function validateSetupInput({ nombre, email, fecha_examen }) {
+  const cleanNombre = String(nombre || "").trim();
+  if (cleanNombre.length < 2 || cleanNombre.length > 50) return "Nombre requerido";
+
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email))) {
+    return "Email invalido";
+  }
+
+  const exam = new Date(`${fecha_examen}T12:00:00`);
+  if (Number.isNaN(exam.getTime()) || exam.getTime() <= Date.now()) {
+    return "La fecha de examen debe ser futura";
+  }
+
+  return null;
+}
+
+function calcularCapaInicial(edad, grado, rasgos) {
+  let capa = 1;
+  if (edad >= 11 && grado === "6to") capa = 3;
+  else if (edad >= 10) capa = 2;
+  if (rasgos?.dislexia) capa = Math.max(1, capa - 1);
+  return capa;
+}
+
+function nivelInicialDesdeCapa(capa) {
+  if (capa >= 3) return "bien_preparado";
+  if (capa === 2) return "algo_sabe";
+  return "recien_empieza";
 }
 
 async function generarCodigoUnico(supabase, nombre) {

@@ -389,7 +389,6 @@ export function getExamenFinal(tema, capa = 1) {
   const examen = EXAMENES_FINALES[tema];
 
   if (!examen) {
-    console.log(`No hay examen final definido para el tema: ${tema}`);
     return null;
   }
 

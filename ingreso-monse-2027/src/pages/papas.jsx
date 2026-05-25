@@ -19,7 +19,7 @@ export default function PapasPage() {
       <nav className="topbar">
         <div>
           <p className="eyebrow">Ingreso Monserrat 2027</p>
-          <h1>Abril Quest</h1>
+          <h1>IngresoMonse</h1>
         </div>
       </nav>
 
@@ -37,7 +37,7 @@ export default function PapasPage() {
               <input
                 value={userId}
                 onChange={(event) => setUserId(event.target.value)}
-                placeholder="Pega el user_id de Abril"
+                placeholder="Pega el user_id del alumno/a"
                 required
               />
             </label>

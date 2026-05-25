@@ -6,7 +6,7 @@ export default function SetupPage() {
       <nav className="topbar setup-topbar">
         <div>
           <p className="eyebrow">Ingreso Monserrat 2027</p>
-          <h1>Monse</h1>
+          <h1>IngresoMonse</h1>
         </div>
         <a className="family-access compact" href="/">
           Volver al inicio

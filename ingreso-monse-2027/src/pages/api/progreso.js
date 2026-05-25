@@ -1,8 +1,9 @@
 import { requireMethod } from "@/lib/http";
 import { getTopicMeta } from "@/lib/curriculum";
 import { callOpenRouter } from "@/lib/openrouter";
-import { MODEL_DASHBOARD, SYSTEM_PROMPT_DASHBOARD_IA } from "@/lib/prompts";
+import { MODEL_DASHBOARD, buildPromptDashboard } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
+import { buildAlumnoProfile } from "@/lib/alumno";
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "GET")) return;
@@ -17,6 +18,7 @@ export default async function handler(req, res) {
       await supabase.from("usuarios").select("*").eq("id", userId).single(),
       "No se pudo obtener usuario"
     );
+    const alumno = buildAlumnoProfile(usuario);
 
     const progreso = assertSupabaseOk(
       await supabase.from("progreso").select("*").eq("user_id", userId).order("updated_at", { ascending: false }),
@@ -72,13 +74,13 @@ export default async function handler(req, res) {
     try {
       insightMarkdown = await callOpenRouter(
         MODEL_DASHBOARD,
-        SYSTEM_PROMPT_DASHBOARD_IA,
+        buildPromptDashboard(alumno, {}),
         JSON.stringify(insightInput),
         900
       );
     } catch (error) {
       console.error(error);
-      insightError = error.message;
+      insightError = "No se pudo generar el insight en este momento.";
     }
 
     res.status(200).json({
@@ -92,7 +94,7 @@ export default async function handler(req, res) {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: "Error interno del servidor" });
   }
 }
 

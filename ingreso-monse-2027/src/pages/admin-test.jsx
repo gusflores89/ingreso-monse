@@ -100,7 +100,7 @@ export default function AdminTest() {
       <section className="admin-test-card">
         <header className="admin-test-header">
           <p className="eyebrow">Testing interno</p>
-          <h1>Panel de Testing - Abril Quest</h1>
+          <h1>Panel de Testing - IngresoMonse</h1>
           <p>Proba cualquier tema del curriculum sin recorrer la progresion completa.</p>
         </header>
 
@@ -116,7 +116,7 @@ export default function AdminTest() {
           </label>
 
           <label>
-            User ID (Abril)
+            User ID del alumno/a
             <input type="text" value={userId} onChange={(event) => setUserId(event.target.value)} />
           </label>
 

@@ -69,7 +69,7 @@ export const EJERCICIOS_MANUSCRITOS = {
     instruccion:
       "Escribi una narracion de 15 renglones sobre el siguiente inicio de historia. Debe tener complicacion y resolucion.",
     tiempo_estimado: 25,
-    inicio: "Abril encontro una llave misteriosa en el patio de su escuela...",
+    inicio: "Un dia, encontraste una llave misteriosa en el patio de tu escuela...",
     requisitos: [
       "15 renglones minimo",
       "Inicio, complicacion y desenlace claros",

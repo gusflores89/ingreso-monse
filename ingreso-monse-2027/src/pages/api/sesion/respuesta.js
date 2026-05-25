@@ -12,15 +12,13 @@ import { parseJsonFromModel } from "@/lib/json";
 import { callOpenRouter } from "@/lib/openrouter";
 import { maybeCreateAlert, refreshTopicProgress } from "@/lib/progress";
 import {
-  MODEL_ANALYZER,
   MODEL_TUTOR,
-  hydratePrompt,
-  SYSTEM_PROMPT_ANALYZER,
-  SYSTEM_PROMPT_MONSE,
+  buildPromptMonse,
 } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { requireMethod } from "@/lib/http";
 import { requireAccess } from "@/lib/access";
+import { buildAlumnoProfile } from "@/lib/alumno";
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
@@ -45,6 +43,11 @@ export default async function handler(req, res) {
       capa: sesion.capa,
       modo: sesion.modo,
     };
+    const usuario = assertSupabaseOk(
+      await supabase.from("usuarios").select("*").eq("id", sesion.user_id).single(),
+      "No se pudo obtener el usuario"
+    );
+    const alumno = buildAlumnoProfile(usuario);
     const esLeccion = sesion.tipo_pregunta === "leccion";
     const esExamenFinal = sesion.tipo_pregunta === "examen_final";
 
@@ -119,17 +122,17 @@ export default async function handler(req, res) {
     }
 
     const evaluacionPrompt = esLeccion
-      ? `${hydratePrompt(SYSTEM_PROMPT_MONSE, contexto)}
+      ? `${buildPromptMonse(alumno, contexto)}
 
-IMPORTANTE: Abril esta respondiendo el ejercicio final de una leccion. Evalua con mucha paciencia.
+IMPORTANTE: ${alumno.nombre} esta respondiendo el ejercicio final de una leccion. Evalua con mucha paciencia.
 Si demuestra que entendio la idea central aunque no use palabras perfectas, marca es_correcta true.
 Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error y siguiente_pregunta.`
-      : hydratePrompt(SYSTEM_PROMPT_MONSE, contexto);
+      : buildPromptMonse(alumno, contexto);
 
     const respuestaIa = await callOpenRouter(
       MODEL_TUTOR,
       evaluacionPrompt,
-      `Pregunta: ${sesion.pregunta_generada}\nRespuesta de Abril: ${respuesta_usuario}\n\nEvalua y retroalimenta. Devuelve solo JSON valido.`,
+      `Pregunta: ${sesion.pregunta_generada}\nRespuesta de ${alumno.nombre}: ${respuesta_usuario}\n\nEvalua y retroalimenta. Devuelve solo JSON valido.`,
       700
     );
 
@@ -198,7 +201,9 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error y siguiente_p
         razon: `Practicas dominadas: ${tasaPractica}% de acierto en ${totalPracticas} practicas. Ahora corresponde examen final antes de cambiar de tema.`,
         alerta: null,
       };
-      console.log(`Practicas dominadas. Siguiente paso: examen final de ${sesion.tema}`);
+      if (process.env.NODE_ENV !== "production") {
+        console.debug(`Practicas dominadas. Siguiente paso: examen final de ${sesion.tema}`);
+      }
     } else {
       const materiaActual = getTopicMeta(sesion.tema)?.materia;
       const materiaAlternada = materiaActual === "matematica" ? "lengua" : "matematica";
@@ -212,9 +217,11 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error y siguiente_p
         alerta: null,
       };
 
-      console.log(
-        `Alternar materia: ${sesion.tema} -> ${temaAlternado}. Progreso practica actual: ${tasaPractica}%, ${totalPracticas}/3 practicas`
-      );
+      if (process.env.NODE_ENV !== "production") {
+        console.debug(
+          `Alternar materia: ${sesion.tema} -> ${temaAlternado}. Progreso practica actual: ${tasaPractica}%, ${totalPracticas}/3 practicas`
+        );
+      }
     }
 
     assertSupabaseOk(
@@ -257,7 +264,7 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error y siguiente_p
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: "Error interno del servidor" });
   }
 }
 

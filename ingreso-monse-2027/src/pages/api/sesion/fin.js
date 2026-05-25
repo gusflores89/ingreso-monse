@@ -1,8 +1,9 @@
 import { getWeekRange } from "@/lib/date";
 import { callOpenRouter } from "@/lib/openrouter";
-import { MODEL_DASHBOARD, SYSTEM_PROMPT_DASHBOARD_IA } from "@/lib/prompts";
+import { MODEL_DASHBOARD, buildPromptDashboard } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { requireMethod } from "@/lib/http";
+import { buildAlumnoProfile } from "@/lib/alumno";
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
@@ -13,6 +14,12 @@ export default async function handler(req, res) {
   try {
     const supabase = getSupabaseAdmin();
     const week = getWeekRange();
+
+    const usuario = assertSupabaseOk(
+      await supabase.from("usuarios").select("*").eq("id", user_id).single(),
+      "No se pudo obtener usuario"
+    );
+    const alumno = buildAlumnoProfile(usuario);
 
     const sesiones = assertSupabaseOk(
       await supabase
@@ -52,7 +59,7 @@ export default async function handler(req, res) {
       alertas_generadas: alertas,
     };
 
-    const markdown = await callOpenRouter(MODEL_DASHBOARD, SYSTEM_PROMPT_DASHBOARD_IA, JSON.stringify(weeklyInput), 1800);
+    const markdown = await callOpenRouter(MODEL_DASHBOARD, buildPromptDashboard(alumno, {}), JSON.stringify(weeklyInput), 1800);
 
     const reporte = assertSupabaseOk(
       await supabase
@@ -71,6 +78,6 @@ export default async function handler(req, res) {
     res.status(200).json({ reporte, markdown });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: "Error interno del servidor" });
   }
 }

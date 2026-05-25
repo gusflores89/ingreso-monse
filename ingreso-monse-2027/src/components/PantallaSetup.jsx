@@ -5,6 +5,9 @@ export default function PantallaSetup({ onComplete }) {
   const router = useRouter();
   const [form, setForm] = useState({
     nombre: "",
+    edad: "",
+    grado: "",
+    fecha_nacimiento: "",
     email: "",
     fecha_examen: "2027-12-01",
     nivel_inicial: "recien_empieza",
@@ -29,6 +32,9 @@ export default function PantallaSetup({ onComplete }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           nombre: form.nombre,
+          edad: form.edad ? Number(form.edad) : undefined,
+          grado: form.grado || undefined,
+          fecha_nacimiento: form.fecha_nacimiento || undefined,
           email: form.email || undefined,
           fecha_examen: form.fecha_examen,
           nivel_inicial: form.nivel_inicial,
@@ -104,9 +110,36 @@ export default function PantallaSetup({ onComplete }) {
           <input
             value={form.nombre}
             onChange={(event) => update("nombre", event.target.value)}
-            placeholder="Ej: Abril, Santiago, Lucia..."
+            placeholder="Ej: Santiago, Lucia..."
             required
           />
+        </label>
+
+        <label>
+          Edad del alumno/a
+          <select value={form.edad} onChange={(event) => update("edad", event.target.value)} required>
+            <option value="">Selecciona</option>
+            {[8, 9, 10, 11, 12, 13].map((edad) => (
+              <option key={edad} value={edad}>
+                {edad} anos
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label>
+          Grado actual
+          <select value={form.grado} onChange={(event) => update("grado", event.target.value)} required>
+            <option value="">Selecciona</option>
+            <option value="4to">4to grado</option>
+            <option value="5to">5to grado</option>
+            <option value="6to">6to grado</option>
+          </select>
+        </label>
+
+        <label>
+          Fecha de nacimiento
+          <input type="date" value={form.fecha_nacimiento} onChange={(event) => update("fecha_nacimiento", event.target.value)} />
         </label>
 
         <label>
