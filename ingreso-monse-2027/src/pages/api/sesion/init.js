@@ -21,8 +21,15 @@ export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
   if (!requireAccess(req, res, ["student", "admin"])) return;
 
-  const { user_id, tema, capa = 1, modo = "NORMAL", tiempo_disponible_sesion = 25, omitir_caso_resuelto = false } =
-    req.body || {};
+  const {
+    user_id,
+    tema,
+    capa = 1,
+    modo = "NORMAL",
+    tiempo_disponible_sesion = 25,
+    omitir_caso_resuelto = false,
+    tutor_preference = null,
+  } = req.body || {};
 
   if (!user_id) {
     return res.status(400).json({ error: "user_id es obligatorio." });
@@ -40,8 +47,10 @@ export default async function handler(req, res) {
       await supabase.from("usuarios").select("*").eq("id", user_id).single(),
       "No se pudo obtener el usuario"
     );
-    const alumno = buildAlumnoProfile(usuario);
-    const tutor = getTutorPayload(usuario);
+    const tutorOverrides = normalizeTutorPreference(tutor_preference);
+    const usuarioConTutor = { ...usuario, ...tutorOverrides };
+    const alumno = buildAlumnoProfile(usuarioConTutor);
+    const tutor = getTutorPayload(usuarioConTutor);
 
     const progresoResult = await supabase
       .from("progreso")
@@ -211,13 +220,41 @@ function isMissingLessonsTable(error) {
 }
 
 function getTutorPayload(usuario = {}) {
-  const avatar = usuario.avatar || "buho";
+  const avatar = isValidAvatar(usuario.avatar) ? usuario.avatar : "buho";
   return {
     avatar,
-    nombre_tutor: usuario.nombre_tutor || "Buho",
-    color_tema: usuario.color_tema || "#D85A30",
+    nombre_tutor: usuario.nombre_tutor || tutorNameForAvatar(avatar),
+    color_tema: isValidHexColor(usuario.color_tema) ? usuario.color_tema : colorForAvatar(avatar),
     avatar_imagen: `/avatars/${avatar}-mini.svg`,
   };
+}
+
+function normalizeTutorPreference(preference) {
+  if (!preference || typeof preference !== "object") return {};
+  const avatar = isValidAvatar(preference.avatar) ? preference.avatar : null;
+  if (!avatar) return {};
+
+  return {
+    avatar,
+    nombre_tutor: preference.nombre_tutor || tutorNameForAvatar(avatar),
+    color_tema: isValidHexColor(preference.color_tema) ? preference.color_tema : colorForAvatar(avatar),
+  };
+}
+
+function isValidAvatar(avatar) {
+  return ["atenea", "nyx", "lux", "buho"].includes(avatar);
+}
+
+function isValidHexColor(color) {
+  return /^#[0-9a-f]{6}$/i.test(String(color || ""));
+}
+
+function tutorNameForAvatar(avatar) {
+  return { atenea: "Atenea", nyx: "Nyx", lux: "Lux", buho: "Buho" }[avatar] || "Buho";
+}
+
+function colorForAvatar(avatar) {
+  return { atenea: "#7F77DD", nyx: "#378ADD", lux: "#1D9E75", buho: "#D85A30" }[avatar] || "#D85A30";
 }
 
 async function resolverTemaDeReingreso(supabase, userId) {

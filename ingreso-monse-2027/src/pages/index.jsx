@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 const AVATARES = [
@@ -52,6 +52,16 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  useEffect(() => {
+    const saved = getSavedAvatar();
+    if (saved) setAvatarSeleccionado(saved);
+  }, []);
+
+  const elegirAvatar = (avatar) => {
+    setAvatarSeleccionado(avatar);
+    saveAvatar(avatar);
+  };
+
   const handleLogin = async () => {
     const normalizedCode = codigo.trim().toUpperCase();
     setError("");
@@ -77,6 +87,8 @@ export default function Login() {
         return;
       }
 
+      saveAvatar(avatarSeleccionado);
+
       await fetch("/api/guardar-avatar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -88,7 +100,14 @@ export default function Login() {
         }),
       });
 
-      router.push(`/tutoria?user_id=${data.userId}`);
+      const params = new URLSearchParams({
+        user_id: data.userId,
+        avatar: avatarSeleccionado.id,
+        nombre_tutor: avatarSeleccionado.nombre,
+        color_tema: avatarSeleccionado.color,
+      });
+
+      router.push(`/tutoria?${params.toString()}`);
     } catch (err) {
       console.error(err);
       setError("Error de conexion");
@@ -126,7 +145,7 @@ export default function Login() {
                   type="button"
                   key={avatar.id}
                   className="avatar-option"
-                  onClick={() => setAvatarSeleccionado(avatar)}
+                  onClick={() => elegirAvatar(avatar)}
                   style={{
                     backgroundColor: selected ? avatar.colorClaro : "transparent",
                     borderColor: selected ? avatar.color : "transparent",
@@ -210,5 +229,28 @@ export default function Login() {
         </a>
       </section>
     </main>
+  );
+}
+
+function getSavedAvatar() {
+  if (typeof window === "undefined") return null;
+
+  try {
+    const saved = JSON.parse(window.localStorage.getItem("tutor_avatar") || "null");
+    return AVATARES.find((avatar) => avatar.id === saved?.id) || null;
+  } catch {
+    return null;
+  }
+}
+
+function saveAvatar(avatar) {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem(
+    "tutor_avatar",
+    JSON.stringify({
+      id: avatar.id,
+      nombre: avatar.nombre,
+      color: avatar.color,
+    })
   );
 }

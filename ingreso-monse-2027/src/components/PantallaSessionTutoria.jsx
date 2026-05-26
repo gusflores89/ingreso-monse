@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import PantallaCasoResuelto from "./PantallaCasoResuelto";
 import VisualizacionMatematica from "./VisualizacionMatematica";
 
-export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
+export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tutor_preference }) {
   const [pregunta, setPregunta] = useState(null);
   const [respuesta, setRespuesta] = useState("");
   const [sesionId, setSesionId] = useState(null);
@@ -26,7 +26,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
         const res = await fetch("/api/sesion/init", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ user_id, tema, capa, modo }),
+          body: JSON.stringify({ user_id, tema, capa, modo, tutor_preference }),
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || "No se pudo iniciar la sesion.");
@@ -120,6 +120,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
           tema: proximoTema,
           capa: proximaCapa,
           modo: proximoModo,
+          tutor_preference,
         }),
       });
       const data = await res.json();
@@ -153,6 +154,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
           capa: pregunta?.capa || capa,
           modo: modo || "NORMAL",
           omitir_caso_resuelto: true,
+          tutor_preference,
         }),
       });
       const data = await res.json();
@@ -206,9 +208,11 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
   const activeTema = pregunta?.tema || tema || "";
   const theme = themeForTema(activeTema);
   const tutor = {
-    nombre: pregunta?.nombre_tutor || "Profe",
-    color: pregunta?.color_tema || "#D85A30",
-    imagen: pregunta?.avatar_imagen || `/avatars/${pregunta?.avatar || "buho"}-mini.svg`,
+    nombre: pregunta?.nombre_tutor || tutor_preference?.nombre_tutor || "Profe",
+    color: pregunta?.color_tema || tutor_preference?.color_tema || "#D85A30",
+    imagen:
+      pregunta?.avatar_imagen ||
+      `/avatars/${pregunta?.avatar || tutor_preference?.avatar || "buho"}-mini.svg`,
   };
   const pasos = useMemo(() => {
     if (!pregunta || pregunta.tipo !== "leccion") return [];
@@ -246,7 +250,19 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
   const totalPasos = pasos.length;
 
   return (
-    <section className={`tutoria-panel background-decorative theme-${theme}`} aria-live="polite">
+    <section
+      className={`tutoria-panel background-decorative theme-${theme}`}
+      aria-live="polite"
+      style={{
+        "--primary": tutor.color,
+        "--primary-strong": shadeColor(tutor.color, -18),
+        "--secondary": tutor.color,
+        "--soft-purple": tintColor(tutor.color, 92),
+        "--soft-purple-2": tintColor(tutor.color, 86),
+        "--decorative-a": tintColor(tutor.color, 88),
+        "--decorative-b": tintColor(tutor.color, 94),
+      }}
+    >
       <header className="session-header student-session-header">
         <TutorHeader tutor={tutor} />
       </header>
@@ -443,6 +459,43 @@ function TutorMessage({ tutor, mensaje }) {
       </div>
     </div>
   );
+}
+
+function shadeColor(hex, percent) {
+  const color = parseHexColor(hex);
+  if (!color) return hex;
+  const amount = Math.round(2.55 * percent);
+  return toHexColor({
+    r: Math.max(0, Math.min(255, color.r + amount)),
+    g: Math.max(0, Math.min(255, color.g + amount)),
+    b: Math.max(0, Math.min(255, color.b + amount)),
+  });
+}
+
+function tintColor(hex, percent) {
+  const color = parseHexColor(hex);
+  if (!color) return "#FAF5FF";
+  const ratio = percent / 100;
+  return toHexColor({
+    r: Math.round(color.r + (255 - color.r) * ratio),
+    g: Math.round(color.g + (255 - color.g) * ratio),
+    b: Math.round(color.b + (255 - color.b) * ratio),
+  });
+}
+
+function parseHexColor(hex = "") {
+  const match = String(hex).match(/^#?([0-9a-f]{6})$/i);
+  if (!match) return null;
+  const value = match[1];
+  return {
+    r: parseInt(value.slice(0, 2), 16),
+    g: parseInt(value.slice(2, 4), 16),
+    b: parseInt(value.slice(4, 6), 16),
+  };
+}
+
+function toHexColor({ r, g, b }) {
+  return `#${[r, g, b].map((value) => value.toString(16).padStart(2, "0")).join("")}`;
 }
 
 function MathExampleVisual({ tema, ejemplo }) {

@@ -17,6 +17,11 @@ export default function TutoriaPage() {
   const temaQuery = firstQueryValue(router.query.tema);
   const capaQuery = Number(firstQueryValue(router.query.capa));
   const modo = firstQueryValue(router.query.modo) || "NORMAL";
+  const tutorPreferencia = {
+    avatar: firstQueryValue(router.query.avatar),
+    nombre_tutor: firstQueryValue(router.query.nombre_tutor),
+    color_tema: firstQueryValue(router.query.color_tema),
+  };
   const tema = isCurriculumTopic(temaQuery) ? temaQuery : null;
   const capa = Number.isFinite(capaQuery) && capaQuery >= 1 && capaQuery <= 5 ? capaQuery : 1;
 
@@ -37,7 +42,14 @@ export default function TutoriaPage() {
   return (
     <main className="app-shell">
       <section className="workspace student-workspace">
-        <PantallaSessionTutoria key={`${userId}-${tema || "auto"}-${capa}-${modo}`} user_id={userId} tema={tema} capa={capa} modo={modo} />
+        <PantallaSessionTutoria
+          key={`${userId}-${tema || "auto"}-${capa}-${modo}-${tutorPreferencia.avatar || "db"}`}
+          user_id={userId}
+          tema={tema}
+          capa={capa}
+          modo={modo}
+          tutor_preference={tutorPreferencia}
+        />
       </section>
     </main>
   );
