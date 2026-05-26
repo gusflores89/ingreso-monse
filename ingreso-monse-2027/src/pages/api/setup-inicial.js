@@ -1,6 +1,6 @@
 import { requireMethod } from "@/lib/http";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
-import { DEFAULT_TOPIC } from "@/lib/curriculum";
+import { TRIAL_DEFAULT_TOPIC } from "@/lib/planes";
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
@@ -49,10 +49,10 @@ export default async function handler(req, res) {
       "No se pudo guardar el perfil"
     );
     const plan = {
-      proximo_tema: DEFAULT_TOPIC,
+      proximo_tema: TRIAL_DEFAULT_TOPIC,
       proxima_capa: calcularCapaInicial(Number(edad), grado, rasgos_especiales),
       modo_recomendado: "NORMAL",
-      razon: "Cuenta gratuita creada. Empieza con el primer tema guiado.",
+      razon: "Cuenta gratuita creada. Empieza con una muestra guiada del metodo.",
     };
 
     res.status(200).json({ usuario, plan, cuenta: { plan: "trial", estado: "activa" } });

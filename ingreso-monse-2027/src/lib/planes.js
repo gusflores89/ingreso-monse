@@ -1,12 +1,16 @@
-import { CURRICULUM_LENGUA, CURRICULUM_MATEMATICA, DEFAULT_TOPIC, getTopicMeta } from "@/lib/curriculum";
+import { DEFAULT_TOPIC, getTopicMeta } from "@/lib/curriculum";
 
 export const PLAN_TRIAL = "trial";
 export const PLAN_FULL = "full";
 
 export const TRIAL_TOPICS = [
-  ...CURRICULUM_MATEMATICA.slice(0, 2).map((item) => item.tema),
-  ...CURRICULUM_LENGUA.slice(0, 2).map((item) => item.tema),
+  "fracciones_del_resto",
+  "graficos_estadisticos",
+  "comprension_lectora_literal_inferida",
+  "ortografia_b_v",
 ];
+
+export const TRIAL_DEFAULT_TOPIC = "fracciones_del_resto";
 
 export function getUserPlan(usuario = {}) {
   if (usuario.plan) return usuario.plan;
@@ -23,15 +27,13 @@ export function canAccessTopicByPlan(usuario, tema) {
 
 export function getDefaultTopicForPlan(usuario, preferredTopic = DEFAULT_TOPIC) {
   if (canAccessTopicByPlan(usuario, preferredTopic)) return preferredTopic;
-  const meta = getTopicMeta(preferredTopic);
-  if (meta?.materia === "lengua") return CURRICULUM_LENGUA[0].tema;
-  return DEFAULT_TOPIC;
+  return TRIAL_DEFAULT_TOPIC;
 }
 
 export function getTrialLimitPayload() {
   return {
     plan: PLAN_TRIAL,
     trial_topics: TRIAL_TOPICS,
-    trial_descripcion: "El plan gratuito incluye los primeros temas de matematica y lengua.",
+    trial_descripcion: "El plan gratuito muestra una experiencia real del metodo: problemas guiados y temas estilo Monserrat.",
   };
 }

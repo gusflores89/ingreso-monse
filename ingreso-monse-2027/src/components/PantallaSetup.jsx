@@ -92,12 +92,12 @@ export default function PantallaSetup({ onComplete }) {
         <div>
           <p className="eyebrow">Primer ingreso</p>
           <h2>Crear cuenta gratuita</h2>
-          <p>Ingresa los datos del alumno/a para empezar con los primeros temas.</p>
+          <p>Ingresa los datos del alumno/a para probar una muestra real del metodo.</p>
         </div>
 
         <div className="setup-note">
-          <strong>Plan gratuito</strong>
-          <span>Incluye los primeros temas de Matematica y Lengua. El acceso completo se activa con el plan full.</span>
+          <strong>Muestra gratuita</strong>
+          <span>Incluye problemas guiados de Matematica y Lengua con estilo Monserrat, no solo ejercicios basicos.</span>
         </div>
 
         <label>
