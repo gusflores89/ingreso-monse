@@ -119,7 +119,7 @@ export default function PantallaSetup({ onComplete }) {
           Edad del alumno/a
           <select value={form.edad} onChange={(event) => update("edad", event.target.value)} required>
             <option value="">Selecciona</option>
-            {[8, 9, 10, 11, 12, 13].map((edad) => (
+            {[8, 9, 10, 11, 12].map((edad) => (
               <option key={edad} value={edad}>
                 {edad} anos
               </option>
