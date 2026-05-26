@@ -7,11 +7,13 @@ export default function PantallaSetup({ onComplete }) {
     nombre: "",
     edad: "",
     grado: "",
-    fecha_nacimiento: "",
+    nacimiento_dia: "",
+    nacimiento_mes: "",
+    nacimiento_anio: "",
     email: "",
     fecha_examen: "2027-12-01",
     nivel_inicial: "recien_empieza",
-    estilo_aprendizaje: "visual",
+    estilo_aprendizaje: "visual_ejemplos",
     dislexia: false,
     setup_password: "",
   });
@@ -34,7 +36,7 @@ export default function PantallaSetup({ onComplete }) {
           nombre: form.nombre,
           edad: form.edad ? Number(form.edad) : undefined,
           grado: form.grado || undefined,
-          fecha_nacimiento: form.fecha_nacimiento || undefined,
+          fecha_nacimiento: buildFechaNacimiento(form),
           email: form.email || undefined,
           fecha_examen: form.fecha_examen,
           nivel_inicial: form.nivel_inicial,
@@ -91,18 +93,19 @@ export default function PantallaSetup({ onComplete }) {
         <div>
           <p className="eyebrow">Primer ingreso</p>
           <h2>Configurar cuenta de estudiante</h2>
-          <p>Ingresa los datos del alumno/a para comenzar.</p>
+          <p>Ingresa los datos del alumno/a para crear una cuenta de practica.</p>
         </div>
 
         <label>
-          Contrasena para padres/tutores
+          Contrasena de alta
           <input
             type="password"
             value={form.setup_password}
             onChange={(event) => update("setup_password", event.target.value)}
-            placeholder="Contrasena"
+            placeholder="Pedisela al administrador"
             required
           />
+          <small>Por ahora las altas estan protegidas para evitar uso no autorizado de tokens.</small>
         </label>
 
         <label>
@@ -139,7 +142,45 @@ export default function PantallaSetup({ onComplete }) {
 
         <label>
           Fecha de nacimiento
-          <input type="date" value={form.fecha_nacimiento} onChange={(event) => update("fecha_nacimiento", event.target.value)} />
+          <div className="date-triplet">
+            <select value={form.nacimiento_dia} onChange={(event) => update("nacimiento_dia", event.target.value)}>
+              <option value="">Dia</option>
+              {Array.from({ length: 31 }, (_, index) => index + 1).map((dia) => (
+                <option key={dia} value={String(dia).padStart(2, "0")}>
+                  {String(dia).padStart(2, "0")}
+                </option>
+              ))}
+            </select>
+            <select value={form.nacimiento_mes} onChange={(event) => update("nacimiento_mes", event.target.value)}>
+              <option value="">Mes</option>
+              {[
+                ["01", "Enero"],
+                ["02", "Febrero"],
+                ["03", "Marzo"],
+                ["04", "Abril"],
+                ["05", "Mayo"],
+                ["06", "Junio"],
+                ["07", "Julio"],
+                ["08", "Agosto"],
+                ["09", "Septiembre"],
+                ["10", "Octubre"],
+                ["11", "Noviembre"],
+                ["12", "Diciembre"],
+              ].map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+            <select value={form.nacimiento_anio} onChange={(event) => update("nacimiento_anio", event.target.value)}>
+              <option value="">AAAA</option>
+              {getBirthYears().map((anio) => (
+                <option key={anio} value={anio}>
+                  {anio}
+                </option>
+              ))}
+            </select>
+          </div>
         </label>
 
         <label>
@@ -172,11 +213,11 @@ export default function PantallaSetup({ onComplete }) {
         </fieldset>
 
         <label>
-          Estilo de aprendizaje
+          Preferencia de explicacion
           <select value={form.estilo_aprendizaje} onChange={(event) => update("estilo_aprendizaje", event.target.value)}>
-            <option value="visual">Visual</option>
-            <option value="kinestesico">Kinestesico</option>
-            <option value="auditivo">Auditivo</option>
+            <option value="visual_ejemplos">Visual y con ejemplos</option>
+            <option value="paso_a_paso">Paso a paso</option>
+            <option value="practica_directa">Mas practica, menos explicacion</option>
           </select>
         </label>
 
@@ -193,4 +234,16 @@ export default function PantallaSetup({ onComplete }) {
       </form>
     </section>
   );
+}
+
+function buildFechaNacimiento(form) {
+  if (!form.nacimiento_anio || !form.nacimiento_mes || !form.nacimiento_dia) return undefined;
+  return `${form.nacimiento_anio}-${form.nacimiento_mes}-${form.nacimiento_dia}`;
+}
+
+function getBirthYears() {
+  const currentYear = new Date().getFullYear();
+  const start = currentYear - 12;
+  const end = currentYear - 8;
+  return Array.from({ length: end - start + 1 }, (_, index) => start + index).reverse();
 }

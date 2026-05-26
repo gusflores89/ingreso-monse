@@ -87,6 +87,7 @@ CONTEXTO:
 - Tema: {tema}
 - Capa: {capa}
 - Estilo: {estilo_aprendizaje}, concreto, con MUCHOS ejemplos
+- Preferencia de explicacion: {preferencia_explicacion}
 
 REGLAS CRITICAS:
 
@@ -170,6 +171,7 @@ CONTEXTO:
 - Capa: {capa}
 - Tasa de acierto: {tasa_acierto}%
 - Sesiones completadas: {sesiones_en_tema}
+- Preferencia de explicacion: {preferencia_explicacion}
 
 TU TRABAJO:
 
@@ -334,22 +336,39 @@ function promptValues(alumno, contexto) {
     tutor_nombre: alumno.nombre_tutor,
     alumno_edad_texto: alumno.edad ? ` (${alumno.edad} anos)` : "",
     estilo_aprendizaje: contexto?.estilo_aprendizaje || alumno.estilo_aprendizaje,
+    preferencia_explicacion: describePreferencia(contexto?.estilo_aprendizaje || alumno.estilo_aprendizaje),
     adaptaciones: buildAdaptaciones(alumno),
   };
 }
 
 function buildAdaptaciones(alumno) {
+  const preferencia = describePreferencia(alumno.estilo_aprendizaje);
+  const preferenciaTexto = preferencia ? ` Preferencia de explicacion: ${preferencia}.` : "";
+
   if (alumno.necesidades_especiales === "dislexia") {
-    return `${alumno.nombre} tiene dislexia leve. Usa oraciones cortas, ejemplos visuales, pasos separados y evita bloques largos de texto.`;
+    return `${alumno.nombre} tiene dislexia leve. Usa oraciones cortas, ejemplos visuales, pasos separados y evita bloques largos de texto.${preferenciaTexto}`;
   }
 
   if (alumno.necesidades_especiales === "tdah") {
-    return `${alumno.nombre} tiene TDAH. Usa explicaciones breves, energia alta, consignas cortas y ejemplos practicos.`;
+    return `${alumno.nombre} tiene TDAH. Usa explicaciones breves, energia alta, consignas cortas y ejemplos practicos.${preferenciaTexto}`;
   }
 
   if (alumno.detalle_necesidades) {
-    return `Necesidades a contemplar: ${alumno.detalle_necesidades}.`;
+    return `Necesidades a contemplar: ${alumno.detalle_necesidades}.${preferenciaTexto}`;
   }
 
-  return "Adapta el nivel al perfil del alumno y manten explicaciones claras.";
+  return `Adapta el nivel al perfil del alumno y manten explicaciones claras.${preferenciaTexto}`;
+}
+
+function describePreferencia(value) {
+  const preferencias = {
+    visual_ejemplos: "usar objetos concretos, dibujos mentales, analogias visuales y varios ejemplos",
+    paso_a_paso: "separar cada micro-paso, numerar el razonamiento y explicar por que se hace cada cosa",
+    practica_directa: "explicar breve, dar consigna rapido y usar la correccion como principal momento de aprendizaje",
+    visual: "usar objetos concretos, dibujos mentales, analogias visuales y varios ejemplos",
+    kinestesico: "usar acciones concretas, manipulables y situaciones de movimiento",
+    auditivo: "usar frases cortas, repeticion verbal y recordatorios faciles de decir",
+  };
+
+  return preferencias[value] || preferencias.visual_ejemplos;
 }

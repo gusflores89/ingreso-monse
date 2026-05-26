@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     email,
     fecha_examen = "2027-12-01",
     nivel_inicial,
-    estilo_aprendizaje = "visual",
+    estilo_aprendizaje = "visual_ejemplos",
     rasgos_especiales = {},
     edad,
     grado,
@@ -24,10 +24,10 @@ export default async function handler(req, res) {
   } = req.body || {};
 
   if (!verifyAccessPassword("setup", setup_password)) {
-    return res.status(401).json({ error: "Contrasena de padres/tutores incorrecta." });
+    return res.status(401).json({ error: "Contrasena de alta incorrecta. Pedisela al administrador." });
   }
 
-  const validationError = validateSetupInput({ nombre, email, fecha_examen });
+  const validationError = validateSetupInput({ nombre, email, fecha_examen, edad, fecha_nacimiento, estilo_aprendizaje });
   if (validationError) return res.status(400).json({ error: validationError });
 
   try {
@@ -83,9 +83,14 @@ export default async function handler(req, res) {
   }
 }
 
-function validateSetupInput({ nombre, email, fecha_examen }) {
+function validateSetupInput({ nombre, email, fecha_examen, edad, fecha_nacimiento, estilo_aprendizaje }) {
   const cleanNombre = String(nombre || "").trim();
   if (cleanNombre.length < 2 || cleanNombre.length > 50) return "Nombre requerido";
+
+  const edadNumber = Number(edad);
+  if (!Number.isFinite(edadNumber) || edadNumber < 8 || edadNumber > 12) {
+    return "La edad debe estar entre 8 y 12 anos";
+  }
 
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email))) {
     return "Email invalido";
@@ -94,6 +99,15 @@ function validateSetupInput({ nombre, email, fecha_examen }) {
   const exam = new Date(`${fecha_examen}T12:00:00`);
   if (Number.isNaN(exam.getTime()) || exam.getTime() <= Date.now()) {
     return "La fecha de examen debe ser futura";
+  }
+
+  if (fecha_nacimiento) {
+    const birth = new Date(`${fecha_nacimiento}T12:00:00`);
+    if (Number.isNaN(birth.getTime())) return "Fecha de nacimiento invalida";
+  }
+
+  if (!["visual_ejemplos", "paso_a_paso", "practica_directa"].includes(estilo_aprendizaje)) {
+    return "Preferencia de explicacion invalida";
   }
 
   return null;

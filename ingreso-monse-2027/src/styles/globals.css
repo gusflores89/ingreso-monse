@@ -319,6 +319,18 @@ label {
   font-weight: 800;
 }
 
+label small {
+  color: #94a3b8;
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+
+.date-triplet {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr 1fr;
+  gap: 10px;
+}
+
 .app-shell {
   width: min(1180px, calc(100% - 28px));
   margin: 0 auto;
@@ -2638,7 +2650,8 @@ label {
 
   .admin-test-actions,
   .admin-curriculum-grid,
-  .review-choice-grid {
+  .review-choice-grid,
+  .date-triplet {
     grid-template-columns: 1fr;
   }
 
