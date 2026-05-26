@@ -1,6 +1,7 @@
 import { requireMethod } from "@/lib/http";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { TRIAL_DEFAULT_TOPIC } from "@/lib/planes";
+import { hashFamilyPassword } from "@/lib/access";
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
@@ -15,9 +16,10 @@ export default async function handler(req, res) {
     edad,
     grado,
     fecha_nacimiento,
+    password_familiar,
   } = req.body || {};
 
-  const validationError = validateSetupInput({ nombre, email, fecha_examen, edad, fecha_nacimiento, estilo_aprendizaje });
+  const validationError = validateSetupInput({ nombre, email, fecha_examen, edad, fecha_nacimiento, estilo_aprendizaje, password_familiar });
   if (validationError) return res.status(400).json({ error: validationError });
 
   try {
@@ -35,7 +37,11 @@ export default async function handler(req, res) {
             fecha_examen,
             nivel_inicial: perfilNivel,
             estilo_aprendizaje,
-            rasgos_especiales: { ...rasgos_especiales, plan: "trial" },
+            rasgos_especiales: {
+              ...rasgos_especiales,
+              plan: "trial",
+              access_password_hash: hashFamilyPassword(password_familiar),
+            },
             edad: edad ? Number(edad) : null,
             grado: grado || null,
             fecha_nacimiento: fecha_nacimiento || null,
@@ -62,9 +68,14 @@ export default async function handler(req, res) {
   }
 }
 
-function validateSetupInput({ nombre, email, fecha_examen, edad, fecha_nacimiento, estilo_aprendizaje }) {
+function validateSetupInput({ nombre, email, fecha_examen, edad, fecha_nacimiento, estilo_aprendizaje, password_familiar }) {
   const cleanNombre = String(nombre || "").trim();
   if (cleanNombre.length < 2 || cleanNombre.length > 50) return "Nombre requerido";
+
+  const cleanPassword = String(password_familiar || "").trim();
+  if (cleanPassword.length < 6 || cleanPassword.length > 40) {
+    return "La contrasena familiar debe tener entre 6 y 40 caracteres";
+  }
 
   const edadNumber = Number(edad);
   if (!Number.isFinite(edadNumber) || edadNumber < 8 || edadNumber > 12) {

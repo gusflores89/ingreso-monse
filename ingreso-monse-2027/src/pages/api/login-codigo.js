@@ -1,5 +1,5 @@
 import { getSupabaseAdmin } from "@/lib/supabaseAdmin";
-import { setAccessCookie, verifyAccessPassword } from "@/lib/access";
+import { setAccessCookie, verifyAccessPassword, verifyFamilyPassword } from "@/lib/access";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -13,20 +13,25 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Codigo requerido" });
   }
 
-  if (!verifyAccessPassword("student", password)) {
-    return res.status(401).json({ error: "Contrasena incorrecta. Pedile ayuda a mama/papa." });
-  }
-
   try {
     const supabase = getSupabaseAdmin();
     const { data: usuario, error } = await supabase
       .from("usuarios")
-      .select("id, nombre, codigo_acceso")
+      .select("id, nombre, codigo_acceso, rasgos_especiales")
       .eq("codigo_acceso", codigo)
       .single();
 
     if (error || !usuario) {
       return res.status(404).json({ error: "Codigo incorrecto. Pedile ayuda a mama/papa." });
+    }
+
+    const familyPasswordHash = usuario.rasgos_especiales?.access_password_hash;
+    const passwordOk = familyPasswordHash
+      ? verifyFamilyPassword(password, familyPasswordHash)
+      : verifyAccessPassword("student", password);
+
+    if (!passwordOk) {
+      return res.status(401).json({ error: "Contrasena incorrecta. Pedile ayuda a mama/papa." });
     }
 
     // Persistir preferencias del tutor/avatar de forma atómica para evitar race conditions

@@ -11,6 +11,7 @@ export default function PantallaSetup({ onComplete }) {
     nacimiento_mes: "",
     nacimiento_anio: "",
     email: "",
+    password_familiar: "",
     fecha_examen: "2027-12-01",
     nivel_inicial: "recien_empieza",
     estilo_aprendizaje: "visual_ejemplos",
@@ -37,6 +38,7 @@ export default function PantallaSetup({ onComplete }) {
           grado: form.grado || undefined,
           fecha_nacimiento: buildFechaNacimiento(form),
           email: form.email || undefined,
+          password_familiar: form.password_familiar,
           fecha_examen: form.fecha_examen,
           nivel_inicial: form.nivel_inicial,
           estilo_aprendizaje: form.estilo_aprendizaje,
@@ -57,6 +59,7 @@ export default function PantallaSetup({ onComplete }) {
   if (setupExitoso) {
     const codigoGenerado = setupExitoso.usuario?.codigo_acceso || "";
     const nombre = setupExitoso.usuario?.nombre || form.nombre || "el estudiante";
+    const passwordFamiliar = form.password_familiar;
 
     return (
       <section className="setup-screen">
@@ -71,10 +74,15 @@ export default function PantallaSetup({ onComplete }) {
             <strong>{codigoGenerado}</strong>
           </div>
 
-          <p>Escribi este codigo en un papel y daselo a {nombre}.</p>
+          <div className="access-code-card">
+            <p>Contrasena familiar</p>
+            <strong>{passwordFamiliar}</strong>
+          </div>
+
+          <p>Escribi el codigo y la contrasena en un papel y daselos a {nombre}.</p>
           <p>
-            Para practicar, {nombre} debe ir a la pagina principal, escribir <strong>{codigoGenerado}</strong> y tocar
-            "Empezar a practicar".
+            Para practicar, {nombre} debe ir a la pagina principal, escribir <strong>{codigoGenerado}</strong>, ingresar la
+            contrasena familiar y tocar "Entrar a practicar".
           </p>
           <p>Esta cuenta empieza en modo gratuito, con acceso a los primeros temas.</p>
 
@@ -178,6 +186,22 @@ export default function PantallaSetup({ onComplete }) {
         <label>
           Email familiar
           <input type="email" value={form.email} onChange={(event) => update("email", event.target.value)} />
+        </label>
+
+        <label>
+          Crear contrasena familiar
+          <input
+            type="password"
+            value={form.password_familiar}
+            onChange={(event) => update("password_familiar", event.target.value)}
+            placeholder="Minimo 6 caracteres"
+            minLength={6}
+            maxLength={40}
+            required
+          />
+          <small>
+            Esta contrasena la usan la familia y el alumno junto con el codigo de acceso.
+          </small>
         </label>
 
         <label>
