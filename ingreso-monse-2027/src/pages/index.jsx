@@ -196,7 +196,7 @@ export default function Login() {
           {[
             { label: "Temas", value: "37", color: "#7F77DD" },
             { label: "Mate + Lengua", value: "2 en 1", color: "#1D9E75" },
-            { label: "Por dia", value: "15 min", color: "#D85A30" },
+            { label: "Metodo", value: "Guiado", color: "#D85A30" },
           ].map((stat) => (
             <div key={stat.label}>
               <span>{stat.label}</span>
