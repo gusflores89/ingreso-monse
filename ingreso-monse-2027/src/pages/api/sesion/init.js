@@ -10,6 +10,7 @@ import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { requireMethod } from "@/lib/http";
 import { requireAccess } from "@/lib/access";
 import { buildAlumnoProfile } from "@/lib/alumno";
+import { getDefaultTopicForPlan, getTrialLimitPayload, getUserPlan } from "@/lib/planes";
 import {
   crearTareaManuscrita,
   getTareaManuscritaActiva,
@@ -40,7 +41,7 @@ export default async function handler(req, res) {
     const reingreso = isCurriculumTopic(tema)
       ? { tema, capa: Number(capa) }
       : await resolverTemaDeReingreso(supabase, user_id);
-    const temaActual = reingreso.tema;
+    let temaActual = reingreso.tema;
     const capaActual = Number(reingreso.capa) || Number(capa) || 1;
 
     const usuario = assertSupabaseOk(
@@ -51,6 +52,9 @@ export default async function handler(req, res) {
     const usuarioConTutor = { ...usuario, ...tutorOverrides };
     const alumno = buildAlumnoProfile(usuarioConTutor);
     const tutor = getTutorPayload(usuarioConTutor);
+    const plan = getUserPlan(usuario);
+    temaActual = getDefaultTopicForPlan(usuario, temaActual);
+    const planPayload = plan === "trial" ? getTrialLimitPayload() : { plan };
 
     const progresoResult = await supabase
       .from("progreso")
@@ -101,6 +105,7 @@ export default async function handler(req, res) {
           tema: temaActual,
           capa: capaActual,
           ...tutor,
+          ...planPayload,
           metodo: getMetodoPasoAPaso(),
           caso,
           tiempo_estimado: 8,
@@ -111,14 +116,14 @@ export default async function handler(req, res) {
     if (modoSesion === "practica") {
       const examenResponse = await maybeCrearExamenFinal(supabase, user_id, temaActual, capaActual, modo, contexto);
       if (examenResponse) {
-        return res.status(200).json({ ...examenResponse, ...tutor });
+        return res.status(200).json({ ...examenResponse, ...tutor, ...planPayload });
       }
     }
 
     if (modoSesion === "practica") {
       const tareaResponse = await maybeAsignarTareaManuscrita(supabase, user_id, temaActual);
       if (tareaResponse) {
-        return res.status(200).json({ ...tareaResponse, ...tutor });
+        return res.status(200).json({ ...tareaResponse, ...tutor, ...planPayload });
       }
     }
 
@@ -205,6 +210,7 @@ IMPORTANTE:
       tipo: modoSesion,
       tipo_pregunta: tipoPregunta,
       ...tutor,
+      ...planPayload,
       opciones: preguntaJson.opciones || null,
       indicaciones_visuales: preguntaJson.indicaciones_visuales || null,
       tiempo_estimado: preguntaJson.tiempo_estimado || 5,

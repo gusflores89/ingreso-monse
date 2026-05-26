@@ -15,7 +15,6 @@ export default function PantallaSetup({ onComplete }) {
     nivel_inicial: "recien_empieza",
     estilo_aprendizaje: "visual_ejemplos",
     dislexia: false,
-    setup_password: "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -42,7 +41,6 @@ export default function PantallaSetup({ onComplete }) {
           nivel_inicial: form.nivel_inicial,
           estilo_aprendizaje: form.estilo_aprendizaje,
           rasgos_especiales: { dislexia: form.dislexia },
-          setup_password: form.setup_password,
         }),
       });
       const data = await res.json();
@@ -64,7 +62,7 @@ export default function PantallaSetup({ onComplete }) {
       <section className="setup-screen">
         <div className="setup-form setup-success">
           <div>
-            <p className="eyebrow">Cuenta lista</p>
+            <p className="eyebrow">Cuenta gratuita lista</p>
             <h2>Cuenta creada exitosamente</h2>
           </div>
 
@@ -78,6 +76,7 @@ export default function PantallaSetup({ onComplete }) {
             Para practicar, {nombre} debe ir a la pagina principal, escribir <strong>{codigoGenerado}</strong> y tocar
             "Empezar a practicar".
           </p>
+          <p>Esta cuenta empieza en modo gratuito, con acceso a los primeros temas.</p>
 
           <button type="button" className="primary" onClick={() => router.push("/")}>
             Ir a la pagina principal
@@ -92,21 +91,14 @@ export default function PantallaSetup({ onComplete }) {
       <form className="setup-form" onSubmit={handleSubmit}>
         <div>
           <p className="eyebrow">Primer ingreso</p>
-          <h2>Configurar cuenta de estudiante</h2>
-          <p>Ingresa los datos del alumno/a para crear una cuenta de practica.</p>
+          <h2>Crear cuenta gratuita</h2>
+          <p>Ingresa los datos del alumno/a para empezar con los primeros temas.</p>
         </div>
 
-        <label>
-          Contrasena de alta
-          <input
-            type="password"
-            value={form.setup_password}
-            onChange={(event) => update("setup_password", event.target.value)}
-            placeholder="Pedisela al administrador"
-            required
-          />
-          <small>Por ahora las altas estan protegidas para evitar uso no autorizado de tokens.</small>
-        </label>
+        <div className="setup-note">
+          <strong>Plan gratuito</strong>
+          <span>Incluye los primeros temas de Matematica y Lengua. El acceso completo se activa con el plan full.</span>
+        </div>
 
         <label>
           Nombre del estudiante

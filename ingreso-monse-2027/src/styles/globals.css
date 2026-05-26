@@ -619,6 +619,25 @@ label small {
   text-align: center;
 }
 
+.setup-note {
+  display: grid;
+  gap: 4px;
+  border: 1px solid #bfdbfe;
+  border-left: 6px solid var(--secondary);
+  border-radius: 12px;
+  background: #eff6ff;
+  padding: 14px;
+}
+
+.setup-note strong {
+  color: var(--ink);
+}
+
+.setup-note span {
+  color: #475569;
+  font-weight: 750;
+}
+
 .access-code-card p {
   margin: 0;
   color: var(--muted);

@@ -1,11 +1,6 @@
-import { daysUntilExam } from "@/lib/date";
 import { requireMethod } from "@/lib/http";
-import { parseJsonFromModel } from "@/lib/json";
-import { callOpenRouter } from "@/lib/openrouter";
-import { MODEL_ANALYZER, buildPromptAnalyzer } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
-import { setAccessCookie, verifyAccessPassword } from "@/lib/access";
-import { buildAlumnoProfile } from "@/lib/alumno";
+import { DEFAULT_TOPIC } from "@/lib/curriculum";
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
@@ -20,12 +15,7 @@ export default async function handler(req, res) {
     edad,
     grado,
     fecha_nacimiento,
-    setup_password,
   } = req.body || {};
-
-  if (!verifyAccessPassword("setup", setup_password)) {
-    return res.status(401).json({ error: "Contrasena de alta incorrecta. Pedisela al administrador." });
-  }
 
   const validationError = validateSetupInput({ nombre, email, fecha_examen, edad, fecha_nacimiento, estilo_aprendizaje });
   if (validationError) return res.status(400).json({ error: validationError });
@@ -45,7 +35,7 @@ export default async function handler(req, res) {
             fecha_examen,
             nivel_inicial: perfilNivel,
             estilo_aprendizaje,
-            rasgos_especiales,
+            rasgos_especiales: { ...rasgos_especiales, plan: "trial" },
             edad: edad ? Number(edad) : null,
             grado: grado || null,
             fecha_nacimiento: fecha_nacimiento || null,
@@ -58,25 +48,14 @@ export default async function handler(req, res) {
         .single(),
       "No se pudo guardar el perfil"
     );
-    const alumno = buildAlumnoProfile(usuario);
+    const plan = {
+      proximo_tema: DEFAULT_TOPIC,
+      proxima_capa: calcularCapaInicial(Number(edad), grado, rasgos_especiales),
+      modo_recomendado: "NORMAL",
+      razon: "Cuenta gratuita creada. Empieza con el primer tema guiado.",
+    };
 
-    const planInput = JSON.stringify({
-      tema_actual: "fracciones_del_resto",
-      capa_actual: calcularCapaInicial(Number(edad), grado, rasgos_especiales),
-      tasa_acierto: 0,
-      sesiones_en_tema: 0,
-      modo: "NORMAL",
-      dias_falta_examen: daysUntilExam(),
-      errores_patrones: {},
-      ultimas_3_respuestas: [],
-    });
-
-    const planResponse = await callOpenRouter(MODEL_ANALYZER, buildPromptAnalyzer(alumno, {}), planInput, 700);
-
-    const plan = parseJsonFromModel(planResponse);
-
-    setAccessCookie(res, "setup");
-    res.status(200).json({ usuario, plan });
+    res.status(200).json({ usuario, plan, cuenta: { plan: "trial", estado: "activa" } });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error interno del servidor" });
