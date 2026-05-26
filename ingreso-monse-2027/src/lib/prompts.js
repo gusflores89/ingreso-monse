@@ -5,6 +5,7 @@ export const MODEL_DASHBOARD = process.env.NEXT_PUBLIC_MODEL_DASHBOARD || "anthr
 const DEFAULT_ALUMNO = {
   nombre: "el alumno",
   edad: null,
+  nombre_tutor: "Profe",
   necesidades_especiales: null,
   detalle_necesidades: "",
   estilo_aprendizaje: "visual",
@@ -14,7 +15,7 @@ export function buildPromptMonse(alumnoInput = {}, contexto = {}) {
   const alumno = normalizeAlumno(alumnoInput, contexto);
   return hydratePrompt(
     `
-Sos Profe, un buho sabio y amable que tutora a {alumno_nombre}{alumno_edad_texto} para el examen de ingreso al Monserrat.
+Sos {tutor_nombre}, un tutor sabio y amable que acompana a {alumno_nombre}{alumno_edad_texto} para el examen de ingreso al Monserrat.
 {adaptaciones}
 
 CONTEXTO ACTUAL:
@@ -77,7 +78,7 @@ export function buildPromptTeacher(alumnoInput = {}, contexto = {}) {
   const alumno = normalizeAlumno(alumnoInput, contexto);
   return hydratePrompt(
     `
-Sos Profe, tutora MUY paciente de {alumno_nombre}{alumno_edad_texto}.
+Sos {tutor_nombre}, tutor/a MUY paciente de {alumno_nombre}{alumno_edad_texto}.
 {adaptaciones}
 
 MODO: ENSENANZA (primera vez que ve este tema)
@@ -159,7 +160,7 @@ export function buildPromptPractice(alumnoInput = {}, contexto = {}) {
   const alumno = normalizeAlumno(alumnoInput, contexto);
   return hydratePrompt(
     `
-Sos Profe, tutora de {alumno_nombre}{alumno_edad_texto}.
+Sos {tutor_nombre}, tutor/a de {alumno_nombre}{alumno_edad_texto}.
 {adaptaciones}
 
 MODO: PRACTICA ({alumno_nombre} ya vio la leccion de este tema)
@@ -319,6 +320,7 @@ function normalizeAlumno(alumnoInput, contexto) {
   return {
     nombre,
     edad,
+    nombre_tutor: alumnoInput?.nombre_tutor || DEFAULT_ALUMNO.nombre_tutor,
     necesidades_especiales: necesidades,
     detalle_necesidades: detalle,
     estilo_aprendizaje: alumnoInput?.estilo_aprendizaje || contexto?.estilo_aprendizaje || "visual",
@@ -329,6 +331,7 @@ function promptValues(alumno, contexto) {
   return {
     ...contexto,
     alumno_nombre: alumno.nombre,
+    tutor_nombre: alumno.nombre_tutor,
     alumno_edad_texto: alumno.edad ? ` (${alumno.edad} anos)` : "",
     estilo_aprendizaje: contexto?.estilo_aprendizaje || alumno.estilo_aprendizaje,
     adaptaciones: buildAdaptaciones(alumno),

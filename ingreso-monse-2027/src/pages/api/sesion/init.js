@@ -41,6 +41,7 @@ export default async function handler(req, res) {
       "No se pudo obtener el usuario"
     );
     const alumno = buildAlumnoProfile(usuario);
+    const tutor = getTutorPayload(usuario);
 
     const progresoResult = await supabase
       .from("progreso")
@@ -90,6 +91,7 @@ export default async function handler(req, res) {
           tipo_pregunta: "caso_resuelto",
           tema: temaActual,
           capa: capaActual,
+          ...tutor,
           metodo: getMetodoPasoAPaso(),
           caso,
           tiempo_estimado: 8,
@@ -100,14 +102,14 @@ export default async function handler(req, res) {
     if (modoSesion === "practica") {
       const examenResponse = await maybeCrearExamenFinal(supabase, user_id, temaActual, capaActual, modo, contexto);
       if (examenResponse) {
-        return res.status(200).json(examenResponse);
+        return res.status(200).json({ ...examenResponse, ...tutor });
       }
     }
 
     if (modoSesion === "practica") {
       const tareaResponse = await maybeAsignarTareaManuscrita(supabase, user_id, temaActual);
       if (tareaResponse) {
-        return res.status(200).json(tareaResponse);
+        return res.status(200).json({ ...tareaResponse, ...tutor });
       }
     }
 
@@ -193,6 +195,7 @@ IMPORTANTE:
       tema: temaActual,
       tipo: modoSesion,
       tipo_pregunta: tipoPregunta,
+      ...tutor,
       opciones: preguntaJson.opciones || null,
       indicaciones_visuales: preguntaJson.indicaciones_visuales || null,
       tiempo_estimado: preguntaJson.tiempo_estimado || 5,
@@ -205,6 +208,16 @@ IMPORTANTE:
 
 function isMissingLessonsTable(error) {
   return error?.code === "PGRST205" || error?.message?.includes("lecciones_completadas");
+}
+
+function getTutorPayload(usuario = {}) {
+  const avatar = usuario.avatar || "buho";
+  return {
+    avatar,
+    nombre_tutor: usuario.nombre_tutor || "Buho",
+    color_tema: usuario.color_tema || "#D85A30",
+    avatar_imagen: `/avatars/${avatar}-mini.svg`,
+  };
 }
 
 async function resolverTemaDeReingreso(supabase, userId) {

@@ -11,6 +11,9 @@ export function buildAlumnoProfile(usuario = {}) {
     estilo_aprendizaje: usuario.estilo_aprendizaje || "visual",
     necesidades_especiales: necesidad,
     detalle_necesidades: rasgos.detalle || rasgos.detalle_necesidades || "",
+    avatar: usuario.avatar || "buho",
+    nombre_tutor: usuario.nombre_tutor || "Buho",
+    color_tema: usuario.color_tema || "#D85A30",
   };
 }
 

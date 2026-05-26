@@ -61,6 +61,193 @@ body {
   margin: 0 auto;
 }
 
+.avatar-login-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fdfdf9;
+  padding: 24px;
+}
+
+.avatar-login-shell {
+  width: min(440px, 100%);
+  display: grid;
+  gap: 16px;
+}
+
+.avatar-hero {
+  text-align: center;
+}
+
+.avatar-main {
+  width: 104px;
+  height: 104px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 4px solid;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  transition: border-color 220ms ease, background-color 220ms ease, transform 220ms ease;
+}
+
+.avatar-main:hover {
+  transform: scale(1.03);
+}
+
+.avatar-hero h1 {
+  margin: 0 0 4px;
+  font-size: 1.85rem;
+  line-height: 1;
+  transition: color 220ms ease;
+}
+
+.avatar-hero p,
+.avatar-picker-label,
+.avatar-signup p {
+  margin: 0;
+  color: #8791a3;
+  font-weight: 750;
+}
+
+.avatar-login-card {
+  display: grid;
+  gap: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 24px;
+  background: #ffffff;
+  padding: clamp(22px, 5vw, 28px);
+  box-shadow: 0 18px 42px rgb(15 23 42 / 7%);
+}
+
+.avatar-picker-label {
+  text-align: center;
+  font-size: 0.86rem;
+}
+
+.avatar-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.avatar-option {
+  min-height: 86px;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 6px;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  background: transparent;
+  padding: 8px 4px;
+  box-shadow: none;
+  transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease;
+}
+
+.avatar-option:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.avatar-option span {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.avatar-option strong {
+  font-size: 0.8rem;
+}
+
+.avatar-login-field {
+  gap: 6px;
+  color: #8791a3;
+  font-size: 0.86rem;
+}
+
+.avatar-login-field input {
+  border-color: #e5e7eb;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: none;
+}
+
+.avatar-login-field input[type="text"] {
+  min-height: 62px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
+.avatar-login-submit {
+  min-height: 58px;
+  border: 0;
+  border-radius: 16px;
+  color: #ffffff;
+  font-size: 1.12rem;
+  box-shadow: none;
+  transition: filter 180ms ease, transform 180ms ease;
+}
+
+.avatar-login-submit:hover:not(:disabled) {
+  filter: brightness(0.96);
+}
+
+.avatar-login-error {
+  margin: 0;
+  text-align: center;
+}
+
+.avatar-signup {
+  display: grid;
+  gap: 3px;
+  text-align: center;
+}
+
+.avatar-signup a,
+.avatar-family-access {
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.avatar-login-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.avatar-login-stats div {
+  display: grid;
+  gap: 2px;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 12px 8px;
+  text-align: center;
+}
+
+.avatar-login-stats span {
+  color: #a1a9b7;
+  font-size: 0.72rem;
+  font-weight: 850;
+}
+
+.avatar-login-stats strong {
+  font-size: 1.1rem;
+  line-height: 1.1;
+}
+
+.avatar-family-access {
+  color: #7f77dd;
+  text-align: center;
+  font-size: 0.88rem;
+}
+
 h1,
 h2,
 h3 {
@@ -550,6 +737,55 @@ label {
 .decision,
 .status {
   color: var(--muted);
+}
+
+.tutor-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 92%);
+  padding: 7px 13px 7px 7px;
+  box-shadow: 0 12px 28px rgb(15 23 42 / 7%);
+}
+
+.tutor-chip img,
+.tutor-message img {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  border-radius: 50%;
+}
+
+.tutor-chip div,
+.tutor-message div {
+  display: grid;
+  gap: 1px;
+}
+
+.tutor-chip strong,
+.tutor-message strong {
+  font-size: 0.95rem;
+  line-height: 1.1;
+}
+
+.tutor-chip span {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 850;
+}
+
+.tutor-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.tutor-message p {
+  margin: 0;
+  color: #475569;
+  font-weight: 750;
 }
 
 @keyframes monseFloat {

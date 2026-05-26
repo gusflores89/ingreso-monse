@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Atenea">
+  <circle cx="100" cy="100" r="94" fill="#EEEDFE" stroke="#EF9F27" stroke-width="8"/>
+  <circle cx="100" cy="106" r="54" fill="#F6C56B"/>
+  <path d="M52 94c8-36 31-54 48-54s40 18 48 54c-16-10-80-10-96 0Z" fill="#7F77DD"/>
+  <path d="M63 83c10-20 22-31 37-31s27 11 37 31c-22-8-52-8-74 0Z" fill="#5F56BE"/>
+  <path d="M100 28l10 26H90l10-26Z" fill="#EF9F27"/>
+  <path d="M54 61c16-18 30-23 46-23s30 5 46 23" fill="none" stroke="#EF9F27" stroke-width="8" stroke-linecap="round"/>
+  <path d="M72 56c-12-14-23-15-35-8 10 3 17 10 20 20" fill="none" stroke="#EF9F27" stroke-width="6" stroke-linecap="round"/>
+  <path d="M128 56c12-14 23-15 35-8-10 3-17 10-20 20" fill="none" stroke="#EF9F27" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="79" cy="105" r="8" fill="#2D3748"/>
+  <circle cx="121" cy="105" r="8" fill="#2D3748"/>
+  <circle cx="82" cy="102" r="3" fill="#fff"/>
+  <circle cx="124" cy="102" r="3" fill="#fff"/>
+  <path d="M84 133c11 9 21 9 32 0" fill="none" stroke="#7A4D1D" stroke-width="6" stroke-linecap="round"/>
+  <path d="M50 139c16 24 36 34 50 34s34-10 50-34c-12 8-30 13-50 13s-38-5-50-13Z" fill="#7F77DD"/>
+  <path d="M62 146l-16 19M138 146l16 19" stroke="#EF9F27" stroke-width="8" stroke-linecap="round"/>
+</svg>

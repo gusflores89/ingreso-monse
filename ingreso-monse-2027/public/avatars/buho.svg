@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Búho">
+  <circle cx="100" cy="100" r="94" fill="#FAEEDA" stroke="#D85A30" stroke-width="8"/>
+  <path d="M45 95c0-33 25-58 55-58s55 25 55 58v37c0 28-24 49-55 49s-55-21-55-49V95Z" fill="#B97745"/>
+  <path d="M62 89c8-25 21-38 38-38s30 13 38 38c-20-14-56-14-76 0Z" fill="#8E542F"/>
+  <circle cx="78" cy="100" r="23" fill="#FFF7C6"/>
+  <circle cx="122" cy="100" r="23" fill="#FFF7C6"/>
+  <circle cx="78" cy="100" r="10" fill="#1F2937"/>
+  <circle cx="122" cy="100" r="10" fill="#1F2937"/>
+  <circle cx="82" cy="96" r="4" fill="#fff"/>
+  <circle cx="126" cy="96" r="4" fill="#fff"/>
+  <path d="M100 114l-13-16h26l-13 16Z" fill="#D85A30"/>
+  <path d="M45 121c-16 4-26 16-30 33 16-3 29-11 39-24" fill="#D85A30"/>
+  <path d="M155 121c16 4 26 16 30 33-16-3-29-11-39-24" fill="#D85A30"/>
+  <path d="M72 146c16 12 40 12 56 0" fill="none" stroke="#FAEEDA" stroke-width="8" stroke-linecap="round"/>
+  <path d="M83 181l-8 11M117 181l8 11" stroke="#D85A30" stroke-width="7" stroke-linecap="round"/>
+</svg>

@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import Monse from "./Monse";
 import PantallaCasoResuelto from "./PantallaCasoResuelto";
 import VisualizacionMatematica from "./VisualizacionMatematica";
 
@@ -206,6 +205,11 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
 
   const activeTema = pregunta?.tema || tema || "";
   const theme = themeForTema(activeTema);
+  const tutor = {
+    nombre: pregunta?.nombre_tutor || "Profe",
+    color: pregunta?.color_tema || "#D85A30",
+    imagen: pregunta?.avatar_imagen || `/avatars/${pregunta?.avatar || "buho"}-mini.svg`,
+  };
   const pasos = useMemo(() => {
     if (!pregunta || pregunta.tipo !== "leccion") return [];
 
@@ -244,10 +248,10 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
   return (
     <section className={`tutoria-panel background-decorative theme-${theme}`} aria-live="polite">
       <header className="session-header student-session-header">
-        <Monse />
+        <TutorHeader tutor={tutor} />
       </header>
 
-      {loading && <p className="status">Profe esta pensando...</p>}
+      {loading && <p className="status">{tutor.nombre} esta pensando...</p>}
       {error && <p className="error">{error}</p>}
 
       {!evaluacion && pregunta?.tipo === "manuscrita" && (
@@ -407,13 +411,37 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo }) {
 
       {evaluacion && (
         <div className={`feedback ${evaluacion.es_correcta ? "correct" : "review"}`}>
-          <Monse mensaje={evaluacion.retroalimentacion} />
+          <TutorMessage tutor={tutor} mensaje={evaluacion.retroalimentacion} />
           <button type="button" className="primary" onClick={handleSiguiente} disabled={loading}>
             Siguiente pregunta
           </button>
         </div>
       )}
     </section>
+  );
+}
+
+function TutorHeader({ tutor }) {
+  return (
+    <div className="tutor-chip">
+      <img src={tutor.imagen} alt={tutor.nombre} width="40" height="40" />
+      <div>
+        <strong style={{ color: tutor.color }}>{tutor.nombre}</strong>
+        <span>Tu tutor/a</span>
+      </div>
+    </div>
+  );
+}
+
+function TutorMessage({ tutor, mensaje }) {
+  return (
+    <div className="tutor-message">
+      <img src={tutor.imagen} alt={tutor.nombre} width="40" height="40" />
+      <div>
+        <strong style={{ color: tutor.color }}>{tutor.nombre}</strong>
+        <p>{mensaje}</p>
+      </div>
+    </div>
   );
 }
 
