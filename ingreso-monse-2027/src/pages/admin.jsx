@@ -143,7 +143,7 @@ export default function AdminPage() {
             {usuariosFiltrados.length === 0 ? (
               <p className="empty-state standalone">No hay usuarios para este filtro.</p>
             ) : (
-              usuariosFiltrados.map((usuario) => <UserCard key={usuario.id} usuario={usuario} />)
+              usuariosFiltrados.map((usuario) => <UserCard key={usuario.id} usuario={usuario} onUpdate={loadUsers} />)
             )}
           </div>
         </section>
@@ -161,11 +161,35 @@ function Kpi({ label, value }) {
   );
 }
 
-function UserCard({ usuario }) {
+function UserCard({ usuario, onUpdate }) {
+  const [updating, setUpdating] = useState(false);
+  const [error, setError] = useState("");
   const ultima = usuario.metricas?.ultima_sesion;
   const dashboardUrl = `/papas?user_id=${encodeURIComponent(usuario.id)}`;
   const tutoriaUrl = `/tutoria?user_id=${encodeURIComponent(usuario.id)}`;
   const testUrl = `/admin-test`;
+
+  const togglePlan = async () => {
+    const nuevoPlan = usuario.plan === "trial" ? "full" : "trial";
+    setUpdating(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/admin/cambiar-plan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id: usuario.id, nuevo_plan: nuevoPlan }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "No se pudo actualizar el plan.");
+      onUpdate?.();
+    } catch (err) {
+      setError(err.message);
+      alert(err.message);
+    } finally {
+      setUpdating(false);
+    }
+  };
 
   return (
     <article className="admin-user-card">
@@ -203,10 +227,28 @@ function UserCard({ usuario }) {
         )}
       </div>
 
-      <div className="admin-user-actions">
-        <a href={dashboardUrl}>Dashboard padres</a>
-        <a href={tutoriaUrl}>Abrir tutoría</a>
-        <a href={testUrl}>Testing</a>
+      <div className="admin-user-actions" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "10px" }}>
+        <a href={dashboardUrl} className="admin-action-btn">Dashboard padres</a>
+        <a href={tutoriaUrl} className="admin-action-btn">Abrir tutoría</a>
+        <button
+          type="button"
+          onClick={togglePlan}
+          disabled={updating}
+          style={{
+            cursor: "pointer",
+            backgroundColor: usuario.plan === "trial" ? "#10b981" : "#64748b",
+            color: "#ffffff",
+            border: "none",
+            borderRadius: "6px",
+            padding: "5px 12px",
+            fontWeight: "600",
+            fontSize: "0.85rem",
+            transition: "all 0.2s ease"
+          }}
+        >
+          {updating ? "Cambiando..." : usuario.plan === "trial" ? "Habilitar Full" : "Pasar a Trial"}
+        </button>
+        <a href={testUrl} className="admin-action-btn">Testing</a>
       </div>
     </article>
   );

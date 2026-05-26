@@ -4,6 +4,7 @@ import { callOpenRouter } from "@/lib/openrouter";
 import { MODEL_DASHBOARD, buildPromptDashboard } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { buildAlumnoProfile } from "@/lib/alumno";
+import { getUserPlan } from "@/lib/planes";
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "GET")) return;
@@ -84,7 +85,7 @@ export default async function handler(req, res) {
     }
 
     res.status(200).json({
-      usuario,
+      usuario: { ...usuario, plan: getUserPlan(usuario) },
       progreso,
       alertas,
       sesiones_recientes: sesiones,

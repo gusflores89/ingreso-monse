@@ -182,7 +182,8 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error y siguiente_p
         .eq("user_id", sesion.user_id)
         .eq("tema", sesion.tema)
         .not("es_correcta", "is", null)
-        .neq("tipo_pregunta", "leccion"),
+        .neq("tipo_pregunta", "leccion")
+        .neq("tipo_pregunta", "examen_final"),
       "No se pudieron obtener practicas del tema"
     );
 

@@ -29,6 +29,21 @@ export default async function handler(req, res) {
       return res.status(404).json({ error: "Codigo incorrecto. Pedile ayuda a mama/papa." });
     }
 
+    // Persistir preferencias del tutor/avatar de forma atómica para evitar race conditions
+    const { avatar, nombre_tutor, color_tema } = req.body || {};
+    if (avatar || nombre_tutor || color_tema) {
+      const AVATARES_VALIDOS = new Set(["atenea", "nyx", "lux", "buho"]);
+      const avatarSeguro = AVATARES_VALIDOS.has(avatar) ? avatar : "buho";
+      await supabase
+        .from("usuarios")
+        .update({
+          avatar: avatarSeguro,
+          nombre_tutor: nombre_tutor || "Buho",
+          color_tema: color_tema || "#D85A30",
+        })
+        .eq("id", usuario.id);
+    }
+
     setAccessCookie(res, "student");
 
     res.status(200).json({

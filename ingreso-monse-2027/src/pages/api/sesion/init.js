@@ -10,7 +10,7 @@ import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { requireMethod } from "@/lib/http";
 import { requireAccess } from "@/lib/access";
 import { buildAlumnoProfile } from "@/lib/alumno";
-import { getDefaultTopicForPlan, getTrialLimitPayload, getUserPlan } from "@/lib/planes";
+import { getDefaultTopicForPlan, getTrialLimitPayload, getUserPlan, TRIAL_TOPICS } from "@/lib/planes";
 import {
   crearTareaManuscrita,
   getTareaManuscritaActiva,
@@ -55,6 +55,27 @@ export default async function handler(req, res) {
     const plan = getUserPlan(usuario);
     temaActual = getDefaultTopicForPlan(usuario, temaActual);
     const planPayload = plan === "trial" ? getTrialLimitPayload() : { plan };
+
+    // Si es plan trial, verificar si completó todos los temas de prueba
+    if (plan === "trial") {
+      const examenesAprobados = await Promise.all(
+        TRIAL_TOPICS.map((t) => hasApprovedFinalExam(supabase, user_id, t))
+      );
+      const todosAprobados = examenesAprobados.every(Boolean);
+
+      if (todosAprobados) {
+        return res.status(200).json({
+          sesion_id: null,
+          tipo: "trial_completado",
+          tipo_pregunta: "trial_completado",
+          tema: temaActual,
+          capa: capaActual,
+          ...tutor,
+          ...planPayload,
+          tiempo_estimado: 0,
+        });
+      }
+    }
 
     const progresoResult = await supabase
       .from("progreso")

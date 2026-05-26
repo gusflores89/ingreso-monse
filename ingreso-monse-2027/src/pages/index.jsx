@@ -77,7 +77,13 @@ export default function Login() {
       const res = await fetch("/api/login-codigo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ codigo: normalizedCode, password }),
+        body: JSON.stringify({
+          codigo: normalizedCode,
+          password,
+          avatar: avatarSeleccionado.id,
+          nombre_tutor: avatarSeleccionado.nombre,
+          color_tema: avatarSeleccionado.color,
+        }),
       });
 
       const data = await res.json();
@@ -88,17 +94,6 @@ export default function Login() {
       }
 
       saveAvatar(avatarSeleccionado);
-
-      await fetch("/api/guardar-avatar", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          user_id: data.userId,
-          avatar: avatarSeleccionado.id,
-          nombre_tutor: avatarSeleccionado.nombre,
-          color_tema: avatarSeleccionado.color,
-        }),
-      });
 
       const params = new URLSearchParams({
         user_id: data.userId,

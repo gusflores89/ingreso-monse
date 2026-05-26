@@ -207,12 +207,14 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
 
   const activeTema = pregunta?.tema || tema || "";
   const theme = themeForTema(activeTema);
+  const tutorAvatar = pregunta?.avatar || tutor_preference?.avatar || "buho";
   const tutor = {
     nombre: pregunta?.nombre_tutor || tutor_preference?.nombre_tutor || "Profe",
     color: pregunta?.color_tema || tutor_preference?.color_tema || "#D85A30",
+    avatar: tutorAvatar,
     imagen:
       pregunta?.avatar_imagen ||
-      `/avatars/${pregunta?.avatar || tutor_preference?.avatar || "buho"}-mini.svg`,
+      `/avatars/${tutorAvatar}-mini.svg`,
   };
   const pasos = useMemo(() => {
     if (!pregunta || pregunta.tipo !== "leccion") return [];
@@ -263,12 +265,21 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         "--decorative-b": tintColor(tutor.color, 94),
       }}
     >
-      <header className="session-header student-session-header">
+      <header className="session-header student-session-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <TutorHeader tutor={tutor} />
+        {pregunta?.plan === "trial" && (
+          <span className="plan-badge-tutoria" style={{ fontSize: "0.85rem", padding: "4px 10px", borderRadius: "20px", backgroundColor: "rgba(254, 226, 226, 0.8)", color: "#ef4444", border: "1px solid #fca5a5", fontWeight: "600" }}>
+            Prueba Gratuita
+          </span>
+        )}
       </header>
 
       {loading && <p className="status">{tutor.nombre} esta pensando...</p>}
       {error && <p className="error">{error}</p>}
+
+      {!evaluacion && pregunta?.tipo === "trial_completado" && (
+        <PantallaTrialCompletado tutor={tutor} />
+      )}
 
       {!evaluacion && pregunta?.tipo === "manuscrita" && (
         <TareaManuscrita pregunta={pregunta} loading={loading} onComplete={handleTareaCompletada} />
@@ -732,6 +743,39 @@ function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRe
         <button type="button" className="primary exam-submit" onClick={onSubmit} disabled={!puedeEnviar || loading}>
           {loading ? "Enviando examen..." : "Enviar examen final"}
         </button>
+      </section>
+    </div>
+  );
+}
+
+function PantallaTrialCompletado({ tutor }) {
+  return (
+    <div className="handwriting-shell trial-completed-shell">
+      <section className="handwriting-hero" style={{ backgroundColor: tintColor(tutor.color, 90), border: `2px dashed ${tutor.color}` }}>
+        <img src={`/avatars/${tutor.avatar || "buho"}.svg`} alt={tutor.nombre} style={{ width: "96px", height: "96px", marginBottom: "16px" }} />
+        <h2 style={{ color: tutor.color, fontSize: "2rem", fontWeight: "bold" }}>¡Excelente trabajo!</h2>
+        <p style={{ fontSize: "1.15rem", color: "#334155", maxWidth: "480px", margin: "0 auto", textAlign: "center" }}>
+          ¡Completaste con éxito todos los temas de la muestra gratuita!
+        </p>
+      </section>
+
+      <section className="handwriting-card">
+        <h3>¿Qué sigue ahora?</h3>
+        <p style={{ color: "#475569", lineHeight: "1.6" }}>
+          Para poder seguir aprendiendo con <strong>{tutor.nombre}</strong> y acceder a los más de 30 temas de Matemática y Lengua con sus explicaciones paso a paso, ejercicios prácticos y exámenes finales, es necesario activar el acceso completo.
+        </p>
+        <div className="handwriting-panel family" style={{ marginTop: "20px", borderLeft: `4px solid ${tutor.color}` }}>
+          <h4 style={{ color: tutor.color }}>📢 Mensaje para mamá o papá</h4>
+          <p style={{ color: "#334155", fontWeight: "500" }}>
+            ¡Ya exploré y completé los 4 temas gratuitos! Para habilitar el resto del currículum de ingreso, pueden ingresar a su panel familiar y activar el Acceso Completo.
+          </p>
+        </div>
+      </section>
+
+      <section className="handwriting-card done" style={{ display: "flex", justifyContent: "center" }}>
+        <a href="/" className="primary link-button" style={{ backgroundColor: tutor.color, color: "#fff", textDecoration: "none", padding: "12px 24px", borderRadius: "8px", fontWeight: "bold" }}>
+          Volver al inicio
+        </a>
       </section>
     </div>
   );

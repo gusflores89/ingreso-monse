@@ -13,9 +13,9 @@ export const TRIAL_TOPICS = [
 export const TRIAL_DEFAULT_TOPIC = "fracciones_del_resto";
 
 export function getUserPlan(usuario = {}) {
-  if (usuario.plan) return usuario.plan;
-  if (usuario.rasgos_especiales?.plan) return usuario.rasgos_especiales.plan;
   if (usuario.codigo_acceso === "ABRIL") return PLAN_FULL;
+  if (usuario.rasgos_especiales?.plan) return usuario.rasgos_especiales.plan;
+  if (usuario.plan) return usuario.plan;
   return PLAN_TRIAL;
 }
 

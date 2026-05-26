@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { TRIAL_TOPICS } from "@/lib/planes";
 
 const EMPTY_REVISION = {
   resultado: "",
@@ -78,13 +79,32 @@ export default function DashboardPapas({ userId }) {
   const balance = metricas.balance_materias || [];
   const oportunidades = metricas.oportunidades || [];
 
+  const esTrial = data?.usuario?.plan === "trial";
+  const sesionesParaTrial = data?.sesiones_recientes || timeline;
+  const examenesAprobados = new Set(
+    sesionesParaTrial
+      .filter((sesion) => sesion.tipo_pregunta === "examen_final" && sesion.es_correcta)
+      .map((sesion) => sesion.tema)
+  );
+  const trialCompletados = TRIAL_TOPICS.filter((t) => examenesAprobados.has(t)).length;
+
   return (
     <section className="dashboard parent-dashboard">
       <header className="dashboard-hero">
         <div>
           <p className="eyebrow">Panel familiar</p>
-          <h2>{data?.usuario?.nombre || "Alumno/a"}</h2>
-          <p>{diasRestantes === null ? "Fecha de examen pendiente" : `Faltan ${diasRestantes} dias para el examen`}</p>
+          <h2 style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            {data?.usuario?.nombre || "Alumno/a"}
+            {esTrial && (
+              <span className="plan-tag trial" style={{ fontSize: "0.8rem", padding: "4px 10px", borderRadius: "20px", backgroundColor: "#fee2e2", color: "#ef4444", border: "1px solid #fca5a5", fontWeight: "600" }}>
+                Plan de Prueba
+              </span>
+            )}
+          </h2>
+          <p>
+            {diasRestantes === null ? "Fecha de examen pendiente" : `Faltan ${diasRestantes} dias para el examen`}
+            {esTrial && ` · Temas de prueba: ${trialCompletados} de 4 completados`}
+          </p>
         </div>
         <button type="button" onClick={load} disabled={loading}>
           {loading ? "Actualizando..." : "Recargar datos"}
@@ -185,10 +205,27 @@ export default function DashboardPapas({ userId }) {
             handleRevisar={handleRevisar}
           />
 
+          {esTrial && trialCompletados === 4 && (
+            <section className="dashboard-panel alert-item critical" style={{ margin: "24px 0", borderLeft: "4px solid #ef4444", backgroundColor: "#fef2f2" }}>
+              <div className="alert-title">
+                <span aria-hidden="true" style={{ fontSize: "1.2rem" }}>🎉</span>
+                <strong style={{ color: "#b91c1c", fontSize: "1.1rem" }}>¡Muestra Gratuita Completada!</strong>
+              </div>
+              <p style={{ color: "#7f1d1d", margin: "8px 0", lineHeight: "1.5" }}>
+                El estudiante completó con éxito los 4 temas del plan de prueba. Para habilitar los más de 30 temas del currículum completo de ingreso (incluyendo perímetros compuestos, divisibilidad, verbos en modo indicativo y más), activa el Acceso Completo.
+              </p>
+              <div style={{ marginTop: "12px" }}>
+                <span style={{ fontSize: "0.9rem", color: "#991b1b", fontWeight: "600" }}>
+                  💡 Para activar, comunicate con el administrador y solicita el pase a Plan Full.
+                </span>
+              </div>
+            </section>
+          )}
+
           {data.insight_markdown && (
             <section className="insight dashboard-panel dashboard-section">
-              <PanelHeader title="Insight IA" subtitle="Lectura cualitativa para acompanarla mejor" />
-              <pre>{data.insight_markdown}</pre>
+              <PanelHeader title="Insight IA" subtitle="Lectura cualitativa para acompañar mejor" />
+              <MarkdownRenderer content={data.insight_markdown} />
             </section>
           )}
         </>
@@ -473,4 +510,128 @@ function daysUntil(dateString) {
 
 function clamp(value) {
   return Math.min(100, Math.max(0, Math.round(value || 0)));
+}
+
+function MarkdownRenderer({ content }) {
+  if (!content) return null;
+
+  const lines = content.split("\n");
+  const parsedElements = [];
+  let currentList = [];
+  let tableRows = [];
+  let inTable = false;
+
+  const renderList = (key) => {
+    if (currentList.length > 0) {
+      parsedElements.push(
+        <ul key={`list-${key}`} style={{ marginLeft: "20px", marginBottom: "16px", listStyleType: "disc" }}>
+          {currentList.map((item, index) => (
+            <li key={index} style={{ marginBottom: "6px", lineHeight: "1.5", color: "#475569" }}>
+              {renderInlineStyles(item)}
+            </li>
+          ))}
+        </ul>
+      );
+      currentList = [];
+    }
+  };
+
+  const renderTable = (key) => {
+    if (tableRows.length > 0) {
+      const headers = tableRows[0].split("|").map(s => s.trim()).filter(Boolean);
+      const rows = tableRows.slice(2).map(row => row.split("|").map(s => s.trim()).filter(Boolean)).filter(r => r.length > 0);
+
+      parsedElements.push(
+        <div key={`table-wrapper-${key}`} className="table-responsive" style={{ overflowX: "auto", margin: "16px 0", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left", fontSize: "0.95rem" }}>
+            <thead>
+              <tr style={{ backgroundColor: "#f8fafc", borderBottom: "2px solid #e2e8f0" }}>
+                {headers.map((h, i) => (
+                  <th key={i} style={{ padding: "10px 14px", fontWeight: "600", color: "#1e293b" }}>{renderInlineStyles(h)}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row, rowIndex) => (
+                <tr key={rowIndex} style={{ borderBottom: "1px solid #edf2f7" }}>
+                  {row.map((cell, cellIndex) => (
+                    <td key={cellIndex} style={{ padding: "10px 14px", color: "#475569" }}>{renderInlineStyles(cell)}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+      tableRows = [];
+      inTable = false;
+    }
+  };
+
+  const renderInlineStyles = (text) => {
+    const parts = text.split(/\*\*([\s\S]*?)\*\*/g);
+    return parts.map((part, index) => {
+      if (index % 2 === 1) {
+        return <strong key={index} style={{ color: "#0f172a", fontWeight: "600" }}>{part}</strong>;
+      }
+      return part;
+    });
+  };
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index].trim();
+
+    if (!line) {
+      if (currentList.length > 0) renderList(index);
+      if (inTable) renderTable(index);
+      continue;
+    }
+
+    if (line.startsWith("|")) {
+      if (currentList.length > 0) renderList(index);
+      inTable = true;
+      tableRows.push(line);
+      continue;
+    } else if (inTable) {
+      renderTable(index);
+    }
+
+    if (line.startsWith("- ") || line.startsWith("* ")) {
+      currentList.push(line.slice(2));
+      continue;
+    } else if (currentList.length > 0) {
+      renderList(index);
+    }
+
+    if (line.startsWith("### ")) {
+      parsedElements.push(
+        <h3 key={index} style={{ color: "#0f172a", fontSize: "1.4rem", fontWeight: "600", marginTop: "24px", marginBottom: "12px", borderBottom: "1px solid #f1f5f9", paddingBottom: "6px" }}>
+          {renderInlineStyles(line.slice(4))}
+        </h3>
+      );
+    } else if (line.startsWith("#### ")) {
+      parsedElements.push(
+        <h4 key={index} style={{ color: "#1e293b", fontSize: "1.15rem", fontWeight: "600", marginTop: "18px", marginBottom: "8px" }}>
+          {renderInlineStyles(line.slice(5))}
+        </h4>
+      );
+    } else if (line.startsWith("## ")) {
+      parsedElements.push(
+        <h2 key={index} style={{ color: "#0f172a", fontSize: "1.6rem", fontWeight: "700", marginTop: "28px", marginBottom: "14px" }}>
+          {renderInlineStyles(line.slice(3))}
+        </h2>
+      );
+    } else {
+      parsedElements.push(
+        <p key={index} style={{ color: "#475569", fontSize: "1.02rem", lineHeight: "1.6", marginBottom: "14px" }}>
+          {renderInlineStyles(line)}
+        </p>
+      );
+    }
+  }
+
+  if (currentList.length > 0) renderList(lines.length);
+  if (inTable) renderTable(lines.length);
+
+  return <div className="markdown-body" style={{ padding: "8px 0" }}>{parsedElements}</div>;
 }
