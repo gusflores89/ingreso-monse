@@ -3,7 +3,7 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ingresomonserrat.online";
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "IngresoMonse <onboarding@resend.dev>";
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "IngresoMonse <hola@ingresomonserrat.online>";
 
 /**
  * Envia el email de bienvenida al registrar un nuevo alumno.
@@ -33,6 +33,7 @@ export async function sendWelcomeEmail({ nombre, email, codigo_acceso, plan = "t
     const { data, error } = await resend.emails.send({
       from: FROM_EMAIL,
       to: [email],
+      replyTo: "gus.flores89@gmail.com",
       subject: `🎓 ¡Bienvenido/a a IngresoMonse, familia de ${nombre}!`,
       html,
     });
@@ -54,9 +55,11 @@ function buildWelcomeHTML({ nombre, codigo_acceso, plan, trialTopics, siteUrl })
   const topicsHTML = trialTopics
     .map(
       (t) =>
-        `<tr><td style="padding:8px 12px;font-size:15px;border-bottom:1px solid #f1f0fb;color:#e2dff5;">${t.emoji}&nbsp; ${t.name}</td></tr>`
+        `<tr><td style="padding:8px 12px;font-size:14px;border-bottom:1px solid #2d1b69;color:#e2dff5;">${t.emoji}&nbsp; ${t.name}</td></tr>`
     )
     .join("");
+
+  const parentUrl = `${siteUrl}/papas?user_id=${encodeURIComponent(codigo_acceso)}`;
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -96,7 +99,7 @@ function buildWelcomeHTML({ nombre, codigo_acceso, plan, trialTopics, siteUrl })
                       &iexcl;Hola, familia de <strong style="color:#a78bfa;">${nombre}</strong>! &#128075;
                     </p>
                     <p style="margin:0;font-size:15px;line-height:1.6;color:#b8b0d8;">
-                      Acabamos de crear la cuenta de ${nombre} en <strong>IngresoMonse</strong>, un tutor personal con inteligencia artificial que prepara a tu hijo/a para el examen de ingreso al Colegio Nacional de Monserrat con sesiones adaptativas, explicaciones personalizadas y pr&aacute;ctica guiada.
+                      Acabamos de crear la cuenta de ${nombre} en <strong>IngresoMonse</strong>. Dise&ntilde;amos esta gu&iacute;a r&aacute;pida de onboarding en tres pasos sencillos para que le saquen el m&aacute;ximo provecho a la plataforma:
                     </p>
                   </td>
                 </tr>
@@ -114,7 +117,7 @@ function buildWelcomeHTML({ nombre, codigo_acceso, plan, trialTopics, siteUrl })
                             ${codigo_acceso}
                           </p>
                           <p style="margin:12px 0 0;font-size:13px;color:#8b7fc7;">
-                            ${nombre} usar&aacute; este c&oacute;digo para ingresar cada vez que quiera estudiar
+                            Guard&aacute; este c&oacute;digo. Tu hijo/a lo usar&aacute; cada vez que ingrese a estudiar.
                           </p>
                         </td>
                       </tr>
@@ -122,70 +125,79 @@ function buildWelcomeHTML({ nombre, codigo_acceso, plan, trialTopics, siteUrl })
                   </td>
                 </tr>
 
-                <!-- QUÉ INCLUYE -->
+                <!-- ONBOARDING DE PADRES -->
                 <tr>
-                  <td style="padding:8px 36px 8px;">
-                    <p style="margin:0 0 12px;font-size:16px;font-weight:700;color:#e2dff5;">
-                      ${plan === "trial" ? "&#127873; Tu Plan de Prueba gratuito incluye:" : "&#128640; Tu Plan Completo incluye:"}
-                    </p>
-                  </td>
-                </tr>
-                ${
-                  plan === "trial"
-                    ? `<tr>
-                  <td style="padding:0 36px 24px;">
-                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#15102e;border-radius:10px;border:1px solid #2d1b69;">
-                      ${topicsHTML}
-                    </table>
-                    <p style="margin:12px 0 0;font-size:13px;color:#8b7fc7;line-height:1.5;">
-                      Cada tema incluye lecciones adaptativas, pr&aacute;ctica guiada y un mini-examen. Si te gusta la experiencia, pod&eacute;s activar el plan completo con todos los temas del examen.
-                    </p>
-                  </td>
-                </tr>`
-                    : `<tr>
-                  <td style="padding:0 36px 24px;">
-                    <p style="font-size:15px;color:#b8b0d8;line-height:1.6;">
-                      Acceso ilimitado a todos los temas del examen de ingreso: Matem&aacute;ticas, Lengua, Ciencias Sociales y Ciencias Naturales con pr&aacute;ctica adaptativa y ex&aacute;menes simulacro.
-                    </p>
-                  </td>
-                </tr>`
-                }
+                  <td style="padding:8px 36px 24px;">
+                    <h2 style="margin:0 0 16px;font-size:18px;font-weight:700;color:#ffffff;border-bottom:1px solid #2d1b69;padding-bottom:8px;">
+                      🚀 Gu&iacute;a de Onboarding Familiar
+                    </h2>
 
-                <!-- CÓMO EMPEZAR -->
-                <tr>
-                  <td style="padding:8px 36px 8px;">
-                    <p style="margin:0 0 16px;font-size:16px;font-weight:700;color:#e2dff5;">
-                      &#128640; &iquest;C&oacute;mo empezar?
-                    </p>
+                    <!-- PASO 1 -->
+                    <div style="margin-bottom:20px;">
+                      <p style="margin:0 0 4px;font-size:15px;font-weight:700;color:#a78bfa;">
+                        Paso 1: Tu hijo/a estudia en la web (Portal del alumno)
+                      </p>
+                      <p style="margin:0;font-size:14px;color:#b8b0d8;line-height:1.5;">
+                        Tu hijo/a puede ingresar desde cualquier tablet o computadora entrando a <a href="${siteUrl}" target="_blank" style="color:#a78bfa;text-decoration:underline;">ingresomonserrat.online</a>. All&iacute; podr&aacute; elegir su tutor favorito (Atenea, Nyx, Lux o B&uacute;ho), escribir su c&oacute;digo <strong style="color:#ffffff;">${codigo_acceso}</strong> y la contrase&ntilde;a familiar para empezar a practicar.
+                      </p>
+                    </div>
+
+                    <!-- PASO 2 -->
+                    <div style="margin-bottom:20px;">
+                      <p style="margin:0 0 4px;font-size:15px;font-weight:700;color:#a78bfa;">
+                        Paso 2: Supervis&aacute; su progreso (Tu Panel de Padres)
+                      </p>
+                      <p style="margin:0;font-size:14px;color:#b8b0d8;line-height:1.5;">
+                        Hemos creado un panel exclusivo para vos. Acced&eacute; directamente desde tu celular ingresando a:
+                        <br />
+                        <a href="${parentUrl}" target="_blank" style="color:#3b82f6;text-decoration:underline;word-break:break-all;font-size:13px;font-weight:600;">
+                          ${parentUrl}
+                        </a>
+                        <br />
+                        <span style="color:#8b7fc7;font-size:13px;">💡 <strong>Recomendaci&oacute;n:</strong> Abr&iacute; ese enlace en el navegador de tu celular y guardalo en marcadores o favoritos para abrirlo con un toque cuando quieras ver sus tasas de acierto y reportes cualitativos de IA.</span>
+                      </p>
+                    </div>
+
+                    <!-- PASO 3 -->
+                    <div style="margin-bottom:12px;">
+                      <p style="margin:0 0 4px;font-size:15px;font-weight:700;color:#a78bfa;">
+                        Paso 3: Tareas en su cuaderno real (Tu rol activo)
+                      </p>
+                      <p style="margin:0;font-size:14px;color:#b8b0d8;line-height:1.5;">
+                        Para que no todo sea pantallas y practique caligraf&iacute;a, ortograf&iacute;a o dictados, el tutor de IA le pedir&aacute; ocasionalmente realizar **ejercicios escritos en su cuaderno real**. 
+                        <br />
+                        Cuando el estudiante marque la tarea en su pantalla, en tu **Panel de Padres** ver&aacute;s aparecer la consigna para calificarla con un clic: <strong style="color:#ffffff;">&quot;Correcta&quot;</strong> o <strong style="color:#ffffff;">&quot;Con errores&quot;</strong> (pudiendo escribirle notas). Esto retroalimenta a la IA del tutor para que vuelva a repasar esas dificultades espec&iacute;ficas en la pantalla digital.
+                      </p>
+                    </div>
                   </td>
                 </tr>
+
+                <!-- QUÉ INCLUYE EL PLAN -->
                 <tr>
-                  <td style="padding:0 36px 24px;">
-                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td style="padding:10px 0;font-size:15px;color:#b8b0d8;border-bottom:1px solid #1e1650;">
-                          <strong style="color:#a78bfa;">1.</strong>&nbsp; Entr&aacute; a la plataforma desde el bot&oacute;n de abajo
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="padding:10px 0;font-size:15px;color:#b8b0d8;border-bottom:1px solid #1e1650;">
-                          <strong style="color:#a78bfa;">2.</strong>&nbsp; ${nombre} elige su tutor favorito (Atenea, Nyx, Lux o B&uacute;ho)
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="padding:10px 0;font-size:15px;color:#b8b0d8;">
-                          <strong style="color:#a78bfa;">3.</strong>&nbsp; Ingresa el c&oacute;digo <strong style="color:#ffffff;">${codigo_acceso}</strong> y &iexcl;a estudiar!
-                        </td>
-                      </tr>
-                    </table>
+                  <td style="padding:16px 36px 24px;background-color:#15102e;border-top:1px solid #2d1b69;border-bottom:1px solid #2d1b69;">
+                    <p style="margin:0 0 12px;font-size:15px;font-weight:700;color:#e2dff5;">
+                      ${plan === "trial" ? "&#127873; Su Muestra Gratuita incluye:" : "&#128640; Su Plan Completo incluye:"}
+                    </p>
+                    ${
+                      plan === "trial"
+                        ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#0f0b1e;border-radius:10px;border:1px solid #2d1b69;margin-bottom:12px;">
+                          ${topicsHTML}
+                        </table>
+                        <p style="margin:0;font-size:13px;color:#8b7fc7;line-height:1.5;">
+                          Cada uno de estos 4 temas de prueba incluye lecciones guiadas por la IA y un mini-examen final para comprobar el avance.
+                        </p>`
+                        : `<p style="margin:0;font-size:14px;color:#b8b0d8;line-height:1.6;">
+                          Acceso ilimitado a los m&aacute;s de 37 temas del curr&iacute;culum completo de ingreso (Matem&aacute;ticas y Lengua) con pr&aacute;ctica digital adaptativa, cuaderno f&iacute;sico y ex&aacute;menes simulacro.
+                        </p>`
+                    }
                   </td>
                 </tr>
 
                 <!-- CTA BUTTON -->
                 <tr>
-                  <td style="padding:8px 36px 36px;text-align:center;">
+                  <td style="padding:32px 36px 36px;text-align:center;">
                     <a href="${siteUrl}" target="_blank" style="display:inline-block;padding:16px 48px;background:linear-gradient(135deg,#7c3aed 0%,#a78bfa 100%);color:#ffffff;font-size:16px;font-weight:700;text-decoration:none;border-radius:10px;letter-spacing:0.5px;">
-                      Empezar ahora &rarr;
+                      Empezar a estudiar ahora &rarr;
                     </a>
                   </td>
                 </tr>
@@ -198,10 +210,10 @@ function buildWelcomeHTML({ nombre, codigo_acceso, plan, trialTopics, siteUrl })
           <tr>
             <td style="padding:24px 36px;background-color:#130e2b;border-radius:0 0 16px 16px;border-left:1px solid #2d1b69;border-right:1px solid #2d1b69;border-bottom:1px solid #2d1b69;text-align:center;">
               <p style="margin:0 0 8px;font-size:13px;color:#6b63a0;">
-                Este email fue enviado porque se registr&oacute; una cuenta en IngresoMonse.
+                Este email fue enviado porque se registr&oacute; una cuenta en ingresomonserrat.online.
               </p>
               <p style="margin:0;font-size:13px;color:#6b63a0;">
-                &iquest;Dudas? Respond&eacute; este email o escribinos.
+                &iquest;Dudas? Respond&eacute; directamente a este correo para comunicarte con nosotros.
               </p>
             </td>
           </tr>

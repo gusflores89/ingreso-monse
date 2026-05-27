@@ -3375,6 +3375,19 @@ label small {
   .handwriting-materials span {
     color: var(--ink) !important;
   }
+
+  /* 11. Multiple Choice Option Cards */
+  .answer-options span {
+    border-color: var(--line) !important;
+    background: var(--panel) !important;
+    color: var(--ink) !important;
+  }
+
+  /* 12. Tutor Thinking Status Message */
+  .status {
+    color: var(--primary) !important;
+    font-weight: 600 !important;
+  }
 }
 
 /* --- PREMIUM LANDING PAGE STYLES --- */

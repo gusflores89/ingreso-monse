@@ -67,32 +67,53 @@ export default function PantallaSetup({ onComplete }) {
 
     return (
       <section className="setup-screen">
-        <div className="setup-form setup-success">
+        <div className="setup-form setup-success" style={{ width: "min(640px, 100%)", gap: "20px" }}>
           <div>
-            <p className="eyebrow">Cuenta gratuita lista</p>
-            <h2>Cuenta creada exitosamente</h2>
+            <p className="eyebrow">¡Todo listo!</p>
+            <h2>Cuenta de {nombre} Creada</h2>
+            {form.email && (
+              <p style={{ margin: "6px 0 0", color: "var(--muted)", fontWeight: "500" }}>
+                Le enviamos un correo electrónico a <strong>{form.email}</strong> con los detalles y la guía de onboarding.
+              </p>
+            )}
           </div>
 
-          <div className="access-code-card">
-            <p>Codigo de acceso</p>
-            <strong>{codigoGenerado}</strong>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+            <div className="access-code-card" style={{ margin: 0 }}>
+              <p style={{ fontSize: "0.8rem", textTransform: "uppercase", letterSpacing: "1px", fontWeight: "600", color: "var(--muted)", margin: "0 0 6px 0" }}>Código de acceso</p>
+              <strong style={{ fontSize: "1.8rem", letterSpacing: "2px" }}>{codigoGenerado}</strong>
+            </div>
+
+            <div className="access-code-card" style={{ margin: 0 }}>
+              <p style={{ fontSize: "0.8rem", textTransform: "uppercase", letterSpacing: "1px", fontWeight: "600", color: "var(--muted)", margin: "0 0 6px 0" }}>Contraseña familiar</p>
+              <strong style={{ fontSize: "1.8rem", letterSpacing: "2px" }}>{passwordFamiliar}</strong>
+            </div>
           </div>
 
-          <div className="access-code-card">
-            <p>Contrasena familiar</p>
-            <strong>{passwordFamiliar}</strong>
-          </div>
-
-          <p>Escribi el codigo y la contrasena en un papel y daselos a {nombre}.</p>
-          <p>
-            Para practicar, {nombre} debe ir a la pagina principal, escribir <strong>{codigoGenerado}</strong>, ingresar la
-            contrasena familiar y tocar "Entrar a practicar".
+          <p style={{ margin: 0, color: "var(--ink)", fontWeight: "600", fontSize: "0.95rem" }}>
+            Escribí el código y la contraseña en un papel y dáselos a {nombre} para que pueda entrar a estudiar desde la página de inicio.
           </p>
-          <p>Esta cuenta empieza en modo gratuito, con acceso a los primeros temas.</p>
 
-          <button type="button" className="primary" onClick={() => router.push("/")}>
-            Ir a la pagina principal
-          </button>
+          <div className="setup-note" style={{ borderLeftColor: "var(--primary)", background: "var(--soft-purple)", display: "grid", gap: "10px", padding: "18px" }}>
+            <strong style={{ color: "var(--ink)", fontSize: "1.05rem" }}>💡 ¿Cómo funciona tu rol de padres?</strong>
+            <ul style={{ margin: 0, paddingLeft: "18px", color: "var(--muted)", fontSize: "0.9rem", lineHeight: "1.5", display: "grid", gap: "8px" }}>
+              <li>
+                <strong>Supervisá desde el celular:</strong> Abrí tu Panel de Padres para ver su tasa de acierto semanal, rachas e insights cualitativos generados por la IA. ¡Guardalo en tus favoritos!
+              </li>
+              <li>
+                <strong>Corregí su cuaderno físico:</strong> Ocasionalmente el tutor le pedirá escribir en su cuaderno. En tu panel verás aparecer la consigna para corregirla en un clic y retroalimentar a la IA del tutor.
+              </li>
+            </ul>
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: "10px" }}>
+            <button type="button" className="primary" onClick={() => router.push(`/papas?user_id=${encodeURIComponent(codigoGenerado)}`)} style={{ background: "linear-gradient(135deg, #a855f7, #3b82f6)", border: "0", color: "#ffffff" }}>
+              📊 Abrir mi Panel de Padres
+            </button>
+            <button type="button" onClick={() => router.push("/")} style={{ background: "transparent", border: "1px solid var(--line)", color: "var(--ink)", fontWeight: "600" }}>
+              Ir al inicio (Portal del Alumno)
+            </button>
+          </div>
         </div>
       </section>
     );
