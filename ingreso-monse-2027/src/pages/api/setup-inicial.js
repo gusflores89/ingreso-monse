@@ -2,14 +2,19 @@ import { requireMethod } from "@/lib/http";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { TRIAL_DEFAULT_TOPIC } from "@/lib/planes";
 import { hashFamilyPassword } from "@/lib/access";
+import { sendWelcomeEmail } from "@/lib/email";
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
 
+  const defaultYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth();
+  const defaultExamYear = currentMonth >= 11 ? defaultYear + 1 : defaultYear;
+
   const {
     nombre,
     email,
-    fecha_examen = "2027-12-01",
+    fecha_examen = `${defaultExamYear}-12-01`,
     nivel_inicial,
     estilo_aprendizaje = "visual_ejemplos",
     rasgos_especiales = {},
@@ -30,26 +35,23 @@ export default async function handler(req, res) {
     const usuario = assertSupabaseOk(
       await supabase
         .from("usuarios")
-        .upsert(
-          {
-            nombre: String(nombre).trim(),
-            email: email || null,
-            fecha_examen,
-            nivel_inicial: perfilNivel,
-            estilo_aprendizaje,
-            rasgos_especiales: {
-              ...rasgos_especiales,
-              plan: "trial",
-              access_password_hash: hashFamilyPassword(password_familiar),
-            },
-            edad: edad ? Number(edad) : null,
-            grado: grado || null,
-            fecha_nacimiento: fecha_nacimiento || null,
-            codigo_acceso,
-            updated_at: new Date().toISOString(),
+        .insert({
+          nombre: String(nombre).trim(),
+          email: email || null,
+          fecha_examen,
+          nivel_inicial: perfilNivel,
+          estilo_aprendizaje,
+          rasgos_especiales: {
+            ...rasgos_especiales,
+            plan: "trial",
+            access_password_hash: hashFamilyPassword(password_familiar),
           },
-          { onConflict: "email" }
-        )
+          edad: edad ? Number(edad) : null,
+          grado: grado || null,
+          fecha_nacimiento: fecha_nacimiento || null,
+          codigo_acceso,
+          updated_at: new Date().toISOString(),
+        })
         .select()
         .single(),
       "No se pudo guardar el perfil"
@@ -60,6 +62,16 @@ export default async function handler(req, res) {
       modo_recomendado: "NORMAL",
       razon: "Cuenta gratuita creada. Empieza con una muestra guiada del metodo.",
     };
+
+    // Disparar correo de bienvenida asincronicamente (fire-and-forget) sin bloquear al cliente
+    if (usuario.email) {
+      sendWelcomeEmail({
+        nombre: usuario.nombre,
+        email: usuario.email,
+        codigo_acceso: usuario.codigo_acceso,
+        plan: "trial",
+      }).catch((err) => console.error("[email] Error asincrono en bienvenida:", err));
+    }
 
     res.status(200).json({ usuario, plan, cuenta: { plan: "trial", estado: "activa" } });
   } catch (error) {

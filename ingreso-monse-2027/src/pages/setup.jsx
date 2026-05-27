@@ -5,7 +5,7 @@ export default function SetupPage() {
     <main className="app-shell">
       <nav className="topbar setup-topbar">
         <div>
-          <p className="eyebrow">Ingreso Monserrat 2027</p>
+          <p className="eyebrow">Ingreso Monserrat</p>
           <h1>IngresoMonse</h1>
         </div>
         <a className="family-access compact" href="/">

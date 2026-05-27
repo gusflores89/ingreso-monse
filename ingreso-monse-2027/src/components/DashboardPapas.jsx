@@ -159,7 +159,7 @@ export default function DashboardPapas({ userId }) {
             <div className="topic-card-grid rich-topic-grid" aria-label="Progreso por tema">
               {progresoTemas.length === 0 && <p className="empty-state">Todavia no hay temas con progreso.</p>}
               {progresoTemas.map((item) => (
-                <TopicProgressCard item={item} key={item.id || item.tema} />
+                <TopicProgressRow item={item} key={item.id || item.tema} />
               ))}
             </div>
           </section>
@@ -286,31 +286,35 @@ function ProgressLine({ label, value }) {
   );
 }
 
-function TopicProgressCard({ item }) {
+function TopicProgressRow({ item }) {
   const status = statusFor(item);
   const tasa = clamp(Number(item.tasa_acierto || 0));
 
   return (
-    <article className={`topic-card rich-topic-card ${status.className}`}>
-      <div className="topic-card-top">
-        <div>
-          <span className="topic-materia">{MATERIA_LABELS[item.materia] || formatTema(item.materia || "general")}</span>
-          <h4>{formatTema(item.tema)}</h4>
+    <article className={`topic-progress-row ${status.className}`}>
+      <div className="row-main-info">
+        <span className="topic-materia">{MATERIA_LABELS[item.materia] || formatTema(item.materia || "general")}</span>
+        <strong className="topic-name">{formatTema(item.tema)}</strong>
+      </div>
+
+      <div className="row-progress-section">
+        <div className="row-percentage-wrapper">
+          <span className="row-percentage">{tasa}%</span>
+          <span className={`status-pill ${status.className}`}>{status.label}</span>
         </div>
-        <span className={`status-pill ${status.className}`}>{status.label}</span>
+        <div className="progress-track" aria-label={`Tasa de acierto ${tasa}%`}>
+          <i style={{ width: `${tasa}%` }} />
+        </div>
       </div>
 
-      <strong>{tasa}%</strong>
-      <div className="progress-track" aria-label={`Tasa de acierto ${tasa}%`}>
-        <i style={{ width: `${tasa}%` }} />
+      <div className="row-meta-section">
+        <div className="topic-meta-row">
+          <span>{item.total_sesiones} sesiones</span>
+          <span>Capa {item.capa_actual}</span>
+          <span>{item.total_correctas} correctas</span>
+        </div>
+        <p className="row-oportunidad">{item.oportunidad || "Seguir practicando con sesiones cortas."}</p>
       </div>
-
-      <div className="topic-meta-row">
-        <span>{item.total_sesiones} sesiones</span>
-        <span>Capa {item.capa_actual}</span>
-        <span>{item.total_correctas} correctas</span>
-      </div>
-      <p>{item.oportunidad || "Seguir practicando con sesiones cortas."}</p>
     </article>
   );
 }

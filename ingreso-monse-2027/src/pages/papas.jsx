@@ -18,7 +18,7 @@ export default function PapasPage() {
     <main className="app-shell">
       <nav className="topbar">
         <div>
-          <p className="eyebrow">Ingreso Monserrat 2027</p>
+          <p className="eyebrow">Ingreso Monserrat</p>
           <h1>IngresoMonse</h1>
         </div>
       </nav>
@@ -30,14 +30,14 @@ export default function PapasPage() {
           <form className="setup-form" onSubmit={handleSubmit}>
             <div>
               <p className="eyebrow">Panel familiar</p>
-              <h2>Ingresar user_id</h2>
+              <h2>Ingresar Código o ID</h2>
             </div>
             <label>
-              User ID
+              Código de acceso o ID de estudiante
               <input
                 value={userId}
                 onChange={(event) => setUserId(event.target.value)}
-                placeholder="Pega el user_id del alumno/a"
+                placeholder="Ej: ABRIL (el código del alumno)"
                 required
               />
             </label>

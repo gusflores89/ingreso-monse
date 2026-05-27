@@ -194,7 +194,7 @@ function UserCard({ usuario, onUpdate }) {
   return (
     <article className="admin-user-card">
       <div className="admin-user-main">
-        <img src={`/avatars/${usuario.avatar || "buho"}-mini.svg`} alt="" width="42" height="42" />
+        <img src={`/avatars/${usuario.avatar || "buho"}.png`} alt="" width="42" height="42" style={{ borderRadius: "50%", objectFit: "cover" }} />
         <div>
           <h2>{usuario.nombre || "Sin nombre"}</h2>
           <p>{usuario.email || "Sin email"}</p>

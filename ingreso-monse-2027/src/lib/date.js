@@ -1,7 +1,8 @@
-const EXAM_DATE = new Date("2027-12-01T12:00:00-03:00");
+const DEFAULT_EXAM_DATE = new Date("2027-12-01T12:00:00-03:00");
 
-export function daysUntilExam(date = new Date()) {
-  const ms = EXAM_DATE.getTime() - date.getTime();
+export function daysUntilExam(date = new Date(), targetExamDate = DEFAULT_EXAM_DATE) {
+  const targetDate = targetExamDate ? new Date(targetExamDate) : DEFAULT_EXAM_DATE;
+  const ms = targetDate.getTime() - date.getTime();
   return Math.max(0, Math.ceil(ms / 86400000));
 }
 

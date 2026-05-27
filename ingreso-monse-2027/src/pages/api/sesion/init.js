@@ -25,7 +25,7 @@ export default async function handler(req, res) {
   const {
     user_id,
     tema,
-    capa = 1,
+    capa = null,
     modo = "NORMAL",
     tiempo_disponible_sesion = 25,
     omitir_caso_resuelto = false,
@@ -39,15 +39,33 @@ export default async function handler(req, res) {
   try {
     const supabase = getSupabaseAdmin();
     const reingreso = isCurriculumTopic(tema)
-      ? { tema, capa: Number(capa) }
+      ? { tema, capa: capa ? Number(capa) : null }
       : await resolverTemaDeReingreso(supabase, user_id);
     let temaActual = reingreso.tema;
-    const capaActual = Number(reingreso.capa) || Number(capa) || 1;
 
     const usuario = assertSupabaseOk(
       await supabase.from("usuarios").select("*").eq("id", user_id).single(),
       "No se pudo obtener el usuario"
     );
+
+    let capaActual = Number(reingreso.capa) || (capa ? Number(capa) : null);
+    if (!capaActual || capaActual <= 0) {
+      const { data: progresoData } = await supabase
+        .from("progreso")
+        .select("capa_actual")
+        .eq("user_id", user_id)
+        .eq("tema", temaActual)
+        .maybeSingle();
+
+      if (progresoData?.capa_actual) {
+        capaActual = Number(progresoData.capa_actual);
+      } else {
+        const edad = usuario.edad ? Number(usuario.edad) : 10;
+        const grado = usuario.grado || "5to";
+        const rasgos = usuario.rasgos_especiales || {};
+        capaActual = calcularCapaInicial(edad, grado, rasgos);
+      }
+    }
     const tutorOverrides = normalizeTutorPreference(tutor_preference);
     const usuarioConTutor = { ...usuario, ...tutorOverrides };
     const alumno = buildAlumnoProfile(usuarioConTutor);
@@ -96,7 +114,7 @@ export default async function handler(req, res) {
       sesiones_en_tema: progreso?.total_sesiones || 0,
       errores_patrones_json: {},
       racha: 0,
-      dias_falta_examen: daysUntilExam(),
+      dias_falta_examen: daysUntilExam(new Date(), usuario.fecha_examen),
     };
 
     const leccionResult = await supabase
@@ -252,7 +270,7 @@ function getTutorPayload(usuario = {}) {
     avatar,
     nombre_tutor: usuario.nombre_tutor || tutorNameForAvatar(avatar),
     color_tema: isValidHexColor(usuario.color_tema) ? usuario.color_tema : colorForAvatar(avatar),
-    avatar_imagen: `/avatars/${avatar}-mini.svg`,
+    avatar_imagen: `/avatars/${avatar}.png`,
   };
 }
 
@@ -529,4 +547,12 @@ Genera un JSON con esta forma:
     instrucciones: "Necesitas 70% o mas para aprobar.",
     ...examen,
   };
+}
+
+function calcularCapaInicial(edad, grado, rasgos) {
+  let capa = 1;
+  if (edad >= 11 && grado === "6to") capa = 3;
+  else if (edad >= 10) capa = 2;
+  if (rasgos?.dislexia) capa = Math.max(1, capa - 1);
+  return capa;
 }

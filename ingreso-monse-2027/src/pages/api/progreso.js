@@ -15,14 +15,34 @@ export default async function handler(req, res) {
   try {
     const supabase = getSupabaseAdmin();
 
-    const usuario = assertSupabaseOk(
-      await supabase.from("usuarios").select("*").eq("id", userId).single(),
-      "No se pudo obtener usuario"
-    );
+    let usuario = null;
+    const cleanUserId = String(userId).trim();
+    const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(cleanUserId);
+
+    if (isUUID) {
+      const { data, error } = await supabase.from("usuarios").select("*").eq("id", cleanUserId).single();
+      if (!error && data) {
+        usuario = data;
+      }
+    }
+
+    if (!usuario) {
+      const normalizedCode = cleanUserId.toUpperCase();
+      const { data, error } = await supabase.from("usuarios").select("*").eq("codigo_acceso", normalizedCode).single();
+      if (!error && data) {
+        usuario = data;
+      }
+    }
+
+    if (!usuario) {
+      return res.status(404).json({ error: "Código de acceso o ID de estudiante incorrecto." });
+    }
+
+    const resolvedUserId = usuario.id;
     const alumno = buildAlumnoProfile(usuario);
 
     const progreso = assertSupabaseOk(
-      await supabase.from("progreso").select("*").eq("user_id", userId).order("updated_at", { ascending: false }),
+      await supabase.from("progreso").select("*").eq("user_id", resolvedUserId).order("updated_at", { ascending: false }),
       "No se pudo obtener progreso"
     );
 
@@ -30,7 +50,7 @@ export default async function handler(req, res) {
       await supabase
         .from("alertas")
         .select("*")
-        .eq("user_id", userId)
+        .eq("user_id", resolvedUserId)
         .eq("resuelta", false)
         .order("created_at", { ascending: false }),
       "No se pudieron obtener alertas"
@@ -40,7 +60,7 @@ export default async function handler(req, res) {
       await supabase
         .from("sesiones")
         .select("tema, capa, tipo_pregunta, es_correcta, razon_evaluacion, created_at")
-        .eq("user_id", userId)
+        .eq("user_id", resolvedUserId)
         .not("es_correcta", "is", null)
         .order("created_at", { ascending: false })
         .limit(80),

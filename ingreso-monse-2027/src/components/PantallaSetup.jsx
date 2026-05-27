@@ -3,6 +3,10 @@ import { useRouter } from "next/router";
 
 export default function PantallaSetup({ onComplete }) {
   const router = useRouter();
+  const defaultYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth();
+  const defaultExamYear = currentMonth >= 11 ? defaultYear + 1 : defaultYear;
+
   const [form, setForm] = useState({
     nombre: "",
     edad: "",
@@ -12,7 +16,7 @@ export default function PantallaSetup({ onComplete }) {
     nacimiento_anio: "",
     email: "",
     password_familiar: "",
-    fecha_examen: "2027-12-01",
+    fecha_examen: `${defaultExamYear}-12-01`,
     nivel_inicial: "recien_empieza",
     estilo_aprendizaje: "visual_ejemplos",
     dislexia: false,

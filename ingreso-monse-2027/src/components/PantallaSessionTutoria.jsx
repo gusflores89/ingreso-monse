@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import PantallaCasoResuelto from "./PantallaCasoResuelto";
 import VisualizacionMatematica from "./VisualizacionMatematica";
+import { CURRICULUM_MATEMATICA, CURRICULUM_LENGUA } from "@/lib/curriculum";
+import { TRIAL_TOPICS } from "@/lib/planes";
 
 export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tutor_preference }) {
   const [pregunta, setPregunta] = useState(null);
@@ -8,6 +10,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
   const [sesionId, setSesionId] = useState(null);
   const [evaluacion, setEvaluacion] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showTopicModal, setShowTopicModal] = useState(false);
   const [error, setError] = useState("");
   const [pasoActual, setPasoActual] = useState(0);
   const [respuestasExamen, setRespuestasExamen] = useState({});
@@ -205,6 +208,39 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
     }
   };
 
+  const handleSelectTema = async (nuevoTema) => {
+    setLoading(true);
+    setError("");
+    setRespuesta("");
+    setRespuestasExamen({});
+
+    try {
+      const res = await fetch("/api/sesion/init", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id,
+          tema: nuevoTema,
+          modo: modo || "NORMAL",
+          omitir_caso_resuelto: false,
+          tutor_preference,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "No se pudo iniciar la practica.");
+      setPregunta(data);
+      setSesionId(data.sesion_id);
+      setEvaluacion(null);
+      setPasoActual(0);
+      setRespuestasExamen({});
+      startTime.current = Date.now();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const activeTema = pregunta?.tema || tema || "";
   const theme = themeForTema(activeTema);
   const tutorAvatar = pregunta?.avatar || tutor_preference?.avatar || "buho";
@@ -214,7 +250,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
     avatar: tutorAvatar,
     imagen:
       pregunta?.avatar_imagen ||
-      `/avatars/${tutorAvatar}-mini.svg`,
+      `/avatars/${tutorAvatar}.png`,
   };
   const pasos = useMemo(() => {
     if (!pregunta || pregunta.tipo !== "leccion") return [];
@@ -267,11 +303,30 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
     >
       <header className="session-header student-session-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <TutorHeader tutor={tutor} />
-        {pregunta?.plan === "trial" && (
-          <span className="plan-badge-tutoria" style={{ fontSize: "0.85rem", padding: "4px 10px", borderRadius: "20px", backgroundColor: "rgba(254, 226, 226, 0.8)", color: "#ef4444", border: "1px solid #fca5a5", fontWeight: "600" }}>
-            Prueba Gratuita
-          </span>
-        )}
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <button
+            type="button"
+            onClick={() => setShowTopicModal(true)}
+            style={{
+              background: "rgba(255, 255, 255, 0.08)",
+              border: "1px solid rgba(255, 255, 255, 0.12)",
+              color: "#ffffff",
+              padding: "6px 14px",
+              borderRadius: "8px",
+              fontWeight: "600",
+              fontSize: "0.85rem",
+              cursor: "pointer",
+              transition: "all 200ms ease"
+            }}
+          >
+            📖 Elegir Tema
+          </button>
+          {pregunta?.plan === "trial" && (
+            <span className="plan-badge-tutoria" style={{ fontSize: "0.85rem", padding: "4px 10px", borderRadius: "20px", backgroundColor: "rgba(254, 226, 226, 0.8)", color: "#ef4444", border: "1px solid #fca5a5", fontWeight: "600" }}>
+              Prueba Gratuita
+            </span>
+          )}
+        </div>
       </header>
 
       {loading && <p className="status">{tutor.nombre} esta pensando...</p>}
@@ -444,6 +499,120 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
           </button>
         </div>
       )}
+
+      {showTopicModal && (
+        <div className="topic-modal-overlay" onClick={() => setShowTopicModal(false)} style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.75)", zIndex: 1000, display: "flex", justifyContent: "center", alignItems: "center", backdropFilter: "blur(4px)" }}>
+          <div className="topic-modal-card" onClick={(e) => e.stopPropagation()} style={{ background: "var(--panel, #1a1725)", border: "1px solid var(--line, #2a2636)", borderRadius: "12px", width: "min(640px, 95%)", maxHeight: "85vh", display: "flex", flexDirection: "column", animation: "fadeInUp 250ms ease" }}>
+            {/* Header */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px 20px", borderBottom: "1px solid var(--line, #2a2636)" }}>
+              <h3 style={{ margin: 0, fontSize: "1.2rem", fontWeight: "600", color: "#ffffff" }}>Elegí qué tema estudiar</h3>
+              <button type="button" onClick={() => setShowTopicModal(false)} style={{ background: "transparent", border: "none", color: "var(--muted, #9590a6)", fontSize: "1.5rem", cursor: "pointer", padding: "0 4px" }}>&times;</button>
+            </div>
+
+            {/* Scrollable List */}
+            <div style={{ padding: "20px", overflowY: "auto", flex: 1, display: "flex", flexDirection: "column", gap: "24px" }}>
+              {/* Matemática */}
+              <div>
+                <h4 style={{ margin: "0 0 10px 0", color: "#8b5cf6", fontSize: "0.95rem", fontWeight: "600", letterSpacing: "0.05em", textTransform: "uppercase" }}>Matemática</h4>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "10px" }}>
+                  {CURRICULUM_MATEMATICA.map((item) => {
+                    const isTrial = pregunta?.plan === "trial";
+                    const isAllowed = !isTrial || TRIAL_TOPICS.includes(item.tema);
+                    const isCurrent = activeTema === item.tema;
+                    return (
+                      <button
+                        type="button"
+                        key={item.tema}
+                        onClick={() => {
+                          if (isAllowed) {
+                            handleSelectTema(item.tema);
+                            setShowTopicModal(false);
+                          }
+                        }}
+                        disabled={!isAllowed || isCurrent}
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          padding: "10px 14px",
+                          borderRadius: "8px",
+                          border: isCurrent ? "1px solid var(--primary, #8b5cf6)" : "1px solid var(--line, #2a2636)",
+                          background: isCurrent ? "var(--soft-purple, #1e1a2e)" : isAllowed ? "var(--panel, #1a1725)" : "rgba(255,255,255,0.02)",
+                          color: isAllowed ? "#e8e4f0" : "var(--muted, #9590a6)",
+                          textAlign: "left",
+                          cursor: isAllowed ? "pointer" : "not-allowed",
+                          fontSize: "0.88rem",
+                          transition: "all 150ms ease"
+                        }}
+                      >
+                        <span style={{ fontWeight: isCurrent ? "600" : "400" }}>
+                          {item.tema.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
+                        </span>
+                        <span>
+                          {isCurrent ? "👉 Practicando" : isAllowed ? "Entrar" : "🔒 Premium"}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Lengua */}
+              <div>
+                <h4 style={{ margin: "0 0 10px 0", color: "#3b82f6", fontSize: "0.95rem", fontWeight: "600", letterSpacing: "0.05em", textTransform: "uppercase" }}>Lengua</h4>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "10px" }}>
+                  {CURRICULUM_LENGUA.map((item) => {
+                    const isTrial = pregunta?.plan === "trial";
+                    const isAllowed = !isTrial || TRIAL_TOPICS.includes(item.tema);
+                    const isCurrent = activeTema === item.tema;
+                    return (
+                      <button
+                        type="button"
+                        key={item.tema}
+                        onClick={() => {
+                          if (isAllowed) {
+                            handleSelectTema(item.tema);
+                            setShowTopicModal(false);
+                          }
+                        }}
+                        disabled={!isAllowed || isCurrent}
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          padding: "10px 14px",
+                          borderRadius: "8px",
+                          border: isCurrent ? "1px solid var(--primary, #8b5cf6)" : "1px solid var(--line, #2a2636)",
+                          background: isCurrent ? "var(--soft-purple, #1e1a2e)" : isAllowed ? "var(--panel, #1a1725)" : "rgba(255,255,255,0.02)",
+                          color: isAllowed ? "#e8e4f0" : "var(--muted, #9590a6)",
+                          textAlign: "left",
+                          cursor: isAllowed ? "pointer" : "not-allowed",
+                          fontSize: "0.88rem",
+                          transition: "all 150ms ease"
+                        }}
+                      >
+                        <span style={{ fontWeight: isCurrent ? "600" : "400" }}>
+                          {item.tema.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
+                        </span>
+                        <span>
+                          {isCurrent ? "👉 Practicando" : isAllowed ? "Entrar" : "🔒 Premium"}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* Trial Banner Footer */}
+            {pregunta?.plan === "trial" && (
+              <div style={{ padding: "12px 20px", background: "rgba(239, 68, 68, 0.05)", borderTop: "1px solid var(--line, #2a2636)", borderRadius: "0 0 12px 12px", fontSize: "0.8rem", color: "#fca5a5", textAlign: "center" }}>
+                💡 En la muestra gratuita tienes 4 temas disponibles. Activa el Acceso Completo para desbloquear los 37 temas.
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 }
@@ -451,7 +620,17 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
 function TutorHeader({ tutor }) {
   return (
     <div className="tutor-chip">
-      <img src={tutor.imagen} alt={tutor.nombre} width="40" height="40" />
+      <img
+        src={tutor.imagen}
+        alt={tutor.nombre}
+        width="40"
+        height="40"
+        onError={(e) => {
+          if (e.target.src.endsWith(".png")) {
+            e.target.src = e.target.src.replace(".png", ".svg");
+          }
+        }}
+      />
       <div>
         <strong style={{ color: tutor.color }}>{tutor.nombre}</strong>
         <span>Tu tutor/a</span>
@@ -463,7 +642,17 @@ function TutorHeader({ tutor }) {
 function TutorMessage({ tutor, mensaje }) {
   return (
     <div className="tutor-message">
-      <img src={tutor.imagen} alt={tutor.nombre} width="40" height="40" />
+      <img
+        src={tutor.imagen}
+        alt={tutor.nombre}
+        width="40"
+        height="40"
+        onError={(e) => {
+          if (e.target.src.endsWith(".png")) {
+            e.target.src = e.target.src.replace(".png", ".svg");
+          }
+        }}
+      />
       <div>
         <strong style={{ color: tutor.color }}>{tutor.nombre}</strong>
         <p>{mensaje}</p>
@@ -751,22 +940,22 @@ function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRe
 function PantallaTrialCompletado({ tutor }) {
   return (
     <div className="handwriting-shell trial-completed-shell">
-      <section className="handwriting-hero" style={{ backgroundColor: tintColor(tutor.color, 90), border: `2px dashed ${tutor.color}` }}>
-        <img src={`/avatars/${tutor.avatar || "buho"}.svg`} alt={tutor.nombre} style={{ width: "96px", height: "96px", marginBottom: "16px" }} />
-        <h2 style={{ color: tutor.color, fontSize: "2rem", fontWeight: "bold" }}>¡Excelente trabajo!</h2>
-        <p style={{ fontSize: "1.15rem", color: "#334155", maxWidth: "480px", margin: "0 auto", textAlign: "center" }}>
+      <section className="handwriting-hero" style={{ backgroundColor: "var(--soft-purple)", border: `2px dashed var(--primary)` }}>
+        <img src={`/avatars/${tutor.avatar || "buho"}.png`} alt={tutor.nombre} style={{ width: "96px", height: "96px", marginBottom: "16px", borderRadius: "50%" }} />
+        <h2 style={{ color: "var(--primary)", fontSize: "2rem", fontWeight: "bold" }}>¡Excelente trabajo!</h2>
+        <p style={{ fontSize: "1.15rem", color: "var(--muted)", maxWidth: "480px", margin: "0 auto", textAlign: "center" }}>
           ¡Completaste con éxito todos los temas de la muestra gratuita!
         </p>
       </section>
 
       <section className="handwriting-card">
         <h3>¿Qué sigue ahora?</h3>
-        <p style={{ color: "#475569", lineHeight: "1.6" }}>
+        <p style={{ color: "var(--ink)", lineHeight: "1.6" }}>
           Para poder seguir aprendiendo con <strong>{tutor.nombre}</strong> y acceder a los más de 30 temas de Matemática y Lengua con sus explicaciones paso a paso, ejercicios prácticos y exámenes finales, es necesario activar el acceso completo.
         </p>
-        <div className="handwriting-panel family" style={{ marginTop: "20px", borderLeft: `4px solid ${tutor.color}` }}>
-          <h4 style={{ color: tutor.color }}>📢 Mensaje para mamá o papá</h4>
-          <p style={{ color: "#334155", fontWeight: "500" }}>
+        <div className="handwriting-panel family" style={{ marginTop: "20px", borderLeft: `4px solid var(--primary)` }}>
+          <h4 style={{ color: "var(--primary)" }}>📢 Mensaje para mamá o papá</h4>
+          <p style={{ color: "var(--ink)", fontWeight: "500" }}>
             ¡Ya exploré y completé los 4 temas gratuitos! Para habilitar el resto del currículum de ingreso, pueden ingresar a su panel familiar y activar el Acceso Completo.
           </p>
         </div>
