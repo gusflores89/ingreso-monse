@@ -3,6 +3,7 @@ import PantallaCasoResuelto from "./PantallaCasoResuelto";
 import VisualizacionMatematica from "./VisualizacionMatematica";
 import { CURRICULUM_MATEMATICA, CURRICULUM_LENGUA } from "@/lib/curriculum";
 import { TRIAL_TOPICS } from "@/lib/planes";
+import { getDiapositivasParaTema } from "@/lib/diapositivas";
 
 export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tutor_preference }) {
   const [pregunta, setPregunta] = useState(null);
@@ -36,6 +37,11 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         setPregunta(data);
         setSesionId(data.sesion_id);
         setPasoActual(0);
+        if (data && data.tipo === "leccion") {
+          setHelpTab("slides");
+          setCurrentSlideIndex(0);
+          setShowHelpModal(true);
+        }
       } catch (err) {
         setError(err.message);
       } finally {
@@ -45,6 +51,39 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
 
     init();
   }, [user_id, tema, capa, modo]);
+
+  const [userProgress, setUserProgress] = useState([]);
+  const [completedExams, setCompletedExams] = useState(new Set());
+  const [modalLoading, setModalLoading] = useState(false);
+  const [bypassLocks, setBypassLocks] = useState(false);
+  const [showHelpModal, setShowHelpModal] = useState(false);
+  const [helpTab, setHelpTab] = useState("slides");
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+
+  useEffect(() => {
+    if (showTopicModal && user_id) {
+      setModalLoading(true);
+      fetch(`/api/progreso?user_id=${encodeURIComponent(user_id)}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data) {
+            setUserProgress(data.progreso || []);
+            const approved = new Set(
+              (data.sesiones_recientes || [])
+                .filter((s) => s.tipo_pregunta === "examen_final" && s.es_correcta)
+                .map((s) => s.tema)
+            );
+            setCompletedExams(approved);
+            const isTest = data.usuario?.codigo_acceso?.toUpperCase()?.includes("TEST") ||
+                           data.usuario?.nombre?.toUpperCase()?.includes("TEST") ||
+                           !!data.usuario?.rasgos_especiales?.ruta_flexible;
+            setBypassLocks(!!isTest);
+          }
+        })
+        .catch((err) => console.error("Error fetching progress for modal:", err))
+        .finally(() => setModalLoading(false));
+    }
+  }, [showTopicModal, user_id]);
 
   const handleSubmit = async () => {
     if (!respuesta.trim() || !sesionId) return;
@@ -132,6 +171,11 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       setSesionId(data.sesion_id);
       setEvaluacion(null);
       setPasoActual(0);
+      if (data && data.tipo === "leccion") {
+        setHelpTab("slides");
+        setCurrentSlideIndex(0);
+        setShowHelpModal(true);
+      }
       setRespuestasExamen({});
       startTime.current = Date.now();
     } catch (err) {
@@ -232,6 +276,11 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       setSesionId(data.sesion_id);
       setEvaluacion(null);
       setPasoActual(0);
+      if (data && data.tipo === "leccion") {
+        setHelpTab("slides");
+        setCurrentSlideIndex(0);
+        setShowHelpModal(true);
+      }
       setRespuestasExamen({});
       startTime.current = Date.now();
     } catch (err) {
@@ -287,6 +336,14 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
   const pasoActualData = pasos[pasoActual];
   const totalPasos = pasos.length;
 
+  const visualParaEjercicio = useMemo(() => {
+    if (!pregunta) return null;
+    const textoParaVisual = pregunta.pregunta || "";
+    return visualizacionParaTema(activeTema, textoParaVisual);
+  }, [activeTema, pregunta]);
+
+  const deckTeoria = useMemo(() => getDiapositivasParaTema(activeTema), [activeTema]);
+
   return (
     <section
       className={`tutoria-panel background-decorative theme-${theme}`}
@@ -304,6 +361,36 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       <header className="session-header student-session-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <TutorHeader tutor={tutor} />
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          {pregunta?.tema_sugerido && !pregunta.tema_sugerido.completado && pregunta.tema === pregunta.tema_sugerido.tema && (
+            <span className="plan-badge-tutoria" style={{ fontSize: "0.82rem", padding: "4px 12px", borderRadius: "20px", backgroundColor: "rgba(139, 92, 246, 0.2)", color: "#c084fc", border: "1px solid rgba(139, 92, 246, 0.4)", fontWeight: "600", display: "inline-flex", alignItems: "center", gap: "4px", boxShadow: "0 0 10px rgba(139, 92, 246, 0.15)" }}>
+              🎯 Misión Familiar Activa
+            </span>
+          )}
+          <button
+            type="button"
+            onClick={() => {
+              setHelpTab("slides");
+              setCurrentSlideIndex(0);
+              setShowHelpModal(true);
+            }}
+            style={{
+              background: "rgba(139, 92, 246, 0.2)",
+              border: "1px solid rgba(139, 92, 246, 0.4)",
+              color: "#c084fc",
+              padding: "6px 14px",
+              borderRadius: "8px",
+              fontWeight: "600",
+              fontSize: "0.85rem",
+              cursor: "pointer",
+              transition: "all 200ms ease",
+              boxShadow: "0 0 10px rgba(139, 92, 246, 0.15)",
+              marginRight: "8px"
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-1px)"}
+            onMouseLeave={(e) => e.currentTarget.style.transform = "none"}
+          >
+            💡 Explicación y PDFs
+          </button>
           <button
             type="button"
             onClick={() => setShowTopicModal(true)}
@@ -328,6 +415,57 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
           )}
         </div>
       </header>
+
+      {pregunta?.tema_sugerido && !pregunta.tema_sugerido.completado && pregunta.tema !== pregunta.tema_sugerido.tema && (
+        <div style={{
+          margin: "16px 0 24px 0",
+          background: "linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.1) 100%)",
+          border: "1px solid rgba(139, 92, 246, 0.4)",
+          borderRadius: "12px",
+          padding: "16px 20px",
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: "16px",
+          boxShadow: "0 4px 15px rgba(139, 92, 246, 0.15), 0 0 10px rgba(139, 92, 246, 0.1)",
+          animation: "fadeInUp 0.4s ease both"
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <span style={{ fontSize: "1.8rem" }}>🎯</span>
+            <div style={{ textAlign: "left" }}>
+              <strong style={{ color: "#ffffff", fontSize: "0.95rem", display: "block", marginBottom: "2px" }}>
+                Misión especial de tu familia
+              </strong>
+              <p style={{ color: "#a59ec9", fontSize: "0.85rem", margin: 0 }}>
+                Hoy te sugieren practicar: <strong style={{ color: "#c084fc", textTransform: "capitalize" }}>{pregunta.tema_sugerido.tema.replaceAll("_", " ")}</strong> ({pregunta.tema_sugerido.materia === "lengua" ? "Lengua" : "Matemática"}).
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => handleSelectTema(pregunta.tema_sugerido.tema)}
+            disabled={loading}
+            style={{
+              padding: "8px 16px",
+              borderRadius: "8px",
+              background: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)",
+              color: "#ffffff",
+              fontSize: "0.82rem",
+              fontWeight: "700",
+              border: "none",
+              cursor: "pointer",
+              boxShadow: "0 4px 10px rgba(139, 92, 246, 0.3)",
+              transition: "all 0.2s ease-out",
+              minHeight: "auto"
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-1px)"}
+            onMouseLeave={(e) => e.currentTarget.style.transform = "none"}
+          >
+            Comenzar Misión →
+          </button>
+        </div>
+      )}
 
       {loading && <p className="status">{tutor.nombre} esta pensando...</p>}
       {error && <p className="error">{error}</p>}
@@ -359,6 +497,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
           onRespuesta={(id, value) => setRespuestasExamen((prev) => ({ ...prev, [id]: value }))}
           onRespuestaTexto={setRespuesta}
           onSubmit={handleEnviarExamen}
+          visualParaEjercicio={visualParaEjercicio}
         />
       )}
 
@@ -376,9 +515,9 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
           <div className="lesson-step-card">
             {pasoActualData.tipo === "intro" && (
               <div className="lesson-step-content intro-step">
-                <h2>{pasoActualData.contenido.saludo}</h2>
-                <p>{pasoActualData.contenido.explicacion}</p>
-                {pasoActualData.contenido.concepto && <div className="key-concept">{pasoActualData.contenido.concepto}</div>}
+                <h2>{parseInlineMarkdown(pasoActualData.contenido.saludo)}</h2>
+                <p>{parseInlineMarkdown(pasoActualData.contenido.explicacion)}</p>
+                {pasoActualData.contenido.concepto && <div className="key-concept">{parseInlineMarkdown(pasoActualData.contenido.concepto)}</div>}
               </div>
             )}
 
@@ -388,35 +527,61 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                   <span aria-hidden="true">{emojiForContext(pasoActualData.contenido.contexto)}</span>
                   <div>
                     <p className="eyebrow">Ejemplo {pasoActualData.numero}</p>
-                    <h2>{pasoActualData.contenido.contexto || "Vamos paso a paso"}</h2>
+                    <h2>{parseInlineMarkdown(pasoActualData.contenido.contexto || "Vamos paso a paso")}</h2>
                   </div>
                 </div>
 
-                <p className="example-question">{pasoActualData.contenido.enunciado}</p>
+                <p className="example-question">{parseInlineMarkdown(pasoActualData.contenido.enunciado)}</p>
                 <MathExampleVisual tema={activeTema} ejemplo={pasoActualData.contenido} />
 
                 <div className="lesson-steps">
                   {pasoActualData.contenido.pasos?.map((paso, index) => (
                     <article className="lesson-step-row" key={`${paso}-${index}`}>
                       <span aria-hidden="true">{index + 1}</span>
-                      <p>{paso}</p>
+                      <p>{parseInlineMarkdown(paso)}</p>
                     </article>
                   ))}
                 </div>
 
                 {pasoActualData.contenido.respuesta && (
-                  <div className="lesson-answer">
-                    <span aria-hidden="true">✓</span>
+                  <div 
+                    className="lesson-answer"
+                    style={{
+                      border: "1px solid rgba(34, 197, 94, 0.3)",
+                      background: "#0f2418",
+                      color: "#22c55e",
+                      padding: "14px 16px",
+                      borderRadius: "8px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "12px",
+                      marginTop: "16px"
+                    }}
+                  >
+                    <span aria-hidden="true" style={{ fontSize: "1.2rem", fontWeight: "700" }}>✓</span>
                     <div>
-                      <small>Respuesta</small>
-                      <strong>{pasoActualData.contenido.respuesta}</strong>
+                      <small style={{ display: "block", fontSize: "0.75rem", color: "#86efac", fontWeight: "600", textTransform: "uppercase" }}>Respuesta</small>
+                      <strong style={{ color: "#ffffff", fontSize: "0.95rem" }}>{parseInlineMarkdown(pasoActualData.contenido.respuesta)}</strong>
                     </div>
                   </div>
                 )}
 
                 {pasoActualData.contenido.refuerzo && (
-                  <p className="lesson-reinforcement">
-                    <span>Tip:</span> {pasoActualData.contenido.refuerzo}
+                  <p 
+                    className="lesson-reinforcement"
+                    style={{
+                      background: "#1f1a0f",
+                      border: "1px solid rgba(245, 158, 11, 0.3)",
+                      borderLeft: "6px solid #f59e0b",
+                      color: "#e8e4f0",
+                      padding: "14px 16px",
+                      borderRadius: "8px",
+                      marginTop: "12px",
+                      fontSize: "0.92rem",
+                      lineHeight: "1.5"
+                    }}
+                  >
+                    <span style={{ color: "#f59e0b", fontWeight: "700", marginRight: "6px" }}>Tip:</span> {parseInlineMarkdown(pasoActualData.contenido.refuerzo)}
                   </p>
                 )}
               </div>
@@ -425,7 +590,12 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             {pasoActualData.tipo === "ejercicio" && (
               <div className="lesson-step-content exercise-step">
                 <h2>Ahora proba vos</h2>
-                <p className="question-text small">{pasoActualData.contenido.enunciado}</p>
+                <p className="question-text small">{parseInlineMarkdown(pasoActualData.contenido.enunciado)}</p>
+                {visualParaEjercicio && (
+                  <div style={{ marginBottom: "20px" }}>
+                    <VisualizacionMatematica tipo={visualParaEjercicio.tipo} datos={visualParaEjercicio.datos} />
+                  </div>
+                )}
                 <textarea
                   placeholder="Escribi tu respuesta aca..."
                   value={respuesta}
@@ -435,10 +605,23 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                 <button className="primary" onClick={handleSubmit} disabled={!respuesta.trim() || loading}>
                   {loading ? "Enviando..." : "Enviar respuesta"}
                 </button>
-                <div className="exercise-tip">
-                  Tip: {pasoActualData.contenido.pista || "Recorda: primero mira que queda, despues resolve con ese resto."}
+                <div 
+                  className="exercise-tip"
+                  style={{
+                    background: "#1f1a0f",
+                    border: "1px solid rgba(245, 158, 11, 0.3)",
+                    color: "#f59e0b",
+                    padding: "14px 16px",
+                    borderRadius: "8px",
+                    marginTop: "12px",
+                    textAlign: "center",
+                    fontSize: "0.92rem",
+                    lineHeight: "1.5",
+                    fontWeight: "600"
+                  }}
+                >
+                  Tip: {parseInlineMarkdown(pasoActualData.contenido.pista || "Recorda: primero mira que queda, despues resolve con ese resto.")}
                 </div>
-                {pregunta.cierre_motivacional && <p className="lesson-close">{pregunta.cierre_motivacional}</p>}
               </div>
             )}
           </div>
@@ -468,12 +651,18 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         pregunta?.tipo !== "caso_resuelto" &&
         pregunta && (
         <div className="question-area">
-          <p className="question-text">{pregunta.pregunta}</p>
+          <p className="question-text">{parseInlineMarkdown(pregunta.pregunta)}</p>
+
+          {visualParaEjercicio && (
+            <div style={{ marginBottom: "20px" }}>
+              <VisualizacionMatematica tipo={visualParaEjercicio.tipo} datos={visualParaEjercicio.datos} />
+            </div>
+          )}
 
           {pregunta.opciones?.length > 0 && (
             <div className="answer-options" aria-label="Opciones de respuesta">
               {pregunta.opciones.map((opcion) => (
-                <span key={opcion}>{opcion}</span>
+                <span key={opcion}>{parseInlineMarkdown(opcion)}</span>
               ))}
             </div>
           )}
@@ -497,124 +686,591 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
           <button type="button" className="primary" onClick={handleSiguiente} disabled={loading}>
             Siguiente pregunta
           </button>
+          {!evaluacion.es_correcta && (
+            <button
+              type="button"
+              onClick={() => {
+                setHelpTab("theory");
+                setShowHelpModal(true);
+              }}
+              style={{
+                marginTop: "10px",
+                background: "rgba(245, 158, 11, 0.1)",
+                border: "1px solid rgba(245, 158, 11, 0.3)",
+                color: "#f59e0b",
+                padding: "8px 16px",
+                borderRadius: "8px",
+                fontWeight: "600",
+                fontSize: "0.88rem",
+                cursor: "pointer",
+                transition: "all 200ms ease",
+                width: "100%",
+                textAlign: "center"
+              }}
+            >
+              📖 No entendí, ver explicación detallada o descargar PDF
+            </button>
+          )}
         </div>
       )}
 
       {showTopicModal && (
-        <div className="topic-modal-overlay" onClick={() => setShowTopicModal(false)} style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.75)", zIndex: 1000, display: "flex", justifyContent: "center", alignItems: "center", backdropFilter: "blur(4px)" }}>
-          <div className="topic-modal-card" onClick={(e) => e.stopPropagation()} style={{ background: "var(--panel, #1a1725)", border: "1px solid var(--line, #2a2636)", borderRadius: "12px", width: "min(640px, 95%)", maxHeight: "85vh", display: "flex", flexDirection: "column", animation: "fadeInUp 250ms ease" }}>
+        <div className="topic-modal-overlay" onClick={() => setShowTopicModal(false)} style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(11, 8, 26, 0.85)", zIndex: 1000, display: "flex", justifyContent: "center", alignItems: "center", backdropFilter: "blur(6px)" }}>
+          <div className="topic-modal-card" onClick={(e) => e.stopPropagation()} style={{ background: "#110d24", border: "1px solid #2a204d", borderRadius: "16px", width: "min(780px, 95%)", maxHeight: "88vh", display: "flex", flexDirection: "column", boxShadow: "0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(99, 102, 241, 0.15)" }}>
             {/* Header */}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px 20px", borderBottom: "1px solid var(--line, #2a2636)" }}>
-              <h3 style={{ margin: 0, fontSize: "1.2rem", fontWeight: "600", color: "#ffffff" }}>Elegí qué tema estudiar</h3>
-              <button type="button" onClick={() => setShowTopicModal(false)} style={{ background: "transparent", border: "none", color: "var(--muted, #9590a6)", fontSize: "1.5rem", cursor: "pointer", padding: "0 4px" }}>&times;</button>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 24px", borderBottom: "1px solid #2a204d" }}>
+              <div>
+                <h3 style={{ margin: 0, fontSize: "1.3rem", fontWeight: "700", color: "#ffffff", letterSpacing: "-0.3px", display: "flex", alignItems: "center", gap: "10px" }}>
+                  <span>🎓</span> El Camino del Aspirante
+                </h3>
+                <p style={{ margin: "4px 0 0 0", fontSize: "0.82rem", color: "#a59ec9" }}>Consolida cada fase para habilitar los desafíos avanzados del Monserrat</p>
+              </div>
+              <button type="button" onClick={() => setShowTopicModal(false)} style={{ background: "transparent", border: "none", color: "#9590a6", fontSize: "1.8rem", cursor: "pointer", transition: "color 150ms", padding: "0 4px" }}>&times;</button>
             </div>
 
-            {/* Scrollable List */}
-            <div style={{ padding: "20px", overflowY: "auto", flex: 1, display: "flex", flexDirection: "column", gap: "24px" }}>
-              {/* Matemática */}
-              <div>
-                <h4 style={{ margin: "0 0 10px 0", color: "#8b5cf6", fontSize: "0.95rem", fontWeight: "600", letterSpacing: "0.05em", textTransform: "uppercase" }}>Matemática</h4>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "10px" }}>
-                  {CURRICULUM_MATEMATICA.map((item) => {
-                    const isTrial = pregunta?.plan === "trial";
-                    const isAllowed = !isTrial || TRIAL_TOPICS.includes(item.tema);
-                    const isCurrent = activeTema === item.tema;
-                    return (
-                      <button
-                        type="button"
-                        key={item.tema}
-                        onClick={() => {
-                          if (isAllowed) {
-                            handleSelectTema(item.tema);
-                            setShowTopicModal(false);
-                          }
-                        }}
-                        disabled={!isAllowed || isCurrent}
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          alignItems: "center",
-                          padding: "10px 14px",
-                          borderRadius: "8px",
-                          border: isCurrent ? "1px solid var(--primary, #8b5cf6)" : "1px solid var(--line, #2a2636)",
-                          background: isCurrent ? "var(--soft-purple, #1e1a2e)" : isAllowed ? "var(--panel, #1a1725)" : "rgba(255,255,255,0.02)",
-                          color: isAllowed ? "#e8e4f0" : "var(--muted, #9590a6)",
-                          textAlign: "left",
-                          cursor: isAllowed ? "pointer" : "not-allowed",
-                          fontSize: "0.88rem",
-                          transition: "all 150ms ease"
-                        }}
-                      >
-                        <span style={{ fontWeight: isCurrent ? "600" : "400" }}>
-                          {item.tema.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
-                        </span>
-                        <span>
-                          {isCurrent ? "👉 Practicando" : isAllowed ? "Entrar" : "🔒 Premium"}
-                        </span>
-                      </button>
-                    );
-                  })}
+            {/* Scrollable Phases Container */}
+            <div style={{ padding: "24px", overflowY: "auto", flex: 1, display: "flex", flexDirection: "column", gap: "28px" }}>
+              {modalLoading && (
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "40px", color: "#a855f7" }}>
+                  <span style={{ fontSize: "1.1rem", fontWeight: "500" }}>Cargando tu progreso escolar...</span>
                 </div>
-              </div>
+              )}
 
-              {/* Lengua */}
-              <div>
-                <h4 style={{ margin: "0 0 10px 0", color: "#3b82f6", fontSize: "0.95rem", fontWeight: "600", letterSpacing: "0.05em", textTransform: "uppercase" }}>Lengua</h4>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "10px" }}>
-                  {CURRICULUM_LENGUA.map((item) => {
-                    const isTrial = pregunta?.plan === "trial";
-                    const isAllowed = !isTrial || TRIAL_TOPICS.includes(item.tema);
-                    const isCurrent = activeTema === item.tema;
-                    return (
-                      <button
-                        type="button"
-                        key={item.tema}
-                        onClick={() => {
-                          if (isAllowed) {
-                            handleSelectTema(item.tema);
+              {!modalLoading && (() => {
+                const topicsFase1 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 1);
+                const topicsFase2 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 2);
+                const topicsFase3 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 3);
+                const topicsFase4 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 4);
+
+                const approvedFase1 = topicsFase1.filter(t => completedExams.has(t.tema)).length;
+                const approvedFase2 = topicsFase2.filter(t => completedExams.has(t.tema)).length;
+                const approvedFase3 = topicsFase3.filter(t => completedExams.has(t.tema)).length;
+                const approvedFase4 = topicsFase4.filter(t => completedExams.has(t.tema)).length;
+
+                const unlockedFase1 = true;
+                const unlockedFase2 = bypassLocks || approvedFase1 >= 6;
+                const unlockedFase3 = bypassLocks || (unlockedFase2 && approvedFase2 >= 4);
+                const unlockedFase4 = bypassLocks || (unlockedFase3 && approvedFase3 >= 4);
+                const unlockedFase5 = bypassLocks || (unlockedFase4 && approvedFase4 >= 10);
+
+                return (
+                  <>
+                    {/* FASE 1 */}
+                    <PhaseSection
+                      number={1}
+                      title="Cimientos y Numeración Básica"
+                      subtitle="Asegura las bases operativas, ortografía básica y sistemas de conteo."
+                      unlocked={unlockedFase1}
+                      approvedCount={approvedFase1}
+                      totalCount={topicsFase1.length}
+                      topics={topicsFase1}
+                      completedExams={completedExams}
+                      activeTema={activeTema}
+                      pregunta={pregunta}
+                      handleSelectTema={handleSelectTema}
+                      setShowTopicModal={setShowTopicModal}
+                      userProgress={userProgress}
+                      bypassLocks={bypassLocks}
+                    />
+
+                    {/* FASE 2 */}
+                    <PhaseSection
+                      number={2}
+                      title="Fraccionamiento Aritmético"
+                      subtitle="Conceptos elementales de partición, múltiplos y morfología verbal básica."
+                      unlocked={unlockedFase2}
+                      requiredText="Aprobar al menos 6 temas de la Fase 1 para desbloquear."
+                      approvedCount={approvedFase2}
+                      totalCount={topicsFase2.length}
+                      topics={topicsFase2}
+                      completedExams={completedExams}
+                      activeTema={activeTema}
+                      pregunta={pregunta}
+                      handleSelectTema={handleSelectTema}
+                      setShowTopicModal={setShowTopicModal}
+                      userProgress={userProgress}
+                      bypassLocks={bypassLocks}
+                    />
+
+                    {/* FASE 3 */}
+                    <PhaseSection
+                      number={3}
+                      title="Operaciones Complejas e Inferencia"
+                      subtitle="La fracción del resto, decimales y análisis inferencial discursivo."
+                      unlocked={unlockedFase3}
+                      requiredText="Aprobar al menos 4 temas de la Fase 2 para desbloquear."
+                      approvedCount={approvedFase3}
+                      totalCount={topicsFase3.length}
+                      topics={topicsFase3}
+                      completedExams={completedExams}
+                      activeTema={activeTema}
+                      pregunta={pregunta}
+                      handleSelectTema={handleSelectTema}
+                      setShowTopicModal={setShowTopicModal}
+                      userProgress={userProgress}
+                      bypassLocks={bypassLocks}
+                    />
+
+                    {/* FASE 4 */}
+                    <PhaseSection
+                      number={4}
+                      title="Geometría Compuesta y Producción Textual"
+                      subtitle="Perímetros irregulares, ángulos consecutivos y redacción bajo consignas restrictivas."
+                      unlocked={unlockedFase4}
+                      requiredText="Aprobar al menos 4 temas de la Fase 3 para desbloquear."
+                      approvedCount={approvedFase4}
+                      totalCount={topicsFase4.length}
+                      topics={topicsFase4}
+                      completedExams={completedExams}
+                      activeTema={activeTema}
+                      pregunta={pregunta}
+                      handleSelectTema={handleSelectTema}
+                      setShowTopicModal={setShowTopicModal}
+                      userProgress={userProgress}
+                      bypassLocks={bypassLocks}
+                    />
+
+                    {/* FASE 5 */}
+                    <div style={{
+                      padding: "20px",
+                      borderRadius: "12px",
+                      background: unlockedFase5 
+                        ? "linear-gradient(135deg, #1e152a 0%, #301740 50%, #4c1d63 100%)" 
+                        : "rgba(255,255,255,0.01)",
+                      border: unlockedFase5 
+                        ? "1px solid #d97706" 
+                        : "1px solid rgba(255,255,255,0.03)",
+                      boxShadow: unlockedFase5 ? "0 4px 20px rgba(217, 119, 6, 0.15)" : "none",
+                      opacity: unlockedFase5 ? 1 : 0.6,
+                      transition: "all 300ms ease",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "12px"
+                    }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                        <div>
+                          <h4 style={{ margin: 0, fontSize: "1.1rem", fontWeight: "700", color: unlockedFase5 ? "#fbbf24" : "#94a3b8" }}>
+                            Fase 5: Simulación Extrema (Examen Real)
+                          </h4>
+                          <p style={{ margin: "4px 0 0 0", fontSize: "0.82rem", color: unlockedFase5 ? "#e9d5ff" : "#64748b" }}>
+                            Exámenes históricos completos simulados bajo condiciones estrictas del Colegio Monserrat.
+                          </p>
+                        </div>
+                        <span style={{ fontSize: "1.5rem" }}>{unlockedFase5 ? "🏆" : "🔒"}</span>
+                      </div>
+
+                      {!unlockedFase5 && (
+                        <div style={{ fontSize: "0.8rem", color: "#94a3b8", display: "flex", alignItems: "center", gap: "6px", background: "rgba(0,0,0,0.2)", padding: "8px 12px", borderRadius: "6px", border: "1px dashed rgba(255,255,255,0.05)" }}>
+                          <span>🔒</span> Requiere completar y aprobar al menos 10 temas de la Fase 4 para habilitar el Aula Magna.
+                        </div>
+                      )}
+
+                      {unlockedFase5 && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            handleSelectTema(topicsFase4[0]?.tema || "graficos_estadisticos");
                             setShowTopicModal(false);
-                          }
-                        }}
-                        disabled={!isAllowed || isCurrent}
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          alignItems: "center",
-                          padding: "10px 14px",
-                          borderRadius: "8px",
-                          border: isCurrent ? "1px solid var(--primary, #8b5cf6)" : "1px solid var(--line, #2a2636)",
-                          background: isCurrent ? "var(--soft-purple, #1e1a2e)" : isAllowed ? "var(--panel, #1a1725)" : "rgba(255,255,255,0.02)",
-                          color: isAllowed ? "#e8e4f0" : "var(--muted, #9590a6)",
-                          textAlign: "left",
-                          cursor: isAllowed ? "pointer" : "not-allowed",
-                          fontSize: "0.88rem",
-                          transition: "all 150ms ease"
-                        }}
-                      >
-                        <span style={{ fontWeight: isCurrent ? "600" : "400" }}>
-                          {item.tema.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
-                        </span>
-                        <span>
-                          {isCurrent ? "👉 Practicando" : isAllowed ? "Entrar" : "🔒 Premium"}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
+                          }}
+                          style={{
+                            padding: "10px 16px",
+                            borderRadius: "8px",
+                            background: "linear-gradient(135deg, #d97706 0%, #f59e0b 100%)",
+                            color: "#110d24",
+                            fontWeight: "700",
+                            border: "none",
+                            cursor: "pointer",
+                            textAlign: "center",
+                            fontSize: "0.88rem",
+                            boxShadow: "0 4px 12px rgba(245, 158, 11, 0.3)",
+                            alignSelf: "start"
+                          }}
+                        >
+                          Ingresar al Aula Magna (Simulación Oficial) →
+                        </button>
+                      )}
+                    </div>
+                  </>
+                );
+              })()}
             </div>
 
             {/* Trial Banner Footer */}
             {pregunta?.plan === "trial" && (
-              <div style={{ padding: "12px 20px", background: "rgba(239, 68, 68, 0.05)", borderTop: "1px solid var(--line, #2a2636)", borderRadius: "0 0 12px 12px", fontSize: "0.8rem", color: "#fca5a5", textAlign: "center" }}>
-                💡 En la muestra gratuita tienes 4 temas disponibles. Activa el Acceso Completo para desbloquear los 37 temas.
+              <div style={{ padding: "12px 20px", background: "rgba(239, 68, 68, 0.05)", borderTop: "1px solid #2a204d", borderRadius: "0 0 16px 16px", fontSize: "0.8rem", color: "#fca5a5", textAlign: "center" }}>
+                💡 En la muestra gratuita tienes 4 temas disponibles. Activa el Acceso Completo para desbloquear el camino de 5 fases.
               </div>
             )}
           </div>
         </div>
       )}
+      {showHelpModal && (
+        <div className="topic-modal-overlay" onClick={() => setShowHelpModal(false)} style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(11, 8, 26, 0.85)", zIndex: 1000, display: "flex", justifyContent: "center", alignItems: "center", backdropFilter: "blur(6px)" }}>
+          <div className="topic-modal-card" onClick={(e) => e.stopPropagation()} style={{ background: "#110d24", border: "1px solid #2a204d", borderRadius: "16px", width: "min(840px, 95%)", maxHeight: "88vh", display: "flex", flexDirection: "column", boxShadow: "0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(99, 102, 241, 0.15)" }}>
+            
+            {/* Header */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 24px", borderBottom: "1px solid #2a204d" }}>
+              <div>
+                <h3 style={{ margin: 0, fontSize: "1.3rem", fontWeight: "700", color: "#ffffff", letterSpacing: "-0.3px", display: "flex", alignItems: "center", gap: "10px" }}>
+                  <span>📖</span> {deckTeoria.titulo}
+                </h3>
+                <p style={{ margin: "4px 0 0 0", fontSize: "0.82rem", color: "#a59ec9" }}>Material de apoyo teórico y descargas oficiales</p>
+              </div>
+              <button type="button" onClick={() => setShowHelpModal(false)} style={{ background: "transparent", border: "none", color: "#9590a6", fontSize: "1.8rem", cursor: "pointer", transition: "color 150ms", padding: "0 4px" }}>&times;</button>
+            </div>
+
+            {/* Tabs selector */}
+            <div style={{ display: "flex", borderBottom: "1px solid #2a204d", padding: "0 24px", background: "rgba(0,0,0,0.15)" }}>
+              {[
+                { id: "slides", label: "🛝 Diapositivas" },
+                { id: "theory", label: "📚 Apunte Teórico" },
+                { id: "pdf", label: "📥 Descargar Ficha PDF" }
+              ].map(tab => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setHelpTab(tab.id)}
+                  style={{
+                    padding: "14px 20px",
+                    background: "transparent",
+                    border: "none",
+                    borderBottom: helpTab === tab.id ? "3px solid #8b5cf6" : "3px solid transparent",
+                    color: helpTab === tab.id ? "#ffffff" : "#9590a6",
+                    fontWeight: "600",
+                    fontSize: "0.88rem",
+                    cursor: "pointer",
+                    transition: "all 150ms ease"
+                  }}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Content Area */}
+            <div style={{ padding: "24px", overflowY: "auto", flex: 1, display: "flex", flexDirection: "column" }}>
+              
+              {helpTab === "slides" && (() => {
+                const currentSlide = deckTeoria.slides[currentSlideIndex];
+                if (!currentSlide) return <p>No hay diapositivas disponibles.</p>;
+                return (
+                  <div style={{ display: "flex", flexDirection: "column", gap: "20px", flex: 1 }}>
+                    <div style={{ display: "grid", gridTemplateColumns: currentSlide.visualizacion ? "1fr 1fr" : "1fr", gap: "24px", alignItems: "center" }}>
+                      
+                      {/* Texto */}
+                      <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+                        <h4 style={{ color: "#ffffff", fontSize: "1.15rem", fontWeight: "700", margin: 0 }}>
+                          {currentSlideIndex + 1}. {currentSlide.titulo}
+                        </h4>
+                        <p style={{ color: "#e8e4f0", fontSize: "0.92rem", lineHeight: "1.6", margin: 0, whiteSpace: "pre-line" }}>
+                          {parseInlineMarkdown(currentSlide.contenido)}
+                        </p>
+                        {currentSlide.concepto_clave && (
+                          <div style={{ background: "rgba(139, 92, 246, 0.1)", borderLeft: "4px solid #8b5cf6", padding: "10px 14px", borderRadius: "0 8px 8px 0", color: "#c084fc", fontSize: "0.85rem", fontWeight: "600", whiteSpace: "pre-line" }}>
+                            💡 {parseInlineMarkdown(currentSlide.concepto_clave)}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Visualización Interactiva */}
+                      {currentSlide.visualizacion && (
+                        <div style={{ background: "rgba(0,0,0,0.2)", border: "1px solid #2a204d", borderRadius: "12px", padding: "16px", display: "flex", justifyContent: "center", alignItems: "center", minHeight: "220px" }}>
+                          <VisualizacionMatematica tipo={currentSlide.visualizacion.tipo} datos={currentSlide.visualizacion.datos} />
+                        </div>
+                      )}
+
+                    </div>
+
+                    {/* Controles de Slide */}
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto", paddingTop: "20px", borderTop: "1px solid #2a204d" }}>
+                      <button
+                        type="button"
+                        onClick={() => setCurrentSlideIndex(prev => Math.max(0, prev - 1))}
+                        disabled={currentSlideIndex === 0}
+                        style={{
+                          padding: "8px 16px",
+                          borderRadius: "8px",
+                          background: "rgba(255,255,255,0.05)",
+                          border: "1px solid rgba(255,255,255,0.1)",
+                          color: currentSlideIndex === 0 ? "#64748b" : "#ffffff",
+                          fontWeight: "600",
+                          fontSize: "0.82rem",
+                          cursor: currentSlideIndex === 0 ? "not-allowed" : "pointer"
+                        }}
+                      >
+                        ← Anterior
+                      </button>
+
+                      {/* Puntos de Paginación */}
+                      <div style={{ display: "flex", gap: "6px" }}>
+                        {deckTeoria.slides.map((_, idx) => (
+                          <span
+                            key={idx}
+                            style={{
+                              width: "8px",
+                              height: "8px",
+                              borderRadius: "50%",
+                              background: idx === currentSlideIndex ? "#8b5cf6" : "rgba(255,255,255,0.15)",
+                              transition: "all 200ms ease"
+                            }}
+                          />
+                        ))}
+                      </div>
+
+                      {currentSlideIndex < deckTeoria.slides.length - 1 ? (
+                        <button
+                          type="button"
+                          onClick={() => setCurrentSlideIndex(prev => prev + 1)}
+                          style={{
+                            padding: "8px 16px",
+                            borderRadius: "8px",
+                            background: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)",
+                            color: "#ffffff",
+                            fontWeight: "600",
+                            fontSize: "0.82rem",
+                            border: "none",
+                            cursor: "pointer"
+                          }}
+                        >
+                          Siguiente →
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => setShowHelpModal(false)}
+                          style={{
+                            padding: "8px 20px",
+                            borderRadius: "8px",
+                            background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+                            color: "#ffffff",
+                            fontWeight: "700",
+                            fontSize: "0.82rem",
+                            border: "none",
+                            cursor: "pointer",
+                            boxShadow: "0 4px 10px rgba(16, 185, 129, 0.2)"
+                          }}
+                        >
+                          ¡Entendido! Comenzar clase
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                );
+              })()}
+
+              {helpTab === "theory" && (
+                <div style={{ color: "#e8e4f0", fontSize: "0.95rem", lineHeight: "1.6" }}>
+                  <div style={{ background: "rgba(255, 255, 255, 0.02)", border: "1px solid #2a204d", borderRadius: "12px", padding: "20px" }}>
+                    <MarkdownRenderer content={deckTeoria.apunte_completo} />
+                  </div>
+                </div>
+              )}
+
+              {helpTab === "pdf" && (
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "20px", padding: "40px 20px", textAlign: "center" }}>
+                  <span style={{ fontSize: "3.5rem" }}>📄</span>
+                  <div>
+                    <h4 style={{ color: "#ffffff", fontSize: "1.2rem", fontWeight: "700", margin: "0 0 8px 0" }}>Ficha Imprimible de Estudio</h4>
+                    <p style={{ color: "#a59ec9", fontSize: "0.88rem", margin: 0, maxWidth: "450px" }}>
+                      Descarga este apunte completo en formato PDF listo para imprimir. Ideal para estudiar en papel, realizar anotaciones y resolver ejercicios prácticos a mano.
+                    </p>
+                  </div>
+                  <a
+                    href={deckTeoria.pdf_url}
+                    download
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      padding: "12px 24px",
+                      background: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)",
+                      color: "#ffffff",
+                      fontWeight: "700",
+                      fontSize: "0.9rem",
+                      borderRadius: "8px",
+                      textDecoration: "none",
+                      boxShadow: "0 4px 15px rgba(139, 92, 246, 0.3)",
+                      transition: "transform 200ms ease"
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-1px)"}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = "none"}
+                  >
+                    📥 Descargar Archivo PDF
+                  </a>
+                </div>
+              )}
+
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
+}
+
+function cleanMathExpressions(mathContent) {
+  let clean = mathContent;
+  // Replace \pm with ±
+  clean = clean.replace(/\\pm/g, " ± ");
+  // Replace \times with × and \div with ÷
+  clean = clean.replace(/\\times/g, " × ");
+  clean = clean.replace(/\\div/g, " ÷ ");
+  // Replace \rightarrow with →
+  clean = clean.replace(/\\rightarrow/g, " → ");
+  // Replace \frac{a}{b} with a/b, wrapping in parentheses if it has operations
+  clean = clean.replace(/\\frac\s*\{([^{}]+)\}\s*\{([^{}]+)\}/g, (m, p1, p2) => {
+    const numCleaned = cleanMathExpressions(p1.trim());
+    const denCleaned = cleanMathExpressions(p2.trim());
+    const num = numCleaned.includes("+") || numCleaned.includes("-") || numCleaned.includes(" ") || numCleaned.includes("×") || numCleaned.includes("÷") || numCleaned.includes("±") || numCleaned.includes("→") ? `(${numCleaned})` : numCleaned;
+    const den = denCleaned.includes("+") || denCleaned.includes("-") || denCleaned.includes(" ") || denCleaned.includes("×") || denCleaned.includes("÷") || denCleaned.includes("±") || denCleaned.includes("→") ? `(${denCleaned})` : denCleaned;
+    return `${num}/${den}`;
+  });
+  // Replace \text{something} with something
+  clean = clean.replace(/\\text\s*\{([^{}]+)\}/g, "$1");
+  // Replace \quad with spaces
+  clean = clean.replace(/\\quad/g, "  ");
+  return clean;
+}
+
+function cleanMathText(text) {
+  if (text === null || text === undefined) return "";
+  let s = String(text);
+  
+  // Parse block math $$...$$
+  s = s.replace(/\$\$(.*?)\$\$/g, (match, mathContent) => {
+    return cleanMathExpressions(mathContent);
+  });
+  
+  // Parse inline math $...$
+  s = s.replace(/\$(.*?)\$/g, (match, mathContent) => {
+    return cleanMathExpressions(mathContent);
+  });
+  
+  return s;
+}
+
+function parseInlineMarkdown(text) {
+  if (text === null || text === undefined) return "";
+  const cleaned = cleanMathText(String(text));
+  if (!cleaned.includes("**")) return cleaned;
+  
+  const parts = cleaned.split(/\*\*([\s\S]*?)\*\*/g);
+  return parts.map((part, index) => {
+    if (index % 2 === 1) {
+      return <strong key={index} style={{ fontWeight: "700" }}>{part}</strong>;
+    }
+    return part;
+  });
+}
+
+function MarkdownRenderer({ content }) {
+  if (!content) return null;
+
+  const lines = content.split("\n");
+  const parsedElements = [];
+  let currentList = [];
+
+  const renderList = (key) => {
+    if (currentList.length > 0) {
+      parsedElements.push(
+        <ul key={`list-${key}`} style={{ marginLeft: "20px", marginBottom: "16px", listStyleType: "disc" }}>
+          {currentList.map((item, index) => (
+            <li key={index} style={{ marginBottom: "6px", lineHeight: "1.5", color: "#e8e4f0" }}>
+              {renderInlineStyles(item)}
+            </li>
+          ))}
+        </ul>
+      );
+      currentList = [];
+    }
+  };
+
+  const renderInlineStyles = (text) => {
+    const cleaned = cleanMathText(text);
+    const parts = cleaned.split(/\*\*([\s\S]*?)\*\*/g);
+    return parts.map((part, index) => {
+      if (index % 2 === 1) {
+        return <strong key={index} style={{ color: "#ffffff", fontWeight: "700" }}>{part}</strong>;
+      }
+      return part;
+    });
+  };
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index].trim();
+
+    if (!line) {
+      if (currentList.length > 0) renderList(index);
+      continue;
+    }
+
+    if (line.startsWith("- ") || line.startsWith("* ")) {
+      currentList.push(line.slice(2));
+      continue;
+    } else if (currentList.length > 0) {
+      renderList(index);
+    }
+
+    if (line.startsWith("$$")) {
+      let formula = line;
+      if (line.endsWith("$$") && line.length > 4) {
+        formula = line.slice(2, -2);
+      } else {
+        formula = line.replace(/^\$\$/, "").replace(/\$\$/, "");
+      }
+      parsedElements.push(
+        <div key={index} style={{
+          textAlign: "center",
+          margin: "16px 0",
+          padding: "12px",
+          backgroundColor: "var(--soft-purple, #1e1a2e)",
+          borderRadius: "8px",
+          border: "1px solid var(--line, #2a2636)",
+          fontFamily: "monospace",
+          fontSize: "1.1rem",
+          color: "var(--primary, #8b5cf6)",
+          fontWeight: "600",
+          letterSpacing: "0.5px"
+        }}>
+          {cleanMathExpressions(formula)}
+        </div>
+      );
+    } else if (line.startsWith("### ")) {
+      parsedElements.push(
+        <h3 key={index} style={{ color: "#ffffff", fontSize: "1.2rem", fontWeight: "700", marginTop: "20px", marginBottom: "10px", borderBottom: "1px solid rgba(255,255,255,0.08)", paddingBottom: "6px" }}>
+          {renderInlineStyles(line.slice(4))}
+        </h3>
+      );
+    } else if (line.startsWith("#### ")) {
+      parsedElements.push(
+        <h4 key={index} style={{ color: "#e8e4f0", fontSize: "1.05rem", fontWeight: "600", marginTop: "16px", marginBottom: "6px" }}>
+          {renderInlineStyles(line.slice(5))}
+        </h4>
+      );
+    } else if (line.startsWith("## ")) {
+      parsedElements.push(
+        <h2 key={index} style={{ color: "#ffffff", fontSize: "1.4rem", fontWeight: "700", marginTop: "24px", marginBottom: "12px" }}>
+          {renderInlineStyles(line.slice(3))}
+        </h2>
+      );
+    } else if (line.startsWith("# ")) {
+      parsedElements.push(
+        <h1 key={index} style={{ color: "#ffffff", fontSize: "1.6rem", fontWeight: "700", marginTop: "24px", marginBottom: "12px", borderBottom: "1px solid rgba(255,255,255,0.1)", paddingBottom: "8px" }}>
+          {renderInlineStyles(line.slice(2))}
+        </h1>
+      );
+    } else {
+      parsedElements.push(
+        <p key={index} style={{ color: "#e8e4f0", fontSize: "0.95rem", lineHeight: "1.6", marginBottom: "12px" }}>
+          {renderInlineStyles(line)}
+        </p>
+      );
+    }
+  }
+
+  if (currentList.length > 0) renderList(lines.length);
+
+  return <div className="markdown-body" style={{ padding: "8px 0" }}>{parsedElements}</div>;
 }
 
 function TutorHeader({ tutor }) {
@@ -655,7 +1311,7 @@ function TutorMessage({ tutor, mensaje }) {
       />
       <div>
         <strong style={{ color: tutor.color }}>{tutor.nombre}</strong>
-        <p>{mensaje}</p>
+        <p>{parseInlineMarkdown(mensaje)}</p>
       </div>
     </div>
   );
@@ -741,6 +1397,10 @@ function visualizacionParaTema(tema = "", texto = "") {
 
   if (temaNormalizado.includes("fracciones_concepto") || temaNormalizado.includes("decimales_conversion")) {
     return { tipo: "fraccion_pizza", datos: extraerFracciones(texto)[0] || { numerador: 1, denominador: 2, titulo: "Una parte del total" } };
+  }
+
+  if (temaNormalizado.includes("circunferencia") || temaNormalizado.includes("circulo") || temaNormalizado.includes("pi")) {
+    return { tipo: "circulo_geometria", datos: {} };
   }
 
   if (temaNormalizado.includes("geometria_angulos")) {
@@ -883,7 +1543,7 @@ function extraerTodosLosNumeros(texto) {
   return Array.from(texto.matchAll(/\d+/g)).map((match) => Number(match[0])).filter((numero) => Number.isFinite(numero));
 }
 
-function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRespuesta, onRespuestaTexto, onSubmit }) {
+function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRespuesta, onRespuestaTexto, onSubmit, visualParaEjercicio }) {
   const tienePreguntas = pregunta.preguntas?.length > 0;
   const puedeEnviar = tienePreguntas
     ? pregunta.preguntas.every((item) => String(respuestas[item.id] || "").trim())
@@ -894,12 +1554,16 @@ function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRe
       <section className="exam-banner">
         <p className="eyebrow">Examen Final</p>
         <h2>{tema.replace(/_/g, " ")}</h2>
-        <p>{pregunta.instrucciones}</p>
+        <p>{parseInlineMarkdown(pregunta.instrucciones)}</p>
       </section>
 
       <section className="exam-card">
-        <p className="exam-statement">{pregunta.enunciado}</p>
-        {pregunta.visualizacion && <VisualizacionMatematica tipo={pregunta.visualizacion.tipo} datos={pregunta.visualizacion.datos} />}
+        <p className="exam-statement">{parseInlineMarkdown(pregunta.enunciado)}</p>
+        {pregunta.visualizacion ? (
+          <VisualizacionMatematica tipo={pregunta.visualizacion.tipo} datos={pregunta.visualizacion.datos} />
+        ) : (
+          visualParaEjercicio && <VisualizacionMatematica tipo={visualParaEjercicio.tipo} datos={visualParaEjercicio.datos} />
+        )}
       </section>
 
       <section className="exam-card exam-answers">
@@ -907,7 +1571,7 @@ function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRe
           pregunta.preguntas.map((item) => (
             <label key={item.id} className="exam-question">
               <span>
-                {item.id}) {item.texto}
+                {item.id}) {parseInlineMarkdown(item.texto)}
               </span>
               <input
                 type="text"
@@ -1077,4 +1741,184 @@ function emojiForContext(contexto = "") {
   if (text.includes("grafico")) return "📊";
   if (text.includes("ortografia")) return "📚";
   return "🟢";
+}
+
+function PhaseSection({
+  number,
+  title,
+  subtitle,
+  unlocked,
+  requiredText,
+  approvedCount,
+  totalCount,
+  topics,
+  completedExams,
+  activeTema,
+  pregunta,
+  handleSelectTema,
+  setShowTopicModal,
+  userProgress,
+  bypassLocks
+}) {
+  const progressPercent = totalCount ? Math.round((approvedCount / totalCount) * 100) : 0;
+  const isCompleted = approvedCount === totalCount && totalCount > 0;
+
+  return (
+    <div style={{
+      padding: "20px",
+      borderRadius: "12px",
+      background: unlocked ? "rgba(30, 26, 50, 0.4)" : "rgba(255,255,255,0.01)",
+      border: unlocked 
+        ? isCompleted 
+          ? "1px solid #10b981" 
+          : activeTema && topics.some(t => t.tema === activeTema) 
+            ? "1px solid #6366f1" 
+            : "1px solid #2a204d" 
+        : "1px solid rgba(255,255,255,0.03)",
+      opacity: unlocked ? 1 : 0.55,
+      transition: "all 200ms ease",
+      boxShadow: unlocked && isCompleted ? "0 0 15px rgba(16, 185, 129, 0.08)" : "none",
+      display: "flex",
+      flexDirection: "column",
+      gap: "16px"
+    }}>
+      {/* Cabecera */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start", flexWrap: "wrap", gap: "10px" }}>
+        <div>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <span style={{
+              fontSize: "0.72rem",
+              fontWeight: "700",
+              textTransform: "uppercase",
+              letterSpacing: "0.05em",
+              color: unlocked 
+                ? isCompleted 
+                  ? "#10b981" 
+                  : "#a855f7" 
+                : "#64748b",
+              background: unlocked 
+                ? isCompleted 
+                  ? "rgba(16, 185, 129, 0.1)" 
+                  : "rgba(168, 85, 247, 0.1)" 
+                : "rgba(255,255,255,0.03)",
+              padding: "2px 8px",
+              borderRadius: "12px",
+              border: unlocked 
+                ? isCompleted 
+                  ? "1px solid rgba(16, 185, 129, 0.2)" 
+                  : "1px solid rgba(168, 85, 247, 0.2)" 
+                : "1px solid rgba(255,255,255,0.05)"
+            }}>
+              Fase {number}
+            </span>
+            {isCompleted && <span style={{ fontSize: "0.8rem", color: "#fbbf24", fontWeight: "600" }}>🏆 Completada</span>}
+          </div>
+          <h4 style={{ margin: "6px 0 0 0", fontSize: "1.1rem", fontWeight: "700", color: unlocked ? "#ffffff" : "#64748b" }}>{title}</h4>
+          <p style={{ margin: "2px 0 0 0", fontSize: "0.78rem", color: unlocked ? "#a59ec9" : "#64748b" }}>{subtitle}</p>
+        </div>
+
+        {unlocked && (
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <div style={{ fontSize: "0.8rem", color: "#a59ec9", textAlign: "right" }}>
+              <strong>{approvedCount} de {totalCount}</strong> temas
+            </div>
+            <div style={{ width: "36px", height: "36px", borderRadius: "50%", background: "#110d24", border: "2px solid #2a204d", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "0.75rem", fontWeight: "700", color: isCompleted ? "#10b981" : "#a855f7" }}>
+              {progressPercent}%
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Candado / Bloqueo */}
+      {!unlocked && (
+        <div style={{ fontSize: "0.82rem", color: "#94a3b8", display: "flex", alignItems: "center", gap: "8px", background: "rgba(0,0,0,0.15)", padding: "10px 14px", borderRadius: "8px", border: "1px dashed rgba(255,255,255,0.04)" }}>
+          <span style={{ fontSize: "1rem" }}>🔒</span>
+          <span>{requiredText}</span>
+        </div>
+      )}
+
+      {/* Grid de Temas */}
+      {unlocked && (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "8px" }}>
+          {topics.map((item) => {
+            const isTrial = pregunta?.plan === "trial";
+            const isAllowed = bypassLocks || !isTrial || TRIAL_TOPICS.includes(item.tema);
+            const isCurrent = activeTema === item.tema;
+            const isApproved = completedExams.has(item.tema);
+            
+            // Buscar estadísticas de progreso del tema
+            const prog = userProgress.find((p) => p.tema === item.tema);
+            const tasa = prog ? Math.round(Number(prog.tasa_acierto)) : null;
+
+            return (
+              <button
+                type="button"
+                key={item.tema}
+                onClick={() => {
+                  if (isAllowed) {
+                    handleSelectTema(item.tema);
+                    setShowTopicModal(false);
+                  }
+                }}
+                disabled={!isAllowed || isCurrent}
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  padding: "8px 12px",
+                  borderRadius: "8px",
+                  border: isCurrent 
+                    ? "1px solid #8b5cf6" 
+                    : isApproved 
+                      ? "1px solid rgba(16, 185, 129, 0.3)" 
+                      : "1px solid #2a204d",
+                  background: isCurrent 
+                    ? "rgba(139, 92, 246, 0.08)" 
+                    : isApproved 
+                      ? "rgba(16, 185, 129, 0.03)" 
+                      : isAllowed 
+                        ? "#15112a" 
+                        : "rgba(255,255,255,0.01)",
+                  color: isAllowed ? "#e8e4f0" : "#64748b",
+                  textAlign: "left",
+                  cursor: isAllowed ? "pointer" : "not-allowed",
+                  fontSize: "0.82rem",
+                  transition: "all 150ms ease"
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "6px", maxWidth: "70%" }}>
+                  <span style={{ fontSize: "0.95rem" }}>
+                    {item.materia === "lengua" ? "✍️" : "🔢"}
+                  </span>
+                  <span style={{ 
+                    fontWeight: isCurrent ? "700" : "500", 
+                    overflow: "hidden", 
+                    textOverflow: "ellipsis", 
+                    whiteSpace: "nowrap" 
+                  }}>
+                    {item.tema.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
+                  </span>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "0.75rem" }}>
+                  {isCurrent ? (
+                    <span style={{ color: "#a855f7", fontWeight: "600" }}>Estudiando</span>
+                  ) : isApproved ? (
+                    <span style={{ color: "#10b981", fontWeight: "600", display: "flex", alignItems: "center", gap: "3px" }}>
+                      ✓ {tasa ? `${tasa}%` : ""}
+                    </span>
+                  ) : isAllowed ? (
+                    <span style={{ color: "#a59ec9" }}>
+                      {tasa ? `Prac. ${tasa}%` : "Iniciar"}
+                    </span>
+                  ) : (
+                    <span style={{ color: "#64748b" }}>🔒 Premium</span>
+                  )}
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
 }

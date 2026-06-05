@@ -18,6 +18,8 @@ import {
   tareaToResponse,
 } from "@/lib/tareas-manuscritas";
 
+import { checkDailyRateLimit } from "@/lib/rateLimit";
+
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
   if (!requireAccess(req, res, ["student", "admin"])) return;
@@ -38,15 +40,28 @@ export default async function handler(req, res) {
 
   try {
     const supabase = getSupabaseAdmin();
-    const reingreso = isCurriculumTopic(tema)
-      ? { tema, capa: capa ? Number(capa) : null }
-      : await resolverTemaDeReingreso(supabase, user_id);
-    let temaActual = reingreso.tema;
+
+    // Validar límite diario de abuso/seguridad para llamadas de IA
+    const rateLimit = await checkDailyRateLimit(supabase, user_id);
+    if (!rateLimit.ok) {
+      return res.status(429).json({ error: rateLimit.error });
+    }
 
     const usuario = assertSupabaseOk(
       await supabase.from("usuarios").select("*").eq("id", user_id).single(),
       "No se pudo obtener el usuario"
     );
+
+    // Si no se especificó un tema en la petición, y hay una sugerencia activa del padre, priorizarla
+    const activeSuggested = usuario.rasgos_especiales?.tema_sugerido;
+    const hasActiveSugerencia = activeSuggested && !activeSuggested.completado && isCurriculumTopic(activeSuggested.tema);
+
+    const reingreso = isCurriculumTopic(tema)
+      ? { tema, capa: capa ? Number(capa) : null }
+      : hasActiveSugerencia
+        ? { tema: activeSuggested.tema, capa: null }
+        : await resolverTemaDeReingreso(supabase, user_id);
+    let temaActual = reingreso.tema;
 
     let capaActual = Number(reingreso.capa) || (capa ? Number(capa) : null);
     if (!capaActual || capaActual <= 0) {
@@ -253,6 +268,7 @@ IMPORTANTE:
       opciones: preguntaJson.opciones || null,
       indicaciones_visuales: preguntaJson.indicaciones_visuales || null,
       tiempo_estimado: preguntaJson.tiempo_estimado || 5,
+      tema_sugerido: usuario.rasgos_especiales?.tema_sugerido || null,
     });
   } catch (error) {
     console.error(error);

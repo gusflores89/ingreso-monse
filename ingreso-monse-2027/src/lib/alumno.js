@@ -14,6 +14,7 @@ export function buildAlumnoProfile(usuario = {}) {
     avatar: usuario.avatar || "buho",
     nombre_tutor: usuario.nombre_tutor || "Buho",
     color_tema: usuario.color_tema || "#D85A30",
+    modo_paciente: !!rasgos.modo_paciente,
   };
 }
 

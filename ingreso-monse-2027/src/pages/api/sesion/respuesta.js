@@ -20,6 +20,8 @@ import { requireMethod } from "@/lib/http";
 import { requireAccess } from "@/lib/access";
 import { buildAlumnoProfile } from "@/lib/alumno";
 
+import { checkDailyRateLimit } from "@/lib/rateLimit";
+
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
   if (!requireAccess(req, res, ["student", "admin"])) return;
@@ -37,6 +39,12 @@ export default async function handler(req, res) {
       await supabase.from("sesiones").select("*").eq("id", sesion_id).single(),
       "No se pudo obtener la sesion"
     );
+
+    // Validar límite diario de abuso/seguridad para llamadas de IA
+    const rateLimit = await checkDailyRateLimit(supabase, sesion.user_id);
+    if (!rateLimit.ok) {
+      return res.status(429).json({ error: rateLimit.error });
+    }
 
     const contexto = sesion.contexto_json || {
       tema: sesion.tema,
@@ -106,6 +114,25 @@ export default async function handler(req, res) {
           .eq("id", sesion_id),
         "No se pudo guardar la decision del examen final"
       );
+
+      const activeSuggested = usuario.rasgos_especiales?.tema_sugerido;
+      if (activeSuggested && !activeSuggested.completado && activeSuggested.tema === sesion.tema && resultadoExamen.es_correcta) {
+        const updatedRasgos = {
+          ...usuario.rasgos_especiales,
+          tema_sugerido: {
+            ...activeSuggested,
+            completado: true,
+            completado_el: new Date().toISOString()
+          }
+        };
+        await supabase
+          .from("usuarios")
+          .update({
+            rasgos_especiales: updatedRasgos,
+            updated_at: new Date().toISOString()
+          })
+          .eq("id", sesion.user_id);
+      }
 
       return res.status(200).json({
         es_correcta: resultadoExamen.es_correcta,
@@ -246,6 +273,25 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error y siguiente_p
     );
 
     const alerta = await maybeCreateAlert(supabase, sesion.user_id, decision.alerta);
+
+    const activeSuggested = usuario.rasgos_especiales?.tema_sugerido;
+    if (activeSuggested && !activeSuggested.completado && activeSuggested.tema === sesion.tema && Boolean(evaluacion.es_correcta)) {
+      const updatedRasgos = {
+        ...usuario.rasgos_especiales,
+        tema_sugerido: {
+          ...activeSuggested,
+          completado: true,
+          completado_el: new Date().toISOString()
+        }
+      };
+      await supabase
+        .from("usuarios")
+        .update({
+          rasgos_especiales: updatedRasgos,
+          updated_at: new Date().toISOString()
+        })
+        .eq("id", sesion.user_id);
+    }
 
     res.status(200).json({
       es_correcta: Boolean(evaluacion.es_correcta),

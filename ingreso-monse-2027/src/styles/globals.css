@@ -314,9 +314,15 @@ textarea {
   min-height: 54px;
   border: 2px solid var(--line);
   border-radius: 8px;
-  background: #ffffff;
+  background: var(--panel);
   color: var(--ink);
   padding: 14px 16px;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.65;
 }
 
 textarea {
@@ -3162,233 +3168,353 @@ label small {
    STUDENT WORKSPACE - Sleek Gamer Dark Mode Readability Overrides
    ========================================================================== */
 
-.student-workspace {
+  /* Tutor Feedback Card styling in dark mode */
+.student-workspace .feedback {
+    background: var(--panel) !important; /* Premium dark background */
+    border: 1px solid var(--line) !important;
+    box-shadow: var(--shadow), var(--glow) !important;
+}
+
+
+.student-workspace .feedback.correct {
+    border-left: 6px solid var(--success) !important;
+    background: var(--soft-green) !important; /* Dark green background */
+}
+
+
+.student-workspace .feedback.review {
+    border-left: 6px solid var(--tertiary) !important;
+    background: var(--soft-orange) !important; /* Dark orange background */
+}
+
+
+.student-workspace .feedback p {
+    color: var(--ink) !important; /* High legibility light lavender/white text */
+}
+
+
+.student-workspace .feedback strong {
+    color: #ffffff !important; /* Bright white for emphasis */
+}
+
+
+  /* Lesson Close Card styling in dark mode */
+.student-workspace .lesson-close {
+    background: var(--soft-purple) !important; /* Dark theme soft-purple background */
+    border: 1px solid var(--line) !important;
+    color: var(--ink) !important; /* Light text for readability */
+    text-align: center;
+}
+
+
+  /* Final Exam styling in dark mode */
+.student-workspace .exam-banner {
+    border-color: var(--line) !important;
+    background: var(--soft-orange) !important; /* Soft dark orange */
+}
+
+
+.student-workspace .exam-banner h2 {
+    color: var(--tertiary) !important; /* Vibrant orange/gold */
+}
+
+
+.student-workspace .exam-banner p:not(.eyebrow) {
+    color: var(--muted) !important;
+}
+
+
+.student-workspace .exam-card {
+    border-color: var(--line) !important;
+    background: var(--panel) !important; /* Dark panel background */
+}
+
+
+.student-workspace .exam-statement {
+    color: var(--ink) !important; /* Readable light lavender/white text */
+}
+
+
+.student-workspace .exam-question {
+    background: var(--panel) !important;
+    border-color: var(--line) !important;
+}
+
+
+.student-workspace .exam-question span {
+    color: var(--ink) !important;
+}
+
+
   /* 1. Lesson Answer (The exact card from user feedback) */
-  .lesson-answer {
+.student-workspace .lesson-answer {
     border-color: rgba(34, 197, 94, 0.3) !important;
     background: var(--soft-green) !important;
     color: var(--success) !important;
-  }
-  
-  .lesson-answer small {
+}
+
+
+.student-workspace .lesson-answer small {
     color: #86efac !important; /* Pastel glowing green, high legibility */
-  }
-  
-  .lesson-answer strong {
+}
+
+
+.student-workspace .lesson-answer strong {
     color: #ffffff !important; /* Pure white text for absolute readability */
-  }
+}
+
 
   /* 2. Key Concept Box */
-  .key-concept {
+.student-workspace .key-concept {
     border-color: rgba(245, 158, 11, 0.3) !important;
     border-left: 6px solid var(--tertiary) !important;
     background: var(--soft-orange) !important;
     color: var(--tertiary) !important;
-  }
+}
+
 
   /* 3. Hint Alert Box */
-  .hint {
+.student-workspace .hint {
     background: var(--soft-blue) !important;
     color: var(--secondary) !important; /* Vibrant neon-blue text */
-  }
+}
+
 
   /* 4. Lesson Tip / Reinforcement */
-  .lesson-reinforcement {
+.student-workspace .lesson-reinforcement {
     border-left: 5px solid var(--tertiary) !important;
     background: var(--soft-orange) !important;
     color: var(--ink) !important;
-  }
-  
-  .lesson-reinforcement span {
+}
+
+
+.student-workspace .lesson-reinforcement span {
     color: var(--tertiary) !important;
-  }
+}
+
 
   /* 5. Example Questions & Statement Boxes */
-  .example-question {
+.student-workspace .example-question {
     border-color: var(--line) !important;
-    background: var(--soft-purple) !important;
+    background: var(--panel) !important;
     color: var(--ink) !important;
-  }
+}
+
 
   /* 6. Exercise Tip Box */
-  .exercise-tip {
+.student-workspace .exercise-tip {
     border-color: rgba(245, 158, 11, 0.3) !important;
     background: var(--soft-orange) !important;
     color: var(--tertiary) !important;
-  }
+}
+
 
   /* 7. Math & Science Visual Graphics (SVG and Titles) */
   .svg-title,
   .svg-label,
-  .svg-small {
+.student-workspace .svg-small {
     fill: var(--ink) !important; /* Ensure SVG text is white/lavender instead of dark slate */
-  }
-  
+}
+
+
   .math-visual-title,
   .math-visual-result,
   .sequence-visual p,
-  .rest-row p {
+.student-workspace .rest-row p {
     color: var(--ink) !important;
-  }
-  
+}
+
+
   /* 8. Math Visual Outer Shells (Roman numerals, rest division, sequence) */
-  .roman-visual {
+.student-workspace .roman-visual {
     border-color: var(--line) !important;
-    background: var(--soft-purple) !important;
-  }
-  
-  .rest-visual {
+    background: var(--panel) !important;
+}
+
+
+.student-workspace .rest-visual {
     border-color: var(--line) !important;
     background: var(--soft-blue) !important;
-  }
-  
-  .rest-row span {
+}
+
+
+.student-workspace .rest-row span {
     border-color: var(--line) !important;
     background: var(--bg) !important;
-  }
-  
-  .rest-label {
+}
+
+
+.student-workspace .rest-label {
     color: var(--muted) !important;
-  }
-  
-  .rest-label.orange {
+}
+
+
+.student-workspace .rest-label.orange {
     color: var(--tertiary) !important;
-  }
-  
-  .rest-label.green {
+}
+
+
+.student-workspace .rest-label.green {
     color: var(--success) !important;
-  }
-  
-  .multiply-dot {
+}
+
+
+.student-workspace .multiply-dot {
     border-color: rgba(255, 255, 255, 0.15) !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-  }
+}
+
 
   /* 9. Solved Case Walkthroughs (PantallaCasoResuelto) */
-  .solved-case-title {
+.student-workspace .solved-case-title {
     border-color: rgba(245, 158, 11, 0.3) !important;
     background: var(--soft-orange) !important;
-  }
-  
-  .solved-case-title h2 {
+}
+
+
+.student-workspace .solved-case-title h2 {
     color: var(--tertiary) !important;
-  }
-  
-  .solved-problem-card {
+}
+
+
+.student-workspace .solved-problem-card {
     border-color: rgba(245, 158, 11, 0.3) !important;
     background: var(--panel) !important;
-  }
-  
-  .solved-problem-card p {
+}
+
+
+.student-workspace .solved-problem-card p {
     color: var(--ink) !important;
-  }
-  
-  .solved-step-card {
+}
+
+
+.student-workspace .solved-step-card {
     border-color: var(--line) !important;
     background: var(--panel) !important;
-  }
-  
-  .solved-step-card p {
+}
+
+
+.student-workspace .solved-step-card p {
     color: var(--ink) !important;
-  }
-  
-  .solved-step-card.current {
+}
+
+
+.student-workspace .solved-step-card.current {
     border-color: rgba(34, 197, 94, 0.35) !important;
     border-left-color: var(--success) !important;
     background: var(--soft-green) !important;
-  }
-  
-  .method-card {
+}
+
+
+.student-workspace .method-card {
     border-color: var(--line) !important;
     background: var(--panel) !important;
-  }
-  
-  .method-card h2 {
+}
+
+
+.student-workspace .method-card h2 {
     color: var(--primary) !important;
-  }
-  
-  .method-card > p:not(.eyebrow) {
+}
+
+
+.student-workspace .method-card > p:not(.eyebrow) {
     color: var(--muted) !important;
-  }
-  
-  .method-step {
+}
+
+
+.student-workspace .method-step {
     border-color: var(--line) !important;
     background: var(--panel) !important;
-  }
-  
-  .method-step > span {
+}
+
+
+.student-workspace .method-step > span {
     background: var(--soft-blue) !important;
-  }
-  
-  .method-step p {
+}
+
+
+.student-workspace .method-step p {
     color: var(--muted) !important;
-  }
+}
+
 
   /* 10. Notebook/Handwriting Worksheets (TareaManuscrita) */
-  .handwriting-hero {
-    border-color: var(--line) !important;
-    background: var(--soft-purple) !important;
-  }
-  
-  .handwriting-hero p {
-    color: var(--muted) !important;
-  }
-  
-  .handwriting-card {
+.student-workspace .handwriting-hero {
     border-color: var(--line) !important;
     background: var(--panel) !important;
-  }
-  
-  .handwriting-card p {
+}
+
+
+.student-workspace .handwriting-hero p {
+    color: var(--muted) !important;
+}
+
+
+.student-workspace .handwriting-card {
+    border-color: var(--line) !important;
+    background: var(--panel) !important;
+}
+
+
+.student-workspace .handwriting-card p {
     color: var(--ink) !important;
-  }
-  
+}
+
+
   .handwriting-panel.family,
-  .handwriting-panel.complete {
+.student-workspace .handwriting-panel.complete {
     border-color: rgba(245, 158, 11, 0.25) !important;
     background: var(--soft-orange) !important;
-  }
-  
-  .handwriting-panel.copy {
+}
+
+
+.student-workspace .handwriting-panel.copy {
     border-color: rgba(59, 130, 246, 0.25) !important;
     background: var(--soft-blue) !important;
-  }
-  
-  .handwriting-panel.story {
+}
+
+
+.student-workspace .handwriting-panel.story {
     border-color: var(--line) !important;
-    background: var(--soft-purple) !important;
-  }
-  
-  .handwriting-panel.checklist {
+    background: var(--panel) !important;
+}
+
+
+.student-workspace .handwriting-panel.checklist {
     border-color: rgba(34, 197, 94, 0.25) !important;
     background: var(--soft-green) !important;
-  }
-  
-  .handwriting-panel li {
+}
+
+
+.student-workspace .handwriting-panel li {
     color: var(--ink) !important;
-  }
-  
-  .handwriting-materials {
+}
+
+
+.student-workspace .handwriting-materials {
     background: var(--bg) !important;
-  }
-  
-  .handwriting-materials span {
+}
+
+
+.student-workspace .handwriting-materials span {
     color: var(--ink) !important;
-  }
+}
+
 
   /* 11. Multiple Choice Option Cards */
-  .answer-options span {
+.student-workspace .answer-options span {
     border-color: var(--line) !important;
     background: var(--panel) !important;
     color: var(--ink) !important;
-  }
+}
+
 
   /* 12. Tutor Thinking Status Message */
-  .status {
+.student-workspace .status {
     color: var(--primary) !important;
     font-weight: 600 !important;
-  }
 }
+
 
 /* --- PREMIUM LANDING PAGE STYLES --- */
 .landing-page {
@@ -3933,3 +4059,221 @@ label small {
   }
 }
 
+/* ==========================================================================
+   FLAT READABILITY OVERRIDES FOR DARK MODE (PREVENTS COMPILATION BUGS)
+   ========================================================================== */
+
+/* 1. Tutor Feedback Cards inside Student Workspace */
+.student-workspace .feedback {
+  background: var(--panel) !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: var(--shadow), var(--glow) !important;
+}
+
+.student-workspace .feedback.correct {
+  border-left: 6px solid var(--success) !important;
+  background: #0f2418 !important; /* Dark green background */
+}
+
+.student-workspace .feedback.review {
+  border-left: 6px solid var(--tertiary) !important;
+  background: #1f1a0f !important; /* Dark orange/brown background */
+}
+
+.student-workspace .feedback p,
+.student-workspace .feedback .tutor-message p {
+  color: var(--ink) !important; /* High legibility light lavender/white text */
+}
+
+.student-workspace .feedback strong {
+  color: #ffffff !important; /* Pure white text for absolute readability */
+}
+
+/* 2. Alert boxes and helper boxes inside Student Workspace */
+.student-workspace .lesson-close {
+  background: var(--soft-purple) !important;
+  border: 1px solid var(--line) !important;
+  color: var(--ink) !important;
+  text-align: center;
+}
+
+.student-workspace .exam-banner {
+  border-color: var(--line) !important;
+  background: #1f1a0f !important; /* Soft dark orange */
+}
+
+.student-workspace .exam-banner h2 {
+  color: var(--tertiary) !important;
+}
+
+.student-workspace .exam-banner p:not(.eyebrow) {
+  color: var(--muted) !important;
+}
+
+.student-workspace .exam-card {
+  border-color: var(--line) !important;
+  background: var(--panel) !important;
+}
+
+.student-workspace .exam-statement {
+  color: var(--ink) !important;
+}
+
+.student-workspace .exam-question {
+  background: var(--panel) !important;
+  border-color: var(--line) !important;
+}
+
+.student-workspace .exam-question span {
+  color: var(--ink) !important;
+}
+
+.student-workspace .lesson-answer {
+  border-color: rgba(34, 197, 94, 0.3) !important;
+  background: #0f2418 !important; /* Explicit dark green */
+  color: var(--success) !important;
+}
+
+.student-workspace .lesson-answer small {
+  color: #86efac !important;
+}
+
+.student-workspace .lesson-answer strong {
+  color: #ffffff !important;
+}
+
+.student-workspace .key-concept {
+  border-color: rgba(245, 158, 11, 0.3) !important;
+  border-left: 6px solid var(--tertiary) !important;
+  background: #1f1a0f !important; /* Explicit dark orange */
+  color: var(--tertiary) !important;
+}
+
+.student-workspace .hint {
+  background: #0f1a2e !important; /* Explicit dark blue */
+  color: var(--secondary) !important;
+}
+
+.student-workspace .lesson-reinforcement {
+  border-left: 5px solid var(--tertiary) !important;
+  background: #1f1a0f !important; /* Explicit dark orange */
+  color: var(--ink) !important;
+}
+
+.student-workspace .lesson-reinforcement span {
+  color: var(--tertiary) !important;
+}
+
+.student-workspace .exercise-tip {
+  border-color: rgba(245, 158, 11, 0.3) !important;
+  background: #1f1a0f !important; /* Explicit dark orange */
+  color: var(--tertiary) !important;
+}
+
+/* 3. Handwritten worksheets and panels inside Student Workspace */
+.student-workspace .handwriting-hero {
+  border-color: var(--line) !important;
+  background: var(--panel) !important;
+}
+
+.student-workspace .handwriting-hero p {
+  color: var(--muted) !important;
+}
+
+.student-workspace .handwriting-card {
+  border-color: var(--line) !important;
+  background: var(--panel) !important;
+}
+
+.student-workspace .handwriting-card p {
+  color: var(--ink) !important;
+}
+
+.student-workspace .handwriting-panel.family,
+.student-workspace .handwriting-panel.complete {
+  border-color: rgba(245, 158, 11, 0.25) !important;
+  background: #1f1a0f !important; /* Explicit dark orange */
+}
+
+.student-workspace .handwriting-panel.copy {
+  border-color: rgba(59, 130, 246, 0.25) !important;
+  background: #0f1a2e !important; /* Explicit dark blue */
+}
+
+.student-workspace .handwriting-panel.story {
+  border-color: var(--line) !important;
+  background: var(--panel) !important;
+}
+
+.student-workspace .handwriting-panel.checklist {
+  border-color: rgba(34, 197, 94, 0.25) !important;
+  background: #0f2418 !important; /* Explicit dark green */
+}
+
+.student-workspace .handwriting-panel li {
+  color: var(--ink) !important;
+}
+
+.student-workspace .handwriting-materials {
+  background: var(--bg) !important;
+}
+
+.student-workspace .handwriting-materials span {
+  color: var(--ink) !important;
+}
+
+/* 4. Other Math elements */
+.student-workspace .rest-visual {
+  border-color: var(--line) !important;
+  background: #0f1a2e !important; /* Explicit dark blue */
+}
+
+.student-workspace .rest-row span {
+  border-color: var(--line) !important;
+  background: var(--bg) !important;
+}
+
+.student-workspace .rest-label {
+  color: var(--muted) !important;
+}
+
+.student-workspace .rest-label.orange {
+  color: var(--tertiary) !important;
+}
+
+.student-workspace .rest-label.green {
+  color: var(--success) !important;
+}
+
+.student-workspace .solved-case-title {
+  border-color: rgba(245, 158, 11, 0.3) !important;
+  background: #1f1a0f !important;
+}
+
+.student-workspace .solved-case-title h2 {
+  color: var(--tertiary) !important;
+}
+
+.student-workspace .solved-problem-card {
+  border-color: rgba(245, 158, 11, 0.3) !important;
+  background: var(--panel) !important;
+}
+
+.student-workspace .solved-problem-card p {
+  color: var(--ink) !important;
+}
+
+.student-workspace .solved-step-card {
+  border-color: var(--line) !important;
+  background: var(--panel) !important;
+}
+
+.student-workspace .solved-step-card p {
+  color: var(--ink) !important;
+}
+
+.student-workspace .solved-step-card.current {
+  border-color: rgba(34, 197, 94, 0.35) !important;
+  border-left-color: var(--success) !important;
+  background: #0f2418 !important;
+}

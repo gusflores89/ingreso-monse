@@ -146,8 +146,7 @@ RESPONDE SOLO EN JSON:
     "enunciado": "Super facil, casi identico al ultimo ejemplo",
     "pista": "Recorda: [CONCEPTO CLAVE]",
     "tipo": "completar"
-  },
-  "cierre_motivacional": "Ya casi lo tenes!"
+  }
 }
 
 NUNCA hagas una leccion con menos de 4 ejemplos.
@@ -243,6 +242,9 @@ export function buildPromptDashboard(alumnoInput = {}, contexto = {}) {
   return hydratePrompt(
     `
 Sos el generador de insights para los padres/tutores de {alumno_nombre}.
+
+IMPORTANTE: Escribe tu reporte en un español impecable, profesional, claro y con ortografía perfecta. Las necesidades especiales del alumno (como la dislexia) son adaptaciones pedagógicas para su propio aprendizaje en su workspace, NO para tu redacción. Tú debes escribir el informe para los padres con redacción y gramática perfectas.
+
 {adaptaciones}
 
 ENTRADA (JSON de ultima semana):
@@ -345,19 +347,27 @@ function buildAdaptaciones(alumno) {
   const preferencia = describePreferencia(alumno.estilo_aprendizaje);
   const preferenciaTexto = preferencia ? ` Preferencia de explicacion: ${preferencia}.` : "";
 
+  let baseAdaptaciones = "";
   if (alumno.necesidades_especiales === "dislexia") {
-    return `${alumno.nombre} tiene dislexia leve. Usa oraciones cortas, ejemplos visuales, pasos separados y evita bloques largos de texto.${preferenciaTexto}`;
+    baseAdaptaciones = `${alumno.nombre} tiene dislexia leve. Usa oraciones cortas, ejemplos visuales, pasos separados y evita bloques largos de texto.${preferenciaTexto}`;
+  } else if (alumno.necesidades_especiales === "tdah") {
+    baseAdaptaciones = `${alumno.nombre} tiene TDAH. Usa explicaciones breves, energia alta, consignas cortas y ejemplos practicos.${preferenciaTexto}`;
+  } else if (alumno.detalle_necesidades) {
+    baseAdaptaciones = `Necesidades a contemplar: ${alumno.detalle_necesidades}.${preferenciaTexto}`;
+  } else {
+    baseAdaptaciones = `Adapta el nivel al perfil del alumno y manten explicaciones claras.${preferenciaTexto}`;
   }
 
-  if (alumno.necesidades_especiales === "tdah") {
-    return `${alumno.nombre} tiene TDAH. Usa explicaciones breves, energia alta, consignas cortas y ejemplos practicos.${preferenciaTexto}`;
+  if (alumno.modo_paciente) {
+    baseAdaptaciones += ` EL ALUMNO ES PRINCIPIANTE Y LE CUESTA MUCHO EL TEMA. REGLAS PARA TUTOR EXTRA PACIENTE: 
+    - Sé sumamente paciente y comprensivo.
+    - Cuando expliques conceptos complejos (ej: fracciones, decimales, ángulos), no uses solo definiciones abstractas. Usa analogías de la vida real muy cotidianas (ej: repartir barras de chocolate, cortar pizzas en porciones iguales, repartir dulces entre amigos).
+    - El número de abajo (denominador) representa las partes totales, y el número de arriba (numerador) representa cuántas partes tomamos o comemos.
+    - Limita el nivel inicial a lo más básico y sube la complejidad de manera muy lenta.
+    - Celebra con mucho entusiasmo cada intento del alumno, y si comete un error, guíalo con pistas sutiles y explicaciones paso a paso con manzanas o chocolates en lugar de darle la respuesta directa.`;
   }
 
-  if (alumno.detalle_necesidades) {
-    return `Necesidades a contemplar: ${alumno.detalle_necesidades}.${preferenciaTexto}`;
-  }
-
-  return `Adapta el nivel al perfil del alumno y manten explicaciones claras.${preferenciaTexto}`;
+  return baseAdaptaciones;
 }
 
 function describePreferencia(value) {

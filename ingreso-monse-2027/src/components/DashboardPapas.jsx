@@ -19,6 +19,14 @@ export default function DashboardPapas({ userId }) {
   const [formRevision, setFormRevision] = useState(EMPTY_REVISION);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [paymentLoading, setPaymentLoading] = useState(false);
+  const [suggestedTopic, setSuggestedTopic] = useState(null);
+  const [sugerirLoading, setSugerirLoading] = useState(null);
+  const [rutaFlexibleActive, setRutaFlexibleActive] = useState(false);
+  const [rutaFlexibleLoading, setRutaFlexibleLoading] = useState(false);
+  const [modoPacienteActive, setModoPacienteActive] = useState(false);
+  const [estiloAprendizajeValue, setEstiloAprendizajeValue] = useState("visual_ejemplos");
+  const [configPedagogicaLoading, setConfigPedagogicaLoading] = useState(false);
 
   const load = async () => {
     setLoading(true);
@@ -49,6 +57,110 @@ export default function DashboardPapas({ userId }) {
     load();
   }, [userId]);
 
+  useEffect(() => {
+    if (data?.usuario?.rasgos_especiales?.tema_sugerido) {
+      setSuggestedTopic(data.usuario.rasgos_especiales.tema_sugerido);
+    } else {
+      setSuggestedTopic(null);
+    }
+    setRutaFlexibleActive(!!data?.usuario?.rasgos_especiales?.ruta_flexible);
+    setModoPacienteActive(!!data?.usuario?.rasgos_especiales?.modo_paciente);
+    setEstiloAprendizajeValue(data?.usuario?.estilo_aprendizaje || "visual_ejemplos");
+  }, [data]);
+
+  const handleToggleRutaFlexible = async () => {
+    setRutaFlexibleLoading(true);
+    setError("");
+    const newValue = !rutaFlexibleActive;
+    try {
+      const res = await fetch("/api/guardar-ruta-flexible", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: userId,
+          ruta_flexible: newValue
+        }),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || "No se pudo cambiar la configuración.");
+      setRutaFlexibleActive(json.ruta_flexible);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setRutaFlexibleLoading(false);
+    }
+  };
+
+  const handleToggleModoPaciente = async () => {
+    setConfigPedagogicaLoading(true);
+    setError("");
+    const newValue = !modoPacienteActive;
+    try {
+      const res = await fetch("/api/guardar-config-pedagogica", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: userId,
+          modo_paciente: newValue
+        }),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || "No se pudo cambiar la configuración.");
+      setModoPacienteActive(json.modo_paciente);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setConfigPedagogicaLoading(false);
+    }
+  };
+
+  const handleChangeEstiloAprendizaje = async (newStyle) => {
+    setConfigPedagogicaLoading(true);
+    setError("");
+    try {
+      const res = await fetch("/api/guardar-config-pedagogica", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: userId,
+          estilo_aprendizaje: newStyle
+        }),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || "No se pudo guardar el estilo.");
+      setEstiloAprendizajeValue(json.estilo_aprendizaje);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setConfigPedagogicaLoading(false);
+    }
+  };
+
+  const handleToggleSugerencia = async (temaName, materiaName) => {
+    const remover = suggestedTopic?.tema === temaName && !suggestedTopic?.completado;
+    setSugerirLoading(temaName);
+    setError("");
+    try {
+      const res = await fetch("/api/sugerir-tema", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: userId,
+          tema: temaName,
+          materia: materiaName,
+          remover
+        }),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || "No se pudo cambiar la sugerencia.");
+      setSuggestedTopic(json.tema_sugerido);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSugerirLoading(null);
+    }
+  };
+
   const handleRevisar = async (tareaId) => {
     try {
       const res = await fetch("/api/tarea-manuscrita/revisar", {
@@ -68,6 +180,31 @@ export default function DashboardPapas({ userId }) {
       setFormRevision(EMPTY_REVISION);
     } catch (err) {
       setError(err.message);
+    }
+  };
+
+  const handleUpgrade = async () => {
+    setPaymentLoading(true);
+    setError("");
+    try {
+      const res = await fetch("/api/pagos/crear-preferencia", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id: userId }),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || "No se pudo generar el cobro.");
+
+      const targetUrl = json.init_point || json.sandbox_init_point;
+      if (targetUrl) {
+        window.location.href = targetUrl;
+      } else {
+        throw new Error("No se obtuvo URL de redirección.");
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setPaymentLoading(false);
     }
   };
 
@@ -105,6 +242,33 @@ export default function DashboardPapas({ userId }) {
             {diasRestantes === null ? "Fecha de examen pendiente" : `Faltan ${diasRestantes} dias para el examen`}
             {esTrial && ` · Temas de prueba: ${trialCompletados} de 4 completados`}
           </p>
+          {data?.usuario && (
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "10px" }}>
+              <span style={{ fontSize: "0.85rem", color: "#9590a6", fontWeight: "500" }}>Ruta Flexible (Modo Libre):</span>
+              <button
+                type="button"
+                onClick={handleToggleRutaFlexible}
+                disabled={rutaFlexibleLoading}
+                style={{
+                  padding: "4px 12px",
+                  borderRadius: "15px",
+                  fontSize: "0.75rem",
+                  fontWeight: "700",
+                  cursor: "pointer",
+                  transition: "all 200ms ease",
+                  border: "1px solid",
+                  borderColor: rutaFlexibleActive ? "var(--success, #22c55e)" : "var(--muted, #9590a6)",
+                  backgroundColor: rutaFlexibleActive ? "rgba(34, 197, 94, 0.15)" : "transparent",
+                  color: rutaFlexibleActive ? "#22c55e" : "#9590a6",
+                  minHeight: "auto",
+                  display: "inline-flex",
+                  alignItems: "center"
+                }}
+              >
+                {rutaFlexibleActive ? "🟢 Activado" : "⚪ Desactivado"}
+              </button>
+            </div>
+          )}
         </div>
         <button type="button" onClick={load} disabled={loading}>
           {loading ? "Actualizando..." : "Recargar datos"}
@@ -121,6 +285,83 @@ export default function DashboardPapas({ userId }) {
             <KpiCard label="Acierto semanal" value={`${resumen.tasa_semana ?? 0}%`} hint="Respuestas correctas" tone="green" />
             <KpiCard label="Tema fuerte" value={formatTema(resumen.tema_fuerte || "Sin datos")} hint="Mejor desempeno" tone="purple" />
             <KpiCard label="Foco de refuerzo" value={formatTema(resumen.tema_refuerzo || "Sin datos")} hint="Oportunidad principal" tone="orange" />
+          </section>
+
+          {/* Panel de Configuración Pedagógica */}
+          <section className="dashboard-panel" style={{ margin: "24px 0", animation: "fadeInUp 0.4s ease both" }}>
+            <PanelHeader title="⚙️ Configuración del Tutor & Pedagogía" subtitle="Personalizá el ritmo y estilo de enseñanza para adaptarlo a tu hijo/a" />
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "20px", marginTop: "15px" }}>
+              
+              {/* Modo Tutor Extra Paciente */}
+              <div style={{ background: "rgba(255, 255, 255, 0.02)", border: "1px solid var(--line)", padding: "18px", borderRadius: "10px", display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "12px" }}>
+                <div>
+                  <strong style={{ color: "#ffffff", fontSize: "0.95rem", display: "block", marginBottom: "6px" }}>
+                    Tutor Extra Paciente (Modo Principiante)
+                  </strong>
+                  <p style={{ color: "var(--muted)", fontSize: "0.82rem", margin: 0, lineHeight: "1.4" }}>
+                    Recomendado si a tu hijo/a le cuestan temas como las fracciones. El tutor usará explicaciones ultra-sencillas con chocolates y pizzas, un ritmo más lento, bajará la dificultad a nivel inicial y habilitará apuntes teóricos.
+                  </p>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "4px" }}>
+                  <button
+                    type="button"
+                    onClick={handleToggleModoPaciente}
+                    disabled={configPedagogicaLoading}
+                    style={{
+                      padding: "6px 14px",
+                      borderRadius: "15px",
+                      fontSize: "0.8rem",
+                      fontWeight: "700",
+                      cursor: "pointer",
+                      transition: "all 200ms ease",
+                      border: "1px solid",
+                      borderColor: modoPacienteActive ? "var(--success, #22c55e)" : "var(--muted, #9590a6)",
+                      backgroundColor: modoPacienteActive ? "rgba(34, 197, 94, 0.15)" : "transparent",
+                      color: modoPacienteActive ? "#22c55e" : "#9590a6",
+                      minHeight: "auto"
+                    }}
+                  >
+                    {configPedagogicaLoading ? "..." : modoPacienteActive ? "🟢 Activado" : "⚪ Desactivado"}
+                  </button>
+                </div>
+              </div>
+
+              {/* Estilo de Explicación */}
+              <div style={{ background: "rgba(255, 255, 255, 0.02)", border: "1px solid var(--line)", padding: "18px", borderRadius: "10px", display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "12px" }}>
+                <div>
+                  <strong style={{ color: "#ffffff", fontSize: "0.95rem", display: "block", marginBottom: "6px" }}>
+                    Estilo de Explicación del Tutor
+                  </strong>
+                  <p style={{ color: "var(--muted)", fontSize: "0.82rem", margin: 0, lineHeight: "1.4" }}>
+                    Define cómo prefieres que el tutor desarrolle los conceptos y explicaciones teóricas en sus respuestas de IA para tu hijo/a.
+                  </p>
+                </div>
+                <div>
+                  <select
+                    value={estiloAprendizajeValue}
+                    onChange={(e) => handleChangeEstiloAprendizaje(e.target.value)}
+                    disabled={configPedagogicaLoading}
+                    style={{
+                      width: "100%",
+                      padding: "8px 12px",
+                      background: "#110d24",
+                      border: "1px solid var(--line)",
+                      color: "#ffffff",
+                      borderRadius: "8px",
+                      fontSize: "0.85rem",
+                      fontWeight: "600",
+                      cursor: "pointer",
+                      outline: "none"
+                    }}
+                  >
+                    <option value="visual_ejemplos">Visual y con ejemplos cotidianos</option>
+                    <option value="paso_a_paso">Paso a paso ultra detallado</option>
+                    <option value="practica_directa">Práctica directa (explicación muy corta)</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
           </section>
 
           <section className="dashboard-layout-two">
@@ -159,7 +400,13 @@ export default function DashboardPapas({ userId }) {
             <div className="topic-card-grid rich-topic-grid" aria-label="Progreso por tema">
               {progresoTemas.length === 0 && <p className="empty-state">Todavia no hay temas con progreso.</p>}
               {progresoTemas.map((item) => (
-                <TopicProgressRow item={item} key={item.id || item.tema} />
+                <TopicProgressRow
+                  item={item}
+                  key={item.id || item.tema}
+                  suggestedTopic={suggestedTopic}
+                  sugerirLoading={sugerirLoading}
+                  onToggleSuggested={handleToggleSugerencia}
+                />
               ))}
             </div>
           </section>
@@ -205,19 +452,118 @@ export default function DashboardPapas({ userId }) {
             handleRevisar={handleRevisar}
           />
 
-          {esTrial && trialCompletados === 4 && (
-            <section className="dashboard-panel alert-item critical" style={{ margin: "24px 0", borderLeft: "4px solid #ef4444", backgroundColor: "#fef2f2" }}>
-              <div className="alert-title">
-                <span aria-hidden="true" style={{ fontSize: "1.2rem" }}>🎉</span>
-                <strong style={{ color: "#b91c1c", fontSize: "1.1rem" }}>¡Muestra Gratuita Completada!</strong>
-              </div>
-              <p style={{ color: "#7f1d1d", margin: "8px 0", lineHeight: "1.5" }}>
-                El estudiante completó con éxito los 4 temas del plan de prueba. Para habilitar los más de 30 temas del currículum completo de ingreso (incluyendo perímetros compuestos, divisibilidad, verbos en modo indicativo y más), activa el Acceso Completo.
-              </p>
-              <div style={{ marginTop: "12px" }}>
-                <span style={{ fontSize: "0.9rem", color: "#991b1b", fontWeight: "600" }}>
-                  💡 Para activar, comunicate con el administrador y solicita el pase a Plan Full.
-                </span>
+          {esTrial && (
+            <section className="dashboard-panel" style={{
+              margin: "32px 0",
+              background: "linear-gradient(135deg, rgba(26, 23, 37, 0.8) 0%, rgba(17, 13, 36, 0.9) 100%)",
+              border: "1px solid rgba(139, 92, 246, 0.3)",
+              borderRadius: "16px",
+              padding: "32px",
+              boxShadow: "0 10px 30px rgba(0, 0, 0, 0.2), 0 0 20px rgba(139, 92, 246, 0.1)",
+              animation: "fadeInUp 0.4s ease both"
+            }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+                {/* Cabecera de la oferta */}
+                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-start", gap: "16px" }}>
+                  <div style={{ flex: "1", minWidth: "280px" }}>
+                    <span style={{
+                      backgroundColor: "rgba(139, 92, 246, 0.15)",
+                      color: "#a78bfa",
+                      padding: "6px 12px",
+                      borderRadius: "999px",
+                      fontSize: "0.8rem",
+                      fontWeight: "600",
+                      border: "1px solid rgba(139, 92, 246, 0.3)",
+                      display: "inline-block",
+                      marginBottom: "12px"
+                    }}>
+                      ⚡ PROMO LANZAMIENTO CICLO 2027 (PAGO ÚNICO)
+                    </span>
+                    <h3 style={{ fontSize: "1.45rem", fontWeight: "700", color: "#e8e4f0", margin: "0 0 8px 0" }}>
+                      {trialCompletados === 4 ? "🎉 ¡Muestra de Prueba Completada!" : "💎 Desbloqueá el Acceso Completo a IngresoMonse"}
+                    </h3>
+                    <p style={{ color: "#9590a6", margin: 0, fontSize: "0.95rem", lineHeight: "1.6" }}>
+                      {trialCompletados === 4 
+                        ? "Tu hijo/a completó con éxito los 4 temas de la muestra gratuita. Activá el acceso completo para habilitar el currículum completo."
+                        : "Estás explorando la plataforma con una muestra de 4 temas. Puedes habilitar los 37 temas del currículum de ingreso en cualquier momento."}
+                    </p>
+                  </div>
+
+                  <div style={{
+                    backgroundColor: "rgba(255, 255, 255, 0.02)",
+                    border: "1px solid rgba(255, 255, 255, 0.05)",
+                    borderRadius: "12px",
+                    padding: "16px 24px",
+                    textAlign: "right",
+                    minWidth: "200px"
+                  }}>
+                    <span style={{ fontSize: "0.85rem", color: "#9590a6", textDecoration: "line-through", display: "block", marginBottom: "2px" }}>
+                      $29.900 ARS
+                    </span>
+                    <strong style={{ fontSize: "1.6rem", color: "#10b981", fontWeight: "700", display: "block", lineHeight: "1.2" }}>
+                      $19.900 ARS
+                    </strong>
+                    <span style={{ fontSize: "0.78rem", color: "#34d399", fontWeight: "600" }}>
+                      ¡Ahorrás un 33% hoy!
+                    </span>
+                  </div>
+                </div>
+
+                <div style={{ height: "1px", backgroundColor: "rgba(255, 255, 255, 0.05)" }} />
+
+                {/* Beneficios y Botón de compra */}
+                <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#a78bfa", margin: 0, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                      ¿Qué incluye el Acceso Completo?
+                    </p>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "12px" }}>
+                      {[
+                        { emoji: "🚀", text: "Las 5 fases y los 37 temas completos" },
+                        { emoji: "📝", text: "Ejercicios de dictado y escritura a mano" },
+                        { emoji: "⏱️", text: "Simulacros de examen cronometrados ilimitados" },
+                        { emoji: "📊", text: "Informes cualitativos IA para padres" }
+                      ].map((item, idx) => (
+                        <div key={idx} style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "0.9rem", color: "#e8e4f0" }}>
+                          <span>{item.emoji}</span>
+                          <span>{item.text}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div style={{ marginTop: "8px" }}>
+                    <button
+                      type="button"
+                      onClick={handleUpgrade}
+                      disabled={paymentLoading}
+                      style={{
+                        width: "100%",
+                        padding: "14px 28px",
+                        borderRadius: "10px",
+                        background: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)",
+                        color: "#ffffff",
+                        fontSize: "0.95rem",
+                        fontWeight: "700",
+                        border: "none",
+                        cursor: "pointer",
+                        boxShadow: "0 4px 15px rgba(139, 92, 246, 0.35)",
+                        transition: "all 0.2s ease-out",
+                        outline: "none"
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = "translateY(-1px)";
+                        e.currentTarget.style.boxShadow = "0 6px 20px rgba(139, 92, 246, 0.45)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = "none";
+                        e.currentTarget.style.boxShadow = "0 4px 15px rgba(139, 92, 246, 0.35)";
+                      }}
+                    >
+                      {paymentLoading ? "Preparando Pasarela..." : "💎 Activar Acceso Completo con Mercado Pago"}
+                    </button>
+                  </div>
+                </div>
               </div>
             </section>
           )}
@@ -286,7 +632,7 @@ function ProgressLine({ label, value }) {
   );
 }
 
-function TopicProgressRow({ item }) {
+function TopicProgressRow({ item, suggestedTopic, sugerirLoading, onToggleSuggested }) {
   const status = statusFor(item);
   const tasa = clamp(Number(item.tasa_acierto || 0));
 
@@ -308,10 +654,49 @@ function TopicProgressRow({ item }) {
       </div>
 
       <div className="row-meta-section">
-        <div className="topic-meta-row">
+        <div className="topic-meta-row" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8px" }}>
           <span>{item.total_sesiones} sesiones</span>
           <span>Capa {item.capa_actual}</span>
           <span>{item.total_correctas} correctas</span>
+          
+          <button
+            type="button"
+            disabled={sugerirLoading !== null}
+            onClick={() => onToggleSuggested(item.tema, item.materia)}
+            style={{
+              padding: "5px 12px",
+              borderRadius: "999px",
+              fontSize: "0.75rem",
+              fontWeight: "600",
+              cursor: "pointer",
+              transition: "all 200ms cubic-bezier(0.4, 0, 0.2, 1)",
+              border: suggestedTopic?.tema === item.tema && !suggestedTopic?.completado
+                ? "none"
+                : "1px solid rgba(139, 92, 246, 0.25)",
+              backgroundColor: suggestedTopic?.tema === item.tema && !suggestedTopic?.completado
+                ? "var(--primary, #8b5cf6)"
+                : "rgba(139, 92, 246, 0.08)",
+              color: suggestedTopic?.tema === item.tema && !suggestedTopic?.completado
+                ? "#ffffff"
+                : "var(--primary, #8b5cf6)",
+              boxShadow: suggestedTopic?.tema === item.tema && !suggestedTopic?.completado
+                ? "0 2px 8px rgba(139, 92, 246, 0.25)"
+                : "none",
+              minHeight: "auto",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "4px",
+              marginLeft: "auto"
+            }}
+          >
+            {sugerirLoading === item.tema ? (
+              "..."
+            ) : suggestedTopic?.tema === item.tema && !suggestedTopic?.completado ? (
+              <>🎯 Asignado</>
+            ) : (
+              <>🎯 Priorizar</>
+            )}
+          </button>
         </div>
         <p className="row-oportunidad">{item.oportunidad || "Seguir practicando con sesiones cortas."}</p>
       </div>
@@ -516,6 +901,41 @@ function clamp(value) {
   return Math.min(100, Math.max(0, Math.round(value || 0)));
 }
 
+function cleanMathExpressions(mathContent) {
+  let clean = mathContent;
+  // Replace \times with × and \div with ÷
+  clean = clean.replace(/\\times/g, " × ");
+  clean = clean.replace(/\\div/g, " ÷ ");
+  // Replace \frac{a}{b} with a/b, wrapping in parentheses if it has operations
+  clean = clean.replace(/\\frac\s*\{([^{}]+)\}\s*\{([^{}]+)\}/g, (m, p1, p2) => {
+    const num = p1.includes("+") || p1.includes("-") || p1.includes(" ") ? `(${p1.trim()})` : p1.trim();
+    const den = p2.includes("+") || p2.includes("-") || p2.includes(" ") ? `(${p2.trim()})` : p2.trim();
+    return `${num}/${den}`;
+  });
+  // Replace \text{something} with something
+  clean = clean.replace(/\\text\s*\{([^{}]+)\}/g, "$1");
+  // Replace \quad with spaces
+  clean = clean.replace(/\\quad/g, "  ");
+  return clean;
+}
+
+function cleanMathText(text) {
+  if (text === null || text === undefined) return "";
+  let s = String(text);
+  
+  // Parse block math $$...$$
+  s = s.replace(/\$\$(.*?)\$\$/g, (match, mathContent) => {
+    return cleanMathExpressions(mathContent);
+  });
+  
+  // Parse inline math $...$
+  s = s.replace(/\$(.*?)\$/g, (match, mathContent) => {
+    return cleanMathExpressions(mathContent);
+  });
+  
+  return s;
+}
+
 function MarkdownRenderer({ content }) {
   if (!content) return null;
 
@@ -573,7 +993,8 @@ function MarkdownRenderer({ content }) {
   };
 
   const renderInlineStyles = (text) => {
-    const parts = text.split(/\*\*([\s\S]*?)\*\*/g);
+    const cleaned = cleanMathText(text);
+    const parts = cleaned.split(/\*\*([\s\S]*?)\*\*/g);
     return parts.map((part, index) => {
       if (index % 2 === 1) {
         return <strong key={index} style={{ color: "#0f172a", fontWeight: "600" }}>{part}</strong>;
@@ -607,7 +1028,31 @@ function MarkdownRenderer({ content }) {
       renderList(index);
     }
 
-    if (line.startsWith("### ")) {
+    if (line.startsWith("$$")) {
+      let formula = line;
+      if (line.endsWith("$$") && line.length > 4) {
+        formula = line.slice(2, -2);
+      } else {
+        formula = line.replace(/^\$\$/, "").replace(/\$\$/, "");
+      }
+      parsedElements.push(
+        <div key={index} style={{
+          textAlign: "center",
+          margin: "16px 0",
+          padding: "12px",
+          backgroundColor: "#f8fafc",
+          borderRadius: "8px",
+          border: "1px solid #e2e8f0",
+          fontFamily: "monospace",
+          fontSize: "1.05rem",
+          color: "#0f172a",
+          fontWeight: "600",
+          letterSpacing: "0.5px"
+        }}>
+          {cleanMathText(formula)}
+        </div>
+      );
+    } else if (line.startsWith("### ")) {
       parsedElements.push(
         <h3 key={index} style={{ color: "#0f172a", fontSize: "1.4rem", fontWeight: "600", marginTop: "24px", marginBottom: "12px", borderBottom: "1px solid #f1f5f9", paddingBottom: "6px" }}>
           {renderInlineStyles(line.slice(4))}
