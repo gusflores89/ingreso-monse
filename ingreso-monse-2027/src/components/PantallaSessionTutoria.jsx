@@ -923,6 +923,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             <div style={{ display: "flex", borderBottom: "1px solid #2a204d", padding: "0 24px", background: "rgba(0,0,0,0.15)" }}>
               {[
                 { id: "slides", label: "🛝 Diapositivas" },
+                ...(String(activeTema).includes("fracciones") ? [{ id: "interactive", label: "🍕 Explorador de Fracciones" }] : []),
                 { id: "theory", label: "📚 Apunte Teórico" },
                 { id: "pdf", label: "📥 Descargar Ficha PDF" }
               ].map(tab => (
@@ -1057,6 +1058,12 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                   </div>
                 );
               })()}
+
+              {helpTab === "interactive" && (
+                <div style={{ padding: "10px 0" }}>
+                  <VisualizacionMatematica tipo="fraccion_interactiva" datos={{ numerador: 3, denominador: 4 }} />
+                </div>
+              )}
 
               {helpTab === "theory" && (
                 <div style={{ color: "#e8e4f0", fontSize: "0.95rem", lineHeight: "1.6" }}>

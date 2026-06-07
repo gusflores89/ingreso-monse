@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 
-export default function VisualizacionMatematica({ tipo, datos }) {
+export default function VisualizacionMatematica({ tipo, datos = {} }) {
+  if (tipo === "fraccion_interactiva") {
+    return <InteractiveFractionExplorer datos={datos} />;
+  }
+
   const [radio, setRadio] = useState(40);
   const [modoTab, setModoTab] = useState("medidas");
   const [rollProgress, setRollProgress] = useState(0);
@@ -560,4 +564,434 @@ function clampNumber(value, min, max) {
 
 function toRadians(degrees) {
   return (degrees * Math.PI) / 180;
+}
+
+function InteractiveFractionExplorer({ datos }) {
+  const [den, setDen] = useState(clampNumber(datos?.denominador ?? 4, 1, 12));
+  const [selectedSlices, setSelectedSlices] = useState(() => {
+    const initialNum = clampNumber(datos?.numerador ?? 3, 0, datos?.denominador ?? 4);
+    return new Set(Array.from({ length: initialNum }, (_, i) => i));
+  });
+
+  const num = selectedSlices.size;
+
+  const toggleSlice = (index) => {
+    setSelectedSlices((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) {
+        next.delete(index);
+      } else {
+        next.add(index);
+      }
+      return next;
+    });
+  };
+
+  const handleDenChange = (newDen) => {
+    const d = clampNumber(newDen, 1, 12);
+    setDen(d);
+    setSelectedSlices((prev) => {
+      const next = new Set();
+      prev.forEach((val) => {
+        if (val < d) next.add(val);
+      });
+      return next;
+    });
+  };
+
+  const handleNumChange = (newNum) => {
+    const n = clampNumber(newNum, 0, den);
+    setSelectedSlices(new Set(Array.from({ length: n }, (_, i) => i)));
+  };
+
+  const fillAll = () => {
+    setSelectedSlices(new Set(Array.from({ length: den }, (_, i) => i)));
+  };
+
+  const clearAll = () => {
+    setSelectedSlices(new Set());
+  };
+
+  // SVG calculations for circle slices
+  const anguloPorcion = 360 / den;
+
+  const renderPizzaSlices = () => {
+    if (den === 1) {
+      const isSelected = selectedSlices.has(0);
+      return (
+        <circle
+          cx="160"
+          cy="160"
+          r="124"
+          fill={isSelected ? "#ef4444" : "#ffe4b5"}
+          stroke="#8b4513"
+          strokeWidth="3"
+          onClick={() => toggleSlice(0)}
+          style={{ cursor: "pointer", transition: "fill 0.2s" }}
+        />
+      );
+    }
+
+    return Array.from({ length: den }).map((_, index) => {
+      const isSelected = selectedSlices.has(index);
+      const startAngle = index * anguloPorcion - 90;
+      const endAngle = (index + 1) * anguloPorcion - 90;
+      const x1 = 160 + 124 * Math.cos(toRadians(startAngle));
+      const y1 = 160 + 124 * Math.sin(toRadians(startAngle));
+      const x2 = 160 + 124 * Math.cos(toRadians(endAngle));
+      const y2 = 160 + 124 * Math.sin(toRadians(endAngle));
+      const largeArc = anguloPorcion > 180 ? 1 : 0;
+
+      return (
+        <path
+          key={index}
+          d={`M 160 160 L ${x1} ${y1} A 124 124 0 ${largeArc} 1 ${x2} ${y2} Z`}
+          fill={isSelected ? "#ef4444" : "#ffe4b5"}
+          stroke="#8b4513"
+          strokeWidth="2"
+          onClick={() => toggleSlice(index)}
+          style={{
+            cursor: "pointer",
+            transition: "all 0.2s ease",
+            transformOrigin: "160px 160px",
+          }}
+        />
+      );
+    });
+  };
+
+  return (
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      gap: "24px",
+      width: "100%",
+      fontFamily: "'Inter', sans-serif",
+      color: "#e8e4f0"
+    }}>
+      {/* Layout Columns */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+        gap: "24px",
+        alignItems: "start"
+      }}>
+        {/* Left Column: Visualizations */}
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
+          alignItems: "center",
+          background: "rgba(0,0,0,0.2)",
+          border: "1px solid #2a204d",
+          borderRadius: "16px",
+          padding: "20px"
+        }}>
+          <h4 style={{ margin: 0, fontSize: "1rem", color: "#a59ec9", textAlign: "center" }}>🍕 Toca las porciones para comerlas/pintarlas</h4>
+          
+          {/* Pizza circle container */}
+          <div style={{ position: "relative", width: "240px", height: "240px" }}>
+            <svg viewBox="0 0 320 320" style={{ width: "100%", height: "100%", overflow: "visible" }}>
+              {/* Crust shadow */}
+              <circle cx="160" cy="160" r="128" fill="rgba(0,0,0,0.15)" />
+              {/* Main Crust */}
+              <circle cx="160" cy="160" r="126" fill="#d97706" stroke="#78350f" strokeWidth="2" />
+              
+              {/* Slices */}
+              {renderPizzaSlices()}
+              
+              {/* Pepperoni dots on selected slices */}
+              {den > 1 && Array.from({ length: den }).map((_, index) => {
+                if (!selectedSlices.has(index)) return null;
+                const midAngle = (index + 0.5) * anguloPorcion - 90;
+                const dist = 70;
+                const px = 160 + dist * Math.cos(toRadians(midAngle));
+                const py = 160 + dist * Math.sin(toRadians(midAngle));
+                return (
+                  <circle
+                    key={`pep-${index}`}
+                    cx={px}
+                    cy={py}
+                    r="8"
+                    fill="#991b1b"
+                    stroke="#7f1d1d"
+                    strokeWidth="1.5"
+                    style={{ pointerEvents: "none" }}
+                  />
+                );
+              })}
+            </svg>
+          </div>
+
+          <div style={{ width: "100%", borderTop: "1px dashed #2a204d", paddingTop: "16px" }}>
+            <h4 style={{ margin: "0 0 12px 0", fontSize: "0.95rem", color: "#a59ec9", textAlign: "center" }}>🍫 Barra de Chocolate</h4>
+            
+            {/* Chocolate Bar representation */}
+            <div style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "6px",
+              justifyContent: "center",
+              background: "rgba(0,0,0,0.15)",
+              padding: "12px",
+              borderRadius: "12px",
+              border: "1px solid rgba(255,255,255,0.02)"
+            }}>
+              {Array.from({ length: den }).map((_, index) => {
+                const isSelected = selectedSlices.has(index);
+                return (
+                  <button
+                    key={index}
+                    onClick={() => toggleSlice(index)}
+                    style={{
+                      width: `${Math.max(32, Math.min(52, 240 / den))}px`,
+                      height: "52px",
+                      backgroundColor: isSelected ? "#7c2d12" : "#fef3c7",
+                      border: "2px solid #451a03",
+                      borderRadius: "6px",
+                      cursor: "pointer",
+                      transition: "all 0.15s ease",
+                      boxShadow: isSelected ? "inset 0 4px 6px rgba(0,0,0,0.4)" : "0 3px 5px rgba(0,0,0,0.2)",
+                      transform: isSelected ? "scale(0.95)" : "none",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "1.1rem"
+                    }}
+                    title={`Porción de chocolate ${index + 1}`}
+                  >
+                    {isSelected ? "🍫" : ""}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column: Controls & Text Explanation */}
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+          textAlign: "left"
+        }}>
+          {/* Fraction display card */}
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            background: "linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(99, 102, 241, 0.15) 100%)",
+            border: "1px solid rgba(139, 92, 246, 0.3)",
+            borderRadius: "16px",
+            padding: "16px 20px"
+          }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+              <span style={{ fontSize: "0.8rem", color: "#a59ec9", textTransform: "uppercase", fontWeight: "600" }}>Fracción Escrita</span>
+              <strong style={{ fontSize: "1.25rem", color: "#c084fc" }}>{nombreDeFraccion(num, den)}</strong>
+              <span style={{ fontSize: "0.75rem", color: "#8b5cf6" }}>Equivale a {(num / den).toFixed(2)} ({Math.round((num / den) * 100)}%)</span>
+            </div>
+            
+            {/* Big fraction glyph */}
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              fontSize: "1.8rem",
+              fontWeight: "800",
+              lineHeight: "1.1",
+              background: "rgba(0,0,0,0.2)",
+              padding: "8px 16px",
+              borderRadius: "12px",
+              minWidth: "60px",
+              textAlign: "center"
+            }}>
+              <span style={{ color: "#ef4444" }}>{num}</span>
+              <div style={{ width: "100%", height: "2.5px", backgroundColor: "#e8e4f0", margin: "3px 0" }} />
+              <span style={{ color: "#3b82f6" }}>{den}</span>
+            </div>
+          </div>
+
+          {/* Explanation Text */}
+          <div style={{
+            background: "rgba(255,255,255,0.02)",
+            border: "1px solid rgba(255,255,255,0.05)",
+            borderRadius: "16px",
+            padding: "16px",
+            fontSize: "0.88rem",
+            lineHeight: "1.5",
+            color: "#d1cce5"
+          }}>
+            <p style={{ margin: "0 0 8px 0", fontWeight: "700", color: "#ffffff" }}>💡 ¿Qué significa esto?</p>
+            {num === 0 ? (
+              <span>
+                Cortaste el entero en <strong>{den}</strong> partes iguales, pero todavía <strong>no tomaste ninguna</strong> porción. La fracción es 0.
+              </span>
+            ) : num === den ? (
+              <span>
+                Cortaste el entero en <strong>{den}</strong> partes iguales y las <strong>tomaste todas</strong>. ¡Tienes el <strong>entero completo</strong> (1)!
+              </span>
+            ) : (
+              <span>
+                Cortaste el entero en <strong style={{ color: "#3b82f6" }}>{den}</strong> partes iguales (denominador) y tomaste/pintaste <strong style={{ color: "#ef4444" }}>{num}</strong> de ellas (numerador).
+              </span>
+            )}
+          </div>
+
+          {/* Sliders and Buttons Controls */}
+          <div style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "14px",
+            background: "rgba(0,0,0,0.1)",
+            padding: "16px",
+            borderRadius: "16px",
+            border: "1px solid rgba(255,255,255,0.03)"
+          }}>
+            {/* Denominator (Total parts) */}
+            <div>
+              <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.85rem", marginBottom: "6px" }}>
+                <span style={{ color: "#a59ec9" }}>Cortar en (Denominador):</span>
+                <strong style={{ color: "#3b82f6" }}>{den} partes</strong>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <button
+                  type="button"
+                  onClick={() => handleDenChange(den - 1)}
+                  disabled={den <= 1}
+                  style={controlBtnStyle(den <= 1)}
+                >
+                  -
+                </button>
+                <input
+                  type="range"
+                  min="1"
+                  max="12"
+                  value={den}
+                  onChange={(e) => handleDenChange(Number(e.target.value))}
+                  style={{ flex: 1, accentColor: "#3b82f6", cursor: "pointer" }}
+                />
+                <button
+                  type="button"
+                  onClick={() => handleDenChange(den + 1)}
+                  disabled={den >= 12}
+                  style={controlBtnStyle(den >= 12)}
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            {/* Numerator (Selected parts) */}
+            <div>
+              <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.85rem", marginBottom: "6px" }}>
+                <span style={{ color: "#a59ec9" }}>Pintar (Numerador):</span>
+                <strong style={{ color: "#ef4444" }}>{num} partes</strong>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <button
+                  type="button"
+                  onClick={() => handleNumChange(num - 1)}
+                  disabled={num <= 0}
+                  style={controlBtnStyle(num <= 0)}
+                >
+                  -
+                </button>
+                <input
+                  type="range"
+                  min="0"
+                  max={den}
+                  value={num}
+                  onChange={(e) => handleNumChange(Number(e.target.value))}
+                  style={{ flex: 1, accentColor: "#ef4444", cursor: "pointer" }}
+                />
+                <button
+                  type="button"
+                  onClick={() => handleNumChange(num + 1)}
+                  disabled={num >= den}
+                  style={controlBtnStyle(num >= den)}
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            {/* Action buttons */}
+            <div style={{ display: "flex", gap: "8px", marginTop: "4px" }}>
+              <button
+                type="button"
+                onClick={fillAll}
+                style={{
+                  flex: 1,
+                  padding: "8px",
+                  borderRadius: "8px",
+                  background: "rgba(255,255,255,0.05)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  color: "#ffffff",
+                  fontSize: "0.78rem",
+                  fontWeight: "600",
+                  cursor: "pointer",
+                  minHeight: "auto"
+                }}
+              >
+                Pintar Todo
+              </button>
+              <button
+                type="button"
+                onClick={clearAll}
+                style={{
+                  flex: 1,
+                  padding: "8px",
+                  borderRadius: "8px",
+                  background: "rgba(255,255,255,0.05)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  color: "#ffffff",
+                  fontSize: "0.78rem",
+                  fontWeight: "600",
+                  cursor: "pointer",
+                  minHeight: "auto"
+                }}
+              >
+                Limpiar Mesa
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function controlBtnStyle(disabled) {
+  return {
+    width: "28px",
+    height: "28px",
+    borderRadius: "6px",
+    border: "1px solid rgba(255, 255, 255, 0.1)",
+    backgroundColor: disabled ? "rgba(255, 255, 255, 0.02)" : "rgba(255, 255, 255, 0.08)",
+    color: disabled ? "#64748b" : "#ffffff",
+    cursor: disabled ? "not-allowed" : "pointer",
+    fontSize: "1rem",
+    fontWeight: "700",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: "auto",
+    padding: 0
+  };
+}
+
+function nombreDeFraccion(n, d) {
+  if (n === 0) return "Cero";
+
+  const numeradores = ["", "Un", "Dos", "Tres", "Cuatro", "Cinco", "Seis", "Siete", "Ocho", "Nueve", "Diez", "Once", "Doce"];
+  const denominadoresSingular = ["", "entero", "medio", "tercio", "cuarto", "quinto", "sexto", "séptimo", "octavo", "noveno", "décimo", "onceavo", "doceavo"];
+  const denominadoresPlural = ["", "enteros", "medios", "tercios", "cuartos", "quintos", "sextos", "séptimos", "octavos", "novenos", "décimos", "onceavos", "doceavos"];
+
+  const numText = numeradores[n] || String(n);
+
+  if (n === 1) {
+    return `${numText} ${denominadoresSingular[d] || `${d} avo`}`;
+  } else {
+    return `${numText} ${denominadoresPlural[d] || `${d} avos`}`;
+  }
 }
