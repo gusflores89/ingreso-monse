@@ -5,6 +5,10 @@ export default function VisualizacionMatematica({ tipo, datos = {} }) {
     return <InteractiveFractionExplorer datos={datos} />;
   }
 
+  if (tipo === "fraccion_operaciones_interactiva") {
+    return <InteractiveFractionOperations datos={datos} />;
+  }
+
   const [radio, setRadio] = useState(40);
   const [modoTab, setModoTab] = useState("medidas");
   const [rollProgress, setRollProgress] = useState(0);
@@ -994,4 +998,593 @@ function nombreDeFraccion(n, d) {
   } else {
     return `${numText} ${denominadoresPlural[d] || `${d} avos`}`;
   }
+}
+
+function InteractiveFractionOperations({ datos }) {
+  const [numA, setNumA] = useState(1);
+  const [denA, setDenA] = useState(2);
+  const [numB, setNumB] = useState(1);
+  const [denB, setDenB] = useState(4);
+  const [op, setOp] = useState("+");
+  const [igualado, setIgualado] = useState(false);
+
+  useEffect(() => {
+    setIgualado(false);
+  }, [numA, denA, numB, denB, op]);
+
+  const gcd = (a, b) => b ? gcd(b, a % b) : a;
+  const lcm = (a, b) => (a * b) / gcd(a, b);
+
+  const comunDen = lcm(denA, denB);
+  const multA = comunDen / denA;
+  const multB = comunDen / denB;
+  const eqNumA = numA * multA;
+  const eqNumB = numB * multB;
+
+  let resNum = 0;
+  let isNegative = false;
+  if (op === "+") {
+    resNum = eqNumA + eqNumB;
+  } else if (op === "-") {
+    resNum = eqNumA - eqNumB;
+    if (resNum < 0) {
+      resNum = 0;
+      isNegative = true;
+    }
+  }
+
+  const renderSmallPizza = (numerator, denominator, colorSelected = "#ef4444", colorUnselected = "#ffe4b5") => {
+    const angulo = 360 / denominator;
+    const slices = () => {
+      if (denominator === 1) {
+        const isSel = numerator >= 1;
+        return (
+          <circle
+            cx="160"
+            cy="160"
+            r="124"
+            fill={isSel ? colorSelected : colorUnselected}
+            stroke="#8b4513"
+            strokeWidth="3"
+          />
+        );
+      }
+      return Array.from({ length: denominator }).map((_, index) => {
+        const isSel = index < numerator;
+        const startAngle = index * angulo - 90;
+        const endAngle = (index + 1) * angulo - 90;
+        const x1 = 160 + 124 * Math.cos(toRadians(startAngle));
+        const y1 = 160 + 124 * Math.sin(toRadians(startAngle));
+        const x2 = 160 + 124 * Math.cos(toRadians(endAngle));
+        const y2 = 160 + 124 * Math.sin(toRadians(endAngle));
+        const largeArc = angulo > 180 ? 1 : 0;
+        return (
+          <path
+            key={index}
+            d={`M 160 160 L ${x1} ${y1} A 124 124 0 ${largeArc} 1 ${x2} ${y2} Z`}
+            fill={isSel ? colorSelected : colorUnselected}
+            stroke="#8b4513"
+            strokeWidth="2"
+          />
+        );
+      });
+    };
+
+    return (
+      <svg viewBox="0 0 320 320" style={{ width: "110px", height: "110px", overflow: "visible" }}>
+        <circle cx="160" cy="160" r="128" fill="rgba(0,0,0,0.15)" />
+        <circle cx="160" cy="160" r="126" fill="#d97706" stroke="#78350f" strokeWidth="2" />
+        {slices()}
+      </svg>
+    );
+  };
+
+  const renderChocolateGrid = () => {
+    return (
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: `repeat(${denA}, 1fr)`,
+        gap: "4px",
+        width: "100%",
+        maxWidth: "200px",
+        background: "#451a03",
+        padding: "6px",
+        borderRadius: "8px",
+        border: "3px solid #3b1601",
+        boxShadow: "0 6px 12px rgba(0,0,0,0.3)"
+      }}>
+        {Array.from({ length: denA * denB }).map((_, idx) => {
+          const col = idx % denA;
+          const row = Math.floor(idx / denA);
+          const inA = col < numA;
+          const inB = row < numB;
+          const isIntersection = inA && inB;
+          let bgColor = "rgba(255,255,255,0.05)";
+          if (isIntersection) {
+            bgColor = "#7c2d12";
+          } else if (inA) {
+            bgColor = "rgba(59, 130, 246, 0.3)";
+          } else if (inB) {
+            bgColor = "rgba(245, 158, 11, 0.3)";
+          }
+          return (
+            <div
+              key={idx}
+              style={{
+                aspectRatio: "1",
+                backgroundColor: bgColor,
+                border: "1px solid #3b1601",
+                borderRadius: "4px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "1rem",
+                transition: "all 0.2s"
+              }}
+            >
+              {isIntersection ? "🍫" : ""}
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+
+  const FractionControl = ({ label, num, den, setNum, setDen, color }) => {
+    return (
+      <div style={{
+        background: "rgba(255,255,255,0.02)",
+        border: "1px solid rgba(255,255,255,0.05)",
+        borderRadius: "12px",
+        padding: "12px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "10px",
+        flex: 1
+      }}>
+        <h5 style={{ margin: 0, fontSize: "0.85rem", color: "#a59ec9", borderBottom: `2px solid ${color}`, paddingBottom: "4px", textTransform: "uppercase" }}>
+          {label}
+        </h5>
+        <div>
+          <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", marginBottom: "4px" }}>
+            <span>Numerador:</span>
+            <strong style={{ color: "#ef4444" }}>{num}</strong>
+          </div>
+          <div style={{ display: "flex", gap: "6px" }}>
+            <button
+              type="button"
+              onClick={() => setNum(Math.max(0, num - 1))}
+              disabled={num <= 0}
+              style={controlBtnStyle(num <= 0)}
+            >
+              -
+            </button>
+            <input
+              type="range"
+              min="0"
+              max={den}
+              value={num}
+              onChange={(e) => setNum(Math.min(Number(e.target.value), den))}
+              style={{ flex: 1, accentColor: "#ef4444", cursor: "pointer" }}
+            />
+            <button
+              type="button"
+              onClick={() => setNum(Math.min(den, num + 1))}
+              disabled={num >= den}
+              style={controlBtnStyle(num >= den)}
+            >
+              +
+            </button>
+          </div>
+        </div>
+        <div>
+          <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", marginBottom: "4px" }}>
+            <span>Denominador:</span>
+            <strong style={{ color: "#3b82f6" }}>{den}</strong>
+          </div>
+          <div style={{ display: "flex", gap: "6px" }}>
+            <button
+              type="button"
+              onClick={() => {
+                const newDen = Math.max(1, den - 1);
+                setDen(newDen);
+                if (num > newDen) setNum(newDen);
+              }}
+              disabled={den <= 1}
+              style={controlBtnStyle(den <= 1)}
+            >
+              -
+            </button>
+            <input
+              type="range"
+              min="1"
+              max="8"
+              value={den}
+              onChange={(e) => {
+                const newDen = Number(e.target.value);
+                setDen(newDen);
+                if (num > newDen) setNum(newDen);
+              }}
+              style={{ flex: 1, accentColor: "#3b82f6", cursor: "pointer" }}
+            />
+            <button
+              type="button"
+              onClick={() => {
+                const newDen = Math.min(8, den + 1);
+                setDen(newDen);
+              }}
+              disabled={den >= 8}
+              style={controlBtnStyle(den >= 8)}
+            >
+              +
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      gap: "20px",
+      width: "100%",
+      fontFamily: "'Inter', sans-serif",
+      color: "#e8e4f0"
+    }}>
+      {/* Operator Selector */}
+      <div style={{
+        display: "flex",
+        justifyContent: "center",
+        gap: "8px",
+        background: "rgba(0,0,0,0.15)",
+        padding: "6px",
+        borderRadius: "12px",
+        border: "1px solid #2a204d"
+      }}>
+        {[
+          { id: "+", label: "➕ Suma" },
+          { id: "-", label: "➖ Resta" },
+          { id: "×", label: "✖️ Multiplicar" },
+          { id: "÷", label: "➗ Dividir" }
+        ].map(item => {
+          const selected = op === item.id;
+          return (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => setOp(item.id)}
+              style={{
+                flex: 1,
+                padding: "8px 10px",
+                borderRadius: "8px",
+                border: selected ? "1px solid rgba(139, 92, 246, 0.5)" : "1px solid transparent",
+                backgroundColor: selected ? "rgba(139, 92, 246, 0.2)" : "transparent",
+                color: selected ? "#c084fc" : "#9590a6",
+                cursor: "pointer",
+                fontWeight: "600",
+                fontSize: "0.82rem",
+                transition: "all 0.15s ease",
+                minHeight: "auto"
+              }}
+            >
+              {item.label}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Grid: Inputs and Visualizations */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+        gap: "20px",
+        alignItems: "start"
+      }}>
+        {/* Left column: Controls */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          <div style={{ display: "flex", gap: "10px" }}>
+            <FractionControl label="Fracción A" num={numA} den={denA} setNum={setNumA} setDen={setDenA} color="#ef4444" />
+            <FractionControl label="Fracción B" num={numB} den={denB} setNum={setNumB} setDen={setDenB} color="#3b82f6" />
+          </div>
+
+          {/* Large math display */}
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "12px",
+            background: "rgba(0,0,0,0.2)",
+            padding: "16px",
+            borderRadius: "16px",
+            border: "1px solid rgba(255,255,255,0.02)"
+          }}>
+            {/* Fraction A */}
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", fontSize: "1.4rem", fontWeight: "700" }}>
+              <span style={{ color: "#ef4444" }}>{numA}</span>
+              <div style={{ width: "24px", height: "2px", backgroundColor: "#e8e4f0", margin: "2px 0" }} />
+              <span style={{ color: "#ef4444" }}>{denA}</span>
+            </div>
+
+            {/* Operator */}
+            <span style={{ fontSize: "1.4rem", fontWeight: "700", color: "#a59ec9" }}>
+              {op}
+            </span>
+
+            {/* Fraction B */}
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", fontSize: "1.4rem", fontWeight: "700" }}>
+              <span style={{ color: "#3b82f6" }}>{numB}</span>
+              <div style={{ width: "24px", height: "2px", backgroundColor: "#e8e4f0", margin: "2px 0" }} />
+              <span style={{ color: "#3b82f6" }}>{denB}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Right column: Interactive Visualizations and Resolution */}
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+          alignItems: "center",
+          background: "rgba(0,0,0,0.2)",
+          border: "1px solid #2a204d",
+          borderRadius: "16px",
+          padding: "20px"
+        }}>
+          {/* Sum / Resta Homogeneous or Heterogeneous */}
+          {(op === "+" || op === "-") && (() => {
+            if (denA !== denB && !igualado) {
+              return (
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px", width: "100%", textAlign: "center" }}>
+                  <h4 style={{ margin: 0, fontSize: "0.95rem", color: "#a59ec9" }}>⚠️ Porciones de distintos tamaños</h4>
+                  <div style={{ display: "flex", gap: "20px", justifyContent: "center" }}>
+                    <div>
+                      {renderSmallPizza(numA, denA, "#ef4444")}
+                      <span style={{ display: "block", marginTop: "6px", fontSize: "0.8rem", color: "#ef4444" }}>A: {numA}/{denA}</span>
+                    </div>
+                    <div>
+                      {renderSmallPizza(numB, denB, "#3b82f6")}
+                      <span style={{ display: "block", marginTop: "6px", fontSize: "0.8rem", color: "#3b82f6" }}>B: {numB}/{denB}</span>
+                    </div>
+                  </div>
+                  <p style={{ fontSize: "0.85rem", color: "#d1cce5", margin: 0 }}>
+                    Para sumarlas o restarlas, primero debemos cortar ambas pizzas de la misma forma.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setIgualado(true)}
+                    style={{
+                      padding: "10px 18px",
+                      borderRadius: "10px",
+                      background: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)",
+                      color: "#ffffff",
+                      fontSize: "0.85rem",
+                      fontWeight: "700",
+                      border: "none",
+                      cursor: "pointer",
+                      boxShadow: "0 4px 15px rgba(139, 92, 246, 0.35)",
+                      minHeight: "auto"
+                    }}
+                  >
+                    🔍 Igualar Porciones (MCM = {comunDen})
+                  </button>
+                </div>
+              );
+            }
+
+            const usedDen = denA === denB ? denA : comunDen;
+            const usedNumA = denA === denB ? numA : eqNumA;
+            const usedNumB = denA === denB ? numB : eqNumB;
+            const finalNum = op === "+" ? usedNumA + usedNumB : usedNumA - usedNumB;
+            const finalNumCapped = Math.max(0, finalNum);
+
+            return (
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px", width: "100%" }}>
+                <h4 style={{ margin: 0, fontSize: "0.95rem", color: "#a59ec9", textAlign: "center" }}>
+                  {denA === denB ? "🍕 Porciones del mismo tamaño" : `🔍 Porciones igualadas en ${comunDen} partes`}
+                </h4>
+
+                <div style={{ display: "flex", gap: "14px", alignItems: "center", justifyContent: "center", width: "100%" }}>
+                  {/* Pizza A */}
+                  <div style={{ textAlign: "center" }}>
+                    {renderSmallPizza(usedNumA, usedDen, "#ef4444")}
+                    <span style={{ display: "block", marginTop: "4px", fontSize: "0.8rem", color: "#ef4444" }}>
+                      {usedNumA}/{usedDen}
+                    </span>
+                  </div>
+
+                  {/* Operator */}
+                  <span style={{ fontSize: "1.2rem", fontWeight: "700", color: "#9590a6" }}>{op}</span>
+
+                  {/* Pizza B */}
+                  <div style={{ textAlign: "center" }}>
+                    {renderSmallPizza(usedNumB, usedDen, "#3b82f6")}
+                    <span style={{ display: "block", marginTop: "4px", fontSize: "0.8rem", color: "#3b82f6" }}>
+                      {usedNumB}/{usedDen}
+                    </span>
+                  </div>
+
+                  {/* Equals */}
+                  <span style={{ fontSize: "1.2rem", fontWeight: "700", color: "#9590a6" }}>=</span>
+
+                  {/* Pizza Result */}
+                  <div style={{ textAlign: "center" }}>
+                    {renderSmallPizza(finalNumCapped, usedDen, "#10b981")}
+                    <span style={{ display: "block", marginTop: "4px", fontSize: "0.8rem", color: "#10b981", fontWeight: "700" }}>
+                      {finalNum}/{usedDen}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Arithmetic Steps */}
+                <div style={{
+                  background: "rgba(255,255,255,0.02)",
+                  border: "1px solid rgba(255,255,255,0.05)",
+                  borderRadius: "12px",
+                  padding: "12px",
+                  fontSize: "0.85rem",
+                  width: "100%",
+                  textAlign: "left",
+                  lineHeight: "1.5"
+                }}>
+                  {denA !== denB && (
+                    <div style={{ marginBottom: "8px", borderBottom: "1px dashed rgba(255,255,255,0.05)", paddingBottom: "6px" }}>
+                      <strong>Equivalentes:</strong> A multiplicada x{multA} ➔ <strong>{eqNumA}/{comunDen}</strong>. B multiplicada x{multB} ➔ <strong>{eqNumB}/{comunDen}</strong>.
+                    </div>
+                  )}
+                  {isNegative ? (
+                    <span style={{ color: "#ef4444", fontWeight: "600" }}>
+                      ⚠️ No se puede restar porque {usedNumA} es menor que {usedNumB}. El resultado daría negativo.
+                    </span>
+                  ) : (
+                    <span>
+                      Sumamos/restamos los numeradores y mantenemos el denominador: <br />
+                      <code>{usedNumA} {op} {usedNumB} = {finalNum}</code> ➔ <strong>{finalNum}/{usedDen}</strong>
+                    </span>
+                  )}
+                </div>
+
+                {denA !== denB && (
+                  <button
+                    type="button"
+                    onClick={() => setIgualado(false)}
+                    style={{
+                      padding: "6px 12px",
+                      borderRadius: "6px",
+                      background: "rgba(255,255,255,0.05)",
+                      border: "1px solid rgba(255,255,255,0.1)",
+                      color: "#9590a6",
+                      fontSize: "0.75rem",
+                      cursor: "pointer",
+                      minHeight: "auto"
+                    }}
+                  >
+                    ↩️ Volver a cortar
+                  </button>
+                )}
+              </div>
+            );
+          })()}
+
+          {/* Multiplication Grid */}
+          {op === "×" && (
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px", width: "100%" }}>
+              <h4 style={{ margin: 0, fontSize: "0.95rem", color: "#a59ec9", textAlign: "center" }}>
+                🍫 Modelo de Área: Columnas x Filas
+              </h4>
+              {renderChocolateGrid()}
+              <div style={{
+                background: "rgba(255,255,255,0.02)",
+                border: "1px solid rgba(255,255,255,0.05)",
+                borderRadius: "12px",
+                padding: "12px",
+                fontSize: "0.85rem",
+                width: "100%",
+                textAlign: "left",
+                lineHeight: "1.5"
+              }}>
+                • Sombras en <span style={{ color: "#60a5fa", fontWeight: "700" }}>azul</span>: Fracción A ({numA} de {denA} columnas). <br />
+                • Sombras en <span style={{ color: "#f59e0b", fontWeight: "700" }}>naranja</span>: Fracción B ({numB} de {denB} filas). <br />
+                • Intersección con <span style={{ color: "#10b981", fontWeight: "700" }}>chocolate 🍫</span>: El resultado es <strong>{numA * numB} pedazos de un total de {denA * denB}</strong>.
+                <div style={{ marginTop: "6px", borderTop: "1px dashed rgba(255,255,255,0.05)", paddingTop: "6px", fontWeight: "600", textAlign: "center" }}>
+                  Resultado: <strong>{numA * numB}/{denA * denB}</strong>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Division (Invert & Multiply) */}
+          {op === "÷" && (() => {
+            if (numB === 0) {
+              return (
+                <div style={{ color: "#ef4444", fontSize: "0.9rem", padding: "20px", textAlign: "center" }}>
+                  ⚠️ No se puede dividir por una fracción que es igual a cero.
+                </div>
+              );
+            }
+            const divNum = numA * denB;
+            const divDen = denA * numB;
+            const divGcd = gcd(divNum, divDen);
+            const simpNum = divNum / divGcd;
+            const simpDen = divDen / divGcd;
+
+            return (
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px", width: "100%" }}>
+                <h4 style={{ margin: 0, fontSize: "0.95rem", color: "#a59ec9", textAlign: "center" }}>
+                  ➗ El truco de la Pirueta (Invertir)
+                </h4>
+                
+                {/* Visual steps of inversion */}
+                <div style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  fontSize: "1.1rem",
+                  fontWeight: "600"
+                }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                    <span>{numA}</span>
+                    <div style={{ width: "20px", height: "1.5px", backgroundColor: "#e8e4f0", margin: "2px 0" }} />
+                    <span>{denA}</span>
+                  </div>
+                  <span style={{ color: "#9590a6" }}>÷</span>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", border: "1px dashed #ef4444", padding: "4px", borderRadius: "6px" }}>
+                    <span style={{ color: "#ef4444" }}>{numB}</span>
+                    <div style={{ width: "20px", height: "1.5px", backgroundColor: "#e8e4f0", margin: "2px 0" }} />
+                    <span style={{ color: "#ef4444" }}>{denB}</span>
+                  </div>
+                  <span style={{ color: "#10b981" }}>➔</span>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                    <span>{numA}</span>
+                    <div style={{ width: "20px", height: "1.5px", backgroundColor: "#e8e4f0", margin: "2px 0" }} />
+                    <span>{denA}</span>
+                  </div>
+                  <span style={{ color: "#9590a6" }}>×</span>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", border: "1px solid #10b981", padding: "4px", borderRadius: "6px" }}>
+                    <span style={{ color: "#10b981" }}>{denB}</span>
+                    <div style={{ width: "20px", height: "1.5px", backgroundColor: "#e8e4f0", margin: "2px 0" }} />
+                    <span style={{ color: "#10b981" }}>{numB}</span>
+                  </div>
+                </div>
+
+                <div style={{
+                  background: "rgba(255,255,255,0.02)",
+                  border: "1px solid rgba(255,255,255,0.05)",
+                  borderRadius: "12px",
+                  padding: "12px",
+                  fontSize: "0.85rem",
+                  width: "100%",
+                  textAlign: "left",
+                  lineHeight: "1.5"
+                }}>
+                  1. Damos la vuelta a la segunda fracción: <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;<code>{numB}/{denB}</code> se convierte en <strong>{denB}/{numB}</strong>. <br />
+                  2. Cambiamos el signo de dividir por multiplicar. <br />
+                  3. Multiplicamos directo: <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;<code>{numA} × {denB} = {divNum}</code> (arriba) <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;<code>{denA} × {numB} = {divDen}</code> (abajo) <br />
+                  Resultado: <strong>{divNum}/{divDen}</strong> 
+                  {divGcd > 1 && (
+                    <span> (Simplificado ➔ <strong>{simpNum}/{simpDen}</strong>)</span>
+                  )}
+                  {simpDen === 1 && (
+                    <span> = <strong>{simpNum} enteros</strong></span>
+                  )}
+                </div>
+
+                {/* Small result visualization */}
+                <div>
+                  {renderSmallPizza(simpNum, simpDen, "#10b981")}
+                  <span style={{ display: "block", marginTop: "4px", fontSize: "0.8rem", color: "#10b981", fontWeight: "700", textAlign: "center" }}>
+                    Resultado: {simpNum}/{simpDen}
+                  </span>
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+      </div>
+    </div>
+  );
 }
