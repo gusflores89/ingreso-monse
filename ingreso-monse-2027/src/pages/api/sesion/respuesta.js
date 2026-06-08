@@ -205,12 +205,14 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error y siguiente_p
     const practicas = assertSupabaseOk(
       await supabase
         .from("sesiones")
-        .select("id, es_correcta")
+        .select("id, es_correcta, created_at")
         .eq("user_id", sesion.user_id)
         .eq("tema", sesion.tema)
         .not("es_correcta", "is", null)
         .neq("tipo_pregunta", "leccion")
-        .neq("tipo_pregunta", "examen_final"),
+        .neq("tipo_pregunta", "examen_final")
+        .order("created_at", { ascending: false })
+        .limit(5),
       "No se pudieron obtener practicas del tema"
     );
 

@@ -4,7 +4,7 @@ export async function refreshTopicProgress(supabase, userId, tema, capaActual) {
   const sesiones = assertSupabaseOk(
     await supabase
       .from("sesiones")
-      .select("id, es_correcta, capa, created_at")
+      .select("id, es_correcta, capa, tipo_pregunta, created_at")
       .eq("user_id", userId)
       .eq("tema", tema)
       .not("es_correcta", "is", null)
@@ -14,7 +14,12 @@ export async function refreshTopicProgress(supabase, userId, tema, capaActual) {
 
   const total = sesiones.length;
   const correctas = sesiones.filter((sesion) => sesion.es_correcta).length;
-  const tasa = total ? Number(((correctas / total) * 100).toFixed(2)) : 0;
+  
+  // Calculate historical progress counts, but calculate accuracy rate (tasa) on the 5 most recent practices
+  const practicas = sesiones.filter((s) => s.tipo_pregunta !== "leccion" && s.tipo_pregunta !== "examen_final");
+  const recientes = practicas.slice(0, 5);
+  const correctasRecientes = recientes.filter((s) => s.es_correcta).length;
+  const tasa = recientes.length ? Number(((correctasRecientes / recientes.length) * 100).toFixed(2)) : 0;
   const capaMaxima = sesiones.reduce((max, sesion) => Math.max(max, sesion.capa || 1), capaActual || 1);
   const ultima = sesiones[0]?.created_at || null;
 

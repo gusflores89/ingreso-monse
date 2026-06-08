@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 
 export default function VisualizacionMatematica({ tipo, datos = {} }) {
+  if (tipo === "ortografia_reglas") {
+    return <VisualizacionOrtografia datos={datos} />;
+  }
+
   if (tipo === "fraccion_interactiva") {
     return <InteractiveFractionExplorer datos={datos} />;
   }
@@ -1584,6 +1588,211 @@ function InteractiveFractionOperations({ datos }) {
             );
           })()}
         </div>
+      </div>
+    </div>
+  );
+}
+
+function VisualizacionOrtografia({ datos = {} }) {
+  const { regla } = datos;
+
+  if (regla === "b") {
+    return (
+      <div style={{
+        background: "rgba(30, 27, 75, 0.4)",
+        border: "1.5px solid #4f46e5",
+        borderRadius: "16px",
+        padding: "20px",
+        color: "#f8fafc",
+        boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.3)",
+        maxWidth: "400px",
+        margin: "0 auto",
+        width: "100%",
+        boxSizing: "border-box"
+      }}>
+        <h3 style={{ margin: "0 0 16px 0", color: "#818cf8", display: "flex", alignItems: "center", gap: "8px", fontSize: "1.2rem" }}>
+          <span>📝</span> Reglas de la letra B
+        </h3>
+        
+        <div style={{ display: "flex", flexDirection: "column", gap: "12px", fontSize: "0.9rem" }}>
+          <div style={{ padding: "10px", background: "rgba(255,255,255,0.03)", borderRadius: "8px" }}>
+            <strong style={{ color: "#38bdf8" }}>1. Verbos en -bir y -buir:</strong>
+            <div style={{ marginTop: "4px", color: "#cbd5e1" }}>
+              Escri<strong>b</strong>ir, reci<strong>b</strong>ir, contri<strong>b</strong>uir. <br />
+              <span style={{ fontSize: "0.75rem", color: "#fca5a5" }}>⚠️ Excepto: hervir, servir, vivir.</span>
+            </div>
+          </div>
+          
+          <div style={{ padding: "10px", background: "rgba(255,255,255,0.03)", borderRadius: "8px" }}>
+            <strong style={{ color: "#38bdf8" }}>2. Palabras con bu-, bur-, bus-:</strong>
+            <div style={{ marginTop: "4px", color: "#cbd5e1" }}>
+              <strong>bu</strong>eno, <strong>bur</strong>la, <strong>bus</strong>car.
+            </div>
+          </div>
+          
+          <div style={{ padding: "10px", background: "rgba(255,255,255,0.03)", borderRadius: "8px" }}>
+            <strong style={{ color: "#38bdf8" }}>3. El pasado -aba y del verbo ir:</strong>
+            <div style={{ marginTop: "4px", color: "#cbd5e1" }}>
+              Jug<strong>aba</strong>, cant<strong>ábamos</strong>, <strong>iba</strong>, <strong>íbamos</strong>.
+            </div>
+          </div>
+          
+          <div style={{ padding: "10px", background: "rgba(255,255,255,0.03)", borderRadius: "8px" }}>
+            <strong style={{ color: "#38bdf8" }}>4. Antes de consonante (bl, br):</strong>
+            <div style={{ marginTop: "4px", color: "#cbd5e1" }}>
+              <strong>bl</strong>anco, <strong>br</strong>azo, o<strong>b</strong>stáculo.
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (regla === "v") {
+    return (
+      <div style={{
+        background: "rgba(15, 23, 42, 0.4)",
+        border: "1.5px solid #10b981",
+        borderRadius: "16px",
+        padding: "20px",
+        color: "#f8fafc",
+        boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.3)",
+        maxWidth: "400px",
+        margin: "0 auto",
+        width: "100%",
+        boxSizing: "border-box"
+      }}>
+        <h3 style={{ margin: "0 0 16px 0", color: "#34d399", display: "flex", alignItems: "center", gap: "8px", fontSize: "1.2rem" }}>
+          <span>⚔️</span> Reglas de la letra V
+        </h3>
+        
+        <div style={{ display: "flex", flexDirection: "column", gap: "12px", fontSize: "0.9rem" }}>
+          <div style={{ padding: "10px", background: "rgba(255,255,255,0.03)", borderRadius: "8px" }}>
+            <strong style={{ color: "#a7f3d0" }}>1. Pasado de andar, tener, estar:</strong>
+            <div style={{ marginTop: "4px", color: "#cbd5e1" }}>
+              Andu<strong>v</strong>e, tu<strong>v</strong>e, estu<strong>v</strong>o, tu<strong>v</strong>iera.
+            </div>
+          </div>
+          
+          <div style={{ padding: "10px", background: "rgba(255,255,255,0.03)", borderRadius: "8px" }}>
+            <strong style={{ color: "#a7f3d0" }}>2. Después de N, D y B:</strong>
+            <div style={{ marginTop: "4px", color: "#cbd5e1" }}>
+              e<strong>nv</strong>iar, a<strong>dv</strong>ertencia, o<strong>bv</strong>io.
+            </div>
+          </div>
+          
+          <div style={{ padding: "10px", background: "rgba(255,255,255,0.03)", borderRadius: "8px" }}>
+            <strong style={{ color: "#a7f3d0" }}>3. Adjetivos en -ave, -eva, -ivo:</strong>
+            <div style={{ marginTop: "4px", color: "#cbd5e1" }}>
+              sua<strong>v</strong>e, nu<strong>v</strong>a, acti<strong>v</strong>o, decisi<strong>v</strong>o.
+            </div>
+          </div>
+          
+          <div style={{ padding: "10px", background: "rgba(255,255,255,0.03)", borderRadius: "8px" }}>
+            <strong style={{ color: "#a7f3d0" }}>4. Las excepciones de la B:</strong>
+            <div style={{ marginTop: "4px", color: "#cbd5e1" }}>
+              her<strong>v</strong>ir, ser<strong>v</strong>ir, <strong>v</strong>i<strong>v</strong>ir.
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (regla === "ejemplos") {
+    return <InteractiveSpellingGame />;
+  }
+
+  return null;
+}
+
+function InteractiveSpellingGame() {
+  const words = [
+    { id: 1, original: "escri__ir", correct: "escribir", letter: "b", rule: "Verbos terminados en -bir" },
+    { id: 2, original: "en__iar", correct: "enviar", letter: "v", rule: "Después de la consonante N" },
+    { id: 3, original: "__uscar", correct: "buscar", letter: "b", rule: "Palabras con bu-, bur-, bus-" },
+    { id: 4, original: "estu__e", correct: "estuve", letter: "v", rule: "Pasado de andar, tener, estar" },
+    { id: 5, original: "her__ir", correct: "hervir", letter: "v", rule: "Excepción: hervir, servir, vivir" },
+    { id: 6, original: "nue__o", correct: "nuevo", letter: "v", rule: "Adjetivo terminado en -evo" }
+  ];
+
+  const [revealed, setRevealed] = useState({});
+
+  const toggleReveal = (id) => {
+    setRevealed(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  return (
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      gap: "16px",
+      width: "100%",
+      maxWidth: "420px",
+      margin: "0 auto"
+    }}>
+      <h4 style={{ margin: "0 0 4px 0", fontSize: "0.95rem", color: "#a59ec9", textAlign: "center" }}>
+        💡 ¡Hacé clic en cada tarjeta para ver la respuesta!
+      </h4>
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "12px",
+        width: "100%"
+      }}>
+        {words.map((w) => {
+          const isRevealed = revealed[w.id];
+          return (
+            <button
+              key={w.id}
+              type="button"
+              onClick={() => toggleReveal(w.id)}
+              style={{
+                background: isRevealed 
+                  ? (w.letter === "b" ? "rgba(79, 70, 229, 0.2)" : "rgba(16, 185, 129, 0.2)")
+                  : "rgba(255, 255, 255, 0.03)",
+                border: isRevealed
+                  ? (w.letter === "b" ? "1.5px solid #6366f1" : "1.5px solid #10b981")
+                  : "1.5px solid rgba(255, 255, 255, 0.08)",
+                borderRadius: "12px",
+                padding: "16px 8px",
+                cursor: "pointer",
+                transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "6px",
+                outline: "none",
+                minHeight: "100px",
+                boxSizing: "border-box"
+              }}
+            >
+              <span style={{
+                fontSize: "1.1rem",
+                fontWeight: "700",
+                color: isRevealed 
+                  ? (w.letter === "b" ? "#818cf8" : "#34d399") 
+                  : "#e2e8f0",
+                letterSpacing: "0.5px"
+              }}>
+                {isRevealed ? w.correct : w.original}
+              </span>
+              
+              {isRevealed && (
+                <span style={{
+                  fontSize: "0.65rem",
+                  color: "#cbd5e1",
+                  textAlign: "center",
+                  lineHeight: "1.2"
+                }}>
+                  {w.rule}
+                </span>
+              )}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

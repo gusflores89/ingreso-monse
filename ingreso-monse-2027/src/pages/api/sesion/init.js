@@ -186,6 +186,11 @@ export default async function handler(req, res) {
       modoSesion === "leccion"
         ? buildPromptTeacher(alumno, { ...contexto, preguntas_recientes: JSON.stringify(preguntasRecientes) })
         : buildPromptPractice(alumno, { ...contexto, preguntas_recientes: JSON.stringify(preguntasRecientes) });
+    const isSpelling = temaActual.startsWith("ortografia_");
+    const spellingSpecificPrompt = isSpelling
+      ? `\n- Como el tema es de ortografía (${temaActual}), genera una historia breve (un párrafo de unas 100 palabras) e incluye exactamente 3 errores ortográficos relacionados con la regla (por ejemplo, si es ortografía B/V, escribe con B palabras que van con V o viceversa). Asegurate de variar las palabras y no repetir las mismas palabras que fueron probadas en las historias anteriores de la lista. Varía los personajes y contextos.`
+      : "";
+
     const userInstruction =
       modoSesion === "leccion"
         ? `Ensena este tema a ${alumno.nombre} por primera vez. Responde SOLO en JSON.`
@@ -200,7 +205,7 @@ IMPORTANTE:
 - No repitas los mismos numeros de las preguntas recientes.
 - No hagas la misma cuenta al reves.
 - Si es multiplicacion, cambia contexto y factores dentro del tema.
-- Si el tema es tablas_multiplicar_2_5, usa solo tablas del 2 al 5.`;
+- Si el tema es tablas_multiplicar_2_5, usa solo tablas del 2 al 5.${spellingSpecificPrompt}`;
 
     const respuestaIa = await callOpenRouter(
       MODEL_TUTOR,
@@ -498,12 +503,14 @@ async function maybeCrearExamenFinal(supabase, userId, tema, capa, modo, context
 async function getPracticasEvaluadas(supabase, userId, tema) {
   const result = await supabase
     .from("sesiones")
-    .select("id, es_correcta, tipo_pregunta")
+    .select("id, es_correcta, tipo_pregunta, created_at")
     .eq("user_id", userId)
     .eq("tema", tema)
     .not("es_correcta", "is", null)
     .neq("tipo_pregunta", "leccion")
-    .neq("tipo_pregunta", "examen_final");
+    .neq("tipo_pregunta", "examen_final")
+    .order("created_at", { ascending: false })
+    .limit(5);
 
   if (result.error) {
     throw new Error(`No se pudieron contar practicas del tema: ${result.error.message}`);

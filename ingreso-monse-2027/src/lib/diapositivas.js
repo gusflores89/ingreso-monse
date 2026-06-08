@@ -1,4 +1,93 @@
 export const DIAPOSITIVAS_CATALOG = {
+  ortografia_b_v: {
+    titulo: "Reglas de la B y la V",
+    pdf_url: "/apuntes/guia_completa_monserrat.pdf",
+    slides: [
+      {
+        titulo: "Reglas de la B",
+        contenido: "Para escribir correctamente con **B**, existen algunas reglas muy fáciles que te ayudarán en el examen:\n\n1. **Verbos terminados en -bir y -buir:** como *escribir* y *contribuir* (¡excepto *hervir, servir y vivir*!).\n2. **Palabras con bu-, bur- y bus-:** como *bueno*, *burla* y *buscar*.\n3. **El pasado -aba:** de los verbos terminados en -ar, como *jugaba*, *cantábamos*, y también del verbo ir (*iba*).",
+        visualizacion: { tipo: "ortografia_reglas", datos: { regla: "b" } },
+        concepto_clave: "Usamos B en verbos en -bir/-buir, palabras con bu-/bur-/bus- y en el pasado -aba."
+      },
+      {
+        titulo: "Reglas de la V",
+        contenido: "Para escribir correctamente con **V**, recordá estas reglas clave:\n\n1. **El pasado de andar, tener, estar:** *anduve*, *tuve*, *estuve* (¡se escriben con V!).\n2. **Después de N, D y B:** como *enviar* (después de N), *advertir* (después de D) y *obvio* (después de B).\n3. **Adjetivos terminados en -ave, -eva, -ivo, etc.:** como *suave*, *nueva*, *activo*.\n4. **Verbos hervir, servir y vivir:** son las excepciones a la regla de la B.",
+        visualizacion: { tipo: "ortografia_reglas", datos: { regla: "v" } },
+        concepto_clave: "Usamos V en el pasado de tener/estar/andar, después de N/D, y en adjetivos terminados en -ave/-eva/-ivo."
+      },
+      {
+        titulo: "¡Desafío de práctica!",
+        contenido: "Hacé clic en las palabras para completar los espacios en blanco y descubrir la regla que se aplica en cada caso. ¡Poné a prueba tu ojo de detective ortográfico!",
+        visualizacion: { tipo: "ortografia_reglas", datos: { regla: "ejemplos" } },
+        concepto_clave: "¡Hacé clic para revelar y repasar las reglas!"
+      }
+    ],
+    apunte_completo: `
+# Guía de Ortografía: Reglas de la B y la V
+
+## Rumbo al Ingreso del Colegio Nacional de Monserrat
+
+En el examen de ingreso, los profesores prestan muchísima atención a la ortografía. Un solo error en un texto de producción escrita puede bajarte puntos importantes. ¡Dominar las reglas de la B y la V es súper sencillo si prestás atención a los patrones!
+
+---
+
+### 1. Reglas fundamentales de la B
+
+Usamos la **B** en los siguientes casos:
+
+* **Verbos terminados en -bir y -buir:**
+  * Ejemplos: *escribir*, *recibir*, *subir*, *contribuir*, *distribuir*.
+  * **¡EXCEPCIONES IMPORTANTES!** Los únicos tres verbos terminados en -vir que se escriben con **V** son: **hervir**, **servir** y **vivir** (y todas sus palabras derivadas como *hervido*, *servidor*, *vivienda*).
+
+* **Palabras que empiezan con bu-, bur- y bus-:**
+  * Ejemplos: *bueno*, *buzón*, *burla*, *burbuja*, *buscar*, *búsqueda*.
+
+* **Terminaciones del pretérito imperfecto (el pasado) de los verbos de la primera conjugación -ar:**
+  * Se escriben con **B** todas las terminaciones que terminan en **-aba**, **-abas**, **-ábamos**, **-aban**.
+  * Ejemplos: *cantaba*, *jugabas*, *estudiábamos*, *saltaban*.
+  * ¡Y también el verbo **ir** en pasado! *iba*, *ibas*, *íbamos*, *iban*.
+
+* **Antes de cualquier consonante:**
+  * Cuando hay dos consonantes seguidas, la primera suele ser B.
+  * Ejemplos: *blanco* (bl), *brazo* (br), *obstáculo* (bs), *obtener* (bt), *abuelo* (buen, pero aquí es antes de vocal, cuidado: *obvio* tiene bv).
+
+---
+
+### 2. Reglas fundamentales de la V
+
+Usamos la **V** en los siguientes casos:
+
+* **El pretérito perfecto simple de los verbos andar, tener y estar:**
+  * Es uno de los errores más comunes en los exámenes. ¡No te olvides!
+  * Ejemplos: *yo anduve*, *él tuvo*, *nosotros estuvimos*.
+  * Y también sus derivados del pasado subjuntivo: *anduviera*, *tuviese*, *estuvieran*.
+
+* **Después de las consonantes N, D y B:**
+  * Ejemplos: *enviar* (después de N), *invitar* (después de N), *advertencia* (después de D), *obvio* (después de B).
+
+* **Adjetivos terminados en -ave, -avo, -eva, -eve, -evo, -iva, -ivo:**
+  * Palabras que describen cómo es algo y terminan con estas sílabas.
+  * Ejemplos: *suave*, *octavo*, *nueva*, *breve*, *nuevo*, *activa*, *comprensivo*.
+
+* **Las excepciones de la B:**
+  * Los verbos *hervir*, *servir* y *vivir* y sus familiares (*hirviendo*, *sirvienta*, *convivir*).
+
+---
+
+### 3. Trucos y errores comunes: ¡Evitá las trampas!
+
+1. **Confundir "tuvo" con "tubo":**
+   * **Tuvo (con V):** Viene del verbo *tener*. Ej: *Ella tuvo que estudiar mucho.*
+   * **Tubo (con B):** Es un objeto cilíndrico y hueco. Ej: *El tubo de la cañería se rompió.*
+
+2. **Confundir "vaca" con "baca":**
+   * **Vaca (con V):** Es el animal que da leche. Ej: *La vaca muge en el campo.*
+   * **Baca (con B):** Es el portaequipaje que se coloca arriba de los autos.
+
+3. **El pasado de andar, tener, estar:**
+   * Recordá siempre la frase: *"Ayer anduve por el parque, estuve con mis amigos y tuve un gran día"*. ¡Las tres palabras mágicas van con V!
+`
+  },
   fracciones_concepto: {
     titulo: "Concepto de Fracciones",
     pdf_url: "/apuntes/fracciones_concepto.pdf",
