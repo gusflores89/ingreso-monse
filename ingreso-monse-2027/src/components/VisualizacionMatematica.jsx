@@ -1005,12 +1005,20 @@ function nombreDeFraccion(n, d) {
 }
 
 function InteractiveFractionOperations({ datos }) {
-  const [numA, setNumA] = useState(1);
-  const [denA, setDenA] = useState(2);
-  const [numB, setNumB] = useState(1);
-  const [denB, setDenB] = useState(4);
-  const [op, setOp] = useState("+");
+  const [numA, setNumA] = useState(datos?.numA ?? 1);
+  const [denA, setDenA] = useState(datos?.denA ?? 2);
+  const [numB, setNumB] = useState(datos?.numB ?? 1);
+  const [denB, setDenB] = useState(datos?.denB ?? 4);
+  const [op, setOp] = useState(datos?.initialOp ?? "+");
   const [igualado, setIgualado] = useState(false);
+
+  useEffect(() => {
+    if (datos?.numA !== undefined) setNumA(datos.numA);
+    if (datos?.denA !== undefined) setDenA(datos.denA);
+    if (datos?.numB !== undefined) setNumB(datos.numB);
+    if (datos?.denB !== undefined) setDenB(datos.denB);
+    if (datos?.initialOp !== undefined) setOp(datos.initialOp);
+  }, [datos]);
 
   useEffect(() => {
     setIgualado(false);

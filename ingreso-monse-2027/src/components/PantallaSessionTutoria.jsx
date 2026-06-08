@@ -1389,20 +1389,30 @@ function visualizacionParaTema(tema = "", texto = "") {
 
   if (temaNormalizado.includes("fracciones_operaciones")) {
     const fracciones = extraerFracciones(texto);
-    if (fracciones.length >= 2) {
-      return {
-        tipo: "fraccion_operacion",
-        datos: {
-          frac1: { num: fracciones[0].numerador, den: fracciones[0].denominador },
-          frac2: { num: fracciones[1].numerador, den: fracciones[1].denominador },
-          operacion: texto.includes("-") ? "-" : "+",
-          resultado: fracciones[2]
-            ? { num: fracciones[2].numerador, den: fracciones[2].denominador }
-            : { num: Math.min(fracciones[0].numerador + fracciones[1].numerador, fracciones[0].denominador), den: fracciones[0].denominador },
-        },
-      };
-    }
-    return { tipo: "fraccion_pizza", datos: { numerador: 1, denominador: 4, titulo: "Partes de un entero" } };
+    const op = texto.includes("-") || texto.includes("restar") || texto.includes("resta") 
+      ? "-" 
+      : (texto.includes("x") || texto.includes("×") || texto.includes("multiplicar") || texto.includes("multiplicación") 
+          ? "×" 
+          : (texto.includes("÷") || texto.includes("/") || texto.includes("dividir") || texto.includes("división") 
+              ? "÷" 
+              : "+"));
+
+    return {
+      tipo: "fraccion_operaciones_interactiva",
+      datos: fracciones.length >= 2 ? {
+        numA: fracciones[0].numerador,
+        denA: fracciones[0].denominador,
+        numB: fracciones[1].numerador,
+        denB: fracciones[1].denominador,
+        initialOp: op
+      } : {
+        numA: 1,
+        denA: 2,
+        numB: 1,
+        denB: 4,
+        initialOp: "+"
+      }
+    };
   }
 
   if (temaNormalizado.includes("fracciones_del_resto")) {

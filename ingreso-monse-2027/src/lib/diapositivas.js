@@ -265,12 +265,13 @@ Los problemas del Monserrat suelen combinar historias cotidianas con varios paso
         titulo: "¡Trozos del mismo tamaño! Suma y resta homogénea",
         contenido: "Imagina que tienes una pizza cortada en 8 porciones iguales. Si tú te comes $\\frac{2}{8}$ de la pizza y tu mejor amigo se come $\\frac{3}{8}$, para saber cuánto comieron en total solo debemos juntar las porciones: 2 trozos más 3 trozos son 5 trozos. Como el tamaño de las porciones no cambió, el número de abajo (denominador) se queda exactamente igual:\n$$\\frac{2}{8} + \\frac{3}{8} = \\frac{2 + 3}{8} = \\frac{5}{8}$$",
         visualizacion: {
-          tipo: "fraccion_operacion",
+          tipo: "fraccion_operaciones_interactiva",
           datos: {
-            frac1: { num: 2, den: 8 },
-            frac2: { num: 3, den: 8 },
-            operacion: "+",
-            resultado: { num: 5, den: 8 }
+            numA: 2,
+            denA: 8,
+            numB: 3,
+            denB: 8,
+            initialOp: "+"
           }
         },
         concepto_clave: "Si los denominadores son iguales, se suman o restan solo los numeradores; el denominador se mantiene igual."
@@ -279,12 +280,13 @@ Los problemas del Monserrat suelen combinar historias cotidianas con varios paso
         titulo: "El desafío de los tamaños diferentes ¡A igualar con magia!",
         contenido: "Si tienes $\\frac{1}{2}$ alfajor y te regalan $\\frac{1}{4}$ más, no puedes sumarlos directamente como \"$2$\" porque los trozos son de tamaños distintos. ¡Aquí usamos la magia de las **fracciones equivalentes**! Multiplicamos arriba y abajo a la primera fracción por $2$ para transformarla en cuartos: $\\frac{1}{2} = \\frac{2}{4}$. Ahora que los trozos tienen el mismo tamaño, sumamos sin problemas:\n$$\\frac{2}{4} + \\frac{1}{4} = \\frac{3}{4}$$",
         visualizacion: {
-          tipo: "fraccion_operacion",
+          tipo: "fraccion_operaciones_interactiva",
           datos: {
-            frac1: { num: 2, den: 4 },
-            frac2: { num: 1, den: 4 },
-            operacion: "+",
-            resultado: { num: 3, den: 4 }
+            numA: 1,
+            denA: 2,
+            numB: 1,
+            denB: 4,
+            initialOp: "+"
           }
         },
         concepto_clave: "Para sumar o restar denominadores distintos, busca el Mínimo Común Múltiplo (MCM) para conseguir fracciones equivalentes con igual denominador."
@@ -293,12 +295,13 @@ Los problemas del Monserrat suelen combinar historias cotidianas con varios paso
         titulo: "Multiplicar fracciones o \"La porción de otra porción\"",
         contenido: "Imagina que en la mesa queda $\\frac{1}{2}$ barra de chocolate y decides comerte la mitad de ese resto, es decir, $\\frac{1}{2}$ **de** $\\frac{1}{2}$. En la matemática de las fracciones, la palabra \"de\" se convierte en una multiplicación. Para resolverla no necesitas buscar iguales tamaños; simplemente multiplicas los vecinos de arriba entre sí y los de abajo entre sí de forma directa:\n$$\\frac{1}{2} \\times \\frac{1}{2} = \\frac{1 \\times 1}{2 \\times 2} = \\frac{1}{4}$$",
         visualizacion: {
-          tipo: "fraccion_operacion",
+          tipo: "fraccion_operaciones_interactiva",
           datos: {
-            frac1: { num: 1, den: 2 },
-            frac2: { num: 1, den: 2 },
-            operacion: "×",
-            resultado: { num: 1, den: 4 }
+            numA: 1,
+            denA: 2,
+            numB: 1,
+            denB: 2,
+            initialOp: "×"
           }
         },
         concepto_clave: "La multiplicación de fracciones se resuelve de forma directa: numerador por numerador, y denominador por denominador."
@@ -307,12 +310,13 @@ Los problemas del Monserrat suelen combinar historias cotidianas con varios paso
         titulo: "Dividir fracciones ¡El truco de la pirueta!",
         contenido: "Dividir fracciones significa ver cuántas veces entra una fracción dentro de otra. Por ejemplo, ¿cuántos vasos de $\\frac{1}{4}$ litro puedes llenar con una jarra de $\\frac{1}{2}$ litro? Para resolver $\\frac{1}{2} \\div  \\frac{1}{4}$, aplicamos un truco ninja: dejamos la primera fracción igual, transformamos el signo de división en multiplicación y **le damos la vuelta (invertimos)** a la segunda fracción. ¡Luego resolvemos multiplicando directo!:\n$$\\frac{1}{2} \\div  \\frac{1}{4} = \\frac{1}{2} \\times \\frac{4}{1} = \\frac{4}{2} = 2 \\text{ vasos}$$",
         visualizacion: {
-          tipo: "fraccion_operacion",
+          tipo: "fraccion_operaciones_interactiva",
           datos: {
-            frac1: { num: 1, den: 2 },
-            frac2: { num: 1, den: 4 },
-            operacion: "÷",
-            resultado: { num: 2, den: 1 }
+            numA: 1,
+            denA: 2,
+            numB: 1,
+            denB: 4,
+            initialOp: "÷"
           }
         },
         concepto_clave: "Dividir es multiplicar por la segunda fracción invertida. ¡Dale la vuelta y multiplica!"
