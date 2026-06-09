@@ -1,10 +1,10 @@
 import { requireMethod } from "@/lib/http";
-import { getTopicMeta } from "@/lib/curriculum";
+import { getTopicMeta, CURRICULUM_MATEMATICA, CURRICULUM_LENGUA } from "@/lib/curriculum";
 import { callOpenRouter } from "@/lib/openrouter";
 import { MODEL_DASHBOARD, buildPromptDashboard } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { buildAlumnoProfile } from "@/lib/alumno";
-import { getUserPlan } from "@/lib/planes";
+import { getUserPlan, TRIAL_TOPICS } from "@/lib/planes";
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "GET")) return;
@@ -67,7 +67,8 @@ export default async function handler(req, res) {
       "No se pudieron obtener sesiones recientes"
     );
 
-    const metricas = buildDashboardMetrics({ progreso, sesiones, alertas });
+    const plan = getUserPlan(usuario);
+    const metricas = buildDashboardMetrics({ progreso, sesiones, alertas, plan });
     const evaluadas = sesiones.length;
     const correctas = sesiones.filter((sesion) => sesion.es_correcta).length;
     const insightInput = {
@@ -105,7 +106,7 @@ export default async function handler(req, res) {
     }
 
     res.status(200).json({
-      usuario: { ...usuario, plan: getUserPlan(usuario) },
+      usuario: { ...usuario, plan },
       progreso,
       alertas,
       sesiones_recientes: sesiones,
@@ -119,18 +120,87 @@ export default async function handler(req, res) {
   }
 }
 
-function buildDashboardMetrics({ progreso, sesiones, alertas }) {
+function buildDashboardMetrics({ progreso, sesiones, alertas, plan }) {
   const now = Date.now();
   const weekAgo = now - 7 * 24 * 60 * 60 * 1000;
   const sesionesSemana = sesiones.filter((sesion) => parseSupabaseDate(sesion.created_at).getTime() >= weekAgo);
   const correctasSemana = sesionesSemana.filter((sesion) => sesion.es_correcta).length;
   const tasaSemana = sesionesSemana.length ? Math.round((correctasSemana / sesionesSemana.length) * 100) : 0;
   const balanceMaterias = buildBalanceMaterias(sesionesSemana.length ? sesionesSemana : sesiones);
-  const progresoEnriquecido = progreso.map((item) => enrichTopic(item));
+
+  const approvedExams = new Set(
+    sesiones
+      .filter((s) => s.tipo_pregunta === "examen_final" && s.es_correcta)
+      .map((s) => s.tema)
+  );
+
+  const topicsFase1 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 1);
+  const topicsFase2 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 2);
+  const topicsFase3 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 3);
+  const topicsFase4 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 4);
+
+  const approvedFase1 = topicsFase1.filter(t => approvedExams.has(t.tema)).length;
+  const approvedFase2 = topicsFase2.filter(t => approvedExams.has(t.tema)).length;
+  const approvedFase3 = topicsFase3.filter(t => approvedExams.has(t.tema)).length;
+  const approvedFase4 = topicsFase4.filter(t => approvedExams.has(t.tema)).length;
+
+  const unlockedFase1 = true;
+  const unlockedFase2 = approvedFase1 >= 6;
+  const unlockedFase3 = unlockedFase2 && approvedFase2 >= 4;
+  const unlockedFase4 = unlockedFase3 && approvedFase3 >= 4;
+  const unlockedFase5 = unlockedFase4 && approvedFase4 >= 10;
+
+  const isPhaseUnlocked = (fase) => {
+    if (fase === 1) return unlockedFase1;
+    if (fase === 2) return unlockedFase2;
+    if (fase === 3) return unlockedFase3;
+    if (fase === 4) return unlockedFase4;
+    if (fase === 5) return unlockedFase5;
+    return false;
+  };
+
+  const esTrial = plan === "trial";
+  const isTopicUnlocked = (tema, fase) => {
+    if (esTrial) {
+      return TRIAL_TOPICS.includes(tema);
+    }
+    return isPhaseUnlocked(fase);
+  };
+
+  const curriculumCompleto = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA];
+  const progresoMap = new Map(progreso.map((p) => [p.tema, p]));
+
+  const progresoEnriquecido = curriculumCompleto.map((topic) => {
+    const dbItem = progresoMap.get(topic.tema) || {
+      tema: topic.tema,
+      total_sesiones: 0,
+      total_correctas: 0,
+      tasa_acierto: 0,
+      capa_actual: 1,
+    };
+
+    const unlocked = isTopicUnlocked(topic.tema, topic.fase);
+
+    return enrichTopic({
+      ...dbItem,
+      materia: topic.materia,
+      fase: topic.fase,
+      orden: topic.orden,
+      unlocked,
+    });
+  });
+
+  progresoEnriquecido.sort((a, b) => {
+    if (a.fase !== b.fase) return a.fase - b.fase;
+    return a.orden - b.orden;
+  });
+
   const oportunidades = buildOportunidades({ progreso: progresoEnriquecido, balanceMaterias, alertas, sesiones });
-  const temaFuerte = [...progresoEnriquecido].sort((a, b) => b.tasa_acierto - a.tasa_acierto)[0] || null;
+  
+  const temasConPracticas = progresoEnriquecido.filter((item) => item.total_sesiones > 0);
+  const temaFuerte = [...temasConPracticas].sort((a, b) => b.tasa_acierto - a.tasa_acierto)[0] || null;
   const temaRefuerzo =
-    [...progresoEnriquecido].filter((item) => item.tasa_acierto < 80).sort((a, b) => a.tasa_acierto - b.tasa_acierto)[0] ||
+    [...temasConPracticas].filter((item) => item.tasa_acierto < 80).sort((a, b) => a.tasa_acierto - b.tasa_acierto)[0] ||
     null;
 
   return {
@@ -181,8 +251,8 @@ function enrichTopic(item) {
   return {
     ...item,
     materia,
-    estado: getTopicState({ tasa, total }),
-    oportunidad: getTopicOpportunity({ tasa, total, tema: item.tema }),
+    estado: item.unlocked ? getTopicState({ tasa, total }) : "bloqueado",
+    oportunidad: getTopicOpportunity({ tasa, total, tema: item.tema, unlocked: item.unlocked }),
   };
 }
 
@@ -194,7 +264,9 @@ function getTopicState({ tasa, total }) {
   return "refuerzo";
 }
 
-function getTopicOpportunity({ tasa, total, tema }) {
+function getTopicOpportunity({ tasa, total, tema, unlocked }) {
+  if (!unlocked) return `Este tema se desbloqueará al avanzar en las fases previas.`;
+  if (total === 0) return `Tema disponible para comenzar a practicar.`;
   if (total >= 3 && tasa < 50) return `Reforzar ${formatTema(tema)} con ejercicios mas guiados.`;
   if (total >= 5 && tasa < 80) return `Todavia no esta firme: conviene practicar ${formatTema(tema)} en sesiones cortas.`;
   if (tasa >= 80 && total >= 3) return `Listo para consolidar con examen final o repaso breve.`;

@@ -13,6 +13,10 @@ export default function VisualizacionMatematica({ tipo, datos = {} }) {
     return <InteractiveFractionOperations datos={datos} />;
   }
 
+  if (tipo === "numeros_naturales_interactivo") {
+    return <NumerosNaturalesInteractivo datos={datos} />;
+  }
+
   const [radio, setRadio] = useState(40);
   const [modoTab, setModoTab] = useState("medidas");
   const [rollProgress, setRollProgress] = useState(0);
@@ -1802,6 +1806,1257 @@ function InteractiveSpellingGame() {
           );
         })}
       </div>
+    </div>
+  );
+}
+
+// ==========================================
+// NUMEROS NATURALES Y SISTEMA DECIMAL
+// ==========================================
+
+export function numeroALetras(num) {
+  if (num === 0) return "cero";
+  
+  const unidades = ["", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve"];
+  const decenas = ["", "diez", "veinte", "treinta", "cuarenta", "cincuenta", "sesenta", "setenta", "ochenta", "noventa"];
+  const especiales = {
+    11: "once", 12: "doce", 13: "trece", 14: "catorce", 15: "quince",
+    16: "dieciséis", 17: "diecisiete", 18: "dieciocho", 19: "diecinueve",
+    21: "veintiuno", 22: "veintidós", 23: "veintitrés", 24: "veinticuatro",
+    25: "veinticinco", 26: "veintiséis", 27: "veintisiete", 28: "veintiocho", 29: "veintinueve"
+  };
+  const centenas = ["", "ciento", "doscientos", "trescientos", "cuatrocientos", "quinientos", "seiscientos", "setecientos", "ochocientos", "novecientos"];
+  
+  const resolverTresCifras = (n) => {
+    if (n === 100) return "cien";
+    let str = "";
+    let c = Math.floor(n / 100);
+    let restoDec = n % 100;
+    let d = Math.floor(restoDec / 10);
+    let u = restoDec % 10;
+    
+    if (c > 0) {
+      str += centenas[c] + " ";
+    }
+    
+    if (restoDec > 0) {
+      if (especiales[restoDec]) {
+        str += especiales[restoDec];
+      } else {
+        if (d > 0) {
+          str += decenas[d];
+          if (u > 0) {
+            str += " y " + unidades[u];
+          }
+        } else if (u > 0) {
+          str += unidades[u];
+        }
+      }
+    }
+    
+    return str.trim();
+  };
+
+  const convertirParaUnidadSuperior = (str) => {
+    if (str.endsWith("veintiuno")) {
+      return str.slice(0, -4) + "ún";
+    } else if (str.endsWith("uno")) {
+      return str.slice(0, -3) + "un";
+    }
+    return str;
+  };
+  
+  let millon = Math.floor(num / 1000000);
+  let miles = Math.floor((num % 1000000) / 1000);
+  let unidadesResto = num % 1000;
+  
+  let resultado = "";
+  
+  if (millon > 0) {
+    if (millon === 1) {
+      resultado += "un millón ";
+    } else {
+      resultado += convertirParaUnidadSuperior(resolverTresCifras(millon)) + " millones ";
+    }
+  }
+  
+  if (miles > 0) {
+    if (miles === 1) {
+      resultado += "mil ";
+    } else {
+      resultado += convertirParaUnidadSuperior(resolverTresCifras(miles)) + " mil ";
+    }
+  }
+  
+  if (unidadesResto > 0) {
+    let restoStr = resolverTresCifras(unidadesResto);
+    resultado += restoStr;
+  }
+  
+  return resultado.trim();
+}
+
+function NumerosNaturalesInteractivo({ datos = {} }) {
+  const [activeTab, setActiveTab] = useState(datos?.modoInicial || "tablero");
+
+  // Tablero posicional
+  const [columnas, setColumnas] = useState({
+    UMi: 0,
+    CM: 0,
+    DM: 0,
+    UM: 0,
+    C: 0,
+    D: 0,
+    U: 0
+  });
+  const [inputTablero, setInputTablero] = useState("");
+  const [feedbackTablero, setFeedbackTablero] = useState("");
+
+  // Desintegrador
+  const [inputDesintegrador, setInputDesintegrador] = useState("35207");
+  const [cardsDesintegradas, setCardsDesintegradas] = useState([]);
+  const [tarjetasReveladas, setTarjetasReveladas] = useState({});
+  const [cardExplicacion, setCardExplicacion] = useState(null);
+
+  // Minijuego
+  const [nivel, setNivel] = useState(1);
+  const [estrellas, setEstrellas] = useState(0);
+  const [pregunta, setPregunta] = useState(null);
+  const [respuestaUsuario, setRespuestaUsuario] = useState("");
+  const [estadoValidacion, setEstadoValidacion] = useState(null);
+  const [mostrarPista, setMostrarPista] = useState(false);
+
+  // Synth Audio Helpers
+  const playTone = (freq, type = "sine", duration = 0.1) => {
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const oscillator = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+      
+      oscillator.type = type;
+      oscillator.frequency.value = freq;
+      
+      gainNode.gain.setValueAtTime(0.06, audioCtx.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+      
+      oscillator.start();
+      oscillator.stop(audioCtx.currentTime + duration);
+    } catch (e) {
+      // Audio context error, ignore
+    }
+  };
+
+  const ORDEN_COLUMNAS = ["UMi", "CM", "DM", "UM", "C", "D", "U"];
+  const MULTIPLICADORES = {
+    UMi: 1000000,
+    CM: 100000,
+    DM: 10000,
+    UM: 1000,
+    C: 100,
+    D: 10,
+    U: 1
+  };
+  const COLORES_COLUMNAS = {
+    UMi: "hsl(280, 85%, 65%)",
+    CM: "hsl(315, 80%, 60%)",
+    DM: "hsl(340, 85%, 60%)",
+    UM: "hsl(20, 85%, 60%)",
+    C: "hsl(45, 90%, 55%)",
+    D: "hsl(140, 75%, 50%)",
+    U: "hsl(202, 85%, 55%)"
+  };
+  const NOMBRES_COLUMNAS = {
+    UMi: "Unidades de Millón",
+    CM: "Centenas de Mil",
+    DM: "Decenas de Mil",
+    UM: "Unidades de Mil",
+    C: "Centenas",
+    D: "Decenas",
+    U: "Unidades"
+  };
+
+  // Tablero posicional logic
+  const modificarColumna = (col, delta) => {
+    playTone(400 + ORDEN_COLUMNAS.indexOf(col) * 70 + delta * 20, "sine", 0.08);
+    setColumnas(prev => ({
+      ...prev,
+      [col]: Math.max(0, Math.min(99, prev[col] + delta))
+    }));
+  };
+
+  const reagruparColumna = (col) => {
+    if (columnas[col] < 10) return;
+    const idx = ORDEN_COLUMNAS.indexOf(col);
+    if (idx === 0) return;
+    const colIzquierda = ORDEN_COLUMNAS[idx - 1];
+
+    playTone(500, "triangle", 0.12);
+    setTimeout(() => playTone(900, "triangle", 0.2), 80);
+
+    setColumnas(prev => ({
+      ...prev,
+      [col]: prev[col] - 10,
+      [colIzquierda]: prev[colIzquierda] + 1
+    }));
+    setFeedbackTablero(`¡Canjeaste 10 ${col} por 1 ${colIzquierda}!`);
+    setTimeout(() => setFeedbackTablero(""), 3000);
+  };
+
+  const cargarNumeroTablero = () => {
+    const num = parseInt(inputTablero.replace(/\D/g, ""), 10);
+    if (isNaN(num) || num < 0 || num > 9999999) {
+      setFeedbackTablero("⚠️ Escribí un número válido entre 0 y 9.999.999");
+      return;
+    }
+    playTone(600, "sine", 0.1);
+    const str = num.toString().padStart(7, "0");
+    setColumnas({
+      UMi: parseInt(str[0], 10),
+      CM: parseInt(str[1], 10),
+      DM: parseInt(str[2], 10),
+      UM: parseInt(str[3], 10),
+      C: parseInt(str[4], 10),
+      D: parseInt(str[5], 10),
+      U: parseInt(str[6], 10)
+    });
+    setFeedbackTablero(`✔️ Número ${num.toLocaleString("es-AR")} cargado`);
+    setInputTablero("");
+    setTimeout(() => setFeedbackTablero(""), 3000);
+  };
+
+  const resetTablero = () => {
+    playTone(200, "sine", 0.15);
+    setColumnas({ UMi: 0, CM: 0, DM: 0, UM: 0, C: 0, D: 0, U: 0 });
+    setFeedbackTablero("");
+  };
+
+  const valorTotalTablero = ORDEN_COLUMNAS.reduce((acc, col) => acc + columnas[col] * MULTIPLICADORES[col], 0);
+
+  // Desintegrador logic
+  const desintegrarNumero = (numStr) => {
+    const numLimpiado = numStr.replace(/\D/g, "");
+    if (!numLimpiado) return;
+    playTone(650, "sine", 0.1);
+    setInputDesintegrador(numLimpiado);
+
+    const chars = numLimpiado.split("");
+    const len = chars.length;
+    const cards = chars.map((char, idx) => {
+      const pos = len - 1 - idx;
+      const col = ORDEN_COLUMNAS[ORDEN_COLUMNAS.length - 1 - pos];
+      const digito = parseInt(char, 10);
+      return {
+        digito,
+        col,
+        nombreCol: NOMBRES_COLUMNAS[col],
+        valorRelativo: digito * MULTIPLICADORES[col],
+        color: COLORES_COLUMNAS[col]
+      };
+    });
+
+    setCardsDesintegradas(cards);
+    setTarjetasReveladas({});
+    setCardExplicacion(null);
+  };
+
+  useEffect(() => {
+    if (activeTab === "desintegrador" && cardsDesintegradas.length === 0) {
+      desintegrarNumero(inputDesintegrador);
+    }
+  }, [activeTab]);
+
+  const toggleTarjeta = (idx, card) => {
+    playTone(700 + idx * 30, "sine", 0.08);
+    setTarjetasReveladas(prev => ({
+      ...prev,
+      [idx]: !prev[idx]
+    }));
+    setCardExplicacion({
+      ...card,
+      index: idx
+    });
+  };
+
+  // Minijuego logic
+  const generarPreguntaJuego = (currentNivel) => {
+    let colsElegidas = [];
+    let terminos = [];
+    let valorCorrecto = 0;
+    
+    const obtenerRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+    const shuffleArray = (arr) => [...arr].sort(() => Math.random() - 0.5);
+
+    if (currentNivel === 1) {
+      colsElegidas = ["C", "D", "U"];
+      colsElegidas.forEach(col => {
+        const val = obtenerRandom(1, 9);
+        terminos.push({ col, val });
+        valorCorrecto += val * MULTIPLICADORES[col];
+      });
+    } else if (currentNivel === 2) {
+      const todas = ["DM", "UM", "C", "D", "U"];
+      colsElegidas = shuffleArray(todas).slice(0, 3);
+      colsElegidas.forEach(col => {
+        const val = obtenerRandom(1, 9);
+        terminos.push({ col, val });
+        valorCorrecto += val * MULTIPLICADORES[col];
+      });
+    } else if (currentNivel === 3) {
+      const todas = ["DM", "UM", "C", "D", "U"];
+      colsElegidas = shuffleArray(todas).slice(0, 3);
+      const desbordeIdx = obtenerRandom(0, 2);
+      colsElegidas.forEach((col, idx) => {
+        const val = idx === desbordeIdx ? obtenerRandom(11, 29) : obtenerRandom(1, 9);
+        terminos.push({ col, val });
+        valorCorrecto += val * MULTIPLICADORES[col];
+      });
+    } else {
+      const todas = ["UMi", "CM", "DM", "UM", "C", "D", "U"];
+      colsElegidas = shuffleArray(todas).slice(0, 4);
+      colsElegidas.forEach((col, idx) => {
+        const val = idx < 2 ? obtenerRandom(11, 49) : obtenerRandom(1, 9);
+        terminos.push({ col, val });
+        valorCorrecto += val * MULTIPLICADORES[col];
+      });
+    }
+
+    terminos = shuffleArray(terminos);
+
+    const partesTexto = terminos.map(t => `${t.val} ${t.col}`);
+    let consigna = partesTexto.slice(0, -1).join(", ") + " y " + partesTexto[partesTexto.length - 1];
+
+    let pasosPista = terminos.map(t => {
+      const valCalc = t.val * MULTIPLICADORES[t.col];
+      return `${t.val} ${t.col} = ${t.val} x ${MULTIPLICADORES[t.col].toLocaleString("es-AR")} = ${valCalc.toLocaleString("es-AR")}`;
+    });
+    let sumaPista = terminos.map(t => (t.val * MULTIPLICADORES[t.col]).toLocaleString("es-AR")).join(" + ");
+
+    setPregunta({
+      consigna,
+      valorCorrecto,
+      terminos,
+      pasosPista,
+      sumaPista
+    });
+    setRespuestaUsuario("");
+    setEstadoValidacion(null);
+    setMostrarPista(false);
+  };
+
+  useEffect(() => {
+    if (activeTab === "minijuego" && !pregunta) {
+      generarPreguntaJuego(nivel);
+    }
+  }, [activeTab, nivel]);
+
+  const validarRespuesta = () => {
+    const ansNum = parseInt(respuestaUsuario.replace(/\D/g, ""), 10);
+    if (ansNum === pregunta?.valorCorrecto) {
+      playTone(523.25, "sine", 0.08);
+      setTimeout(() => playTone(659.25, "sine", 0.08), 80);
+      setTimeout(() => playTone(783.99, "sine", 0.08), 160);
+      setTimeout(() => playTone(1046.50, "sine", 0.25), 240);
+
+      setEstadoValidacion("correcto");
+      setEstrellas(prev => prev + 1);
+    } else {
+      playTone(150, "sawtooth", 0.35);
+      setEstadoValidacion("incorrecto");
+    }
+  };
+
+  return (
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      gap: "18px",
+      width: "100%",
+      color: "#e8e4f0",
+      fontFamily: "'Inter', sans-serif"
+    }}>
+      <style>{`
+        @keyframes pos-pulse {
+          0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+          70% { transform: scale(1.04); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+          100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+        @keyframes pos-shake {
+          0%, 100% { transform: translateX(0); }
+          20%, 60% { transform: translateX(-5px); }
+          40%, 80% { transform: translateX(5px); }
+        }
+      `}</style>
+
+      {/* Pill tabs navigation */}
+      <div style={{
+        display: "flex",
+        gap: "8px",
+        background: "rgba(0, 0, 0, 0.22)",
+        padding: "5px",
+        borderRadius: "12px",
+        border: "1px solid rgba(255, 255, 255, 0.04)"
+      }}>
+        {[
+          { id: "tablero", label: "🧮 Tablero Posicional" },
+          { id: "desintegrador", label: "💥 Desintegrador" },
+          { id: "minijuego", label: "🎮 Desafío" }
+        ].map(t => (
+          <button
+            key={t.id}
+            type="button"
+            onClick={() => {
+              playTone(600, "sine", 0.05);
+              setActiveTab(t.id);
+            }}
+            style={{
+              flex: 1,
+              padding: "10px 12px",
+              borderRadius: "8px",
+              border: "none",
+              background: activeTab === t.id ? "linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%)" : "transparent",
+              color: activeTab === t.id ? "#ffffff" : "#9590a6",
+              fontWeight: "700",
+              fontSize: "0.82rem",
+              cursor: "pointer",
+              transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+              boxShadow: activeTab === t.id ? "0 4px 10px rgba(139, 92, 246, 0.2)" : "none"
+            }}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      {/* TAB 1: TABLERO POSICIONAL */}
+      {activeTab === "tablero" && (
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          {/* Controls bar */}
+          <div style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "12px",
+            background: "rgba(255, 255, 255, 0.02)",
+            border: "1px solid rgba(255, 255, 255, 0.05)",
+            padding: "12px 16px",
+            borderRadius: "12px"
+          }}>
+            <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+              <input
+                type="text"
+                placeholder="Ej. 14520"
+                value={inputTablero}
+                onChange={e => setInputTablero(e.target.value.replace(/\D/g, "").slice(0, 7))}
+                style={{
+                  background: "rgba(0, 0, 0, 0.35)",
+                  border: "1px solid rgba(255, 255, 255, 0.08)",
+                  borderRadius: "6px",
+                  color: "#ffffff",
+                  padding: "8px 10px",
+                  fontSize: "0.82rem",
+                  width: "110px",
+                  outline: "none"
+                }}
+              />
+              <button
+                type="button"
+                onClick={cargarNumeroTablero}
+                style={{
+                  background: "rgba(139, 92, 246, 0.15)",
+                  border: "1px solid rgba(139, 92, 246, 0.3)",
+                  color: "#c084fc",
+                  borderRadius: "6px",
+                  padding: "8px 12px",
+                  fontSize: "0.8rem",
+                  cursor: "pointer",
+                  fontWeight: "600",
+                  transition: "all 0.15s ease"
+                }}
+              >
+                Cargar
+              </button>
+            </div>
+            <button
+              type="button"
+              onClick={resetTablero}
+              style={{
+                background: "rgba(239, 68, 68, 0.1)",
+                border: "1px solid rgba(239, 68, 68, 0.25)",
+                color: "#fca5a5",
+                borderRadius: "6px",
+                padding: "8px 12px",
+                fontSize: "0.8rem",
+                cursor: "pointer",
+                fontWeight: "600",
+                transition: "all 0.15s ease"
+              }}
+            >
+              Vaciar Tablero
+            </button>
+          </div>
+
+          {feedbackTablero && (
+            <div style={{
+              background: feedbackTablero.includes("⚠️") ? "rgba(239, 68, 68, 0.1)" : "rgba(16, 185, 129, 0.1)",
+              border: `1px solid ${feedbackTablero.includes("⚠️") ? "rgba(239, 68, 68, 0.3)" : "rgba(16, 185, 129, 0.3)"}`,
+              padding: "8px 14px",
+              borderRadius: "8px",
+              fontSize: "0.82rem",
+              textAlign: "center"
+            }}>
+              {feedbackTablero}
+            </div>
+          )}
+
+          {/* Positional Grid */}
+          <div style={{
+            display: "flex",
+            justifyContent: "space-between",
+            gap: "8px",
+            overflowX: "auto",
+            paddingBottom: "8px",
+            background: "rgba(0, 0, 0, 0.15)",
+            padding: "16px 12px",
+            borderRadius: "16px",
+            border: "1px solid rgba(255, 255, 255, 0.03)"
+          }}>
+            {ORDEN_COLUMNAS.map(col => {
+              const count = columnas[col];
+              const color = COLORES_COLUMNAS[col];
+              const multiplier = MULTIPLICADORES[col];
+              const isOverflow = count >= 10;
+
+              return (
+                <div
+                  key={col}
+                  style={{
+                    flex: 1,
+                    minWidth: "75px",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    background: "rgba(255, 255, 255, 0.015)",
+                    border: isOverflow ? "1.5px solid rgba(239, 68, 68, 0.3)" : "1px solid rgba(255, 255, 255, 0.05)",
+                    borderTop: `4px solid ${color}`,
+                    borderRadius: "10px",
+                    padding: "10px 4px",
+                    transition: "all 0.2s ease",
+                    boxShadow: isOverflow ? "inset 0 0 10px rgba(239, 68, 68, 0.05)" : "none"
+                  }}
+                >
+                  {/* Badge */}
+                  <span style={{
+                    fontSize: "0.75rem",
+                    fontWeight: "800",
+                    color: "#ffffff",
+                    backgroundColor: color,
+                    padding: "2px 8px",
+                    borderRadius: "4px",
+                    marginBottom: "2px"
+                  }}>
+                    {col}
+                  </span>
+                  <span style={{ fontSize: "0.58rem", color: "#64748b", fontWeight: "700" }}>
+                    x{multiplier.toLocaleString("es-AR")}
+                  </span>
+
+                  {/* Visual stack of chips */}
+                  <div style={{
+                    height: "130px",
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column-reverse",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    margin: "12px 0",
+                    position: "relative",
+                    background: "rgba(0, 0, 0, 0.2)",
+                    borderRadius: "6px",
+                    padding: "4px 0",
+                    boxSizing: "border-box"
+                  }}>
+                    {/* Vertical bar guide */}
+                    <div style={{
+                      position: "absolute",
+                      width: "3px",
+                      height: "100%",
+                      background: "rgba(255, 255, 255, 0.07)",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      pointerEvents: "none"
+                    }} />
+
+                    {count === 0 ? (
+                      <div style={{
+                        width: "28px",
+                        height: "10px",
+                        borderRadius: "5px",
+                        border: "1.5px dashed rgba(255, 255, 255, 0.1)",
+                        margin: "auto"
+                      }} />
+                    ) : (
+                      Array.from({ length: Math.min(10, count) }).map((_, idx) => (
+                        <div
+                          key={idx}
+                          style={{
+                            width: "34px",
+                            height: "9px",
+                            borderRadius: "4px",
+                            background: `linear-gradient(180deg, ${color} 0%, ${color.replace(")", ", 0.7)")} 100%)`,
+                            border: `1.5px solid ${color}`,
+                            margin: "1px 0",
+                            boxShadow: `0 1px 3px rgba(0, 0, 0, 0.4)`,
+                            zIndex: 2,
+                            transform: "scale(1)"
+                          }}
+                        />
+                      ))
+                    )}
+
+                    {count > 10 && (
+                      <div style={{
+                        position: "absolute",
+                        top: "4px",
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        background: "rgba(239, 68, 68, 0.95)",
+                        border: "1px solid #f87171",
+                        borderRadius: "4px",
+                        fontSize: "0.6rem",
+                        fontWeight: "800",
+                        padding: "1px 4px",
+                        color: "#ffffff",
+                        zIndex: 10
+                      }}>
+                        +{count - 10}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Counter Value */}
+                  <span style={{
+                    fontSize: "1.2rem",
+                    fontWeight: "800",
+                    color: isOverflow ? "#f87171" : "#ffffff",
+                    margin: "2px 0 6px 0",
+                    textShadow: isOverflow ? "0 0 5px rgba(239, 68, 68, 0.4)" : "none"
+                  }}>
+                    {count}
+                  </span>
+
+                  {/* Controls */}
+                  <div style={{ display: "flex", gap: "4px", width: "90%" }}>
+                    <button
+                      type="button"
+                      onClick={() => modificarColumna(col, -1)}
+                      style={{
+                        flex: 1,
+                        background: "rgba(255, 255, 255, 0.03)",
+                        border: "1px solid rgba(255, 255, 255, 0.08)",
+                        color: "#9590a6",
+                        borderRadius: "4px",
+                        height: "24px",
+                        cursor: "pointer",
+                        fontSize: "0.85rem",
+                        fontWeight: "800",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                      }}
+                    >
+                      -
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => modificarColumna(col, 1)}
+                      style={{
+                        flex: 1,
+                        background: "rgba(255, 255, 255, 0.03)",
+                        border: "1px solid rgba(255, 255, 255, 0.08)",
+                        color: "#ffffff",
+                        borderRadius: "4px",
+                        height: "24px",
+                        cursor: "pointer",
+                        fontSize: "0.85rem",
+                        fontWeight: "800",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                      }}
+                    >
+                      +
+                    </button>
+                  </div>
+
+                  {/* Carry trigger */}
+                  {isOverflow && col !== "UMi" && (
+                    <button
+                      type="button"
+                      onClick={() => reagruparColumna(col)}
+                      style={{
+                        marginTop: "8px",
+                        width: "90%",
+                        padding: "5px 2px",
+                        borderRadius: "6px",
+                        border: "none",
+                        background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+                        color: "#ffffff",
+                        fontSize: "0.62rem",
+                        fontWeight: "800",
+                        cursor: "pointer",
+                        boxShadow: "0 2px 6px rgba(16, 185, 129, 0.3)",
+                        animation: "pos-pulse 1.5s infinite"
+                      }}
+                    >
+                      🔄 Reagrupar
+                    </button>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Board results / math representation */}
+          <div style={{
+            background: "linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(99, 102, 241, 0.08) 100%)",
+            border: "1px solid rgba(139, 92, 246, 0.2)",
+            borderRadius: "16px",
+            padding: "18px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px"
+          }}>
+            {/* Positional name composition */}
+            <div>
+              <span style={{ fontSize: "0.75rem", color: "#a59ec9", textTransform: "uppercase", fontWeight: "700" }}>
+                Descomposición Posicional
+              </span>
+              <div style={{
+                fontSize: "0.95rem",
+                color: "#e2e8f0",
+                fontWeight: "600",
+                marginTop: "4px",
+                letterSpacing: "0.2px"
+              }}>
+                {ORDEN_COLUMNAS.map((col, idx) => {
+                  const val = columnas[col];
+                  return (
+                    <span key={col} style={{ color: val > 0 ? COLORES_COLUMNAS[col] : "#4b5563", fontWeight: val > 0 ? "700" : "500" }}>
+                      {val} {col}
+                      {idx < ORDEN_COLUMNAS.length - 1 ? " + " : ""}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Value formula */}
+            <div>
+              <span style={{ fontSize: "0.75rem", color: "#a59ec9", textTransform: "uppercase", fontWeight: "700" }}>
+                Descomposición Aditiva
+              </span>
+              <div style={{
+                fontSize: "0.95rem",
+                color: "#cbd5e1",
+                fontFamily: "monospace",
+                marginTop: "4px",
+                whiteSpace: "normal",
+                wordBreak: "break-all"
+              }}>
+                {ORDEN_COLUMNAS.map((col, idx) => {
+                  const val = columnas[col];
+                  const mulVal = val * MULTIPLICADORES[col];
+                  return (
+                    <span key={col} style={{ color: val > 0 ? "#ffffff" : "#4b5563" }}>
+                      {mulVal.toLocaleString("es-AR")}
+                      {idx < ORDEN_COLUMNAS.length - 1 ? " + " : ""}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Total summary */}
+            <div style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              borderTop: "1px solid rgba(255, 255, 255, 0.06)",
+              paddingTop: "12px",
+              marginTop: "4px",
+              flexWrap: "wrap",
+              gap: "10px"
+            }}>
+              <div>
+                <span style={{ fontSize: "0.75rem", color: "#a59ec9", display: "block" }}>Valor Compuesto</span>
+                <strong style={{ fontSize: "1.6rem", color: "#ffffff", letterSpacing: "0.5px" }}>
+                  {valorTotalTablero.toLocaleString("es-AR")}
+                </strong>
+              </div>
+              <div style={{
+                textAlign: "right",
+                maxWidth: "280px"
+              }}>
+                <span style={{ fontSize: "0.75rem", color: "#a59ec9", display: "block" }}>Lectura en letras</span>
+                <span style={{
+                  fontSize: "0.85rem",
+                  color: "#c084fc",
+                  fontStyle: "italic",
+                  fontWeight: "600",
+                  lineHeight: "1.3"
+                }}>
+                  "{numeroALetras(valorTotalTablero)}"
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* TAB 2: MÁQUINA DESINTEGRADORA */}
+      {activeTab === "desintegrador" && (
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          {/* Preset options and custom input */}
+          <div style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px",
+            background: "rgba(255, 255, 255, 0.02)",
+            border: "1px solid rgba(255, 255, 255, 0.05)",
+            padding: "16px",
+            borderRadius: "16px"
+          }}>
+            <div style={{ display: "flex", gap: "10px", alignItems: "center", width: "100%", flexWrap: "wrap" }}>
+              <span style={{ fontSize: "0.85rem", color: "#a59ec9", fontWeight: "600" }}>Escribí un número:</span>
+              <input
+                type="text"
+                placeholder="Ej. 35207"
+                value={inputDesintegrador}
+                onChange={e => desintegrarNumero(e.target.value)}
+                style={{
+                  background: "rgba(0, 0, 0, 0.35)",
+                  border: "1px solid rgba(255, 255, 255, 0.08)",
+                  borderRadius: "8px",
+                  color: "#ffffff",
+                  padding: "8px 12px",
+                  fontSize: "0.88rem",
+                  width: "140px",
+                  outline: "none",
+                  fontWeight: "700",
+                  letterSpacing: "0.5px"
+                }}
+              />
+              <span style={{ fontSize: "0.8rem", color: "#64748b" }}>o elegí un ejemplo:</span>
+            </div>
+
+            {/* Presets buttons */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+              {[
+                { label: "Cabildo Abierto 🏛️", value: "1810" },
+                { label: "Población de Córdoba 🏙️", value: "1450080" },
+                { label: "Un Millón exacto ✨", value: "1000000" },
+                { label: "Año actual 🗓️", value: "2026" }
+              ].map(preset => (
+                <button
+                  key={preset.value}
+                  type="button"
+                  onClick={() => desintegrarNumero(preset.value)}
+                  style={{
+                    background: "rgba(255, 255, 255, 0.03)",
+                    border: "1px solid rgba(255, 255, 255, 0.08)",
+                    color: "#cbd5e1",
+                    padding: "6px 12px",
+                    borderRadius: "6px",
+                    fontSize: "0.78rem",
+                    cursor: "pointer",
+                    transition: "all 0.15s ease"
+                  }}
+                >
+                  {preset.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Cards container */}
+          <div style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "12px",
+            padding: "24px 12px",
+            background: "rgba(0, 0, 0, 0.18)",
+            borderRadius: "16px",
+            border: "1px solid rgba(255, 255, 255, 0.03)",
+            minHeight: "150px"
+          }}>
+            {cardsDesintegradas.map((card, idx) => {
+              const isRevealed = tarjetasReveladas[idx];
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => toggleTarjeta(idx, card)}
+                  style={{
+                    width: "85px",
+                    height: "110px",
+                    background: isRevealed ? `linear-gradient(135deg, ${card.color.replace(")", ", 0.25)")} 0%, rgba(0, 0, 0, 0.4) 100%)` : "rgba(255, 255, 255, 0.02)",
+                    border: `2px solid ${card.color}`,
+                    borderRadius: "14px",
+                    cursor: "pointer",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "12px 6px",
+                    transition: "all 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
+                    transform: isRevealed ? "scale(1.05) translateY(-2px)" : "none",
+                    boxShadow: isRevealed ? `0 6px 15px ${card.color.replace(")", ", 0.2)")}` : "none",
+                    outline: "none",
+                    boxSizing: "border-box"
+                  }}
+                >
+                  <span style={{
+                    fontSize: "0.62rem",
+                    fontWeight: "800",
+                    color: card.color,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.5px"
+                  }}>
+                    {card.col}
+                  </span>
+
+                  {isRevealed ? (
+                    <strong style={{
+                      fontSize: "0.85rem",
+                      fontWeight: "800",
+                      color: "#ffffff",
+                      fontFamily: "monospace",
+                      wordBreak: "break-all",
+                      lineHeight: "1.1"
+                    }}>
+                      {card.valorRelativo.toLocaleString("es-AR")}
+                    </strong>
+                  ) : (
+                    <strong style={{
+                      fontSize: "2.2rem",
+                      fontWeight: "900",
+                      color: "#ffffff",
+                      lineHeight: "1"
+                    }}>
+                      {card.digito}
+                    </strong>
+                  )}
+
+                  <span style={{
+                    fontSize: "0.58rem",
+                    color: "#a59ec9",
+                    fontWeight: "600"
+                  }}>
+                    {isRevealed ? "Valor Rel." : "VA = " + card.digito}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Explanation block */}
+          {cardExplicacion ? (
+            <div style={{
+              background: `linear-gradient(135deg, ${cardExplicacion.color.replace(")", ", 0.08)")} 0%, rgba(0,0,0,0.1) 100%)`,
+              border: `1px solid ${cardExplicacion.color.replace(")", ", 0.35)")}`,
+              borderRadius: "14px",
+              padding: "16px 20px",
+              display: "flex",
+              alignItems: "center",
+              gap: "16px"
+            }}>
+              <span style={{
+                fontSize: "2rem",
+                color: cardExplicacion.color,
+                fontWeight: "900",
+                background: "rgba(0,0,0,0.2)",
+                padding: "8px 16px",
+                borderRadius: "10px"
+              }}>
+                {cardExplicacion.digito}
+              </span>
+              <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                <strong style={{ fontSize: "1rem", color: "#ffffff" }}>
+                  Posición: {cardExplicacion.nombreCol} ({cardExplicacion.col})
+                </strong>
+                <p style={{ fontSize: "0.85rem", color: "#cbd5e1", margin: 0, lineHeight: "1.4" }}>
+                  El Valor Absoluto de la cifra es <strong>{cardExplicacion.digito}</strong>. Al estar en la columna de las {cardExplicacion.nombreCol}, su Valor Relativo se calcula multiplicando:
+                  <span style={{ display: "block", color: cardExplicacion.color, fontFamily: "monospace", marginTop: "4px", fontWeight: "700" }}>
+                    {cardExplicacion.digito} x {MULTIPLICADORES[cardExplicacion.col].toLocaleString("es-AR")} = {cardExplicacion.valorRelativo.toLocaleString("es-AR")}
+                  </span>
+                </p>
+              </div>
+            </div>
+          ) : (
+            <p style={{
+              fontSize: "0.85rem",
+              color: "#a59ec9",
+              textAlign: "center",
+              margin: "8px 0",
+              fontStyle: "italic"
+            }}>
+              💡 Toca las tarjetas para ver el valor relativo de cada dígito en el número.
+            </p>
+          )}
+        </div>
+      )}
+
+      {/* TAB 3: MINIJUEGO DE DESAFÍO */}
+      {activeTab === "minijuego" && pregunta && (
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          {/* Header game details */}
+          <div style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            background: "rgba(255, 255, 255, 0.02)",
+            border: "1px solid rgba(255, 255, 255, 0.05)",
+            padding: "10px 16px",
+            borderRadius: "12px",
+            flexWrap: "wrap",
+            gap: "10px"
+          }}>
+            {/* Level selection */}
+            <div style={{ display: "flex", gap: "6px" }}>
+              {[
+                { n: 1, label: "Fácil" },
+                { n: 2, label: "Medio" },
+                { n: 3, label: "Difícil" },
+                { n: 4, label: "Experto" }
+              ].map(l => (
+                <button
+                  key={l.n}
+                  type="button"
+                  onClick={() => {
+                    playTone(600, "sine", 0.06);
+                    setNivel(l.n);
+                    generarPreguntaJuego(l.n);
+                  }}
+                  style={{
+                    background: nivel === l.n ? "rgba(139, 92, 246, 0.25)" : "transparent",
+                    border: nivel === l.n ? "1px solid #8b5cf6" : "1px solid transparent",
+                    color: nivel === l.n ? "#c084fc" : "#9590a6",
+                    padding: "4px 10px",
+                    borderRadius: "6px",
+                    fontSize: "0.76rem",
+                    fontWeight: "700",
+                    cursor: "pointer",
+                    transition: "all 0.15s ease"
+                  }}
+                >
+                  {l.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Stars score */}
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              color: "#f59e0b",
+              fontWeight: "700",
+              fontSize: "0.85rem",
+              background: "rgba(245, 158, 11, 0.08)",
+              border: "1px solid rgba(245, 158, 11, 0.25)",
+              padding: "4px 10px",
+              borderRadius: "8px"
+            }}>
+              <span>⭐</span> {estrellas} {estrellas === 1 ? "Estrella" : "Estrellas"}
+            </div>
+          </div>
+
+          {/* Consigna card */}
+          <div style={{
+            background: "linear-gradient(135deg, rgba(30, 27, 75, 0.5) 0%, rgba(15, 23, 42, 0.5) 100%)",
+            border: "1.5px dashed rgba(139, 92, 246, 0.25)",
+            borderRadius: "16px",
+            padding: "24px 20px",
+            textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "12px",
+            position: "relative",
+            animation: estadoValidacion === "incorrecto" ? "pos-shake 0.4s ease" : "none"
+          }}>
+            <span style={{
+              fontSize: "1.8rem"
+            }}>
+              🤖
+            </span>
+            <div style={{
+              color: "#a59ec9",
+              fontSize: "0.8rem",
+              fontWeight: "700",
+              textTransform: "uppercase"
+            }}>
+              Desafío del Tutor Robot
+            </div>
+            <h4 style={{
+              fontSize: "1.25rem",
+              fontWeight: "800",
+              color: "#ffffff",
+              margin: 0,
+              lineHeight: "1.4",
+              maxWidth: "520px"
+            }}>
+              ¿Qué número se forma con: <span style={{ color: "#c084fc" }}>{pregunta.consigna}</span>?
+            </h4>
+          </div>
+
+          {/* Answer Area */}
+          <div style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px",
+            alignItems: "center"
+          }}>
+            <div style={{ display: "flex", gap: "10px", width: "100%", maxWidth: "340px" }}>
+              <input
+                type="text"
+                placeholder="Escribí el número..."
+                value={respuestaUsuario}
+                disabled={estadoValidacion === "correcto"}
+                onChange={e => setRespuestaUsuario(e.target.value.replace(/\D/g, ""))}
+                style={{
+                  flex: 1,
+                  background: "rgba(0, 0, 0, 0.35)",
+                  border: "1.5px solid rgba(255, 255, 255, 0.1)",
+                  borderRadius: "8px",
+                  color: "#ffffff",
+                  padding: "10px 14px",
+                  fontSize: "1rem",
+                  fontWeight: "700",
+                  outline: "none",
+                  textAlign: "center",
+                  letterSpacing: "0.5px"
+                }}
+              />
+              {estadoValidacion !== "correcto" ? (
+                <button
+                  type="button"
+                  onClick={validarRespuesta}
+                  style={{
+                    background: "linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%)",
+                    color: "#ffffff",
+                    border: "none",
+                    borderRadius: "8px",
+                    padding: "0 18px",
+                    fontWeight: "700",
+                    fontSize: "0.85rem",
+                    cursor: "pointer",
+                    boxShadow: "0 4px 10px rgba(139, 92, 246, 0.3)"
+                  }}
+                >
+                  Validar
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => generarPreguntaJuego(nivel)}
+                  style={{
+                    background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+                    color: "#ffffff",
+                    border: "none",
+                    borderRadius: "8px",
+                    padding: "0 18px",
+                    fontWeight: "700",
+                    fontSize: "0.85rem",
+                    cursor: "pointer",
+                    boxShadow: "0 4px 10px rgba(16, 185, 129, 0.3)"
+                  }}
+                >
+                  Siguiente
+                </button>
+              )}
+            </div>
+
+            <div style={{ display: "flex", gap: "10px" }}>
+              <button
+                type="button"
+                onClick={() => setMostrarPista(!mostrarPista)}
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  color: "#a59ec9",
+                  fontSize: "0.78rem",
+                  cursor: "pointer",
+                  textDecoration: "underline",
+                  fontWeight: "600"
+                }}
+              >
+                {mostrarPista ? "Ocultar pista 💡" : "Ver pista 💡"}
+              </button>
+            </div>
+          </div>
+
+          {/* Validation feedback message */}
+          {estadoValidacion && (
+            <div style={{
+              background: estadoValidacion === "correcto" ? "rgba(16, 185, 129, 0.12)" : "rgba(239, 68, 68, 0.12)",
+              border: `1px solid ${estadoValidacion === "correcto" ? "rgba(16, 185, 129, 0.35)" : "rgba(239, 68, 68, 0.35)"}`,
+              borderRadius: "12px",
+              padding: "12px 16px",
+              textAlign: "center",
+              fontSize: "0.88rem",
+              fontWeight: "600",
+              color: estadoValidacion === "correcto" ? "#34d399" : "#f87171"
+            }}>
+              {estadoValidacion === "correcto" 
+                ? "🎉 ¡Excelente trabajo! Respuesta 100% correcta." 
+                : "❌ Mmm, no es ese número. ¡Fijate bien en los canjes o mirá la pista!"}
+            </div>
+          )}
+
+          {/* Explanation hint box */}
+          {mostrarPista && (
+            <div style={{
+              background: "rgba(255, 255, 255, 0.015)",
+              border: "1px solid rgba(255, 255, 255, 0.05)",
+              borderRadius: "14px",
+              padding: "16px 20px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px"
+            }}>
+              <strong style={{ fontSize: "0.82rem", color: "#c084fc", textTransform: "uppercase" }}>
+                Paso a Paso de la Descomposición:
+              </strong>
+              <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                {pregunta.pasosPista.map((paso, pIdx) => (
+                  <div key={pIdx} style={{ fontSize: "0.82rem", color: "#cbd5e1", fontFamily: "monospace" }}>
+                    • {paso}
+                  </div>
+                ))}
+              </div>
+              <div style={{
+                borderTop: "1px solid rgba(255, 255, 255, 0.05)",
+                paddingTop: "8px",
+                marginTop: "4px",
+                fontSize: "0.82rem",
+                color: "#e2e8f0"
+              }}>
+                <strong>Suma todo junto:</strong>
+                <span style={{ display: "block", fontFamily: "monospace", marginTop: "4px", color: "#818cf8" }}>
+                  {pregunta.sumaPista} = {pregunta.valorCorrecto.toLocaleString("es-AR")}
+                </span>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

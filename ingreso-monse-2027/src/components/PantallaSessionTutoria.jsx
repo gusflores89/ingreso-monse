@@ -338,8 +338,15 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
 
   const visualParaEjercicio = useMemo(() => {
     if (!pregunta) return null;
-    const textoParaVisual = pregunta.pregunta || "";
-    return visualizacionParaTema(activeTema, textoParaVisual);
+    let textoParaVisual = pregunta.pregunta || "";
+    if (pregunta.tipo === "examen_final" && Array.isArray(pregunta.preguntas)) {
+      textoParaVisual += " " + pregunta.preguntas.map((p) => p.texto || "").join(" ");
+    }
+    const visual = visualizacionParaTema(activeTema, textoParaVisual);
+    if (visual?.tipo === "fraccion_operaciones_interactiva" || visual?.tipo === "numeros_naturales_interactivo") {
+      return null;
+    }
+    return visual;
   }, [activeTema, pregunta]);
 
   const deckTeoria = useMemo(() => getDiapositivasParaTema(activeTema), [activeTema]);
@@ -925,6 +932,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                 { id: "slides", label: "🛝 Diapositivas" },
                 ...(activeTema === "fracciones_concepto" ? [{ id: "interactive", label: "🍕 Explorador de Fracciones" }] : []),
                 ...(activeTema === "fracciones_operaciones" || activeTema === "fracciones_del_resto" ? [{ id: "interactive_ops", label: "🧮 Simulador de Operaciones" }] : []),
+                ...(activeTema === "numeros_naturales_sistema_decimal" ? [{ id: "interactive_decimal", label: "🧮 Tablero y Desintegrador" }] : []),
                 { id: "theory", label: "📚 Apunte Teórico" },
                 { id: "pdf", label: "📥 Descargar Ficha PDF" }
               ].map(tab => (
@@ -1069,6 +1077,12 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
               {helpTab === "interactive_ops" && (
                 <div style={{ padding: "10px 0" }}>
                   <VisualizacionMatematica tipo="fraccion_operaciones_interactiva" datos={{}} />
+                </div>
+              )}
+
+              {helpTab === "interactive_decimal" && (
+                <div style={{ padding: "10px 0" }}>
+                  <VisualizacionMatematica tipo="numeros_naturales_interactivo" datos={{}} />
                 </div>
               )}
 
@@ -1474,7 +1488,7 @@ function visualizacionParaTema(tema = "", texto = "") {
   }
 
   if (temaNormalizado.includes("numeros_naturales")) {
-    return { tipo: "secuencia", datos: { numeros: extraerTodosLosNumeros(texto).slice(0, 5), patron: "Orden y valor de cada numero" } };
+    return { tipo: "numeros_naturales_interactivo", datos: {} };
   }
 
   return null;

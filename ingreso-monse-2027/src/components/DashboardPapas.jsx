@@ -637,9 +637,11 @@ function TopicProgressRow({ item, suggestedTopic, sugerirLoading, onToggleSugges
   const tasa = clamp(Number(item.tasa_acierto || 0));
 
   return (
-    <article className={`topic-progress-row ${status.className}`}>
+    <article className={`topic-progress-row ${status.className}`} style={{ opacity: item.unlocked ? 1 : 0.6 }}>
       <div className="row-main-info">
-        <span className="topic-materia">{MATERIA_LABELS[item.materia] || formatTema(item.materia || "general")}</span>
+        <span className="topic-materia">
+          {MATERIA_LABELS[item.materia] || formatTema(item.materia || "general")} · Fase {item.fase || 1}
+        </span>
         <strong className="topic-name">{formatTema(item.tema)}</strong>
       </div>
 
@@ -655,48 +657,69 @@ function TopicProgressRow({ item, suggestedTopic, sugerirLoading, onToggleSugges
 
       <div className="row-meta-section">
         <div className="topic-meta-row" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8px" }}>
-          <span>{item.total_sesiones} sesiones</span>
+          <span>{item.total_sesiones} {item.total_sesiones === 1 ? "sesión" : "sesiones"}</span>
           <span>Capa {item.capa_actual}</span>
           <span>{item.total_correctas} correctas</span>
           
-          <button
-            type="button"
-            disabled={sugerirLoading !== null}
-            onClick={() => onToggleSuggested(item.tema, item.materia)}
-            style={{
-              padding: "5px 12px",
-              borderRadius: "999px",
-              fontSize: "0.75rem",
-              fontWeight: "600",
-              cursor: "pointer",
-              transition: "all 200ms cubic-bezier(0.4, 0, 0.2, 1)",
-              border: suggestedTopic?.tema === item.tema && !suggestedTopic?.completado
-                ? "none"
-                : "1px solid rgba(139, 92, 246, 0.25)",
-              backgroundColor: suggestedTopic?.tema === item.tema && !suggestedTopic?.completado
-                ? "var(--primary, #8b5cf6)"
-                : "rgba(139, 92, 246, 0.08)",
-              color: suggestedTopic?.tema === item.tema && !suggestedTopic?.completado
-                ? "#ffffff"
-                : "var(--primary, #8b5cf6)",
-              boxShadow: suggestedTopic?.tema === item.tema && !suggestedTopic?.completado
-                ? "0 2px 8px rgba(139, 92, 246, 0.25)"
-                : "none",
-              minHeight: "auto",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "4px",
-              marginLeft: "auto"
-            }}
-          >
-            {sugerirLoading === item.tema ? (
-              "..."
-            ) : suggestedTopic?.tema === item.tema && !suggestedTopic?.completado ? (
-              <>🎯 Asignado</>
-            ) : (
-              <>🎯 Priorizar</>
-            )}
-          </button>
+          {!item.unlocked ? (
+            <span
+              style={{
+                padding: "5px 12px",
+                borderRadius: "999px",
+                fontSize: "0.75rem",
+                fontWeight: "600",
+                backgroundColor: "rgba(255, 255, 255, 0.03)",
+                border: "1px solid rgba(255, 255, 255, 0.05)",
+                color: "#64748b",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "4px",
+                marginLeft: "auto"
+              }}
+              title="Aprobá los exámenes de la fase anterior para desbloquear"
+            >
+              🔒 Bloqueado
+            </span>
+          ) : (
+            <button
+              type="button"
+              disabled={sugerirLoading !== null}
+              onClick={() => onToggleSuggested(item.tema, item.materia)}
+              style={{
+                padding: "5px 12px",
+                borderRadius: "999px",
+                fontSize: "0.75rem",
+                fontWeight: "600",
+                cursor: "pointer",
+                transition: "all 200ms cubic-bezier(0.4, 0, 0.2, 1)",
+                border: suggestedTopic?.tema === item.tema && !suggestedTopic?.completado
+                  ? "none"
+                  : "1px solid rgba(139, 92, 246, 0.25)",
+                backgroundColor: suggestedTopic?.tema === item.tema && !suggestedTopic?.completado
+                  ? "var(--primary, #8b5cf6)"
+                  : "rgba(139, 92, 246, 0.08)",
+                color: suggestedTopic?.tema === item.tema && !suggestedTopic?.completado
+                  ? "#ffffff"
+                  : "var(--primary, #8b5cf6)",
+                boxShadow: suggestedTopic?.tema === item.tema && !suggestedTopic?.completado
+                  ? "0 2px 8px rgba(139, 92, 246, 0.25)"
+                  : "none",
+                minHeight: "auto",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "4px",
+                marginLeft: "auto"
+              }}
+            >
+              {sugerirLoading === item.tema ? (
+                "..."
+              ) : suggestedTopic?.tema === item.tema && !suggestedTopic?.completado ? (
+                <>🎯 Asignado</>
+              ) : (
+                <>🎯 Priorizar</>
+              )}
+            </button>
+          )}
         </div>
         <p className="row-oportunidad">{item.oportunidad || "Seguir practicando con sesiones cortas."}</p>
       </div>
@@ -841,6 +864,7 @@ function RevisionForm({ form, setForm, onCancel, onSubmit }) {
 
 function statusFor(item) {
   const state = item.estado || fallbackState(item.tasa_acierto);
+  if (state === "bloqueado") return { label: "Bloqueado", className: "review" };
   if (state === "listo_examen") return { label: "Listo examen", className: "good" };
   if (state === "bien") return { label: "Bien", className: "good" };
   if (state === "en_practica") return { label: "En practica", className: "progress" };

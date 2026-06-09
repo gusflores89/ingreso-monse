@@ -1,5 +1,5 @@
 import { daysUntilExam } from "@/lib/date";
-import { DEFAULT_TOPIC, getProximoTemaNoCompletado, getTopicMeta, isCurriculumTopic } from "@/lib/curriculum";
+import { DEFAULT_TOPIC, getProximoTemaNoCompletado, getTopicMeta, isCurriculumTopic, CURRICULUM_MATEMATICA, CURRICULUM_LENGUA } from "@/lib/curriculum";
 import { getCasoResuelto, getMetodoPasoAPaso } from "@/lib/casos-resueltos";
 import { getTareaManuscrita } from "@/lib/ejercicios-manuscritos";
 import { getExamenFinal } from "@/lib/examenes-monserrat";
@@ -62,6 +62,35 @@ export default async function handler(req, res) {
         ? { tema: activeSuggested.tema, capa: null }
         : await resolverTemaDeReingreso(supabase, user_id);
     let temaActual = reingreso.tema;
+
+    const resolvedPlan = getUserPlan(usuario);
+    const unlockedTopicsSet = await getUnlockedTopics(supabase, user_id, resolvedPlan);
+
+    if (!unlockedTopicsSet.has(temaActual)) {
+      const curriculum = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA];
+      const { data: approvedData } = await supabase
+        .from("sesiones")
+        .select("tema")
+        .eq("user_id", user_id)
+        .eq("tipo_pregunta", "examen_final")
+        .eq("es_correcta", true);
+      const approvedSet = new Set((approvedData || []).map(s => s.tema));
+      
+      const sortedCurriculum = [...curriculum].sort((a, b) => {
+        if (a.fase !== b.fase) return a.fase - b.fase;
+        return a.orden - b.orden;
+      });
+      
+      const fallbackTopic = sortedCurriculum.find(t => unlockedTopicsSet.has(t.tema) && !approvedSet.has(t.tema));
+      if (fallbackTopic) {
+        temaActual = fallbackTopic.tema;
+      } else {
+        const firstUnlocked = sortedCurriculum.find(t => unlockedTopicsSet.has(t.tema));
+        if (firstUnlocked) {
+          temaActual = firstUnlocked.tema;
+        }
+      }
+    }
 
     let capaActual = Number(reingreso.capa) || (capa ? Number(capa) : null);
     if (!capaActual || capaActual <= 0) {
@@ -494,6 +523,7 @@ async function maybeCrearExamenFinal(supabase, userId, tema, capa, modo, context
     sesion_id: sesion.id,
     ...examen,
     pregunta: examen.enunciado,
+    tema,
     tipo: "examen_final",
     tipo_pregunta: "examen_final",
     tiempo_estimado: examen.tiempo_estimado || 20,
@@ -578,4 +608,57 @@ function calcularCapaInicial(edad, grado, rasgos) {
   else if (edad >= 10) capa = 2;
   if (rasgos?.dislexia) capa = Math.max(1, capa - 1);
   return capa;
+}
+
+async function getUnlockedTopics(supabase, userId, plan) {
+  const { data, error } = await supabase
+    .from("sesiones")
+    .select("tema")
+    .eq("user_id", userId)
+    .eq("tipo_pregunta", "examen_final")
+    .eq("es_correcta", true);
+  
+  if (error) throw new Error("No se pudieron obtener temas completados");
+  
+  const approvedExams = new Set((data || []).map(s => s.tema));
+  
+  const topicsFase1 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 1);
+  const topicsFase2 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 2);
+  const topicsFase3 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 3);
+  const topicsFase4 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 4);
+
+  const approvedFase1 = topicsFase1.filter(t => approvedExams.has(t.tema)).length;
+  const approvedFase2 = topicsFase2.filter(t => approvedExams.has(t.tema)).length;
+  const approvedFase3 = topicsFase3.filter(t => approvedExams.has(t.tema)).length;
+  const approvedFase4 = topicsFase4.filter(t => approvedExams.has(t.tema)).length;
+
+  const unlockedFase1 = true;
+  const unlockedFase2 = approvedFase1 >= 6;
+  const unlockedFase3 = unlockedFase2 && approvedFase2 >= 4;
+  const unlockedFase4 = unlockedFase3 && approvedFase3 >= 4;
+  const unlockedFase5 = unlockedFase4 && approvedFase4 >= 10;
+
+  const isPhaseUnlocked = (fase) => {
+    if (fase === 1) return unlockedFase1;
+    if (fase === 2) return unlockedFase2;
+    if (fase === 3) return unlockedFase3;
+    if (fase === 4) return unlockedFase4;
+    if (fase === 5) return unlockedFase5;
+    return false;
+  };
+
+  const isTrial = plan === "trial";
+  const curriculum = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA];
+  
+  return new Set(
+    curriculum
+      .filter(t => {
+        if (isTrial) {
+          const TRIAL_TOPICS = ["tablas_multiplicar_2_5", "division_1_digito", "fracciones_concepto", "ortografia_b_v"];
+          return TRIAL_TOPICS.includes(t.tema);
+        }
+        return isPhaseUnlocked(t.fase);
+      })
+      .map(t => t.tema)
+  );
 }

@@ -265,13 +265,12 @@ Los problemas del Monserrat suelen combinar historias cotidianas con varios paso
         titulo: "¡Trozos del mismo tamaño! Suma y resta homogénea",
         contenido: "Imagina que tienes una pizza cortada en 8 porciones iguales. Si tú te comes $\\frac{2}{8}$ de la pizza y tu mejor amigo se come $\\frac{3}{8}$, para saber cuánto comieron en total solo debemos juntar las porciones: 2 trozos más 3 trozos son 5 trozos. Como el tamaño de las porciones no cambió, el número de abajo (denominador) se queda exactamente igual:\n$$\\frac{2}{8} + \\frac{3}{8} = \\frac{2 + 3}{8} = \\frac{5}{8}$$",
         visualizacion: {
-          tipo: "fraccion_operaciones_interactiva",
+          tipo: "fraccion_operacion",
           datos: {
-            numA: 2,
-            denA: 8,
-            numB: 3,
-            denB: 8,
-            initialOp: "+"
+            frac1: { num: 2, den: 8 },
+            frac2: { num: 3, den: 8 },
+            operacion: "+",
+            resultado: { num: 5, den: 8 }
           }
         },
         concepto_clave: "Si los denominadores son iguales, se suman o restan solo los numeradores; el denominador se mantiene igual."
@@ -280,13 +279,12 @@ Los problemas del Monserrat suelen combinar historias cotidianas con varios paso
         titulo: "El desafío de los tamaños diferentes ¡A igualar con magia!",
         contenido: "Si tienes $\\frac{1}{2}$ alfajor y te regalan $\\frac{1}{4}$ más, no puedes sumarlos directamente como \"$2$\" porque los trozos son de tamaños distintos. ¡Aquí usamos la magia de las **fracciones equivalentes**! Multiplicamos arriba y abajo a la primera fracción por $2$ para transformarla en cuartos: $\\frac{1}{2} = \\frac{2}{4}$. Ahora que los trozos tienen el mismo tamaño, sumamos sin problemas:\n$$\\frac{2}{4} + \\frac{1}{4} = \\frac{3}{4}$$",
         visualizacion: {
-          tipo: "fraccion_operaciones_interactiva",
+          tipo: "fraccion_operacion",
           datos: {
-            numA: 1,
-            denA: 2,
-            numB: 1,
-            denB: 4,
-            initialOp: "+"
+            frac1: { num: 2, den: 4 },
+            frac2: { num: 1, den: 4 },
+            operacion: "+",
+            resultado: { num: 3, den: 4 }
           }
         },
         concepto_clave: "Para sumar o restar denominadores distintos, busca el Mínimo Común Múltiplo (MCM) para conseguir fracciones equivalentes con igual denominador."
@@ -295,13 +293,12 @@ Los problemas del Monserrat suelen combinar historias cotidianas con varios paso
         titulo: "Multiplicar fracciones o \"La porción de otra porción\"",
         contenido: "Imagina que en la mesa queda $\\frac{1}{2}$ barra de chocolate y decides comerte la mitad de ese resto, es decir, $\\frac{1}{2}$ **de** $\\frac{1}{2}$. En la matemática de las fracciones, la palabra \"de\" se convierte en una multiplicación. Para resolverla no necesitas buscar iguales tamaños; simplemente multiplicas los vecinos de arriba entre sí y los de abajo entre sí de forma directa:\n$$\\frac{1}{2} \\times \\frac{1}{2} = \\frac{1 \\times 1}{2 \\times 2} = \\frac{1}{4}$$",
         visualizacion: {
-          tipo: "fraccion_operaciones_interactiva",
+          tipo: "fraccion_operacion",
           datos: {
-            numA: 1,
-            denA: 2,
-            numB: 1,
-            denB: 2,
-            initialOp: "×"
+            frac1: { num: 1, den: 2 },
+            frac2: { num: 1, den: 2 },
+            operacion: "×",
+            resultado: { num: 1, den: 4 }
           }
         },
         concepto_clave: "La multiplicación de fracciones se resuelve de forma directa: numerador por numerador, y denominador por denominador."
@@ -310,13 +307,12 @@ Los problemas del Monserrat suelen combinar historias cotidianas con varios paso
         titulo: "Dividir fracciones ¡El truco de la pirueta!",
         contenido: "Dividir fracciones significa ver cuántas veces entra una fracción dentro de otra. Por ejemplo, ¿cuántos vasos de $\\frac{1}{4}$ litro puedes llenar con una jarra de $\\frac{1}{2}$ litro? Para resolver $\\frac{1}{2} \\div  \\frac{1}{4}$, aplicamos un truco ninja: dejamos la primera fracción igual, transformamos el signo de división en multiplicación y **le damos la vuelta (invertimos)** a la segunda fracción. ¡Luego resolvemos multiplicando directo!:\n$$\\frac{1}{2} \\div  \\frac{1}{4} = \\frac{1}{2} \\times \\frac{4}{1} = \\frac{4}{2} = 2 \\text{ vasos}$$",
         visualizacion: {
-          tipo: "fraccion_operaciones_interactiva",
+          tipo: "fraccion_operacion",
           datos: {
-            numA: 1,
-            denA: 2,
-            numB: 1,
-            denB: 4,
-            initialOp: "÷"
+            frac1: { num: 1, den: 2 },
+            frac2: { num: 1, den: 4 },
+            operacion: "÷",
+            resultado: { num: 2, den: 1 }
           }
         },
         concepto_clave: "Dividir es multiplicar por la segunda fracción invertida. ¡Dale la vuelta y multiplica!"
@@ -535,6 +531,115 @@ $$5 \\times 4 + 2 = 20 + 2 = 22$$
 
 * **El resto nunca puede ser igual o mayor que el divisor:** Si estás dividiendo por 5, tu resto solo puede ser 0, 1, 2, 3 o 4. Si te da 5 o más, ¡significa que podías repartir una vez más!
 * **La tabla de multiplicar es tu brújula:** Para dividir rápido, tenés que dominar las tablas al derecho y al revés. Pensar \"24 dividido 6\" es lo mismo que preguntarse \"¿qué número por 6 me da 24?\".
+`
+  },
+  numeros_naturales_sistema_decimal: {
+    titulo: "Números Naturales y Sistema Decimal",
+    pdf_url: "/apuntes/numeros_naturales_sistema_decimal.pdf",
+    slides: [
+      {
+        titulo: "El Sistema de Numeración Decimal",
+        contenido: "Nuestro sistema es **decimal** porque agrupamos los elementos de 10 en 10. Cuando tenemos 10 unidades de un orden, formamos 1 unidad del orden inmediato superior.\n\nPor ejemplo:\n* 10 Unidades = 1 Decena\n* 10 Decenas = 1 Centena\n* 10 Centenas = 1 Unidad de Mil\n\n¡Probá sumando fichas en el tablero posicional hasta llegar a 10 y hacé clic en **Reagrupar**!",
+        visualizacion: null,
+        concepto_clave: "El sistema es de base 10: cada 10 unidades de un orden se agrupan en una del orden inmediato superior."
+      },
+      {
+        titulo: "Valor Absoluto vs. Valor Relativo",
+        contenido: "Cada cifra de un número tiene dos valores:\n\n1. **Valor Absoluto (VA):** Es el valor del número por sí solo, sin importar su lugar (por ejemplo, en 4.508, el VA de 5 es simplemente 5).\n2. **Valor Relativo o Posicional (VR):** Es el valor que toma la cifra según la posición que ocupa.\n\nEn la **Máquina Desintegradora**, podés hacer clic en cada tarjeta para ver su valor real. ¡El 5 en las Centenas vale 500!",
+        visualizacion: null,
+        concepto_clave: "El Valor Absoluto es la cifra misma; el Valor Relativo depende de la posición que ocupa."
+      },
+      {
+        titulo: "Desafío de Reconstrucción",
+        contenido: "¡Es hora de poner a prueba lo aprendido!\n\nEn el examen de ingreso suelen aparecer problemas con valores desordenados y desbordados, como *'¿Qué número se forma con 15 Centenas y 4 Decenas?'*.\n\nRecordá:\n* 15 Centenas = 15 x 100 = 1.500\n* 4 Decenas = 4 x 10 = 40\n* Total = 1.500 + 40 = 1.540\n\n¡Completá los niveles del minijuego para ganar estrellas!",
+        visualizacion: null,
+        concepto_clave: "Para reconstruir un número, escribe el valor posicional relativo de cada término y súmalos todos."
+      }
+    ],
+    apunte_completo: `
+# Guía de Estudio: Números Naturales y Sistema Decimal
+
+## Rumbo al Ingreso del Colegio Nacional de Monserrat
+
+¡Bienvenidos! En este tema aprenderás cómo construimos, leemos y descomponemos los números en nuestro sistema de numeración. Este conocimiento es la base fundamental de toda la matemática que verás en el examen de ingreso. ¡Vamos paso a paso!
+
+---
+
+### 1. Nuestro Sistema de Numeración Decimal y Posicional
+
+El sistema que usamos todos los días se caracteriza por dos propiedades clave:
+
+1. **Es Decimal (Base 10):** Agrupamos las unidades de 10 en 10. Cada vez que juntamos 10 elementos de una columna, los "canjeamos" por 1 de la columna que está a su izquierda.
+   * 10 Unidades (U) = 1 Decena (D)
+   * 10 Decenas (D) = 1 Centena (C)
+   * 10 Centenas (C) = 1 Unidad de Mil (UM)
+   * 10 Unidades de Mil (UM) = 1 Decena de Mil (DM)
+   * 10 Decenas de Mil (DM) = 1 Centena de Mil (CM)
+   * 10 Centenas de Mil (CM) = 1 Unidad de Millón (UMi)
+
+2. **Es Posicional:** El valor de un dígito depende enteramente del lugar que ocupa en el número. No es lo mismo un "5" al final del número que al principio.
+
+---
+
+### 2. Valor Absoluto vs. Valor Relativo (Posicional)
+
+Cada número tiene dos tipos de valores que debes distinguir perfectamente para el examen:
+
+* **Valor Absoluto (VA):** Es el valor de la cifra por su propia forma, sin importar en qué posición esté escrita.
+  * *Ejemplo:* En el número $3.578$, el Valor Absoluto de $5$ es simplemente **$5$**.
+* **Valor Relativo o Posicional (VR):** Es el valor real en unidades que representa esa cifra debido a la posición en la que está.
+  * *Ejemplo:* En el número $3.578$, el $5$ está en la posición de las Centenas. Por lo tanto, su Valor Relativo es **$500$** (porque $5 \\times 100 = 500$).
+
+---
+
+### 3. Métodos de Descomposición de Números
+
+Podemos desarmar cualquier número de tres formas distintas. Tomemos como ejemplo el número **$45.207$**:
+
+* **Por el nombre de su posición:**
+  $$4 \\text{ DM} + 5 \\text{ UM} + 2 \\text{ C} + 0 \\text{ D} + 7 \\text{ U}$$
+* **Descomposición Aditiva (por sus valores relativos):**
+  $$40.000 + 5.000 + 200 + 0 + 7$$
+* **Descomposición Multiplicativa:**
+  $$(4 \\times 10.000) + (5 \\times 1.000) + (2 \\times 100) + (0 \\times 10) + (7 \\times 1)$$
+
+---
+
+### 4. Las Trampas del Examen: Ceros Intermedios y Desbordes
+
+Los profesores del Colegio Monserrat diseñan ejercicios específicos para ver si comprendes profundamente el sistema de base 10 o si solo resuelves mecánicamente.
+
+#### Trampa 1: El desborde o canje
+* *Pregunta típica:* "¿Qué número se forma con 13 Centenas, 4 Decenas y 8 Unidades?"
+* *Error común:* Escribir "1348". ¡Cuidado!
+* *Explicación correcta:* 13 Centenas es igual a $13 \\times 100 = 1.300$. Entonces sumamos:
+  $$1.300 \\text{ (13 C)} + 40 \\text{ (4 D)} + 8 \\text{ (8 U)} = 1.348$$
+  En este caso particular, coincide la escritura directa porque las decenas y unidades no desbordan, pero veamos este otro:
+  "¿Qué número se forma con 15 Decenas y 32 Unidades?"
+  $$150 \\text{ (15 D)} + 32 \\text{ (32 U)} = 182$$
+  ¡Aquí no puedes simplemente juntar las cifras 15 y 32! La suma es fundamental.
+
+#### Trampa 2: Ceros intermedios (columnas vacías)
+* *Pregunta típica:* "Armá el número formado por 5 UM y 4 U."
+* *Error común:* Escribir "54". ¡Cuidado!
+* *Explicación correcta:* Al no mencionarse Centenas (C) ni Decenas (D), esas posiciones valen 0.
+  $$5.000 + 0 + 0 + 4 = 5.004$$
+
+---
+
+### 5. Reglas Ortográficas para la Escritura de Números en Letras
+
+¡En Lengua y en Matemática te evaluarán la ortografía de los números! Memoriza estas reglas básicas:
+
+1. **Del 1 al 29 se escriben en una sola palabra:**
+   * *Ejemplos:* dieciséis (lleva tilde), veintiuno, veintidós (lleva tilde), veintitrés (lleva tilde), veintiséis (lleva tilde).
+2. **A partir del 31 se escriben en palabras separadas por la "y":**
+   * *Ejemplos:* treinta y uno, cuarenta y cinco, noventa y nueve.
+3. **Cien vs. Ciento:**
+   * Usamos **cien** para el 100 exacto. Usamos **ciento** para números mayores (ciento cuatro, ciento cincuenta).
+4. **Centenas con S y C juntas:**
+   * Las palabras **doscientos**, **trescientos** y **seiscientos** llevan **SC** porque se juntan la "S" del número (dos, tres, seis) y la "C" de cientos.
+   * *Ejemplos:* do**sc**ientos, tre**sc**ientos, sei**sc**ientos. (¡Cuatrocientos y quinientos van solo con C!).
 `
   }
 };
