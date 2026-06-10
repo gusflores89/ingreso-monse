@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { TRIAL_TOPICS } from "@/lib/planes";
+import { getPdfUrl } from "@/lib/diapositivas";
 
 const EMPTY_REVISION = {
   resultado: "",
@@ -11,6 +12,69 @@ const MATERIA_LABELS = {
   matematica: "Matematica",
   lengua: "Lengua",
 };
+
+const PREMIUM_RESOURCES = [
+  {
+    id: "simulacro_mate_2025",
+    titulo: "Simulacro Matemática 2025 (Resuelto)",
+    descripcion: "Examen simulado de Matemática resuelto paso a paso por la Prof. Priscila con criterios de evaluación oficiales.",
+    categoria: "Examen Resuelto",
+    fileSize: "1.2 MB",
+    fileUrl: "/examenes/simulacro_matematica_2025_resuelto.pdf",
+    esPremium: true,
+    icono: "📐"
+  },
+  {
+    id: "simulacro_lengua_2025",
+    titulo: "Simulacro Lengua 2025 (Resuelto)",
+    descripcion: "Análisis de textos, respuestas modelo de producción escrita y justificación de reglas ortográficas.",
+    categoria: "Examen Resuelto",
+    fileSize: "980 KB",
+    fileUrl: "/examenes/simulacro_lengua_2025_resuelto.pdf",
+    esPremium: true,
+    icono: "✍️"
+  },
+  {
+    id: "examen_real_2024",
+    titulo: "Examen de Ingreso Real 2024 (Comentado)",
+    descripcion: "Compilado del examen oficial real del ciclo anterior, resuelto y comentado con consejos prácticos de velocidad.",
+    categoria: "Examen Oficial",
+    fileSize: "1.5 MB",
+    fileUrl: "/examenes/examen_ingreso_2024_resuelto.pdf",
+    esPremium: true,
+    icono: "🏛️"
+  },
+  {
+    id: "guia_geometria_avanzada",
+    titulo: "Guía Avanzada: Perímetros y Ángulos",
+    descripcion: "Ejercicios prácticos con figuras compuestas y problemas de examen seleccionados de geometría.",
+    categoria: "Guía de Estudio",
+    fileSize: "2.4 MB",
+    fileUrl: "/apuntes/guia_avanzada_geometria.pdf",
+    esPremium: true,
+    icono: "📏"
+  },
+  {
+    id: "cuadernillo_dictados",
+    titulo: "Cuadernillo de Dictados e Impresiones",
+    descripcion: "Hojas pautadas e instrucciones oficiales para realizar dictados y caligrafía en papel para el hogar.",
+    categoria: "Práctica Escrita",
+    fileSize: "850 KB",
+    fileUrl: "/apuntes/cuadernillo_dictados_caligrafia.pdf",
+    esPremium: true,
+    icono: "📓"
+  },
+  {
+    id: "guia_completa",
+    titulo: "Guía de Ingreso Monserrat Oficial",
+    descripcion: "Temario oficial del colegio, reglamentos de examen, calendario y pautas generales de estudio.",
+    categoria: "Información",
+    fileSize: "925 KB",
+    fileUrl: "/apuntes/guia_completa_monserrat.pdf",
+    esPremium: false,
+    icono: "📄"
+  }
+];
 
 export default function DashboardPapas({ userId }) {
   const [data, setData] = useState(null);
@@ -27,6 +91,8 @@ export default function DashboardPapas({ userId }) {
   const [modoPacienteActive, setModoPacienteActive] = useState(false);
   const [estiloAprendizajeValue, setEstiloAprendizajeValue] = useState("visual_ejemplos");
   const [configPedagogicaLoading, setConfigPedagogicaLoading] = useState(false);
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const [selectedResourceName, setSelectedResourceName] = useState("");
 
   const load = async () => {
     setLoading(true);
@@ -452,6 +518,177 @@ export default function DashboardPapas({ userId }) {
             handleRevisar={handleRevisar}
           />
 
+          {/* Biblioteca de Descargas Adicionales */}
+          <section className="dashboard-panel dashboard-section" style={{ margin: "24px 0", animation: "fadeInUp 0.4s ease both" }}>
+            <PanelHeader title="📥 Biblioteca de Material de Estudio & Descargas" subtitle="Descargá exámenes resueltos y cuadernillos de práctica oficiales" />
+            
+            {esTrial && (
+              <div style={{
+                background: "rgba(245, 158, 11, 0.05)",
+                border: "1px solid rgba(245, 158, 11, 0.2)",
+                borderRadius: "10px",
+                padding: "12px 16px",
+                marginBottom: "20px",
+                fontSize: "0.85rem",
+                color: "#fbbf24",
+                display: "flex",
+                alignItems: "center",
+                gap: "10px"
+              }}>
+                <span>💡</span>
+                <span>Los recursos marcados como <strong>Premium</strong> requieren el Plan Completo. Podés activar el plan para descargarlos en cualquier momento.</span>
+              </div>
+            )}
+
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "20px",
+              marginTop: "15px"
+            }}>
+              {PREMIUM_RESOURCES.map((item) => {
+                const isLocked = esTrial && item.esPremium;
+                return (
+                  <article
+                    key={item.id}
+                    style={{
+                      background: "rgba(255, 255, 255, 0.02)",
+                      border: "1px solid var(--line)",
+                      borderRadius: "12px",
+                      padding: "20px",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      gap: "16px",
+                      transition: "all 0.2s ease-in-out",
+                      boxShadow: "0 4px 6px rgba(0,0,0,0.05)",
+                      opacity: isLocked ? 0.85 : 1,
+                      position: "relative",
+                      overflow: "hidden"
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isLocked) {
+                        e.currentTarget.style.transform = "translateY(-2px)";
+                        e.currentTarget.style.borderColor = "rgba(139, 92, 246, 0.35)";
+                        e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.15)";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isLocked) {
+                        e.currentTarget.style.transform = "none";
+                        e.currentTarget.style.borderColor = "var(--line)";
+                        e.currentTarget.style.boxShadow = "0 4px 6px rgba(0,0,0,0.05)";
+                      }
+                    }}
+                  >
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <span style={{
+                        fontSize: "0.75rem",
+                        color: "var(--primary, #8b5cf6)",
+                        backgroundColor: "rgba(139, 92, 246, 0.1)",
+                        padding: "3px 8px",
+                        borderRadius: "6px",
+                        fontWeight: "600"
+                      }}>
+                        {item.categoria}
+                      </span>
+                      <span style={{ fontSize: "0.78rem", color: "var(--muted)", fontWeight: "500" }}>
+                        {item.fileSize} · PDF
+                      </span>
+                    </div>
+
+                    <div style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
+                      <span style={{ fontSize: "1.8rem" }}>{item.icono}</span>
+                      <div>
+                        <h4 style={{ color: "#ffffff", fontSize: "0.95rem", fontWeight: "700", margin: "0 0 6px 0" }}>
+                          {item.titulo}
+                        </h4>
+                        <p style={{ color: "var(--muted)", fontSize: "0.82rem", margin: 0, lineHeight: "1.4" }}>
+                          {item.descripcion}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div>
+                      {isLocked ? (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setSelectedResourceName(item.titulo);
+                            setShowUpgradeModal(true);
+                          }}
+                          style={{
+                            width: "100%",
+                            padding: "10px",
+                            borderRadius: "8px",
+                            background: "rgba(255, 255, 255, 0.03)",
+                            border: "1px solid rgba(255, 255, 255, 0.08)",
+                            color: "#94a3b8",
+                            fontSize: "0.82rem",
+                            fontWeight: "600",
+                            cursor: "pointer",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "6px",
+                            transition: "all 0.2s"
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = "rgba(139, 92, 246, 0.1)";
+                            e.currentTarget.style.borderColor = "rgba(139, 92, 246, 0.3)";
+                            e.currentTarget.style.color = "#c084fc";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = "rgba(255, 255, 255, 0.03)";
+                            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
+                            e.currentTarget.style.color = "#94a3b8";
+                          }}
+                        >
+                          🔒 Habilitar con Plan Completo
+                        </button>
+                      ) : (
+                        <a
+                          href={getPdfUrl(item.fileUrl)}
+                          download
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            width: "100%",
+                            padding: "10px",
+                            borderRadius: "8px",
+                            background: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)",
+                            color: "#ffffff",
+                            fontSize: "0.82rem",
+                            fontWeight: "700",
+                            border: "none",
+                            cursor: "pointer",
+                            textDecoration: "none",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "6px",
+                            boxShadow: "0 2px 10px rgba(139, 92, 246, 0.2)",
+                            transition: "all 0.2s"
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.boxShadow = "0 4px 15px rgba(139, 92, 246, 0.4)";
+                            e.currentTarget.style.transform = "scale(1.01)";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.boxShadow = "0 2px 10px rgba(139, 92, 246, 0.2)";
+                            e.currentTarget.style.transform = "none";
+                          }}
+                        >
+                          📥 Descargar PDF
+                        </a>
+                      )}
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+
           {esTrial && (
             <section className="dashboard-panel" style={{
               margin: "32px 0",
@@ -575,6 +812,99 @@ export default function DashboardPapas({ userId }) {
             </section>
           )}
         </>
+      )}
+
+      {showUpgradeModal && (
+        <div style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundColor: "rgba(10, 8, 16, 0.75)",
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: 9999,
+          padding: "20px",
+        }}>
+          <div style={{
+            background: "linear-gradient(145deg, rgba(26, 23, 37, 0.95) 0%, rgba(17, 13, 36, 0.98) 100%)",
+            border: "1px solid rgba(139, 92, 246, 0.35)",
+            borderRadius: "16px",
+            padding: "30px 24px",
+            maxWidth: "480px",
+            width: "100%",
+            textAlign: "center",
+            boxShadow: "0 20px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(139, 92, 246, 0.25)",
+            color: "#e8e4f0"
+          }}>
+            <span style={{ fontSize: "2.5rem", display: "block", marginBottom: "16px" }}>🔒</span>
+            
+            <h3 style={{
+              fontSize: "1.45rem",
+              fontWeight: "700",
+              color: "#ffffff",
+              marginBottom: "12px"
+            }}>
+              Recurso Exclusivo
+            </h3>
+            
+            <p style={{
+              fontSize: "0.92rem",
+              color: "#a59ec9",
+              lineHeight: "1.6",
+              marginBottom: "24px"
+            }}>
+              El archivo <strong>{selectedResourceName}</strong> es parte del material de estudio adicional y exámenes resueltos disponible exclusivamente para familias del <strong>Plan Completo</strong>.
+            </p>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+              <button
+                type="button"
+                onClick={() => {
+                  setShowUpgradeModal(false);
+                  handleUpgrade();
+                }}
+                disabled={paymentLoading}
+                style={{
+                  width: "100%",
+                  padding: "12px",
+                  borderRadius: "8px",
+                  background: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)",
+                  color: "#ffffff",
+                  fontSize: "0.9rem",
+                  fontWeight: "700",
+                  border: "none",
+                  cursor: "pointer",
+                  boxShadow: "0 4px 15px rgba(139, 92, 246, 0.35)",
+                }}
+              >
+                {paymentLoading ? "Redirigiendo..." : "💎 Activar Plan Completo con Mercado Pago"}
+              </button>
+              
+              <button
+                type="button"
+                onClick={() => setShowUpgradeModal(false)}
+                style={{
+                  width: "100%",
+                  padding: "12px",
+                  borderRadius: "8px",
+                  background: "rgba(255, 255, 255, 0.05)",
+                  border: "1px solid rgba(255, 255, 255, 0.08)",
+                  color: "#9590a6",
+                  fontSize: "0.88rem",
+                  fontWeight: "600",
+                  cursor: "pointer"
+                }}
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </section>
   );

@@ -682,3 +682,10 @@ Este tema forma parte del programa oficial para el examen de ingreso al Colegio 
 `
   };
 }
+
+export function getPdfUrl(url = "") {
+  const base = process.env.NEXT_PUBLIC_PDF_BASE_URL || "";
+  if (!url) return "";
+  if (url.startsWith("http://") || url.startsWith("https://")) return url;
+  return `${base}${url}`;
+}

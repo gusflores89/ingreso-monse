@@ -3,7 +3,7 @@ import PantallaCasoResuelto from "./PantallaCasoResuelto";
 import VisualizacionMatematica from "./VisualizacionMatematica";
 import { CURRICULUM_MATEMATICA, CURRICULUM_LENGUA } from "@/lib/curriculum";
 import { TRIAL_TOPICS } from "@/lib/planes";
-import { getDiapositivasParaTema } from "@/lib/diapositivas";
+import { getDiapositivasParaTema, getPdfUrl } from "@/lib/diapositivas";
 
 export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tutor_preference }) {
   const [pregunta, setPregunta] = useState(null);
@@ -1104,7 +1104,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                     </p>
                   </div>
                   <a
-                    href={deckTeoria.pdf_url}
+                    href={getPdfUrl(deckTeoria.pdf_url)}
                     download
                     style={{
                       display: "inline-flex",
