@@ -17,7 +17,7 @@ import {
 } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { requireMethod } from "@/lib/http";
-import { requireAccess } from "@/lib/access";
+import { requireAccess, hasAccess } from "@/lib/access";
 import { buildAlumnoProfile } from "@/lib/alumno";
 
 import { checkDailyRateLimit } from "@/lib/rateLimit";
@@ -26,7 +26,7 @@ export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
   if (!requireAccess(req, res, ["student", "admin"])) return;
 
-  const { sesion_id, respuesta_usuario, tiempo_segundos } = req.body || {};
+  const { sesion_id, respuesta_usuario, tiempo_segundos, user_id } = req.body || {};
 
   if (!sesion_id || !respuesta_usuario) {
     return res.status(400).json({ error: "sesion_id y respuesta_usuario son obligatorios." });
@@ -39,6 +39,12 @@ export default async function handler(req, res) {
       await supabase.from("sesiones").select("*").eq("id", sesion_id).single(),
       "No se pudo obtener la sesion"
     );
+
+    // Validar ownership
+    const isAdmin = hasAccess(req, "admin");
+    if (!isAdmin && sesion.user_id !== user_id) {
+      return res.status(403).json({ error: "No autorizado. La sesión no pertenece a este usuario." });
+    }
 
     // Validar límite diario de abuso/seguridad para llamadas de IA
     const rateLimit = await checkDailyRateLimit(supabase, sesion.user_id);

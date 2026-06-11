@@ -14,9 +14,9 @@ export default async function handler(req, res) {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: "Abril Quest <onboarding@resend.dev>",
+      from: "IngresoMonse <onboarding@resend.dev>",
       to: ["gus.flores89@gmail.com"],
-      subject: "🎓 Test de email - Abril Quest",
+      subject: "🎓 Test de email - IngresoMonse",
       html: "<h1>¡Funciona!</h1><p>Si ves esto, el email está configurado correctamente.</p>",
     });
 
@@ -26,6 +26,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ ok: true, email_id: data?.id, message: "Email enviado a gus.flores89@gmail.com" });
   } catch (err) {
-    return res.status(500).json({ ok: false, error: err.message, stack: err.stack?.split("\n").slice(0, 3) });
+    console.error(err);
+    return res.status(500).json({ ok: false, error: "Error interno del servidor" });
   }
 }

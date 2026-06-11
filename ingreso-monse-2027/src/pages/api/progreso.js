@@ -1,4 +1,5 @@
 import { requireMethod } from "@/lib/http";
+import { requireAccess } from "@/lib/access";
 import { getTopicMeta, CURRICULUM_MATEMATICA, CURRICULUM_LENGUA } from "@/lib/curriculum";
 import { callOpenRouter } from "@/lib/openrouter";
 import { MODEL_DASHBOARD, buildPromptDashboard } from "@/lib/prompts";
@@ -8,6 +9,7 @@ import { getUserPlan, TRIAL_TOPICS } from "@/lib/planes";
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "GET")) return;
+  if (!requireAccess(req, res, ["student", "admin"])) return;
 
   const userId = req.query.user_id;
   if (!userId) return res.status(400).json({ error: "user_id es obligatorio." });

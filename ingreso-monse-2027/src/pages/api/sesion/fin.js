@@ -3,10 +3,12 @@ import { callOpenRouter } from "@/lib/openrouter";
 import { MODEL_DASHBOARD, buildPromptDashboard } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { requireMethod } from "@/lib/http";
+import { requireAccess } from "@/lib/access";
 import { buildAlumnoProfile } from "@/lib/alumno";
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
+  if (!requireAccess(req, res, ["student", "admin"])) return;
 
   const { user_id } = req.body || {};
   if (!user_id) return res.status(400).json({ error: "user_id es obligatorio." });

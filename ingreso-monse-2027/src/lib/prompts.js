@@ -292,20 +292,6 @@ Maximo 1500 palabras.
   );
 }
 
-/** @deprecated Use buildPromptMonse(alumno, contexto). */
-export const SYSTEM_PROMPT_MONSE = buildPromptMonse(DEFAULT_ALUMNO, {});
-
-/** @deprecated Use buildPromptTeacher(alumno, contexto). */
-export const SYSTEM_PROMPT_TEACHER = buildPromptTeacher(DEFAULT_ALUMNO, {});
-
-/** @deprecated Use buildPromptPractice(alumno, contexto). */
-export const SYSTEM_PROMPT_PRACTICE = buildPromptPractice(DEFAULT_ALUMNO, {});
-
-/** @deprecated Use buildPromptAnalyzer(alumno, contexto). */
-export const SYSTEM_PROMPT_ANALYZER = buildPromptAnalyzer(DEFAULT_ALUMNO, {});
-
-/** @deprecated Use buildPromptDashboard(alumno, contexto). */
-export const SYSTEM_PROMPT_DASHBOARD_IA = buildPromptDashboard(DEFAULT_ALUMNO, {});
 
 export function hydratePrompt(template, values) {
   return template.replace(/\{(\w+)\}/g, (match, key) => {

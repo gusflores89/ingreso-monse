@@ -98,6 +98,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
           sesion_id: sesionId,
           respuesta_usuario: respuesta,
           tiempo_segundos: Math.round((Date.now() - startTime.current) / 1000),
+          user_id,
         }),
       });
       const data = await res.json();
@@ -130,6 +131,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
           sesion_id: sesionId,
           respuesta_usuario: JSON.stringify(respuestaPayload),
           tiempo_segundos: Math.round((Date.now() - startTime.current) / 1000),
+          user_id,
         }),
       });
       const data = await res.json();

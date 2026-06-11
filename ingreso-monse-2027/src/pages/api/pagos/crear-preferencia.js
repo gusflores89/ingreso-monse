@@ -1,9 +1,11 @@
 import { requireMethod } from "@/lib/http";
+import { requireAccess } from "@/lib/access";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 
 export default async function handler(req, res) {
   // Validar método POST
   if (!requireMethod(req, res, "POST")) return;
+  if (!requireAccess(req, res, ["student", "admin"])) return;
 
   const { user_id } = req.body || {};
   if (!user_id) {

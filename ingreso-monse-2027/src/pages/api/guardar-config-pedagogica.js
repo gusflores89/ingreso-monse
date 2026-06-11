@@ -1,8 +1,10 @@
 import { requireMethod } from "@/lib/http";
+import { requireAccess } from "@/lib/access";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
+  if (!requireAccess(req, res, ["student", "admin"])) return;
 
   const { user_id, estilo_aprendizaje, modo_paciente } = req.body || {};
 
@@ -30,13 +32,6 @@ export default async function handler(req, res) {
       const { data, error } = await supabase.from("usuarios").select("*").eq("codigo_acceso", normalizedCode).single();
       if (!error && data) {
         usuario = data;
-      }
-    }
-
-    if (!usuario) {
-      const dbUsersResult = await supabase.from("usuarios").select("*");
-      if (!dbUsersResult.error && dbUsersResult.data) {
-        usuario = dbUsersResult.data.find(u => u.codigo_acceso === cleanUserId.toUpperCase() || u.id === cleanUserId);
       }
     }
 
