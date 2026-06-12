@@ -39,14 +39,46 @@ export function verifyFamilyPassword(password, storedHash) {
   return safeEqual(actualDigest, expectedDigest);
 }
 
-export function setAccessCookie(res, kind) {
+function signUserId(userId) {
+  const hmac = crypto.createHmac("sha256", getAuthSecret()).update(userId).digest("hex");
+  return `${userId}:${hmac}`;
+}
+
+export function getAuthenticatedUserId(req) {
+  const cookies = parseCookies(req.headers.cookie || "");
+  const signedUserId = cookies["monse_user_id"];
+  if (!signedUserId) return null;
+
+  const parts = signedUserId.split(":");
+  if (parts.length !== 2) return null;
+
+  const [userId, signature] = parts;
+  const expectedSignature = crypto.createHmac("sha256", getAuthSecret()).update(userId).digest("hex");
+
+  const signatureBuffer = Buffer.from(signature);
+  const expectedBuffer = Buffer.from(expectedSignature);
+  if (signatureBuffer.length !== expectedBuffer.length) return null;
+  if (!crypto.timingSafeEqual(signatureBuffer, expectedBuffer)) return null;
+
+  return userId;
+}
+
+export function setAccessCookie(res, kind, userId = null) {
   const token = createAccessToken(kind);
   const cookieName = COOKIE_NAMES[kind];
   const secure = process.env.NODE_ENV === "production" ? "; Secure" : "";
-
-  res.setHeader("Set-Cookie", [
+  const cookies = [
     `${cookieName}=${token}; HttpOnly; Path=/; Max-Age=2592000; SameSite=Lax${secure}`,
-  ]);
+  ];
+
+  if (userId) {
+    const signedUserId = signUserId(userId);
+    cookies.push(
+      `monse_user_id=${signedUserId}; HttpOnly; Path=/; Max-Age=2592000; SameSite=Lax${secure}`
+    );
+  }
+
+  res.setHeader("Set-Cookie", cookies);
 }
 
 export function hasAccess(req, allowedKinds) {
@@ -77,7 +109,14 @@ function getPassword(kind) {
 }
 
 function getAuthSecret() {
-  return process.env.MONSE_AUTH_SECRET || process.env.SUPABASE_SERVICE_KEY || process.env.OPENROUTER_API_KEY || "monse-local";
+  const secret = process.env.MONSE_AUTH_SECRET;
+  if (!secret) {
+    if (process.env.NODE_ENV === "production") {
+      throw new Error("MONSE_AUTH_SECRET no configurado");
+    }
+    return "monse-dev-only";
+  }
+  return secret;
 }
 
 function parseCookies(header) {

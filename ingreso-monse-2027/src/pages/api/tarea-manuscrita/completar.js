@@ -1,5 +1,5 @@
 import { requireMethod } from "@/lib/http";
-import { requireAccess } from "@/lib/access";
+import { requireAccess, hasAccess, getAuthenticatedUserId } from "@/lib/access";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 
 export default async function handler(req, res) {
@@ -14,6 +14,24 @@ export default async function handler(req, res) {
 
   try {
     const supabase = getSupabaseAdmin();
+
+    const isAdmin = hasAccess(req, "admin");
+    const userIdAutenticado = getAuthenticatedUserId(req);
+
+    // Fetch the task first to verify ownership
+    const { data: tareaExistente, error: fetchError } = await supabase
+      .from("tareas_manuscritas")
+      .select("user_id")
+      .eq("id", tarea_id)
+      .single();
+
+    if (fetchError || !tareaExistente) {
+      return res.status(404).json({ error: "Tarea no encontrada o inválida." });
+    }
+
+    if (!isAdmin && tareaExistente.user_id !== userIdAutenticado) {
+      return res.status(403).json({ error: "No autorizado. La tarea no pertenece a este usuario." });
+    }
 
     const tarea = assertSupabaseOk(
       await supabase

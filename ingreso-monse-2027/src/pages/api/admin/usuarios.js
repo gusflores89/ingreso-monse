@@ -47,7 +47,10 @@ export default async function handler(req, res) {
         plan: getUserPlan(usuario),
         subscription_status: usuario.subscription_status || usuario.rasgos_especiales?.subscription_status || "trial",
         estilo_aprendizaje: usuario.estilo_aprendizaje,
-        rasgos_especiales: usuario.rasgos_especiales || {},
+        rasgos_especiales: (() => {
+          const { access_password_hash, ...rasgosSeguros } = usuario.rasgos_especiales || {};
+          return rasgosSeguros;
+        })(),
         metricas: metrics,
       };
     });

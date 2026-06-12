@@ -2,6 +2,7 @@ import { getWeekRange } from "@/lib/date";
 import { callOpenRouter } from "@/lib/openrouter";
 import { MODEL_DASHBOARD, buildPromptDashboard } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
+import { loadUser } from "@/lib/usuarios";
 import { requireMethod } from "@/lib/http";
 import { requireAccess } from "@/lib/access";
 import { buildAlumnoProfile } from "@/lib/alumno";
@@ -18,7 +19,7 @@ export default async function handler(req, res) {
     const week = getWeekRange();
 
     const usuario = assertSupabaseOk(
-      await supabase.from("usuarios").select("*").eq("id", user_id).single(),
+      await loadUser(supabase, user_id),
       "No se pudo obtener usuario"
     );
     const alumno = buildAlumnoProfile(usuario);

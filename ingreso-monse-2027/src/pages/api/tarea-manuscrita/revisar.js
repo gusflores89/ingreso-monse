@@ -4,7 +4,7 @@ import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
-  if (!requireAccess(req, res, ["student", "admin"])) return;
+  if (!requireAccess(req, res, ["admin"])) return;
 
   const { tarea_id, resultado, cantidad_errores, comentario } = req.body || {};
 

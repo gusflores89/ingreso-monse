@@ -746,6 +746,59 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
               )}
 
               {!modalLoading && (() => {
+                const mateFase1 = CURRICULUM_MATEMATICA.filter(t => t.fase === 1);
+                const mateFase2 = CURRICULUM_MATEMATICA.filter(t => t.fase === 2);
+                const mateFase3 = CURRICULUM_MATEMATICA.filter(t => t.fase === 3);
+                const mateFase4 = CURRICULUM_MATEMATICA.filter(t => t.fase === 4);
+
+                const lenguaFase1 = CURRICULUM_LENGUA.filter(t => t.fase === 1);
+                const lenguaFase2 = CURRICULUM_LENGUA.filter(t => t.fase === 2);
+                const lenguaFase3 = CURRICULUM_LENGUA.filter(t => t.fase === 3);
+                const lenguaFase4 = CURRICULUM_LENGUA.filter(t => t.fase === 4);
+
+                const approvedMateF1 = mateFase1.filter(t => completedExams.has(t.tema)).length;
+                const approvedMateF2 = mateFase2.filter(t => completedExams.has(t.tema)).length;
+                const approvedMateF3 = mateFase3.filter(t => completedExams.has(t.tema)).length;
+                const approvedMateF4 = mateFase4.filter(t => completedExams.has(t.tema)).length;
+
+                const approvedLenguaF1 = lenguaFase1.filter(t => completedExams.has(t.tema)).length;
+                const approvedLenguaF2 = lenguaF2.filter(t => completedExams.has(t.tema)).length;
+                const approvedLenguaF3 = lenguaF3.filter(t => completedExams.has(t.tema)).length;
+                const approvedLenguaF4 = lenguaF4.filter(t => completedExams.has(t.tema)).length;
+
+                const unlockedMateFase2 = approvedMateF1 >= 6;
+                const unlockedMateFase3 = unlockedMateFase2 && approvedMateF2 >= 3;
+                const unlockedMateFase4 = unlockedMateFase3 && approvedMateF3 >= 5;
+                const unlockedMateFase5 = unlockedMateFase4 && approvedMateF4 >= 11;
+
+                const unlockedLenguaFase2 = approvedLenguaF1 >= 5;
+                const unlockedLenguaFase3 = unlockedLenguaFase2 && approvedLenguaF2 >= 3;
+                const unlockedLenguaFase4 = unlockedLenguaFase3 && approvedLenguaF3 >= 3;
+                const unlockedLenguaFase5 = unlockedLenguaFase4 && approvedLenguaF4 >= 3;
+
+                const isMateUnlocked = (fase) => {
+                  if (fase === 1) return true;
+                  if (fase === 2) return unlockedMateFase2;
+                  if (fase === 3) return unlockedMateFase3;
+                  if (fase === 4) return unlockedMateFase4;
+                  if (fase === 5) return unlockedMateFase5;
+                  return false;
+                };
+
+                const isLenguaUnlocked = (fase) => {
+                  if (fase === 1) return true;
+                  if (fase === 2) return unlockedLenguaFase2;
+                  if (fase === 3) return unlockedLenguaFase3;
+                  if (fase === 4) return unlockedLenguaFase4;
+                  if (fase === 5) return unlockedLenguaFase5;
+                  return false;
+                };
+
+                const isTopicUnlocked = (tema, fase, materia) => {
+                  if (materia === "matematica") return isMateUnlocked(fase);
+                  return isLenguaUnlocked(fase);
+                };
+
                 const topicsFase1 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 1);
                 const topicsFase2 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 2);
                 const topicsFase3 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 3);
@@ -757,10 +810,10 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                 const approvedFase4 = topicsFase4.filter(t => completedExams.has(t.tema)).length;
 
                 const unlockedFase1 = true;
-                const unlockedFase2 = bypassLocks || approvedFase1 >= 6;
-                const unlockedFase3 = bypassLocks || (unlockedFase2 && approvedFase2 >= 4);
-                const unlockedFase4 = bypassLocks || (unlockedFase3 && approvedFase3 >= 4);
-                const unlockedFase5 = bypassLocks || (unlockedFase4 && approvedFase4 >= 10);
+                const unlockedFase2 = bypassLocks || (unlockedMateFase2 || unlockedLenguaFase2);
+                const unlockedFase3 = bypassLocks || (unlockedMateFase3 || unlockedLenguaFase3);
+                const unlockedFase4 = bypassLocks || (unlockedMateFase4 || unlockedLenguaFase4);
+                const unlockedFase5 = bypassLocks || (unlockedMateFase5 && unlockedLenguaFase5);
 
                 return (
                   <>
@@ -780,6 +833,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                       setShowTopicModal={setShowTopicModal}
                       userProgress={userProgress}
                       bypassLocks={bypassLocks}
+                      isTopicUnlocked={isTopicUnlocked}
                     />
 
                     {/* FASE 2 */}
@@ -788,7 +842,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                       title="Fraccionamiento Aritmético"
                       subtitle="Conceptos elementales de partición, múltiplos y morfología verbal básica."
                       unlocked={unlockedFase2}
-                      requiredText="Aprobar al menos 6 temas de la Fase 1 para desbloquear."
+                      requiredText="Aprobar Fase 1 de Matemática (6 temas) o Fase 1 de Lengua (5 temas) para desbloquear."
                       approvedCount={approvedFase2}
                       totalCount={topicsFase2.length}
                       topics={topicsFase2}
@@ -799,6 +853,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                       setShowTopicModal={setShowTopicModal}
                       userProgress={userProgress}
                       bypassLocks={bypassLocks}
+                      isTopicUnlocked={isTopicUnlocked}
                     />
 
                     {/* FASE 3 */}
@@ -807,7 +862,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                       title="Operaciones Complejas e Inferencia"
                       subtitle="La fracción del resto, decimales y análisis inferencial discursivo."
                       unlocked={unlockedFase3}
-                      requiredText="Aprobar al menos 4 temas de la Fase 2 para desbloquear."
+                      requiredText="Aprobar al menos 3 temas de la Fase 2 en Matemática o Lengua para desbloquear."
                       approvedCount={approvedFase3}
                       totalCount={topicsFase3.length}
                       topics={topicsFase3}
@@ -818,6 +873,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                       setShowTopicModal={setShowTopicModal}
                       userProgress={userProgress}
                       bypassLocks={bypassLocks}
+                      isTopicUnlocked={isTopicUnlocked}
                     />
 
                     {/* FASE 4 */}
@@ -826,7 +882,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                       title="Geometría Compuesta y Producción Textual"
                       subtitle="Perímetros irregulares, ángulos consecutivos y redacción bajo consignas restrictivas."
                       unlocked={unlockedFase4}
-                      requiredText="Aprobar al menos 4 temas de la Fase 3 para desbloquear."
+                      requiredText="Aprobar al menos 5 temas de la Fase 3 en Matemática o 3 temas en Lengua para desbloquear."
                       approvedCount={approvedFase4}
                       totalCount={topicsFase4.length}
                       topics={topicsFase4}
@@ -837,6 +893,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                       setShowTopicModal={setShowTopicModal}
                       userProgress={userProgress}
                       bypassLocks={bypassLocks}
+                      isTopicUnlocked={isTopicUnlocked}
                     />
 
                     {/* FASE 5 */}
@@ -1798,7 +1855,8 @@ function PhaseSection({
   handleSelectTema,
   setShowTopicModal,
   userProgress,
-  bypassLocks
+  bypassLocks,
+  isTopicUnlocked
 }) {
   const progressPercent = totalCount ? Math.round((approvedCount / totalCount) * 100) : 0;
   const isCompleted = approvedCount === totalCount && totalCount > 0;
@@ -1882,7 +1940,8 @@ function PhaseSection({
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "8px" }}>
           {topics.map((item) => {
             const isTrial = pregunta?.plan === "trial";
-            const isAllowed = bypassLocks || !isTrial || TRIAL_TOPICS.includes(item.tema);
+            const isTopicPhaseUnlocked = bypassLocks || (isTopicUnlocked ? isTopicUnlocked(item.tema, item.fase, item.materia) : unlocked);
+            const isAllowed = bypassLocks || ((!isTrial || TRIAL_TOPICS.includes(item.tema)) && isTopicPhaseUnlocked);
             const isCurrent = activeTema === item.tema;
             const isApproved = completedExams.has(item.tema);
             
@@ -1928,7 +1987,7 @@ function PhaseSection({
               >
                 <div style={{ display: "flex", alignItems: "center", gap: "6px", maxWidth: "70%" }}>
                   <span style={{ fontSize: "0.95rem" }}>
-                    {item.materia === "lengua" ? "✍️" : "🔢"}
+                    {isAllowed ? (item.materia === "lengua" ? "✍️" : "🔢") : "🔒"}
                   </span>
                   <span style={{ 
                     fontWeight: isCurrent ? "700" : "500", 

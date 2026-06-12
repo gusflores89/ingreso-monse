@@ -125,19 +125,19 @@ Que fraccion comiste? Que fraccion queda?`,
       tip: "El numero de abajo dice en cuantas partes se divide. El de arriba dice cuantas partes agarro.",
     },
     capa_3: {
-      titulo: "Caso resuelto: Comparar fracciones",
+      titulo: "Caso resuelto: Comparar fracciones por equivalencia",
       problema: `Juan comio 2/3 de su pizza.
-Maria comio 3/4 de su pizza.
+Maria comio 4/6 de su pizza.
 Las pizzas son del mismo tamano. Quien comio mas?`,
       resolucion: [
-        { paso: "🔍 Que me piden", contenido: "Comparar 2/3 con 3/4." },
-        { paso: "📋 Que datos tengo", contenido: "Juan: 2/3\nMaria: 3/4" },
-        { paso: "🧮 Busco denominador comun", contenido: "2/3 = 8/12\n3/4 = 9/12" },
-        { paso: "🧮 Comparo", contenido: "9/12 es mayor que 8/12. Maria comio mas." },
-        { paso: "✅ Tiene sentido", contenido: "3/4 es casi toda la pizza. 2/3 es un poco menos." },
-        { paso: "📝 Respuesta", contenido: "Maria comio mas." },
+        { paso: "🔍 Que me piden", contenido: "Comparar 2/3 con 4/6." },
+        { paso: "📋 Que datos tengo", contenido: "Juan: 2/3\nMaria: 4/6" },
+        { paso: "🧮 Busco fraccion equivalente", contenido: "Si multiplico arriba y abajo a 2/3 por 2: 2x2=4 y 3x2=6. Obtenemos 4/6." },
+        { paso: "🧮 Comparo", contenido: "2/3 es equivalente a 4/6. Comieron la misma cantidad." },
+        { paso: "✅ Tiene sentido", contenido: "Si dividis una pizza en 3 partes y comes 2, comes lo mismo que si la dividis en 6 partes y comes 4." },
+        { paso: "📝 Respuesta", contenido: "Comieron la misma cantidad." },
       ],
-      tip: "Para comparar fracciones distintas, llevalas a un mismo denominador.",
+      tip: "Podes amplificar una fraccion multiplicando arriba y abajo por el mismo numero para ver si son equivalentes.",
     },
   },
 
@@ -217,7 +217,7 @@ c) 23`,
     },
   },
 
-  secuencias_numericas: {
+  secuencias_aritmeticas: {
     capa_1_2: {
       titulo: "Caso resuelto: Secuencias",
       problema: `Que numero sigue?
@@ -246,7 +246,6 @@ c) 23`,
     },
   },
 
-  secuencias_aritmeticas: null,
   secuencias_geometricas_fibonacci: null,
 
   geometria_angulos: {

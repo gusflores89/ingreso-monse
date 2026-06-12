@@ -1,5 +1,5 @@
 import { requireMethod } from "@/lib/http";
-import { requireAccess } from "@/lib/access";
+import { requireAccess, hasAccess, getAuthenticatedUserId } from "@/lib/access";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 
 export default async function handler(req, res) {
@@ -39,6 +39,13 @@ export default async function handler(req, res) {
     }
 
     const resolvedUserId = usuario.id;
+
+    const isAdmin = hasAccess(req, "admin");
+    const userIdAutenticado = getAuthenticatedUserId(req);
+
+    if (!isAdmin && resolvedUserId !== userIdAutenticado) {
+      return res.status(403).json({ error: "No autorizado. No puede consultar las tareas de otro alumno." });
+    }
 
     const tareas = assertSupabaseOk(
       await supabase

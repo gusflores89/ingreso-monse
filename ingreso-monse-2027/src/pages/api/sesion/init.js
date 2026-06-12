@@ -7,6 +7,7 @@ import { parseJsonFromModel } from "@/lib/json";
 import { callOpenRouter } from "@/lib/openrouter";
 import { MODEL_TUTOR, buildPromptPractice, buildPromptTeacher } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
+import { loadUser } from "@/lib/usuarios";
 import { requireMethod } from "@/lib/http";
 import { requireAccess } from "@/lib/access";
 import { buildAlumnoProfile } from "@/lib/alumno";
@@ -38,6 +39,14 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "user_id es obligatorio." });
   }
 
+  if (typeof user_id !== "string" || user_id.length > 100) {
+    return res.status(400).json({ error: "user_id inválido o demasiado largo." });
+  }
+
+  if (tema && (typeof tema !== "string" || tema.length > 100)) {
+    return res.status(400).json({ error: "tema inválido o demasiado largo." });
+  }
+
   try {
     const supabase = getSupabaseAdmin();
 
@@ -48,7 +57,7 @@ export default async function handler(req, res) {
     }
 
     const usuario = assertSupabaseOk(
-      await supabase.from("usuarios").select("*").eq("id", user_id).single(),
+      await loadUser(supabase, user_id),
       "No se pudo obtener el usuario"
     );
 
@@ -211,10 +220,39 @@ export default async function handler(req, res) {
     }
 
     const preguntasRecientes = await getPreguntasRecientes(supabase, user_id, temaActual);
+
+    // Fetch approved exams to calculate completed prerequisites and unlearned topics
+    const { data: approvedExamsData } = await supabase
+      .from("sesiones")
+      .select("tema")
+      .eq("user_id", user_id)
+      .eq("tipo_pregunta", "examen_final")
+      .eq("es_correcta", true);
+    
+    const approvedExams = new Set((approvedExamsData || []).map(s => s.tema));
+    const temasCompletados = Array.from(approvedExams);
+
+    const topicMeta = getTopicMeta(temaActual);
+    const curriculum = topicMeta?.materia === "lengua" ? CURRICULUM_LENGUA : CURRICULUM_MATEMATICA;
+    const currentIndex = curriculum.findIndex(t => t.tema === temaActual);
+    const conceptosNoEnseñados = [];
+    if (currentIndex !== -1) {
+      for (let i = currentIndex + 1; i < curriculum.length; i++) {
+        conceptosNoEnseñados.push(curriculum[i].tema);
+      }
+    }
+
+    const contextoPrompt = {
+      ...contexto,
+      preguntas_recientes: JSON.stringify(preguntasRecientes),
+      temas_completados: temasCompletados,
+      conceptos_no_ensenados: conceptosNoEnseñados,
+    };
+
     const systemPrompt =
       modoSesion === "leccion"
-        ? buildPromptTeacher(alumno, { ...contexto, preguntas_recientes: JSON.stringify(preguntasRecientes) })
-        : buildPromptPractice(alumno, { ...contexto, preguntas_recientes: JSON.stringify(preguntasRecientes) });
+        ? buildPromptTeacher(alumno, contextoPrompt)
+        : buildPromptPractice(alumno, contextoPrompt);
     const isSpelling = temaActual.startsWith("ortografia_");
     const spellingSpecificPrompt = isSpelling
       ? `\n- Como el tema es de ortografía (${temaActual}), genera una historia breve (un párrafo de unas 100 palabras) e incluye exactamente 3 errores ortográficos relacionados con la regla (por ejemplo, si es ortografía B/V, escribe con B palabras que van con V o viceversa). Asegurate de variar las palabras y no repetir las mismas palabras que fueron probadas en las historias anteriores de la lista. Varía los personajes y contextos.`
@@ -329,9 +367,14 @@ function normalizeTutorPreference(preference) {
   const avatar = isValidAvatar(preference.avatar) ? preference.avatar : null;
   if (!avatar) return {};
 
+  let nombre_tutor = preference.nombre_tutor || tutorNameForAvatar(avatar);
+  if (typeof nombre_tutor === "string" && nombre_tutor.length > 50) {
+    nombre_tutor = nombre_tutor.slice(0, 50);
+  }
+
   return {
     avatar,
-    nombre_tutor: preference.nombre_tutor || tutorNameForAvatar(avatar),
+    nombre_tutor,
     color_tema: isValidHexColor(preference.color_tema) ? preference.color_tema : colorForAvatar(avatar),
   };
 }
@@ -622,28 +665,39 @@ async function getUnlockedTopics(supabase, userId, plan) {
   
   const approvedExams = new Set((data || []).map(s => s.tema));
   
-  const topicsFase1 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 1);
-  const topicsFase2 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 2);
-  const topicsFase3 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 3);
-  const topicsFase4 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 4);
+  const mateF1 = CURRICULUM_MATEMATICA.filter(t => t.fase === 1);
+  const mateF2 = CURRICULUM_MATEMATICA.filter(t => t.fase === 2);
+  const mateF3 = CURRICULUM_MATEMATICA.filter(t => t.fase === 3);
+  const mateF4 = CURRICULUM_MATEMATICA.filter(t => t.fase === 4);
 
-  const approvedFase1 = topicsFase1.filter(t => approvedExams.has(t.tema)).length;
-  const approvedFase2 = topicsFase2.filter(t => approvedExams.has(t.tema)).length;
-  const approvedFase3 = topicsFase3.filter(t => approvedExams.has(t.tema)).length;
-  const approvedFase4 = topicsFase4.filter(t => approvedExams.has(t.tema)).length;
+  const lenguaF1 = CURRICULUM_LENGUA.filter(t => t.fase === 1);
+  const lenguaF2 = CURRICULUM_LENGUA.filter(t => t.fase === 2);
+  const lenguaF3 = CURRICULUM_LENGUA.filter(t => t.fase === 3);
+  const lenguaF4 = CURRICULUM_LENGUA.filter(t => t.fase === 4);
 
-  const unlockedFase1 = true;
-  const unlockedFase2 = approvedFase1 >= 6;
-  const unlockedFase3 = unlockedFase2 && approvedFase2 >= 4;
-  const unlockedFase4 = unlockedFase3 && approvedFase3 >= 4;
-  const unlockedFase5 = unlockedFase4 && approvedFase4 >= 10;
+  const approvedMateF1 = mateF1.filter(t => approvedExams.has(t.tema)).length;
+  const approvedMateF2 = mateF2.filter(t => approvedExams.has(t.tema)).length;
+  const approvedMateF3 = mateF3.filter(t => approvedExams.has(t.tema)).length;
+  const approvedMateF4 = mateF4.filter(t => approvedExams.has(t.tema)).length;
 
-  const isPhaseUnlocked = (fase) => {
-    if (fase === 1) return unlockedFase1;
-    if (fase === 2) return unlockedFase2;
-    if (fase === 3) return unlockedFase3;
-    if (fase === 4) return unlockedFase4;
-    if (fase === 5) return unlockedFase5;
+  const approvedLenguaF1 = lenguaF1.filter(t => approvedExams.has(t.tema)).length;
+  const approvedLenguaF2 = lenguaF2.filter(t => approvedExams.has(t.tema)).length;
+  const approvedLenguaF3 = lenguaF3.filter(t => approvedExams.has(t.tema)).length;
+  const approvedLenguaF4 = lenguaF4.filter(t => approvedExams.has(t.tema)).length;
+
+  const isPhaseUnlocked = (fase, materia) => {
+    if (fase === 1) return true;
+    if (materia === "matematica") {
+      if (fase === 2) return approvedMateF1 >= 6;
+      if (fase === 3) return approvedMateF1 >= 6 && approvedMateF2 >= 3;
+      if (fase === 4) return approvedMateF1 >= 6 && approvedMateF2 >= 3 && approvedMateF3 >= 5;
+      if (fase === 5) return approvedMateF1 >= 6 && approvedMateF2 >= 3 && approvedMateF3 >= 5 && approvedMateF4 >= 11;
+    } else {
+      if (fase === 2) return approvedLenguaF1 >= 5;
+      if (fase === 3) return approvedLenguaF1 >= 5 && approvedLenguaF2 >= 3;
+      if (fase === 4) return approvedLenguaF1 >= 5 && approvedLenguaF2 >= 3 && approvedLenguaF3 >= 3;
+      if (fase === 5) return approvedLenguaF1 >= 5 && approvedLenguaF2 >= 3 && approvedLenguaF3 >= 3 && approvedLenguaF4 >= 3;
+    }
     return false;
   };
 
@@ -657,7 +711,7 @@ async function getUnlockedTopics(supabase, userId, plan) {
           const TRIAL_TOPICS = ["tablas_multiplicar_2_5", "division_1_digito", "fracciones_concepto", "ortografia_b_v"];
           return TRIAL_TOPICS.includes(t.tema);
         }
-        return isPhaseUnlocked(t.fase);
+        return isPhaseUnlocked(t.fase, t.materia);
       })
       .map(t => t.tema)
   );

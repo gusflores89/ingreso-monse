@@ -68,7 +68,7 @@ export default async function handler(req, res) {
         .eq("id", usuario.id);
     }
 
-    setAccessCookie(res, "student");
+    setAccessCookie(res, "student", usuario.id);
 
     res.status(200).json({
       userId: usuario.id,

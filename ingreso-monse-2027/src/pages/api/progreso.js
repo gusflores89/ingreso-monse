@@ -6,6 +6,8 @@ import { MODEL_DASHBOARD, buildPromptDashboard } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { buildAlumnoProfile } from "@/lib/alumno";
 import { getUserPlan, TRIAL_TOPICS } from "@/lib/planes";
+import { loadUser, loadUserByCode } from "@/lib/usuarios";
+import { checkDailyRateLimit } from "@/lib/rateLimit";
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "GET")) return;
@@ -13,6 +15,9 @@ export default async function handler(req, res) {
 
   const userId = req.query.user_id;
   if (!userId) return res.status(400).json({ error: "user_id es obligatorio." });
+  if (typeof userId !== "string" || userId.length > 100) {
+    return res.status(400).json({ error: "ID de usuario inválido o demasiado largo." });
+  }
 
   try {
     const supabase = getSupabaseAdmin();
@@ -22,7 +27,7 @@ export default async function handler(req, res) {
     const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(cleanUserId);
 
     if (isUUID) {
-      const { data, error } = await supabase.from("usuarios").select("*").eq("id", cleanUserId).single();
+      const { data, error } = await loadUser(supabase, cleanUserId);
       if (!error && data) {
         usuario = data;
       }
@@ -30,7 +35,7 @@ export default async function handler(req, res) {
 
     if (!usuario) {
       const normalizedCode = cleanUserId.toUpperCase();
-      const { data, error } = await supabase.from("usuarios").select("*").eq("codigo_acceso", normalizedCode).single();
+      const { data, error } = await loadUserByCode(supabase, normalizedCode);
       if (!error && data) {
         usuario = data;
       }
@@ -41,6 +46,12 @@ export default async function handler(req, res) {
     }
 
     const resolvedUserId = usuario.id;
+
+    // Validar límite diario de abuso/seguridad para llamadas de IA
+    const rateLimit = await checkDailyRateLimit(supabase, resolvedUserId);
+    if (!rateLimit.ok) {
+      return res.status(429).json({ error: rateLimit.error });
+    }
     const alumno = buildAlumnoProfile(usuario);
 
     const progreso = assertSupabaseOk(
@@ -136,37 +147,48 @@ function buildDashboardMetrics({ progreso, sesiones, alertas, plan }) {
       .map((s) => s.tema)
   );
 
-  const topicsFase1 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 1);
-  const topicsFase2 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 2);
-  const topicsFase3 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 3);
-  const topicsFase4 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 4);
+  const mateF1 = CURRICULUM_MATEMATICA.filter(t => t.fase === 1);
+  const mateF2 = CURRICULUM_MATEMATICA.filter(t => t.fase === 2);
+  const mateF3 = CURRICULUM_MATEMATICA.filter(t => t.fase === 3);
+  const mateF4 = CURRICULUM_MATEMATICA.filter(t => t.fase === 4);
 
-  const approvedFase1 = topicsFase1.filter(t => approvedExams.has(t.tema)).length;
-  const approvedFase2 = topicsFase2.filter(t => approvedExams.has(t.tema)).length;
-  const approvedFase3 = topicsFase3.filter(t => approvedExams.has(t.tema)).length;
-  const approvedFase4 = topicsFase4.filter(t => approvedExams.has(t.tema)).length;
+  const lenguaF1 = CURRICULUM_LENGUA.filter(t => t.fase === 1);
+  const lenguaF2 = CURRICULUM_LENGUA.filter(t => t.fase === 2);
+  const lenguaF3 = CURRICULUM_LENGUA.filter(t => t.fase === 3);
+  const lenguaF4 = CURRICULUM_LENGUA.filter(t => t.fase === 4);
 
-  const unlockedFase1 = true;
-  const unlockedFase2 = approvedFase1 >= 6;
-  const unlockedFase3 = unlockedFase2 && approvedFase2 >= 4;
-  const unlockedFase4 = unlockedFase3 && approvedFase3 >= 4;
-  const unlockedFase5 = unlockedFase4 && approvedFase4 >= 10;
+  const approvedMateF1 = mateF1.filter(t => approvedExams.has(t.tema)).length;
+  const approvedMateF2 = mateF2.filter(t => approvedExams.has(t.tema)).length;
+  const approvedMateF3 = mateF3.filter(t => approvedExams.has(t.tema)).length;
+  const approvedMateF4 = mateF4.filter(t => approvedExams.has(t.tema)).length;
 
-  const isPhaseUnlocked = (fase) => {
-    if (fase === 1) return unlockedFase1;
-    if (fase === 2) return unlockedFase2;
-    if (fase === 3) return unlockedFase3;
-    if (fase === 4) return unlockedFase4;
-    if (fase === 5) return unlockedFase5;
+  const approvedLenguaF1 = lenguaF1.filter(t => approvedExams.has(t.tema)).length;
+  const approvedLenguaF2 = lenguaF2.filter(t => approvedExams.has(t.tema)).length;
+  const approvedLenguaF3 = lenguaF3.filter(t => approvedExams.has(t.tema)).length;
+  const approvedLenguaF4 = lenguaF4.filter(t => approvedExams.has(t.tema)).length;
+
+  const isPhaseUnlocked = (fase, materia) => {
+    if (fase === 1) return true;
+    if (materia === "matematica") {
+      if (fase === 2) return approvedMateF1 >= 6;
+      if (fase === 3) return approvedMateF1 >= 6 && approvedMateF2 >= 3;
+      if (fase === 4) return approvedMateF1 >= 6 && approvedMateF2 >= 3 && approvedMateF3 >= 5;
+      if (fase === 5) return approvedMateF1 >= 6 && approvedMateF2 >= 3 && approvedMateF3 >= 5 && approvedMateF4 >= 11;
+    } else {
+      if (fase === 2) return approvedLenguaF1 >= 5;
+      if (fase === 3) return approvedLenguaF1 >= 5 && approvedLenguaF2 >= 3;
+      if (fase === 4) return approvedLenguaF1 >= 5 && approvedLenguaF2 >= 3 && approvedLenguaF3 >= 3;
+      if (fase === 5) return approvedLenguaF1 >= 5 && approvedLenguaF2 >= 3 && approvedLenguaF3 >= 3 && approvedLenguaF4 >= 3;
+    }
     return false;
   };
 
   const esTrial = plan === "trial";
-  const isTopicUnlocked = (tema, fase) => {
+  const isTopicUnlocked = (tema, fase, materia) => {
     if (esTrial) {
       return TRIAL_TOPICS.includes(tema);
     }
-    return isPhaseUnlocked(fase);
+    return isPhaseUnlocked(fase, materia);
   };
 
   const curriculumCompleto = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA];
@@ -181,7 +203,7 @@ function buildDashboardMetrics({ progreso, sesiones, alertas, plan }) {
       capa_actual: 1,
     };
 
-    const unlocked = isTopicUnlocked(topic.tema, topic.fase);
+    const unlocked = isTopicUnlocked(topic.tema, topic.fase, topic.materia);
 
     return enrichTopic({
       ...dbItem,

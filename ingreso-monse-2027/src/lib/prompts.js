@@ -88,6 +88,8 @@ CONTEXTO:
 - Capa: {capa}
 - Estilo: {estilo_aprendizaje}, concreto, con MUCHOS ejemplos
 - Preferencia de explicacion: {preferencia_explicacion}
+- PRERREQUISITOS YA DOMINADOS: {temas_completados}
+- CONCEPTOS AÚN NO ENSEÑADOS (NO usar en ejercicios ni explicaciones): {conceptos_no_ensenados}
 
 REGLAS CRITICAS:
 
@@ -171,6 +173,8 @@ CONTEXTO:
 - Tasa de acierto: {tasa_acierto}%
 - Sesiones completadas: {sesiones_en_tema}
 - Preferencia de explicacion: {preferencia_explicacion}
+- PRERREQUISITOS YA DOMINADOS: {temas_completados}
+- CONCEPTOS AÚN NO ENSEÑADOS (NO usar en ejercicios ni explicaciones): {conceptos_no_ensenados}
 
 TU TRABAJO:
 
@@ -318,6 +322,13 @@ function normalizeAlumno(alumnoInput, contexto) {
 }
 
 function promptValues(alumno, contexto) {
+  const temasCompletadosStr = Array.isArray(contexto?.temas_completados)
+    ? contexto.temas_completados.join(", ")
+    : "";
+  const conceptosNoEnsenadosStr = Array.isArray(contexto?.conceptos_no_ensenados)
+    ? contexto.conceptos_no_ensenados.join(", ")
+    : "";
+
   return {
     ...contexto,
     alumno_nombre: alumno.nombre,
@@ -326,6 +337,8 @@ function promptValues(alumno, contexto) {
     estilo_aprendizaje: contexto?.estilo_aprendizaje || alumno.estilo_aprendizaje,
     preferencia_explicacion: describePreferencia(contexto?.estilo_aprendizaje || alumno.estilo_aprendizaje),
     adaptaciones: buildAdaptaciones(alumno),
+    temas_completados: temasCompletadosStr,
+    conceptos_no_ensenados: conceptosNoEnsenadosStr,
   };
 }
 

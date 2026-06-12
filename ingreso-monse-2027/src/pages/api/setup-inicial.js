@@ -1,3 +1,4 @@
+import crypto from "crypto";
 import { requireMethod } from "@/lib/http";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { TRIAL_DEFAULT_TOPIC } from "@/lib/planes";
@@ -136,11 +137,12 @@ async function generarCodigoUnico(supabase, nombre) {
     if (!data) return codigo;
   }
 
-  return `${generarBaseCodigo(nombre)}${Date.now().toString().slice(-4)}`;
+  const fallbackNumero = crypto.randomInt(1000, 10000);
+  return `${generarBaseCodigo(nombre)}${fallbackNumero}`;
 }
 
 function generarCodigo(nombre) {
-  const numero = Math.floor(Math.random() * 99) + 1;
+  const numero = crypto.randomInt(100, 1000);
   return `${generarBaseCodigo(nombre)}${numero}`;
 }
 
