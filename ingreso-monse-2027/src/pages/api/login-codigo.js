@@ -58,12 +58,16 @@ export default async function handler(req, res) {
     if (avatar || nombre_tutor || color_tema) {
       const AVATARES_VALIDOS = new Set(["atenea", "nyx", "lux", "buho"]);
       const avatarSeguro = AVATARES_VALIDOS.has(avatar) ? avatar : "buho";
+      const nuevosRasgos = {
+        ...(usuario.rasgos_especiales || {}),
+        avatar: avatarSeguro,
+        nombre_tutor: nombre_tutor || "Buho",
+        color_tema: color_tema || "#D85A30",
+      };
       await supabase
         .from("usuarios")
         .update({
-          avatar: avatarSeguro,
-          nombre_tutor: nombre_tutor || "Buho",
-          color_tema: color_tema || "#D85A30",
+          rasgos_especiales: nuevosRasgos,
         })
         .eq("id", usuario.id);
     }

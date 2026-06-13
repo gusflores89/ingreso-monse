@@ -16,11 +16,11 @@ envContent.split("\n").forEach((line) => {
   env[key] = val;
 });
 
-const url = env.NEXT_PUBLIC_SUPABASE_URL;
-const key = env.SUPABASE_SERVICE_KEY;
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL || env.NEXT_PUBLIC_SUPABASE_URL;
+const key = process.env.SUPABASE_SERVICE_KEY || env.SUPABASE_SERVICE_KEY;
 
 if (!url || !key) {
-  console.error("Faltan credenciales de Supabase en .env.local");
+  console.error("Faltan credenciales de Supabase en el entorno o en .env.local");
   process.exit(1);
 }
 

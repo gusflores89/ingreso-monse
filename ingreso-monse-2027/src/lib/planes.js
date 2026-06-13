@@ -4,13 +4,13 @@ export const PLAN_TRIAL = "trial";
 export const PLAN_FULL = "full";
 
 export const TRIAL_TOPICS = [
-  "fracciones_del_resto",
-  "graficos_estadisticos",
-  "comprension_lectora_literal_inferida",
+  "numeros_naturales_sistema_decimal",
+  "tablas_multiplicar_2_5",
   "ortografia_b_v",
+  "comprension_lectora_literal_inferida",
 ];
 
-export const TRIAL_DEFAULT_TOPIC = "fracciones_del_resto";
+export const TRIAL_DEFAULT_TOPIC = "numeros_naturales_sistema_decimal";
 
 export function getUserPlan(usuario = {}) {
   if (usuario.codigo_acceso === "ABRIL") return PLAN_FULL;

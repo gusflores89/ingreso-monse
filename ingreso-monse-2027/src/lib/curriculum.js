@@ -44,7 +44,7 @@ export const CURRICULUM_LENGUA = [
   { semanas: "16-20", tema: "produccion_escrita_narracion", orden: 14, materia: "lengua", fase: 4 },
 ];
 
-export const DEFAULT_TOPIC = "tablas_multiplicar_2_5";
+export const DEFAULT_TOPIC = "numeros_naturales_sistema_decimal";
 
 export function getCurriculumByMateria(materia) {
   return materia === "lengua" ? CURRICULUM_LENGUA : CURRICULUM_MATEMATICA;

@@ -17,12 +17,25 @@ export default async function handler(req, res) {
   try {
     const avatarSeguro = AVATARES_VALIDOS.has(avatar) ? avatar : "buho";
     const supabase = getSupabaseAdmin();
+    
+    // Obtener rasgos actuales
+    const { data: usuario } = await supabase
+      .from("usuarios")
+      .select("rasgos_especiales")
+      .eq("id", user_id)
+      .single();
+
+    const nuevosRasgos = {
+      ...(usuario?.rasgos_especiales || {}),
+      avatar: avatarSeguro,
+      nombre_tutor: nombre_tutor || "Buho",
+      color_tema: color_tema || "#D85A30",
+    };
+
     const { error } = await supabase
       .from("usuarios")
       .update({
-        avatar: avatarSeguro,
-        nombre_tutor: nombre_tutor || "Buho",
-        color_tema: color_tema || "#D85A30",
+        rasgos_especiales: nuevosRasgos,
       })
       .eq("id", user_id);
 
