@@ -452,6 +452,536 @@ Sali a jugar ___ me encanta la plaza."`,
       tip: "PERO marca obstaculo. PORQUE explica razon. ENTONCES muestra que paso despues.",
     },
   },
+
+  // ═══════════════════════════════════════════════════════════
+  // POTENCIACIÓN Y RAÍZ CUADRADA [NUEVO]
+  // ═══════════════════════════════════════════════════════════
+ 
+  "potenciacion_y_raiz_cuadrada": {
+    capa_1_2: {
+      titulo: "Caso resuelto: Potencias (el cuadrado de un número)",
+      problema: `Lucas armó un cuadrado con fichas: 3 filas con 3 fichas cada una.
+¿Cuántas fichas usó en total?`,
+      resolucion: [
+        {
+          paso: "🔍 ¿Qué me piden?",
+          contenido: "Cuántas fichas hay en un cuadrado de 3 × 3."
+        },
+        {
+          paso: "📋 ¿Qué datos tengo?",
+          contenido: "• 3 filas\n• 3 fichas en cada fila"
+        },
+        {
+          paso: "🧮 Calculo",
+          contenido: "3 × 3 = 9 fichas\n\nEsto se puede escribir más corto: 3² (se lee \"tres al cuadrado\")\n3² = 3 × 3 = 9"
+        },
+        {
+          paso: "✅ ¿Tiene sentido?",
+          contenido: "Si dibujo el cuadrado de fichas:\n● ● ●\n● ● ●\n● ● ●\nCuento: 9 fichas ✅\n\n¡Por eso se llama \"al CUADRADO\"! Porque forma un cuadrado de fichas."
+        },
+        {
+          paso: "📝 Respuesta",
+          contenido: "Usó 9 fichas. En símbolos: 3² = 9"
+        }
+      ],
+      tip: "El numerito chiquito de arriba (el 2 en 3²) dice CUÁNTAS VECES se multiplica el número por sí mismo. 3² = 3 × 3. 5² = 5 × 5 = 25."
+    },
+    capa_3: {
+      titulo: "Caso resuelto: Cuadrados, cubos y raíz cuadrada",
+      problema: `a) ¿Cuánto es 4³?
+b) ¿Cuánto es √36? (raíz cuadrada de 36)`,
+      resolucion: [
+        {
+          paso: "🔍 ¿Qué me piden?",
+          contenido: "Dos cosas: un cubo (potencia 3) y una raíz cuadrada."
+        },
+        {
+          paso: "📋 ¿Qué significa cada símbolo?",
+          contenido: "• 4³ = \"cuatro al cubo\" = multiplicar 4 tres veces: 4 × 4 × 4\n• √36 = \"raíz de 36\" = ¿qué número al cuadrado da 36?\n\n⚠️ La raíz es la operación CONTRARIA a la potencia."
+        },
+        {
+          paso: "🧮 Paso 1: El cubo",
+          contenido: "4³ = 4 × 4 × 4\nPrimero: 4 × 4 = 16\nDespués: 16 × 4 = 64\n\n4³ = 64"
+        },
+        {
+          paso: "🧮 Paso 2: La raíz",
+          contenido: "√36 = ¿qué número multiplicado por sí mismo da 36?\nPruebo: 5 × 5 = 25 (no)\nPruebo: 6 × 6 = 36 (¡sí!)\n\n√36 = 6"
+        },
+        {
+          paso: "✅ ¿Tiene sentido?",
+          contenido: "Verifico la raíz al revés: 6² = 36 ✅\nLa potencia y la raíz se \"deshacen\" entre sí."
+        },
+        {
+          paso: "📝 Respuestas",
+          contenido: "a) 4³ = 64\nb) √36 = 6"
+        }
+      ],
+      tip: "Conviene saber de memoria los cuadrados del 1 al 12: 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144. Con eso las raíces salen solas."
+    },
+    capa_4_5: {
+      titulo: "Caso resuelto: Potencias dentro de cálculos — Nivel Monserrat",
+      problema: `Resolvé: 16 : 2³ + 4² =`,
+      resolucion: [
+        {
+          paso: "🔍 ¿Qué me piden?",
+          contenido: "Resolver un cálculo que mezcla división, potencias y suma."
+        },
+        {
+          paso: "📋 Regla de oro",
+          contenido: "Las POTENCIAS se resuelven PRIMERO, antes que la división y la suma.\n\n⚠️ TRAMPA común: hacer 16 : 2 = 8 primero. ¡MAL! El 2 está elevado al cubo, primero hay que resolver 2³."
+        },
+        {
+          paso: "🧮 Paso 1: Resuelvo las potencias",
+          contenido: "2³ = 2 × 2 × 2 = 8\n4² = 4 × 4 = 16\n\nEl cálculo queda: 16 : 8 + 16"
+        },
+        {
+          paso: "🧮 Paso 2: Resuelvo la división",
+          contenido: "16 : 8 = 2\n\nEl cálculo queda: 2 + 16"
+        },
+        {
+          paso: "🧮 Paso 3: Resuelvo la suma",
+          contenido: "2 + 16 = 18"
+        },
+        {
+          paso: "✅ ¿Tiene sentido?",
+          contenido: "Si hubiera hecho 16 : 2 primero (el error típico), me daba 8³ + 16 = un número enorme y equivocado. El orden importa. ✅"
+        },
+        {
+          paso: "📝 Respuesta",
+          contenido: "16 : 2³ + 4² = 18"
+        }
+      ],
+      tip: "En el examen, los combinados SIEMPRE tienen una potencia escondida tipo 16:2³. Resolvé TODAS las potencias primero, marcalas con un círculo antes de empezar."
+    }
+  },
+ 
+  // ═══════════════════════════════════════════════════════════
+  // JERARQUÍA DE OPERACIONES [NUEVO]
+  // ═══════════════════════════════════════════════════════════
+ 
+  "jerarquia_operaciones": {
+    capa_1_2: {
+      titulo: "Caso resuelto: ¿Qué se hace primero?",
+      problema: `Resolvé: 2 + 3 × 4 =`,
+      resolucion: [
+        {
+          paso: "🔍 ¿Qué me piden?",
+          contenido: "Resolver un cálculo con suma Y multiplicación juntas."
+        },
+        {
+          paso: "📋 Regla de oro",
+          contenido: "La MULTIPLICACIÓN se hace ANTES que la suma.\nAunque la suma esté primera al leer, la multiplicación gana.\n\n⚠️ Si leés de corrido (2+3=5, 5×4=20) te da MAL."
+        },
+        {
+          paso: "🧮 Paso 1: Primero la multiplicación",
+          contenido: "3 × 4 = 12\n\nEl cálculo queda: 2 + 12"
+        },
+        {
+          paso: "🧮 Paso 2: Después la suma",
+          contenido: "2 + 12 = 14"
+        },
+        {
+          paso: "✅ ¿Tiene sentido?",
+          contenido: "Pensalo así: \"2 caramelos MÁS 3 bolsitas de 4 caramelos\".\nLas bolsitas son 12 caramelos. 2 + 12 = 14. ✅"
+        },
+        {
+          paso: "📝 Respuesta",
+          contenido: "2 + 3 × 4 = 14 (no 20)"
+        }
+      ],
+      tip: "Orden de las operaciones: 1° multiplicación y división, 2° suma y resta. Como en un juego: la multiplicación tiene el turno primero."
+    },
+    capa_3: {
+      titulo: "Caso resuelto: Jerarquía con paréntesis",
+      problema: `Resolvé: (2 + 3) × 4 − 10 : 2 =`,
+      resolucion: [
+        {
+          paso: "🔍 ¿Qué me piden?",
+          contenido: "Resolver un cálculo con paréntesis, multiplicación, resta y división."
+        },
+        {
+          paso: "📋 El orden completo",
+          contenido: "1° PARÉNTESIS (siempre ganan)\n2° Multiplicación y división (de izquierda a derecha)\n3° Suma y resta (de izquierda a derecha)"
+        },
+        {
+          paso: "🧮 Paso 1: El paréntesis",
+          contenido: "(2 + 3) = 5\n\nQueda: 5 × 4 − 10 : 2"
+        },
+        {
+          paso: "🧮 Paso 2: Multiplicación y división (a la vez, de izq. a der.)",
+          contenido: "5 × 4 = 20\n10 : 2 = 5\n\nQueda: 20 − 5"
+        },
+        {
+          paso: "🧮 Paso 3: La resta",
+          contenido: "20 − 5 = 15"
+        },
+        {
+          paso: "✅ ¿Tiene sentido?",
+          contenido: "Comparo: SIN paréntesis sería 2 + 3 × 4 − 10 : 2 = 2 + 12 − 5 = 9.\nEl paréntesis CAMBIA el resultado (15 ≠ 9). Por eso importa. ✅"
+        },
+        {
+          paso: "📝 Respuesta",
+          contenido: "(2 + 3) × 4 − 10 : 2 = 15"
+        }
+      ],
+      tip: "Truco para no perderte: resolvé POR TÉRMINOS. Los términos se separan por los + y − que están FUERA de paréntesis. Resolvé cada término por separado y al final sumá/restá."
+    },
+    capa_4_5: {
+      titulo: "Caso resuelto: Combinado completo — Nivel Monserrat",
+      problema: `Resolvé ordenado y por términos:
+3³ + 4² − 2³ × 5 =`,
+      resolucion: [
+        {
+          paso: "🔍 ¿Qué me piden?",
+          contenido: "Un ejercicio combinado con potencias, multiplicación, suma y resta. El examen pide resolverlo \"ordenado y por términos\"."
+        },
+        {
+          paso: "📋 Separo en términos",
+          contenido: "Los términos se cortan en los + y − :\n\nTérmino 1: 3³\nTérmino 2: 4²\nTérmino 3: 2³ × 5\n\n⚠️ El × NO corta términos. 2³ × 5 es UN solo término."
+        },
+        {
+          paso: "🧮 Paso 1: Resuelvo cada término",
+          contenido: "Término 1: 3³ = 3 × 3 × 3 = 27\nTérmino 2: 4² = 4 × 4 = 16\nTérmino 3: 2³ × 5 = 8 × 5 = 40\n(primero la potencia 2³ = 8, después × 5)"
+        },
+        {
+          paso: "🧮 Paso 2: Junto los resultados",
+          contenido: "27 + 16 − 40"
+        },
+        {
+          paso: "🧮 Paso 3: Sumo y resto de izquierda a derecha",
+          contenido: "27 + 16 = 43\n43 − 40 = 3"
+        },
+        {
+          paso: "✅ ¿Tiene sentido?",
+          contenido: "Reviso el término 3: si hubiera hecho 2 × 5 = 10 primero y después al cubo, daba 1000. El orden potencia-primero evita ese desastre. ✅"
+        },
+        {
+          paso: "📝 Respuesta",
+          contenido: "3³ + 4² − 2³ × 5 = 3"
+        }
+      ],
+      tip: "En el examen real escriben en las RECOMENDACIONES: \"Los ejercicios combinados deben resolverse ordenados y por términos\". Si no mostrás los pasos, te descuentan puntos aunque el resultado esté bien."
+    }
+  },
+ 
+  // ═══════════════════════════════════════════════════════════
+  // SECUENCIAS ALFANUMÉRICAS Y DE FIGURAS [NUEVO]
+  // ═══════════════════════════════════════════════════════════
+ 
+  "secuencias_alfanumericas_y_figuras": {
+    capa_1_2: {
+      titulo: "Caso resuelto: Patrones que se repiten",
+      problema: `Mirá este patrón de figuras:
+● ■ ▲ ● ■ ▲ ● ■ ...
+ 
+¿Qué figura sigue?`,
+      resolucion: [
+        {
+          paso: "🔍 ¿Qué me piden?",
+          contenido: "Descubrir qué figura viene después de la última."
+        },
+        {
+          paso: "📋 Busco el patrón que se repite",
+          contenido: "Miro el principio: ● ■ ▲ | ● ■ ▲ | ● ■ ...\n\n¡El grupo que se repite es ● ■ ▲! (3 figuras)"
+        },
+        {
+          paso: "🧮 Sigo el patrón",
+          contenido: "El último grupo quedó incompleto: ● ■ ...\nDespués de ● viene ■, y después de ■ viene ▲"
+        },
+        {
+          paso: "✅ ¿Tiene sentido?",
+          contenido: "Si completo: ● ■ ▲ | ● ■ ▲ | ● ■ ▲\nTres grupos completos iguales ✅"
+        },
+        {
+          paso: "📝 Respuesta",
+          contenido: "Sigue el triángulo ▲"
+        }
+      ],
+      tip: "El grupo que se repite se llama PERÍODO. Primero encontrá el período, después todo es más fácil."
+    },
+    capa_3: {
+      titulo: "Caso resuelto: Secuencias con letras y números",
+      problema: `Completá la secuencia:
+A2 — C4 — E6 — G8 — ?`,
+      resolucion: [
+        {
+          paso: "🔍 ¿Qué me piden?",
+          contenido: "El próximo elemento, que tiene una LETRA y un NÚMERO."
+        },
+        {
+          paso: "📋 Analizo cada parte POR SEPARADO",
+          contenido: "⚠️ TRUCO: las secuencias alfanuméricas tienen DOS reglas, una para letras y otra para números. Hay que descubrir las dos.\n\nLetras: A, C, E, G...\nNúmeros: 2, 4, 6, 8..."
+        },
+        {
+          paso: "🧮 Paso 1: Regla de las letras",
+          contenido: "A → C: salteo la B\nC → E: salteo la D\nE → G: salteo la F\n\nRegla: avanzo saltando UNA letra.\nDespués de G salteo la H → sigue la I"
+        },
+        {
+          paso: "🧮 Paso 2: Regla de los números",
+          contenido: "2 → 4 → 6 → 8: voy sumando 2\n\nDespués del 8: 8 + 2 = 10"
+        },
+        {
+          paso: "✅ ¿Tiene sentido?",
+          contenido: "Letra I (saltando una) + número 10 (sumando 2). Las dos reglas se cumplen. ✅"
+        },
+        {
+          paso: "📝 Respuesta",
+          contenido: "Sigue I10"
+        }
+      ],
+      tip: "Para las letras, escribí el abecedario arriba de la hoja: A B C D E F G H I J K... Así contás los saltos sin equivocarte."
+    },
+    capa_4_5: {
+      titulo: "Caso resuelto: Figuras con período y división — Nivel Monserrat",
+      problema: `Una secuencia de figuras tiene PERÍODO 4. El patrón es:
+● ■ ▲ ★ ● ■ ▲ ★ ...
+ 
+¿Qué figura corresponde a la posición 35? Justificá con una división.`,
+      resolucion: [
+        {
+          paso: "🔍 ¿Qué me piden?",
+          contenido: "La figura de la posición 35, SIN dibujar las 35 figuras (eso tarda y es fácil equivocarse). El examen pide justificar con división."
+        },
+        {
+          paso: "📋 ¿Qué datos tengo?",
+          contenido: "• Período 4: el grupo ● ■ ▲ ★ se repite cada 4 posiciones\n• Posición 1 = ●, posición 2 = ■, posición 3 = ▲, posición 4 = ★\n• Posición 5 vuelve a ● (arranca de nuevo)"
+        },
+        {
+          paso: "🧮 Paso 1: Divido la posición por el período",
+          contenido: "35 ÷ 4 = 8, resto 3\n(porque 8 × 4 = 32, y 35 − 32 = 3)"
+        },
+        {
+          paso: "🧮 Paso 2: El RESTO me dice la figura",
+          contenido: "El resto 3 significa: pasaron 8 grupos completos y estoy en la posición 3 del grupo siguiente.\n\nPosición 3 del grupo = ▲\n\n⚠️ REGLA: resto 1 → 1ª figura, resto 2 → 2ª, resto 3 → 3ª, resto 0 → ¡la ÚLTIMA figura del grupo! (★)"
+        },
+        {
+          paso: "✅ ¿Tiene sentido?",
+          contenido: "Verifico con un número chico: posición 7 → 7 ÷ 4 = 1 resto 3 → debería ser ▲.\nCuento a mano: ● ■ ▲ ★ ● ■ ▲ → la 7ª es ▲ ✅ La regla funciona."
+        },
+        {
+          paso: "📝 Respuesta",
+          contenido: "La posición 35 es ▲ (triángulo), porque 35 ÷ 4 = 8 con resto 3, y la 3ª figura del período es el triángulo."
+        }
+      ],
+      tip: "⚠️ El caso TRAMPA es resto 0. Si la división da justa (ej: posición 100 ÷ 4 = 25 resto 0), la figura es la ÚLTIMA del período, no la primera. Posición 100 → ★."
+    }
+  },
+ 
+  // ═══════════════════════════════════════════════════════════
+  // FRACCIONES — OPERACIONES [caso resuelto faltante crítico]
+  // ═══════════════════════════════════════════════════════════
+ 
+  "fracciones_operaciones": {
+    capa_1_2: {
+      titulo: "Caso resuelto: Sumar fracciones con el mismo denominador",
+      problema: `Comiste 1/4 de pizza al mediodía y 2/4 a la noche.
+¿Qué fracción de la pizza comiste en total?`,
+      resolucion: [
+        {
+          paso: "🔍 ¿Qué me piden?",
+          contenido: "Sumar dos fracciones: 1/4 + 2/4"
+        },
+        {
+          paso: "📋 Miro los denominadores",
+          contenido: "Las dos fracciones tienen el MISMO número abajo (4).\nEso significa que las porciones son del MISMO tamaño.\n\n⚠️ REGLA: si el denominador es igual, sumo SOLO los de arriba. El de abajo NO se toca."
+        },
+        {
+          paso: "🧮 Calculo",
+          contenido: "1/4 + 2/4 = (1+2)/4 = 3/4\n\nEl 4 de abajo queda igual."
+        },
+        {
+          paso: "✅ ¿Tiene sentido?",
+          contenido: "1 porción + 2 porciones = 3 porciones de las 4 que tiene la pizza. ✅\n\n❌ ERROR común: sumar también los de abajo (3/8). ¡Eso sería decir que la pizza cambió de tamaño!"
+        },
+        {
+          paso: "📝 Respuesta",
+          contenido: "Comiste 3/4 de la pizza."
+        }
+      ],
+      tip: "Los denominadores iguales son como porciones del mismo tamaño: las podés contar directamente. NUNCA sumes los denominadores."
+    },
+    capa_3: {
+      titulo: "Caso resuelto: Sumar fracciones con DISTINTO denominador",
+      problema: `Resolvé: 1/3 + 1/6 =`,
+      resolucion: [
+        {
+          paso: "🔍 ¿Qué me piden?",
+          contenido: "Sumar dos fracciones que tienen denominadores DISTINTOS (3 y 6)."
+        },
+        {
+          paso: "📋 ¿Por qué no puedo sumar directo?",
+          contenido: "Un tercio y un sexto son porciones de DISTINTO tamaño. No puedo contar \"1 + 1 = 2\" porque ¿2 qué? ¿tercios? ¿sextos?\n\nNecesito que las dos porciones sean del MISMO tamaño. Para eso uso el mínimo común múltiplo (MCM) que ya aprendiste."
+        },
+        {
+          paso: "🧮 Paso 1: Busco el MCM de los denominadores",
+          contenido: "Múltiplos de 3: 3, 6, 9, 12...\nMúltiplos de 6: 6, 12, 18...\n\nMCM(3, 6) = 6 ← el primero que coincide"
+        },
+        {
+          paso: "🧮 Paso 2: Convierto las fracciones a sextos",
+          contenido: "1/3 = ?/6 → multiplico arriba y abajo × 2 → 2/6\n1/6 ya está en sextos → queda 1/6"
+        },
+        {
+          paso: "🧮 Paso 3: Ahora sí sumo (mismo denominador)",
+          contenido: "2/6 + 1/6 = 3/6"
+        },
+        {
+          paso: "🧮 Paso 4: Simplifico",
+          contenido: "3/6 = 1/2 (divido arriba y abajo por 3)\n\nEl examen SIEMPRE pide el resultado como fracción irreducible."
+        },
+        {
+          paso: "✅ ¿Tiene sentido?",
+          contenido: "Un tercio es un poco más que un cuarto, más un sexto chiquito... debería dar cerca de la mitad. ¡Dio exactamente 1/2! ✅"
+        },
+        {
+          paso: "📝 Respuesta",
+          contenido: "1/3 + 1/6 = 3/6 = 1/2"
+        }
+      ],
+      tip: "Los 4 pasos de siempre: 1) MCM de los denominadores, 2) convertir cada fracción, 3) sumar los numeradores, 4) SIMPLIFICAR. El paso 4 es el que más se olvida y el examen lo descuenta."
+    },
+    capa_4_5: {
+      titulo: "Caso resuelto: Multiplicar y dividir fracciones — Nivel Monserrat",
+      problema: `Resolvé y expresá simplificado:
+a) 2/3 × 9/4 =
+b) 5/6 : 10/3 =`,
+      resolucion: [
+        {
+          paso: "🔍 ¿Qué me piden?",
+          contenido: "Una multiplicación y una división de fracciones, con resultado simplificado."
+        },
+        {
+          paso: "📋 Las reglas (¡más fáciles que la suma!)",
+          contenido: "MULTIPLICAR: derecho. Arriba × arriba, abajo × abajo.\nDIVIDIR: doy vuelta la SEGUNDA fracción y multiplico.\n\n⚠️ Para multiplicar y dividir NO se necesita MCM. Ese es solo para sumar y restar."
+        },
+        {
+          paso: "🧮 Parte a) Multiplicación",
+          contenido: "2/3 × 9/4 = (2×9)/(3×4) = 18/12\n\nSimplifico: 18/12 → divido por 6 → 3/2"
+        },
+        {
+          paso: "🧮 Parte b) División",
+          contenido: "5/6 : 10/3 → doy vuelta la segunda → 5/6 × 3/10\n\n= (5×3)/(6×10) = 15/60\n\nSimplifico: 15/60 → divido por 15 → 1/4"
+        },
+        {
+          paso: "✅ ¿Tiene sentido?",
+          contenido: "Parte a: 2/3 es casi 1, y 9/4 es un poco más de 2. Casi 1 × poco más de 2 ≈ un poco más de 1,5. Dio 3/2 = 1,5 ✅\nParte b: 5/6 es chico y lo divido por algo grande (10/3 ≈ 3,3), debería dar chiquito. Dio 1/4 ✅"
+        },
+        {
+          paso: "📝 Respuestas",
+          contenido: "a) 2/3 × 9/4 = 3/2\nb) 5/6 : 10/3 = 1/4"
+        }
+      ],
+      tip: "TRUCO PRO: antes de multiplicar, simplificá EN CRUZ. En 2/3 × 9/4: el 9 y el 3 se simplifican (quedan 3 y 1), el 2 y el 4 también (quedan 1 y 2). Queda 3/2 directo, sin números grandes."
+    }
+  },
+ 
+  // ═══════════════════════════════════════════════════════════
+  // PERÍMETROS COMPUESTOS [caso resuelto faltante crítico]
+  // ═══════════════════════════════════════════════════════════
+ 
+  "perimetros_compuestos": {
+    capa_1_2: {
+      titulo: "Caso resuelto: Perímetro de una figura en L",
+      problema: `Un patio tiene forma de L. Sus lados miden:
+6 m, 4 m, 2 m, 2 m, 4 m y 2 m.
+¿Cuántos metros de reja se necesitan para cercarlo todo?`,
+      resolucion: [
+        {
+          paso: "🔍 ¿Qué me piden?",
+          contenido: "El perímetro: cuánto mide TODO el borde de la figura."
+        },
+        {
+          paso: "📋 ¿Qué datos tengo?",
+          contenido: "Los 6 lados de la L: 6, 4, 2, 2, 4 y 2 metros.\n\n⚠️ Una figura en L tiene 6 lados, no 4. No te olvides de ninguno."
+        },
+        {
+          paso: "🧮 Sumo TODOS los lados",
+          contenido: "6 + 4 + 2 + 2 + 4 + 2 = 20 metros"
+        },
+        {
+          paso: "✅ ¿Tiene sentido?",
+          contenido: "Imagino que camino por el borde del patio tocando la pared: paso por los 6 lados y vuelvo al inicio. Caminé 20 metros. ✅"
+        },
+        {
+          paso: "📝 Respuesta",
+          contenido: "Se necesitan 20 metros de reja."
+        }
+      ],
+      tip: "El perímetro es SIEMPRE caminar por el borde completo. Marcá cada lado con un tilde ✓ a medida que lo sumás, así no te salteás ninguno."
+    },
+    capa_3: {
+      titulo: "Caso resuelto: Figuras pegadas (cuadrado + triángulo)",
+      problema: `Un cartel está formado por un cuadrado de 5 cm de lado con un triángulo equilátero pegado arriba (el lado del triángulo es igual al lado del cuadrado).
+¿Cuál es el perímetro EXTERIOR del cartel?`,
+      resolucion: [
+        {
+          paso: "🔍 ¿Qué me piden?",
+          contenido: "El perímetro EXTERIOR: solo el borde de afuera de la figura completa."
+        },
+        {
+          paso: "📋 ¿Qué datos tengo?",
+          contenido: "• Cuadrado: 4 lados de 5 cm\n• Triángulo equilátero: 3 lados de 5 cm (equilátero = todos iguales)\n• Están PEGADOS por un lado\n\n⚠️ CLAVE: el lado donde se pegan queda ADENTRO. ¡No se cuenta!"
+        },
+        {
+          paso: "🧮 Paso 1: Cuento los lados que SÍ están en el borde",
+          contenido: "Del cuadrado: 3 lados (el de arriba quedó tapado por el triángulo)\nDel triángulo: 2 lados (el de abajo quedó pegado al cuadrado)\n\nTotal: 3 + 2 = 5 lados exteriores"
+        },
+        {
+          paso: "🧮 Paso 2: Calculo",
+          contenido: "5 lados × 5 cm = 25 cm"
+        },
+        {
+          paso: "✅ ¿Tiene sentido?",
+          contenido: "Si contara TODOS los lados de las dos figuras sería 4 + 3 = 7 lados = 35 cm. Pero 2 lados quedaron adentro (el pegado se cuenta 2 veces, una por figura). 35 − 10 = 25 ✅"
+        },
+        {
+          paso: "📝 Respuesta",
+          contenido: "El perímetro exterior es 25 cm."
+        }
+      ],
+      tip: "En figuras pegadas, el lado compartido DESAPARECE del perímetro. Dibujá la figura y repasá el borde exterior con color: solo sumá lo que pintaste."
+    },
+    capa_3_extra: null, // Just placeholder if needed, not needed
+    capa_4_5: {
+      titulo: "Caso resuelto: Cuadrados y rectángulos fusionados — Nivel Monserrat",
+      problema: `ABEF es un cuadrado y BCDE es un rectángulo pegado a su derecha (comparten el lado BE). El lado AB del cuadrado es el triple del lado BC del rectángulo: AB = 3 × BC.
+Si el perímetro del cuadrado ABEF es 96 cm, calculá el perímetro del rectángulo BCDE.`,
+      resolucion: [
+        {
+          paso: "🔍 ¿Qué me piden?",
+          contenido: "El perímetro del rectángulo BCDE. Pero no me dan sus medidas directas: las tengo que DEDUCIR del cuadrado."
+        },
+        {
+          paso: "📋 ¿Qué datos tengo?",
+          contenido: "• Perímetro del cuadrado = 96 cm\n• AB = 3 × BC (el lado del cuadrado es el triple del ancho del rectángulo)\n• Comparten el lado BE\n\nEstrategia: 1° saco el lado del cuadrado, 2° saco BC, 3° armo el rectángulo."
+        },
+        {
+          paso: "🧮 Paso 1: Lado del cuadrado",
+          contenido: "El cuadrado tiene 4 lados iguales:\nAB = 96 ÷ 4 = 24 cm"
+        },
+        {
+          paso: "🧮 Paso 2: Ancho del rectángulo (BC)",
+          contenido: "AB = 3 × BC → 24 = 3 × BC → BC = 24 ÷ 3 = 8 cm"
+        },
+        {
+          paso: "🧮 Paso 3: Alto del rectángulo (BE)",
+          contenido: "BE es el lado compartido con el cuadrado.\nComo BE es lado del cuadrado: BE = 24 cm\n\nEl rectángulo BCDE mide 24 cm de alto × 8 cm de ancho."
+        },
+        {
+          paso: "🧮 Paso 4: Perímetro del rectángulo",
+          contenido: "P = 2 × (alto + ancho) = 2 × (24 + 8) = 2 × 32 = 64 cm"
+        },
+        {
+          paso: "✅ ¿Tiene sentido?",
+          contenido: "El rectángulo es más flaco que el cuadrado (8 vs 24), así que su perímetro debe ser menor que 96. Dio 64 < 96 ✅"
+        },
+        {
+          paso: "📝 Respuesta",
+          contenido: "El perímetro de BCDE es 64 cm."
+        }
+      ],
+      tip: "En el examen, estos problemas NUNCA dan las medidas directas: dan el perímetro de UNA figura y una relación (\"el triple\", \"la mitad\"). El camino siempre es: perímetro → lado → relación → la otra figura."
+    }
+  },
 };
 
 export function getCasoResuelto(tema, capa) {

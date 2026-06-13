@@ -383,6 +383,325 @@ En una de las cartas habia un mapa dibujado. Lucia noto que marcaba un lugar en 
       criterios: { coherencia: "Continuidad logica", estructura: "Nudo y desenlace", recursos: "Onomatopeya, comparacion y personificacion", extension: "12 a 15 renglones", titulo: "Titulo adecuado" },
     },
   },
+
+  // ═══════════════════════════════════════════════════════════
+  // POTENCIACIÓN Y RAÍZ CUADRADA
+  // ═══════════════════════════════════════════════════════════
+
+  "potenciacion_y_raiz_cuadrada": {
+    capa_1_2: {
+      tipo: "examen_final",
+      dificultad: "basico",
+      instrucciones: "Examen de potencias. Necesitás 2 de 3 correctas para aprobar.",
+      enunciado: `Respondé:
+
+a) ¿Cuánto es 2² (dos al cuadrado)?
+b) ¿Cuánto es 5² (cinco al cuadrado)?
+c) Lucía armó un cuadrado de fichas con 4 filas y 4 fichas en cada fila. ¿Cuántas fichas usó?`,
+      preguntas: [
+        {
+          id: "a",
+          texto: "¿Cuánto es 2²?",
+          respuesta_correcta: "4",
+          alternativas_aceptables: ["cuatro"]
+        },
+        {
+          id: "b",
+          texto: "¿Cuánto es 5²?",
+          respuesta_correcta: "25",
+          alternativas_aceptables: ["veinticinco"]
+        },
+        {
+          id: "c",
+          texto: "¿Cuántas fichas usó Lucía?",
+          respuesta_correcta: "16",
+          alternativas_aceptables: ["dieciseis", "dieciséis", "16 fichas"]
+        }
+      ]
+    },
+    capa_3: {
+      tipo: "examen_final",
+      dificultad: "intermedio",
+      instrucciones: "Examen de potencias y raíces. Necesitás 70%+ para aprobar.",
+      enunciado: `Respondé:
+
+a) ¿Cuánto es 3³ (tres al cubo)?
+b) ¿Cuánto es √49 (raíz cuadrada de 49)?
+c) ¿Cuánto es 10²?
+d) ¿Qué número al cuadrado da 81?`,
+      preguntas: [
+        {
+          id: "a",
+          texto: "¿Cuánto es 3³?",
+          respuesta_correcta: "27",
+          alternativas_aceptables: ["veintisiete"]
+        },
+        {
+          id: "b",
+          texto: "¿Cuánto es √49?",
+          respuesta_correcta: "7",
+          alternativas_aceptables: ["siete"]
+        },
+        {
+          id: "c",
+          texto: "¿Cuánto es 10²?",
+          respuesta_correcta: "100",
+          alternativas_aceptables: ["cien"]
+        },
+        {
+          id: "d",
+          texto: "¿Qué número al cuadrado da 81?",
+          respuesta_correcta: "9",
+          alternativas_aceptables: ["nueve", "el 9"]
+        }
+      ]
+    },
+    capa_4_5: {
+      tipo: "examen_final",
+      dificultad: "monserrat",
+      instrucciones: "Examen final nivel Monserrat. Mostrá todos los cálculos. Necesitás 70%+ para aprobar.",
+      enunciado: `Resolvé cada cálculo (recordá: las potencias se resuelven PRIMERO):
+
+a) 16 : 2³ =
+b) 4² + 3² =
+c) 2³ × 5 − 10 =
+d) Completá la tabla: si n = 6, ¿cuánto vale n² y cuánto vale n³?`,
+      preguntas: [
+        {
+          id: "a",
+          texto: "16 : 2³ =",
+          respuesta_correcta: "2",
+          alternativas_aceptables: ["dos"]
+        },
+        {
+          id: "b",
+          texto: "4² + 3² =",
+          respuesta_correcta: "25",
+          alternativas_aceptables: ["veinticinco"]
+        },
+        {
+          id: "c",
+          texto: "2³ × 5 − 10 =",
+          respuesta_correcta: "30",
+          alternativas_aceptables: ["treinta"]
+        },
+        {
+          id: "d",
+          texto: "Si n = 6: n² y n³ (separados por coma)",
+          respuesta_correcta: "36, 216",
+          alternativas_aceptables: ["36 y 216", "36,216", "n2=36 n3=216", "36 216"]
+        }
+      ]
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════
+  // JERARQUÍA DE OPERACIONES
+  // ═══════════════════════════════════════════════════════════
+
+  "jerarquia_operaciones": {
+    capa_1_2: {
+      tipo: "examen_final",
+      dificultad: "basico",
+      instrucciones: "Examen de orden de operaciones. Necesitás 2 de 3 correctas. Acordate: la multiplicación va PRIMERO.",
+      enunciado: `Resolvé:
+
+a) 5 + 2 × 3 =
+b) 10 − 2 × 4 =
+c) 3 × 3 + 1 =`,
+      preguntas: [
+        {
+          id: "a",
+          texto: "5 + 2 × 3 =",
+          respuesta_correcta: "11",
+          alternativas_aceptables: ["once"]
+        },
+        {
+          id: "b",
+          texto: "10 − 2 × 4 =",
+          respuesta_correcta: "2",
+          alternativas_aceptables: ["dos"]
+        },
+        {
+          id: "c",
+          texto: "3 × 3 + 1 =",
+          respuesta_correcta: "10",
+          alternativas_aceptables: ["diez"]
+        }
+      ]
+    },
+    capa_3: {
+      tipo: "examen_final",
+      dificultad: "intermedio",
+      instrucciones: "Examen de jerarquía con paréntesis. Necesitás 70%+ para aprobar.",
+      enunciado: `Resolvé respetando el orden (1° paréntesis, 2° × y :, 3° + y −):
+
+a) (4 + 2) × 3 =
+b) 20 : 4 + 3 × 2 =
+c) (10 − 4) : 2 + 5 =
+d) 2 + 8 : 2 − 1 =`,
+      preguntas: [
+        {
+          id: "a",
+          texto: "(4 + 2) × 3 =",
+          respuesta_correcta: "18",
+          alternativas_aceptables: ["dieciocho"]
+        },
+        {
+          id: "b",
+          texto: "20 : 4 + 3 × 2 =",
+          respuesta_correcta: "11",
+          alternativas_aceptables: ["once"]
+        },
+        {
+          id: "c",
+          texto: "(10 − 4) : 2 + 5 =",
+          respuesta_correcta: "8",
+          alternativas_aceptables: ["ocho"]
+        },
+        {
+          id: "d",
+          texto: "2 + 8 : 2 − 1 =",
+          respuesta_correcta: "5",
+          alternativas_aceptables: ["cinco"]
+        }
+      ]
+    },
+    capa_4_5: {
+      tipo: "examen_final",
+      dificultad: "monserrat",
+      instrucciones: "Examen final nivel Monserrat. Resolvé ordenado y por términos, mostrando todos los pasos. Necesitás 70%+ para aprobar.",
+      enunciado: `Resolvé los ejercicios combinados:
+
+a) 3³ + 4² − 2³ × 5 =
+b) 2² × 5 − 3³ + 10² : 4 =
+c) Colocá UN único par de paréntesis para que se cumpla:
+   4 + 3 × 6 − 2 : 2 = 19
+   ¿Dónde van los paréntesis? Escribí la expresión completa.`,
+      preguntas: [
+        {
+          id: "a",
+          texto: "3³ + 4² − 2³ × 5 =",
+          respuesta_correcta: "3",
+          alternativas_aceptables: ["tres"]
+        },
+        {
+          id: "b",
+          texto: "2² × 5 − 3³ + 10² : 4 =",
+          respuesta_correcta: "18",
+          alternativas_aceptables: ["dieciocho"]
+        },
+        {
+          id: "c",
+          texto: "Expresión con los paréntesis colocados",
+          respuesta_correcta: "4 + 3 × (6 − 2) : 2",
+          alternativas_aceptables: ["4+3×(6−2):2", "4+3*(6-2):2", "4 + 3 x (6 - 2) : 2", "(6-2)", "en 6-2", "alrededor de 6-2", "6 menos 2"]
+        }
+      ]
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════
+  // SECUENCIAS ALFANUMÉRICAS Y DE FIGURAS
+  // ═══════════════════════════════════════════════════════════
+
+  "secuencias_alfanumericas_y_figuras": {
+    capa_1_2: {
+      tipo: "examen_final",
+      dificultad: "basico",
+      instrucciones: "Examen de patrones. Necesitás 2 de 3 correctas para aprobar.",
+      enunciado: `Respondé:
+
+a) ¿Qué figura sigue? ● ■ ● ■ ● ...
+b) ¿Qué figura sigue? ▲ ▲ ★ ▲ ▲ ★ ▲ ▲ ...
+c) ¿Qué letra sigue? A B C A B C A ...`,
+      preguntas: [
+        {
+          id: "a",
+          texto: "¿Qué figura sigue después de ● ■ ● ■ ●?",
+          respuesta_correcta: "cuadrado",
+          alternativas_aceptables: ["■", "el cuadrado", "cuadradito"]
+        },
+        {
+          id: "b",
+          texto: "¿Qué figura sigue después de ▲ ▲ ★ ▲ ▲ ★ ▲ ▲?",
+          respuesta_correcta: "estrella",
+          alternativas_aceptables: ["★", "la estrella", "estrellita"]
+        },
+        {
+          id: "c",
+          texto: "¿Qué letra sigue después de A B C A B C A?",
+          respuesta_correcta: "b",
+          alternativas_aceptables: ["la b", "B"]
+        }
+      ]
+    },
+    capa_3: {
+      tipo: "examen_final",
+      dificultad: "intermedio",
+      instrucciones: "Examen de secuencias alfanuméricas. Analizá las letras y los números POR SEPARADO. Necesitás 70%+ para aprobar.",
+      enunciado: `Respondé:
+
+a) ¿Qué sigue en la secuencia? B5 — D10 — F15 — H20 — ?
+b) En la secuencia A1 — B3 — C5 — D7, ¿cuál es la regla de los números?
+c) Un patrón de figuras es ● ■ ▲ y se repite. ¿Qué figura está en la posición 8?`,
+      preguntas: [
+        {
+          id: "a",
+          texto: "¿Qué sigue después de H20?",
+          respuesta_correcta: "j25",
+          alternativas_aceptables: ["J25", "j 25", "J 25"]
+        },
+        {
+          id: "b",
+          texto: "¿Cuál es la regla de los números en A1, B3, C5, D7?",
+          respuesta_correcta: "suman 2",
+          alternativas_aceptables: ["se suma 2", "van de 2 en 2", "impares", "numeros impares", "más 2", "mas 2", "+2"]
+        },
+        {
+          id: "c",
+          texto: "¿Qué figura está en la posición 8 del patrón ● ■ ▲?",
+          respuesta_correcta: "cuadrado",
+          alternativas_aceptables: ["■", "el cuadrado"]
+        }
+      ]
+    },
+    capa_4_5: {
+      tipo: "examen_final",
+      dificultad: "monserrat",
+      instrucciones: "Examen final nivel Monserrat. Justificá con divisiones donde corresponda. Necesitás 70%+ para aprobar.",
+      enunciado: `Respondé:
+
+a) Completá los DOS elementos que siguen en la secuencia alfanumérica e indicá la regla de cada componente:
+   A7 — C11 — F13 — H17 — K19 — ? — ?
+   (Pista: las letras saltan 1, 2, 1, 2... y los números alternan +4, +2, +4, +2...)
+
+b) Una secuencia de figuras tiene PERÍODO 4 con el patrón ● ■ ▲ ★.
+   ¿Qué figura corresponde a la posición 35? Justificá con división.
+
+c) Mismo patrón: ¿qué figura corresponde a la posición 100?`,
+      preguntas: [
+        {
+          id: "a",
+          texto: "¿Cuáles son los dos elementos que siguen después de K19?",
+          respuesta_correcta: "m23, p25",
+          alternativas_aceptables: ["M23 P25", "m23 p25", "M23, P25", "M23 y P25", "m23 y p25"]
+        },
+        {
+          id: "b",
+          texto: "¿Qué figura está en la posición 35? (35 ÷ 4 = 8 resto 3)",
+          respuesta_correcta: "triangulo",
+          alternativas_aceptables: ["▲", "triángulo", "el triangulo", "el triángulo"]
+        },
+        {
+          id: "c",
+          texto: "¿Qué figura está en la posición 100? (100 ÷ 4 = 25 resto 0)",
+          respuesta_correcta: "estrella",
+          alternativas_aceptables: ["★", "la estrella"]
+        }
+      ]
+    }
+  },
 };
 
 export function getExamenFinal(tema, capa = 1) {

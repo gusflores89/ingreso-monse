@@ -132,5 +132,6 @@ export const PRERREQUISITOS = {
   ecuaciones_con_imagenes_2_incognitas: ["numeros_naturales_sistema_decimal"],
   potenciacion_y_raiz_cuadrada: ["numeros_naturales_sistema_decimal"],
   jerarquia_operaciones: ["potenciacion_y_raiz_cuadrada"],
-  secuencias_alfanumericas_y_figuras: ["secuencias_aritmeticas", "secuencias_geometricas_fibonacci"],
+  secuencias_alfanumericas_y_figuras: ["secuencias_aritmeticas", "division_1_digito"],
 };
+
