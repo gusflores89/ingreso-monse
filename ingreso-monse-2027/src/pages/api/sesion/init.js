@@ -654,7 +654,6 @@ async function getUnlockedTopics(supabase, userId, plan) {
     curriculum
       .filter(t => {
         if (isTrial) {
-          const TRIAL_TOPICS = ["tablas_multiplicar_2_5", "division_1_digito", "fracciones_concepto", "ortografia_b_v"];
           return TRIAL_TOPICS.includes(t.tema);
         }
         return isPhaseUnlocked(t.fase);
