@@ -254,8 +254,12 @@ export default async function handler(req, res) {
         ? buildPromptTeacher(alumno, contextoPrompt)
         : buildPromptPractice(alumno, contextoPrompt);
     const isSpelling = temaActual.startsWith("ortografia_");
+    const cszExamples = temaActual === "ortografia_c_s_z"
+      ? " (por ejemplo, escribe 'serca' en vez de 'cerca', 'despasio' en vez de 'despacio', 'Zol' en vez de 'Sol')"
+      : "";
     const spellingSpecificPrompt = isSpelling
-      ? `\n- Como el tema es de ortografía (${temaActual}), genera una historia breve (un párrafo de unas 100 palabras) e incluye exactamente 3 errores ortográficos relacionados con la regla (por ejemplo, si es ortografía B/V, escribe con B palabras que van con V o viceversa). Asegurate de variar las palabras y no repetir las mismas palabras que fueron probadas en las historias anteriores de la lista. Varía los personajes y contextos.`
+      ? `\n- Como el tema es de ortografía (${temaActual}), genera una historia breve (un párrafo de unas 100 palabras) e incluye EXACTAMENTE 3 errores ortográficos relacionados con la regla${cszExamples} (por ejemplo, si es ortografía B/V, escribe con B palabras que van con V o viceversa).
+      ¡CRÍTICO! Revisa el texto resultante palabra por palabra antes de responder y asegúrate de contar exactamente 3 errores de esta regla y que todas las demás palabras estén escritas 100% correctamente.`
       : "";
 
     const userInstruction =
@@ -612,35 +616,45 @@ async function getPracticasIniciadas(supabase, userId, tema) {
 async function generarExamenFinalConIa(tema, capa, contexto) {
   const respuesta = await callOpenRouter(
     MODEL_TUTOR,
-    `Sos Profe, generadora de examenes finales estilo ingreso Monserrat. Crea un examen final breve y exigente para el perfil del alumno. Responde SOLO JSON valido.`,
+    `Sos Profe, generadora de exámenes finales de nivel primario avanzado para el ingreso al Colegio Monserrat. Crea un examen final breve, riguroso y libre de errores sobre el tema: "${tema}". Responde únicamente con un objeto JSON válido, sin texto adicional ni marcas de código markdown.`,
     `Tema: ${tema}
 Capa: ${capa}
 Contexto: ${JSON.stringify(contexto)}
+
+REGLAS DE GENERACIÓN DE PREGUNTAS (¡CRÍTICAS!):
+1. COHERENCIA ESTRICTA CON EL TEMA: Todas las preguntas deben evaluar exclusivamente el tema actual: "${tema}". 
+   - Por ejemplo, si es "ortografia_h", evalúa únicamente el uso correcto/incorrecto de la letra H y sus reglas en español. No incluyas palabras ajenas que no se escriben con H (como pedir escribir "tórax" o evaluar tildes de forma aislada).
+2. PRECISION ABSOLUTA EN OPCIONES Y RESPUESTAS: 
+   - Si una pregunta pide identificar una palabra MAL escrita, asegúrate de que en las opciones generadas esa palabra esté efectivamente escrita de forma incorrecta (ej. escribir "uerfano" sin H) y que la respuesta correcta corresponda exactamente a esa opción defectuosa. Revisa dos veces las letras de cada opción para que no tengan errores no deseados.
+3. IDIOMA Y NORMAS: Todo debe estar en español de Argentina.
+4. FORMATO: Genera 5 preguntas bien balanceadas (completar, reescribir/corregir, justificar o conceptual).
 
 Genera un JSON con esta forma:
 {
   "tipo": "examen_final",
   "dificultad": "monserrat",
-  "instrucciones": "Necesitas 70% o mas para aprobar.",
-  "enunciado": "consigna completa",
+  "instrucciones": "Necesitás 70% o más para aprobar. Leé con atención cada consigna.",
+  "enunciado": "Examen Final de [Nombre del Tema]",
   "preguntas": [
-    {"id":"a","texto":"...","respuesta_correcta":"...","alternativas_aceptables":["..."]},
-    {"id":"b","texto":"...","respuesta_correcta":"...","alternativas_aceptables":["..."]},
-    {"id":"c","texto":"...","respuesta_correcta":"...","alternativas_aceptables":["..."]}
+    {"id":"a","texto":"[Consigna de la pregunta A]","respuesta_correcta":"[Respuesta esperada exacta]","alternativas_aceptables":["[Variante aceptable 1]", "[Variante aceptable 2]"]},
+    {"id":"b","texto":"[Consigna de la pregunta B]","respuesta_correcta":"[Respuesta esperada exacta]","alternativas_aceptables":["[Variante aceptable 1]"]},
+    {"id":"c","texto":"[Consigna de la pregunta C]","respuesta_correcta":"[Respuesta esperada exacta]","alternativas_aceptables":["[Variante aceptable 1]"]},
+    {"id":"d","texto":"[Consigna de la pregunta D]","respuesta_correcta":"[Respuesta esperada exacta]","alternativas_aceptables":["[Variante aceptable 1]"]},
+    {"id":"e","texto":"[Consigna de la pregunta E]","respuesta_correcta":"[Respuesta esperada exacta]","alternativas_aceptables":["[Variante aceptable 1]"]}
   ]
 }`,
-    1400
+    2000
   );
 
   const examen = parseJsonFromModel(respuesta);
   if (!examen.enunciado || !Array.isArray(examen.preguntas) || examen.preguntas.length === 0) {
-    throw new Error("La IA no devolvio un examen final valido.");
+    throw new Error("La IA no devolvió un examen final válido.");
   }
 
   return {
     tipo: "examen_final",
     dificultad: "monserrat",
-    instrucciones: "Necesitas 70% o mas para aprobar.",
+    instrucciones: "Necesitás 70% o más para aprobar.",
     ...examen,
   };
 }

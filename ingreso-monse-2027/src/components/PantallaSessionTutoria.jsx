@@ -507,6 +507,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
           onRespuestaTexto={setRespuesta}
           onSubmit={handleEnviarExamen}
           visualParaEjercicio={visualParaEjercicio}
+          onSwitchTopic={() => setShowTopicModal(true)}
         />
       )}
 
@@ -693,8 +694,31 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         <div className={`feedback ${evaluacion.es_correcta ? "correct" : "review"}`}>
           <TutorMessage tutor={tutor} mensaje={evaluacion.retroalimentacion} />
           <button type="button" className="primary" onClick={handleSiguiente} disabled={loading}>
-            Siguiente pregunta
+            {pregunta?.tipo === "examen_final" && !evaluacion.es_correcta
+              ? "Reintentar examen"
+              : "Siguiente pregunta"}
           </button>
+          {pregunta?.tipo === "examen_final" && !evaluacion.es_correcta && (
+            <button
+              type="button"
+              onClick={() => setShowTopicModal(true)}
+              style={{
+                marginTop: "10px",
+                background: "rgba(255, 255, 255, 0.08)",
+                border: "1px solid rgba(255, 255, 255, 0.12)",
+                color: "#ffffff",
+                padding: "10px",
+                borderRadius: "8px",
+                fontWeight: "600",
+                fontSize: "0.88rem",
+                cursor: "pointer",
+                width: "100%",
+                textAlign: "center"
+              }}
+            >
+              📖 Estudiar otro tema por ahora
+            </button>
+          )}
           {!evaluacion.es_correcta && (
             <button
               type="button"
@@ -762,9 +786,9 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                 const approvedMateF4 = mateFase4.filter(t => completedExams.has(t.tema)).length;
 
                 const approvedLenguaF1 = lenguaFase1.filter(t => completedExams.has(t.tema)).length;
-                const approvedLenguaF2 = lenguaF2.filter(t => completedExams.has(t.tema)).length;
-                const approvedLenguaF3 = lenguaF3.filter(t => completedExams.has(t.tema)).length;
-                const approvedLenguaF4 = lenguaF4.filter(t => completedExams.has(t.tema)).length;
+                const approvedLenguaF2 = lenguaFase2.filter(t => completedExams.has(t.tema)).length;
+                const approvedLenguaF3 = lenguaFase3.filter(t => completedExams.has(t.tema)).length;
+                const approvedLenguaF4 = lenguaFase4.filter(t => completedExams.has(t.tema)).length;
 
                 const unlockedMateFase2 = approvedMateF1 >= 6;
                 const unlockedMateFase3 = unlockedMateFase2 && approvedMateF2 >= 3;
@@ -1640,7 +1664,7 @@ function extraerTodosLosNumeros(texto) {
   return Array.from(texto.matchAll(/\d+/g)).map((match) => Number(match[0])).filter((numero) => Number.isFinite(numero));
 }
 
-function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRespuesta, onRespuestaTexto, onSubmit, visualParaEjercicio }) {
+function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRespuesta, onRespuestaTexto, onSubmit, visualParaEjercicio, onSwitchTopic }) {
   const tienePreguntas = pregunta.preguntas?.length > 0;
   const puedeEnviar = tienePreguntas
     ? pregunta.preguntas.every((item) => String(respuestas[item.id] || "").trim())
@@ -1693,6 +1717,37 @@ function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRe
         <button type="button" className="primary exam-submit" onClick={onSubmit} disabled={!puedeEnviar || loading}>
           {loading ? "Enviando examen..." : "Enviar examen final"}
         </button>
+
+        {onSwitchTopic && (
+          <button
+            type="button"
+            onClick={onSwitchTopic}
+            style={{
+              marginTop: "12px",
+              background: "rgba(255, 255, 255, 0.05)",
+              border: "1px solid rgba(255, 255, 255, 0.1)",
+              color: "#a59ec9",
+              padding: "10px",
+              borderRadius: "8px",
+              fontWeight: "600",
+              fontSize: "0.85rem",
+              cursor: "pointer",
+              width: "100%",
+              textAlign: "center",
+              transition: "all 200ms"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
+              e.currentTarget.style.color = "#ffffff";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "rgba(255, 255, 255, 0.05)";
+              e.currentTarget.style.color = "#a59ec9";
+            }}
+          >
+            📖 Estudiar otro tema por ahora
+          </button>
+        )}
       </section>
     </div>
   );

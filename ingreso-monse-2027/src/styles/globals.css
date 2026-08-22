@@ -3593,6 +3593,32 @@ label small {
   transform: translateY(-1px);
 }
 
+.landing-btn-parents {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 200ms ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.landing-btn-parents:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.parent-link-hover:hover {
+  color: #ffffff !important;
+  text-decoration: underline !important;
+}
+
 /* HERO SECTION */
 .landing-hero {
   display: grid;

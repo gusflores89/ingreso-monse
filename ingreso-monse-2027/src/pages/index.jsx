@@ -130,6 +130,9 @@ export default function Login() {
         <div className="landing-nav-stats">
           <span>Temas de examen: <strong>37 Completos</strong></span>
           <span>Materias: <strong>Matemática + Lengua</strong></span>
+          <a href="/papas" className="landing-btn-parents" style={{ textDecoration: "none" }}>
+            Acceso Padres / Descargas
+          </a>
           <button type="button" className="landing-btn-login" onClick={scrollToLogin}>
             Iniciar Sesión
           </button>
@@ -274,10 +277,16 @@ export default function Login() {
                   {loading ? "Entrando..." : "Entrar a practicar"}
                 </button>
 
-                <div className="avatar-signup" style={{ marginTop: "14px" }}>
-                  <p style={{ fontSize: "0.85rem" }}>¿No tenés código?</p>
-                  <a href="/setup" style={{ color: avatarSeleccionado.color, fontSize: "0.85rem" }}>
-                    Registrate con un adulto
+                <div className="avatar-signup" style={{ marginTop: "14px", display: "flex", flexDirection: "column", gap: "8px", alignItems: "center" }}>
+                  <div style={{ display: "flex", gap: "10px", alignItems: "center", justifyContent: "center" }}>
+                    <p style={{ fontSize: "0.85rem", margin: 0 }}>¿No tenés código?</p>
+                    <a href="/setup" style={{ color: avatarSeleccionado.color, fontSize: "0.85rem", fontWeight: "600" }}>
+                      Registrate con un adulto
+                    </a>
+                  </div>
+                  <div style={{ width: "100%", height: "1px", backgroundColor: "rgba(255, 255, 255, 0.05)", margin: "4px 0" }} />
+                  <a href="/papas" style={{ color: "#94a3b8", fontSize: "0.85rem", fontWeight: "600", display: "flex", alignItems: "center", gap: "4px", textDecoration: "none" }} className="parent-link-hover">
+                    👨‍👩‍👧‍👦 Acceso para Padres / Descargas
                   </a>
                 </div>
               </div>
