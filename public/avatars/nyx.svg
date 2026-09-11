@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Nyx">
+  <circle cx="100" cy="100" r="94" fill="#E6F1FB" stroke="#378ADD" stroke-width="8"/>
+  <path d="M45 112c0-43 22-72 55-72s55 29 55 72c0 39-24 66-55 66s-55-27-55-66Z" fill="#263A7A"/>
+  <path d="M60 104c4-34 20-52 40-52s36 18 40 52c-15-18-65-18-80 0Z" fill="#D4537E"/>
+  <path d="M73 88c8-28 27-41 51-36-8 7-11 16-10 28" fill="#263A7A"/>
+  <circle cx="78" cy="111" r="16" fill="#fff"/>
+  <circle cx="122" cy="111" r="16" fill="#fff"/>
+  <circle cx="80" cy="112" r="9" fill="#378ADD"/>
+  <circle cx="124" cy="112" r="9" fill="#378ADD"/>
+  <circle cx="83" cy="107" r="4" fill="#fff"/>
+  <circle cx="127" cy="107" r="4" fill="#fff"/>
+  <path d="M88 142c8 6 16 6 24 0" fill="none" stroke="#D4537E" stroke-width="6" stroke-linecap="round"/>
+  <path d="M47 72c20-24 56-38 96 0-25-9-71-9-96 0Z" fill="#172554"/>
+  <path d="M51 143c12 23 29 35 49 35s37-12 49-35c-17 8-81 8-98 0Z" fill="#378ADD"/>
+  <path d="M55 68c8 4 15 10 21 19M145 68c-8 4-15 10-21 19" stroke="#D4537E" stroke-width="6" stroke-linecap="round"/>
+</svg>

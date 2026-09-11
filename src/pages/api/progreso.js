@@ -1,0 +1,391 @@
+import { requireMethod } from "@/lib/http";
+import { requireAccess, requireOwnership } from "@/lib/access";
+import { getTopicMeta, CURRICULUM_MATEMATICA, CURRICULUM_LENGUA } from "@/lib/curriculum";
+import { callOpenRouter } from "@/lib/openrouter";
+import { MODEL_DASHBOARD, buildPromptDashboard } from "@/lib/prompts";
+import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
+import { buildAlumnoProfile } from "@/lib/alumno";
+import { getUserPlan, TRIAL_TOPICS } from "@/lib/planes";
+import { loadUser, loadUserByCode } from "@/lib/usuarios";
+import { checkDailyRateLimit } from "@/lib/rateLimit";
+
+export default async function handler(req, res) {
+  if (!requireMethod(req, res, "GET")) return;
+  if (!requireAccess(req, res, ["student", "admin"])) return;
+
+  const userId = req.query.user_id;
+  if (!userId) return res.status(400).json({ error: "user_id es obligatorio." });
+  if (typeof userId !== "string" || userId.length > 100) {
+    return res.status(400).json({ error: "ID de usuario inválido o demasiado largo." });
+  }
+
+  try {
+    const supabase = getSupabaseAdmin();
+
+    let usuario = null;
+    const cleanUserId = String(userId).trim();
+    const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(cleanUserId);
+
+    if (isUUID) {
+      const { data, error } = await loadUser(supabase, cleanUserId);
+      if (!error && data) {
+        usuario = data;
+      }
+    }
+
+    if (!usuario) {
+      const normalizedCode = cleanUserId.toUpperCase();
+      const { data, error } = await loadUserByCode(supabase, normalizedCode);
+      if (!error && data) {
+        usuario = data;
+      }
+    }
+
+    if (!usuario) {
+      return res.status(404).json({ error: "Código de acceso o ID de estudiante incorrecto." });
+    }
+
+    const resolvedUserId = usuario.id;
+    if (!requireOwnership(req, res, resolvedUserId)) return;
+
+    // Validar límite diario de abuso/seguridad para llamadas de IA
+    const rateLimit = await checkDailyRateLimit(supabase, resolvedUserId);
+    if (!rateLimit.ok) {
+      return res.status(429).json({ error: rateLimit.error });
+    }
+    const alumno = buildAlumnoProfile(usuario);
+
+    const progreso = assertSupabaseOk(
+      await supabase.from("progreso").select("*").eq("user_id", resolvedUserId).order("updated_at", { ascending: false }),
+      "No se pudo obtener progreso"
+    );
+
+    const alertas = assertSupabaseOk(
+      await supabase
+        .from("alertas")
+        .select("*")
+        .eq("user_id", resolvedUserId)
+        .eq("resuelta", false)
+        .order("created_at", { ascending: false }),
+      "No se pudieron obtener alertas"
+    );
+
+    const sesiones = assertSupabaseOk(
+      await supabase
+        .from("sesiones")
+        .select("tema, capa, tipo_pregunta, es_correcta, razon_evaluacion, created_at")
+        .eq("user_id", resolvedUserId)
+        .not("es_correcta", "is", null)
+        .order("created_at", { ascending: false })
+        .limit(80),
+      "No se pudieron obtener sesiones recientes"
+    );
+
+    const examenesAprobadosResult = assertSupabaseOk(
+      await supabase
+        .from("sesiones")
+        .select("tema")
+        .eq("user_id", resolvedUserId)
+        .eq("tipo_pregunta", "examen_final")
+        .eq("es_correcta", true),
+      "No se pudieron obtener examenes aprobados"
+    );
+    const examenesAprobados = [...new Set((examenesAprobadosResult || []).map((s) => s.tema))];
+
+    const plan = getUserPlan(usuario);
+    const metricas = buildDashboardMetrics({ progreso, sesiones, alertas, plan, examenesAprobados });
+    const evaluadas = sesiones.length;
+    const correctas = sesiones.filter((sesion) => sesion.es_correcta).length;
+    const insightInput = {
+      semana: "ultimos registros",
+      sesiones_completadas: evaluadas,
+      temas_trabajados: [...new Set(sesiones.map((sesion) => sesion.tema))],
+      tasa_promedio: evaluadas ? Math.round((correctas / evaluadas) * 100) : 0,
+      balance_materias: metricas.balance_materias,
+      oportunidades: metricas.oportunidades,
+      resumen: metricas.resumen,
+      distribucion_errores: sesiones
+        .filter((sesion) => sesion.razon_evaluacion)
+        .reduce((acc, sesion) => {
+          acc[sesion.tema] = acc[sesion.tema] || [];
+          acc[sesion.tema].push(sesion.razon_evaluacion);
+          return acc;
+        }, {}),
+      racha_maxima: 0,
+      alertas_generadas: alertas,
+    };
+
+    let insightMarkdown = "";
+    let insightError = null;
+
+    const skipInsight = req.query.skip_insight === "true";
+    if (!skipInsight) {
+      try {
+        insightMarkdown = await callOpenRouter(
+          MODEL_DASHBOARD,
+          buildPromptDashboard(alumno, {}),
+          JSON.stringify(insightInput),
+          900
+        );
+      } catch (error) {
+        console.error(error);
+        insightError = "No se pudo generar el insight en este momento.";
+      }
+    }
+
+    res.status(200).json({
+      usuario: { ...usuario, plan },
+      progreso,
+      alertas,
+      sesiones_recientes: sesiones,
+      examenes_aprobados: examenesAprobados,
+      metricas,
+      insight_markdown: insightMarkdown,
+      insight_error: insightError,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+}
+
+function buildDashboardMetrics({ progreso, sesiones, alertas, plan, examenesAprobados = [] }) {
+  const now = Date.now();
+  const weekAgo = now - 7 * 24 * 60 * 60 * 1000;
+  const sesionesSemana = sesiones.filter((sesion) => parseSupabaseDate(sesion.created_at).getTime() >= weekAgo);
+  const correctasSemana = sesionesSemana.filter((sesion) => sesion.es_correcta).length;
+  const tasaSemana = sesionesSemana.length ? Math.round((correctasSemana / sesionesSemana.length) * 100) : 0;
+  const balanceMaterias = buildBalanceMaterias(sesionesSemana.length ? sesionesSemana : sesiones);
+
+  const approvedExams = new Set(
+    examenesAprobados && examenesAprobados.length
+      ? examenesAprobados
+      : sesiones
+          .filter((s) => s.tipo_pregunta === "examen_final" && s.es_correcta)
+          .map((s) => s.tema)
+  );
+
+  const mateF1 = CURRICULUM_MATEMATICA.filter(t => t.fase === 1);
+  const mateF2 = CURRICULUM_MATEMATICA.filter(t => t.fase === 2);
+  const mateF3 = CURRICULUM_MATEMATICA.filter(t => t.fase === 3);
+  const mateF4 = CURRICULUM_MATEMATICA.filter(t => t.fase === 4);
+
+  const lenguaF1 = CURRICULUM_LENGUA.filter(t => t.fase === 1);
+  const lenguaF2 = CURRICULUM_LENGUA.filter(t => t.fase === 2);
+  const lenguaF3 = CURRICULUM_LENGUA.filter(t => t.fase === 3);
+  const lenguaF4 = CURRICULUM_LENGUA.filter(t => t.fase === 4);
+
+  const approvedMateF1 = mateF1.filter(t => approvedExams.has(t.tema)).length;
+  const approvedMateF2 = mateF2.filter(t => approvedExams.has(t.tema)).length;
+  const approvedMateF3 = mateF3.filter(t => approvedExams.has(t.tema)).length;
+  const approvedMateF4 = mateF4.filter(t => approvedExams.has(t.tema)).length;
+
+  const approvedLenguaF1 = lenguaF1.filter(t => approvedExams.has(t.tema)).length;
+  const approvedLenguaF2 = lenguaF2.filter(t => approvedExams.has(t.tema)).length;
+  const approvedLenguaF3 = lenguaF3.filter(t => approvedExams.has(t.tema)).length;
+  const approvedLenguaF4 = lenguaF4.filter(t => approvedExams.has(t.tema)).length;
+
+  const isPhaseUnlocked = (fase, materia) => {
+    if (fase === 1) return true;
+    if (materia === "matematica") {
+      if (fase === 2) return approvedMateF1 >= 6;
+      if (fase === 3) return approvedMateF1 >= 6 && approvedMateF2 >= 3;
+      if (fase === 4) return approvedMateF1 >= 6 && approvedMateF2 >= 3 && approvedMateF3 >= 5;
+      if (fase === 5) return approvedMateF1 >= 6 && approvedMateF2 >= 3 && approvedMateF3 >= 5 && approvedMateF4 >= 11;
+    } else {
+      if (fase === 2) return approvedLenguaF1 >= 5;
+      if (fase === 3) return approvedLenguaF1 >= 5 && approvedLenguaF2 >= 3;
+      if (fase === 4) return approvedLenguaF1 >= 5 && approvedLenguaF2 >= 3 && approvedLenguaF3 >= 2;
+      if (fase === 5) return approvedLenguaF1 >= 5 && approvedLenguaF2 >= 3 && approvedLenguaF3 >= 2 && approvedLenguaF4 >= 3;
+    }
+    return false;
+  };
+
+  const esTrial = plan === "trial";
+  const isTopicUnlocked = (tema, fase, materia) => {
+    if (esTrial) {
+      return TRIAL_TOPICS.includes(tema);
+    }
+    return isPhaseUnlocked(fase, materia);
+  };
+
+  const curriculumCompleto = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA];
+  const progresoMap = new Map(progreso.map((p) => [p.tema, p]));
+
+  const progresoEnriquecido = curriculumCompleto.map((topic) => {
+    const dbItem = progresoMap.get(topic.tema) || {
+      tema: topic.tema,
+      total_sesiones: 0,
+      total_correctas: 0,
+      tasa_acierto: 0,
+      capa_actual: 1,
+    };
+
+    const unlocked = isTopicUnlocked(topic.tema, topic.fase, topic.materia);
+
+    return enrichTopic({
+      ...dbItem,
+      materia: topic.materia,
+      fase: topic.fase,
+      orden: topic.orden,
+      unlocked,
+    });
+  });
+
+  progresoEnriquecido.sort((a, b) => {
+    if (a.fase !== b.fase) return a.fase - b.fase;
+    return a.orden - b.orden;
+  });
+
+  const oportunidades = buildOportunidades({ progreso: progresoEnriquecido, balanceMaterias, alertas, sesiones });
+  
+  const temasConPracticas = progresoEnriquecido.filter((item) => item.total_sesiones > 0);
+  const temaFuerte = [...temasConPracticas].sort((a, b) => b.tasa_acierto - a.tasa_acierto)[0] || null;
+  const temaRefuerzo =
+    [...temasConPracticas].filter((item) => item.tasa_acierto < 80).sort((a, b) => a.tasa_acierto - b.tasa_acierto)[0] ||
+    null;
+
+  return {
+    resumen: {
+      sesiones_semana: sesionesSemana.length,
+      tasa_semana: tasaSemana,
+      temas_activos: progreso.length,
+      alertas_abiertas: alertas.length,
+      tema_fuerte: temaFuerte?.tema || null,
+      tema_refuerzo: temaRefuerzo?.tema || null,
+      ultima_actividad: sesiones[0]?.created_at || null,
+    },
+    balance_materias: balanceMaterias,
+    progreso_temas: progresoEnriquecido,
+    oportunidades,
+    timeline: sesiones.slice(0, 12).map((sesion) => ({
+      ...sesion,
+      materia: getMateria(sesion.tema),
+      estado: sesion.es_correcta ? "correcta" : "incorrecta",
+    })),
+  };
+}
+
+function buildBalanceMaterias(sesiones) {
+  const base = {
+    matematica: { materia: "matematica", sesiones: 0, correctas: 0, tasa_acierto: 0 },
+    lengua: { materia: "lengua", sesiones: 0, correctas: 0, tasa_acierto: 0 },
+  };
+
+  sesiones.forEach((sesion) => {
+    const materia = getMateria(sesion.tema);
+    if (!base[materia]) return;
+    base[materia].sesiones += 1;
+    if (sesion.es_correcta) base[materia].correctas += 1;
+  });
+
+  return Object.values(base).map((item) => ({
+    ...item,
+    tasa_acierto: item.sesiones ? Math.round((item.correctas / item.sesiones) * 100) : 0,
+  }));
+}
+
+function enrichTopic(item) {
+  const tasa = Number(item.tasa_acierto || 0);
+  const total = Number(item.total_sesiones || 0);
+  const materia = getMateria(item.tema);
+
+  return {
+    ...item,
+    materia,
+    estado: item.unlocked ? getTopicState({ tasa, total }) : "bloqueado",
+    oportunidad: getTopicOpportunity({ tasa, total, tema: item.tema, unlocked: item.unlocked }),
+  };
+}
+
+function getTopicState({ tasa, total }) {
+  if (total === 0) return "nuevo";
+  if (tasa >= 80 && total >= 3) return "listo_examen";
+  if (tasa >= 80) return "bien";
+  if (tasa >= 50) return "en_practica";
+  return "refuerzo";
+}
+
+function getTopicOpportunity({ tasa, total, tema, unlocked }) {
+  if (!unlocked) return `Este tema se desbloqueará al avanzar en las fases previas.`;
+  if (total === 0) return `Tema disponible para comenzar a practicar.`;
+  if (total >= 3 && tasa < 50) return `Reforzar ${formatTema(tema)} con ejercicios mas guiados.`;
+  if (total >= 5 && tasa < 80) return `Todavia no esta firme: conviene practicar ${formatTema(tema)} en sesiones cortas.`;
+  if (tasa >= 80 && total >= 3) return `Listo para consolidar con examen final o repaso breve.`;
+  return `Seguir juntando evidencia: todavia hay pocas practicas.`;
+}
+
+function buildOportunidades({ progreso, balanceMaterias, alertas, sesiones }) {
+  const oportunidades = [];
+  const totalBalance = balanceMaterias.reduce((sum, item) => sum + item.sesiones, 0);
+
+  if (totalBalance > 0) {
+    const matematica = balanceMaterias.find((item) => item.materia === "matematica")?.sesiones || 0;
+    const lengua = balanceMaterias.find((item) => item.materia === "lengua")?.sesiones || 0;
+    const menor = matematica <= lengua ? "matematica" : "lengua";
+    const mayor = menor === "matematica" ? lengua : matematica;
+    const menorCantidad = Math.min(matematica, lengua);
+
+    if (mayor - menorCantidad >= 2) {
+      oportunidades.push({
+        tipo: "balance",
+        titulo: "Balance de materias",
+        detalle: `Hubo menos practica de ${formatMateria(menor)} en los ultimos registros.`,
+        accion: `Priorizar una sesion corta de ${formatMateria(menor)}.`,
+        severidad: "media",
+      });
+    }
+  }
+
+  const debil = [...progreso].filter((item) => Number(item.total_sesiones || 0) >= 2).sort((a, b) => a.tasa_acierto - b.tasa_acierto)[0];
+  if (debil && debil.tasa_acierto < 70) {
+    oportunidades.push({
+      tipo: "tema_debil",
+      titulo: "Tema para reforzar",
+      detalle: `${formatTema(debil.tema)} esta en ${Number(debil.tasa_acierto).toFixed(0)}% de acierto.`,
+      accion: "Acompanarlo con ejemplos concretos y una practica breve.",
+      severidad: debil.tasa_acierto < 50 ? "alta" : "media",
+    });
+  }
+
+  const ultimasIncorrectas = sesiones.slice(0, 6).filter((sesion) => !sesion.es_correcta);
+  if (ultimasIncorrectas.length >= 2) {
+    oportunidades.push({
+      tipo: "racha_error",
+      titulo: "Atencion a errores recientes",
+      detalle: `${ultimasIncorrectas.length} de las ultimas 6 respuestas fueron incorrectas.`,
+      accion: "Conviene bajar un poco la velocidad y pedir que explique el razonamiento.",
+      severidad: "media",
+    });
+  }
+
+  alertas.slice(0, 2).forEach((alerta) => {
+    oportunidades.push({
+      tipo: alerta.tipo,
+      titulo: formatTema(alerta.tipo),
+      detalle: alerta.mensaje,
+      accion: alerta.accion_recomendada || "Revisar este punto en la proxima sesion.",
+      severidad: /critico|debil|lento/i.test(alerta.tipo) ? "alta" : "media",
+    });
+  });
+
+  return oportunidades.slice(0, 4);
+}
+
+function getMateria(tema) {
+  return getTopicMeta(tema)?.materia || "matematica";
+}
+
+function formatMateria(materia) {
+  return materia === "lengua" ? "Lengua" : "Matematica";
+}
+
+function formatTema(tema = "") {
+  return tema.replaceAll("_", " ");
+}
+
+function parseSupabaseDate(value) {
+  const text = String(value);
+  const hasTimezone = /(?:Z|[+-]\d{2}:?\d{2})$/i.test(text);
+  return new Date(hasTimezone ? text : `${text}Z`);
+}
