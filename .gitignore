@@ -5,3 +5,10 @@ dev.log
 dev.err.log
 
 .vercel
+
+.env*
+!.env.example
+bibliografia/
+.antigravity/
+.claude/
+*.log

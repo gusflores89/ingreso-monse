@@ -1,3 +1,4 @@
+import { visualizacionSegura } from "@/lib/visualizaciones-seguras";
 import { useEffect, useMemo, useRef, useState } from "react";
 import PantallaCasoResuelto from "./PantallaCasoResuelto";
 import VisualizacionMatematica from "./VisualizacionMatematica";
@@ -385,6 +386,23 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
     } finally {
       setLoading(false);
     }
+  };
+
+  const abrirTeoria = async () => {
+    if (loading) return;
+    setLoading(true);
+    setError("");
+    try {
+      if (sesionId && !evaluacion) {
+        const res = await fetch("/api/sesion/ayuda", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ sesion_id: sesionId }),
+        });
+        if (!res.ok) throw new Error("No pudimos abrir la ayuda. Probá de nuevo.");
+      }
+      setHelpTab("slides"); setCurrentSlideIndex(0); setShowHelpModal(true);
+    } catch (err) { setError(err.message); }
+    finally { setLoading(false); }
   };
 
   const handleNoVisto = async () => {
@@ -863,11 +881,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
 
           <button
             type="button"
-            onClick={() => {
-              setHelpTab("slides");
-              setCurrentSlideIndex(0);
-              setShowHelpModal(true);
-            }}
+            onClick={abrirTeoria}
             style={{
               background: "rgba(139, 92, 246, 0.2)",
               border: "1px solid rgba(139, 92, 246, 0.4)",
@@ -1078,11 +1092,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             onSubmit={handleEnviarExamen}
             visualParaEjercicio={visualParaEjercicio}
             onSwitchTopic={() => setShowTopicModal(true)}
-            onOpenTheory={() => {
-              setHelpTab("slides");
-              setCurrentSlideIndex(0);
-              setShowHelpModal(true);
-            }}
+            onOpenTheory={abrirTeoria}
             onForzarPractica={() => {
               setForzarPractica(true);
               handleSelectTema(activeTema, { forzar_practica: true });
@@ -1183,7 +1193,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                 <p className="question-text small">{parseInlineMarkdown(pasoActualData.contenido.enunciado)}</p>
                 {visualParaEjercicio && (
                   <div style={{ marginBottom: "20px" }}>
-                    <VisualizacionMatematica tipo={visualParaEjercicio.tipo} datos={visualParaEjercicio.datos} />
+                    <VisualizacionMatematica tipo={visualParaEjercicio.tipo} datos={visualParaEjercicio.datos} mostrarResultado={false} />
                   </div>
                 )}
                 <textarea
@@ -1408,7 +1418,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
 
           {visualParaEjercicio && (
             <div style={{ marginBottom: "20px" }}>
-              <VisualizacionMatematica tipo={visualParaEjercicio.tipo} datos={visualParaEjercicio.datos} />
+              <VisualizacionMatematica tipo={visualParaEjercicio.tipo} datos={visualParaEjercicio.datos} mostrarResultado={false} />
             </div>
           )}
 
@@ -2518,127 +2528,14 @@ function toHexColor({ r, g, b }) {
 }
 
 function MathExampleVisual({ tema, ejemplo }) {
-  const textoVisual = [ejemplo?.enunciado, ...(ejemplo?.pasos || []), ejemplo?.respuesta].filter(Boolean).join(" ");
+  const textoVisual = ejemplo?.enunciado || "";
   const visual = visualizacionParaTema(tema, textoVisual);
   if (!visual) return null;
   return <VisualizacionMatematica tipo={visual.tipo} datos={visual.datos} />;
 }
 
 function visualizacionParaTema(tema = "", texto = "") {
-  const temaNormalizado = tema.toLowerCase();
-
-  if (temaNormalizado.includes("tablas_multiplicar")) {
-    const numeros = extraerMultiplicacion(texto) || fallbackTabla(temaNormalizado);
-    return { tipo: "tabla_multiplicar", datos: numeros };
-  }
-
-  if (temaNormalizado === "division_1_digito" || (temaNormalizado.includes("division") && !temaNormalizado.includes("divisibilidad"))) {
-    return { tipo: "division_repartir", datos: extraerDivision(texto) || { total: 12, grupos: 3 } };
-  }
-
-  if (temaNormalizado.includes("fracciones_operaciones")) {
-    const fracciones = extraerFracciones(texto);
-    const textoSinFracciones = texto.replace(/\d+\s*\/\s*\d+/g, " ");
-    let op = "+";
-    if (textoSinFracciones.includes("+")) {
-      op = "+";
-    } else if (/\s+-\s+|-\s*\d+/.test(textoSinFracciones)) {
-      op = "-";
-    } else if (/\s*[×*]\s*|\s+x\s+/i.test(textoSinFracciones)) {
-      op = "×";
-    } else if (/\s*÷\s*|\s+:\s+/.test(textoSinFracciones)) {
-      op = "÷";
-    } else if (/\b(?:sumar?|suma|adici[oó]n)\b/i.test(textoSinFracciones)) {
-      op = "+";
-    } else if (/\b(?:restar?|resta|diferencia|sustracci[oó]n)\b/i.test(textoSinFracciones)) {
-      op = "-";
-    } else if (/\b(?:multiplicar?|multiplicaci[oó]n|producto)\b/i.test(textoSinFracciones)) {
-      op = "×";
-    } else if (/\b(?:dividir?|divisi[oó]n|cociente)\b/i.test(textoSinFracciones)) {
-      op = "÷";
-    }
-
-    return {
-      tipo: "fraccion_operaciones_interactiva",
-      datos: fracciones.length >= 2 ? {
-        numA: fracciones[0].numerador,
-        denA: fracciones[0].denominador,
-        numB: fracciones[1].numerador,
-        denB: fracciones[1].denominador,
-        initialOp: op
-      } : {
-        numA: 1,
-        denA: 2,
-        numB: 1,
-        denB: 4,
-        initialOp: "+"
-      }
-    };
-  }
-
-  if (temaNormalizado.includes("fracciones_del_resto")) {
-    return { tipo: "fraccion_del_resto", datos: extraerFraccionResto(texto) };
-  }
-
-  if (temaNormalizado.includes("fracciones_concepto") || temaNormalizado.includes("decimales_conversion")) {
-    return { tipo: "fraccion_pizza", datos: extraerFracciones(texto)[0] || { numerador: 1, denominador: 2, titulo: "Una parte del total" } };
-  }
-
-  if (temaNormalizado.includes("circunferencia") || temaNormalizado.includes("circulo") || temaNormalizado.includes("pi")) {
-    return { tipo: "circulo_geometria", datos: {} };
-  }
-
-  if (temaNormalizado.includes("geometria_angulos")) {
-    return { tipo: "angulo", datos: extraerAngulo(texto) };
-  }
-
-  if (temaNormalizado.includes("geometria_triangulos")) {
-    return { tipo: "triangulo", datos: { tipo: extraerTipoTriangulo(texto) } };
-  }
-
-  if (temaNormalizado.includes("geometria_cuadrilateros") || temaNormalizado.includes("perimetros")) {
-    return { tipo: "perimetro", datos: { lados: extraerLados(texto) } };
-  }
-
-  if (temaNormalizado.includes("graficos_estadisticos")) {
-    return { tipo: "grafico_barras", datos: extraerGrafico(texto) };
-  }
-
-  if (temaNormalizado.includes("numeros_romanos")) {
-    return { tipo: "numeros_romanos", datos: extraerRomano(texto) };
-  }
-
-  if (temaNormalizado.includes("secuencias")) {
-    return { tipo: "secuencia", datos: extraerSecuencia(texto, temaNormalizado) };
-  }
-
-  if (temaNormalizado.includes("si_me_la")) {
-    return { tipo: "secuencia", datos: { numeros: [1, 10, 100, 1000], patron: "Cada paso cambia por 10" } };
-  }
-
-  if (temaNormalizado.includes("proporcionalidad")) {
-    return {
-      tipo: "grafico_barras",
-      datos: {
-        titulo: "Si una cantidad crece, la otra tambien",
-        datos: [
-          { label: "1", valor: 2 },
-          { label: "2", valor: 4 },
-          { label: "3", valor: 6 },
-        ],
-      },
-    };
-  }
-
-  if (temaNormalizado.includes("ecuaciones_con_imagenes")) {
-    return { tipo: "secuencia", datos: { numeros: [2, 4, 6, "?"], patron: "Buscar el valor que falta" } };
-  }
-
-  if (temaNormalizado.includes("numeros_naturales")) {
-    return { tipo: "numeros_naturales_interactivo", datos: {} };
-  }
-
-  return null;
+  return visualizacionSegura(tema, texto);
 }
 
 function extraerMultiplicacion(texto) {
@@ -2832,9 +2729,9 @@ function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRe
       <section className="exam-card">
         <p className="exam-statement">{parseInlineMarkdown(pregunta.enunciado)}</p>
         {pregunta.visualizacion ? (
-          <VisualizacionMatematica tipo={pregunta.visualizacion.tipo} datos={pregunta.visualizacion.datos} />
+          <VisualizacionMatematica tipo={pregunta.visualizacion.tipo} datos={pregunta.visualizacion.datos} mostrarResultado={false} />
         ) : (
-          visualParaEjercicio && <VisualizacionMatematica tipo={visualParaEjercicio.tipo} datos={visualParaEjercicio.datos} />
+          visualParaEjercicio && <VisualizacionMatematica tipo={visualParaEjercicio.tipo} datos={visualParaEjercicio.datos} mostrarResultado={false} />
         )}
       </section>
 

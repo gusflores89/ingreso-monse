@@ -1193,14 +1193,15 @@ label small {
   display: grid;
   gap: 5px;
   max-width: 100%;
-  max-height: 126px;
-  overflow: hidden;
+  max-height: none;
+  overflow: visible;
   justify-content: center;
 }
 
 .multiply-dot {
-  width: 34px;
-  height: 34px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
   display: grid;
   place-items: center;
   border: 2px solid rgb(255 255 255 / 78%);

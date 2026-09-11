@@ -712,9 +712,21 @@ export function getExamenFinal(tema, capa = 1) {
     return null;
   }
 
-  if (Number(capa) <= 2) return examen.capa_1_2;
-  if (Number(capa) === 3) return examen.capa_3;
-  return examen.capa_4_5;
+  const elegido = Number(capa) <= 2 ? examen.capa_1_2 : Number(capa) === 3 ? examen.capa_3 : examen.capa_4_5;
+  if (!elegido) return null;
+  if (elegido.tipo_evaluacion?.startsWith("completar_")) {
+    const huecos = elegido.enunciado.match(/[\p{L}]*__[\p{L}]*/gu) || [];
+    const preguntas = huecos.map((palabra, index) => {
+      const patron = new RegExp("^" + palabra.replace("__", "([bv])") + "$", "iu");
+      const correcta = elegido.respuestas_correctas.find(p => patron.test(p.normalize("NFD").replace(/[\u0300-\u036f]/g, "")));
+      if (!correcta) throw new Error("Falta la clave de una palabra del examen.");
+      const letra = correcta.normalize("NFD").replace(/[\u0300-\u036f]/g, "").match(patron)[1];
+      return { id: String(index + 1), texto: `Completá ${palabra}: escribí la palabra o la letra que falta.`, respuesta_correcta: correcta, alternativas_aceptables: [letra], ignorar_tildes: true };
+    });
+    return { ...elegido, preguntas, min_correctas: Math.ceil(preguntas.length * 0.8) };
+  }
+  const minimo = elegido.min_correctas ?? (elegido.preguntas?.length === 3 ? 2 : undefined);
+  return { ...elegido, ...(minimo !== undefined ? { min_correctas: minimo, instrucciones: `Necesitás ${minimo} de ${elegido.preguntas.length} respuestas correctas para aprobar.` } : {}) };
 }
 
 export function getAllTemasConExamen() {
@@ -722,13 +734,14 @@ export function getAllTemasConExamen() {
 }
 
 export function evaluarExamenFinal(examen, respuestaUsuario) {
-  if (!examen) return { es_correcta: true, puntaje: 100, detalle: [] };
+  if (!examen) throw new Error("No se encontró el examen para corregir. Tu respuesta no fue calificada.");
 
   const respuestas = parseRespuestasExamen(respuestaUsuario);
 
   if (examen.preguntas?.length) {
     const detalle = examen.preguntas.map((pregunta) => {
-      const respuesta = respuestas[pregunta.id] || "";
+      const respuesta = respuestas[pregunta.id] ?? "";
+      if (pregunta.respuesta_correcta === undefined || pregunta.respuesta_correcta === null) throw new Error("Falta la clave de corrección.");
       const correcta = esRespuestaAceptable(respuesta, pregunta);
       return { id: pregunta.id, correcta, respuesta };
     });
@@ -748,8 +761,16 @@ export function evaluarExamenFinal(examen, respuestaUsuario) {
   }
 
   if (examen.tipo_evaluacion === "completar_texto" || examen.tipo_evaluacion === "completar_palabras") {
-    const texto = normalizar(String(respuestas.texto || respuestaUsuario || ""));
-    const correctas = examen.respuestas_correctas.filter((palabra) => texto.includes(normalizar(palabra))).length;
+    const texto = String(respuestas.texto ?? respuestaUsuario ?? "");
+    const palabras = texto.match(/[\p{L}]+/gu) || [];
+    const normal = p => p.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    let desde = 0;
+    const correctas = examen.respuestas_correctas.filter(palabra => {
+      const index = palabras.findIndex((p, i) => i >= desde && normal(p) === normal(palabra));
+      if (index < 0) return false;
+      desde = index + 1;
+      return true;
+    }).length;
     const puntaje = Math.round((correctas / examen.respuestas_correctas.length) * 100);
     return { es_correcta: puntaje >= 80, puntaje, detalle: [{ id: "texto", correcta: puntaje >= 80, respuesta: texto }] };
   }
@@ -758,7 +779,7 @@ export function evaluarExamenFinal(examen, respuestaUsuario) {
     return { es_correcta: null, puntaje: null, respuesta: "revision_diferida", detalle: [{ id: "manuscrita", correcta: null, respuesta: "revision_diferida" }] };
   }
 
-  return { es_correcta: false, puntaje: 0, detalle: [] };
+  throw new Error("El examen no tiene una clave válida. Tu respuesta no fue calificada.");
 }
 
 function parseRespuestasExamen(respuestaUsuario) {
@@ -770,91 +791,41 @@ function parseRespuestasExamen(respuestaUsuario) {
   }
 }
 
-function parseFraction(str) {
-  const match = String(str || "").trim().match(/^(-?\d+)\s*\/\s*(-?\d+)$/);
-  if (match) {
-    const num = Number(match[1]);
-    const den = Number(match[2]);
-    if (den !== 0) return num / den;
-  }
-  return null;
-}
 
+// Decimal sin separador de miles implícito: las variantes de miles se declaran en la clave.
+function numeroRacional(value) {
+  const text = String(value ?? "").trim().replace(/−/g, "-");
+  let m = text.match(/^([+-]?\d+)\s*\/\s*([+-]?\d+)$/);
+  if (m) { const d = BigInt(m[2]); return d === 0n ? null : [BigInt(m[1]), d]; }
+  m = text.match(/^([+-]?)(\d+)(?:[.,](\d+))?$/);
+  if (!m) return null;
+  return [BigInt((m[1] === "-" ? "-" : "") + m[2] + (m[3] || "")), 10n ** BigInt((m[3] || "").length)];
+}
+function normalizar(value, ignorarTildes = false) {
+  let text = String(value ?? "").normalize("NFC").trim().toLowerCase().replace(/\s+/g, " ");
+  if (ignorarTildes) text = text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  return text.replace(/[.!?]+$/, "").trim();
+}
+function normalizarExpresion(value) {
+  return String(value ?? "").normalize("NFC").replace(/−/g,"-").replace(/[×·]/g,"*").replace(/[÷:]/g,"/").replace(/\s+/g,"");
+}
 function esRespuestaAceptable(respuesta, pregunta) {
-  const respRaw = String(respuesta || "").trim();
-  if (!respRaw) return false;
-
-  const respNorm = normalizar(respRaw);
-  const respWords = normalizarConEspacios(respRaw);
-  const respFrac = parseFraction(respRaw);
-  const respNum = !isNaN(Number(respRaw)) ? Number(respRaw) : null;
-
-  const aceptadas = [pregunta.respuesta_correcta, ...(pregunta.alternativas_aceptables || [])];
-
-  for (const esperada of aceptadas) {
-    const espRaw = String(esperada || "").trim();
-    const espNorm = normalizar(espRaw);
-    const espWords = normalizarConEspacios(espRaw);
-    const espFrac = parseFraction(espRaw);
-    const espNum = !isNaN(Number(espRaw)) ? Number(espRaw) : null;
-
-    // 1. Comparación matemática si ambas son fracciones
-    if (respFrac !== null && espFrac !== null) {
-      if (Math.abs(respFrac - espFrac) < 0.0001) return true;
-      continue;
-    }
-
-    // 2. Comparación numérica exacta si la esperada es un número
-    if (espNum !== null) {
-      if (respNum !== null) {
-        if (respNum === espNum) return true;
-        continue;
-      }
-      if (respNorm === espNorm) return true;
-      continue;
-    }
-
-    // 3. Comparación exacta normalizada
-    if (respNorm === espNorm) return true;
-
-    // 4. Comparación con límites de palabra y rechazo de negaciones
-    const escaped = espWords.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const wordPattern = new RegExp("(?:^|\\s)" + escaped + "(?:\\s|$)", "i");
-    if (wordPattern.test(respWords)) {
-      // Si la respuesta niega explícitamente el concepto buscado, rechazar
-      const negPattern = new RegExp("(?:^|\\s)(?:no|nunca|jamas|jamás|tampoco|sin)\\s+(?:\\w+\\s+){0,2}" + escaped + "(?:\\s|$)", "i");
-      if (negPattern.test(respWords)) {
-        return false;
-      }
-      return true;
-    }
-
-    // Si espWords es una frase más larga que contiene respWords de manera completa
-    if (espWords.length > 4 && respWords.length > 4 && respWords.includes(espWords)) {
-      const negPattern = new RegExp("(?:^|\\s)(?:no|nunca|jamas|jamás|tampoco|sin)\\s+(?:\\w+\\s+){0,2}" + escaped + "(?:\\s|$)", "i");
-      if (!negPattern.test(respWords)) {
-        return true;
-      }
-    }
+  const raw = String(respuesta ?? "").trim();
+  if (!raw) return false;
+  const clave = String(pregunta.respuesta_correcta ?? "").trim();
+  if (!clave) return false;
+  const ignorar = pregunta.ignorar_tildes === true;
+  const esperado = numeroRacional(clave), recibido = numeroRacional(raw);
+  if (esperado && recibido && recibido[0] * esperado[1] === esperado[0] * recibido[1]) return true;
+  const variantes = [clave, ...(pregunta.alternativas_aceptables || [])];
+  for (const variante of variantes) {
+    const v = String(variante ?? "").trim();
+    if (!v) continue;
+    if (normalizar(raw, ignorar) === normalizar(v, ignorar)) return true;
+    // Solo claves con operaciones; nunca se eliminan operadores ni paréntesis.
+    if (!numeroRacional(v) && /[+*×÷():−]|\d\s*-\s*\d/.test(v) && normalizarExpresion(raw) === normalizarExpresion(v)) return true;
+    const sinIntroduccion = normalizar(raw, ignorar).replace(/^(?:la respuesta es|el resultado es|es)\s+/, "");
+    if (sinIntroduccion === normalizar(v, ignorar)) return true;
   }
-
   return false;
-}
-
-function normalizar(value) {
-  return String(value || "")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9/.,\-]/g, "");
-}
-
-function normalizarConEspacios(value) {
-  return String(value || "")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9/\-]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
 }

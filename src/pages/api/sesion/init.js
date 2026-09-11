@@ -1,3 +1,4 @@
+import { quitarClaves } from "@/lib/contrato-actividad";
 import { getLeccionH } from "@/lib/contenido-h";
 import { daysUntilExam } from "@/lib/date";
 import { DEFAULT_TOPIC, getProximoTemaNoCompletado, getTopicMeta, isCurriculumTopic, CURRICULUM_MATEMATICA, CURRICULUM_LENGUA, PRERREQUISITOS } from "@/lib/curriculum";
@@ -241,7 +242,7 @@ export default async function handler(req, res) {
         }
       );
       if (examenResponse) {
-        return res.status(200).json({ ...examenResponse, ...tutor, ...planPayload });
+        return res.status(200).json(quitarClaves({ ...examenResponse, ...tutor, ...planPayload }));
       }
     }
 

@@ -1,22 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function VisualizacionMatematica({ tipo, datos = {} }) {
-  if (tipo === "ortografia_reglas") {
-    return <VisualizacionOrtografia datos={datos} />;
-  }
-
-  if (tipo === "fraccion_interactiva") {
-    return <InteractiveFractionExplorer datos={datos} />;
-  }
-
-  if (tipo === "fraccion_operaciones_interactiva") {
-    return <InteractiveFractionOperations datos={datos} />;
-  }
-
-  if (tipo === "numeros_naturales_interactivo") {
-    return <NumerosNaturalesInteractivo datos={datos} />;
-  }
-
+export default function VisualizacionMatematica({ tipo, datos = {}, mostrarResultado = true }) {
   const [radio, setRadio] = useState(40);
   const [modoTab, setModoTab] = useState("medidas");
   const [rollProgress, setRollProgress] = useState(0);
@@ -45,50 +29,82 @@ export default function VisualizacionMatematica({ tipo, datos = {} }) {
     return () => cancelAnimationFrame(frameId);
   }, [rolling]);
 
+  // Solo estos formatos distinguen los datos del resultado en práctica independiente.
+  if (!mostrarResultado && !["tabla_multiplicar", "division_repartir", "fraccion_pizza", "grafico_barras"].includes(tipo)) return null;
+
+  if (tipo === "ortografia_reglas") {
+    return <VisualizacionOrtografia datos={datos} />;
+  }
+
+  if (tipo === "fraccion_interactiva") {
+    return <InteractiveFractionExplorer datos={datos} />;
+  }
+
+  if (tipo === "fraccion_operaciones_interactiva") {
+    return <InteractiveFractionOperations datos={datos} />;
+  }
+
+  if (tipo === "numeros_naturales_interactivo") {
+    return <NumerosNaturalesInteractivo datos={datos} />;
+  }
+
   if (!tipo || !datos) return null;
 
   if (tipo === "tabla_multiplicar") {
-    const numero = clampNumber(datos.numero, 1, 12);
-    const factor = clampNumber(datos.factor, 1, 12);
+    const numero = Number(datos.numero);
+    const factor = Number(datos.factor);
+    if (![numero, factor].every(n => Number.isInteger(n) && n >= 1 && n <= 12)) return null;
     const total = numero * factor;
 
     return (
       <div className="math-visual">
-        <div className="multiply-grid" style={{ gridTemplateColumns: `repeat(${factor}, 34px)` }}>
+        <div className="multiply-grid" style={{ gridTemplateColumns: `repeat(${factor}, minmax(0, 1fr))`, width: `min(100%, ${factor * 39}px)` }}>
           {Array.from({ length: total }).map((_, index) => (
             <div
               key={index}
               className="multiply-dot"
               style={{ backgroundColor: `hsl(${(index % factor) * (360 / factor)}, 70%, 60%)` }}
             >
-              {numero}
             </div>
           ))}
         </div>
         <p className="math-visual-result">
-          {numero} x {factor} = {total}
+          {numero} x {factor}{mostrarResultado ? ` = ${total}` : ""}
         </p>
       </div>
     );
   }
 
   if (tipo === "division_repartir") {
-    const total = clampNumber(datos.total, 1, 40);
-    const grupos = clampNumber(datos.grupos, 1, 6);
+    const total = Number(datos.total);
+    if (!Number.isInteger(total) || total < 1 || total > 120) return null;
+    const grupos = Number(datos.grupos);
+    if (!Number.isInteger(grupos) || grupos < 1 || grupos > 12) return null;
+    if (!mostrarResultado) return (
+      <div className="math-visual" role="group" aria-label={`${total} para repartir entre ${grupos} grupos`} style={{ width: "min(100%, 560px)", margin: "20px auto", color: "var(--ink, #f8fafc)" }}>
+        <p style={{ fontSize: "1rem", fontWeight: 600 }}>{total} elementos para repartir</p>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", justifyContent: "center", maxWidth: "410px", margin: "12px auto 20px" }} aria-hidden="true">
+          {Array.from({ length: total }, (_, index) => <span key={index} style={{ width: "16px", height: "16px", borderRadius: "50%", background: "#87ceeb", flexShrink: 0 }} />)}
+        </div>
+        <div style={{ display: "grid", width: "100%", gridTemplateColumns: "repeat(auto-fit, minmax(100px, 1fr))", gap: "8px" }}>
+          {Array.from({ length: grupos }, (_, index) => <div key={index} className="division-group" style={{ padding: "12px 8px", border: "1px dashed #a59ec9", borderRadius: "10px", fontSize: "1rem" }}>Grupo {index + 1}</div>)}
+        </div>
+      </div>
+    );
     const porGrupo = Math.floor(total / grupos);
     const colores = ["#ff69b4", "#87ceeb", "#98fb98", "#facc15", "#dda0dd", "#fb923c"];
 
     return (
-      <svg viewBox="0 0 500 400" className="math-visual-svg" role="img" aria-label={`${total} dividido ${grupos}`}>
+      <svg viewBox={`0 0 ${Math.max(500, 150 + porGrupo * 35)} ${Math.max(400, 110 + grupos * 58)}`} className="math-visual-svg" role="img" aria-label={`${total} para repartir entre ${grupos} grupos`}>
         <text x="250" y="30" textAnchor="middle" className="svg-title">
-          {total} / {grupos} = {porGrupo}
+          {total} / {grupos}{mostrarResultado ? ` = ${porGrupo}${total % grupos ? `, resto ${total % grupos}` : ""}` : ""}
         </text>
         {Array.from({ length: grupos }).map((_, grupoIndex) => (
           <g key={grupoIndex}>
             <text x="28" y={80 + grupoIndex * 58} className="svg-label">
               Grupo {grupoIndex + 1}
             </text>
-            {Array.from({ length: porGrupo }).map((_, index) => (
+            {Array.from({ length: mostrarResultado ? porGrupo : 0 }).map((_, index) => (
               <circle
                 key={index}
                 cx={120 + index * 35}
@@ -99,9 +115,9 @@ export default function VisualizacionMatematica({ tipo, datos = {} }) {
                 strokeWidth="2"
               />
             ))}
-            <text x={125 + porGrupo * 35} y={80 + grupoIndex * 58} className="svg-label">
+            {mostrarResultado && <text x={125 + porGrupo * 35} y={80 + grupoIndex * 58} className="svg-label">
               = {porGrupo}
-            </text>
+            </text>}
           </g>
         ))}
       </svg>
@@ -116,6 +132,7 @@ export default function VisualizacionMatematica({ tipo, datos = {} }) {
             <VisualizacionMatematica
               key={`${item.label || "pizza"}-${index}`}
               tipo="fraccion_pizza"
+              mostrarResultado={mostrarResultado}
               datos={{
                 numerador: item.numerador ?? item.pintadas,
                 denominador: item.denominador ?? item.total,
@@ -127,8 +144,9 @@ export default function VisualizacionMatematica({ tipo, datos = {} }) {
       );
     }
 
-    const numerador = clampNumber(datos.numerador ?? datos.pintadas, 0, 12);
-    const denominador = clampNumber(datos.denominador ?? datos.total, 1, 12);
+    const numerador = Number(datos.numerador ?? datos.pintadas);
+    const denominador = Number(datos.denominador ?? datos.total);
+    if (!Number.isInteger(numerador) || !Number.isInteger(denominador) || denominador < 1 || denominador > 12 || numerador < 0 || numerador > denominador) return null;
     const shownNumerator = Math.min(numerador, denominador);
     const anguloPorcion = 360 / denominador;
 
@@ -138,6 +156,7 @@ export default function VisualizacionMatematica({ tipo, datos = {} }) {
         <svg viewBox="0 0 320 320" className="pizza-svg" role="img" aria-label={`${numerador} de ${denominador}`}>
           <circle cx="160" cy="160" r="124" fill="#ffe4b5" stroke="#8b4513" strokeWidth="3" />
           {Array.from({ length: shownNumerator }).map((_, index) => {
+            if (denominador === 1) return <circle key={index} cx="160" cy="160" r="124" fill="#ff6347" stroke="#8b4513" strokeWidth="2" />;
             const startAngle = index * anguloPorcion - 90;
             const endAngle = (index + 1) * anguloPorcion - 90;
             const x1 = 160 + 124 * Math.cos(toRadians(startAngle));
@@ -162,9 +181,9 @@ export default function VisualizacionMatematica({ tipo, datos = {} }) {
             const y = 160 + 124 * Math.sin(toRadians(angle));
             return <line key={index} x1="160" y1="160" x2={x} y2={y} stroke="#8b4513" strokeWidth="2" />;
           })}
-          <text x="160" y="305" textAnchor="middle" className="svg-title">
+          {mostrarResultado && <text x="160" y="305" textAnchor="middle" className="svg-title">
             {numerador}/{denominador}
-          </text>
+          </text>}
         </svg>
       </div>
     );

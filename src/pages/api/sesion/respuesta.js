@@ -1,3 +1,4 @@
+import { validarEvaluacion, huboAyuda } from "@/lib/validacion-pedagogica";
 import { daysUntilExam } from "@/lib/date";
 import {
   CURRICULUM_LENGUA,
@@ -19,7 +20,7 @@ import {
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { loadUser } from "@/lib/usuarios";
 import { requireMethod } from "@/lib/http";
-import { requireAccess, hasAccess } from "@/lib/access";
+import { requireAccess, requireOwnership } from "@/lib/access";
 import { buildAlumnoProfile } from "@/lib/alumno";
 
 import { checkDailyRateLimit } from "@/lib/rateLimit";
@@ -46,11 +47,7 @@ export default async function handler(req, res) {
       "No se pudo obtener la sesion"
     );
 
-    // Validar ownership
-    const isAdmin = hasAccess(req, "admin");
-    if (!isAdmin && sesion.user_id !== user_id) {
-      return res.status(403).json({ error: "No autorizado. La sesión no pertenece a este usuario." });
-    }
+    if (!requireOwnership(req, res, sesion.user_id)) return;
 
     // Validar límite diario de abuso/seguridad para llamadas de IA
     const rateLimit = await checkDailyRateLimit(supabase, sesion.user_id);
@@ -72,7 +69,7 @@ export default async function handler(req, res) {
     const esExamenFinal = sesion.tipo_pregunta === "examen_final";
 
     if (esExamenFinal) {
-      const examen = getExamenFinal(sesion.tema, sesion.capa) || contexto.examen_final;
+      const examen = contexto.examen_final || getExamenFinal(sesion.tema, sesion.capa);
       const resultadoExamen = evaluarExamenFinal(examen, respuesta_usuario);
       const esRevisionDiferida = resultadoExamen.es_correcta === null || resultadoExamen.respuesta === "revision_diferida";
 
@@ -208,14 +205,15 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error, pista_concre
       700
     );
 
-    const evaluacion = parseJsonFromModel(respuestaIa);
+    const evaluacion = validarEvaluacion(parseJsonFromModel(respuestaIa), Boolean(no_visto));
 
     const esNoVisto = Boolean(no_visto);
     const esCorrectaDb = esNoVisto ? null : Boolean(evaluacion.es_correcta);
 
     const updatedIaParametros = {
       ...(sesion.ia_parametros_usados || {}),
-      resuelto_con_ayuda: Boolean(resuelto_con_ayuda),
+      resuelto_con_ayuda: huboAyuda(sesion, resuelto_con_ayuda || no_visto),
+      ayuda_utilizada: huboAyuda(sesion, resuelto_con_ayuda || no_visto),
       no_visto: esNoVisto,
       pista_concreta: evaluacion.pista_concreta || null,
       paso_resuelto: evaluacion.paso_resuelto || null,
@@ -427,7 +425,7 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error, pista_concre
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Error interno del servidor" });
+    res.status(502).json({ error: "No pudimos completar la corrección. Tu texto sigue disponible; probá enviarlo de nuevo." });
   }
 }
 
