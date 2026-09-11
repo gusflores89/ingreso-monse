@@ -44,3 +44,16 @@ Las pruebas no demuestran la calidad de nuevas generaciones reales de IA. Las tr
 ## Siguiente bloque
 
 Completar la seguridad de envíos repetidos y el registro de asistencia, corregir los requisitos de acceso y el dominio reciente; construir el recorrido de partes iguales → fracciones → equivalencias → múltiplos → MCM, con enseñanza antes de cada práctica. Después completar continuidad de misiones y material por lotes. No dar por cerrado un hallazgo pendiente por haber pasado la compilación.
+
+## Publicación verificada
+
+- Código: commit `14e0c86`.
+- Dominio: https://www.ingresomonserrat.online
+- Despliegue final: `dpl_4ognoteARaqXZPPjhhcRBTUBiz2c`, Ready, 11/09/2026 20:25 ART.
+- URL versionada: https://ingreso-monse-2027-1cstxr64q-gustavos-projects-b8e409fb.vercel.app
+- Base anterior a R1 para volver si fuera necesario: `dpl_DnQsaJuyUKAAbHmrsZDS5KwzCYRd` (no ejecutar una reversión sin decidirlo).
+- Dominio comprobado con `vercel inspect`: apunta al despliegue final.
+- Doce casos de interfaz en el dominio público aprobados: seis de R1 y seis del recorrido H. Las API fueron interceptadas con datos ficticios; el HTML, JavaScript, CSS y PDF fueron descargados del sitio real. No se usó la cuenta de Abril.
+- HTTP real: inicio, tutoría y PDF H responden 200; ayuda y corrección sin credenciales responden 401.
+- SHA256 del PDF H: `1e1a87aff08b14106bc685a0f6a25dc658d05262bd1435332aa41556863dabd8`.
+- Evidencias: `C:\Users\gusta\.codex\visualizations\2026\09\09\01a086d6-a934-77a3-9a28-75f27a213064\implementacion-r1` (respaldo, scripts, capturas y resultados JSON).
