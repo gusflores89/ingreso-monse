@@ -41,3 +41,12 @@ Repaso espaciado por tiempo; ampliar contenido revisado de Lengua y del resto de
 Referencia anterior: código R3 `9121016`, documentación `1b21625`, despliegue `dpl_D3BF1ZPdu8t19nobfQQfGSTQ1y6p`.
 
 Evidencias: `C:\Users\gusta\.codex\visualizations\2026\09\09\01a086d6-a934-77a3-9a28-75f27a213064\implementacion-r4`.
+
+## Estado de publicación
+
+- Código implementado y probado: commit `0971511`.
+- Compilación final local correcta; capturas revisadas tras mejorar el contraste del aviso de conexión.
+- La revisión automática de permisos rechazó `vercel deploy --prod --yes`: exige autorización explícita para enviar el código privado a Vercel y modificar producción.
+- Se solicitó esa autorización. R4 todavía no está publicado; no se intentó eludir el bloqueo.
+- Última versión publicada conocida: R3, despliegue `dpl_D3BF1ZPdu8t19nobfQQfGSTQ1y6p`.
+- Después de obtener autorización: publicar este commit, verificar el alias del dominio y repetir las cuatro pruebas de recuperación y las ocho de continuidad sobre la interfaz pública con API sintéticas.
