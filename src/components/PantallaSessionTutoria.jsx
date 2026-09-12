@@ -1,6 +1,7 @@
+import { crearSincronizador } from "@/lib/sincronizacion-mision";
 import RepasoSugerido from "./RepasoSugerido";
 import { accesoTema } from "@/lib/acceso-temas";
-import { fetchRegistrado, leerEnvioPendiente } from "@/lib/envios-cliente";
+import { fetchRegistrado, leerEnvioPendiente, restaurarEnvioPendiente } from "@/lib/envios-cliente";
 import { TEMAS_BASES, VERSION_BASES } from "@/lib/metadatos-bases";
 import { puedeRetomarMision } from "@/lib/continuidad-mision";
 import BarrasFraccion from "./BarrasFraccion";
@@ -37,7 +38,18 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
   const [respuestasExamen, setRespuestasExamen] = useState({});
   const startTime = useRef(Date.now());
   const enviandoRef = useRef(false);
-  const enviarRegistrado = (url, options) => fetchRegistrado(url, options, user_id);
+  const sincronizador = useRef(null);
+  const [estadoSync,setEstadoSync] = useState("cargando");
+  const enviarRegistrado = async (url,options) => {
+    const result = await fetchRegistrado(url,options,user_id,localStorage,fetch,async (payload,canal)=>{
+      if(canal==='respuesta') {
+        if(!saveMissionState({envioPendiente:payload}))throw Error('No se pudo guardar el envío.');
+        if(sincronizador.current && !await sincronizador.current.flush())throw Error('No pudimos sincronizar el envío. Conservamos tu respuesta; reintentá antes de cambiar de navegador.');
+      }
+    });
+    if(result.ok && !url.endsWith('/ayuda'))saveMissionState({envioPendiente:null});
+    return result;
+  };
 
   const [userProgress, setUserProgress] = useState([]);
   const [completedExams, setCompletedExams] = useState(new Set());
@@ -79,6 +91,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
   const saveMissionState = (updates = {}) => {
     if (typeof window === "undefined") return;
     try {
+      if(sincronizador.current && !sincronizador.current.puedeEditar()){setEstadoSync("conflicto");return null;}
       let base = {};
       const savedRaw = localStorage.getItem(getStorageKey());
       if (savedRaw) {
@@ -127,6 +140,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         forzar_practica: currentForzarPractica,
       };
       localStorage.setItem(getStorageKey(), JSON.stringify(current));
+      sincronizador.current?.programar();
       return current;
     } catch (e) {
       console.error("Error al guardar misión:", e);
@@ -190,20 +204,30 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
     });
   };
 
-  const handleGuardarYSalir = () => {
+  const handleGuardarYSalir = async () => {
     const guardado = saveMissionState({
       borrador: respuesta,
       respuesta,
       respuestasExamen,
     });
-    if (guardado) window.location.href = "/";
+    if (guardado && (!sincronizador.current || await sincronizador.current.flush())) window.location.href = "/";
   };
 
   useEffect(() => {
+    let activo=true;
+    let sync;
+    try {sync=crearSincronizador({usuario:user_id,storage:localStorage,fetcher:fetch,onStatus:estado=>{if(activo)setEstadoSync(estado);}});}
+    catch {setError("No pudimos acceder al guardado de esta computadora. Revisá el almacenamiento del navegador.");setEstadoSync("error");setLoading(false);return;}
+    sincronizador.current=sync;
+    const alOcultar=()=>{if(document.visibilityState==='hidden')sync.flush();};
+    document.addEventListener('visibilitychange',alOcultar);
     const init = async () => {
       setLoading(true);
       setError("");
 
+      if(!await sync.iniciar()){if(activo)setLoading(false);return;}
+      if(!activo)return;
+      // La copia remota se carga antes de decidir si hace falta generar otra actividad.
       // 1. Intentar restaurar sesión guardada completa de hoy en Argentina
       let savedTema = null;
       if (typeof window !== "undefined") {
@@ -230,6 +254,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
               if (typeof saved.pasoActual === "number") setPasoActual(saved.pasoActual);
               if (saved.borrador || saved.respuesta) setRespuesta(saved.borrador || saved.respuesta);
               if (saved.respuestasExamen) setRespuestasExamen(saved.respuestasExamen);
+              if(saved.envioPendiente)restaurarEnvioPendiente(localStorage,user_id,saved.envioPendiente);
               const pendiente = leerEnvioPendiente(localStorage, user_id, saved.sesionId);
               if (pendiente && !saved.evaluacion) {
                 if (saved.pregunta?.tipo === 'examen_final') {
@@ -340,6 +365,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
     };
 
     init();
+    return ()=>{activo=false;sync.detener();document.removeEventListener("visibilitychange",alOcultar);};
   }, [user_id, tema, capa, modo]);
 
   useEffect(() => {
@@ -882,6 +908,8 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
 
   const deckTeoria = useMemo(() => getDiapositivasParaTema(activeTema), [activeTema]);
 
+  if(estadoSync === "conflicto")return <section className="tutoria-panel" role="alert" style={{background:"#171427",padding:24,color:"#f8fafc"}}><h2 style={{color:"#f8fafc"}}>Hay otro avance guardado</h2><p style={{color:"#e2e8f0",lineHeight:1.6}}>Esta misión se abrió en otro navegador o pestaña. Conservamos tu copia local y frenamos la sincronización para no sobrescribir el avance más reciente.</p><button type="button" onClick={async()=>{if(await sincronizador.current.cargarRemoto())window.location.reload();}}>Cargar el avance más reciente</button></section>;
+
   return (
     <section
       className={`tutoria-panel background-decorative theme-${theme} ${pregunta?.contenido_version === VERSION_BASES ? "bases-panel" : ""}`}
@@ -896,6 +924,10 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         "--decorative-b": tintColor(tutor.color, 94),
       }}
     >
+      <div role="status" style={{fontSize:13,padding:"8px 12px",borderRadius:8,background:"#1e293b",color:"#f8fafc",width:"fit-content"}}>
+        {estadoSync === "guardado" ? "☁️ Avance sincronizado" : estadoSync === "local" ? "💾 Guardado en esta computadora" : estadoSync === "pendiente" ? "Guardando el avance…" : estadoSync === "cargando" ? "Buscando tu misión guardada…" : "No pudimos sincronizar. Conservamos la copia de esta computadora."}
+        {estadoSync === "error" && <button type="button" onClick={async()=>{if(!sincronizador.current || await sincronizador.current.iniciar())window.location.reload();}}>Reintentar sincronización</button>}
+      </div>
       <header className="session-header student-session-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
         <TutorHeader tutor={tutor} />
         <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>

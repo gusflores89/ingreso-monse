@@ -9,7 +9,7 @@ export function leerEnvioPendiente(storage, usuario, sesion) {
   const saved=JSON.parse(raw);
   return saved.confirmado ? null : saved.payload;
 }
-export async function fetchRegistrado(url, options, usuario, storage=localStorage, fetcher=fetch) {
+export async function fetchRegistrado(url, options, usuario, storage=localStorage, fetcher=fetch, antesDeEnviar=null) {
   const payload=JSON.parse(options.body), canal=url.endsWith('/ayuda')?'ayuda':'respuesta';
   const key=clave(usuario,payload.sesion_id,canal);
   const huella=JSON.stringify([payload.respuesta_usuario || '',Boolean(payload.no_visto),Boolean(payload.resuelto_con_ayuda)]);
@@ -22,6 +22,7 @@ export async function fetchRegistrado(url, options, usuario, storage=localStorag
   }
   // Save before sending. A reload or lost HTTP response must reuse the same ID.
   guardar(storage,key,record);
+  if(antesDeEnviar)await antesDeEnviar(record.payload,canal);
   let response;
   try { response=await fetcher(url,{...options,body:JSON.stringify(record.payload)}); }
   catch { throw new Error('Se cortó la conexión. Tu respuesta quedó guardada; volvé a enviarla.'); }
@@ -30,4 +31,10 @@ export async function fetchRegistrado(url, options, usuario, storage=localStorag
     guardar(storage,key,{...record,confirmado:true,recibo});
   }
   return response;
+}
+
+export function restaurarEnvioPendiente(storage,usuario,payload) {
+  if(!payload?.sesion_id || !payload.envio_id)return;
+  const huella=JSON.stringify([payload.respuesta_usuario || '',Boolean(payload.no_visto),Boolean(payload.resuelto_con_ayuda)]);
+  guardar(storage,clave(usuario,payload.sesion_id,'respuesta'),{huella,payload,confirmado:false});
 }
