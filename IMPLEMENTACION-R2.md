@@ -39,3 +39,15 @@ Este es el primer bloque de R2, no el cierre completo del plan. Los demás objet
 Quedan la idempotencia atómica de envíos, el historial de cada intento y ayuda, repaso espaciado por tiempo, unificación de todos los requisitos del mapa y del panel, ampliación a fracción de cantidad, multiplicación/división de fracciones, divisores/MCD y otras unidades, cola de revisión familiar, simulacros y rachas.
 
 No hubo migraciones ni eliminación de historia. El bloque anterior está en el commit `ffa9749` y el despliegue `dpl_4ognoteARaqXZPPjhhcRBTUBiz2c`.
+
+## Publicación comprobada
+
+- Commit de implementación: `b1361e7`.
+- Dominio: https://www.ingresomonserrat.online
+- Despliegue: `dpl_6vQMzLQebdUgrMwuGV6ET2wuPHKc`, Ready, 11/09/2026 21:25 ART.
+- URL versionada: https://ingreso-monse-2027-g5m918rsn-gustavos-projects-b8e409fb.vercel.app
+- Catorce comprobaciones de navegador en el dominio público aprobadas: ocho R2 y seis de regresión de H. Se descargaron los archivos reales de la interfaz, interceptando las API con controladores y datos de prueba. No se accedió al progreso real de Abril.
+- Los tres PDFs nuevos devuelven HTTP 200 y sus bytes coinciden con los archivos locales revisados.
+- Evidencias y capturas: `C:\Users\gusta\.codex\visualizations\2026\09\09\01a086d6-a934-77a3-9a28-75f27a213064\implementacion-r2`.
+
+Para usarlo: recargar la tutoría y pulsar «Aprender fracciones». La entrada ofrece la explicación del primer objetivo pendiente del bloque. No se requiere resetear ni borrar el historial de Abril.
