@@ -1,3 +1,4 @@
+import { iniciarEnvio, guardarPasoEnvio, completarEnvio, liberarEnvio } from "@/lib/registro-envios";
 import { evaluarActividadBase } from "@/lib/contenido-bases";
 import { validarEvaluacion, huboAyuda } from "@/lib/validacion-pedagogica";
 import { daysUntilExam } from "@/lib/date";
@@ -40,21 +41,27 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Respuesta inválida o demasiado larga" });
   }
 
+  let supabase, envio;
   try {
-    const supabase = getSupabaseAdmin();
+    supabase = getSupabaseAdmin();
 
-    const sesion = assertSupabaseOk(
+    let sesion = assertSupabaseOk(
       await supabase.from("sesiones").select("*").eq("id", sesion_id).single(),
       "No se pudo obtener la sesion"
     );
 
     if (!requireOwnership(req, res, sesion.user_id)) return;
 
-    // Validar límite diario de abuso/seguridad para llamadas de IA
+    envio = await iniciarEnvio(supabase, sesion_id, req.body);
+    if (envio.salida) return res.status(200).json(envio.salida);
+    // Replaying a saved receipt never starts a new correction or consumes its limit.
     const rateLimit = await checkDailyRateLimit(supabase, sesion.user_id);
-    if (!rateLimit.ok) {
-      return res.status(429).json({ error: rateLimit.error });
-    }
+    if (!rateLimit.ok) throw Object.assign(new Error(rateLimit.error), {status:429});
+    sesion = envio.sesion;
+    const responder = async (salida) => {
+      await completarEnvio(supabase, sesion_id, envio, salida);
+      return res.status(200).json(salida);
+    };
 
     const contexto = sesion.contexto_json || {
       tema: sesion.tema,
@@ -80,10 +87,7 @@ export default async function handler(req, res) {
           ? `Examen final aprobado con ${resultadoExamen.puntaje}%. Ahora cambiamos de materia para entrenar de forma equilibrada.`
           : `Todavia no aprobaste el examen final. Puntaje: ${resultadoExamen.puntaje}%. Vamos a reforzar este tema antes de cambiar.`;
 
-      assertSupabaseOk(
-        await supabase
-          .from("sesiones")
-          .update({
+      await guardarPasoEnvio(supabase, sesion_id, envio, {
             respuesta_usuario,
             tiempo_segundos: Number(tiempo_segundos) || null,
             es_correcta: resultadoExamen.es_correcta,
@@ -100,10 +104,7 @@ export default async function handler(req, res) {
                 detalle: resultadoExamen.detalle,
               },
             },
-          })
-          .eq("id", sesion_id),
-        "No se pudo guardar la evaluacion del examen final"
-      );
+          });
 
       const progreso = await refreshTopicProgress(supabase, sesion.user_id, sesion.tema, sesion.capa);
       const proximoTema = (resultadoExamen.es_correcta || esRevisionDiferida)
@@ -122,16 +123,10 @@ export default async function handler(req, res) {
         alerta: null,
       };
 
-      assertSupabaseOk(
-        await supabase
-          .from("sesiones")
-          .update({
+      await guardarPasoEnvio(supabase, sesion_id, envio, {
             proximo_tema_recomendado: decision.proximo_tema,
             proxima_capa_recomendada: decision.proxima_capa,
-          })
-          .eq("id", sesion_id),
-        "No se pudo guardar la decision del examen final"
-      );
+          });
 
       const activeSuggested = usuario.rasgos_especiales?.tema_sugerido;
       if (activeSuggested && !activeSuggested.completado && activeSuggested.tema === sesion.tema && resultadoExamen.es_correcta) {
@@ -152,7 +147,7 @@ export default async function handler(req, res) {
           .eq("id", sesion.user_id);
       }
 
-      return res.status(200).json({
+      return await responder({
         es_correcta: resultadoExamen.es_correcta,
         revision_pendiente: esRevisionDiferida,
         retroalimentacion,
@@ -200,14 +195,16 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error, pista_concre
       : `Pregunta: ${sesion.pregunta_generada}\nRespuesta de ${alumno.nombre}: <respuesta_alumno>${respuesta_usuario}</respuesta_alumno>\n\nEvalua y retroalimenta. Devuelve solo JSON valido.`;
 
     const evaluacionBase = evaluarActividadBase(sesion, respuesta_usuario, Boolean(no_visto));
-    const respuestaIa = evaluacionBase ? null : await callOpenRouter(
+    const respuestaIa = (envio.evaluacion || evaluacionBase) ? null : await callOpenRouter(
       MODEL_TUTOR,
       evaluacionPrompt,
       promptUserText,
-      700
+      700,
+      { timeout: 60_000, maxRetries: 0 }
     );
 
-    const evaluacion = validarEvaluacion(evaluacionBase || parseJsonFromModel(respuestaIa), Boolean(no_visto));
+    const evaluacion = validarEvaluacion(envio.evaluacion || evaluacionBase || parseJsonFromModel(respuestaIa), Boolean(no_visto));
+    envio.evaluacion = evaluacion;
 
     const esNoVisto = Boolean(no_visto);
     const esCorrectaDb = esNoVisto ? null : Boolean(evaluacion.es_correcta);
@@ -223,20 +220,14 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error, pista_concre
     };
     sesion.ia_parametros_usados = updatedIaParametros;
 
-    assertSupabaseOk(
-      await supabase
-        .from("sesiones")
-        .update({
+    await guardarPasoEnvio(supabase, sesion_id, envio, {
           respuesta_usuario,
           tiempo_segundos: Number(tiempo_segundos) || null,
           es_correcta: esCorrectaDb,
           retroalimentacion_ia: evaluacion.retroalimentacion,
           razon_evaluacion: evaluacion.razon_error || null,
           ia_parametros_usados: updatedIaParametros,
-        })
-        .eq("id", sesion_id),
-      "No se pudo guardar la evaluacion"
-    );
+        });
 
     if (esLeccion && evaluacion.es_correcta) {
       const leccionResult = await supabase.from("lecciones_completadas").upsert(
@@ -365,10 +356,7 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error, pista_concre
       }
     }
 
-    assertSupabaseOk(
-      await supabase
-        .from("sesiones")
-        .update({
+    await guardarPasoEnvio(supabase, sesion_id, envio, {
           proximo_tema_recomendado: decision.proximo_tema,
           proxima_capa_recomendada: decision.proxima_capa,
           ia_parametros_usados: {
@@ -380,10 +368,7 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error, pista_concre
               decision,
             },
           },
-        })
-        .eq("id", sesion_id),
-      "No se pudo guardar la decision"
-    );
+        });
 
     const alerta = await maybeCreateAlert(supabase, sesion.user_id, decision.alerta);
 
@@ -406,7 +391,7 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error, pista_concre
         .eq("id", sesion.user_id);
     }
 
-    res.status(200).json({
+    return await responder({
       es_correcta: esCorrectaDb,
       no_visto: esNoVisto,
       retroalimentacion: evaluacion.retroalimentacion,
@@ -426,6 +411,8 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error, pista_concre
       },
     });
   } catch (error) {
+    if (envio && !envio.salida) { try { await liberarEnvio(supabase, sesion_id, envio); } catch {} }
+    if (error.status) return res.status(error.status).json({error:error.message});
     console.error(error);
     res.status(502).json({ error: "No pudimos completar la corrección. Tu texto sigue disponible; probá enviarlo de nuevo." });
   }

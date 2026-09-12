@@ -1,3 +1,4 @@
+import { fetchRegistrado, leerEnvioPendiente } from "@/lib/envios-cliente";
 import { TEMAS_BASES, VERSION_BASES } from "@/lib/metadatos-bases";
 import { puedeRetomarMision } from "@/lib/continuidad-mision";
 import BarrasFraccion from "./BarrasFraccion";
@@ -34,6 +35,8 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
   const [pasoActual, setPasoActual] = useState(0);
   const [respuestasExamen, setRespuestasExamen] = useState({});
   const startTime = useRef(Date.now());
+  const enviandoRef = useRef(false);
+  const enviarRegistrado = (url, options) => fetchRegistrado(url, options, user_id);
 
   const [userProgress, setUserProgress] = useState([]);
   const [completedExams, setCompletedExams] = useState(new Set());
@@ -226,6 +229,12 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
               if (typeof saved.pasoActual === "number") setPasoActual(saved.pasoActual);
               if (saved.borrador || saved.respuesta) setRespuesta(saved.borrador || saved.respuesta);
               if (saved.respuestasExamen) setRespuestasExamen(saved.respuestasExamen);
+              const pendiente = leerEnvioPendiente(localStorage, user_id, saved.sesionId);
+              if (pendiente && !saved.evaluacion) {
+                if (saved.pregunta?.tipo === 'examen_final') {
+                  try { setRespuestasExamen(JSON.parse(pendiente.respuesta_usuario)); } catch {}
+                } else if (!pendiente.no_visto) setRespuesta(pendiente.respuesta_usuario);
+              }
               if (typeof saved.desafios === "number") setDesafiosCompletadosMision(saved.desafios);
               const starsToRestore = Math.max(starsFromStorage, typeof saved.estrellas === "number" ? saved.estrellas : 0);
               setEstrellasAcumuladas(starsToRestore);
@@ -358,12 +367,13 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
   }, [showTopicModal, user_id]);
 
   const handleSubmit = async () => {
-    if (!respuesta.trim() || !sesionId) return;
+    if (!respuesta.trim() || !sesionId || enviandoRef.current) return;
+    enviandoRef.current = true;
     setLoading(true);
     setError("");
 
     try {
-      const res = await fetch("/api/sesion/respuesta", {
+      const res = await enviarRegistrado("/api/sesion/respuesta", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -393,17 +403,18 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
     } catch (err) {
       setError(err.message);
     } finally {
-      setLoading(false);
+      enviandoRef.current = false; setLoading(false);
     }
   };
 
   const abrirTeoria = async () => {
-    if (loading) return;
+    if (loading || enviandoRef.current) return;
+    enviandoRef.current = true;
     setLoading(true);
     setError("");
     try {
       if (sesionId && !evaluacion) {
-        const res = await fetch("/api/sesion/ayuda", {
+        const res = await enviarRegistrado("/api/sesion/ayuda", {
           method: "POST", headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ sesion_id: sesionId }),
         });
@@ -411,16 +422,17 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       }
       setHelpTab("slides"); setCurrentSlideIndex(0); setShowHelpModal(true);
     } catch (err) { setError(err.message); }
-    finally { setLoading(false); }
+    finally { enviandoRef.current = false; setLoading(false); }
   };
 
   const handleNoVisto = async () => {
-    if (!sesionId) return;
+    if (!sesionId || enviandoRef.current) return;
+    enviandoRef.current = true;
     setLoading(true);
     setError("");
 
     try {
-      const res = await fetch("/api/sesion/respuesta", {
+      const res = await enviarRegistrado("/api/sesion/respuesta", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -444,7 +456,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
     } catch (err) {
       setError(err.message);
     } finally {
-      setLoading(false);
+      enviandoRef.current = false; setLoading(false);
     }
   };
 
@@ -455,13 +467,14 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       ? pregunta.preguntas.every((item) => String(respuestaPayload[item.id] || "").trim())
       : respuesta.trim();
 
-    if (!hayRespuesta || !sesionId) return;
+    if (!hayRespuesta || !sesionId || enviandoRef.current) return;
+    enviandoRef.current = true;
 
     setLoading(true);
     setError("");
 
     try {
-      const res = await fetch("/api/sesion/respuesta", {
+      const res = await enviarRegistrado("/api/sesion/respuesta", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -482,7 +495,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
     } catch (err) {
       setError(err.message);
     } finally {
-      setLoading(false);
+      enviandoRef.current = false; setLoading(false);
     }
   };
 
@@ -1009,7 +1022,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
 
       {!evaluacion && <BarrasFraccion barras={pregunta?.tipo === 'leccion' ? (pasoActual === 0 ? pregunta.visual_apoyo : pasoActualData?.contenido?.visual) : pregunta?.visual_apoyo} />}
       {loading && <p className="status">{tutor.nombre} esta pensando...</p>}
-      {error && <p className="error">{error}</p>}
+      {error && <p className="error" role="alert" style={{ color: "#fecaca" }}>{error}</p>}
 
       {!evaluacion && !misionTerminada && (pregunta?.examen_pendiente || pregunta?.examen_disponible) && pregunta?.tipo !== "leccion" && pregunta?.tipo !== "examen_final" && (
         <div style={{
@@ -1279,7 +1292,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                     fontWeight: "600"
                   }}
                 >
-                  Tip: {parseInlineMarkdown(pasoActualData.contenido.pista || "Recorda: primero mira que queda, despues resolve con ese resto.")}
+                  Tip: {parseInlineMarkdown(pasoActualData.contenido.pista || pregunta.concepto_clave_repetir || "Volvé a mirar el ejemplo y comparalo con este reto.")}
                 </div>
               </div>
             )}

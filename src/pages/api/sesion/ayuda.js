@@ -1,3 +1,4 @@
+import { registrarAyuda } from "@/lib/registro-envios";
 
 import { requireAccess, requireOwnership } from "@/lib/access";
 import { requireMethod } from "@/lib/http";
@@ -11,7 +12,7 @@ export default async function handler(req, res) {
     const db = getSupabaseAdmin();
     const sesion = assertSupabaseOk(await db.from("sesiones").select("user_id, ia_parametros_usados").eq("id", id).single(), "No se encontró la actividad");
     if (!requireOwnership(req, res, sesion.user_id)) return;
-    assertSupabaseOk(await db.from("sesiones").update({ ia_parametros_usados: { ...sesion.ia_parametros_usados, ayuda_utilizada: true, resuelto_con_ayuda: true } }).eq("id", id), "No se pudo registrar la ayuda");
-    return res.status(200).json({ ok: true });
-  } catch { return res.status(500).json({ error: "No se pudo abrir la ayuda. Probá de nuevo." }); }
+    const resultado = await registrarAyuda(db, id, req.body);
+    return res.status(200).json(resultado);
+  } catch (error) { if(error.status) return res.status(error.status).json({error:error.message}); return res.status(500).json({ error: "No se pudo abrir la ayuda. Probá de nuevo." }); }
 }

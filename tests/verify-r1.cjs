@@ -8,6 +8,8 @@ const read = p => fs.readFileSync(path.join(root,p),'utf8');
 const hashes = {};
 function source(p) { const s=read(p); hashes[p]=crypto.createHash('sha256').update(s).digest('hex'); return s; }
 function load(p, names, deps={}) {
+ if(p==='src/lib/registro-envios.js')deps={createHash:crypto.createHash,randomUUID:crypto.randomUUID,...deps};
+ if(['src/pages/api/sesion/respuesta.js','src/pages/api/sesion/ayuda.js'].includes(p))deps={...load('src/lib/registro-envios.js',['iniciarEnvio','guardarPasoEnvio','completarEnvio','liberarEnvio','registrarAyuda']),...deps};
  if (p==='src/lib/apuntes-bases.js')deps={...load('src/lib/metadatos-bases.js',['VERSION_BASES']),...deps};
  if (p==='src/lib/diapositivas.js')deps={...load('src/lib/apuntes-bases.js',['getFichaBase']),...deps};
  if (['src/lib/objetivos-pedagogicos.js','src/pages/api/sesion/init.js','src/pages/api/sesion/respuesta.js'].includes(p))deps={...load('src/lib/contenido-bases.js',['TEMAS_BASES','VERSION_BASES','getUnidadBase','crearActividadBase','evaluarActividadBase']),...deps};
@@ -23,8 +25,8 @@ function db(initial={}) {
  return {tables,writes,from(table){
   tables[table]??=[]; let filters=[],sort=null,n=Infinity,op=null,payload=null,conflict=null;
   const q={
-   select(){return q},eq(k,v){filters.push(r=>r[k]===v);return q},neq(k,v){filters.push(r=>r[k]!==v);return q},
-   not(k,op,v){assert.equal(op,'is');filters.push(r=>r[k]!==v);return q},is(k,v){filters.push(r=>r[k]===v);return q},
+   select(){return q},eq(k,v){filters.push(r=>(k.includes('->>') ? (r[k.split('->>')[0]]?.[k.split('->>')[1]] ?? null) : r[k])===v);return q},neq(k,v){filters.push(r=>r[k]!==v);return q},
+   not(k,op,v){assert.equal(op,'is');filters.push(r=>r[k]!==v);return q},is(k,v){filters.push(r=>(k.includes('->>') ? (r[k.split('->>')[0]]?.[k.split('->>')[1]] ?? null) : r[k])===v);return q},
    in(k,vs){filters.push(r=>vs.includes(r[k]));return q},order(k,{ascending}){sort={k,ascending};return q},limit(v){n=v;return q},
    update(v){op='update';payload=v;return q},insert(v){op='insert';payload=v;return q},
    upsert(v,opts={}){op='upsert';payload=v;conflict=opts.onConflict;return q},
@@ -80,7 +82,7 @@ async function check(name,fn){try{await fn();results.push({name,ok:true})}catch(
   const validation=load('src/lib/validacion-pedagogica.js',['validarEvaluacion','huboAyuda']);let status;
   const h=load('src/pages/api/sesion/respuesta.js',['handler'],{...validation,requireMethod:()=>true,requireAccess:()=>true,requireOwnership:()=>true,getSupabaseAdmin:()=>database,assertSupabaseOk:r=>r.data,checkDailyRateLimit:async()=>({ok:true}),loadUser:async()=>({data:{nombre:'Prueba'}}),buildAlumnoProfile:u=>u,buildPromptMonse:()=>'',MODEL_TUTOR:'mock',callOpenRouter:async()=>JSON.stringify({es_correcta:'false',retroalimentacion:'x'}),parseJsonFromModel:JSON.parse,console:{error(){}}});
   await h.handler({body:{sesion_id:'local',respuesta_usuario:'mi texto'}},{status(v){status=v;return this},json(){}});
-  assert.equal(status,502);assert.equal(database.writes.length,0);assert.equal(database.tables.sesiones[0].es_correcta,null);
+  assert.equal(status,502);assert(database.writes.every(w=>!Object.hasOwn(w.payload,'es_correcta')));assert.equal(database.tables.sesiones[0].es_correcta,null);
  });
  await check('API: abrir ayuda y luego acertar conserva asistencia en servidor',async()=>{
   const database=db({sesiones:[{id:'local',user_id:'student-a',tema:'fracciones_concepto',capa:1,es_correcta:null,tipo_pregunta:'multiple',ia_parametros_usados:{objetivo_id:'partes'}}]});

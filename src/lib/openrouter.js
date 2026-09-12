@@ -21,7 +21,7 @@ export function createOpenRouterClient() {
   return openrouter;
 }
 
-export async function callOpenRouter(modelName, systemPrompt, userMessage, maxTokens = 1024) {
+export async function callOpenRouter(modelName, systemPrompt, userMessage, maxTokens = 1024, requestOptions = {}) {
   const client = createOpenRouterClient();
 
   const response = await client.chat.completions.create({
@@ -32,7 +32,7 @@ export async function callOpenRouter(modelName, systemPrompt, userMessage, maxTo
     ],
     max_tokens: maxTokens,
     temperature: 0.7,
-  });
+  }, requestOptions);
 
   const text = response.choices?.[0]?.message?.content;
   if (!text) {

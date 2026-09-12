@@ -1326,6 +1326,12 @@ export function determinarProximoObjetivo(tema = "", sesiones = []) {
     const evidencias = new Set(); let fallosSeguidos = 0;
     const historial = sesiones.filter(s => s.tema === tema && s.ia_parametros_usados?.objetivo_id === obj.id)
       .filter(s => !base || s.ia_parametros_usados?.contenido_version === VERSION_BASES)
+      .flatMap(s => {
+        const intentos = (s.ia_parametros_usados?.eventos_pedagogicos || []).filter(e=>e.evaluado_el && Object.hasOwn(e,'es_correcta'));
+        if (!intentos.length) return [s];
+        return intentos.map(e=>({...s,es_correcta:e.es_correcta,created_at:e.evaluado_el,
+          ia_parametros_usados:{...s.ia_parametros_usados,resuelto_con_ayuda:Boolean(e.con_ayuda),ayuda_utilizada:Boolean(e.con_ayuda),no_visto:e.tipo==='no_visto'}}));
+      })
       .sort((a,b) => String(a.created_at || '').localeCompare(String(b.created_at || '')));
     for (const s of historial) {
       const p = s.ia_parametros_usados || {};
