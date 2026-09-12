@@ -1,6 +1,13 @@
 # R7 — Recorrido familiar y devoluciones de escritura
 
-Estado: implementación y verificación local completas; publicación pendiente.
+Estado: publicado y verificado en https://www.ingresomonserrat.online el 12/09/2026.
+
+- Commit de implementación: `484e7f0`.
+- Despliegue: `dpl_3dzg518XugJzDFkTch1rL3KBEm2q`, creado a las 15:44 ART, estado Ready.
+- URL de versión: https://ingreso-monse-2027-gp6zpzpio-gustavos-projects-b8e409fb.vercel.app
+- Las 11 comprobaciones de navegador también pasan sobre la interfaz publicada, usando controladores reales con datos sintéticos. No es una verificación completa contra Supabase de producción.
+- Las dos rutas familiares reales devuelven HTTP 401 sin sesión y `Cache-Control: private, no-store`.
+- El servidor local de verificación quedó detenido.
 
 ## Problema y resultado
 
