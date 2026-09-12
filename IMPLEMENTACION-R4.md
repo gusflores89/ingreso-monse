@@ -42,11 +42,14 @@ Referencia anterior: código R3 `9121016`, documentación `1b21625`, despliegue 
 
 Evidencias: `C:\Users\gusta\.codex\visualizations\2026\09\09\01a086d6-a934-77a3-9a28-75f27a213064\implementacion-r4`.
 
-## Estado de publicación
+## Publicación comprobada
 
-- Código implementado y probado: commit `0971511`.
-- Compilación final local correcta; capturas revisadas tras mejorar el contraste del aviso de conexión.
-- La revisión automática de permisos rechazó `vercel deploy --prod --yes`: exige autorización explícita para enviar el código privado a Vercel y modificar producción.
-- Se solicitó esa autorización. R4 todavía no está publicado; no se intentó eludir el bloqueo.
-- Última versión publicada conocida: R3, despliegue `dpl_D3BF1ZPdu8t19nobfQQfGSTQ1y6p`.
-- Después de obtener autorización: publicar este commit, verificar el alias del dominio y repetir las cuatro pruebas de recuperación y las ocho de continuidad sobre la interfaz pública con API sintéticas.
+- Autorización explícita del usuario para publicar en Vercel recibida el 12/09/2026.
+- Código implementado y probado: commit `0971511`; estado del repositorio desplegado: `c05e6b4`.
+- Dominio: https://www.ingresomonserrat.online
+- Despliegue: `dpl_3KnTWEo5jJnZxEEPnQ6vF2R4yqjc`, Ready, 12/09/2026 00:09 ART.
+- URL versionada: https://ingreso-monse-2027-mltpp7ar2-gustavos-projects-b8e409fb.vercel.app
+- Compilación de producción en Vercel correcta; alias del dominio verificado.
+- Cuatro pruebas de recuperación y ocho de continuidad aprobadas sobre la interfaz pública, con los controladores reales y datos sintéticos. Sin errores de ejecución en el navegador.
+- Las pruebas públicas interceptaron las API; no modificaron el progreso de Abril ni ejercitaron la base de producción. La concurrencia real de Supabase se verificó por separado con datos temporales, como se describe arriba.
+- Para obtener el nuevo protocolo de envíos, recargar la tutoría. No se requiere reiniciar el progreso.
