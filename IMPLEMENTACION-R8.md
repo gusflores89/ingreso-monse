@@ -1,6 +1,6 @@
 # R8 — Continuidad de misión entre navegadores
 
-Estado: código publicado en https://www.ingresomonserrat.online el 12/09/2026. La sincronización real requiere aplicar la migración 008 en Supabase y verificarla allí. No está activada todavía.
+Estado: sincronización activada y verificada en https://www.ingresomonserrat.online el 12/09/2026, después de que Gustavo aplicara la migración 008 en Supabase. Las pruebas reales de base de datos y del recorrido entre dos navegadores pasaron. No fue necesario otro despliegue.
 
 - Commit de implementación: `0497999`.
 - Despliegue: `dpl_BFw2AGxPgzHie6U9hjj7D6zQEaJT`, creado a las 17:19 ART, estado Ready.
@@ -25,15 +25,18 @@ La misión, el borrador y las estrellas estaban únicamente en localStorage. Est
 - Si la tabla todavía no existe, el servidor informa que la función no está disponible y la interfaz sigue usando el guardado local con un rótulo explícito. Un fallo de consulta remota distinto de tabla ausente pide reintentar antes de iniciar otra actividad, para no pisar una misión desconocida.
 - No se garantiza completar un guardado remoto al cerrar abruptamente el navegador. La copia local y la operación pendiente permiten reintentar desde esa computadora; para cambiar de dispositivo conviene esperar «Avance sincronizado» o usar «Guardar y salir».
 
-## Activación pendiente
+## Activación verificada
 
-La consulta de estructura de Supabase devolvió `PGRST205` para `continuidad_misiones`, con cero registros leídos. El entorno dispone de la clave de servidor de la aplicación, pero no de conexión PostgreSQL administrativa ni token de administración de Supabase para ejecutar DDL.
+La migración `supabase/migrations/008_continuidad_misiones.sql` ya está aplicada. Se verificó mediante operaciones reales sobre cuentas sintéticas; no se consultó ni modificó el historial de Abril.
 
-1. En el [SQL Editor del proyecto Supabase](https://supabase.com/dashboard/project/opzmmvshkgtszjbgcjqi/sql/new), ejecutar `supabase/migrations/008_continuidad_misiones.sql`. Crea únicamente la tabla de continuidad, activa RLS, revoca acceso directo a roles públicos y concede operaciones al rol de servidor. No altera las tablas ni los registros pedagógicos existentes.
-[Documentación oficial de Supabase sobre creación de tablas mediante SQL](https://supabase.com/docs/guides/database/tables).
+- `node tests/verify-r8-supabase.cjs`: cuatro comprobaciones reales contra PostgREST. Una sola creación concurrente gana; repetir el mismo envío conserva la revisión; una sola actualización concurrente gana; la lectura devuelve el último estado confirmado. Limpieza de los datos propios confirmada.
+- `node tests/verify-r8-browser-live.cjs`: cinco comprobaciones contra la web publicada, con inicio de sesión real, API real y Supabase real, sin interceptar solicitudes. Dos contextos independientes de Edge a 1366 px recuperan la misma pregunta, el paso y la opción elegida. La corrección sincroniza un reto y dos estrellas; volver al primer navegador recupera la evaluación sin una segunda corrección; «Guardar y salir» confirma y vuelve al inicio.
+- No hubo errores de JavaScript ni respuestas HTTP de error de la API durante ese recorrido. La corrección registrada utilizó `contenido_revisado`, sin generación nueva de IA.
+- Se cerraron ambos navegadores y se eliminó únicamente la cuenta temporal creada por la prueba. Se confirmó la eliminación de sus sesiones, misión, lecciones completadas y progreso.
 
-2. Comprobar la estructura y ejecutar `node tests/verify-r8-supabase.cjs`. Esa prueba usa una cuenta sintética y elimina solo sus propios UUID. Verifica creación y actualización concurrentes reales con PostgREST. El script está preparado, pero no fue ejecutado porque falta la tabla.
-3. Verificar una recuperación real entre dos navegadores antes de dar la activación por cerrada. La app detecta la tabla al volver a abrir la tutoría; no necesita otro cambio de código para reconocerla.
+Las pruebas de producción son explícitas y no forman parte de `npm test`. Requieren las variables de servidor locales y Playwright/Edge; el módulo de Playwright puede configurarse mediante `PLAYWRIGHT_MODULE`. No imprimen contraseñas ni cookies.
+
+Para una tutoría que ya estaba abierta antes de aplicar la migración, recargar la página permite detectar la sincronización. Antes de cambiar de computadora, esperar «Avance sincronizado» o usar «Guardar y salir».
 
 ## Verificación realizada
 
@@ -44,7 +47,7 @@ La consulta de estructura de Supabase devolvió `PGRST205` para `continuidad_mis
 - Se inspeccionaron las capturas y se corrigió el contraste del aviso de conflicto y del estado de guardado.
 - Evidencia: carpeta `implementacion-r8` de las visualizaciones de esta tarea.
 
-Las pruebas funcionales utilizan datos sintéticos; no son una verificación completa contra Supabase de producción. La única consulta real fue la existencia de la tabla, sin leer datos de Abril. No se hicieron llamadas nuevas a IA ni se alteró su historial.
+La verificación inicial empleó controladores y base sintéticos. Después de aplicar la migración se añadieron las cuatro comprobaciones reales de Supabase y las cinco comprobaciones del navegador descritas arriba. Estas últimas sí recorren la publicación y su base de producción, siempre con una cuenta temporal propia. No se hicieron llamadas nuevas a IA ni se alteró el historial de Abril.
 
 ## Otros pendientes
 
