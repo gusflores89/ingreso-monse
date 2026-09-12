@@ -28,11 +28,11 @@ function load(p, names, deps={}) {
 function db(initial={}) {
  const tables=structuredClone(initial); const writes=[];
  return {tables,writes,from(table){
-  tables[table]??=[]; let filters=[],sort=null,n=Infinity,op=null,payload=null,conflict=null;
+  tables[table]??=[]; let filters=[],sort=null,offset=0,n=Infinity,op=null,payload=null,conflict=null;
   const q={
    select(){return q},eq(k,v){filters.push(r=>(k.includes('->>') ? (r[k.split('->>')[0]]?.[k.split('->>')[1]] ?? null) : r[k])===v);return q},neq(k,v){filters.push(r=>r[k]!==v);return q},
    not(k,op,v){assert.equal(op,'is');filters.push(r=>r[k]!==v);return q},is(k,v){filters.push(r=>(k.includes('->>') ? (r[k.split('->>')[0]]?.[k.split('->>')[1]] ?? null) : r[k])===v);return q},
-   in(k,vs){filters.push(r=>vs.includes(r[k]));return q},order(k,{ascending}){sort={k,ascending};return q},limit(v){n=v;return q},
+   in(k,vs){filters.push(r=>vs.includes(r[k]));return q},order(k,{ascending}){sort={k,ascending};return q},limit(v){n=v;return q},range(a,b){offset=a;n=b-a+1;return q},
    update(v){op='update';payload=v;return q},insert(v){op='insert';payload=v;return q},
    upsert(v,opts={}){op='upsert';payload=v;conflict=opts.onConflict;return q},
    single(){return execute(true)},maybeSingle(){return execute(true)},then(a,b){return execute(false).then(a,b)}
@@ -40,7 +40,7 @@ function db(initial={}) {
   async function execute(single){
    let rows=tables[table].filter(r=>filters.every(f=>f(r)));
    if(sort)rows.sort((a,b)=>String(a[sort.k]).localeCompare(String(b[sort.k]))*(sort.ascending?1:-1));
-   rows=rows.slice(0,n);
+   rows=rows.slice(offset,offset+n);
    if(op==='update'){for(const row of rows)Object.assign(row,structuredClone(payload));}
    if(op==='insert'){const row={id:'new-'+(tables[table].length+1),es_correcta:null,created_at:'2026-09-10T15:00:00Z',...structuredClone(payload)};tables[table].push(row);rows=[row];}
    if(op==='upsert'){

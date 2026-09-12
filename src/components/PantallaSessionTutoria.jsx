@@ -1,3 +1,4 @@
+import RepasoSugerido from "./RepasoSugerido";
 import { accesoTema } from "@/lib/acceso-temas";
 import { fetchRegistrado, leerEnvioPendiente } from "@/lib/envios-cliente";
 import { TEMAS_BASES, VERSION_BASES } from "@/lib/metadatos-bases";
@@ -173,7 +174,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       const newStars = starsBase + estrellas;
       setEstrellasAcumuladas(newStars);
       saveStars(newStars);
-      const terminada = nuevosDesafios >= 3;
+      const terminada = nuevosDesafios >= 3 || Boolean(pregunta?.repaso_espaciado);
       if (terminada) {
         setMisionTerminada(true);
       }
@@ -512,7 +513,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         const nuevosDesafios = nextIds.length;
         const starsBase = Math.max(getSavedStars(), estrellasAcumuladas);
         const newStars = starsBase + 2;
-        const terminada = nuevosDesafios >= 3;
+        const terminada = nuevosDesafios >= 3 || Boolean(pregunta?.repaso_espaciado);
         setRetosCompletadosIds(nextIds);
         setDesafiosCompletadosMision(nuevosDesafios);
         setEstrellasAcumuladas(newStars);
@@ -740,6 +741,25 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
     }
   };
 
+  const handleIniciarRepaso = async (objetivoId) => {
+    if (enviandoRef.current || loading) return;
+    // Solo se ofrece antes de empezar a responder o después del cierre de la misión.
+    if (!misionTerminada && (desafiosCompletadosMision || respuesta || pasoActual || evaluacion || intento !== 1)) return;
+    if (!saveMissionState({})) return;
+    enviandoRef.current = true; setLoading(true); setError("");
+    try {
+      const res = await fetch('/api/sesion/repasos',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({user_id,objetivo_id:objetivoId})});
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'No se pudo iniciar el repaso.');
+      const nueva = {avatar:pregunta?.avatar,nombre_tutor:pregunta?.nombre_tutor,color_tema:pregunta?.color_tema,...data};
+      setPregunta(nueva);setSesionId(data.sesion_id);setRespuesta('');setEvaluacion(null);setPasoActual(0);setIntento(1);setPistaActiva(null);
+      setRespuestasExamen({});setDesafiosCompletadosMision(0);setRetosCompletadosIds([]);setMisionTerminada(false);startTime.current=Date.now();
+      saveMissionState({pregunta:nueva,sesionId:data.sesion_id,tema:data.tema,solicitud_tema:tema || null,solicitud_modo:'NORMAL',
+        desafios:0,retosCompletadosIds:[],misionTerminada:false,respuesta:'',borrador:'',evaluacion:null,pasoActual:0,intento:1,pistaActiva:null,respuestasExamen:{}});
+    } catch(err) { setError(err.message); }
+    finally { enviandoRef.current=false;setLoading(false); }
+  };
+
   const handleSelectTema = async (nuevoTema, options = {}) => {
     const shouldForzar = Boolean(options.forzar_practica || (options.forzar_practica === undefined && forzarPractica));
     if (options.forzar_practica !== undefined) {
@@ -893,7 +913,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             gap: "8px",
             boxShadow: "0 0 10px rgba(139, 92, 246, 0.15)"
           }}>
-            <span>🎯 Reto {Math.min(3, desafiosCompletadosMision + 1)} de 3</span>
+            <span>{pregunta?.repaso_espaciado ? "🔄 Repaso breve · 1 reto" : `🎯 Reto ${Math.min(3, desafiosCompletadosMision + 1)} de 3`}</span>
             {estrellasAcumuladas > 0 && <span>⭐ {estrellasAcumuladas}</span>}
           </div>
 
@@ -1019,6 +1039,10 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             Comenzar Misión →
           </button>
         </div>
+      )}
+
+      {pregunta && !loading && (misionTerminada || (!pregunta.repaso_espaciado && !desafiosCompletadosMision && !respuesta && !pasoActual && !evaluacion && intento === 1)) && (
+        <RepasoSugerido userId={user_id} loading={loading} refrescar={sesionId + ':' + misionTerminada} onStart={handleIniciarRepaso} />
       )}
 
       {!evaluacion && <BarrasFraccion barras={pregunta?.tipo === 'leccion' ? (pasoActual === 0 ? pregunta.visual_apoyo : pasoActualData?.contenido?.visual) : pregunta?.visual_apoyo} />}
@@ -1346,9 +1370,9 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
           boxShadow: "0 20px 40px rgba(0,0,0,0.5), 0 0 30px rgba(139, 92, 246, 0.2)"
         }}>
           <span style={{ fontSize: "3rem" }}>🎉</span>
-          <h2 style={{ color: "#ffffff", margin: "16px 0 8px", fontSize: "1.5rem" }}>¡Misión del día completada!</h2>
+          <h2 style={{ color: "#ffffff", margin: "16px 0 8px", fontSize: "1.5rem" }}>{pregunta?.repaso_espaciado ? "¡Repaso completado!" : "¡Misión del día completada!"}</h2>
           <p style={{ color: "#cbd5e1", fontSize: "0.95rem", lineHeight: "1.5" }}>
-            Superaste con éxito tus desafíos de hoy sobre <strong>{activeTema.replace(/_/g, " ")}</strong>. ¡Excelente constancia!
+            Trabajaste {pregunta?.repaso_espaciado ? "una idea que ya conocías" : "tus desafíos de hoy"} sobre <strong>{pregunta?.unidad_titulo || activeTema.replace(/_/g, " ")}</strong>. ¡Podés descansar!
           </p>
           {evaluacion?.retroalimentacion && (
             <div style={{
@@ -1365,11 +1389,11 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
           )}
           <div style={{ display: "flex", justifyContent: "center", gap: "16px", margin: "24px 0" }}>
             <div style={{ background: "rgba(255,255,255,0.06)", padding: "12px 20px", borderRadius: "10px", border: "1px solid rgba(255,255,255,0.1)" }}>
-              <span style={{ fontSize: "1.3rem", fontWeight: "700", color: "#fbbf24" }}>⭐ +{estrellasAcumuladas || 3}</span>
+              <span style={{ fontSize: "1.3rem", fontWeight: "700", color: "#fbbf24" }}>⭐ +{retosCompletadosIds.length * 2}</span>
               <p style={{ margin: 0, fontSize: "0.75rem", color: "#94a3b8" }}>Estrellas ganadas</p>
             </div>
             <div style={{ background: "rgba(255,255,255,0.06)", padding: "12px 20px", borderRadius: "10px", border: "1px solid rgba(255,255,255,0.1)" }}>
-              <span style={{ fontSize: "1.3rem", fontWeight: "700", color: "#38bdf8" }}>✓ 3 de 3</span>
+              <span style={{ fontSize: "1.3rem", fontWeight: "700", color: "#38bdf8" }}>✓ {pregunta?.repaso_espaciado ? "1 de 1" : "3 de 3"}</span>
               <p style={{ margin: 0, fontSize: "0.75rem", color: "#94a3b8" }}>Retos superados</p>
             </div>
           </div>
