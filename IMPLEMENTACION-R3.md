@@ -38,3 +38,13 @@ Historial durable de cada intento y ayuda; idempotencia atómica y concurrencia 
 No hay migraciones ni borrado de historia. Referencia anterior: código R2 `b1361e7`, documentación `372e073`, despliegue `dpl_6vQMzLQebdUgrMwuGV6ET2wuPHKc`.
 
 Evidencias locales: `C:\Users\gusta\.codex\visualizations\2026\09\09\01a086d6-a934-77a3-9a28-75f27a213064\implementacion-r3`.
+
+## Publicación comprobada
+
+- Código: commit `9121016`.
+- Dominio: https://www.ingresomonserrat.online
+- Despliegue: `dpl_D3BF1ZPdu8t19nobfQQfGSTQ1y6p`, Ready, 11/09/2026 21:49 ART.
+- URL versionada: https://ingreso-monse-2027-hg54fe7p5-gustavos-projects-b8e409fb.vercel.app
+- Los diez recorridos nuevos y las ocho comprobaciones de continuidad pasaron sobre los recursos públicos del dominio. API interceptadas con controladores reales y datos sintéticos: esta prueba no ejercita la base de producción.
+- Los tres PDFs devolvieron HTTP 200 y sus hashes SHA-256 coinciden con los archivos locales revisados.
+- La entrada sigue siendo «Aprender fracciones» en la tutoría. Recargar la página obtiene la nueva versión; el historial existente se conserva.
