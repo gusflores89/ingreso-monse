@@ -131,5 +131,5 @@ async function start(database,body={},aiType="practica") {
  const unlocked=await init.getUnlockedTopics(db({sesiones:[]}),user.id,'full',user);assert(unlocked.has('fracciones_concepto'));count++;
  const assisted=db({sesiones:[row(1,{ia_parametros_usados:{resuelto_con_ayuda:true}}),row(2,{ia_parametros_usados:{resuelto_con_ayuda:true}}),row(3,{ia_parametros_usados:{resuelto_con_ayuda:true}})]});
  const p=await progress.refreshTopicProgress(assisted,user.id,'fracciones_concepto',1);assert.equal(p.tasa_acierto,100);count++;
- console.log(JSON.stringify({passed:count,activities:24,realAI:false,realDatabase:false}));
+ console.log(JSON.stringify({passed:count,activities:bases.UNIDADES_BASES.length*3,realAI:false,realDatabase:false}));
 })().catch(e=>{console.error(e);process.exitCode=1});

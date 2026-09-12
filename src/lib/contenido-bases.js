@@ -99,6 +99,106 @@ export const UNIDADES_BASES = [
         ],
         "id": "frac_con_1_partes_iguales-v3",
         "paso_resuelto": "En A hay cuatro partes del mismo ancho. En B la última es mayor. Elegimos A."
+      },
+      {
+        "id": "frac_con_1_partes_iguales-v4",
+        "enunciado": "¿Qué barra tiene 3 partes del mismo tamaño?",
+        "respuesta_correcta": "B",
+        "opciones": [
+          "A",
+          "B"
+        ],
+        "paso_resuelto": "En B, las 3 partes tienen el mismo ancho. En la otra barra, la última parte es mayor.",
+        "visual": [
+          {
+            "label": "A",
+            "partes": [
+              1,
+              1,
+              3
+            ],
+            "pintadas": 1
+          },
+          {
+            "label": "B",
+            "partes": [
+              1,
+              1,
+              1
+            ],
+            "pintadas": 1
+          }
+        ]
+      },
+      {
+        "id": "frac_con_1_partes_iguales-v5",
+        "enunciado": "¿Qué barra tiene 5 partes del mismo tamaño?",
+        "respuesta_correcta": "A",
+        "opciones": [
+          "B",
+          "A"
+        ],
+        "paso_resuelto": "En A, las 5 partes tienen el mismo ancho. En la otra barra, la última parte es mayor.",
+        "visual": [
+          {
+            "label": "A",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 1
+          },
+          {
+            "label": "B",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              3
+            ],
+            "pintadas": 1
+          }
+        ]
+      },
+      {
+        "id": "frac_con_1_partes_iguales-v6",
+        "enunciado": "¿Qué barra tiene 6 partes del mismo tamaño?",
+        "respuesta_correcta": "B",
+        "opciones": [
+          "B",
+          "A"
+        ],
+        "paso_resuelto": "En B, las 6 partes tienen el mismo ancho. En la otra barra, la última parte es mayor.",
+        "visual": [
+          {
+            "label": "A",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              3
+            ],
+            "pintadas": 1
+          },
+          {
+            "label": "B",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 1
+          }
+        ]
       }
     ],
     "visual": [
@@ -192,6 +292,82 @@ export const UNIDADES_BASES = [
         ],
         "id": "frac_con_2_num_den-v3",
         "paso_resuelto": "Hay 5 partes iguales y 3 pintadas: 3/5."
+      },
+      {
+        "id": "frac_con_2_num_den-v4",
+        "enunciado": "¿Qué fracción de esta barra está pintada?",
+        "respuesta_correcta": "5/6",
+        "opciones": [
+          "1/6",
+          "5/6",
+          "6/5"
+        ],
+        "paso_resuelto": "Hay 6 partes iguales y 5 pintadas. Escribimos 5/6.",
+        "visual": [
+          {
+            "label": "Barra",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 5
+          }
+        ]
+      },
+      {
+        "id": "frac_con_2_num_den-v5",
+        "enunciado": "¿Qué fracción de esta barra está pintada?",
+        "respuesta_correcta": "3/8",
+        "opciones": [
+          "5/8",
+          "3/8",
+          "8/3"
+        ],
+        "paso_resuelto": "Hay 8 partes iguales y 3 pintadas. Escribimos 3/8.",
+        "visual": [
+          {
+            "label": "Barra",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 3
+          }
+        ]
+      },
+      {
+        "id": "frac_con_2_num_den-v6",
+        "enunciado": "¿Qué fracción de esta barra está pintada?",
+        "respuesta_correcta": "1/5",
+        "opciones": [
+          "5/1",
+          "4/5",
+          "1/5"
+        ],
+        "paso_resuelto": "Hay 5 partes iguales y 1 pintadas. Escribimos 1/5.",
+        "visual": [
+          {
+            "label": "Barra",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 1
+          }
+        ]
       }
     ],
     "visual": [
@@ -254,6 +430,42 @@ export const UNIDADES_BASES = [
         "visual": null,
         "id": "frac_con_3_unidad_referencia-v3",
         "paso_resuelto": "6 + 6 = 12. Cada mitad de los 12 lápices tiene 6."
+      },
+      {
+        "id": "frac_con_3_unidad_referencia-v4",
+        "enunciado": "La colección tiene 14 semillas. ¿Cuántas forman la mitad?",
+        "respuesta_correcta": "7",
+        "opciones": [
+          "14",
+          "8",
+          "7"
+        ],
+        "paso_resuelto": "Repartimos en dos grupos iguales: 7 + 7 = 14. Cada mitad tiene 7.",
+        "visual": null
+      },
+      {
+        "id": "frac_con_3_unidad_referencia-v5",
+        "enunciado": "La colección tiene 16 cuentas. ¿Cuántas forman la mitad?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "8",
+          "9",
+          "16"
+        ],
+        "paso_resuelto": "Repartimos en dos grupos iguales: 8 + 8 = 16. Cada mitad tiene 8.",
+        "visual": null
+      },
+      {
+        "id": "frac_con_3_unidad_referencia-v6",
+        "enunciado": "La colección tiene 18 cartas. ¿Cuántas forman la mitad?",
+        "respuesta_correcta": "9",
+        "opciones": [
+          "10",
+          "9",
+          "18"
+        ],
+        "paso_resuelto": "Repartimos en dos grupos iguales: 9 + 9 = 18. Cada mitad tiene 9.",
+        "visual": null
       }
     ],
     "visual": [
@@ -377,6 +589,111 @@ export const UNIDADES_BASES = [
         ],
         "id": "frac_con_4_equivalencias_visuales-v3",
         "paso_resuelto": "Una mitad equivale a 2/4. Tres cuartos son más que dos cuartos. No son equivalentes."
+      },
+      {
+        "id": "frac_con_4_equivalencias_visuales-v4",
+        "enunciado": "¿1/3 y 2/6 representan la misma cantidad del mismo entero?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "1/3 equivale a 2/6. Coincide con 2/6.",
+        "visual": [
+          {
+            "label": "A",
+            "partes": [
+              1,
+              1,
+              1
+            ],
+            "pintadas": 1
+          },
+          {
+            "label": "B",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 2
+          }
+        ]
+      },
+      {
+        "id": "frac_con_4_equivalencias_visuales-v5",
+        "enunciado": "¿1/4 y 3/8 representan la misma cantidad del mismo entero?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "1/4 equivale a 2/8. No coincide con 3/8.",
+        "visual": [
+          {
+            "label": "A",
+            "partes": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 1
+          },
+          {
+            "label": "B",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 3
+          }
+        ]
+      },
+      {
+        "id": "frac_con_4_equivalencias_visuales-v6",
+        "enunciado": "¿3/4 y 6/8 representan la misma cantidad del mismo entero?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "3/4 equivale a 6/8. Coincide con 6/8.",
+        "visual": [
+          {
+            "label": "A",
+            "partes": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 3
+          },
+          {
+            "label": "B",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 6
+          }
+        ]
       }
     ],
     "visual": [
@@ -404,7 +721,7 @@ export const UNIDADES_BASES = [
     "id": "bases_multiplos_saltos",
     "tema": "divisibilidad_primos_mcm_mcd",
     "titulo": "Múltiplos: avanzar con saltos iguales",
-    "explicacion": "Los múltiplos de 3 aparecen al sumar 3 cada vez: 0, 3, 6, 9, 12... También son resultados de multiplicar 3 por 0, 1, 2, 3... Un divisor permite repartir sin sobrante: 3 es divisor de 12 porque 12 se reparte en 3 grupos de 4.",
+    "explicacion": "Los múltiplos de 3 aparecen al sumar 3 cada vez: 0, 3, 6, 9, 12... También son resultados de multiplicar 3 por 0, 1, 2, 3... Cada salto tiene el mismo tamaño.",
     "ejemplo": "Para listar múltiplos positivos de 4, avanzamos 4, 8, 12, 16.",
     "pasos": [
       "Empezamos en 4.",
@@ -447,6 +764,42 @@ export const UNIDADES_BASES = [
         "visual": null,
         "id": "bases_multiplos_saltos-v3",
         "paso_resuelto": "Al 15 le sumamos otro salto de 5: 15 + 5 = 20."
+      },
+      {
+        "id": "bases_multiplos_saltos-v4",
+        "enunciado": "Saltamos de 2 en 2: 2, 4, 6... ¿cuál sigue?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "10",
+          "8",
+          "7"
+        ],
+        "paso_resuelto": "Sumamos un salto más: 6 + 2 = 8.",
+        "visual": null
+      },
+      {
+        "id": "bases_multiplos_saltos-v5",
+        "enunciado": "Saltamos de 6 en 6: 6, 12, 18... ¿cuál sigue?",
+        "respuesta_correcta": "24",
+        "opciones": [
+          "24",
+          "19",
+          "30"
+        ],
+        "paso_resuelto": "Sumamos un salto más: 18 + 6 = 24.",
+        "visual": null
+      },
+      {
+        "id": "bases_multiplos_saltos-v6",
+        "enunciado": "Saltamos de 7 en 7: 7, 14, 21... ¿cuál sigue?",
+        "respuesta_correcta": "28",
+        "opciones": [
+          "35",
+          "22",
+          "28"
+        ],
+        "paso_resuelto": "Sumamos un salto más: 21 + 7 = 28.",
+        "visual": null
       }
     ],
     "visual": null
@@ -498,6 +851,42 @@ export const UNIDADES_BASES = [
         "visual": null,
         "id": "div_primos_4_mcm-v3",
         "paso_resuelto": "De 4: 4, 8, 12... De 6: 6, 12... El primer encuentro positivo es 12; 24 es común, pero no es el menor."
+      },
+      {
+        "id": "div_primos_4_mcm-v4",
+        "enunciado": "Buscá el MCM de 2 y 5 haciendo listas de múltiplos positivos.",
+        "respuesta_correcta": "10",
+        "opciones": [
+          "20",
+          "10",
+          "0"
+        ],
+        "paso_resuelto": "Múltiplos de 2: 2, 4, 6, 8, 10.\nMúltiplos de 5: 5, 10.\nEl primer encuentro positivo es 10.",
+        "visual": null
+      },
+      {
+        "id": "div_primos_4_mcm-v5",
+        "enunciado": "Buscá el MCM de 3 y 6 haciendo listas de múltiplos positivos.",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "12",
+          "6",
+          "0"
+        ],
+        "paso_resuelto": "Múltiplos de 3: 3, 6.\nMúltiplos de 6: 6.\nEl primer encuentro positivo es 6.",
+        "visual": null
+      },
+      {
+        "id": "div_primos_4_mcm-v6",
+        "enunciado": "Buscá el MCM de 4 y 5 haciendo listas de múltiplos positivos.",
+        "respuesta_correcta": "20",
+        "opciones": [
+          "40",
+          "0",
+          "20"
+        ],
+        "paso_resuelto": "Múltiplos de 4: 4, 8, 12, 16, 20.\nMúltiplos de 5: 5, 10, 15, 20.\nEl primer encuentro positivo es 20.",
+        "visual": null
       }
     ],
     "visual": null
@@ -549,6 +938,42 @@ export const UNIDADES_BASES = [
         "visual": null,
         "id": "frac_op_1_igual_denominador-v3",
         "paso_resuelto": "De 4 séptimos quitamos 1 séptimo. Quedan 3 séptimos: 3/7."
+      },
+      {
+        "id": "frac_op_1_igual_denominador-v4",
+        "enunciado": "Resolvé 1/8 + 3/8.",
+        "respuesta_correcta": "4/8",
+        "opciones": [
+          "4/8",
+          "5/8",
+          "4/16"
+        ],
+        "paso_resuelto": "1 + 3 = 4. Conservamos el tamaño de las partes: 4/8.",
+        "visual": null
+      },
+      {
+        "id": "frac_op_1_igual_denominador-v5",
+        "enunciado": "Resolvé 5/6 − 2/6.",
+        "respuesta_correcta": "3/6",
+        "opciones": [
+          "4/6",
+          "3/12",
+          "3/6"
+        ],
+        "paso_resuelto": "5 − 2 = 3. Conservamos el tamaño de las partes: 3/6.",
+        "visual": null
+      },
+      {
+        "id": "frac_op_1_igual_denominador-v6",
+        "enunciado": "Resolvé 2/7 + 1/7.",
+        "respuesta_correcta": "3/7",
+        "opciones": [
+          "3/7",
+          "4/7",
+          "3/14"
+        ],
+        "paso_resuelto": "2 + 1 = 3. Conservamos el tamaño de las partes: 3/7.",
+        "visual": null
       }
     ],
     "visual": [
@@ -612,6 +1037,42 @@ export const UNIDADES_BASES = [
         "visual": null,
         "id": "frac_op_2_distinto_denominador-v3",
         "paso_resuelto": "MCM(4,2) = 4. Una mitad son 2/4. Restamos 3/4 − 2/4 = 1/4."
+      },
+      {
+        "id": "frac_op_2_distinto_denominador-v4",
+        "enunciado": "Resolvé 1/2 + 1/6.",
+        "respuesta_correcta": "4/6",
+        "opciones": [
+          "3/6",
+          "2/8",
+          "4/6"
+        ],
+        "paso_resuelto": "El MCM de 2 y 6 es 6.\nConvertimos: 1/2 = 3/6 y 1/6 = 1/6.\n3/6 + 1/6 = 4/6.",
+        "visual": null
+      },
+      {
+        "id": "frac_op_2_distinto_denominador-v5",
+        "enunciado": "Resolvé 1/4 + 1/8.",
+        "respuesta_correcta": "3/8",
+        "opciones": [
+          "2/12",
+          "3/8",
+          "2/8"
+        ],
+        "paso_resuelto": "El MCM de 4 y 8 es 8.\nConvertimos: 1/4 = 2/8 y 1/8 = 1/8.\n2/8 + 1/8 = 3/8.",
+        "visual": null
+      },
+      {
+        "id": "frac_op_2_distinto_denominador-v6",
+        "enunciado": "Resolvé 5/6 − 1/3.",
+        "respuesta_correcta": "3/6",
+        "opciones": [
+          "3/6",
+          "6/9",
+          "4/6"
+        ],
+        "paso_resuelto": "El MCM de 6 y 3 es 6.\nConvertimos: 5/6 = 5/6 y 1/3 = 2/6.\n5/6 − 2/6 = 3/6.",
+        "visual": null
       }
     ],
     "visual": [
@@ -634,6 +1095,859 @@ export const UNIDADES_BASES = [
         "pintadas": 2
       }
     ]
+  },
+  {
+    "id": "frac_op_3_fraccion_cantidad",
+    "tema": "fracciones_operaciones",
+    "titulo": "Una fracción de una colección",
+    "explicacion": "Para hallar una fracción de una cantidad, repartimos el total en tantos grupos iguales como indica el denominador. Después tomamos los grupos que indica el numerador.",
+    "ejemplo": "2/3 de 12 fichas son 8 fichas.",
+    "pasos": [
+      "Repartimos 12 en 3 grupos: 12 ÷ 3 = 4 en cada grupo.",
+      "Tomamos 2 grupos: 4 × 2 = 8."
+    ],
+    "pista": "Primero encontrá cuánto vale un grupo; después elegí cuántos grupos tomar.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "frac_op_3_fraccion_cantidad-v1",
+        "enunciado": "Hay 9 fichas. ¿Cuántas son 2/3 de la colección?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "3",
+          "9",
+          "6"
+        ],
+        "paso_resuelto": "Repartimos 9 en 3 grupos: 9 ÷ 3 = 3.\nTomamos 2 grupos: 3 × 2 = 6 fichas.",
+        "visual": null
+      },
+      {
+        "id": "frac_op_3_fraccion_cantidad-v2",
+        "enunciado": "Hay 12 fichas. ¿Cuántas son 3/4 de la colección?",
+        "respuesta_correcta": "9",
+        "opciones": [
+          "12",
+          "3",
+          "9"
+        ],
+        "paso_resuelto": "Repartimos 12 en 4 grupos: 12 ÷ 4 = 3.\nTomamos 3 grupos: 3 × 3 = 9 fichas.",
+        "visual": null
+      },
+      {
+        "id": "frac_op_3_fraccion_cantidad-v3",
+        "enunciado": "Hay 15 fichas. ¿Cuántas son 2/5 de la colección?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "3",
+          "15",
+          "6"
+        ],
+        "paso_resuelto": "Repartimos 15 en 5 grupos: 15 ÷ 5 = 3.\nTomamos 2 grupos: 3 × 2 = 6 fichas.",
+        "visual": null
+      },
+      {
+        "id": "frac_op_3_fraccion_cantidad-v4",
+        "enunciado": "Hay 20 fichas. ¿Cuántas son 3/5 de la colección?",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "20",
+          "12",
+          "4"
+        ],
+        "paso_resuelto": "Repartimos 20 en 5 grupos: 20 ÷ 5 = 4.\nTomamos 3 grupos: 4 × 3 = 12 fichas.",
+        "visual": null
+      },
+      {
+        "id": "frac_op_3_fraccion_cantidad-v5",
+        "enunciado": "Hay 18 fichas. ¿Cuántas son 2/3 de la colección?",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "18",
+          "6",
+          "12"
+        ],
+        "paso_resuelto": "Repartimos 18 en 3 grupos: 18 ÷ 3 = 6.\nTomamos 2 grupos: 6 × 2 = 12 fichas.",
+        "visual": null
+      },
+      {
+        "id": "frac_op_3_fraccion_cantidad-v6",
+        "enunciado": "Hay 20 fichas. ¿Cuántas son 3/4 de la colección?",
+        "respuesta_correcta": "15",
+        "opciones": [
+          "5",
+          "20",
+          "15"
+        ],
+        "paso_resuelto": "Repartimos 20 en 4 grupos: 20 ÷ 4 = 5.\nTomamos 3 grupos: 5 × 3 = 15 fichas.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "frac_op_4_multiplicacion",
+    "tema": "fracciones_operaciones",
+    "titulo": "Una parte de otra parte",
+    "explicacion": "Multiplicar por una fracción puede significar tomar una parte de otra cantidad. La mitad de un tercio de una barra es un sexto. Para calcular, multiplicamos los numeradores entre sí y los denominadores entre sí.",
+    "ejemplo": "1/2 × 1/3 = 1/6.",
+    "pasos": [
+      "Dividimos la barra en tercios y cada tercio en dos partes: quedan 6 partes iguales.",
+      "Tomamos una: (1 × 1)/(2 × 3) = 1/6."
+    ],
+    "pista": "Para multiplicar: arriba por arriba, abajo por abajo. No hace falta buscar un denominador común.",
+    "visual": [
+      {
+        "label": "La mitad de un tercio",
+        "partes": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 1
+      }
+    ],
+    "actividades": [
+      {
+        "id": "frac_op_4_multiplicacion-v1",
+        "enunciado": "Calculá 1/2 × 1/4. Elegí el producto; puede quedar sin simplificar.",
+        "respuesta_correcta": "1/8",
+        "opciones": [
+          "1/8",
+          "1/4",
+          "2/6"
+        ],
+        "paso_resuelto": "Multiplicamos los numeradores: 1 × 1 = 1.\nMultiplicamos los denominadores: 2 × 4 = 8.\nEl producto es 1/8.",
+        "visual": null
+      },
+      {
+        "id": "frac_op_4_multiplicacion-v2",
+        "enunciado": "Calculá 2/3 × 1/2. Elegí el producto; puede quedar sin simplificar.",
+        "respuesta_correcta": "2/6",
+        "opciones": [
+          "2/6",
+          "3/5",
+          "2/3"
+        ],
+        "paso_resuelto": "Multiplicamos los numeradores: 2 × 1 = 2.\nMultiplicamos los denominadores: 3 × 2 = 6.\nEl producto es 2/6.",
+        "visual": null
+      },
+      {
+        "id": "frac_op_4_multiplicacion-v3",
+        "enunciado": "Calculá 3/4 × 2/3. Elegí el producto; puede quedar sin simplificar.",
+        "respuesta_correcta": "6/12",
+        "opciones": [
+          "5/7",
+          "6/4",
+          "6/12"
+        ],
+        "paso_resuelto": "Multiplicamos los numeradores: 3 × 2 = 6.\nMultiplicamos los denominadores: 4 × 3 = 12.\nEl producto es 6/12.",
+        "visual": null
+      },
+      {
+        "id": "frac_op_4_multiplicacion-v4",
+        "enunciado": "Calculá 2/5 × 3/4. Elegí el producto; puede quedar sin simplificar.",
+        "respuesta_correcta": "6/20",
+        "opciones": [
+          "6/20",
+          "6/5",
+          "5/9"
+        ],
+        "paso_resuelto": "Multiplicamos los numeradores: 2 × 3 = 6.\nMultiplicamos los denominadores: 5 × 4 = 20.\nEl producto es 6/20.",
+        "visual": null
+      },
+      {
+        "id": "frac_op_4_multiplicacion-v5",
+        "enunciado": "Calculá 1/3 × 2/5. Elegí el producto; puede quedar sin simplificar.",
+        "respuesta_correcta": "2/15",
+        "opciones": [
+          "2/5",
+          "2/15",
+          "3/8"
+        ],
+        "paso_resuelto": "Multiplicamos los numeradores: 1 × 2 = 2.\nMultiplicamos los denominadores: 3 × 5 = 15.\nEl producto es 2/15.",
+        "visual": null
+      },
+      {
+        "id": "frac_op_4_multiplicacion-v6",
+        "enunciado": "Calculá 3/5 × 1/2. Elegí el producto; puede quedar sin simplificar.",
+        "respuesta_correcta": "3/10",
+        "opciones": [
+          "3/10",
+          "4/7",
+          "3/5"
+        ],
+        "paso_resuelto": "Multiplicamos los numeradores: 3 × 1 = 3.\nMultiplicamos los denominadores: 5 × 2 = 10.\nEl producto es 3/10.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "frac_op_5_division",
+    "tema": "fracciones_operaciones",
+    "titulo": "Cuántas porciones entran",
+    "explicacion": "Dividir también permite averiguar cuántas porciones de un tamaño entran en una cantidad. Para dividir por una fracción distinta de cero, multiplicamos por su inversa: cambiamos de lugar su numerador y su denominador. La primera fracción queda igual.",
+    "ejemplo": "3/4 ÷ 1/4 = 3: en tres cuartos entran tres porciones de un cuarto.",
+    "pasos": [
+      "La inversa de 1/4 es 4/1. Cambiamos solo la segunda fracción.",
+      "3/4 × 4/1 = 12/4 = 3. Comprobamos: 3 × 1/4 = 3/4."
+    ],
+    "pista": "Conservá la primera fracción e invertí solo la segunda. Después multiplicá.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "frac_op_5_division-v1",
+        "enunciado": "Resolvé 2/3 ÷ 1/3. El resultado puede quedar sin simplificar.",
+        "respuesta_correcta": "6/3",
+        "opciones": [
+          "3/6",
+          "6/3",
+          "2/9"
+        ],
+        "paso_resuelto": "Invertimos la segunda: 1/3 pasa a 3/1.\nMultiplicamos: 2/3 × 3/1 = 6/3.",
+        "visual": null
+      },
+      {
+        "id": "frac_op_5_division-v2",
+        "enunciado": "Resolvé 3/4 ÷ 1/2. El resultado puede quedar sin simplificar.",
+        "respuesta_correcta": "6/4",
+        "opciones": [
+          "3/8",
+          "4/6",
+          "6/4"
+        ],
+        "paso_resuelto": "Invertimos la segunda: 1/2 pasa a 2/1.\nMultiplicamos: 3/4 × 2/1 = 6/4.",
+        "visual": null
+      },
+      {
+        "id": "frac_op_5_division-v3",
+        "enunciado": "Resolvé 1/2 ÷ 2/3. El resultado puede quedar sin simplificar.",
+        "respuesta_correcta": "3/4",
+        "opciones": [
+          "3/4",
+          "4/3",
+          "2/6"
+        ],
+        "paso_resuelto": "Invertimos la segunda: 2/3 pasa a 3/2.\nMultiplicamos: 1/2 × 3/2 = 3/4.",
+        "visual": null
+      },
+      {
+        "id": "frac_op_5_division-v4",
+        "enunciado": "Resolvé 2/5 ÷ 1/4. El resultado puede quedar sin simplificar.",
+        "respuesta_correcta": "8/5",
+        "opciones": [
+          "8/5",
+          "5/8",
+          "2/20"
+        ],
+        "paso_resuelto": "Invertimos la segunda: 1/4 pasa a 4/1.\nMultiplicamos: 2/5 × 4/1 = 8/5.",
+        "visual": null
+      },
+      {
+        "id": "frac_op_5_division-v5",
+        "enunciado": "Resolvé 3/5 ÷ 2/3. El resultado puede quedar sin simplificar.",
+        "respuesta_correcta": "9/10",
+        "opciones": [
+          "9/10",
+          "10/9",
+          "6/15"
+        ],
+        "paso_resuelto": "Invertimos la segunda: 2/3 pasa a 3/2.\nMultiplicamos: 3/5 × 3/2 = 9/10.",
+        "visual": null
+      },
+      {
+        "id": "frac_op_5_division-v6",
+        "enunciado": "Resolvé 4/5 ÷ 2/5. El resultado puede quedar sin simplificar.",
+        "respuesta_correcta": "20/10",
+        "opciones": [
+          "10/20",
+          "20/10",
+          "8/25"
+        ],
+        "paso_resuelto": "Invertimos la segunda: 2/5 pasa a 5/2.\nMultiplicamos: 4/5 × 5/2 = 20/10.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "div_primos_1_multiplos_divisores",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "titulo": "Divisores: repartir sin que sobre",
+    "explicacion": "Un número es divisor de otro si permite dividirlo exactamente, con resto cero. Buscamos parejas que al multiplicarse den el total. Múltiplo y divisor se relacionan: 12 es múltiplo de 3 y 3 es divisor de 12.",
+    "ejemplo": "Los divisores de 6 son 1, 2, 3 y 6.",
+    "pasos": [
+      "Las parejas de factores son 1 × 6 y 2 × 3.",
+      "Con 4 grupos sobran 2: 4 no es divisor de 6."
+    ],
+    "pista": "Probá la división o buscá una multiplicación que dé exactamente el total.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "div_primos_1_multiplos_divisores-v1",
+        "enunciado": "¿3 es divisor de 12?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "12 = 3 × 4. No sobra nada: sí es divisor.",
+        "visual": null
+      },
+      {
+        "id": "div_primos_1_multiplos_divisores-v2",
+        "enunciado": "¿4 es divisor de 15?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "15 = 4 × 3 + 3. Sobran 3: no es una división exacta.",
+        "visual": null
+      },
+      {
+        "id": "div_primos_1_multiplos_divisores-v3",
+        "enunciado": "¿6 es divisor de 18?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "18 = 6 × 3. No sobra nada: sí es divisor.",
+        "visual": null
+      },
+      {
+        "id": "div_primos_1_multiplos_divisores-v4",
+        "enunciado": "¿3 es divisor de 20?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "20 = 3 × 6 + 2. Sobran 2: no es una división exacta.",
+        "visual": null
+      },
+      {
+        "id": "div_primos_1_multiplos_divisores-v5",
+        "enunciado": "¿7 es divisor de 14?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "14 = 7 × 2. No sobra nada: sí es divisor.",
+        "visual": null
+      },
+      {
+        "id": "div_primos_1_multiplos_divisores-v6",
+        "enunciado": "¿5 es divisor de 16?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "16 = 5 × 3 + 1. Sobran 1: no es una división exacta.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "bases_criterio_2",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "titulo": "Divisible por 2",
+    "explicacion": "Un número es divisible por 2 si su última cifra es 0, 2, 4, 6 u 8. Podemos repartirlo en dos grupos iguales sin sobrante.",
+    "ejemplo": "18 termina en 8: es divisible por 2.",
+    "pasos": [
+      "Mirá solo la última cifra.",
+      "Comprobá con una multiplicación o una división exacta."
+    ],
+    "pista": "Mirá solo la última cifra.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "bases_criterio_2-v1",
+        "enunciado": "¿14 es divisible por 2?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "La última cifra es 4. 2 × 7 = 14. Sí, no sobra nada.",
+        "visual": null
+      },
+      {
+        "id": "bases_criterio_2-v2",
+        "enunciado": "¿23 es divisible por 2?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "La última cifra es 3. 23 = 2 × 11 + 1. No, queda resto 1.",
+        "visual": null
+      },
+      {
+        "id": "bases_criterio_2-v3",
+        "enunciado": "¿36 es divisible por 2?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "La última cifra es 6. 2 × 18 = 36. Sí, no sobra nada.",
+        "visual": null
+      },
+      {
+        "id": "bases_criterio_2-v4",
+        "enunciado": "¿45 es divisible por 2?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "La última cifra es 5. 45 = 2 × 22 + 1. No, queda resto 1.",
+        "visual": null
+      },
+      {
+        "id": "bases_criterio_2-v5",
+        "enunciado": "¿50 es divisible por 2?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "La última cifra es 0. 2 × 25 = 50. Sí, no sobra nada.",
+        "visual": null
+      },
+      {
+        "id": "bases_criterio_2-v6",
+        "enunciado": "¿67 es divisible por 2?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "La última cifra es 7. 67 = 2 × 33 + 1. No, queda resto 1.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "bases_criterio_3",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "titulo": "Divisible por 3",
+    "explicacion": "Un número es divisible por 3 si la suma de sus cifras es múltiplo de 3. No alcanza con mirar su última cifra.",
+    "ejemplo": "123: sumamos 1 + 2 + 3 = 6. Como 6 es múltiplo de 3, 123 también.",
+    "pasos": [
+      "Sumá todas las cifras y fijate si esa suma está en la tabla del 3.",
+      "Comprobá con una multiplicación o una división exacta."
+    ],
+    "pista": "Sumá todas las cifras y fijate si esa suma está en la tabla del 3.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "bases_criterio_3-v1",
+        "enunciado": "¿24 es divisible por 3?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "La suma de las cifras es 6. 3 × 8 = 24. Sí, no sobra nada.",
+        "visual": null
+      },
+      {
+        "id": "bases_criterio_3-v2",
+        "enunciado": "¿35 es divisible por 3?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "La suma de las cifras es 8. 35 = 3 × 11 + 2. No, queda resto 2.",
+        "visual": null
+      },
+      {
+        "id": "bases_criterio_3-v3",
+        "enunciado": "¿51 es divisible por 3?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "La suma de las cifras es 6. 3 × 17 = 51. Sí, no sobra nada.",
+        "visual": null
+      },
+      {
+        "id": "bases_criterio_3-v4",
+        "enunciado": "¿62 es divisible por 3?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "La suma de las cifras es 8. 62 = 3 × 20 + 2. No, queda resto 2.",
+        "visual": null
+      },
+      {
+        "id": "bases_criterio_3-v5",
+        "enunciado": "¿72 es divisible por 3?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "La suma de las cifras es 9. 3 × 24 = 72. Sí, no sobra nada.",
+        "visual": null
+      },
+      {
+        "id": "bases_criterio_3-v6",
+        "enunciado": "¿83 es divisible por 3?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "La suma de las cifras es 11. 83 = 3 × 27 + 2. No, queda resto 2.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "bases_criterio_5",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "titulo": "Divisible por 5",
+    "explicacion": "Un número es divisible por 5 si termina en 0 o en 5. Es una forma de reconocer repartos exactos en cinco grupos.",
+    "ejemplo": "35 termina en 5: 35 ÷ 5 = 7, sin resto.",
+    "pasos": [
+      "Mirá si termina en 0 o en 5.",
+      "Comprobá con una multiplicación o una división exacta."
+    ],
+    "pista": "Mirá si termina en 0 o en 5.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "bases_criterio_5-v1",
+        "enunciado": "¿25 es divisible por 5?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "La última cifra es 5. 5 × 5 = 25. Sí, no sobra nada.",
+        "visual": null
+      },
+      {
+        "id": "bases_criterio_5-v2",
+        "enunciado": "¿32 es divisible por 5?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "La última cifra es 2. 32 = 5 × 6 + 2. No, queda resto 2.",
+        "visual": null
+      },
+      {
+        "id": "bases_criterio_5-v3",
+        "enunciado": "¿40 es divisible por 5?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "La última cifra es 0. 5 × 8 = 40. Sí, no sobra nada.",
+        "visual": null
+      },
+      {
+        "id": "bases_criterio_5-v4",
+        "enunciado": "¿48 es divisible por 5?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "La última cifra es 8. 48 = 5 × 9 + 3. No, queda resto 3.",
+        "visual": null
+      },
+      {
+        "id": "bases_criterio_5-v5",
+        "enunciado": "¿65 es divisible por 5?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "La última cifra es 5. 5 × 13 = 65. Sí, no sobra nada.",
+        "visual": null
+      },
+      {
+        "id": "bases_criterio_5-v6",
+        "enunciado": "¿71 es divisible por 5?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "La última cifra es 1. 71 = 5 × 14 + 1. No, queda resto 1.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "bases_criterio_10",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "titulo": "Divisible por 10",
+    "explicacion": "Un número es divisible por 10 si termina en 0. Terminar en 5 sirve para dividir por 5, pero no por 10.",
+    "ejemplo": "40 termina en 0: 40 ÷ 10 = 4, sin resto.",
+    "pasos": [
+      "Para dividir exactamente por 10, la última cifra debe ser 0.",
+      "Comprobá con una multiplicación o una división exacta."
+    ],
+    "pista": "Para dividir exactamente por 10, la última cifra debe ser 0.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "bases_criterio_10-v1",
+        "enunciado": "¿30 es divisible por 10?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "La última cifra es 0. 10 × 3 = 30. Sí, no sobra nada.",
+        "visual": null
+      },
+      {
+        "id": "bases_criterio_10-v2",
+        "enunciado": "¿45 es divisible por 10?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "La última cifra es 5. 45 = 10 × 4 + 5. No, queda resto 5.",
+        "visual": null
+      },
+      {
+        "id": "bases_criterio_10-v3",
+        "enunciado": "¿60 es divisible por 10?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "La última cifra es 0. 10 × 6 = 60. Sí, no sobra nada.",
+        "visual": null
+      },
+      {
+        "id": "bases_criterio_10-v4",
+        "enunciado": "¿75 es divisible por 10?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "La última cifra es 5. 75 = 10 × 7 + 5. No, queda resto 5.",
+        "visual": null
+      },
+      {
+        "id": "bases_criterio_10-v5",
+        "enunciado": "¿90 es divisible por 10?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "La última cifra es 0. 10 × 9 = 90. Sí, no sobra nada.",
+        "visual": null
+      },
+      {
+        "id": "bases_criterio_10-v6",
+        "enunciado": "¿105 es divisible por 10?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "La última cifra es 5. 105 = 10 × 10 + 5. No, queda resto 5.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "div_primos_3_primos_compuestos",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "titulo": "Primos y compuestos",
+    "explicacion": "Un número natural mayor que 1 es primo si tiene exactamente dos divisores positivos: 1 y él mismo. Es compuesto si tiene más de dos. El 1 tiene un solo divisor: no es primo ni compuesto.",
+    "ejemplo": "7 es primo: sus divisores son 1 y 7.",
+    "pasos": [
+      "9 tiene divisores 1, 3 y 9: es compuesto.",
+      "El 1 solo tiene al 1 como divisor. Va en una categoría aparte."
+    ],
+    "pista": "Buscá los divisores. Dos: primo. Más de dos: compuesto. El 1 es un caso aparte.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "div_primos_3_primos_compuestos-v1",
+        "enunciado": "¿Cómo clasificamos el número 5?",
+        "respuesta_correcta": "Primo",
+        "opciones": [
+          "Ni primo ni compuesto",
+          "Compuesto",
+          "Primo"
+        ],
+        "paso_resuelto": "Sus divisores positivos son 1, 5. Tiene 2 divisores: primo.",
+        "visual": null
+      },
+      {
+        "id": "div_primos_3_primos_compuestos-v2",
+        "enunciado": "¿Cómo clasificamos el número 9?",
+        "respuesta_correcta": "Compuesto",
+        "opciones": [
+          "Primo",
+          "Ni primo ni compuesto",
+          "Compuesto"
+        ],
+        "paso_resuelto": "Sus divisores positivos son 1, 3, 9. Tiene 3 divisores: compuesto.",
+        "visual": null
+      },
+      {
+        "id": "div_primos_3_primos_compuestos-v3",
+        "enunciado": "¿Cómo clasificamos el número 1?",
+        "respuesta_correcta": "Ni primo ni compuesto",
+        "opciones": [
+          "Compuesto",
+          "Primo",
+          "Ni primo ni compuesto"
+        ],
+        "paso_resuelto": "Sus divisores positivos son 1. Tiene 1 divisor: ni primo ni compuesto.",
+        "visual": null
+      },
+      {
+        "id": "div_primos_3_primos_compuestos-v4",
+        "enunciado": "¿Cómo clasificamos el número 11?",
+        "respuesta_correcta": "Primo",
+        "opciones": [
+          "Ni primo ni compuesto",
+          "Primo",
+          "Compuesto"
+        ],
+        "paso_resuelto": "Sus divisores positivos son 1, 11. Tiene 2 divisores: primo.",
+        "visual": null
+      },
+      {
+        "id": "div_primos_3_primos_compuestos-v5",
+        "enunciado": "¿Cómo clasificamos el número 15?",
+        "respuesta_correcta": "Compuesto",
+        "opciones": [
+          "Compuesto",
+          "Ni primo ni compuesto",
+          "Primo"
+        ],
+        "paso_resuelto": "Sus divisores positivos son 1, 3, 5, 15. Tiene 4 divisores: compuesto.",
+        "visual": null
+      },
+      {
+        "id": "div_primos_3_primos_compuestos-v6",
+        "enunciado": "¿Cómo clasificamos el número 2?",
+        "respuesta_correcta": "Primo",
+        "opciones": [
+          "Ni primo ni compuesto",
+          "Primo",
+          "Compuesto"
+        ],
+        "paso_resuelto": "Sus divisores positivos son 1, 2. Tiene 2 divisores: primo.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "div_primos_5_mcd",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "titulo": "MCD: el mayor divisor compartido",
+    "explicacion": "El máximo común divisor, o MCD, es el mayor número que divide exactamente a los dos números. Lo buscamos en sus listas de divisores. Para repartir en grupos iguales, indica el mayor tamaño de grupo que sirve para ambos totales.",
+    "ejemplo": "MCD de 8 y 12 = 4.",
+    "pasos": [
+      "Divisores de 8: 1, 2, 4, 8. De 12: 1, 2, 3, 4, 6, 12.",
+      "Comparten 1, 2 y 4. Elegimos el mayor: 4."
+    ],
+    "pista": "Buscá divisores, no múltiplos. De los que comparten, elegí el mayor.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "div_primos_5_mcd-v1",
+        "enunciado": "¿Cuál es el MCD de 6 y 9?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "4",
+          "18",
+          "3"
+        ],
+        "paso_resuelto": "Divisores de 6: 1, 2, 3, 6.\nDivisores de 9: 1, 3, 9.\nEl mayor divisor compartido es 3.",
+        "visual": null
+      },
+      {
+        "id": "div_primos_5_mcd-v2",
+        "enunciado": "¿Cuál es el MCD de 8 y 12?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "4",
+          "24",
+          "5"
+        ],
+        "paso_resuelto": "Divisores de 8: 1, 2, 4, 8.\nDivisores de 12: 1, 2, 3, 4, 6, 12.\nEl mayor divisor compartido es 4.",
+        "visual": null
+      },
+      {
+        "id": "div_primos_5_mcd-v3",
+        "enunciado": "¿Cuál es el MCD de 10 y 15?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "5",
+          "30",
+          "6"
+        ],
+        "paso_resuelto": "Divisores de 10: 1, 2, 5, 10.\nDivisores de 15: 1, 3, 5, 15.\nEl mayor divisor compartido es 5.",
+        "visual": null
+      },
+      {
+        "id": "div_primos_5_mcd-v4",
+        "enunciado": "¿Cuál es el MCD de 12 y 18?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "7",
+          "6",
+          "36"
+        ],
+        "paso_resuelto": "Divisores de 12: 1, 2, 3, 4, 6, 12.\nDivisores de 18: 1, 2, 3, 6, 9, 18.\nEl mayor divisor compartido es 6.",
+        "visual": null
+      },
+      {
+        "id": "div_primos_5_mcd-v5",
+        "enunciado": "¿Cuál es el MCD de 8 y 15?",
+        "respuesta_correcta": "1",
+        "opciones": [
+          "2",
+          "1",
+          "120"
+        ],
+        "paso_resuelto": "Divisores de 8: 1, 2, 4, 8.\nDivisores de 15: 1, 3, 5, 15.\nEl mayor divisor compartido es 1.",
+        "visual": null
+      },
+      {
+        "id": "div_primos_5_mcd-v6",
+        "enunciado": "¿Cuál es el MCD de 16 y 24?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "48",
+          "8",
+          "9"
+        ],
+        "paso_resuelto": "Divisores de 16: 1, 2, 4, 8, 16.\nDivisores de 24: 1, 2, 3, 4, 6, 8, 12, 24.\nEl mayor divisor compartido es 8.",
+        "visual": null
+      }
+    ]
   }
 ];
 
@@ -641,8 +1955,13 @@ export const TEMAS_BASES = [...new Set(UNIDADES_BASES.map(u => u.tema))];
 export function getUnidadBase(id) { return UNIDADES_BASES.find(u => u.id === id) || null; }
 export function crearActividadBase(id, modo, sesiones = []) {
  const u = getUnidadBase(id); if (!u) return null;
- const previas = sesiones.filter(s => s.ia_parametros_usados?.objetivo_id === id && s.tipo_pregunta !== 'leccion');
- const actividad = modo === 'leccion' ? u.actividades[0] : u.actividades[1 + (previas.length % (u.actividades.length - 1))];
+ // Prefer unseen variants; once exhausted, reuse the least recently presented.
+ const previas = sesiones.filter(s => s.ia_parametros_usados?.objetivo_id === id && s.ia_parametros_usados?.contenido_version === VERSION_BASES && s.tipo_pregunta !== 'leccion')
+   .sort((a,b) => String(a.created_at || '').localeCompare(String(b.created_at || '')));
+ const ultimaAparicion = new Map(previas.map((s,i) => [s.ia_parametros_usados.actividad_id, i]));
+ const variantes = u.actividades.slice(1);
+ const siguiente = variantes.find(a => !ultimaAparicion.has(a.id)) || variantes.reduce((a,b) => ultimaAparicion.get(a.id) <= ultimaAparicion.get(b.id) ? a : b);
+ const actividad = modo === 'leccion' ? u.actividades[0] : siguiente;
  const base = { contenido_version: VERSION_BASES, actividad_id: actividad.id, unidad_titulo: u.titulo, tiempo_estimado: 3 };
  if (modo === 'leccion') return {...base, tipo:'leccion', saludo:'Miremos una idea juntos', explicacion_simple:u.explicacion, concepto_clave_repetir:u.pista, visual_apoyo:u.visual,
  ejemplos_resueltos:[{numero:1,enunciado:u.ejemplo,pasos:u.pasos,respuesta:u.ejemplo,visual:u.visual}],

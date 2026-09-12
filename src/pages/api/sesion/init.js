@@ -163,7 +163,8 @@ export default async function handler(req, res) {
       const multiplos = determinarProximoObjetivo('divisibilidad_primos_mcm_mcd', historia);
       if (!fracciones.temaCompletado) temaActual = 'fracciones_concepto';
       else if (multiplos.indiceObjetivo < 2) temaActual = 'divisibilidad_primos_mcm_mcd';
-      else temaActual = 'fracciones_operaciones';
+      else if (!determinarProximoObjetivo('fracciones_operaciones', historia).temaCompletado) temaActual = 'fracciones_operaciones';
+      else if (!multiplos.temaCompletado) temaActual = 'divisibilidad_primos_mcm_mcd';
       capaActual = 1;
     }
 

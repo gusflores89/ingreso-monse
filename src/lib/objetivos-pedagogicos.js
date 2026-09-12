@@ -1268,7 +1268,7 @@ export function getObjetivosParaTema(tema = "") {
   const temaNormalizado = String(tema || "").toLowerCase().trim();
   if (OBJETIVOS_POR_TEMA[temaNormalizado]) {
     const lista = OBJETIVOS_POR_TEMA[temaNormalizado];
-    if (temaNormalizado === "divisibilidad_primos_mcm_mcd") return [{...lista[0], id:"bases_multiplos_saltos", titulo:"Múltiplos por saltos iguales"}, lista[3], lista[0], lista[1], lista[2], lista[4]];
+    if (temaNormalizado === "divisibilidad_primos_mcm_mcd") return [{...lista[0], id:"bases_multiplos_saltos", titulo:"Múltiplos por saltos iguales"}, lista[3], lista[0], ...[2,3,5,10].map(n => ({...lista[1], id:`bases_criterio_${n}`, titulo:`Divisible por ${n}`})), lista[2], lista[4]];
     return lista;
   }
 

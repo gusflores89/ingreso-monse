@@ -7,7 +7,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import Paragraph
 from reportlab.lib.styles import ParagraphStyle
 from xml.sax.saxutils import escape
-root=Path(r'C:\Users\gusta\OneDrive\Documentos\Personal\monse\ingreso-monse-2027')
+root=Path(__file__).resolve().parents[1]
 s=(root/'src/lib/apuntes-bases.js').read_text(encoding='utf-8');units=json.loads(s[s.index('['):s.index(';\n',s.index('['))])
 pdfmetrics.registerFont(TTFont('Segoe',r'C:\Windows\Fonts\segoeui.ttf'))
 pdfmetrics.registerFont(TTFont('SegoeBold',r'C:\Windows\Fonts\segoeuib.ttf'))
@@ -26,5 +26,5 @@ for tema in dict.fromkeys(u['tema'] for u in units):
    y-=25
   assert y>95,(u['id'],y)
   c.setFillColor(HexColor('#475569'));c.setFont('Segoe',9);c.drawString(48,64,'Material de apoyo de la aplicación. No es un documento oficial del colegio.')
-  c.drawString(48,48,'Bases v1 · '+str(i+1)+' / '+str(len(us)));c.showPage()
+  c.drawString(48,48,'Bases ampliadas · '+str(i+1)+' / '+str(len(us)));c.showPage()
  c.save();print(p.name, len(us),'páginas')
