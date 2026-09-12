@@ -11,6 +11,7 @@ import { loadUser, loadUserByCode } from "@/lib/usuarios";
 import { checkDailyRateLimit } from "@/lib/rateLimit";
 
 export default async function handler(req, res) {
+  res.setHeader("Cache-Control", "private, no-store");
   if (!requireMethod(req, res, "GET")) return;
   if (!requireAccess(req, res, ["student", "admin"])) return;
 
@@ -49,11 +50,6 @@ export default async function handler(req, res) {
     const resolvedUserId = usuario.id;
     if (!requireOwnership(req, res, resolvedUserId)) return;
 
-    // Validar límite diario de abuso/seguridad para llamadas de IA
-    const rateLimit = await checkDailyRateLimit(supabase, resolvedUserId);
-    if (!rateLimit.ok) {
-      return res.status(429).json({ error: rateLimit.error });
-    }
     const alumno = buildAlumnoProfile(usuario);
 
     const progreso = assertSupabaseOk(
@@ -122,6 +118,8 @@ export default async function handler(req, res) {
     const skipInsight = req.query.skip_insight === "true";
     if (!skipInsight) {
       try {
+        const rateLimit = await checkDailyRateLimit(supabase, resolvedUserId);
+        if (!rateLimit.ok) throw new Error("Límite de informes IA alcanzado.");
         insightMarkdown = await callOpenRouter(
           MODEL_DASHBOARD,
           buildPromptDashboard(alumno, {}),

@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import RecorridoFamiliar from "@/components/RecorridoFamiliar";
+import { useEffect, useState, useRef } from "react";
 import { TRIAL_TOPICS } from "@/lib/planes";
 import { getPdfUrl } from "@/lib/diapositivas";
 
@@ -83,6 +84,9 @@ export default function DashboardPapas({ userId }) {
   const [formRevision, setFormRevision] = useState(EMPTY_REVISION);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [errorTareas,setErrorTareas] = useState("");
+  const [guardandoRevision,setGuardandoRevision] = useState(false);
+  const revisionEnCurso = useRef(false);
   const [paymentLoading, setPaymentLoading] = useState(false);
   const [suggestedTopic, setSuggestedTopic] = useState(null);
   const [sugerirLoading, setSugerirLoading] = useState(null);
@@ -99,19 +103,20 @@ export default function DashboardPapas({ userId }) {
     setError("");
 
     try {
-      const [progresoRes, tareasRes] = await Promise.all([
-        fetch(`/api/progreso?user_id=${encodeURIComponent(userId)}`),
+      const [progresoResult, tareasResult] = await Promise.allSettled([
+        fetch(`/api/progreso?user_id=${encodeURIComponent(userId)}&skip_insight=true`),
         fetch(`/api/tarea-manuscrita/pendientes?user_id=${encodeURIComponent(userId)}`),
       ]);
-
-      const progresoJson = await progresoRes.json();
-      const tareasJson = await tareasRes.json();
-
-      if (!progresoRes.ok) throw new Error(progresoJson.error || "No se pudo cargar el dashboard.");
-      if (!tareasRes.ok) throw new Error(tareasJson.error || "No se pudieron cargar las tareas manuscritas.");
-
+      if (progresoResult.status === "rejected") throw Error("No se pudo cargar el panel. Volvé a intentar.");
+      const progresoRes = progresoResult.value, progresoJson = await progresoRes.json();
+      if (!progresoRes.ok) throw Error(progresoJson.error || "No se pudo cargar el panel.");
       setData(progresoJson);
-      setTareasPendientes(tareasJson.tareas || []);
+      try {
+        if (tareasResult.status === "rejected") throw Error("No se pudieron cargar las tareas manuscritas.");
+        const tareasJson = await tareasResult.value.json();
+        if (!tareasResult.value.ok) throw Error(tareasJson.error || "No se pudieron cargar las tareas manuscritas.");
+        setTareasPendientes(tareasJson.tareas || []);setErrorTareas("");
+      } catch (err) {setTareasPendientes([]);setErrorTareas(err.message);}
     } catch (err) {
       setError(err.message);
     } finally {
@@ -228,6 +233,8 @@ export default function DashboardPapas({ userId }) {
   };
 
   const handleRevisar = async (tareaId) => {
+    if(revisionEnCurso.current)return;
+    revisionEnCurso.current=true;setGuardandoRevision(true);setError("");
     try {
       const res = await fetch("/api/tarea-manuscrita/revisar", {
         method: "POST",
@@ -246,7 +253,7 @@ export default function DashboardPapas({ userId }) {
       setFormRevision(EMPTY_REVISION);
     } catch (err) {
       setError(err.message);
-    }
+    } finally {revisionEnCurso.current=false;setGuardandoRevision(false);}
   };
 
   const handleUpgrade = async () => {
@@ -509,14 +516,17 @@ export default function DashboardPapas({ userId }) {
             </article>
           </section>
 
-          <HandwritingSection
+          <RecorridoFamiliar key={data.usuario.id} userId={data.usuario.id} />
+          {errorTareas && <p role="alert">{errorTareas} <button type="button" onClick={load}>Reintentar tareas</button></p>}
+          {!errorTareas && <HandwritingSection
             tareasPendientes={tareasPendientes}
             revisandoTarea={revisandoTarea}
             setRevisandoTarea={setRevisandoTarea}
             formRevision={formRevision}
             setFormRevision={setFormRevision}
             handleRevisar={handleRevisar}
-          />
+            guardando={guardandoRevision}
+          />}
 
           {/* Biblioteca de Descargas Adicionales */}
           <section className="dashboard-panel dashboard-section" style={{ margin: "24px 0", animation: "fadeInUp 0.4s ease both" }}>
@@ -1006,7 +1016,7 @@ function TopicProgressRow({ item, suggestedTopic, sugerirLoading, onToggleSugges
                 gap: "4px",
                 marginLeft: "auto"
               }}
-              title="Aprobá los exámenes de la fase anterior para desbloquear"
+              title={item.oportunidad || "Revisá los conocimientos previos de este tema"}
             >
               🔒 Bloqueado
             </span>
@@ -1076,7 +1086,7 @@ function TimelineItem({ sesion }) {
   );
 }
 
-function HandwritingSection({ tareasPendientes, revisandoTarea, setRevisandoTarea, formRevision, setFormRevision, handleRevisar }) {
+function HandwritingSection({ tareasPendientes, revisandoTarea, setRevisandoTarea, formRevision, setFormRevision, handleRevisar, guardando }) {
   return (
     <section className="dashboard-panel dashboard-section handwriting-review-section">
       <PanelHeader title={`Tareas manuscritas pendientes (${tareasPendientes.length})`} subtitle="Revision diferida para escritura a mano" />
@@ -1113,6 +1123,7 @@ function HandwritingSection({ tareasPendientes, revisandoTarea, setRevisandoTare
 
               {revisandoTarea === tarea.id ? (
                 <RevisionForm
+                  guardando={guardando}
                   form={formRevision}
                   setForm={setFormRevision}
                   onCancel={() => {
@@ -1134,7 +1145,7 @@ function HandwritingSection({ tareasPendientes, revisandoTarea, setRevisandoTare
   );
 }
 
-function RevisionForm({ form, setForm, onCancel, onSubmit }) {
+function RevisionForm({ form, setForm, onCancel, onSubmit, guardando }) {
   return (
     <div className="review-form">
       <div>
@@ -1181,10 +1192,10 @@ function RevisionForm({ form, setForm, onCancel, onSubmit }) {
       </label>
 
       <div className="review-actions">
-        <button type="button" className="save-review" onClick={onSubmit} disabled={!form.resultado}>
-          Guardar revision
+        <button type="button" className="save-review" onClick={onSubmit} disabled={!form.resultado || guardando}>
+          {guardando ? "Guardando revisión…" : "Guardar revisión"}
         </button>
-        <button type="button" onClick={onCancel}>
+        <button type="button" onClick={onCancel} disabled={guardando}>
           Cancelar
         </button>
       </div>

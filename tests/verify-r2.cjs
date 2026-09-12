@@ -30,8 +30,8 @@ function db(initial={}) {
  return {tables,writes,from(table){
   tables[table]??=[]; let filters=[],sort=null,offset=0,n=Infinity,op=null,payload=null,conflict=null;
   const q={
-   select(){return q},eq(k,v){filters.push(r=>(k.includes('->>') ? (r[k.split('->>')[0]]?.[k.split('->>')[1]] ?? null) : r[k])===v);return q},neq(k,v){filters.push(r=>r[k]!==v);return q},
-   not(k,op,v){assert.equal(op,'is');filters.push(r=>r[k]!==v);return q},is(k,v){filters.push(r=>(k.includes('->>') ? (r[k.split('->>')[0]]?.[k.split('->>')[1]] ?? null) : r[k])===v);return q},
+   select(){return q},eq(k,v){filters.push(r=>(k.includes('->>') ? (r[k.split('->>')[0]]?.[k.split('->>')[1]] == null ? null : String(r[k.split('->>')[0]][k.split('->>')[1]])) : r[k])===v);return q},neq(k,v){filters.push(r=>r[k]!==v);return q},
+   not(k,op,v){assert.equal(op,'is');filters.push(r=>r[k]!==v);return q},is(k,v){filters.push(r=>(k.includes('->>') ? (r[k.split('->>')[0]]?.[k.split('->>')[1]] == null ? null : String(r[k.split('->>')[0]][k.split('->>')[1]])) : r[k])===v);return q},
    in(k,vs){filters.push(r=>vs.includes(r[k]));return q},order(k,{ascending}){sort={k,ascending};return q},limit(v){n=v;return q},range(a,b){offset=a;n=b-a+1;return q},
    update(v){op='update';payload=v;return q},insert(v){op='insert';payload=v;return q},
    upsert(v,opts={}){op='upsert';payload=v;conflict=opts.onConflict;return q},

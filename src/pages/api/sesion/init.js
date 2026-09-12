@@ -218,7 +218,7 @@ export default async function handler(req, res) {
       const examenes = (sesionesTema || []).filter(s => s.tipo_pregunta === 'examen_final').sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at)));
       const aprobado = examenes.some(s=>s.es_correcta === true);
       const ultimo = examenes.find(s=>s.ia_parametros_usados?.contenido_version === VERSION_BASES);
-      const pendiente = ultimo?.es_correcta === null && !ultimo.ia_parametros_usados?.revision_pendiente;
+      const pendiente = ultimo?.es_correcta === null && !ultimo.ia_parametros_usados?.revision_pendiente && !ultimo.ia_parametros_usados?.revision_familiar;
       const practicas = (sesionesTema || []).filter(s=>typeof s.es_correcta === 'boolean' && !['leccion','examen_final'].includes(s.tipo_pregunta))
         .sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at))).slice(0,5);
       const independientes = practicas.filter(s=>s.es_correcta && !s.ia_parametros_usados?.resuelto_con_ayuda);
@@ -679,9 +679,11 @@ async function maybeCrearExamenFinal(supabase, userId, tema, capa, modo, context
 
     if (esRevisionPendiente) {
       if (opciones.retomar_examen) {
+        const revisionFamiliar = ultimoExamen.ia_parametros_usados?.revision_familiar;
         return {
           sesion_id: ultimoExamen.id,
-          revision_pendiente: true,
+          revision_pendiente: !revisionFamiliar,
+          revision_familiar: revisionFamiliar ? {comentario:revisionFamiliar.comentario,fecha:revisionFamiliar.fecha} : null,
           entregado: true,
           retomado: false,
           tema,
@@ -690,7 +692,7 @@ async function maybeCrearExamenFinal(supabase, userId, tema, capa, modo, context
           pregunta: ultimoExamen.pregunta_generada || "Producción escrita entregada",
           respuesta_guardada: ultimoExamen.respuesta_usuario,
           fecha_entrega: ultimoExamen.created_at,
-          instrucciones: "Esta producción ya fue entregada y está a la espera de revisión con rúbrica docente y familiar.",
+          instrucciones: revisionFamiliar ? "Esta producción ya recibió una devolución familiar. Podés conversar sobre el próximo paso y seguir practicando." : "Esta producción ya fue entregada y está a la espera de revisión con rúbrica docente y familiar.",
         };
       }
       return null;

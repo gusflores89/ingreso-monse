@@ -2774,10 +2774,10 @@ function PantallaExamenEntregadoRevision({ pregunta, tema, onContinuarPractica, 
           <span style={{ fontSize: "1.8rem" }}>📋</span>
           <div>
             <strong style={{ color: "#a7f3d0", fontSize: "1.05rem", display: "block", marginBottom: "4px" }}>
-              Entregado: pendiente de revisión docente y familiar
+              {pregunta.revision_familiar ? "Tu producción ya tiene una devolución familiar" : "Entregado: pendiente de revisión docente y familiar"}
             </strong>
             <p style={{ color: "#e2e8f0", fontSize: "0.92rem", lineHeight: "1.5", margin: 0 }}>
-              Tu producción escrita fue guardada con éxito y quedó registrada para revisión con rúbrica cualitativa.
+              {pregunta.revision_familiar ? "Podés leer la devolución y conversar en familia sobre cómo seguir." : "Tu producción escrita fue guardada con éxito y quedó registrada para revisión con rúbrica cualitativa."}
               No necesitás volver a rendirla. Podés continuar practicando para seguir sumando estrellas o elegir otra materia.
             </p>
             {fechaFormateada && (
@@ -2788,6 +2788,8 @@ function PantallaExamenEntregadoRevision({ pregunta, tema, onContinuarPractica, 
           </div>
         </div>
       </section>
+
+      {pregunta.revision_familiar?.comentario && <section className="exam-card"><h3>Devolución familiar</h3><p style={{whiteSpace:"pre-wrap"}}>{pregunta.revision_familiar.comentario}</p></section>}
 
       {textoEntregado && (
         <section className="exam-card" style={{ background: "rgba(255, 255, 255, 0.03)", border: "1px solid rgba(255, 255, 255, 0.1)" }}>
