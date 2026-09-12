@@ -8,6 +8,9 @@ const read = p => fs.readFileSync(path.join(root,p),'utf8');
 const hashes = {};
 function source(p) { const s=read(p); hashes[p]=crypto.createHash('sha256').update(s).digest('hex'); return s; }
 function load(p, names, deps={}) {
+ if (p==='src/lib/apuntes-bases.js')deps={...load('src/lib/metadatos-bases.js',['VERSION_BASES']),...deps};
+ if (p==='src/lib/diapositivas.js')deps={...load('src/lib/apuntes-bases.js',['getFichaBase']),...deps};
+ if (['src/lib/objetivos-pedagogicos.js','src/pages/api/sesion/init.js','src/pages/api/sesion/respuesta.js'].includes(p))deps={...load('src/lib/contenido-bases.js',['TEMAS_BASES','VERSION_BASES','getUnidadBase','crearActividadBase','evaluarActividadBase']),...deps};
  if(p==='src/lib/diapositivas.js')deps={...load('src/lib/contenido-h.js',['FICHA_H']),...deps};
  if(p==='src/pages/api/sesion/init.js')deps={...load('src/lib/contenido-h.js',['getLeccionH']),...deps};
   const s=source(p).replace(/^import[\s\S]*?from\s+["'][^"']+["'];\s*/gm,'').replace(/export default /g,'').replace(/export /g,'');

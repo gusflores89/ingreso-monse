@@ -19,7 +19,7 @@ export async function refreshTopicProgress(supabase, userId, tema, capaActual) {
   const practicas = sesiones.filter((s) => s.tipo_pregunta !== "leccion" && s.tipo_pregunta !== "examen_final");
   const recientes = practicas.slice(0, 5);
   const correctasRecientes = recientes.filter(
-    (s) => s.es_correcta && !s.ia_parametros_usados?.resuelto_con_ayuda
+    (s) => s.es_correcta
   ).length;
   const tasa = recientes.length ? Number(((correctasRecientes / recientes.length) * 100).toFixed(2)) : 0;
   const capaMaxima = sesiones.reduce((max, sesion) => Math.max(max, sesion.capa || 1), capaActual || 1);

@@ -1,3 +1,4 @@
+import { getUnidadBase, VERSION_BASES } from "./contenido-bases.js";
 /**
  * Motor pedagógico de micro-objetivos para el Ingreso al Monserrat 2027.
  * Desacopla la equivalencia "1 tema = 1 lección", registrando estados de aprendizaje:
@@ -1266,7 +1267,9 @@ export const OBJETIVOS_POR_TEMA = {
 export function getObjetivosParaTema(tema = "") {
   const temaNormalizado = String(tema || "").toLowerCase().trim();
   if (OBJETIVOS_POR_TEMA[temaNormalizado]) {
-    return OBJETIVOS_POR_TEMA[temaNormalizado];
+    const lista = OBJETIVOS_POR_TEMA[temaNormalizado];
+    if (temaNormalizado === "divisibilidad_primos_mcm_mcd") return [{...lista[0], id:"bases_multiplos_saltos", titulo:"Múltiplos por saltos iguales"}, lista[3], lista[0], lista[1], lista[2], lista[4]];
+    return lista;
   }
 
   const tituloTema = temaNormalizado.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
@@ -1318,73 +1321,39 @@ export function determinarProximoObjetivo(tema = "", sesiones = []) {
 
   const statsPorObjetivo = {};
   for (const obj of objetivos) {
-    statsPorObjetivo[obj.id] = {
-      sesionesTotal: 0,
-      aciertosIndependientes: 0,
-      aciertosConAyuda: 0,
-      fallos: 0,
-      explicacionVista: false,
-    };
-  }
-
-  for (const s of sesiones) {
-    if (s.tema !== tema) continue;
-    const objId = s.ia_parametros_usados?.objetivo_id;
-
-    // Solo acumular evidencia si la sesión tiene un objetivo_id válido del catálogo de este tema
-    if (!objId || !statsPorObjetivo[objId]) {
-      continue;
-    }
-
-    const stats = statsPorObjetivo[objId];
-    stats.sesionesTotal++;
-
-    // Solo cuenta como explicación vista si la lección fue respondida o superada, no simplemente creada en borrador
-    if (s.tipo_pregunta === "leccion") {
-      const leccionRespondida =
-        s.es_correcta !== null ||
-        (s.respuesta_usuario && String(s.respuesta_usuario).trim().length > 0) ||
-        s.ia_parametros_usados?.explicacion_vista === true ||
-        s.ia_parametros_usados?.completada === true;
-
-      if (leccionRespondida) {
-        stats.explicacionVista = true;
-      }
-    }
-
-    // Solo cuentan como evidencias independientes las sesiones de práctica sin ayuda y sin no_visto.
-    // Se reconocen los formatos solicitados por el prompt ("multiple", "completar", "produccion", "practica"),
-    // excluyendo estrictamente lecciones, exámenes, casos resueltos y tareas manuscritas.
-    const esPractica =
-      s.tipo_pregunta !== "leccion" &&
-      s.tipo_pregunta !== "examen_final" &&
-      s.tipo_pregunta !== "caso_resuelto" &&
-      s.tipo_pregunta !== "manuscrita" &&
-      s.tipo_pregunta !== "trial_completado" &&
-      (s.tipo_pregunta === "practica" ||
-        s.tipo_pregunta === "multiple" ||
-        s.tipo_pregunta === "completar" ||
-        s.tipo_pregunta === "produccion" ||
-        s.ia_parametros_usados?.modo_sesion === "practica");
-
-    if (esPractica) {
-      if (s.es_correcta === true) {
-        if (s.ia_parametros_usados?.resuelto_con_ayuda || s.ia_parametros_usados?.no_visto) {
-          stats.aciertosConAyuda++;
-        } else {
-          stats.aciertosIndependientes++;
+    const base = getUnidadBase(obj.id);
+    const stats = {aciertosIndependientes:0,aciertosConAyuda:0,explicacionVista:false,necesitaRepaso:false};
+    const evidencias = new Set(); let fallosSeguidos = 0;
+    const historial = sesiones.filter(s => s.tema === tema && s.ia_parametros_usados?.objetivo_id === obj.id)
+      .filter(s => !base || s.ia_parametros_usados?.contenido_version === VERSION_BASES)
+      .sort((a,b) => String(a.created_at || '').localeCompare(String(b.created_at || '')));
+    for (const s of historial) {
+      const p = s.ia_parametros_usados || {};
+      if (s.tipo_pregunta === 'leccion') {
+        if (typeof s.es_correcta === 'boolean' || p.explicacion_vista === true || p.completada === true) {
+          stats.explicacionVista = true; stats.necesitaRepaso = false; fallosSeguidos = 0;
         }
-      } else if (s.es_correcta === false) {
-        stats.fallos++;
+        continue;
+      }
+      if (!['practica','multiple','completar','produccion'].includes(s.tipo_pregunta) && p.modo_sesion !== 'practica') continue;
+      if (s.es_correcta === false) {
+        fallosSeguidos++;
+        if (fallosSeguidos >= 2) { evidencias.clear();stats.explicacionVista=false;stats.necesitaRepaso=true; }
+      } else if (s.es_correcta === true) {
+        fallosSeguidos=0;
+        if (p.resuelto_con_ayuda || p.ayuda_utilizada || p.no_visto) stats.aciertosConAyuda++;
+        else evidencias.add(p.actividad_id || s.id || s);
       }
     }
+    stats.aciertosIndependientes = evidencias.size;
+    statsPorObjetivo[obj.id] = stats;
   }
 
   for (let i = 0; i < objetivos.length; i++) {
     const obj = objetivos[i];
     const stats = statsPorObjetivo[obj.id];
 
-    if (stats.aciertosIndependientes < 2) {
+    if (stats.aciertosIndependientes < 2 || stats.necesitaRepaso || (getUnidadBase(obj.id) && !stats.explicacionVista)) {
       let estado = ESTADOS_OBJETIVO.NO_INICIADA;
       if (stats.aciertosIndependientes === 1) {
         estado = ESTADOS_OBJETIVO.PRACTICA_INDEPENDIENTE;
@@ -1400,6 +1369,7 @@ export function determinarProximoObjetivo(tema = "", sesiones = []) {
         totalObjetivos: objetivos.length,
         estado,
         requiereExplicacion: !stats.explicacionVista,
+        necesitaRepaso: stats.necesitaRepaso,
         aciertosIndependientes: stats.aciertosIndependientes,
         temaCompletado: false,
       };

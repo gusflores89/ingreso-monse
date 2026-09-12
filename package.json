@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "node tests/verify-r1.cjs && node tests/verify-h-teoria.cjs"
+    "test": "node tests/verify-r1.cjs && node tests/verify-h-teoria.cjs && node tests/verify-r2.cjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.99.0",

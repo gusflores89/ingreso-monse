@@ -8,6 +8,9 @@ const read = p => fs.readFileSync(path.join(root,p),'utf8');
 const hashes = {};
 function source(p) { const s=read(p); hashes[p]=crypto.createHash('sha256').update(s).digest('hex'); return s; }
 function load(p, names, deps={}) {
+ if (p==='src/lib/apuntes-bases.js')deps={...load('src/lib/metadatos-bases.js',['VERSION_BASES']),...deps};
+ if (p==='src/lib/diapositivas.js')deps={...load('src/lib/apuntes-bases.js',['getFichaBase']),...deps};
+ if (['src/lib/objetivos-pedagogicos.js','src/pages/api/sesion/init.js','src/pages/api/sesion/respuesta.js'].includes(p))deps={...load('src/lib/contenido-bases.js',['TEMAS_BASES','VERSION_BASES','getUnidadBase','crearActividadBase','evaluarActividadBase']),...deps};
  if(p==='src/pages/api/sesion/init.js')deps={...load('src/lib/contrato-actividad.js',['quitarClaves']),...deps};
  if(p==='src/pages/api/sesion/respuesta.js')deps={...load('src/lib/validacion-pedagogica.js',['validarEvaluacion','huboAyuda']),requireOwnership:()=>true,...deps};
  if(p==='src/lib/diapositivas.js')deps={...load('src/lib/contenido-h.js',['FICHA_H']),...deps};
@@ -116,8 +119,9 @@ async function start(database,body={},aiType="practica") {
  record('Tema sin ficha no ofrece un PDF provisional',{disponible:missing.disponible,pdf:missing.pdf_url});
  for(const [key,value] of Object.entries(slides.DIAPOSITIVAS_CATALOG)){assert(fs.existsSync(path.join(root,'public',value.pdf_url)));assert(!value.pdf_url.includes('guia_completa'))}
  record('Todas las fichas del catálogo enlazan a un PDF existente',{fichas:Object.keys(slides.DIAPOSITIVAS_CATALOG).length});
- const t='fracciones_concepto',complete=objectives.getObjetivosParaTema(t).flatMap((o,i)=>[1,2].map(j=>row(i*2+j,{tema:t,tipo_pregunta:'multiple',ia_parametros_usados:{objetivo_id:o.id,modo_sesion:'practica'}})));
- const examDb=db({sesiones:complete});assert.equal(await init.maybeCrearExamenFinal(examDb,user.id,t,1,'NORMAL',{},{}),null);assert.equal(examDb.writes.length,0);
+ const t='fracciones_concepto',complete=objectives.getObjetivosParaTema(t).flatMap((o,i)=>[1,2].map(j=>row(i*2+j,{tema:t,tipo_pregunta:'multiple',ia_parametros_usados:{objetivo_id:o.id,modo_sesion:'practica',contenido_version:'bases-2026-09-12-v1',actividad_id:o.id+'-'+j}})));
+ const lessonEvidence=objectives.getObjetivosParaTema(t).map((o,i)=>row(i+500,{tema:t,tipo_pregunta:"leccion",ia_parametros_usados:{objetivo_id:o.id,contenido_version:"bases-2026-09-12-v1"}}));
+ const examDb=db({sesiones:[...lessonEvidence,...complete]});assert.equal(await init.maybeCrearExamenFinal(examDb,user.id,t,1,'NORMAL',{},{}),null);assert.equal(examDb.writes.length,0);
  const chosen=await init.maybeCrearExamenFinal(examDb,user.id,t,1,'NORMAL',{}, {rendir_examen:true});assert.equal(chosen.tipo,'examen_final');
  record('El examen se crea al elegirlo, no al abrir la sesión',{tipoElegido:chosen.tipo});
  const incomplete=db({sesiones:complete.slice(0,2)});assert.equal(await init.maybeCrearExamenFinal(incomplete,user.id,t,1,'NORMAL',{}, {rendir_examen:true}),null);

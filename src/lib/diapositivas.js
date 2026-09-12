@@ -1,3 +1,4 @@
+import { getFichaBase } from "./apuntes-bases.js";
 import { FICHA_H } from "./contenido-h.js";
 
 export const DIAPOSITIVAS_CATALOG = {
@@ -729,7 +730,7 @@ Conceptos contrastados con los apartados de múltiplos, divisores y divisibilida
 
 export function getDiapositivasParaTema(tema = "") {
   const temaNormalizado = String(tema || "").toLowerCase().trim();
-  const apunte = DIAPOSITIVAS_CATALOG[temaNormalizado];
+  const apunte = getFichaBase(temaNormalizado) || DIAPOSITIVAS_CATALOG[temaNormalizado];
   if (apunte) return apunte;
 
   const titulo = String(tema || "").replace(/_/g, " ");

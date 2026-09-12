@@ -1,3 +1,4 @@
+import { TEMAS_BASES, VERSION_BASES, getUnidadBase, crearActividadBase } from "@/lib/contenido-bases";
 import { quitarClaves } from "@/lib/contrato-actividad";
 import { getLeccionH } from "@/lib/contenido-h";
 import { daysUntilExam } from "@/lib/date";
@@ -156,6 +157,16 @@ export default async function handler(req, res) {
       }
     }
 
+    if (TEMAS_BASES.includes(temaActual) && modo !== 'REPASO' && !rendir_examen && !retomar_examen) {
+      const historia = assertSupabaseOk(await supabase.from('sesiones').select('id, tema, tipo_pregunta, es_correcta, created_at, ia_parametros_usados').eq('user_id', user_id), 'No se pudo leer el recorrido');
+      const fracciones = determinarProximoObjetivo('fracciones_concepto', historia);
+      const multiplos = determinarProximoObjetivo('divisibilidad_primos_mcm_mcd', historia);
+      if (!fracciones.temaCompletado) temaActual = 'fracciones_concepto';
+      else if (multiplos.indiceObjetivo < 2) temaActual = 'divisibilidad_primos_mcm_mcd';
+      else temaActual = 'fracciones_operaciones';
+      capaActual = 1;
+    }
+
     const progresoResult = await supabase
       .from("progreso")
       .select("*")
@@ -180,7 +191,7 @@ export default async function handler(req, res) {
 
     const { data: sesionesTema } = await supabase
       .from("sesiones")
-      .select("tema, tipo_pregunta, es_correcta, ia_parametros_usados")
+      .select("id, tema, tipo_pregunta, es_correcta, created_at, ia_parametros_usados")
       .eq("user_id", user_id)
       .eq("tema", temaActual);
 
@@ -189,6 +200,20 @@ export default async function handler(req, res) {
     const objetivo_id = objetivoActual?.id || null;
     contexto.objetivo_id = objetivo_id;
     contexto.objetivo_actual = objetivoActual;
+
+    const unidadBase = getUnidadBase(objetivo_id);
+    if (unidadBase && !(rendir_examen && objetivoInfo.temaCompletado)) {
+      const modoBase = objetivoInfo.requiereExplicacion || modo === 'REPASO' ? 'leccion' : 'practica';
+      const actividad = crearActividadBase(objetivo_id, modoBase, sesionesTema || []);
+      const texto = modoBase === 'leccion' ? actividad.ejercicio_practica.enunciado : actividad.pregunta;
+      const fila = assertSupabaseOk(await supabase.from('sesiones').insert({user_id, tema:temaActual, capa:1, modo,
+        tipo_pregunta:modoBase === 'leccion' ? 'leccion':'multiple', pregunta_generada:texto,
+        contexto_json:{...contexto, leccion:modoBase === 'leccion' ? actividad:null},
+        ia_parametros_usados:{provider:'contenido_revisado',modo_sesion:modoBase,objetivo_id,contenido_version:VERSION_BASES,actividad_id:actividad.actividad_id}
+      }).select().single(), 'No se pudo guardar la actividad');
+      return res.status(200).json(quitarClaves({...actividad, pregunta:texto, tipo_pregunta:modoBase === 'leccion'?'leccion':'multiple',
+        sesion_id:fila.id,tema:temaActual,capa:1,...tutor,...planPayload,examen_disponible:false,examen_pendiente:false}));
+    }
 
     const leccionResult = await supabase
       .from("lecciones_completadas")
@@ -919,7 +944,7 @@ async function getUnlockedTopics(supabase, userId, plan, usuario = null) {
         if (isTrial) {
           return TRIAL_TOPICS.includes(t.tema);
         }
-        return isPhaseUnlocked(t.fase, t.materia) && cumplePrerrequisitos(t.tema);
+        return TEMAS_BASES.includes(t.tema) || (isPhaseUnlocked(t.fase, t.materia) && cumplePrerrequisitos(t.tema));
       })
       .map(t => t.tema)
   );

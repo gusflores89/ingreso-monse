@@ -4,7 +4,7 @@ export function quitarClaves(value) {
   if (!value || typeof value !== "object") return value;
   const result = {};
   for (const [key, v] of Object.entries(value)) {
-    if (["respuesta_correcta", "respuestas_correctas", "alternativas_aceptables"].includes(key)) continue;
+    if (["respuesta_correcta", "respuestas_correctas", "alternativas_aceptables", "paso_resuelto"].includes(key)) continue;
     result[key] = quitarClaves(v);
   }
   return result;

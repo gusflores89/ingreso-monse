@@ -1,3 +1,6 @@
+import { TEMAS_BASES, VERSION_BASES } from "@/lib/metadatos-bases";
+import { puedeRetomarMision } from "@/lib/continuidad-mision";
+import BarrasFraccion from "./BarrasFraccion";
 import { visualizacionSegura } from "@/lib/visualizaciones-seguras";
 import { useEffect, useMemo, useRef, useState } from "react";
 import PantallaCasoResuelto from "./PantallaCasoResuelto";
@@ -123,6 +126,8 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       return current;
     } catch (e) {
       console.error("Error al guardar misión:", e);
+      setError("No pudimos guardar en esta computadora. Tu actividad sigue abierta; intentá guardar otra vez.");
+      return null;
     }
   };
 
@@ -182,12 +187,12 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
   };
 
   const handleGuardarYSalir = () => {
-    saveMissionState({
+    const guardado = saveMissionState({
       borrador: respuesta,
       respuesta,
       respuestasExamen,
     });
-    window.location.href = "/";
+    if (guardado) window.location.href = "/";
   };
 
   useEffect(() => {
@@ -211,7 +216,9 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             if (typeof saved.forzar_practica === "boolean") {
               setForzarPractica(saved.forzar_practica);
             }
-            if (saved.fecha === hoy && (saved.misionTerminada || (saved.pregunta && saved.sesionId))) {
+            const versionValida = !TEMAS_BASES.includes(saved.tema) || saved.pregunta?.contenido_version === VERSION_BASES;
+            if (versionValida && puedeRetomarMision(saved, {usuario:user_id,tema,modo,hoy})) {
+              if (saved.fecha !== hoy) { saved.fecha = hoy; localStorage.setItem(getStorageKey(), JSON.stringify(saved)); }
               if (saved.pregunta) setPregunta(saved.pregunta);
               if (saved.sesionId) setSesionId(saved.sesionId);
               if (saved.evaluacion) setEvaluacion(saved.evaluacion);
@@ -304,6 +311,8 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
           pregunta: data,
           sesionId: data.sesion_id,
           tema: data.tema || targetTema,
+          solicitud_modo: modo || "NORMAL",
+          solicitud_tema: tema || null,
           borrador: "",
           respuesta: "",
           respuestasExamen: {},
@@ -735,7 +744,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         body: JSON.stringify({
           user_id,
           tema: nuevoTema,
-          modo: modo || "NORMAL",
+          modo: options.modo || modo || "NORMAL",
           omitir_caso_resuelto: options.omitir_caso_resuelto || false,
           forzar_practica: shouldForzar,
           tutor_preference,
@@ -760,7 +769,9 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       saveMissionState({
         pregunta: data,
         sesionId: data.sesion_id,
-        tema: nuevoTema,
+        tema: data.tema || nuevoTema,
+        solicitud_modo: options.modo || modo || "NORMAL",
+        solicitud_tema: tema || null,
         desafios: 0,
         retosCompletadosIds: [],
         misionTerminada: false,
@@ -824,7 +835,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
   const totalPasos = pasos.length;
 
   const visualParaEjercicio = useMemo(() => {
-    if (!pregunta) return null;
+    if (!pregunta || pregunta.contenido_version === VERSION_BASES) return null;
     let textoParaVisual = pregunta.pregunta || "";
     if (pregunta.tipo === "examen_final" && Array.isArray(pregunta.preguntas)) {
       textoParaVisual += " " + pregunta.preguntas.map((p) => p.texto || "").join(" ");
@@ -840,7 +851,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
 
   return (
     <section
-      className={`tutoria-panel background-decorative theme-${theme}`}
+      className={`tutoria-panel background-decorative theme-${theme} ${pregunta?.contenido_version === VERSION_BASES ? "bases-panel" : ""}`}
       aria-live="polite"
       style={{
         "--primary": tutor.color,
@@ -873,6 +884,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             {estrellasAcumuladas > 0 && <span>⭐ {estrellasAcumuladas}</span>}
           </div>
 
+          {pregunta?.plan !== 'trial' && <button type="button" disabled={loading} onClick={()=>handleSelectTema('fracciones_concepto',{modo:'REPASO',forzar_practica:true})}>🌱 Aprender fracciones</button>}
           {pregunta?.tema_sugerido && !pregunta.tema_sugerido.completado && pregunta.tema === pregunta.tema_sugerido.tema && (
             <span className="plan-badge-tutoria" style={{ fontSize: "0.82rem", padding: "4px 12px", borderRadius: "20px", backgroundColor: "rgba(139, 92, 246, 0.2)", color: "#c084fc", border: "1px solid rgba(139, 92, 246, 0.4)", fontWeight: "600", display: "inline-flex", alignItems: "center", gap: "4px", boxShadow: "0 0 10px rgba(139, 92, 246, 0.15)" }}>
               🎯 Misión Familiar
@@ -995,6 +1007,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         </div>
       )}
 
+      {!evaluacion && <BarrasFraccion barras={pregunta?.tipo === 'leccion' ? (pasoActual === 0 ? pregunta.visual_apoyo : pasoActualData?.contenido?.visual) : pregunta?.visual_apoyo} />}
       {loading && <p className="status">{tutor.nombre} esta pensando...</p>}
       {error && <p className="error">{error}</p>}
 
@@ -1196,7 +1209,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                     <VisualizacionMatematica tipo={visualParaEjercicio.tipo} datos={visualParaEjercicio.datos} mostrarResultado={false} />
                   </div>
                 )}
-                <textarea
+                {pregunta.ejercicio_practica?.opciones ? <div role="group" aria-label="Elegí una respuesta" style={{display:'flex',gap:12,flexWrap:'wrap'}}>{pregunta.ejercicio_practica.opciones.map(op => <button type="button" key={op} disabled={loading} aria-pressed={respuesta===op} onClick={()=>{setRespuesta(op);saveMissionState({respuesta:op,borrador:op});}} style={{padding:'14px 22px',border:respuesta===op?'2px solid #38bdf8':'1px solid #a59ec9',borderRadius:12}}>{op}</button>)}</div> : <textarea
                   placeholder="Escribi tu respuesta aca..."
                   value={respuesta}
                   onChange={(event) => {
@@ -1204,7 +1217,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                     saveMissionState({ borrador: event.target.value, respuesta: event.target.value });
                   }}
                   rows={4}
-                />
+                />}
 
                 {pistaActiva && intento > 1 && (
                   <div style={{
@@ -1881,6 +1894,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                 };
 
                 const isTopicUnlocked = (tema, fase, materia) => {
+                  if (TEMAS_BASES.includes(tema)) return true;
                   if (materia === "matematica") return isMateUnlocked(fase);
                   return isLenguaUnlocked(fase);
                 };
@@ -1896,7 +1910,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                 const approvedFase4 = topicsFase4.filter(t => completedExams.has(t.tema)).length;
 
                 const unlockedFase1 = true;
-                const unlockedFase2 = bypassLocks || (unlockedMateFase2 || unlockedLenguaFase2);
+                const unlockedFase2 = true; // Las bases de fracciones están disponibles sin exámenes previos.
                 const unlockedFase3 = bypassLocks || (unlockedMateFase3 || unlockedLenguaFase3);
                 const unlockedFase4 = bypassLocks || (unlockedMateFase4 || unlockedLenguaFase4);
                 const unlockedFase5 = bypassLocks || (unlockedMateFase5 && unlockedLenguaFase5);

@@ -1,3 +1,4 @@
+import { evaluarActividadBase } from "@/lib/contenido-bases";
 import { validarEvaluacion, huboAyuda } from "@/lib/validacion-pedagogica";
 import { daysUntilExam } from "@/lib/date";
 import {
@@ -198,14 +199,15 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error, pista_concre
       ? `Pregunta: ${sesion.pregunta_generada}\n${alumno.nombre} indicó que todavía no vio este tema.\n\nEnseña y orienta con paciencia. Devuelve solo JSON válido.`
       : `Pregunta: ${sesion.pregunta_generada}\nRespuesta de ${alumno.nombre}: <respuesta_alumno>${respuesta_usuario}</respuesta_alumno>\n\nEvalua y retroalimenta. Devuelve solo JSON valido.`;
 
-    const respuestaIa = await callOpenRouter(
+    const evaluacionBase = evaluarActividadBase(sesion, respuesta_usuario, Boolean(no_visto));
+    const respuestaIa = evaluacionBase ? null : await callOpenRouter(
       MODEL_TUTOR,
       evaluacionPrompt,
       promptUserText,
       700
     );
 
-    const evaluacion = validarEvaluacion(parseJsonFromModel(respuestaIa), Boolean(no_visto));
+    const evaluacion = validarEvaluacion(evaluacionBase || parseJsonFromModel(respuestaIa), Boolean(no_visto));
 
     const esNoVisto = Boolean(no_visto);
     const esCorrectaDb = esNoVisto ? null : Boolean(evaluacion.es_correcta);
@@ -217,7 +219,7 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error, pista_concre
       no_visto: esNoVisto,
       pista_concreta: evaluacion.pista_concreta || null,
       paso_resuelto: evaluacion.paso_resuelto || null,
-      evaluacion: { provider: "openrouter", model: MODEL_TUTOR, max_tokens: 700 },
+      evaluacion: { provider: evaluacionBase ? "contenido_revisado" : "openrouter", model: evaluacionBase ? null : MODEL_TUTOR, max_tokens: 700 },
     };
     sesion.ia_parametros_usados = updatedIaParametros;
 

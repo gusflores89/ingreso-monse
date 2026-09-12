@@ -4304,3 +4304,7 @@ label small {
   border-left-color: var(--success) !important;
   background: #0f2418 !important;
 }
+
+/* Las explicaciones breves crecen con su contenido, sin una pantalla vacía. */
+.bases-panel .lesson-step-shell { min-height: 0; }
+.bases-panel .lesson-step-card { flex: none; max-height: none; overflow: visible; }

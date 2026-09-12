@@ -1,3 +1,4 @@
+import { TEMAS_BASES } from "@/lib/metadatos-bases";
 import { requireMethod } from "@/lib/http";
 import { requireAccess, requireOwnership } from "@/lib/access";
 import { getTopicMeta, CURRICULUM_MATEMATICA, CURRICULUM_LENGUA } from "@/lib/curriculum";
@@ -206,7 +207,7 @@ function buildDashboardMetrics({ progreso, sesiones, alertas, plan, examenesApro
     if (esTrial) {
       return TRIAL_TOPICS.includes(tema);
     }
-    return isPhaseUnlocked(fase, materia);
+    return TEMAS_BASES.includes(tema) || isPhaseUnlocked(fase, materia);
   };
 
   const curriculumCompleto = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA];
