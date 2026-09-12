@@ -1,6 +1,13 @@
 # R5 — Lengua inicial y requisitos compartidos
 
-Estado: código implementado y verificado localmente; listo para publicar en Vercel.
+Estado: publicado y verificado en https://www.ingresomonserrat.online el 12/09/2026 a las 13:58 ART.
+
+- Commit de implementación: `2d6a982`.
+- Despliegue: `dpl_Ey11sjXRPBBCoD1heT5wUUdkEPi7`, estado Ready.
+- URL de versión: https://ingreso-monse-2027-kayfiauhj-gustavos-projects-b8e409fb.vercel.app
+- Las 21 comprobaciones de navegador también pasaron contra los archivos de interfaz publicados. La API de esas pruebas usa controladores reales con datos sintéticos; no es una prueba de extremo a extremo sobre Supabase de producción.
+- Los tres PDF devolvieron HTTP 200 y su SHA-256 coincide con los archivos locales revisados.
+- Los servidores locales utilizados para la verificación quedaron detenidos.
 
 ## Problema y resultado
 
