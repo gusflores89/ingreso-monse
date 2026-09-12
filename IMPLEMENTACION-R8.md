@@ -1,6 +1,13 @@
 # R8 — Continuidad de misión entre navegadores
 
-Estado: código preparado; la sincronización real requiere aplicar la migración 008 en Supabase. No está activada todavía.
+Estado: código publicado en https://www.ingresomonserrat.online el 12/09/2026. La sincronización real requiere aplicar la migración 008 en Supabase y verificarla allí. No está activada todavía.
+
+- Commit de implementación: `0497999`.
+- Despliegue: `dpl_BFw2AGxPgzHie6U9hjj7D6zQEaJT`, creado a las 17:19 ART, estado Ready.
+- URL de versión: https://ingreso-monse-2027-r0sjwub2n-gustavos-projects-b8e409fb.vercel.app
+- Los siete recorridos de navegador también pasan sobre los archivos de interfaz publicados, con controladores reales y datos sintéticos. No es una prueba contra la tabla de producción.
+- La API real devuelve HTTP 401 sin sesión y `Cache-Control: private, no-store`.
+- Los servidores locales de verificación quedaron detenidos.
 
 ## Problema y solución
 
@@ -22,7 +29,9 @@ La misión, el borrador y las estrellas estaban únicamente en localStorage. Est
 
 La consulta de estructura de Supabase devolvió `PGRST205` para `continuidad_misiones`, con cero registros leídos. El entorno dispone de la clave de servidor de la aplicación, pero no de conexión PostgreSQL administrativa ni token de administración de Supabase para ejecutar DDL.
 
-1. En el SQL Editor del proyecto Supabase, ejecutar `supabase/migrations/008_continuidad_misiones.sql`. Crea únicamente la tabla de continuidad, activa RLS, revoca acceso directo a roles públicos y concede operaciones al rol de servidor. No altera las tablas ni los registros pedagógicos existentes.
+1. En el [SQL Editor del proyecto Supabase](https://supabase.com/dashboard/project/opzmmvshkgtszjbgcjqi/sql/new), ejecutar `supabase/migrations/008_continuidad_misiones.sql`. Crea únicamente la tabla de continuidad, activa RLS, revoca acceso directo a roles públicos y concede operaciones al rol de servidor. No altera las tablas ni los registros pedagógicos existentes.
+[Documentación oficial de Supabase sobre creación de tablas mediante SQL](https://supabase.com/docs/guides/database/tables).
+
 2. Comprobar la estructura y ejecutar `node tests/verify-r8-supabase.cjs`. Esa prueba usa una cuenta sintética y elimina solo sus propios UUID. Verifica creación y actualización concurrentes reales con PostgREST. El script está preparado, pero no fue ejecutado porque falta la tabla.
 3. Verificar una recuperación real entre dos navegadores antes de dar la activación por cerrada. La app detecta la tabla al volver a abrir la tutoría; no necesita otro cambio de código para reconocerla.
 
