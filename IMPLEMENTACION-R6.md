@@ -1,6 +1,13 @@
 # R6 — Repasos breves según el historial
 
-Estado: implementación y verificación local completas; publicación pendiente.
+Estado: publicado y verificado en https://www.ingresomonserrat.online el 12/09/2026.
+
+- Commit de implementación: `5cfdd22`.
+- Despliegue: `dpl_39D4tjcdgduDZzoJBJMCpf3jKMgw`, creado a las 14:59 ART, estado Ready.
+- URL de versión: https://ingreso-monse-2027-71ugvx7yw-gustavos-projects-b8e409fb.vercel.app
+- Las diez comprobaciones de navegador también pasan contra la interfaz publicada. Su API utiliza controladores reales con datos sintéticos; no es una prueba completa sobre Supabase de producción.
+- La API real de repasos devuelve HTTP 401 sin sesión y `Cache-Control: private, no-store`.
+- El servidor local utilizado para verificar quedó detenido.
 
 ## Problema y resultado
 
