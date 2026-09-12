@@ -332,6 +332,201 @@ const UNIDADES = [
     ],
     "pista": "Buscá divisores, no múltiplos. De los que comparten, elegí el mayor.",
     "visual": null
+  },
+  {
+    "id": "leng_lect_1_literal",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Encontrar lo que el texto dice",
+    "explicacion": "A veces la respuesta está escrita en el texto. Leé la pregunta, buscá esa información y volvé a mirar la frase antes de elegir. Podés releer todas las veces que necesites.",
+    "ejemplo": "Lola dejó su mochila junto a la puerta. ¿Dónde quedó la mochila?",
+    "pasos": [
+      "Buscamos dónde dejó la mochila.",
+      "La frase dice «junto a la puerta»: esa es la respuesta."
+    ],
+    "pista": "Buscá la frase que responde exactamente a la pregunta.",
+    "visual": null
+  },
+  {
+    "id": "leng_lect_2_inferencia",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Usar una pista del texto",
+    "explicacion": "Inferir es unir pistas del texto con algo que conocemos. Elegimos la explicación que mejor encaja, sin inventar detalles. Una inferencia puede ser probable aunque el texto no la diga directamente.",
+    "ejemplo": "El suelo estaba mojado y Lara cerró su paraguas al entrar. ¿Qué pudo pasar?",
+    "pasos": [
+      "Buscamos pistas: suelo mojado y paraguas.",
+      "Es probable que haya llovido. El texto no permite saber durante cuánto tiempo."
+    ],
+    "pista": "Elegí lo que mejor explican las pistas; no agregues datos que el texto no da.",
+    "visual": null
+  },
+  {
+    "id": "leng_lect_3_idea_central",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Contar la idea más importante",
+    "explicacion": "La idea principal reúne lo más importante de un texto. Un detalle cuenta solo una parte. Para resumir, elegí una frase que abarque lo que ocurre sin agregar información.",
+    "ejemplo": "El club juntó papel, separó cartón y lo llevó a reciclar.",
+    "pasos": [
+      "Las tres acciones tienen algo en común: reciclar.",
+      "Idea principal: el club organizó una actividad de reciclaje."
+    ],
+    "pista": "Buscá la opción que reúne el texto entero y no solo un detalle.",
+    "visual": null
+  },
+  {
+    "id": "leng_bv_1_mb_nv",
+    "tema": "ortografia_b_v",
+    "titulo": "Mirar la letra anterior: mb y nv",
+    "explicacion": "B y V suelen sonar igual al hablar. El oído no alcanza para elegir. En palabras como tambor miramos M antes de B; en palabras como enviar, N antes de V. Practiquemos esos grupos.",
+    "ejemplo": "tambor → mb; enviar → nv",
+    "pasos": [
+      "Miramos la letra que está justo antes del espacio.",
+      "Después de M escribimos B; después de N, V en estos grupos."
+    ],
+    "pista": "Mirá el grupo de dos letras: MB o NV.",
+    "visual": null
+  },
+  {
+    "id": "leng_bv_2_bu_bur_bus",
+    "tema": "ortografia_b_v",
+    "titulo": "Reconocer comienzos: bu-, bur-, bus-",
+    "explicacion": "Muchas palabras que empiezan con bu-, bur- o bus- se escriben con B. Hoy vamos a reconocer palabras frecuentes de esos grupos. No significa que toda palabra que suene parecido lleve B: vudú es una excepción.",
+    "ejemplo": "burbuja empieza con bur- y buscar con bus-.",
+    "pasos": [
+      "Leemos la palabra completa.",
+      "Reconocemos el comienzo y fijamos cómo se escribe."
+    ],
+    "pista": "Buscá el comienzo BU, BUR o BUS de las palabras que practicamos.",
+    "visual": null
+  },
+  {
+    "id": "leng_bv_3_aba",
+    "tema": "ortografia_b_v",
+    "titulo": "Contar lo que hacíamos: -aba",
+    "explicacion": "Para contar acciones que hacíamos antes, los verbos terminados en -ar pueden usar -aba: cantar → cantaba. Esa terminación va con B. Primero mirá la acción original; no cambiamos cualquier sonido parecido.",
+    "ejemplo": "Antes, yo saltaba la soga: saltar → saltaba.",
+    "pasos": [
+      "La acción original es saltar, que termina en -ar.",
+      "Al contar una costumbre pasada usamos saltaba, con B."
+    ],
+    "pista": "Buscá la acción terminada en -ar y la terminación -aba.",
+    "visual": null
+  },
+  {
+    "id": "leng_bv_4_iba",
+    "tema": "ortografia_b_v",
+    "titulo": "Recordar iba, ibas e íbamos",
+    "explicacion": "Ir es una acción. Para contar que íbamos a un lugar antes, recordamos estas formas: yo iba, vos ibas, nosotros íbamos, ellos iban. Se escriben con B. Íbamos lleva además tilde; hoy nos concentramos en la B.",
+    "ejemplo": "Antes, yo iba caminando a la escuela.",
+    "pasos": [
+      "Buscamos la forma de ir que nombra una costumbre pasada.",
+      "Recordamos la familia de formas: iba, ibas, íbamos, iban."
+    ],
+    "pista": "Las formas IBA, IBAS, ÍBAMOS e IBAN se escriben con B.",
+    "visual": null
+  },
+  {
+    "id": "leng_bv_5_adjetivos",
+    "tema": "ortografia_b_v",
+    "titulo": "Palabras que describen: -ivo e -iva",
+    "explicacion": "Las palabras que describen cómo es algo se llaman adjetivos. Activo y activa describen a alguien con actividad. Los adjetivos con estas terminaciones -ivo e -iva se escriben con V. Practicamos este grupo; no es una regla para cualquier palabra que termine parecido.",
+    "ejemplo": "Un grupo activo; una persona creativa.",
+    "pasos": [
+      "La palabra cuenta cómo es alguien o algo.",
+      "Reconocemos -ivo o -iva y escribimos V."
+    ],
+    "pista": "¿La palabra describe cómo es algo y termina en -ivo o -iva? Mirá la V.",
+    "visual": null
+  },
+  {
+    "id": "leng_bv_6_tuve",
+    "tema": "ortografia_b_v",
+    "titulo": "Tres formas del pasado con V",
+    "explicacion": "Tener, estar y andar cambian al contar una acción pasada: tuve, estuve, anduve. Estas formas se escriben con V. Podemos fijarlas juntas y recordarlas dentro de una oración.",
+    "ejemplo": "Ayer tuve clase, estuve en el patio y anduve en bicicleta.",
+    "pasos": [
+      "Relacionamos tener → tuve, estar → estuve, andar → anduve.",
+      "Volvemos a leer las tres formas y observamos la V."
+    ],
+    "pista": "Relacioná la acción con su forma: tener → tuve, estar → estuve, andar → anduve.",
+    "visual": null
+  },
+  {
+    "id": "leng_til_0_silabas",
+    "tema": "tildes_generales_agudas_graves_esdrujulas",
+    "titulo": "Separar una palabra en sílabas",
+    "explicacion": "Una sílaba es un grupo de sonidos que pronunciamos en un golpe de voz. Decí casa despacio: ca-sa. Hoy practicamos palabras sin vocales juntas; más adelante veremos esos encuentros.",
+    "ejemplo": "pelota → pe-lo-ta: tres golpes de voz.",
+    "pasos": [
+      "Pronunciamos la palabra despacio, sin separar cada letra.",
+      "Damos una palmada por cada grupo: pe / lo / ta."
+    ],
+    "pista": "Decí la palabra en voz alta y marcá un golpe por sílaba.",
+    "visual": null
+  },
+  {
+    "id": "leng_til_1_tonica",
+    "tema": "tildes_generales_agudas_graves_esdrujulas",
+    "titulo": "Escuchar la sílaba tónica",
+    "explicacion": "La sílaba tónica es la que suena con más fuerza en una palabra. Todas las palabras que veremos tienen una, pero no todas llevan una tilde escrita. Primero escuchamos; después veremos cuándo escribir la rayita.",
+    "ejemplo": "camisa → ca-MI-sa. MI es la sílaba tónica y no lleva tilde.",
+    "pasos": [
+      "Decimos camisa en voz alta.",
+      "Escuchamos dónde apoyamos la voz: MI."
+    ],
+    "pista": "Decí la palabra completa; escuchá qué sílaba suena más fuerte.",
+    "visual": null
+  },
+  {
+    "id": "leng_til_2_agudas",
+    "tema": "tildes_generales_agudas_graves_esdrujulas",
+    "titulo": "Agudas: fuerza en la última sílaba",
+    "explicacion": "Si la sílaba más fuerte es la última, la palabra es aguda. En los casos que veremos, lleva tilde si termina en vocal, N o S. Si termina en otra consonante, no. Aquí no trabajamos terminaciones con varias consonantes ni con Y.",
+    "ejemplo": "café → ca-FÉ: última sílaba y final en vocal, lleva tilde.",
+    "pasos": [
+      "Ubicamos la sílaba tónica al final.",
+      "Miramos la última letra: vocal, N o S pide tilde en estos casos."
+    ],
+    "pista": "Primero ubicá la fuerza; después mirá la última letra.",
+    "visual": null
+  },
+  {
+    "id": "leng_til_3_graves",
+    "tema": "tildes_generales_agudas_graves_esdrujulas",
+    "titulo": "Graves: fuerza en la penúltima sílaba",
+    "explicacion": "La penúltima sílaba es la segunda contando desde el final. Si allí está la fuerza, la palabra es grave o llana. En estos casos lleva tilde si NO termina en vocal, N o S. No veremos todavía vocales juntas ni terminaciones con varias consonantes.",
+    "ejemplo": "árbol → ÁR-bol: penúltima sílaba y final en L, lleva tilde.",
+    "pasos": [
+      "Contamos desde el final: bol es la última; ár es la penúltima.",
+      "Termina en L, así que esta palabra grave lleva tilde."
+    ],
+    "pista": "¿La fuerza está en la penúltima? Si termina en vocal, N o S, estos ejemplos no llevan tilde.",
+    "visual": null
+  },
+  {
+    "id": "leng_til_4_esdrujulas",
+    "tema": "tildes_generales_agudas_graves_esdrujulas",
+    "titulo": "Esdrújulas: fuerza en la antepenúltima",
+    "explicacion": "La antepenúltima sílaba es la tercera contando desde el final. Las palabras que llevan allí la fuerza son esdrújulas y siempre llevan tilde. No necesitamos mirar la última letra.",
+    "ejemplo": "música → MÚ-si-ca: ca, si, mú. La fuerza está en la tercera desde el final.",
+    "pasos": [
+      "Contamos las sílabas desde el final.",
+      "Si la tónica es la antepenúltima, escribimos tilde en su vocal."
+    ],
+    "pista": "Contá desde el final: última, penúltima, antepenúltima.",
+    "visual": null
+  },
+  {
+    "id": "leng_til_5_sobresdrujulas",
+    "tema": "tildes_generales_agudas_graves_esdrujulas",
+    "titulo": "Sobresdrújulas: fuerza antes de la antepenúltima",
+    "explicacion": "Algunas palabras juntan una acción con pequeñas palabras al final: diga + se + lo → dígaselo. Si la fuerza queda antes de la antepenúltima, son sobresdrújulas y llevan tilde. Hoy practicamos solo estas formas; las palabras terminadas en -mente se estudian aparte.",
+    "ejemplo": "dígaselo → DÍ-ga-se-lo: la fuerza está en la cuarta sílaba desde el final.",
+    "pasos": [
+      "Contamos desde el final: lo, se, ga, dí.",
+      "La fuerza quedó antes de la antepenúltima: escribimos dígaselo."
+    ],
+    "pista": "Contá desde el final. Si la fuerza está antes de la tercera sílaba, estas formas llevan tilde.",
+    "visual": null
   }
 ];
 export function getFichaBase(tema) {

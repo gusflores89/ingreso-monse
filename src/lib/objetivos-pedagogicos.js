@@ -1,4 +1,4 @@
-import { getUnidadBase, VERSION_BASES } from "./contenido-bases.js";
+import { getUnidadBase, UNIDADES_BASES, VERSION_BASES } from "./contenido-bases.js";
 /**
  * Motor pedagógico de micro-objetivos para el Ingreso al Monserrat 2027.
  * Desacopla la equivalencia "1 tema = 1 lección", registrando estados de aprendizaje:
@@ -1266,6 +1266,13 @@ export const OBJETIVOS_POR_TEMA = {
  */
 export function getObjetivosParaTema(tema = "") {
   const temaNormalizado = String(tema || "").toLowerCase().trim();
+  const revisadasLengua = UNIDADES_BASES.filter(u => u.tema === temaNormalizado && u.id.startsWith("leng_"));
+  if (revisadasLengua.length) return revisadasLengua.map((u, i) => ({
+    id: u.id, titulo: u.titulo, fuente: "Cuadernillo Monserrat de Lengua; secuencia y ejemplos propios de la aplicación",
+    bases: i ? revisadasLengua[i - 1].titulo : "Comenzamos desde una explicación breve",
+    secuencia: u.pasos.join(" "), evidencia_propuesta: "Resolver dos actividades diferentes sin ayuda después de la explicación",
+    pista: u.pista, error_esperado: "Aplicar una regla distinta de la que estamos practicando",
+  }));
   if (OBJETIVOS_POR_TEMA[temaNormalizado]) {
     const lista = OBJETIVOS_POR_TEMA[temaNormalizado];
     if (temaNormalizado === "divisibilidad_primos_mcm_mcd") return [{...lista[0], id:"bases_multiplos_saltos", titulo:"Múltiplos por saltos iguales"}, lista[3], lista[0], ...[2,3,5,10].map(n => ({...lista[1], id:`bases_criterio_${n}`, titulo:`Divisible por ${n}`})), lista[2], lista[4]];

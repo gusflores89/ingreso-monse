@@ -1948,6 +1948,1250 @@ export const UNIDADES_BASES = [
         "visual": null
       }
     ]
+  },
+  {
+    "id": "leng_lect_1_literal",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Encontrar lo que el texto dice",
+    "explicacion": "A veces la respuesta está escrita en el texto. Leé la pregunta, buscá esa información y volvé a mirar la frase antes de elegir. Podés releer todas las veces que necesites.",
+    "ejemplo": "Lola dejó su mochila junto a la puerta. ¿Dónde quedó la mochila?",
+    "pasos": [
+      "Buscamos dónde dejó la mochila.",
+      "La frase dice «junto a la puerta»: esa es la respuesta."
+    ],
+    "pista": "Buscá la frase que responde exactamente a la pregunta.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "leng_lect_1_literal-v1",
+        "enunciado": "Tomás puso las semillas en una maceta azul. Después buscó agua.\n¿De qué color era la maceta?",
+        "respuesta_correcta": "Azul",
+        "opciones": [
+          "Azul",
+          "Verde",
+          "Roja"
+        ],
+        "paso_resuelto": "La primera frase dice «una maceta azul». El color es azul.",
+        "visual": null
+      },
+      {
+        "id": "leng_lect_1_literal-v2",
+        "enunciado": "Mara guardó una linterna en el cajón. Su hermano llevó una manta al patio.\n¿Qué guardó Mara?",
+        "respuesta_correcta": "Una linterna",
+        "opciones": [
+          "Una manta",
+          "Una llave",
+          "Una linterna"
+        ],
+        "paso_resuelto": "Buscamos a Mara. La primera frase dice que guardó una linterna.",
+        "visual": null
+      },
+      {
+        "id": "leng_lect_1_literal-v3",
+        "enunciado": "El sábado, Nico llevó su bicicleta al taller. El domingo volvió a buscarla.\n¿Qué día la llevó al taller?",
+        "respuesta_correcta": "El sábado",
+        "opciones": [
+          "El lunes",
+          "El sábado",
+          "El domingo"
+        ],
+        "paso_resuelto": "Hay dos días. La llevó el sábado; el domingo la buscó.",
+        "visual": null
+      },
+      {
+        "id": "leng_lect_1_literal-v4",
+        "enunciado": "En la biblioteca, Ana eligió un cuento de animales. Leo prefirió un libro de planetas.\n¿Qué eligió Ana?",
+        "respuesta_correcta": "Un cuento de animales",
+        "opciones": [
+          "Un cuento de animales",
+          "Un libro de planetas",
+          "Una revista de deportes"
+        ],
+        "paso_resuelto": "La primera oración nombra a Ana y dice qué eligió: un cuento de animales.",
+        "visual": null
+      },
+      {
+        "id": "leng_lect_1_literal-v5",
+        "enunciado": "Rita plantó tres semillas en una maceta y dos en otra.\n¿Cuántas semillas plantó en la primera maceta?",
+        "respuesta_correcta": "Tres",
+        "opciones": [
+          "Dos",
+          "Cinco",
+          "Tres"
+        ],
+        "paso_resuelto": "La pregunta pide solo la primera maceta: allí plantó tres semillas.",
+        "visual": null
+      },
+      {
+        "id": "leng_lect_1_literal-v6",
+        "enunciado": "Al salir de la escuela, Juli dejó su campera en casa de su abuela.\n¿Dónde dejó la campera?",
+        "respuesta_correcta": "En casa de su abuela",
+        "opciones": [
+          "En la plaza",
+          "En casa de su abuela",
+          "En la escuela"
+        ],
+        "paso_resuelto": "La frase cuenta que salió de la escuela, pero dejó la campera en casa de su abuela.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "leng_lect_2_inferencia",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Usar una pista del texto",
+    "explicacion": "Inferir es unir pistas del texto con algo que conocemos. Elegimos la explicación que mejor encaja, sin inventar detalles. Una inferencia puede ser probable aunque el texto no la diga directamente.",
+    "ejemplo": "El suelo estaba mojado y Lara cerró su paraguas al entrar. ¿Qué pudo pasar?",
+    "pasos": [
+      "Buscamos pistas: suelo mojado y paraguas.",
+      "Es probable que haya llovido. El texto no permite saber durante cuánto tiempo."
+    ],
+    "pista": "Elegí lo que mejor explican las pistas; no agregues datos que el texto no da.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "leng_lect_2_inferencia-v1",
+        "enunciado": "Pedro salió con bufanda, gorro y guantes.\n¿Qué es más probable?",
+        "respuesta_correcta": "Hacía frío",
+        "opciones": [
+          "Hacía frío",
+          "Hacía mucho calor",
+          "Iba a nadar"
+        ],
+        "paso_resuelto": "Bufanda, gorro y guantes abrigan. Las tres pistas hacen probable que hiciera frío.",
+        "visual": null
+      },
+      {
+        "id": "leng_lect_2_inferencia-v2",
+        "enunciado": "La lámpara se apagó y el televisor también. La casa de al lado quedó a oscuras.\n¿Qué es más probable?",
+        "respuesta_correcta": "Se cortó la electricidad",
+        "opciones": [
+          "Se rompió solo la lámpara",
+          "Todos se fueron de viaje",
+          "Se cortó la electricidad"
+        ],
+        "paso_resuelto": "Se apagaron varios aparatos y otra casa. Un corte de electricidad explica todas las pistas.",
+        "visual": null
+      },
+      {
+        "id": "leng_lect_2_inferencia-v3",
+        "enunciado": "Mili puso harina, huevos y leche en un bol. Después encendió el horno.\n¿Qué es más probable?",
+        "respuesta_correcta": "Estaba preparando algo para hornear",
+        "opciones": [
+          "Estaba arreglando una silla",
+          "Estaba preparando algo para hornear",
+          "Estaba lavando ropa"
+        ],
+        "paso_resuelto": "Los ingredientes, el bol y el horno apuntan a cocinar. No sabemos qué receta exacta preparaba.",
+        "visual": null
+      },
+      {
+        "id": "leng_lect_2_inferencia-v4",
+        "enunciado": "Antes de cruzar, Fran miró a ambos lados y esperó a que pasara un auto.\n¿Qué es más probable?",
+        "respuesta_correcta": "Estaba cruzando una calle",
+        "opciones": [
+          "Estaba cruzando una calle",
+          "Estaba cruzando su habitación",
+          "Estaba nadando en una pileta"
+        ],
+        "paso_resuelto": "Mirar a ambos lados y esperar un auto son pistas de que iba a cruzar una calle.",
+        "visual": null
+      },
+      {
+        "id": "leng_lect_2_inferencia-v5",
+        "enunciado": "Lucía bostezaba, se frotaba los ojos y buscó su almohada.\n¿Qué es más probable?",
+        "respuesta_correcta": "Tenía sueño",
+        "opciones": [
+          "Quería correr una carrera",
+          "Quería lavar el auto",
+          "Tenía sueño"
+        ],
+        "paso_resuelto": "Bostezar, frotarse los ojos y buscar una almohada son pistas de sueño.",
+        "visual": null
+      },
+      {
+        "id": "leng_lect_2_inferencia-v6",
+        "enunciado": "Dani infló las ruedas, ajustó el casco y subió a su bicicleta.\n¿Qué es más probable?",
+        "respuesta_correcta": "Se preparaba para andar en bicicleta",
+        "opciones": [
+          "Se preparaba para dibujar",
+          "Se preparaba para andar en bicicleta",
+          "Se preparaba para dormir"
+        ],
+        "paso_resuelto": "Ruedas, casco y subirse a la bicicleta indican que se preparaba para usarla.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "leng_lect_3_idea_central",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Contar la idea más importante",
+    "explicacion": "La idea principal reúne lo más importante de un texto. Un detalle cuenta solo una parte. Para resumir, elegí una frase que abarque lo que ocurre sin agregar información.",
+    "ejemplo": "El club juntó papel, separó cartón y lo llevó a reciclar.",
+    "pasos": [
+      "Las tres acciones tienen algo en común: reciclar.",
+      "Idea principal: el club organizó una actividad de reciclaje."
+    ],
+    "pista": "Buscá la opción que reúne el texto entero y no solo un detalle.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "leng_lect_3_idea_central-v1",
+        "enunciado": "El grupo regó los plantines, sacó las hojas secas y agregó tierra a las macetas.\n¿Qué resume mejor el texto?",
+        "respuesta_correcta": "El grupo cuidó las plantas",
+        "opciones": [
+          "El grupo cuidó las plantas",
+          "El grupo sacó hojas secas",
+          "El grupo vendió todas las plantas"
+        ],
+        "paso_resuelto": "Regar, sacar hojas y agregar tierra son distintas formas de cuidar las plantas. Venderlas no aparece.",
+        "visual": null
+      },
+      {
+        "id": "leng_lect_3_idea_central-v2",
+        "enunciado": "En el refugio, Inés sirvió agua a los perros, limpió sus mantas y paseó a los más tranquilos.\n¿Qué resume mejor el texto?",
+        "respuesta_correcta": "Inés ayudó a cuidar a los perros del refugio",
+        "opciones": [
+          "Inés sirvió agua",
+          "Inés adoptó a todos los perros",
+          "Inés ayudó a cuidar a los perros del refugio"
+        ],
+        "paso_resuelto": "Cuidar a los perros reúne las tres acciones. Servir agua es solo una; adoptar no aparece.",
+        "visual": null
+      },
+      {
+        "id": "leng_lect_3_idea_central-v3",
+        "enunciado": "Para la salida, Mateo revisó su mochila, llenó la botella y guardó una gorra.\n¿Qué resume mejor el texto?",
+        "respuesta_correcta": "Mateo preparó sus cosas para la salida",
+        "opciones": [
+          "Mateo canceló la salida",
+          "Mateo preparó sus cosas para la salida",
+          "Mateo llenó una botella"
+        ],
+        "paso_resuelto": "Las tres acciones son preparativos para salir. La botella es un detalle y no se habla de cancelar.",
+        "visual": null
+      },
+      {
+        "id": "leng_lect_3_idea_central-v4",
+        "enunciado": "Los vecinos juntaron residuos de la plaza, separaron los reciclables y limpiaron los bancos.\n¿Qué resume mejor el texto?",
+        "respuesta_correcta": "Los vecinos limpiaron la plaza",
+        "opciones": [
+          "Los vecinos limpiaron la plaza",
+          "Los vecinos limpiaron bancos",
+          "Los vecinos construyeron una plaza nueva"
+        ],
+        "paso_resuelto": "Limpiar la plaza incluye todas las acciones. Los bancos son un detalle; no construyeron una plaza.",
+        "visual": null
+      },
+      {
+        "id": "leng_lect_3_idea_central-v5",
+        "enunciado": "La biblioteca sumó cuentos, acomodó los estantes y preparó un rincón con almohadones para leer.\n¿Qué resume mejor el texto?",
+        "respuesta_correcta": "La biblioteca mejoró su espacio de lectura",
+        "opciones": [
+          "La biblioteca acomodó estantes",
+          "La biblioteca cerró para siempre",
+          "La biblioteca mejoró su espacio de lectura"
+        ],
+        "paso_resuelto": "Los nuevos cuentos, el orden y el rincón mejoran el espacio de lectura. El cierre no aparece.",
+        "visual": null
+      },
+      {
+        "id": "leng_lect_3_idea_central-v6",
+        "enunciado": "La clase eligió una receta, repartió los ingredientes y acordó quién llevaría cada utensilio.\n¿Qué resume mejor el texto?",
+        "respuesta_correcta": "La clase organizó una actividad de cocina",
+        "opciones": [
+          "La clase terminó de cocinar",
+          "La clase organizó una actividad de cocina",
+          "La clase eligió una receta"
+        ],
+        "paso_resuelto": "Elegir, repartir y acordar son pasos de organización. El texto todavía no cuenta que cocinaron.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "leng_bv_1_mb_nv",
+    "tema": "ortografia_b_v",
+    "titulo": "Mirar la letra anterior: mb y nv",
+    "explicacion": "B y V suelen sonar igual al hablar. El oído no alcanza para elegir. En palabras como tambor miramos M antes de B; en palabras como enviar, N antes de V. Practiquemos esos grupos.",
+    "ejemplo": "tambor → mb; enviar → nv",
+    "pasos": [
+      "Miramos la letra que está justo antes del espacio.",
+      "Después de M escribimos B; después de N, V en estos grupos."
+    ],
+    "pista": "Mirá el grupo de dos letras: MB o NV.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "leng_bv_1_mb_nv-v1",
+        "enunciado": "Leo toca el tam_or.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "tambor",
+        "opciones": [
+          "tambor",
+          "tamvor"
+        ],
+        "paso_resuelto": "Observá tambor: el grupo es MB.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_1_mb_nv-v2",
+        "enunciado": "Sentí el sonido del bom_o.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "bombo",
+        "opciones": [
+          "bomvo",
+          "bombo"
+        ],
+        "paso_resuelto": "En bombo, después de la M va B: el grupo es MB.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_1_mb_nv-v3",
+        "enunciado": "Voy a en_iar una carta.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "enviar",
+        "opciones": [
+          "enviar",
+          "enbiar"
+        ],
+        "paso_resuelto": "Observá enviar: el grupo es NV.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_1_mb_nv-v4",
+        "enunciado": "En in_ierno usamos abrigo.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "invierno",
+        "opciones": [
+          "inbierno",
+          "invierno"
+        ],
+        "paso_resuelto": "Observá invierno: el grupo es NV.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_1_mb_nv-v5",
+        "enunciado": "Necesito un cam_io de ropa.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "cambio",
+        "opciones": [
+          "cambio",
+          "camvio"
+        ],
+        "paso_resuelto": "Observá cambio: el grupo es MB.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_1_mb_nv-v6",
+        "enunciado": "Quiero in_itar a mis amigos.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "invitar",
+        "opciones": [
+          "inbitar",
+          "invitar"
+        ],
+        "paso_resuelto": "Observá invitar: el grupo es NV.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "leng_bv_2_bu_bur_bus",
+    "tema": "ortografia_b_v",
+    "titulo": "Reconocer comienzos: bu-, bur-, bus-",
+    "explicacion": "Muchas palabras que empiezan con bu-, bur- o bus- se escriben con B. Hoy vamos a reconocer palabras frecuentes de esos grupos. No significa que toda palabra que suene parecido lleve B: vudú es una excepción.",
+    "ejemplo": "burbuja empieza con bur- y buscar con bus-.",
+    "pasos": [
+      "Leemos la palabra completa.",
+      "Reconocemos el comienzo y fijamos cómo se escribe."
+    ],
+    "pista": "Buscá el comienzo BU, BUR o BUS de las palabras que practicamos.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "leng_bv_2_bu_bur_bus-v1",
+        "enunciado": "Una _urbuja flotó en el agua.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "burbuja",
+        "opciones": [
+          "burbuja",
+          "vurbuja"
+        ],
+        "paso_resuelto": "burbuja se escribe con B al comienzo. Reconocemos el grupo bur-.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_2_bu_bur_bus-v2",
+        "enunciado": "Voy a _uscar mi cuaderno.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "buscar",
+        "opciones": [
+          "vuscar",
+          "buscar"
+        ],
+        "paso_resuelto": "buscar se escribe con B al comienzo. Reconocemos el grupo bus-.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_2_bu_bur_bus-v3",
+        "enunciado": "Me puse una _ufanda.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "bufanda",
+        "opciones": [
+          "bufanda",
+          "vufanda"
+        ],
+        "paso_resuelto": "bufanda se escribe con B al comienzo. Reconocemos el grupo bu-.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_2_bu_bur_bus-v4",
+        "enunciado": "Evitamos la _urla y nos ayudamos.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "burla",
+        "opciones": [
+          "vurla",
+          "burla"
+        ],
+        "paso_resuelto": "burla se escribe con B al comienzo. Reconocemos el grupo bur-.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_2_bu_bur_bus-v5",
+        "enunciado": "La carta está en el _uzón.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "buzón",
+        "opciones": [
+          "buzón",
+          "vuzón"
+        ],
+        "paso_resuelto": "buzón se escribe con B al comienzo. Reconocemos el grupo bu-.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_2_bu_bur_bus-v6",
+        "enunciado": "Vimos un _usto en el museo.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "busto",
+        "opciones": [
+          "vusto",
+          "busto"
+        ],
+        "paso_resuelto": "busto se escribe con B al comienzo. Reconocemos el grupo bus-.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "leng_bv_3_aba",
+    "tema": "ortografia_b_v",
+    "titulo": "Contar lo que hacíamos: -aba",
+    "explicacion": "Para contar acciones que hacíamos antes, los verbos terminados en -ar pueden usar -aba: cantar → cantaba. Esa terminación va con B. Primero mirá la acción original; no cambiamos cualquier sonido parecido.",
+    "ejemplo": "Antes, yo saltaba la soga: saltar → saltaba.",
+    "pasos": [
+      "La acción original es saltar, que termina en -ar.",
+      "Al contar una costumbre pasada usamos saltaba, con B."
+    ],
+    "pista": "Buscá la acción terminada en -ar y la terminación -aba.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "leng_bv_3_aba-v1",
+        "enunciado": "Cantar: antes yo canta_a en el coro.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "cantaba",
+        "opciones": [
+          "cantaba",
+          "cantava"
+        ],
+        "paso_resuelto": "La acción original termina en -ar. Para esta costumbre pasada, la terminación -aba se escribe con B: cantaba.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_3_aba-v2",
+        "enunciado": "Jugar: antes yo juga_a en esta plaza.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "jugaba",
+        "opciones": [
+          "jugava",
+          "jugaba"
+        ],
+        "paso_resuelto": "La acción original termina en -ar. Para esta costumbre pasada, la terminación -aba se escribe con B: jugaba.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_3_aba-v3",
+        "enunciado": "Bailar: mi abuela baila_a los domingos.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "bailaba",
+        "opciones": [
+          "bailaba",
+          "bailava"
+        ],
+        "paso_resuelto": "La acción original termina en -ar. Para esta costumbre pasada, la terminación -aba se escribe con B: bailaba.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_3_aba-v4",
+        "enunciado": "Mirar: de pequeña mira_a dibujos.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "miraba",
+        "opciones": [
+          "mirava",
+          "miraba"
+        ],
+        "paso_resuelto": "La acción original termina en -ar. Para esta costumbre pasada, la terminación -aba se escribe con B: miraba.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_3_aba-v5",
+        "enunciado": "Saltar: mi hermano salta_a la soga.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "saltaba",
+        "opciones": [
+          "saltaba",
+          "saltava"
+        ],
+        "paso_resuelto": "La acción original termina en -ar. Para esta costumbre pasada, la terminación -aba se escribe con B: saltaba.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_3_aba-v6",
+        "enunciado": "Dibujar: antes yo dibuja_a animales.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "dibujaba",
+        "opciones": [
+          "dibujava",
+          "dibujaba"
+        ],
+        "paso_resuelto": "La acción original termina en -ar. Para esta costumbre pasada, la terminación -aba se escribe con B: dibujaba.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "leng_bv_4_iba",
+    "tema": "ortografia_b_v",
+    "titulo": "Recordar iba, ibas e íbamos",
+    "explicacion": "Ir es una acción. Para contar que íbamos a un lugar antes, recordamos estas formas: yo iba, vos ibas, nosotros íbamos, ellos iban. Se escriben con B. Íbamos lleva además tilde; hoy nos concentramos en la B.",
+    "ejemplo": "Antes, yo iba caminando a la escuela.",
+    "pasos": [
+      "Buscamos la forma de ir que nombra una costumbre pasada.",
+      "Recordamos la familia de formas: iba, ibas, íbamos, iban."
+    ],
+    "pista": "Las formas IBA, IBAS, ÍBAMOS e IBAN se escriben con B.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "leng_bv_4_iba-v1",
+        "enunciado": "Antes yo i_a a esa plaza.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "iba",
+        "opciones": [
+          "iba",
+          "iva"
+        ],
+        "paso_resuelto": "Es una forma de ir en pasado: iba. Estas formas se escriben con B.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_4_iba-v2",
+        "enunciado": "Antes vos i_as a natación.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "ibas",
+        "opciones": [
+          "ivas",
+          "ibas"
+        ],
+        "paso_resuelto": "Es una forma de ir en pasado: ibas. Estas formas se escriben con B.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_4_iba-v3",
+        "enunciado": "Antes nosotros í_amos al club.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "íbamos",
+        "opciones": [
+          "íbamos",
+          "ívamos"
+        ],
+        "paso_resuelto": "Es una forma de ir en pasado: íbamos. Estas formas se escriben con B.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_4_iba-v4",
+        "enunciado": "Antes ellos i_an en colectivo.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "iban",
+        "opciones": [
+          "ivan",
+          "iban"
+        ],
+        "paso_resuelto": "Es una forma de ir en pasado: iban. Estas formas se escriben con B.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_4_iba-v5",
+        "enunciado": "Antes mi hermana i_a a ese taller.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "iba",
+        "opciones": [
+          "iba",
+          "iva"
+        ],
+        "paso_resuelto": "Es una forma de ir en pasado: iba. Estas formas se escriben con B.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_4_iba-v6",
+        "enunciado": "Mis amigos i_an juntos a la escuela.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "iban",
+        "opciones": [
+          "ivan",
+          "iban"
+        ],
+        "paso_resuelto": "Es una forma de ir en pasado: iban. Estas formas se escriben con B.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "leng_bv_5_adjetivos",
+    "tema": "ortografia_b_v",
+    "titulo": "Palabras que describen: -ivo e -iva",
+    "explicacion": "Las palabras que describen cómo es algo se llaman adjetivos. Activo y activa describen a alguien con actividad. Los adjetivos con estas terminaciones -ivo e -iva se escriben con V. Practicamos este grupo; no es una regla para cualquier palabra que termine parecido.",
+    "ejemplo": "Un grupo activo; una persona creativa.",
+    "pasos": [
+      "La palabra cuenta cómo es alguien o algo.",
+      "Reconocemos -ivo o -iva y escribimos V."
+    ],
+    "pista": "¿La palabra describe cómo es algo y termina en -ivo o -iva? Mirá la V.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "leng_bv_5_adjetivos-v1",
+        "enunciado": "El grupo es acti_o.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "activo",
+        "opciones": [
+          "activo",
+          "actibo"
+        ],
+        "paso_resuelto": "activo describe cómo es algo. Su terminación -ivo se escribe con V.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_5_adjetivos-v2",
+        "enunciado": "Mi amiga tiene una idea creati_a.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "creativa",
+        "opciones": [
+          "creatiba",
+          "creativa"
+        ],
+        "paso_resuelto": "creativa describe cómo es algo. Su terminación -iva se escribe con V.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_5_adjetivos-v3",
+        "enunciado": "Me puse calzado deporti_o.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "deportivo",
+        "opciones": [
+          "deportivo",
+          "deportibo"
+        ],
+        "paso_resuelto": "deportivo describe cómo es algo. Su terminación -ivo se escribe con V.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_5_adjetivos-v4",
+        "enunciado": "Recibimos una respuesta negati_a.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "negativa",
+        "opciones": [
+          "negatiba",
+          "negativa"
+        ],
+        "paso_resuelto": "negativa describe cómo es algo. Su terminación -iva se escribe con V.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_5_adjetivos-v5",
+        "enunciado": "Elegimos un juego educati_o.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "educativo",
+        "opciones": [
+          "educativo",
+          "educatibo"
+        ],
+        "paso_resuelto": "educativo describe cómo es algo. Su terminación -ivo se escribe con V.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_5_adjetivos-v6",
+        "enunciado": "Su actitud es positi_a.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "positiva",
+        "opciones": [
+          "positiba",
+          "positiva"
+        ],
+        "paso_resuelto": "positiva describe cómo es algo. Su terminación -iva se escribe con V.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "leng_bv_6_tuve",
+    "tema": "ortografia_b_v",
+    "titulo": "Tres formas del pasado con V",
+    "explicacion": "Tener, estar y andar cambian al contar una acción pasada: tuve, estuve, anduve. Estas formas se escriben con V. Podemos fijarlas juntas y recordarlas dentro de una oración.",
+    "ejemplo": "Ayer tuve clase, estuve en el patio y anduve en bicicleta.",
+    "pasos": [
+      "Relacionamos tener → tuve, estar → estuve, andar → anduve.",
+      "Volvemos a leer las tres formas y observamos la V."
+    ],
+    "pista": "Relacioná la acción con su forma: tener → tuve, estar → estuve, andar → anduve.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "leng_bv_6_tuve-v1",
+        "enunciado": "Ayer tu_e una idea.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "tuve",
+        "opciones": [
+          "tuve",
+          "tube"
+        ],
+        "paso_resuelto": "La oración cuenta una acción pasada. La forma tuve pertenece a tener, estar o andar y se escribe con V.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_6_tuve-v2",
+        "enunciado": "Ayer estu_e en casa.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "estuve",
+        "opciones": [
+          "estube",
+          "estuve"
+        ],
+        "paso_resuelto": "La oración cuenta una acción pasada. La forma estuve pertenece a tener, estar o andar y se escribe con V.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_6_tuve-v3",
+        "enunciado": "Ayer andu_e en bicicleta.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "anduve",
+        "opciones": [
+          "anduve",
+          "andube"
+        ],
+        "paso_resuelto": "La oración cuenta una acción pasada. La forma anduve pertenece a tener, estar o andar y se escribe con V.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_6_tuve-v4",
+        "enunciado": "Ayer Ana tu_o tiempo para leer.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "tuvo",
+        "opciones": [
+          "tubo",
+          "tuvo"
+        ],
+        "paso_resuelto": "La oración cuenta una acción pasada. La forma tuvo pertenece a tener, estar o andar y se escribe con V.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_6_tuve-v5",
+        "enunciado": "El gato estu_o en el patio.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "estuvo",
+        "opciones": [
+          "estuvo",
+          "estubo"
+        ],
+        "paso_resuelto": "La oración cuenta una acción pasada. La forma estuvo pertenece a tener, estar o andar y se escribe con V.",
+        "visual": null
+      },
+      {
+        "id": "leng_bv_6_tuve-v6",
+        "enunciado": "Mi hermano andu_o por la plaza.\n¿Qué forma completa esta oración?",
+        "respuesta_correcta": "anduvo",
+        "opciones": [
+          "andubo",
+          "anduvo"
+        ],
+        "paso_resuelto": "La oración cuenta una acción pasada. La forma anduvo pertenece a tener, estar o andar y se escribe con V.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "leng_til_0_silabas",
+    "tema": "tildes_generales_agudas_graves_esdrujulas",
+    "titulo": "Separar una palabra en sílabas",
+    "explicacion": "Una sílaba es un grupo de sonidos que pronunciamos en un golpe de voz. Decí casa despacio: ca-sa. Hoy practicamos palabras sin vocales juntas; más adelante veremos esos encuentros.",
+    "ejemplo": "pelota → pe-lo-ta: tres golpes de voz.",
+    "pasos": [
+      "Pronunciamos la palabra despacio, sin separar cada letra.",
+      "Damos una palmada por cada grupo: pe / lo / ta."
+    ],
+    "pista": "Decí la palabra en voz alta y marcá un golpe por sílaba.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "leng_til_0_silabas-v1",
+        "enunciado": "¿Cómo se separa casa en sílabas?",
+        "respuesta_correcta": "ca-sa",
+        "opciones": [
+          "ca-sa",
+          "cas-a",
+          "c-a-sa"
+        ],
+        "paso_resuelto": "Decimos ca / sa. Cada grupo sale en un golpe de voz. La separación es ca-sa.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_0_silabas-v2",
+        "enunciado": "¿Cómo se separa pelota en sílabas?",
+        "respuesta_correcta": "pe-lo-ta",
+        "opciones": [
+          "pel-o-ta",
+          "pe-lot-a",
+          "pe-lo-ta"
+        ],
+        "paso_resuelto": "Decimos pe / lo / ta. Cada grupo sale en un golpe de voz. La separación es pe-lo-ta.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_0_silabas-v3",
+        "enunciado": "¿Cómo se separa tomate en sílabas?",
+        "respuesta_correcta": "to-ma-te",
+        "opciones": [
+          "to-mat-e",
+          "to-ma-te",
+          "tom-a-te"
+        ],
+        "paso_resuelto": "Decimos to / ma / te. Cada grupo sale en un golpe de voz. La separación es to-ma-te.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_0_silabas-v4",
+        "enunciado": "¿Cómo se separa camisa en sílabas?",
+        "respuesta_correcta": "ca-mi-sa",
+        "opciones": [
+          "ca-mi-sa",
+          "cam-is-a",
+          "c-a-misa"
+        ],
+        "paso_resuelto": "Decimos ca / mi / sa. Cada grupo sale en un golpe de voz. La separación es ca-mi-sa.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_0_silabas-v5",
+        "enunciado": "¿Cómo se separa mariposa en sílabas?",
+        "respuesta_correcta": "ma-ri-po-sa",
+        "opciones": [
+          "mar-i-po-sa",
+          "ma-rip-o-sa",
+          "ma-ri-po-sa"
+        ],
+        "paso_resuelto": "Decimos ma / ri / po / sa. Cada grupo sale en un golpe de voz. La separación es ma-ri-po-sa.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_0_silabas-v6",
+        "enunciado": "¿Cómo se separa zapato en sílabas?",
+        "respuesta_correcta": "za-pa-to",
+        "opciones": [
+          "za-pat-o",
+          "za-pa-to",
+          "zap-a-to"
+        ],
+        "paso_resuelto": "Decimos za / pa / to. Cada grupo sale en un golpe de voz. La separación es za-pa-to.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "leng_til_1_tonica",
+    "tema": "tildes_generales_agudas_graves_esdrujulas",
+    "titulo": "Escuchar la sílaba tónica",
+    "explicacion": "La sílaba tónica es la que suena con más fuerza en una palabra. Todas las palabras que veremos tienen una, pero no todas llevan una tilde escrita. Primero escuchamos; después veremos cuándo escribir la rayita.",
+    "ejemplo": "camisa → ca-MI-sa. MI es la sílaba tónica y no lleva tilde.",
+    "pasos": [
+      "Decimos camisa en voz alta.",
+      "Escuchamos dónde apoyamos la voz: MI."
+    ],
+    "pista": "Decí la palabra completa; escuchá qué sílaba suena más fuerte.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "leng_til_1_tonica-v1",
+        "enunciado": "Decí «casa» en voz alta. ¿Qué sílaba suena con más fuerza?",
+        "respuesta_correcta": "ca",
+        "opciones": [
+          "ca",
+          "sa"
+        ],
+        "paso_resuelto": "Pronunciamos CA-sa: ca suena con más fuerza. Esa es la sílaba tónica.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_1_tonica-v2",
+        "enunciado": "Decí «pelota» en voz alta. ¿Qué sílaba suena con más fuerza?",
+        "respuesta_correcta": "lo",
+        "opciones": [
+          "pe",
+          "ta",
+          "lo"
+        ],
+        "paso_resuelto": "Pronunciamos pe-LO-ta: lo suena con más fuerza. Esa es la sílaba tónica.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_1_tonica-v3",
+        "enunciado": "Decí «tomate» en voz alta. ¿Qué sílaba suena con más fuerza?",
+        "respuesta_correcta": "ma",
+        "opciones": [
+          "te",
+          "ma",
+          "to"
+        ],
+        "paso_resuelto": "Pronunciamos to-MA-te: ma suena con más fuerza. Esa es la sílaba tónica.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_1_tonica-v4",
+        "enunciado": "Decí «camisa» en voz alta. ¿Qué sílaba suena con más fuerza?",
+        "respuesta_correcta": "mi",
+        "opciones": [
+          "mi",
+          "ca",
+          "sa"
+        ],
+        "paso_resuelto": "Pronunciamos ca-MI-sa: mi suena con más fuerza. Esa es la sílaba tónica.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_1_tonica-v5",
+        "enunciado": "Decí «mariposa» en voz alta. ¿Qué sílaba suena con más fuerza?",
+        "respuesta_correcta": "po",
+        "opciones": [
+          "ma",
+          "ri",
+          "po"
+        ],
+        "paso_resuelto": "Pronunciamos ma-ri-PO-sa: po suena con más fuerza. Esa es la sílaba tónica.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_1_tonica-v6",
+        "enunciado": "Decí «zapato» en voz alta. ¿Qué sílaba suena con más fuerza?",
+        "respuesta_correcta": "pa",
+        "opciones": [
+          "to",
+          "pa",
+          "za"
+        ],
+        "paso_resuelto": "Pronunciamos za-PA-to: pa suena con más fuerza. Esa es la sílaba tónica.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "leng_til_2_agudas",
+    "tema": "tildes_generales_agudas_graves_esdrujulas",
+    "titulo": "Agudas: fuerza en la última sílaba",
+    "explicacion": "Si la sílaba más fuerte es la última, la palabra es aguda. En los casos que veremos, lleva tilde si termina en vocal, N o S. Si termina en otra consonante, no. Aquí no trabajamos terminaciones con varias consonantes ni con Y.",
+    "ejemplo": "café → ca-FÉ: última sílaba y final en vocal, lleva tilde.",
+    "pasos": [
+      "Ubicamos la sílaba tónica al final.",
+      "Miramos la última letra: vocal, N o S pide tilde en estos casos."
+    ],
+    "pista": "Primero ubicá la fuerza; después mirá la última letra.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "leng_til_2_agudas-v1",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: ca-FE.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "café",
+        "opciones": [
+          "café",
+          "cafe"
+        ],
+        "paso_resuelto": "Es aguda y termina en vocal: lleva tilde Por eso escribimos café.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_2_agudas-v2",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: so-FA.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "sofá",
+        "opciones": [
+          "sofa",
+          "sofá"
+        ],
+        "paso_resuelto": "Es aguda y termina en vocal: lleva tilde Por eso escribimos sofá.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_2_agudas-v3",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: li-MON.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "limón",
+        "opciones": [
+          "limón",
+          "limon"
+        ],
+        "paso_resuelto": "Es aguda y termina en N: lleva tilde Por eso escribimos limón.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_2_agudas-v4",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: com-PAS.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "compás",
+        "opciones": [
+          "compas",
+          "compás"
+        ],
+        "paso_resuelto": "Es aguda y termina en S: lleva tilde Por eso escribimos compás.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_2_agudas-v5",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: re-LOJ.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "reloj",
+        "opciones": [
+          "reloj",
+          "relój"
+        ],
+        "paso_resuelto": "Es aguda y termina en J: no lleva tilde Por eso escribimos reloj.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_2_agudas-v6",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: pa-PEL.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "papel",
+        "opciones": [
+          "papél",
+          "papel"
+        ],
+        "paso_resuelto": "Es aguda y termina en L: no lleva tilde Por eso escribimos papel.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "leng_til_3_graves",
+    "tema": "tildes_generales_agudas_graves_esdrujulas",
+    "titulo": "Graves: fuerza en la penúltima sílaba",
+    "explicacion": "La penúltima sílaba es la segunda contando desde el final. Si allí está la fuerza, la palabra es grave o llana. En estos casos lleva tilde si NO termina en vocal, N o S. No veremos todavía vocales juntas ni terminaciones con varias consonantes.",
+    "ejemplo": "árbol → ÁR-bol: penúltima sílaba y final en L, lleva tilde.",
+    "pasos": [
+      "Contamos desde el final: bol es la última; ár es la penúltima.",
+      "Termina en L, así que esta palabra grave lleva tilde."
+    ],
+    "pista": "¿La fuerza está en la penúltima? Si termina en vocal, N o S, estos ejemplos no llevan tilde.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "leng_til_3_graves-v1",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: AR-bol.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "árbol",
+        "opciones": [
+          "árbol",
+          "arbol"
+        ],
+        "paso_resuelto": "Es grave y termina en L: lleva tilde Por eso escribimos árbol.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_3_graves-v2",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: LA-piz.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "lápiz",
+        "opciones": [
+          "lapiz",
+          "lápiz"
+        ],
+        "paso_resuelto": "Es grave y termina en Z: lleva tilde Por eso escribimos lápiz.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_3_graves-v3",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: FA-cil.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "fácil",
+        "opciones": [
+          "fácil",
+          "facil"
+        ],
+        "paso_resuelto": "Es grave y termina en L: lleva tilde Por eso escribimos fácil.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_3_graves-v4",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: CA-sa.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "casa",
+        "opciones": [
+          "cása",
+          "casa"
+        ],
+        "paso_resuelto": "Es grave y termina en vocal: no lleva tilde Por eso escribimos casa.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_3_graves-v5",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: JO-ven.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "joven",
+        "opciones": [
+          "joven",
+          "jóven"
+        ],
+        "paso_resuelto": "Es grave y termina en N: no lleva tilde Por eso escribimos joven.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_3_graves-v6",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: LU-nes.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "lunes",
+        "opciones": [
+          "lúnes",
+          "lunes"
+        ],
+        "paso_resuelto": "Es grave y termina en S: no lleva tilde Por eso escribimos lunes.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "leng_til_4_esdrujulas",
+    "tema": "tildes_generales_agudas_graves_esdrujulas",
+    "titulo": "Esdrújulas: fuerza en la antepenúltima",
+    "explicacion": "La antepenúltima sílaba es la tercera contando desde el final. Las palabras que llevan allí la fuerza son esdrújulas y siempre llevan tilde. No necesitamos mirar la última letra.",
+    "ejemplo": "música → MÚ-si-ca: ca, si, mú. La fuerza está en la tercera desde el final.",
+    "pasos": [
+      "Contamos las sílabas desde el final.",
+      "Si la tónica es la antepenúltima, escribimos tilde en su vocal."
+    ],
+    "pista": "Contá desde el final: última, penúltima, antepenúltima.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "leng_til_4_esdrujulas-v1",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: MU-si-ca.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "música",
+        "opciones": [
+          "música",
+          "musica"
+        ],
+        "paso_resuelto": "MU es la antepenúltima: es esdrújula y lleva tilde Por eso escribimos música.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_4_esdrujulas-v2",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: PA-ja-ro.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "pájaro",
+        "opciones": [
+          "pajaro",
+          "pájaro"
+        ],
+        "paso_resuelto": "PA es la antepenúltima: es esdrújula y lleva tilde Por eso escribimos pájaro.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_4_esdrujulas-v3",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: te-LE-fo-no.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "teléfono",
+        "opciones": [
+          "teléfono",
+          "telefono"
+        ],
+        "paso_resuelto": "LE es la antepenúltima: es esdrújula y lleva tilde Por eso escribimos teléfono.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_4_esdrujulas-v4",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: SA-ba-do.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "sábado",
+        "opciones": [
+          "sabado",
+          "sábado"
+        ],
+        "paso_resuelto": "SA es la antepenúltima: es esdrújula y lleva tilde Por eso escribimos sábado.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_4_esdrujulas-v5",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: NU-me-ro.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "número",
+        "opciones": [
+          "número",
+          "numero"
+        ],
+        "paso_resuelto": "NU es la antepenúltima: es esdrújula y lleva tilde Por eso escribimos número.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_4_esdrujulas-v6",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: se-MA-fo-ro.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "semáforo",
+        "opciones": [
+          "semaforo",
+          "semáforo"
+        ],
+        "paso_resuelto": "MA es la antepenúltima: es esdrújula y lleva tilde Por eso escribimos semáforo.",
+        "visual": null
+      }
+    ]
+  },
+  {
+    "id": "leng_til_5_sobresdrujulas",
+    "tema": "tildes_generales_agudas_graves_esdrujulas",
+    "titulo": "Sobresdrújulas: fuerza antes de la antepenúltima",
+    "explicacion": "Algunas palabras juntan una acción con pequeñas palabras al final: diga + se + lo → dígaselo. Si la fuerza queda antes de la antepenúltima, son sobresdrújulas y llevan tilde. Hoy practicamos solo estas formas; las palabras terminadas en -mente se estudian aparte.",
+    "ejemplo": "dígaselo → DÍ-ga-se-lo: la fuerza está en la cuarta sílaba desde el final.",
+    "pasos": [
+      "Contamos desde el final: lo, se, ga, dí.",
+      "La fuerza quedó antes de la antepenúltima: escribimos dígaselo."
+    ],
+    "pista": "Contá desde el final. Si la fuerza está antes de la tercera sílaba, estas formas llevan tilde.",
+    "visual": null,
+    "actividades": [
+      {
+        "id": "leng_til_5_sobresdrujulas-v1",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: DI-ga-se-lo.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "dígaselo",
+        "opciones": [
+          "dígaselo",
+          "digaselo"
+        ],
+        "paso_resuelto": "DI está antes de la antepenúltima: lleva tilde Por eso escribimos dígaselo.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_5_sobresdrujulas-v2",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: CUEN-ta-me-lo.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "cuéntamelo",
+        "opciones": [
+          "cuentamelo",
+          "cuéntamelo"
+        ],
+        "paso_resuelto": "CUEN está antes de la antepenúltima: lleva tilde Por eso escribimos cuéntamelo.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_5_sobresdrujulas-v3",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: ex-PLI-ca-me-lo.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "explícamelo",
+        "opciones": [
+          "explícamelo",
+          "explicamelo"
+        ],
+        "paso_resuelto": "PLI está antes de la antepenúltima: lleva tilde Por eso escribimos explícamelo.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_5_sobresdrujulas-v4",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: PRES-ta-me-lo.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "préstamelo",
+        "opciones": [
+          "prestamelo",
+          "préstamelo"
+        ],
+        "paso_resuelto": "PRES está antes de la antepenúltima: lleva tilde Por eso escribimos préstamelo.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_5_sobresdrujulas-v5",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: re-PI-te-me-lo.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "repítemelo",
+        "opciones": [
+          "repítemelo",
+          "repitemelo"
+        ],
+        "paso_resuelto": "PI está antes de la antepenúltima: lleva tilde Por eso escribimos repítemelo.",
+        "visual": null
+      },
+      {
+        "id": "leng_til_5_sobresdrujulas-v6",
+        "enunciado": "La sílaba en MAYÚSCULAS es la tónica: de-VUEL-ve-me-lo.\nElegí cómo se escribe la palabra.",
+        "respuesta_correcta": "devuélvemelo",
+        "opciones": [
+          "devuelvemelo",
+          "devuélvemelo"
+        ],
+        "paso_resuelto": "VUEL está antes de la antepenúltima: lleva tilde Por eso escribimos devuélvemelo.",
+        "visual": null
+      }
+    ]
   }
 ];
 
@@ -1981,4 +3225,15 @@ export function getFichaBase(tema) {
  return {titulo:'Primeros pasos: '+tema.replaceAll('_',' '),disponible:true,pdf_url:'/apuntes/bases-'+tema+'.pdf',contenido_version:VERSION_BASES,
  slides:unidades.map(u=>({titulo:u.titulo,contenido:u.explicacion+'\n\n'+u.ejemplo+'\n'+u.pasos.join('\n'),concepto_clave:u.pista})),
  apunte_completo:unidades.map(u=>'## '+u.titulo+'\n\n'+u.explicacion+'\n\n'+u.ejemplo+'\n\n'+u.pasos.join('\n')+'\n\nPara probar: '+u.actividades[0].enunciado+'\nRespuesta para revisar: '+u.actividades[0].respuesta_correcta).join('\n\n')};
+}
+
+// Cierre básico alineado con las habilidades enseñadas; no es una simulación del ingreso.
+export function getCierreLengua(tema) {
+ const unidades=UNIDADES_BASES.filter(u=>u.tema===tema && u.id.startsWith('leng_'));
+ if(!unidades.length)return null;
+ const preguntas=unidades.map((u,i)=>{const a=u.actividades[5];return {id:String(i+1),objetivo_id:u.id,texto:a.enunciado,opciones:a.opciones,respuesta_correcta:a.respuesta_correcta};});
+ const min_correctas=Math.ceil(preguntas.length*2/3);
+ return {tipo:'examen_final',dificultad:'basico',contenido_version:VERSION_BASES,tiempo_estimado:5,min_correctas,
+ instrucciones:`Cierre de primeros pasos. Necesitás ${min_correctas} de ${preguntas.length} respuestas correctas. Podés releer los textos.`,
+ enunciado:'Revisamos las ideas que ya practicaste. Este cierre trabaja las bases; no es un examen oficial de ingreso.',preguntas};
 }

@@ -1,8 +1,10 @@
-import { TEMAS_BASES, VERSION_BASES, getUnidadBase, crearActividadBase } from "@/lib/contenido-bases";
+import { temasHabilitados } from "@/lib/acceso-temas";
+import { TEMAS_BASES_MATEMATICA } from "@/lib/metadatos-bases";
+import { VERSION_BASES, getUnidadBase, crearActividadBase, getCierreLengua } from "@/lib/contenido-bases";
 import { quitarClaves } from "@/lib/contrato-actividad";
 import { getLeccionH } from "@/lib/contenido-h";
 import { daysUntilExam } from "@/lib/date";
-import { DEFAULT_TOPIC, getProximoTemaNoCompletado, getTopicMeta, isCurriculumTopic, CURRICULUM_MATEMATICA, CURRICULUM_LENGUA, PRERREQUISITOS } from "@/lib/curriculum";
+import { DEFAULT_TOPIC, getProximoTemaNoCompletado, getTopicMeta, isCurriculumTopic, CURRICULUM_MATEMATICA, CURRICULUM_LENGUA } from "@/lib/curriculum";
 import { getObjetivosParaTema, determinarProximoObjetivo, esElegibleParaExamenFinal } from "@/lib/objetivos-pedagogicos";
 import { getCasoResuelto, getMetodoPasoAPaso } from "@/lib/casos-resueltos";
 import { getTareaManuscrita } from "@/lib/ejercicios-manuscritos";
@@ -157,7 +159,7 @@ export default async function handler(req, res) {
       }
     }
 
-    if (TEMAS_BASES.includes(temaActual) && modo !== 'REPASO' && !rendir_examen && !retomar_examen) {
+    if (TEMAS_BASES_MATEMATICA.includes(temaActual) && modo !== 'REPASO' && !rendir_examen && !retomar_examen) {
       const historia = assertSupabaseOk(await supabase.from('sesiones').select('id, tema, tipo_pregunta, es_correcta, created_at, ia_parametros_usados').eq('user_id', user_id), 'No se pudo leer el recorrido');
       const fracciones = determinarProximoObjetivo('fracciones_concepto', historia);
       const multiplos = determinarProximoObjetivo('divisibilidad_primos_mcm_mcd', historia);
@@ -203,7 +205,7 @@ export default async function handler(req, res) {
     contexto.objetivo_actual = objetivoActual;
 
     const unidadBase = getUnidadBase(objetivo_id);
-    if (unidadBase && !(rendir_examen && objetivoInfo.temaCompletado)) {
+    const responderBase = async () => {
       const modoBase = objetivoInfo.requiereExplicacion || modo === 'REPASO' ? 'leccion' : 'practica';
       const actividad = crearActividadBase(objetivo_id, modoBase, sesionesTema || []);
       const texto = modoBase === 'leccion' ? actividad.ejercicio_practica.enunciado : actividad.pregunta;
@@ -212,9 +214,21 @@ export default async function handler(req, res) {
         contexto_json:{...contexto, leccion:modoBase === 'leccion' ? actividad:null},
         ia_parametros_usados:{provider:'contenido_revisado',modo_sesion:modoBase,objetivo_id,contenido_version:VERSION_BASES,actividad_id:actividad.actividad_id}
       }).select().single(), 'No se pudo guardar la actividad');
+      const cierre = getCierreLengua(temaActual);
+      const examenes = (sesionesTema || []).filter(s => s.tipo_pregunta === 'examen_final').sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at)));
+      const aprobado = examenes.some(s=>s.es_correcta === true);
+      const ultimo = examenes.find(s=>s.ia_parametros_usados?.contenido_version === VERSION_BASES);
+      const pendiente = ultimo?.es_correcta === null && !ultimo.ia_parametros_usados?.revision_pendiente;
+      const practicas = (sesionesTema || []).filter(s=>typeof s.es_correcta === 'boolean' && !['leccion','examen_final'].includes(s.tipo_pregunta))
+        .sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at))).slice(0,5);
+      const independientes = practicas.filter(s=>s.es_correcta && !s.ia_parametros_usados?.resuelto_con_ayuda);
+      const suficientes = practicas.length >= 3 && independientes.length / practicas.length >= 0.8;
+      const recuperado = ultimo?.es_correcta !== false || independientes.filter(s=>new Date(s.created_at)>new Date(ultimo.created_at)).length >= 2;
+      const disponible = Boolean(cierre && objetivoInfo.temaCompletado && !aprobado && suficientes && recuperado);
       return res.status(200).json(quitarClaves({...actividad, pregunta:texto, tipo_pregunta:modoBase === 'leccion'?'leccion':'multiple',
-        sesion_id:fila.id,tema:temaActual,capa:1,...tutor,...planPayload,examen_disponible:false,examen_pendiente:false}));
-    }
+        sesion_id:fila.id,tema:temaActual,capa:1,...tutor,...planPayload,examen_disponible:disponible && !pendiente,examen_pendiente:disponible && Boolean(pendiente)}));
+    };
+    if (unidadBase && !((rendir_examen || retomar_examen) && objetivoInfo.temaCompletado)) return responderBase();
 
     const leccionResult = await supabase
       .from("lecciones_completadas")
@@ -230,7 +244,7 @@ export default async function handler(req, res) {
 
     const leccion = leccionResult.data;
     const esModoRepaso = modo === "REPASO";
-    const requiereExplicacion = objetivoInfo.requiereExplicacion || !leccion?.completada || esModoRepaso;
+    const requiereExplicacion = objetivoInfo.requiereExplicacion || (!unidadBase && !leccion?.completada) || esModoRepaso;
     const modoSesion = requiereExplicacion ? "leccion" : "practica";
 
     if (modoSesion === "practica" && !omitir_caso_resuelto) {
@@ -271,6 +285,8 @@ export default async function handler(req, res) {
         return res.status(200).json(quitarClaves({ ...examenResponse, ...tutor, ...planPayload }));
       }
     }
+
+    if (unidadBase) return responderBase();
 
     if (modoSesion === "practica") {
       const tareaResponse = await maybeAsignarTareaManuscrita(supabase, user_id, temaActual);
@@ -644,7 +660,10 @@ async function maybeCrearExamenFinal(supabase, userId, tema, capa, modo, context
     throw new Error(`No se pudo verificar examen final previo: ${ultimosExamenesResult.error.message}`);
   }
 
-  const ultimoExamen = (ultimosExamenesResult.data || [])[0];
+  const cierreRevisado = getCierreLengua(tema);
+  const examenPrevio = (ultimosExamenesResult.data || [])[0];
+  // El examen legado se conserva como historial; no reabre preguntas ajenas a la enseñanza revisada.
+  const ultimoExamen = cierreRevisado && examenPrevio?.contexto_json?.examen_final?.contenido_version !== VERSION_BASES ? null : examenPrevio;
 
   // Si el último examen quedó pendiente (es_correcta === null):
   // - Si ya fue entregado y espera revisión (revision_pendiente: true), NO ofrecerlo como examen nuevo a rendir
@@ -746,7 +765,7 @@ async function maybeCrearExamenFinal(supabase, userId, tema, capa, modo, context
     }
   }
 
-  const examenDefinido = getExamenFinal(tema, capa);
+  const examenDefinido = cierreRevisado || getExamenFinal(tema, capa);
   const examen = examenDefinido || (await generarExamenFinalConIa(tema, capa, contexto));
 
   const sesion = assertSupabaseOk(
@@ -761,6 +780,7 @@ async function maybeCrearExamenFinal(supabase, userId, tema, capa, modo, context
         contexto_json: { ...contexto, examen_final: examen },
         modo,
         ia_parametros_usados: {
+          contenido_version: examen.contenido_version || null,
           provider: examenDefinido ? "static" : "openrouter",
           model: examenDefinido ? null : MODEL_TUTOR,
           endpoint: "/api/sesion/init",
@@ -878,75 +898,8 @@ function calcularCapaInicial(edad, grado, rasgos, nivel_inicial = null) {
 }
 
 async function getUnlockedTopics(supabase, userId, plan, usuario = null) {
-  const curriculum = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA];
-
-  if (usuario?.rasgos_especiales?.ruta_flexible) {
-    return new Set(curriculum.map(t => t.tema));
-  }
-
-  const { data, error } = await supabase
-    .from("sesiones")
-    .select("tema")
-    .eq("user_id", userId)
-    .eq("tipo_pregunta", "examen_final")
-    .eq("es_correcta", true);
-  
+  const { data, error } = await supabase.from("sesiones").select("tema")
+    .eq("user_id", userId).eq("tipo_pregunta", "examen_final").eq("es_correcta", true);
   if (error) throw new Error("No se pudieron obtener temas completados");
-  
-  const approvedExams = new Set((data || []).map(s => s.tema));
-  
-  const mateF1 = CURRICULUM_MATEMATICA.filter(t => t.fase === 1);
-  const mateF2 = CURRICULUM_MATEMATICA.filter(t => t.fase === 2);
-  const mateF3 = CURRICULUM_MATEMATICA.filter(t => t.fase === 3);
-  const mateF4 = CURRICULUM_MATEMATICA.filter(t => t.fase === 4);
-
-  const lenguaF1 = CURRICULUM_LENGUA.filter(t => t.fase === 1);
-  const lenguaF2 = CURRICULUM_LENGUA.filter(t => t.fase === 2);
-  const lenguaF3 = CURRICULUM_LENGUA.filter(t => t.fase === 3);
-  const lenguaF4 = CURRICULUM_LENGUA.filter(t => t.fase === 4);
-
-  const approvedMateF1 = mateF1.filter(t => approvedExams.has(t.tema)).length;
-  const approvedMateF2 = mateF2.filter(t => approvedExams.has(t.tema)).length;
-  const approvedMateF3 = mateF3.filter(t => approvedExams.has(t.tema)).length;
-  const approvedMateF4 = mateF4.filter(t => approvedExams.has(t.tema)).length;
-
-  const approvedLenguaF1 = lenguaF1.filter(t => approvedExams.has(t.tema)).length;
-  const approvedLenguaF2 = lenguaF2.filter(t => approvedExams.has(t.tema)).length;
-  const approvedLenguaF3 = lenguaF3.filter(t => approvedExams.has(t.tema)).length;
-  const approvedLenguaF4 = lenguaF4.filter(t => approvedExams.has(t.tema)).length;
-
-  const isPhaseUnlocked = (fase, materia) => {
-    if (fase === 1) return true;
-    if (materia === "matematica") {
-      if (fase === 2) return approvedMateF1 >= 6;
-      if (fase === 3) return approvedMateF1 >= 6 && approvedMateF2 >= 3;
-      if (fase === 4) return approvedMateF1 >= 6 && approvedMateF2 >= 3 && approvedMateF3 >= 5;
-      if (fase === 5) return approvedMateF1 >= 6 && approvedMateF2 >= 3 && approvedMateF3 >= 5 && approvedMateF4 >= 11;
-    } else {
-      if (fase === 2) return approvedLenguaF1 >= 5;
-      if (fase === 3) return approvedLenguaF1 >= 5 && approvedLenguaF2 >= 3;
-      if (fase === 4) return approvedLenguaF1 >= 5 && approvedLenguaF2 >= 3 && approvedLenguaF3 >= 2;
-      if (fase === 5) return approvedLenguaF1 >= 5 && approvedLenguaF2 >= 3 && approvedLenguaF3 >= 2 && approvedLenguaF4 >= 3;
-    }
-    return false;
-  };
-
-  const cumplePrerrequisitos = (tema) => {
-    const reqs = PRERREQUISITOS[tema];
-    if (!reqs || reqs.length === 0) return true;
-    return reqs.every(req => approvedExams.has(req));
-  };
-
-  const isTrial = plan === "trial";
-  
-  return new Set(
-    curriculum
-      .filter(t => {
-        if (isTrial) {
-          return TRIAL_TOPICS.includes(t.tema);
-        }
-        return TEMAS_BASES.includes(t.tema) || (isPhaseUnlocked(t.fase, t.materia) && cumplePrerrequisitos(t.tema));
-      })
-      .map(t => t.tema)
-  );
+  return temasHabilitados({plan, aprobados: (data || []).map(s => s.tema), rutaFlexible: Boolean(usuario?.rasgos_especiales?.ruta_flexible)});
 }

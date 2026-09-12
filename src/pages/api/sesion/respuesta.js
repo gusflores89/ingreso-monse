@@ -84,8 +84,8 @@ export default async function handler(req, res) {
       const retroalimentacion = esRevisionDiferida
         ? "Tu producción escrita fue guardada con éxito y quedó registrada para revisión con rúbrica docente y familiar. ¡Gran trabajo expresándote por escrito!"
         : resultadoExamen.es_correcta
-          ? `Examen final aprobado con ${resultadoExamen.puntaje}%. Ahora cambiamos de materia para entrenar de forma equilibrada.`
-          : `Todavia no aprobaste el examen final. Puntaje: ${resultadoExamen.puntaje}%. Vamos a reforzar este tema antes de cambiar.`;
+          ? `Examen final aprobado con ${resultadoExamen.puntaje}%. Podés seguir con este tema o elegir otro cuando quieras.`
+          : `Todavia no aprobaste el examen final. Puntaje: ${resultadoExamen.puntaje}%. Podemos repasar juntos y volver a intentarlo cuando quieras.`;
 
       await guardarPasoEnvio(supabase, sesion_id, envio, {
             respuesta_usuario,
@@ -107,18 +107,16 @@ export default async function handler(req, res) {
           });
 
       const progreso = await refreshTopicProgress(supabase, sesion.user_id, sesion.tema, sesion.capa);
-      const proximoTema = (resultadoExamen.es_correcta || esRevisionDiferida)
-        ? await getProximoTemaAlternando(supabase, sesion.user_id, sesion.tema)
-        : sesion.tema;
+      const proximoTema = sesion.tema; // La alumna decide cuándo cambiar de materia.
 
       const decision = {
         proximo_tema: proximoTema,
         proxima_capa: (resultadoExamen.es_correcta || esRevisionDiferida) ? 1 : sesion.capa || 1,
         modo_recomendado: "NORMAL",
         razon: esRevisionDiferida
-          ? `Producción escrita entregada. Pendiente de revisión con rúbrica. Alternar materia hacia "${proximoTema}".`
+          ? `Producción escrita entregada. Pendiente de revisión con rúbrica. Conservar "${proximoTema}" hasta que la alumna elija otro tema.`
           : resultadoExamen.es_correcta
-            ? `Examen final aprobado. Alternar materia hacia "${proximoTema}".`
+            ? `Examen final aprobado. Conservar "${proximoTema}" hasta que la alumna elija otro tema.`
             : `Reforzar "${sesion.tema}" antes de volver a intentar el examen final.`,
         alerta: null,
       };

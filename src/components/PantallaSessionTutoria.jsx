@@ -1,3 +1,4 @@
+import { accesoTema } from "@/lib/acceso-temas";
 import { fetchRegistrado, leerEnvioPendiente } from "@/lib/envios-cliente";
 import { TEMAS_BASES, VERSION_BASES } from "@/lib/metadatos-bases";
 import { puedeRetomarMision } from "@/lib/continuidad-mision";
@@ -7,7 +8,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import PantallaCasoResuelto from "./PantallaCasoResuelto";
 import VisualizacionMatematica from "./VisualizacionMatematica";
 import { CURRICULUM_MATEMATICA, CURRICULUM_LENGUA } from "@/lib/curriculum";
-import { TRIAL_TOPICS } from "@/lib/planes";
 import { getDiapositivasParaTema, getPdfUrl } from "@/lib/diapositivas";
 
 export function getArgentinaTodayKey() {
@@ -897,6 +897,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             {estrellasAcumuladas > 0 && <span>⭐ {estrellasAcumuladas}</span>}
           </div>
 
+          <button type="button" disabled={loading} onClick={()=>handleSelectTema('comprension_lectora_literal_inferida')}>📚 Leer y escribir</button>
           {pregunta?.plan !== 'trial' && <button type="button" disabled={loading} onClick={()=>handleSelectTema('fracciones_concepto',{modo:'REPASO',forzar_practica:true})}>🌱 Aprender fracciones</button>}
           {pregunta?.tema_sugerido && !pregunta.tema_sugerido.completado && pregunta.tema === pregunta.tema_sugerido.tema && (
             <span className="plan-badge-tutoria" style={{ fontSize: "0.82rem", padding: "4px 12px", borderRadius: "20px", backgroundColor: "rgba(139, 92, 246, 0.2)", color: "#c084fc", border: "1px solid rgba(139, 92, 246, 0.4)", fontWeight: "600", display: "inline-flex", alignItems: "center", gap: "4px", boxShadow: "0 0 10px rgba(139, 92, 246, 0.15)" }}>
@@ -1215,8 +1216,8 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
 
             {pasoActualData.tipo === "ejercicio" && (
               <div className="lesson-step-content exercise-step">
-                <h2>Ahora proba vos</h2>
-                <p className="question-text small">{parseInlineMarkdown(pasoActualData.contenido.enunciado)}</p>
+                <h2>Ahora probá vos</h2>
+                <p className="question-text small" style={{whiteSpace:"pre-line"}}>{parseInlineMarkdown(pasoActualData.contenido.enunciado)}</p>
                 {visualParaEjercicio && (
                   <div style={{ marginBottom: "20px" }}>
                     <VisualizacionMatematica tipo={visualParaEjercicio.tipo} datos={visualParaEjercicio.datos} mostrarResultado={false} />
@@ -1844,7 +1845,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                 <h3 style={{ margin: 0, fontSize: "1.3rem", fontWeight: "700", color: "#ffffff", letterSpacing: "-0.3px", display: "flex", alignItems: "center", gap: "10px" }}>
                   <span>🎓</span> El Camino del Aspirante
                 </h3>
-                <p style={{ margin: "4px 0 0 0", fontSize: "0.82rem", color: "#a59ec9" }}>Consolida cada fase para habilitar los desafíos avanzados del Monserrat</p>
+                <p style={{ margin: "4px 0 0 0", fontSize: "0.82rem", color: "#a59ec9" }}>Elegí un tema disponible. Cada paso nuevo se apoya en lo que ya aprendiste.</p>
               </div>
               <button type="button" onClick={() => setShowTopicModal(false)} style={{ background: "transparent", border: "none", color: "#9590a6", fontSize: "1.8rem", cursor: "pointer", transition: "color 150ms", padding: "0 4px" }}>&times;</button>
             </div>
@@ -1858,60 +1859,8 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
               )}
 
               {!modalLoading && (() => {
-                const mateFase1 = CURRICULUM_MATEMATICA.filter(t => t.fase === 1);
-                const mateFase2 = CURRICULUM_MATEMATICA.filter(t => t.fase === 2);
-                const mateFase3 = CURRICULUM_MATEMATICA.filter(t => t.fase === 3);
-                const mateFase4 = CURRICULUM_MATEMATICA.filter(t => t.fase === 4);
-
-                const lenguaFase1 = CURRICULUM_LENGUA.filter(t => t.fase === 1);
-                const lenguaFase2 = CURRICULUM_LENGUA.filter(t => t.fase === 2);
-                const lenguaFase3 = CURRICULUM_LENGUA.filter(t => t.fase === 3);
-                const lenguaFase4 = CURRICULUM_LENGUA.filter(t => t.fase === 4);
-
-                const approvedMateF1 = mateFase1.filter(t => completedExams.has(t.tema)).length;
-                const approvedMateF2 = mateFase2.filter(t => completedExams.has(t.tema)).length;
-                const approvedMateF3 = mateFase3.filter(t => completedExams.has(t.tema)).length;
-                const approvedMateF4 = mateFase4.filter(t => completedExams.has(t.tema)).length;
-
-                const approvedLenguaF1 = lenguaFase1.filter(t => completedExams.has(t.tema)).length;
-                const approvedLenguaF2 = lenguaFase2.filter(t => completedExams.has(t.tema)).length;
-                const approvedLenguaF3 = lenguaFase3.filter(t => completedExams.has(t.tema)).length;
-                const approvedLenguaF4 = lenguaFase4.filter(t => completedExams.has(t.tema)).length;
-
-                const unlockedMateFase2 = approvedMateF1 >= 6;
-                const unlockedMateFase3 = unlockedMateFase2 && approvedMateF2 >= 3;
-                const unlockedMateFase4 = unlockedMateFase3 && approvedMateF3 >= 5;
-                const unlockedMateFase5 = unlockedMateFase4 && approvedMateF4 >= 11;
-
-                const unlockedLenguaFase2 = approvedLenguaF1 >= 5;
-                const unlockedLenguaFase3 = unlockedLenguaFase2 && approvedLenguaF2 >= 3;
-                const unlockedLenguaFase4 = unlockedLenguaFase3 && approvedLenguaF3 >= 2;
-                const unlockedLenguaFase5 = unlockedLenguaFase4 && approvedLenguaF4 >= 3;
-
-                const isMateUnlocked = (fase) => {
-                  if (fase === 1) return true;
-                  if (fase === 2) return unlockedMateFase2;
-                  if (fase === 3) return unlockedMateFase3;
-                  if (fase === 4) return unlockedMateFase4;
-                  if (fase === 5) return unlockedMateFase5;
-                  return false;
-                };
-
-                const isLenguaUnlocked = (fase) => {
-                  if (fase === 1) return true;
-                  if (fase === 2) return unlockedLenguaFase2;
-                  if (fase === 3) return unlockedLenguaFase3;
-                  if (fase === 4) return unlockedLenguaFase4;
-                  if (fase === 5) return unlockedLenguaFase5;
-                  return false;
-                };
-
-                const isTopicUnlocked = (tema, fase, materia) => {
-                  if (TEMAS_BASES.includes(tema)) return true;
-                  if (materia === "matematica") return isMateUnlocked(fase);
-                  return isLenguaUnlocked(fase);
-                };
-
+                const opcionesAcceso = {plan: pregunta?.plan || "full", aprobados: completedExams, rutaFlexible: bypassLocks};
+                const isTopicUnlocked = tema => accesoTema(tema, opcionesAcceso).habilitado;
                 const topicsFase1 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 1);
                 const topicsFase2 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 2);
                 const topicsFase3 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 3);
@@ -1922,19 +1871,18 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                 const approvedFase3 = topicsFase3.filter(t => completedExams.has(t.tema)).length;
                 const approvedFase4 = topicsFase4.filter(t => completedExams.has(t.tema)).length;
 
-                const unlockedFase1 = true;
-                const unlockedFase2 = true; // Las bases de fracciones están disponibles sin exámenes previos.
-                const unlockedFase3 = bypassLocks || (unlockedMateFase3 || unlockedLenguaFase3);
-                const unlockedFase4 = bypassLocks || (unlockedMateFase4 || unlockedLenguaFase4);
-                const unlockedFase5 = bypassLocks || (unlockedMateFase5 && unlockedLenguaFase5);
+                const unlockedFase1 = topicsFase1.some(t => isTopicUnlocked(t.tema));
+                const unlockedFase2 = topicsFase2.some(t => isTopicUnlocked(t.tema));
+                const unlockedFase3 = topicsFase3.some(t => isTopicUnlocked(t.tema));
+                const unlockedFase4 = topicsFase4.some(t => isTopicUnlocked(t.tema));
 
                 return (
                   <>
                     {/* FASE 1 */}
                     <PhaseSection
                       number={1}
-                      title="Cimientos y Numeración Básica"
-                      subtitle="Asegura las bases operativas, ortografía básica y sistemas de conteo."
+                      title="Primeros pasos"
+                      subtitle="Contar, leer y descubrir cómo se escriben las palabras."
                       unlocked={unlockedFase1}
                       approvedCount={approvedFase1}
                       totalCount={topicsFase1.length}
@@ -1946,16 +1894,15 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                       setShowTopicModal={setShowTopicModal}
                       userProgress={userProgress}
                       bypassLocks={bypassLocks}
-                      isTopicUnlocked={isTopicUnlocked}
                     />
 
                     {/* FASE 2 */}
                     <PhaseSection
                       number={2}
-                      title="Fraccionamiento Aritmético"
-                      subtitle="Conceptos elementales de partición, múltiplos y morfología verbal básica."
+                      title="Fracciones y palabras"
+                      subtitle="Partir en partes iguales, buscar múltiplos y conocer las palabras."
                       unlocked={unlockedFase2}
-                      requiredText="Aprobar Fase 1 de Matemática (6 temas) o Fase 1 de Lengua (5 temas) para desbloquear."
+                      requiredText="Cada tema indica qué conocimientos previos necesita."
                       approvedCount={approvedFase2}
                       totalCount={topicsFase2.length}
                       topics={topicsFase2}
@@ -1966,16 +1913,15 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                       setShowTopicModal={setShowTopicModal}
                       userProgress={userProgress}
                       bypassLocks={bypassLocks}
-                      isTopicUnlocked={isTopicUnlocked}
                     />
 
                     {/* FASE 3 */}
                     <PhaseSection
                       number={3}
-                      title="Operaciones Complejas e Inferencia"
-                      subtitle="La fracción del resto, decimales y análisis inferencial discursivo."
+                      title="Conectar ideas"
+                      subtitle="Usar lo aprendido para resolver, comprender y conectar ideas."
                       unlocked={unlockedFase3}
-                      requiredText="Aprobar al menos 3 temas de la Fase 2 en Matemática o Lengua para desbloquear."
+                      requiredText="Cada tema indica qué conocimientos previos necesita."
                       approvedCount={approvedFase3}
                       totalCount={topicsFase3.length}
                       topics={topicsFase3}
@@ -1986,16 +1932,15 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                       setShowTopicModal={setShowTopicModal}
                       userProgress={userProgress}
                       bypassLocks={bypassLocks}
-                      isTopicUnlocked={isTopicUnlocked}
                     />
 
                     {/* FASE 4 */}
                     <PhaseSection
                       number={4}
-                      title="Geometría Compuesta y Producción Textual"
-                      subtitle="Perímetros irregulares, ángulos consecutivos y redacción bajo consignas restrictivas."
+                      title="Formas, medidas e historias"
+                      subtitle="Explorar figuras y medidas, descubrir patrones y escribir historias."
                       unlocked={unlockedFase4}
-                      requiredText="Aprobar al menos 5 temas de la Fase 3 en Matemática o 3 temas en Lengua para desbloquear."
+                      requiredText="Cada tema indica qué conocimientos previos necesita."
                       approvedCount={approvedFase4}
                       totalCount={topicsFase4.length}
                       topics={topicsFase4}
@@ -2006,68 +1951,11 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                       setShowTopicModal={setShowTopicModal}
                       userProgress={userProgress}
                       bypassLocks={bypassLocks}
-                      isTopicUnlocked={isTopicUnlocked}
                     />
 
-                    {/* FASE 5 */}
-                    <div style={{
-                      padding: "20px",
-                      borderRadius: "12px",
-                      background: unlockedFase5 
-                        ? "linear-gradient(135deg, #1e152a 0%, #301740 50%, #4c1d63 100%)" 
-                        : "rgba(255,255,255,0.01)",
-                      border: unlockedFase5 
-                        ? "1px solid #d97706" 
-                        : "1px solid rgba(255,255,255,0.03)",
-                      boxShadow: unlockedFase5 ? "0 4px 20px rgba(217, 119, 6, 0.15)" : "none",
-                      opacity: unlockedFase5 ? 1 : 0.6,
-                      transition: "all 300ms ease",
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "12px"
-                    }}>
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                        <div>
-                          <h4 style={{ margin: 0, fontSize: "1.1rem", fontWeight: "700", color: unlockedFase5 ? "#fbbf24" : "#94a3b8" }}>
-                            Fase 5: Simulación Extrema (Examen Real)
-                          </h4>
-                          <p style={{ margin: "4px 0 0 0", fontSize: "0.82rem", color: unlockedFase5 ? "#e9d5ff" : "#64748b" }}>
-                            Exámenes históricos completos simulados bajo condiciones estrictas del Colegio Monserrat.
-                          </p>
-                        </div>
-                        <span style={{ fontSize: "1.5rem" }}>{unlockedFase5 ? "🏆" : "🔒"}</span>
-                      </div>
-
-                      {!unlockedFase5 && (
-                        <div style={{ fontSize: "0.8rem", color: "#94a3b8", display: "flex", alignItems: "center", gap: "6px", background: "rgba(0,0,0,0.2)", padding: "8px 12px", borderRadius: "6px", border: "1px dashed rgba(255,255,255,0.05)" }}>
-                          <span>🔒</span> Requiere completar y aprobar al menos 10 temas de la Fase 4 para habilitar el Aula Magna.
-                        </div>
-                      )}
-
-                      {unlockedFase5 && (
-                        <button
-                          type="button"
-                          onClick={() => {
-                            handleSelectTema(topicsFase4[0]?.tema || "graficos_estadisticos");
-                            setShowTopicModal(false);
-                          }}
-                          style={{
-                            padding: "10px 16px",
-                            borderRadius: "8px",
-                            background: "linear-gradient(135deg, #d97706 0%, #f59e0b 100%)",
-                            color: "#110d24",
-                            fontWeight: "700",
-                            border: "none",
-                            cursor: "pointer",
-                            textAlign: "center",
-                            fontSize: "0.88rem",
-                            boxShadow: "0 4px 12px rgba(245, 158, 11, 0.3)",
-                            alignSelf: "start"
-                          }}
-                        >
-                          Ingresar al Aula Magna (Simulación Oficial) →
-                        </button>
-                      )}
+                    <div style={{padding:20,borderRadius:12,border:"1px solid #2a204d",color:"#a59ec9"}}>
+                      <h4 style={{margin:"0 0 6px",color:"#e8e4f0"}}>Simulacros de ingreso</h4>
+                      <p style={{margin:0}}>Los simulacros completos todavía no están disponibles. Por ahora, podés aprender y practicar cada tema.</p>
                     </div>
                   </>
                 );
@@ -2077,7 +1965,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             {/* Trial Banner Footer */}
             {pregunta?.plan === "trial" && (
               <div style={{ padding: "12px 20px", background: "rgba(239, 68, 68, 0.05)", borderTop: "1px solid #2a204d", borderRadius: "0 0 16px 16px", fontSize: "0.8rem", color: "#fca5a5", textAlign: "center" }}>
-                💡 En la muestra gratuita tienes 4 temas disponibles. Activa el Acceso Completo para desbloquear el camino de 5 fases.
+                💡 En la muestra gratuita tienes 4 temas disponibles. El acceso completo incluye más temas para aprender paso a paso.
               </div>
             )}
           </div>
@@ -2765,17 +2653,17 @@ function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRe
       <section className="exam-card exam-answers">
         {tienePreguntas ? (
           pregunta.preguntas.map((item) => (
-            <label key={item.id} className="exam-question">
-              <span>
+            <div key={item.id} className="exam-question" role="group" aria-label={`Pregunta ${item.id}`}>
+              <label htmlFor={`respuesta-examen-${item.id}`} style={{whiteSpace:"pre-line"}}>
                 {item.id}) {parseInlineMarkdown(item.texto)}
-              </span>
-              <input
-                type="text"
-                value={respuestas[item.id] || ""}
-                onChange={(event) => onRespuesta(item.id, event.target.value)}
-                placeholder="Tu respuesta..."
-              />
-            </label>
+              </label>
+              {item.opciones?.length ? <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
+                {item.opciones.map(opcion => <button key={opcion} type="button" aria-pressed={respuestas[item.id]===opcion}
+                  onClick={()=>onRespuesta(item.id,opcion)} disabled={loading}
+                  style={{padding:"12px 16px",borderRadius:10,border:respuestas[item.id]===opcion?"2px solid #38bdf8":"1px solid #64748b",background:respuestas[item.id]===opcion?"#164e63":"#1e293b",color:"#f8fafc",cursor:"pointer",minHeight:44}}>{opcion}</button>)}
+              </div> : <input id={`respuesta-examen-${item.id}`} type="text" value={respuestas[item.id] || ""}
+                onChange={event => onRespuesta(item.id,event.target.value)} placeholder="Tu respuesta..." />}
+            </div>
           ))
         ) : (
           <label className="exam-question">
@@ -3088,8 +2976,7 @@ function PhaseSection({
   handleSelectTema,
   setShowTopicModal,
   userProgress,
-  bypassLocks,
-  isTopicUnlocked
+  bypassLocks
 }) {
   const progressPercent = totalCount ? Math.round((approvedCount / totalCount) * 100) : 0;
   const isCompleted = approvedCount === totalCount && totalCount > 0;
@@ -3106,7 +2993,7 @@ function PhaseSection({
             ? "1px solid #6366f1" 
             : "1px solid #2a204d" 
         : "1px solid rgba(255,255,255,0.03)",
-      opacity: unlocked ? 1 : 0.55,
+      opacity: 1,
       transition: "all 200ms ease",
       boxShadow: unlocked && isCompleted ? "0 0 15px rgba(16, 185, 129, 0.08)" : "none",
       display: "flex",
@@ -3169,12 +3056,11 @@ function PhaseSection({
       )}
 
       {/* Grid de Temas */}
-      {unlocked && (
+      {(
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "8px" }}>
           {topics.map((item) => {
-            const isTrial = pregunta?.plan === "trial";
-            const isTopicPhaseUnlocked = bypassLocks || (isTopicUnlocked ? isTopicUnlocked(item.tema, item.fase, item.materia) : unlocked);
-            const isAllowed = bypassLocks || ((!isTrial || TRIAL_TOPICS.includes(item.tema)) && isTopicPhaseUnlocked);
+            const acceso = accesoTema(item.tema, {plan: pregunta?.plan || "full", aprobados: completedExams, rutaFlexible: bypassLocks});
+            const isAllowed = acceso.habilitado;
             const isCurrent = activeTema === item.tema;
             const isApproved = completedExams.has(item.tema);
             
@@ -3193,6 +3079,7 @@ function PhaseSection({
                   }
                 }}
                 disabled={!isAllowed || isCurrent}
+                title={acceso.motivo}
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
@@ -3211,7 +3098,8 @@ function PhaseSection({
                       : isAllowed 
                         ? "#15112a" 
                         : "rgba(255,255,255,0.01)",
-                  color: isAllowed ? "#e8e4f0" : "#64748b",
+                  color: "#e8e4f0",
+                  opacity: 1,
                   textAlign: "left",
                   cursor: isAllowed ? "pointer" : "not-allowed",
                   fontSize: "0.82rem",
@@ -3226,9 +3114,10 @@ function PhaseSection({
                     fontWeight: isCurrent ? "700" : "500", 
                     overflow: "hidden", 
                     textOverflow: "ellipsis", 
-                    whiteSpace: "nowrap" 
+                    whiteSpace: "normal"
                   }}>
                     {item.tema.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
+                    {!isAllowed && <small style={{display:"block",fontWeight:400,color:"#a59ec9",marginTop:4}}>{acceso.motivo}</small>}
                   </span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "0.75rem" }}>
@@ -3243,7 +3132,7 @@ function PhaseSection({
                       {tasa ? `Prac. ${tasa}%` : "Iniciar"}
                     </span>
                   ) : (
-                    <span style={{ color: "#64748b" }}>🔒 Premium</span>
+                    <span style={{ color: "#a59ec9" }}>{acceso.pendientes.length ? "Paso previo" : "Acceso completo"}</span>
                   )}
                 </div>
               </button>

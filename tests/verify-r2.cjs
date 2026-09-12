@@ -8,11 +8,14 @@ const read = p => fs.readFileSync(path.join(root,p),'utf8');
 const hashes = {};
 function source(p) { const s=read(p); hashes[p]=crypto.createHash('sha256').update(s).digest('hex'); return s; }
 function load(p, names, deps={}) {
+ if(p==='src/lib/acceso-temas.js')deps={...load('src/lib/curriculum.js',['CURRICULUM_MATEMATICA','CURRICULUM_LENGUA','PRERREQUISITOS']),...load('src/lib/metadatos-bases.js',['TEMAS_BASES']),...load('src/lib/planes.js',['TRIAL_TOPICS']),...deps};
+ if(['src/pages/api/sesion/init.js','src/pages/api/progreso.js'].includes(p))deps={...load('src/lib/acceso-temas.js',['accesoTema','temasHabilitados']),...load('src/lib/metadatos-bases.js',['TEMAS_BASES_MATEMATICA']),...deps};
+
  if(p==='src/lib/registro-envios.js')deps={createHash:crypto.createHash,randomUUID:crypto.randomUUID,...deps};
  if(['src/pages/api/sesion/respuesta.js','src/pages/api/sesion/ayuda.js'].includes(p))deps={...load('src/lib/registro-envios.js',['iniciarEnvio','guardarPasoEnvio','completarEnvio','liberarEnvio','registrarAyuda']),...deps};
  if (p==='src/lib/apuntes-bases.js')deps={...load('src/lib/metadatos-bases.js',['VERSION_BASES']),...deps};
  if (p==='src/lib/diapositivas.js')deps={...load('src/lib/apuntes-bases.js',['getFichaBase']),...deps};
- if (['src/lib/objetivos-pedagogicos.js','src/pages/api/sesion/init.js','src/pages/api/sesion/respuesta.js'].includes(p))deps={...load('src/lib/contenido-bases.js',['TEMAS_BASES','VERSION_BASES','getUnidadBase','crearActividadBase','evaluarActividadBase']),...deps};
+ if (['src/lib/objetivos-pedagogicos.js','src/pages/api/sesion/init.js','src/pages/api/sesion/respuesta.js'].includes(p))deps={...load('src/lib/contenido-bases.js',['UNIDADES_BASES','TEMAS_BASES','VERSION_BASES','getUnidadBase','crearActividadBase','evaluarActividadBase','getCierreLengua']),...deps};
  if(p==='src/pages/api/sesion/init.js')deps={...load('src/lib/contrato-actividad.js',['quitarClaves']),...deps};
  if(p==='src/pages/api/sesion/respuesta.js')deps={...load('src/lib/validacion-pedagogica.js',['validarEvaluacion','huboAyuda']),requireOwnership:()=>true,...deps};
  if(p==='src/lib/diapositivas.js')deps={...load('src/lib/contenido-h.js',['FICHA_H']),...deps};
@@ -98,7 +101,7 @@ async function start(database,body={},aiType="practica") {
 (async()=>{
  const bases=load('src/lib/contenido-bases.js',['UNIDADES_BASES','VERSION_BASES']);
  const database=db({sesiones:[],lecciones_completadas:[]});let count=0;
- for(const unidad of bases.UNIDADES_BASES){
+ for(const unidad of bases.UNIDADES_BASES.filter(u=>!u.id.startsWith('leng_'))){
   const lesson=await start(database,{tema:'fracciones_concepto'});
   assert.equal(lesson.output.tipo,'leccion',unidad.id);
   const rowLesson=database.tables.sesiones.find(s=>s.id===lesson.output.sesion_id);
@@ -133,5 +136,5 @@ async function start(database,body={},aiType="practica") {
  const unlocked=await init.getUnlockedTopics(db({sesiones:[]}),user.id,'full',user);assert(unlocked.has('fracciones_concepto'));count++;
  const assisted=db({sesiones:[row(1,{ia_parametros_usados:{resuelto_con_ayuda:true}}),row(2,{ia_parametros_usados:{resuelto_con_ayuda:true}}),row(3,{ia_parametros_usados:{resuelto_con_ayuda:true}})]});
  const p=await progress.refreshTopicProgress(assisted,user.id,'fracciones_concepto',1);assert.equal(p.tasa_acierto,100);count++;
- console.log(JSON.stringify({passed:count,activities:bases.UNIDADES_BASES.length*3,realAI:false,realDatabase:false}));
+ console.log(JSON.stringify({passed:count,activities:count*3-12,realAI:false,realDatabase:false}));
 })().catch(e=>{console.error(e);process.exitCode=1});

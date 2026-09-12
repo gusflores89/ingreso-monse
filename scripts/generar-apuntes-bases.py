@@ -1,4 +1,4 @@
-import json,re
+import json,re,sys
 from pathlib import Path
 from reportlab.pdfgen import canvas
 from reportlab.lib.colors import HexColor
@@ -12,9 +12,10 @@ s=(root/'src/lib/apuntes-bases.js').read_text(encoding='utf-8');units=json.loads
 pdfmetrics.registerFont(TTFont('Segoe',r'C:\Windows\Fonts\segoeui.ttf'))
 pdfmetrics.registerFont(TTFont('SegoeBold',r'C:\Windows\Fonts\segoeuib.ttf'))
 for tema in dict.fromkeys(u['tema'] for u in units):
+ if '--lengua' in sys.argv and not any(u['tema']==tema and u['id'].startswith('leng_') for u in units): continue
  us=[u for u in units if u['tema']==tema];p=root/'public/apuntes'/('bases-'+tema+'.pdf');c=canvas.Canvas(str(p),pagesize=(595,842));c.setTitle('Primeros pasos: '+tema.replace('_',' '))
  for i,u in enumerate(us):
-  c.setFillColor(HexColor('#172554'));c.setFont('SegoeBold',11);c.drawString(48,794,'APRENDER PASO A PASO  /  MATEMÁTICA')
+  c.setFillColor(HexColor('#172554'));c.setFont('SegoeBold',11);c.drawString(48,794,'APRENDER PASO A PASO  /  '+('LENGUA' if u['id'].startswith('leng_') else 'MATEMÁTICA'))
   style=ParagraphStyle('title',fontName='SegoeBold',fontSize=22,leading=29,textColor=HexColor('#172554'));para=Paragraph(escape(u['titulo']),style);w,h=para.wrap(490,120);para.drawOn(c,48,758-h);y=730-h
   style=ParagraphStyle('body',fontName='Segoe',fontSize=13,leading=21,textColor=HexColor('#263449'))
   for text in [u['explicacion'],'Ejemplo: '+u['ejemplo'],*[(str(j+1)+'. '+step) for j,step in enumerate(u['pasos'])], 'Para recordar: '+u['pista']]:
