@@ -108,6 +108,209 @@ const UNIDADES = [
     ]
   },
   {
+    "id": "prof_frac_amplificar",
+    "tema": "fracciones_concepto",
+    "titulo": "Más cortes, la misma cantidad",
+    "explicacion": "Amplificar es multiplicar el numerador y el denominador por el mismo natural distinto de cero. Cambian los cortes y las partes contadas, pero no la cantidad del entero que tomamos. No alcanza con multiplicar solo arriba.",
+    "ejemplo": "2/3 = 4/6: multiplicamos arriba y abajo por 2.",
+    "pasos": [
+      "Cada tercio se divide en dos partes: ahora hay 6 sextos.",
+      "Los 2 tercios ocupan 4 sextos: (2 × 2)/(3 × 2) = 4/6."
+    ],
+    "pista": "Usá el mismo factor arriba y abajo.",
+    "visual": [
+      {
+        "label": "Antes: 2/3",
+        "partes": [
+          1,
+          1,
+          1
+        ],
+        "pintadas": 2
+      },
+      {
+        "label": "Después: 4/6",
+        "partes": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 4
+      }
+    ]
+  },
+  {
+    "id": "prof_frac_simplificar",
+    "tema": "fracciones_concepto",
+    "titulo": "Menos cortes, la misma cantidad",
+    "explicacion": "Simplificar es dividir numerador y denominador por un mismo divisor mayor que uno. La cantidad representada no cambia. Si ya no tienen divisores comunes mayores que uno, la fracción es irreducible.",
+    "ejemplo": "6/8 = 3/4: dividimos arriba y abajo por 2.",
+    "pasos": [
+      "6 ÷ 2 = 3 y 8 ÷ 2 = 4.",
+      "3 y 4 no comparten un divisor mayor que 1: terminamos."
+    ],
+    "pista": "Buscá un número que divida exactamente arriba y abajo.",
+    "visual": [
+      {
+        "label": "6/8",
+        "partes": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 6
+      },
+      {
+        "label": "3/4",
+        "partes": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 3
+      }
+    ]
+  },
+  {
+    "id": "prof_frac_comparar_denominador",
+    "tema": "fracciones_concepto",
+    "titulo": "Comparar partes del mismo tamaño",
+    "explicacion": "Si las fracciones tienen el mismo denominador y se refieren al mismo entero, sus partes tienen el mismo tamaño. Es mayor la que toma más partes: la de numerador mayor.",
+    "ejemplo": "3/5 es mayor que 2/5.",
+    "pasos": [
+      "Ambas cuentan quintos del mismo entero.",
+      "Tres quintos ocupan más que dos quintos."
+    ],
+    "pista": "Con el mismo denominador, compará los numeradores.",
+    "visual": [
+      {
+        "label": "3/5",
+        "partes": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 3
+      },
+      {
+        "label": "2/5",
+        "partes": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 2
+      }
+    ]
+  },
+  {
+    "id": "prof_frac_comparar_numerador",
+    "tema": "fracciones_concepto",
+    "titulo": "Igual cantidad de partes, distinto tamaño",
+    "explicacion": "Cuando tomamos la misma cantidad de partes del mismo entero, importa el tamaño de cada parte. Si el entero se divide en más partes iguales, cada parte es más pequeña. Por eso 1/3 es mayor que 1/5.",
+    "ejemplo": "2/3 es mayor que 2/5 del mismo entero.",
+    "pasos": [
+      "En ambos casos tomamos 2 partes.",
+      "Cada tercio es más grande que cada quinto. Dos tercios ocupan más."
+    ],
+    "pista": "Con igual numerador positivo, el denominador menor indica partes más grandes.",
+    "visual": [
+      {
+        "label": "2/3",
+        "partes": [
+          1,
+          1,
+          1
+        ],
+        "pintadas": 2
+      },
+      {
+        "label": "2/5",
+        "partes": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 2
+      }
+    ]
+  },
+  {
+    "id": "prof_frac_clasificar",
+    "tema": "fracciones_concepto",
+    "titulo": "Fracciones menores, mayores o iguales a enteros",
+    "explicacion": "En el cuadernillo, una fracción propia tiene numerador menor que el denominador. Es aparente si el numerador es múltiplo del denominador: representa un entero. Si el numerador es mayor y no es múltiplo, la llamamos impropia.",
+    "ejemplo": "3/4 es propia; 5/4 es impropia; 8/4 es aparente.",
+    "pasos": [
+      "Primero comprobamos si representa un entero: 8 ÷ 4 = 2.",
+      "Si no, comparamos arriba y abajo: 3 < 4 y 5 > 4."
+    ],
+    "pista": "Primero fijate si la división es exacta; después compará arriba y abajo.",
+    "visual": null
+  },
+  {
+    "id": "prof_frac_a_mixto",
+    "tema": "fracciones_concepto",
+    "titulo": "Agrupar partes para formar enteros",
+    "explicacion": "Un número mixto escribe por separado los enteros y la fracción que sobra. En 7/4, cada grupo de cuatro cuartos forma un entero. Podemos dividir 7 entre 4: cociente 1 y resto 3.",
+    "ejemplo": "7/4 = 1 3/4, que significa 1 + 3/4.",
+    "pasos": [
+      "Agrupamos 4 de los 7 cuartos: forman 1 entero.",
+      "Sobran 3 cuartos: escribimos 1 3/4."
+    ],
+    "pista": "Cada grupo del tamaño del denominador forma un entero.",
+    "visual": [
+      {
+        "label": "Un entero: 4/4",
+        "partes": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 4
+      },
+      {
+        "label": "Lo que sobra: 3/4",
+        "partes": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 3
+      }
+    ]
+  },
+  {
+    "id": "prof_frac_desde_mixto",
+    "tema": "fracciones_concepto",
+    "titulo": "Contar todas las partes de un mixto",
+    "explicacion": "Para convertir un mixto en una fracción, contamos las partes de sus enteros y sumamos las que sobran. Conservamos el denominador: las partes siguen teniendo el mismo tamaño.",
+    "ejemplo": "2 1/3 = 7/3.",
+    "pasos": [
+      "Dos enteros contienen 2 × 3 = 6 tercios.",
+      "Sumamos el tercio que sobra: 6 + 1 = 7 tercios."
+    ],
+    "pista": "Multiplicá los enteros por el denominador y sumá el numerador.",
+    "visual": null
+  },
+  {
     "id": "bases_multiplos_saltos",
     "tema": "divisibilidad_primos_mcm_mcd",
     "titulo": "Múltiplos: avanzar con saltos iguales",
@@ -159,6 +362,52 @@ const UNIDADES = [
     ]
   },
   {
+    "id": "prof_op_preparar",
+    "tema": "fracciones_operaciones",
+    "titulo": "Preparar partes del mismo tamaño",
+    "explicacion": "Antes de sumar fracciones con denominadores distintos, las expresamos en partes iguales. El MCM de los denominadores nos sirve como denominador común. Para cambiar una fracción, multiplicamos arriba y abajo por el mismo factor.",
+    "ejemplo": "Para tercios y cuartos usamos doceavos: 2/3 = 8/12.",
+    "pasos": [
+      "El MCM de 3 y 4 es 12. Para pasar de 3 a 12 multiplicamos por 4.",
+      "Multiplicamos también arriba: 2 × 4 = 8. Queda 8/12."
+    ],
+    "pista": "Dividí el denominador nuevo por el anterior para encontrar el factor.",
+    "visual": null
+  },
+  {
+    "id": "prof_op_comparar",
+    "tema": "fracciones_operaciones",
+    "titulo": "Comparar con un denominador común",
+    "explicacion": "Para comparar dos fracciones, primero las expresamos con el mismo denominador. Después comparamos cuántas partes tomamos. Deben referirse al mismo entero.",
+    "ejemplo": "2/3 es menor que 3/4.",
+    "pasos": [
+      "El denominador común es 12: 2/3 = 8/12 y 3/4 = 9/12.",
+      "8 < 9: dos tercios es menor que tres cuartos."
+    ],
+    "pista": "Convertí las dos fracciones antes de comparar sus numeradores.",
+    "visual": [
+      {
+        "label": "2/3",
+        "partes": [
+          1,
+          1,
+          1
+        ],
+        "pintadas": 2
+      },
+      {
+        "label": "3/4",
+        "partes": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 3
+      }
+    ]
+  },
+  {
     "id": "frac_op_2_distinto_denominador",
     "tema": "fracciones_operaciones",
     "titulo": "Buscar partes del mismo tamaño",
@@ -189,6 +438,19 @@ const UNIDADES = [
         "pintadas": 2
       }
     ]
+  },
+  {
+    "id": "prof_op_restar",
+    "tema": "fracciones_operaciones",
+    "titulo": "Restar fracciones de distinto denominador",
+    "explicacion": "Para restar fracciones, necesitamos partes del mismo tamaño. Las convertimos al denominador común, restamos los numeradores y conservamos ese denominador. Después simplificamos si podemos.",
+    "ejemplo": "5/6 − 1/4 = 7/12.",
+    "pasos": [
+      "MCM de 6 y 4: 12. Convertimos 5/6 = 10/12 y 1/4 = 3/12.",
+      "Restamos: (10 − 3)/12 = 7/12."
+    ],
+    "pista": "No restes los denominadores: primero igualá el tamaño de las partes.",
+    "visual": null
   },
   {
     "id": "frac_op_3_fraccion_cantidad",
@@ -226,6 +488,40 @@ const UNIDADES = [
           1
         ],
         "pintadas": 1
+      }
+    ]
+  },
+  {
+    "id": "prof_op_dividir_medida",
+    "tema": "fracciones_operaciones",
+    "titulo": "Dividir también pregunta cuántas partes caben",
+    "explicacion": "Dividir una cantidad por una fracción puede preguntar cuántas porciones de ese tamaño caben. Si un litro llena cuatro vasos de 1/4 de litro, dos litros llenan ocho. Dividir no siempre da un número menor.",
+    "ejemplo": "2 litros ÷ 1/4 de litro por vaso = 8 vasos.",
+    "pasos": [
+      "En cada litro caben 4 vasos de un cuarto.",
+      "En 2 litros caben 2 × 4 = 8 vasos."
+    ],
+    "pista": "Contá cuántas porciones caben en un entero y después en todos los enteros.",
+    "visual": [
+      {
+        "label": "Un litro",
+        "partes": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 4
+      },
+      {
+        "label": "Otro litro",
+        "partes": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 4
       }
     ]
   },
@@ -321,6 +617,32 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "prof_fact_primos",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "titulo": "Desarmar un número en factores primos",
+    "explicacion": "Factorizar en primos es escribir un número mayor que uno como una multiplicación de números primos. Podemos dividirlo por primos hasta llegar a 1. Comprobamos multiplicando todos los factores.",
+    "ejemplo": "12 = 2 × 2 × 3.",
+    "pasos": [
+      "12 ÷ 2 = 6; 6 ÷ 2 = 3; 3 ÷ 3 = 1.",
+      "Los divisores usados son 2, 2 y 3. Su producto vuelve a dar 12."
+    ],
+    "pista": "Todos los factores deben ser primos y su producto debe dar el número original.",
+    "visual": null
+  },
+  {
+    "id": "prof_fact_mcm",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "titulo": "MCM: reunir los factores necesarios",
+    "explicacion": "El MCM positivo puede construirse con factores primos. Tomamos cada primo que aparezca en cualquiera de los números, repetido la mayor cantidad de veces que aparezca en uno de ellos. Así el resultado contiene los factores necesarios para ambos.",
+    "ejemplo": "12 = 2 × 2 × 3 y 18 = 2 × 3 × 3. Su MCM es 36.",
+    "pasos": [
+      "Necesitamos dos factores 2 y dos factores 3.",
+      "2 × 2 × 3 × 3 = 36. Tanto 12 como 18 dividen exactamente a 36."
+    ],
+    "pista": "Para el MCM conservá cada primo con la mayor cantidad de repeticiones.",
+    "visual": null
+  },
+  {
     "id": "div_primos_5_mcd",
     "tema": "divisibilidad_primos_mcm_mcd",
     "titulo": "MCD: el mayor divisor compartido",
@@ -331,6 +653,19 @@ const UNIDADES = [
       "Comparten 1, 2 y 4. Elegimos el mayor: 4."
     ],
     "pista": "Buscá divisores, no múltiplos. De los que comparten, elegí el mayor.",
+    "visual": null
+  },
+  {
+    "id": "prof_fact_mcd",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "titulo": "MCD: conservar solo lo que comparten",
+    "explicacion": "Para construir el MCD con factores primos, tomamos solamente los primos que aparecen en ambos números. Conservamos la menor cantidad de repeticiones compartida. Si no comparten ningún primo, su MCD es 1.",
+    "ejemplo": "12 = 2 × 2 × 3 y 18 = 2 × 3 × 3. Su MCD es 6.",
+    "pasos": [
+      "Ambos tienen al menos un factor 2 y un factor 3.",
+      "Conservamos uno de cada: 2 × 3 = 6."
+    ],
+    "pista": "Para el MCD buscá lo común, con la menor cantidad de repeticiones.",
     "visual": null
   },
   {

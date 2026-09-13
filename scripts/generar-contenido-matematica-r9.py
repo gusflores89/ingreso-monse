@@ -95,8 +95,8 @@ unit('mat_igual_dos',t,'Reemplazar lo conocido para hallar lo que falta','Si enc
 root=Path(__file__).resolve().parents[1]
 p=root/'src/lib/contenido-bases.js';s=p.read_text(encoding='utf-8')
 marker='// R9: fundamentos adicionales de Matemática.'
-if marker in s:s=s[:s.index(marker)]+s[s.index('export const TEMAS_BASES',s.index(marker)):]
-idx=s.index('export const TEMAS_BASES')
-s=s[:idx]+marker+'\nUNIDADES_BASES.push(...'+json.dumps(U,ensure_ascii=False,indent=2)+');\n\n'+s[idx:]
+if marker in s:s=s[:s.index(marker)]+s[s.index('// FIN R9')+len('// FIN R9'):]
+idx=s.index('// R10: pasos intermedios.') if '// R10: pasos intermedios.' in s else s.index('export const TEMAS_BASES')
+s=s[:idx]+marker+'\nUNIDADES_BASES.push(...'+json.dumps(U,ensure_ascii=False,indent=2)+');\n// FIN R9\n\n'+s[idx:]
 p.write_text(s,encoding='utf-8')
 print(len(U),'unidades adicionales;',sum(len(u['actividades']) for u in U),'actividades; temas:',len(set(u['tema'] for u in U)))

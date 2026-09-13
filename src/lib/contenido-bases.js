@@ -7902,6 +7902,1879 @@ UNIDADES_BASES.push(...[
   }
 ]);
 
+// FIN R9
+
+
+
+// R10: pasos intermedios.
+const PROFUNDIZACION = [
+  {
+    "id": "prof_frac_amplificar",
+    "tema": "fracciones_concepto",
+    "despues_de": "frac_con_4_equivalencias_visuales",
+    "titulo": "Más cortes, la misma cantidad",
+    "explicacion": "Amplificar es multiplicar el numerador y el denominador por el mismo natural distinto de cero. Cambian los cortes y las partes contadas, pero no la cantidad del entero que tomamos. No alcanza con multiplicar solo arriba.",
+    "ejemplo": "2/3 = 4/6: multiplicamos arriba y abajo por 2.",
+    "pasos": [
+      "Cada tercio se divide en dos partes: ahora hay 6 sextos.",
+      "Los 2 tercios ocupan 4 sextos: (2 × 2)/(3 × 2) = 4/6."
+    ],
+    "pista": "Usá el mismo factor arriba y abajo.",
+    "visual": [
+      {
+        "label": "Antes: 2/3",
+        "partes": [
+          1,
+          1,
+          1
+        ],
+        "pintadas": 2
+      },
+      {
+        "label": "Después: 4/6",
+        "partes": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 4
+      }
+    ],
+    "actividades": [
+      {
+        "enunciado": "Amplificá 2/3 multiplicando numerador y denominador por 2.",
+        "respuesta_correcta": "4/6",
+        "opciones": [
+          "4/6",
+          "4/3",
+          "2/6"
+        ],
+        "paso_resuelto": "Arriba: 2 × 2 = 4.\nAbajo: 3 × 2 = 6. La fracción es 4/6.",
+        "visual": null,
+        "id": "prof_frac_amplificar-v1"
+      },
+      {
+        "enunciado": "Amplificá 1/4 multiplicando numerador y denominador por 3.",
+        "respuesta_correcta": "3/12",
+        "opciones": [
+          "3/4",
+          "1/12",
+          "3/12"
+        ],
+        "paso_resuelto": "Arriba: 1 × 3 = 3.\nAbajo: 4 × 3 = 12. La fracción es 3/12.",
+        "visual": null,
+        "id": "prof_frac_amplificar-v2"
+      },
+      {
+        "enunciado": "Amplificá 3/5 multiplicando numerador y denominador por 2.",
+        "respuesta_correcta": "6/10",
+        "opciones": [
+          "3/10",
+          "6/10",
+          "6/5"
+        ],
+        "paso_resuelto": "Arriba: 3 × 2 = 6.\nAbajo: 5 × 2 = 10. La fracción es 6/10.",
+        "visual": null,
+        "id": "prof_frac_amplificar-v3"
+      },
+      {
+        "enunciado": "Amplificá 2/7 multiplicando numerador y denominador por 3.",
+        "respuesta_correcta": "6/21",
+        "opciones": [
+          "6/21",
+          "6/7",
+          "2/21"
+        ],
+        "paso_resuelto": "Arriba: 2 × 3 = 6.\nAbajo: 7 × 3 = 21. La fracción es 6/21.",
+        "visual": null,
+        "id": "prof_frac_amplificar-v4"
+      },
+      {
+        "enunciado": "Amplificá 3/4 multiplicando numerador y denominador por 4.",
+        "respuesta_correcta": "12/16",
+        "opciones": [
+          "12/4",
+          "3/16",
+          "12/16"
+        ],
+        "paso_resuelto": "Arriba: 3 × 4 = 12.\nAbajo: 4 × 4 = 16. La fracción es 12/16.",
+        "visual": null,
+        "id": "prof_frac_amplificar-v5"
+      },
+      {
+        "enunciado": "Amplificá 4/5 multiplicando numerador y denominador por 3.",
+        "respuesta_correcta": "12/15",
+        "opciones": [
+          "4/15",
+          "12/15",
+          "12/5"
+        ],
+        "paso_resuelto": "Arriba: 4 × 3 = 12.\nAbajo: 5 × 3 = 15. La fracción es 12/15.",
+        "visual": null,
+        "id": "prof_frac_amplificar-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_frac_simplificar",
+    "tema": "fracciones_concepto",
+    "despues_de": "prof_frac_amplificar",
+    "titulo": "Menos cortes, la misma cantidad",
+    "explicacion": "Simplificar es dividir numerador y denominador por un mismo divisor mayor que uno. La cantidad representada no cambia. Si ya no tienen divisores comunes mayores que uno, la fracción es irreducible.",
+    "ejemplo": "6/8 = 3/4: dividimos arriba y abajo por 2.",
+    "pasos": [
+      "6 ÷ 2 = 3 y 8 ÷ 2 = 4.",
+      "3 y 4 no comparten un divisor mayor que 1: terminamos."
+    ],
+    "pista": "Buscá un número que divida exactamente arriba y abajo.",
+    "visual": [
+      {
+        "label": "6/8",
+        "partes": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 6
+      },
+      {
+        "label": "3/4",
+        "partes": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 3
+      }
+    ],
+    "actividades": [
+      {
+        "enunciado": "Simplificá 6/8 dividiendo numerador y denominador por 2.",
+        "respuesta_correcta": "3/4",
+        "opciones": [
+          "3/4",
+          "3/8",
+          "6/4"
+        ],
+        "paso_resuelto": "6 ÷ 2 = 3; 8 ÷ 2 = 4.\nQueda 3/4, con el mismo valor.",
+        "visual": null,
+        "id": "prof_frac_simplificar-v1"
+      },
+      {
+        "enunciado": "Simplificá 4/10 dividiendo numerador y denominador por 2.",
+        "respuesta_correcta": "2/5",
+        "opciones": [
+          "2/10",
+          "4/5",
+          "2/5"
+        ],
+        "paso_resuelto": "4 ÷ 2 = 2; 10 ÷ 2 = 5.\nQueda 2/5, con el mismo valor.",
+        "visual": null,
+        "id": "prof_frac_simplificar-v2"
+      },
+      {
+        "enunciado": "Simplificá 9/12 dividiendo numerador y denominador por 3.",
+        "respuesta_correcta": "3/4",
+        "opciones": [
+          "9/4",
+          "3/4",
+          "3/12"
+        ],
+        "paso_resuelto": "9 ÷ 3 = 3; 12 ÷ 3 = 4.\nQueda 3/4, con el mismo valor.",
+        "visual": null,
+        "id": "prof_frac_simplificar-v3"
+      },
+      {
+        "enunciado": "Simplificá 10/15 dividiendo numerador y denominador por 5.",
+        "respuesta_correcta": "2/3",
+        "opciones": [
+          "2/3",
+          "2/15",
+          "10/3"
+        ],
+        "paso_resuelto": "10 ÷ 5 = 2; 15 ÷ 5 = 3.\nQueda 2/3, con el mismo valor.",
+        "visual": null,
+        "id": "prof_frac_simplificar-v4"
+      },
+      {
+        "enunciado": "Simplificá 12/20 dividiendo numerador y denominador por 4.",
+        "respuesta_correcta": "3/5",
+        "opciones": [
+          "3/20",
+          "12/5",
+          "3/5"
+        ],
+        "paso_resuelto": "12 ÷ 4 = 3; 20 ÷ 4 = 5.\nQueda 3/5, con el mismo valor.",
+        "visual": null,
+        "id": "prof_frac_simplificar-v5"
+      },
+      {
+        "enunciado": "Simplificá 14/21 dividiendo numerador y denominador por 7.",
+        "respuesta_correcta": "2/3",
+        "opciones": [
+          "14/3",
+          "2/3",
+          "2/21"
+        ],
+        "paso_resuelto": "14 ÷ 7 = 2; 21 ÷ 7 = 3.\nQueda 2/3, con el mismo valor.",
+        "visual": null,
+        "id": "prof_frac_simplificar-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_frac_comparar_denominador",
+    "tema": "fracciones_concepto",
+    "despues_de": "prof_frac_simplificar",
+    "titulo": "Comparar partes del mismo tamaño",
+    "explicacion": "Si las fracciones tienen el mismo denominador y se refieren al mismo entero, sus partes tienen el mismo tamaño. Es mayor la que toma más partes: la de numerador mayor.",
+    "ejemplo": "3/5 es mayor que 2/5.",
+    "pasos": [
+      "Ambas cuentan quintos del mismo entero.",
+      "Tres quintos ocupan más que dos quintos."
+    ],
+    "pista": "Con el mismo denominador, compará los numeradores.",
+    "visual": [
+      {
+        "label": "3/5",
+        "partes": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 3
+      },
+      {
+        "label": "2/5",
+        "partes": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 2
+      }
+    ],
+    "actividades": [
+      {
+        "enunciado": "Del mismo entero, ¿cuál es mayor: 3/5 o 2/5?",
+        "respuesta_correcta": "3/5",
+        "opciones": [
+          "3/5",
+          "2/5",
+          "Son iguales"
+        ],
+        "paso_resuelto": "Las partes son del mismo tamaño. 3 partes son más que 2.",
+        "visual": [
+          {
+            "label": "3/5",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 3
+          },
+          {
+            "label": "2/5",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 2
+          }
+        ],
+        "id": "prof_frac_comparar_denominador-v1"
+      },
+      {
+        "enunciado": "Del mismo entero, ¿cuál es mayor: 1/4 o 3/4?",
+        "respuesta_correcta": "3/4",
+        "opciones": [
+          "1/4",
+          "Son iguales",
+          "3/4"
+        ],
+        "paso_resuelto": "Las partes son del mismo tamaño. 3 partes son más que 1.",
+        "visual": [
+          {
+            "label": "1/4",
+            "partes": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 1
+          },
+          {
+            "label": "3/4",
+            "partes": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 3
+          }
+        ],
+        "id": "prof_frac_comparar_denominador-v2"
+      },
+      {
+        "enunciado": "Del mismo entero, ¿cuál es mayor: 4/7 o 2/7?",
+        "respuesta_correcta": "4/7",
+        "opciones": [
+          "Son iguales",
+          "4/7",
+          "2/7"
+        ],
+        "paso_resuelto": "Las partes son del mismo tamaño. 4 partes son más que 2.",
+        "visual": [
+          {
+            "label": "4/7",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 4
+          },
+          {
+            "label": "2/7",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 2
+          }
+        ],
+        "id": "prof_frac_comparar_denominador-v3"
+      },
+      {
+        "enunciado": "Del mismo entero, ¿cuál es mayor: 2/6 o 5/6?",
+        "respuesta_correcta": "5/6",
+        "opciones": [
+          "5/6",
+          "2/6",
+          "Son iguales"
+        ],
+        "paso_resuelto": "Las partes son del mismo tamaño. 5 partes son más que 2.",
+        "visual": [
+          {
+            "label": "2/6",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 2
+          },
+          {
+            "label": "5/6",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 5
+          }
+        ],
+        "id": "prof_frac_comparar_denominador-v4"
+      },
+      {
+        "enunciado": "Del mismo entero, ¿cuál es mayor: 5/8 o 3/8?",
+        "respuesta_correcta": "5/8",
+        "opciones": [
+          "3/8",
+          "Son iguales",
+          "5/8"
+        ],
+        "paso_resuelto": "Las partes son del mismo tamaño. 5 partes son más que 3.",
+        "visual": [
+          {
+            "label": "5/8",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 5
+          },
+          {
+            "label": "3/8",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 3
+          }
+        ],
+        "id": "prof_frac_comparar_denominador-v5"
+      },
+      {
+        "enunciado": "Del mismo entero, ¿cuál es mayor: 3/10 o 7/10?",
+        "respuesta_correcta": "7/10",
+        "opciones": [
+          "Son iguales",
+          "7/10",
+          "3/10"
+        ],
+        "paso_resuelto": "Las partes son del mismo tamaño. 7 partes son más que 3.",
+        "visual": [
+          {
+            "label": "3/10",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 3
+          },
+          {
+            "label": "7/10",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 7
+          }
+        ],
+        "id": "prof_frac_comparar_denominador-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_frac_comparar_numerador",
+    "tema": "fracciones_concepto",
+    "despues_de": "prof_frac_comparar_denominador",
+    "titulo": "Igual cantidad de partes, distinto tamaño",
+    "explicacion": "Cuando tomamos la misma cantidad de partes del mismo entero, importa el tamaño de cada parte. Si el entero se divide en más partes iguales, cada parte es más pequeña. Por eso 1/3 es mayor que 1/5.",
+    "ejemplo": "2/3 es mayor que 2/5 del mismo entero.",
+    "pasos": [
+      "En ambos casos tomamos 2 partes.",
+      "Cada tercio es más grande que cada quinto. Dos tercios ocupan más."
+    ],
+    "pista": "Con igual numerador positivo, el denominador menor indica partes más grandes.",
+    "visual": [
+      {
+        "label": "2/3",
+        "partes": [
+          1,
+          1,
+          1
+        ],
+        "pintadas": 2
+      },
+      {
+        "label": "2/5",
+        "partes": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 2
+      }
+    ],
+    "actividades": [
+      {
+        "enunciado": "Del mismo entero, ¿cuál es mayor: 2/3 o 2/5?",
+        "respuesta_correcta": "2/3",
+        "opciones": [
+          "2/3",
+          "2/5",
+          "Son iguales"
+        ],
+        "paso_resuelto": "Tomamos 2 partes en ambos casos. Las partes en 3 son mayores que las partes en 5.",
+        "visual": [
+          {
+            "label": "2/3",
+            "partes": [
+              1,
+              1,
+              1
+            ],
+            "pintadas": 2
+          },
+          {
+            "label": "2/5",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 2
+          }
+        ],
+        "id": "prof_frac_comparar_numerador-v1"
+      },
+      {
+        "enunciado": "Del mismo entero, ¿cuál es mayor: 1/6 o 1/4?",
+        "respuesta_correcta": "1/4",
+        "opciones": [
+          "1/6",
+          "Son iguales",
+          "1/4"
+        ],
+        "paso_resuelto": "Tomamos 1 partes en ambos casos. Las partes en 4 son mayores que las partes en 6.",
+        "visual": [
+          {
+            "label": "1/6",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 1
+          },
+          {
+            "label": "1/4",
+            "partes": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 1
+          }
+        ],
+        "id": "prof_frac_comparar_numerador-v2"
+      },
+      {
+        "enunciado": "Del mismo entero, ¿cuál es mayor: 3/4 o 3/7?",
+        "respuesta_correcta": "3/4",
+        "opciones": [
+          "Son iguales",
+          "3/4",
+          "3/7"
+        ],
+        "paso_resuelto": "Tomamos 3 partes en ambos casos. Las partes en 4 son mayores que las partes en 7.",
+        "visual": [
+          {
+            "label": "3/4",
+            "partes": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 3
+          },
+          {
+            "label": "3/7",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 3
+          }
+        ],
+        "id": "prof_frac_comparar_numerador-v3"
+      },
+      {
+        "enunciado": "Del mismo entero, ¿cuál es mayor: 2/8 o 2/5?",
+        "respuesta_correcta": "2/5",
+        "opciones": [
+          "2/5",
+          "2/8",
+          "Son iguales"
+        ],
+        "paso_resuelto": "Tomamos 2 partes en ambos casos. Las partes en 5 son mayores que las partes en 8.",
+        "visual": [
+          {
+            "label": "2/8",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 2
+          },
+          {
+            "label": "2/5",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 2
+          }
+        ],
+        "id": "prof_frac_comparar_numerador-v4"
+      },
+      {
+        "enunciado": "Del mismo entero, ¿cuál es mayor: 4/5 o 4/9?",
+        "respuesta_correcta": "4/5",
+        "opciones": [
+          "4/9",
+          "Son iguales",
+          "4/5"
+        ],
+        "paso_resuelto": "Tomamos 4 partes en ambos casos. Las partes en 5 son mayores que las partes en 9.",
+        "visual": [
+          {
+            "label": "4/5",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 4
+          },
+          {
+            "label": "4/9",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 4
+          }
+        ],
+        "id": "prof_frac_comparar_numerador-v5"
+      },
+      {
+        "enunciado": "Del mismo entero, ¿cuál es mayor: 3/10 o 3/8?",
+        "respuesta_correcta": "3/8",
+        "opciones": [
+          "Son iguales",
+          "3/8",
+          "3/10"
+        ],
+        "paso_resuelto": "Tomamos 3 partes en ambos casos. Las partes en 8 son mayores que las partes en 10.",
+        "visual": [
+          {
+            "label": "3/10",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 3
+          },
+          {
+            "label": "3/8",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 3
+          }
+        ],
+        "id": "prof_frac_comparar_numerador-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_frac_clasificar",
+    "tema": "fracciones_concepto",
+    "despues_de": "prof_frac_comparar_numerador",
+    "titulo": "Fracciones menores, mayores o iguales a enteros",
+    "explicacion": "En el cuadernillo, una fracción propia tiene numerador menor que el denominador. Es aparente si el numerador es múltiplo del denominador: representa un entero. Si el numerador es mayor y no es múltiplo, la llamamos impropia.",
+    "ejemplo": "3/4 es propia; 5/4 es impropia; 8/4 es aparente.",
+    "pasos": [
+      "Primero comprobamos si representa un entero: 8 ÷ 4 = 2.",
+      "Si no, comparamos arriba y abajo: 3 < 4 y 5 > 4."
+    ],
+    "pista": "Primero fijate si la división es exacta; después compará arriba y abajo.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Según la clasificación del cuadernillo, ¿qué tipo de fracción es 3/4?",
+        "respuesta_correcta": "propia",
+        "opciones": [
+          "propia",
+          "impropia",
+          "aparente"
+        ],
+        "paso_resuelto": "3 < 4: representa menos de un entero.",
+        "visual": null,
+        "id": "prof_frac_clasificar-v1"
+      },
+      {
+        "enunciado": "Según la clasificación del cuadernillo, ¿qué tipo de fracción es 7/5?",
+        "respuesta_correcta": "impropia",
+        "opciones": [
+          "propia",
+          "aparente",
+          "impropia"
+        ],
+        "paso_resuelto": "7 > 5 y 7 no es múltiplo de 5.",
+        "visual": null,
+        "id": "prof_frac_clasificar-v2"
+      },
+      {
+        "enunciado": "Según la clasificación del cuadernillo, ¿qué tipo de fracción es 12/4?",
+        "respuesta_correcta": "aparente",
+        "opciones": [
+          "impropia",
+          "aparente",
+          "propia"
+        ],
+        "paso_resuelto": "12 ÷ 4 = 3: representa tres enteros.",
+        "visual": null,
+        "id": "prof_frac_clasificar-v3"
+      },
+      {
+        "enunciado": "Según la clasificación del cuadernillo, ¿qué tipo de fracción es 5/8?",
+        "respuesta_correcta": "propia",
+        "opciones": [
+          "propia",
+          "impropia",
+          "aparente"
+        ],
+        "paso_resuelto": "5 < 8: representa menos de un entero.",
+        "visual": null,
+        "id": "prof_frac_clasificar-v4"
+      },
+      {
+        "enunciado": "Según la clasificación del cuadernillo, ¿qué tipo de fracción es 11/6?",
+        "respuesta_correcta": "impropia",
+        "opciones": [
+          "propia",
+          "aparente",
+          "impropia"
+        ],
+        "paso_resuelto": "11 > 6 y 11 no es múltiplo de 6.",
+        "visual": null,
+        "id": "prof_frac_clasificar-v5"
+      },
+      {
+        "enunciado": "Según la clasificación del cuadernillo, ¿qué tipo de fracción es 9/9?",
+        "respuesta_correcta": "aparente",
+        "opciones": [
+          "impropia",
+          "aparente",
+          "propia"
+        ],
+        "paso_resuelto": "9 ÷ 9 = 1: representa un entero.",
+        "visual": null,
+        "id": "prof_frac_clasificar-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_frac_a_mixto",
+    "tema": "fracciones_concepto",
+    "despues_de": "prof_frac_clasificar",
+    "titulo": "Agrupar partes para formar enteros",
+    "explicacion": "Un número mixto escribe por separado los enteros y la fracción que sobra. En 7/4, cada grupo de cuatro cuartos forma un entero. Podemos dividir 7 entre 4: cociente 1 y resto 3.",
+    "ejemplo": "7/4 = 1 3/4, que significa 1 + 3/4.",
+    "pasos": [
+      "Agrupamos 4 de los 7 cuartos: forman 1 entero.",
+      "Sobran 3 cuartos: escribimos 1 3/4."
+    ],
+    "pista": "Cada grupo del tamaño del denominador forma un entero.",
+    "visual": [
+      {
+        "label": "Un entero: 4/4",
+        "partes": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 4
+      },
+      {
+        "label": "Lo que sobra: 3/4",
+        "partes": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 3
+      }
+    ],
+    "actividades": [
+      {
+        "enunciado": "Escribí 7/4 como número mixto.",
+        "respuesta_correcta": "1 3/4",
+        "opciones": [
+          "1 3/4",
+          "3 1/4",
+          "1 3/7"
+        ],
+        "paso_resuelto": "7 ÷ 4: cociente 1, resto 3.\nSon 1 enteros y 3/4.",
+        "visual": null,
+        "id": "prof_frac_a_mixto-v1"
+      },
+      {
+        "enunciado": "Escribí 8/3 como número mixto.",
+        "respuesta_correcta": "2 2/3",
+        "opciones": [
+          "2 2/8",
+          "2 2/3"
+        ],
+        "paso_resuelto": "8 ÷ 3: cociente 2, resto 2.\nSon 2 enteros y 2/3.",
+        "visual": null,
+        "id": "prof_frac_a_mixto-v2"
+      },
+      {
+        "enunciado": "Escribí 11/4 como número mixto.",
+        "respuesta_correcta": "2 3/4",
+        "opciones": [
+          "2 3/11",
+          "2 3/4",
+          "3 2/4"
+        ],
+        "paso_resuelto": "11 ÷ 4: cociente 2, resto 3.\nSon 2 enteros y 3/4.",
+        "visual": null,
+        "id": "prof_frac_a_mixto-v3"
+      },
+      {
+        "enunciado": "Escribí 13/5 como número mixto.",
+        "respuesta_correcta": "2 3/5",
+        "opciones": [
+          "2 3/5",
+          "3 2/5",
+          "2 3/13"
+        ],
+        "paso_resuelto": "13 ÷ 5: cociente 2, resto 3.\nSon 2 enteros y 3/5.",
+        "visual": null,
+        "id": "prof_frac_a_mixto-v4"
+      },
+      {
+        "enunciado": "Escribí 17/6 como número mixto.",
+        "respuesta_correcta": "2 5/6",
+        "opciones": [
+          "5 2/6",
+          "2 5/17",
+          "2 5/6"
+        ],
+        "paso_resuelto": "17 ÷ 6: cociente 2, resto 5.\nSon 2 enteros y 5/6.",
+        "visual": null,
+        "id": "prof_frac_a_mixto-v5"
+      },
+      {
+        "enunciado": "Escribí 19/8 como número mixto.",
+        "respuesta_correcta": "2 3/8",
+        "opciones": [
+          "2 3/19",
+          "2 3/8",
+          "3 2/8"
+        ],
+        "paso_resuelto": "19 ÷ 8: cociente 2, resto 3.\nSon 2 enteros y 3/8.",
+        "visual": null,
+        "id": "prof_frac_a_mixto-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_frac_desde_mixto",
+    "tema": "fracciones_concepto",
+    "despues_de": "prof_frac_a_mixto",
+    "titulo": "Contar todas las partes de un mixto",
+    "explicacion": "Para convertir un mixto en una fracción, contamos las partes de sus enteros y sumamos las que sobran. Conservamos el denominador: las partes siguen teniendo el mismo tamaño.",
+    "ejemplo": "2 1/3 = 7/3.",
+    "pasos": [
+      "Dos enteros contienen 2 × 3 = 6 tercios.",
+      "Sumamos el tercio que sobra: 6 + 1 = 7 tercios."
+    ],
+    "pista": "Multiplicá los enteros por el denominador y sumá el numerador.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Convertí el número mixto 2 1/3 en una fracción.",
+        "respuesta_correcta": "7/3",
+        "opciones": [
+          "7/3",
+          "3/3",
+          "6/4"
+        ],
+        "paso_resuelto": "2 enteros contienen 2 × 3 = 6 partes.\n6 + 1 = 7: queda 7/3.",
+        "visual": null,
+        "id": "prof_frac_desde_mixto-v1"
+      },
+      {
+        "enunciado": "Convertí el número mixto 1 3/4 en una fracción.",
+        "respuesta_correcta": "7/4",
+        "opciones": [
+          "4/4",
+          "4/7",
+          "7/4"
+        ],
+        "paso_resuelto": "1 enteros contienen 1 × 4 = 4 partes.\n4 + 3 = 7: queda 7/4.",
+        "visual": null,
+        "id": "prof_frac_desde_mixto-v2"
+      },
+      {
+        "enunciado": "Convertí el número mixto 3 2/5 en una fracción.",
+        "respuesta_correcta": "17/5",
+        "opciones": [
+          "15/7",
+          "17/5",
+          "5/5"
+        ],
+        "paso_resuelto": "3 enteros contienen 3 × 5 = 15 partes.\n15 + 2 = 17: queda 17/5.",
+        "visual": null,
+        "id": "prof_frac_desde_mixto-v3"
+      },
+      {
+        "enunciado": "Convertí el número mixto 2 3/7 en una fracción.",
+        "respuesta_correcta": "17/7",
+        "opciones": [
+          "17/7",
+          "5/7",
+          "14/10"
+        ],
+        "paso_resuelto": "2 enteros contienen 2 × 7 = 14 partes.\n14 + 3 = 17: queda 17/7.",
+        "visual": null,
+        "id": "prof_frac_desde_mixto-v4"
+      },
+      {
+        "enunciado": "Convertí el número mixto 4 1/6 en una fracción.",
+        "respuesta_correcta": "25/6",
+        "opciones": [
+          "5/6",
+          "24/7",
+          "25/6"
+        ],
+        "paso_resuelto": "4 enteros contienen 4 × 6 = 24 partes.\n24 + 1 = 25: queda 25/6.",
+        "visual": null,
+        "id": "prof_frac_desde_mixto-v5"
+      },
+      {
+        "enunciado": "Convertí el número mixto 3 5/8 en una fracción.",
+        "respuesta_correcta": "29/8",
+        "opciones": [
+          "24/13",
+          "29/8",
+          "8/8"
+        ],
+        "paso_resuelto": "3 enteros contienen 3 × 8 = 24 partes.\n24 + 5 = 29: queda 29/8.",
+        "visual": null,
+        "id": "prof_frac_desde_mixto-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_fact_primos",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "despues_de": "div_primos_3_primos_compuestos",
+    "titulo": "Desarmar un número en factores primos",
+    "explicacion": "Factorizar en primos es escribir un número mayor que uno como una multiplicación de números primos. Podemos dividirlo por primos hasta llegar a 1. Comprobamos multiplicando todos los factores.",
+    "ejemplo": "12 = 2 × 2 × 3.",
+    "pasos": [
+      "12 ÷ 2 = 6; 6 ÷ 2 = 3; 3 ÷ 3 = 1.",
+      "Los divisores usados son 2, 2 y 3. Su producto vuelve a dar 12."
+    ],
+    "pista": "Todos los factores deben ser primos y su producto debe dar el número original.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "¿Cuál es la descomposición de 12 en factores primos?",
+        "respuesta_correcta": "2 × 2 × 3",
+        "opciones": [
+          "2 × 2 × 3",
+          "12 × 1",
+          "6 × 2",
+          "2 × 2 × 3 × 2"
+        ],
+        "paso_resuelto": "Dividimos sucesivamente por primos: 2 × 2 × 3.\nSu producto es 12; cada factor es primo.",
+        "visual": null,
+        "id": "prof_fact_primos-v1"
+      },
+      {
+        "enunciado": "¿Cuál es la descomposición de 18 en factores primos?",
+        "respuesta_correcta": "2 × 3 × 3",
+        "opciones": [
+          "18 × 1",
+          "9 × 2",
+          "2 × 3 × 3 × 2",
+          "2 × 3 × 3"
+        ],
+        "paso_resuelto": "Dividimos sucesivamente por primos: 2 × 3 × 3.\nSu producto es 18; cada factor es primo.",
+        "visual": null,
+        "id": "prof_fact_primos-v2"
+      },
+      {
+        "enunciado": "¿Cuál es la descomposición de 20 en factores primos?",
+        "respuesta_correcta": "2 × 2 × 5",
+        "opciones": [
+          "10 × 2",
+          "2 × 2 × 5 × 2",
+          "2 × 2 × 5",
+          "20 × 1"
+        ],
+        "paso_resuelto": "Dividimos sucesivamente por primos: 2 × 2 × 5.\nSu producto es 20; cada factor es primo.",
+        "visual": null,
+        "id": "prof_fact_primos-v3"
+      },
+      {
+        "enunciado": "¿Cuál es la descomposición de 28 en factores primos?",
+        "respuesta_correcta": "2 × 2 × 7",
+        "opciones": [
+          "2 × 2 × 7 × 2",
+          "2 × 2 × 7",
+          "28 × 1",
+          "14 × 2"
+        ],
+        "paso_resuelto": "Dividimos sucesivamente por primos: 2 × 2 × 7.\nSu producto es 28; cada factor es primo.",
+        "visual": null,
+        "id": "prof_fact_primos-v4"
+      },
+      {
+        "enunciado": "¿Cuál es la descomposición de 30 en factores primos?",
+        "respuesta_correcta": "2 × 3 × 5",
+        "opciones": [
+          "2 × 3 × 5",
+          "30 × 1",
+          "15 × 2",
+          "2 × 3 × 5 × 2"
+        ],
+        "paso_resuelto": "Dividimos sucesivamente por primos: 2 × 3 × 5.\nSu producto es 30; cada factor es primo.",
+        "visual": null,
+        "id": "prof_fact_primos-v5"
+      },
+      {
+        "enunciado": "¿Cuál es la descomposición de 45 en factores primos?",
+        "respuesta_correcta": "3 × 3 × 5",
+        "opciones": [
+          "45 × 1",
+          "22 × 2",
+          "3 × 3 × 5 × 2",
+          "3 × 3 × 5"
+        ],
+        "paso_resuelto": "Dividimos sucesivamente por primos: 3 × 3 × 5.\nSu producto es 45; cada factor es primo.",
+        "visual": null,
+        "id": "prof_fact_primos-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_fact_mcm",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "despues_de": "prof_fact_primos",
+    "titulo": "MCM: reunir los factores necesarios",
+    "explicacion": "El MCM positivo puede construirse con factores primos. Tomamos cada primo que aparezca en cualquiera de los números, repetido la mayor cantidad de veces que aparezca en uno de ellos. Así el resultado contiene los factores necesarios para ambos.",
+    "ejemplo": "12 = 2 × 2 × 3 y 18 = 2 × 3 × 3. Su MCM es 36.",
+    "pasos": [
+      "Necesitamos dos factores 2 y dos factores 3.",
+      "2 × 2 × 3 × 3 = 36. Tanto 12 como 18 dividen exactamente a 36."
+    ],
+    "pista": "Para el MCM conservá cada primo con la mayor cantidad de repeticiones.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "12 = 2 × 2 × 3; 18 = 2 × 3 × 3. ¿Cuál es el MCM de 12 y 18?",
+        "respuesta_correcta": "36",
+        "opciones": [
+          "36",
+          "6",
+          "216",
+          "30"
+        ],
+        "paso_resuelto": "Reunimos cada primo con la mayor cantidad de repeticiones: 2 × 2 × 3 × 3.\nSu producto es 36.",
+        "visual": null,
+        "id": "prof_fact_mcm-v1"
+      },
+      {
+        "enunciado": "8 = 2 × 2 × 2; 12 = 2 × 2 × 3. ¿Cuál es el MCM de 8 y 12?",
+        "respuesta_correcta": "24",
+        "opciones": [
+          "4",
+          "96",
+          "20",
+          "24"
+        ],
+        "paso_resuelto": "Reunimos cada primo con la mayor cantidad de repeticiones: 2 × 2 × 2 × 3.\nSu producto es 24.",
+        "visual": null,
+        "id": "prof_fact_mcm-v2"
+      },
+      {
+        "enunciado": "10 = 2 × 5; 15 = 3 × 5. ¿Cuál es el MCM de 10 y 15?",
+        "respuesta_correcta": "30",
+        "opciones": [
+          "150",
+          "25",
+          "30",
+          "5"
+        ],
+        "paso_resuelto": "Reunimos cada primo con la mayor cantidad de repeticiones: 2 × 3 × 5.\nSu producto es 30.",
+        "visual": null,
+        "id": "prof_fact_mcm-v3"
+      },
+      {
+        "enunciado": "18 = 2 × 3 × 3; 24 = 2 × 2 × 2 × 3. ¿Cuál es el MCM de 18 y 24?",
+        "respuesta_correcta": "72",
+        "opciones": [
+          "42",
+          "72",
+          "6",
+          "432"
+        ],
+        "paso_resuelto": "Reunimos cada primo con la mayor cantidad de repeticiones: 2 × 2 × 2 × 3 × 3.\nSu producto es 72.",
+        "visual": null,
+        "id": "prof_fact_mcm-v4"
+      },
+      {
+        "enunciado": "20 = 2 × 2 × 5; 30 = 2 × 3 × 5. ¿Cuál es el MCM de 20 y 30?",
+        "respuesta_correcta": "60",
+        "opciones": [
+          "60",
+          "10",
+          "600",
+          "50"
+        ],
+        "paso_resuelto": "Reunimos cada primo con la mayor cantidad de repeticiones: 2 × 2 × 3 × 5.\nSu producto es 60.",
+        "visual": null,
+        "id": "prof_fact_mcm-v5"
+      },
+      {
+        "enunciado": "14 = 2 × 7; 21 = 3 × 7. ¿Cuál es el MCM de 14 y 21?",
+        "respuesta_correcta": "42",
+        "opciones": [
+          "7",
+          "294",
+          "35",
+          "42"
+        ],
+        "paso_resuelto": "Reunimos cada primo con la mayor cantidad de repeticiones: 2 × 3 × 7.\nSu producto es 42.",
+        "visual": null,
+        "id": "prof_fact_mcm-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_fact_mcd",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "despues_de": "div_primos_5_mcd",
+    "titulo": "MCD: conservar solo lo que comparten",
+    "explicacion": "Para construir el MCD con factores primos, tomamos solamente los primos que aparecen en ambos números. Conservamos la menor cantidad de repeticiones compartida. Si no comparten ningún primo, su MCD es 1.",
+    "ejemplo": "12 = 2 × 2 × 3 y 18 = 2 × 3 × 3. Su MCD es 6.",
+    "pasos": [
+      "Ambos tienen al menos un factor 2 y un factor 3.",
+      "Conservamos uno de cada: 2 × 3 = 6."
+    ],
+    "pista": "Para el MCD buscá lo común, con la menor cantidad de repeticiones.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "12 = 2 × 2 × 3; 18 = 2 × 3 × 3. ¿Cuál es el MCD de 12 y 18?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "6",
+          "36",
+          "30",
+          "12"
+        ],
+        "paso_resuelto": "Comparten 2 × 3.\nEl producto es 6.",
+        "visual": null,
+        "id": "prof_fact_mcd-v1"
+      },
+      {
+        "enunciado": "16 = 2 × 2 × 2 × 2; 24 = 2 × 2 × 2 × 3. ¿Cuál es el MCD de 16 y 24?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "48",
+          "40",
+          "16",
+          "8"
+        ],
+        "paso_resuelto": "Comparten 2 × 2 × 2.\nEl producto es 8.",
+        "visual": null,
+        "id": "prof_fact_mcd-v2"
+      },
+      {
+        "enunciado": "18 = 2 × 3 × 3; 30 = 2 × 3 × 5. ¿Cuál es el MCD de 18 y 30?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "48",
+          "18",
+          "6",
+          "90"
+        ],
+        "paso_resuelto": "Comparten 2 × 3.\nEl producto es 6.",
+        "visual": null,
+        "id": "prof_fact_mcd-v3"
+      },
+      {
+        "enunciado": "20 = 2 × 2 × 5; 28 = 2 × 2 × 7. ¿Cuál es el MCD de 20 y 28?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "20",
+          "4",
+          "140",
+          "48"
+        ],
+        "paso_resuelto": "Comparten 2 × 2.\nEl producto es 4.",
+        "visual": null,
+        "id": "prof_fact_mcd-v4"
+      },
+      {
+        "enunciado": "14 = 2 × 7; 25 = 5 × 5. ¿Cuál es el MCD de 14 y 25?",
+        "respuesta_correcta": "1",
+        "opciones": [
+          "1",
+          "350",
+          "39",
+          "14"
+        ],
+        "paso_resuelto": "No comparten factores primos. Su único divisor común es 1.",
+        "visual": null,
+        "id": "prof_fact_mcd-v5"
+      },
+      {
+        "enunciado": "27 = 3 × 3 × 3; 36 = 2 × 2 × 3 × 3. ¿Cuál es el MCD de 27 y 36?",
+        "respuesta_correcta": "9",
+        "opciones": [
+          "108",
+          "63",
+          "27",
+          "9"
+        ],
+        "paso_resuelto": "Comparten 3 × 3.\nEl producto es 9.",
+        "visual": null,
+        "id": "prof_fact_mcd-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_op_preparar",
+    "tema": "fracciones_operaciones",
+    "despues_de": "frac_op_1_igual_denominador",
+    "titulo": "Preparar partes del mismo tamaño",
+    "explicacion": "Antes de sumar fracciones con denominadores distintos, las expresamos en partes iguales. El MCM de los denominadores nos sirve como denominador común. Para cambiar una fracción, multiplicamos arriba y abajo por el mismo factor.",
+    "ejemplo": "Para tercios y cuartos usamos doceavos: 2/3 = 8/12.",
+    "pasos": [
+      "El MCM de 3 y 4 es 12. Para pasar de 3 a 12 multiplicamos por 4.",
+      "Multiplicamos también arriba: 2 × 4 = 8. Queda 8/12."
+    ],
+    "pista": "Dividí el denominador nuevo por el anterior para encontrar el factor.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Vamos a usar denominador 12. ¿Cómo queda 2/3 al amplificarla hasta ese denominador?",
+        "respuesta_correcta": "8/12",
+        "opciones": [
+          "8/12",
+          "2/12",
+          "6/12"
+        ],
+        "paso_resuelto": "12 ÷ 3 = 4: ese es el factor.\n2 × 4 = 8; queda 8/12.",
+        "visual": null,
+        "id": "prof_op_preparar-v1"
+      },
+      {
+        "enunciado": "Vamos a usar denominador 12. ¿Cómo queda 3/4 al amplificarla hasta ese denominador?",
+        "respuesta_correcta": "9/12",
+        "opciones": [
+          "3/12",
+          "6/12",
+          "9/12"
+        ],
+        "paso_resuelto": "12 ÷ 4 = 3: ese es el factor.\n3 × 3 = 9; queda 9/12.",
+        "visual": null,
+        "id": "prof_op_preparar-v2"
+      },
+      {
+        "enunciado": "Vamos a usar denominador 18. ¿Cómo queda 1/6 al amplificarla hasta ese denominador?",
+        "respuesta_correcta": "3/18",
+        "opciones": [
+          "4/18",
+          "3/18",
+          "1/18"
+        ],
+        "paso_resuelto": "18 ÷ 6 = 3: ese es el factor.\n1 × 3 = 3; queda 3/18.",
+        "visual": null,
+        "id": "prof_op_preparar-v3"
+      },
+      {
+        "enunciado": "Vamos a usar denominador 20. ¿Cómo queda 4/5 al amplificarla hasta ese denominador?",
+        "respuesta_correcta": "16/20",
+        "opciones": [
+          "16/20",
+          "4/20",
+          "8/20"
+        ],
+        "paso_resuelto": "20 ÷ 5 = 4: ese es el factor.\n4 × 4 = 16; queda 16/20.",
+        "visual": null,
+        "id": "prof_op_preparar-v4"
+      },
+      {
+        "enunciado": "Vamos a usar denominador 24. ¿Cómo queda 5/6 al amplificarla hasta ese denominador?",
+        "respuesta_correcta": "20/24",
+        "opciones": [
+          "5/24",
+          "9/24",
+          "20/24"
+        ],
+        "paso_resuelto": "24 ÷ 6 = 4: ese es el factor.\n5 × 4 = 20; queda 20/24.",
+        "visual": null,
+        "id": "prof_op_preparar-v5"
+      },
+      {
+        "enunciado": "Vamos a usar denominador 21. ¿Cómo queda 2/7 al amplificarla hasta ese denominador?",
+        "respuesta_correcta": "6/21",
+        "opciones": [
+          "5/21",
+          "6/21",
+          "2/21"
+        ],
+        "paso_resuelto": "21 ÷ 7 = 3: ese es el factor.\n2 × 3 = 6; queda 6/21.",
+        "visual": null,
+        "id": "prof_op_preparar-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_op_comparar",
+    "tema": "fracciones_operaciones",
+    "despues_de": "prof_op_preparar",
+    "titulo": "Comparar con un denominador común",
+    "explicacion": "Para comparar dos fracciones, primero las expresamos con el mismo denominador. Después comparamos cuántas partes tomamos. Deben referirse al mismo entero.",
+    "ejemplo": "2/3 es menor que 3/4.",
+    "pasos": [
+      "El denominador común es 12: 2/3 = 8/12 y 3/4 = 9/12.",
+      "8 < 9: dos tercios es menor que tres cuartos."
+    ],
+    "pista": "Convertí las dos fracciones antes de comparar sus numeradores.",
+    "visual": [
+      {
+        "label": "2/3",
+        "partes": [
+          1,
+          1,
+          1
+        ],
+        "pintadas": 2
+      },
+      {
+        "label": "3/4",
+        "partes": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 3
+      }
+    ],
+    "actividades": [
+      {
+        "enunciado": "Del mismo entero, ¿cuál es mayor: 2/3 o 3/4?",
+        "respuesta_correcta": "3/4",
+        "opciones": [
+          "3/4",
+          "2/3",
+          "Son iguales"
+        ],
+        "paso_resuelto": "Usamos denominador 12: 8/12 y 9/12.\nLa que tiene numerador mayor representa más.",
+        "visual": [
+          {
+            "label": "2/3",
+            "partes": [
+              1,
+              1,
+              1
+            ],
+            "pintadas": 2
+          },
+          {
+            "label": "3/4",
+            "partes": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 3
+          }
+        ],
+        "id": "prof_op_comparar-v1"
+      },
+      {
+        "enunciado": "Del mismo entero, ¿cuál es mayor: 3/5 o 1/2?",
+        "respuesta_correcta": "3/5",
+        "opciones": [
+          "1/2",
+          "Son iguales",
+          "3/5"
+        ],
+        "paso_resuelto": "Usamos denominador 10: 6/10 y 5/10.\nLa que tiene numerador mayor representa más.",
+        "visual": [
+          {
+            "label": "3/5",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 3
+          },
+          {
+            "label": "1/2",
+            "partes": [
+              1,
+              1
+            ],
+            "pintadas": 1
+          }
+        ],
+        "id": "prof_op_comparar-v2"
+      },
+      {
+        "enunciado": "Del mismo entero, ¿cuál es mayor: 5/6 o 4/5?",
+        "respuesta_correcta": "5/6",
+        "opciones": [
+          "Son iguales",
+          "5/6",
+          "4/5"
+        ],
+        "paso_resuelto": "Usamos denominador 30: 25/30 y 24/30.\nLa que tiene numerador mayor representa más.",
+        "visual": [
+          {
+            "label": "5/6",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 5
+          },
+          {
+            "label": "4/5",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 4
+          }
+        ],
+        "id": "prof_op_comparar-v3"
+      },
+      {
+        "enunciado": "Del mismo entero, ¿cuál es mayor: 2/7 o 1/3?",
+        "respuesta_correcta": "1/3",
+        "opciones": [
+          "1/3",
+          "2/7",
+          "Son iguales"
+        ],
+        "paso_resuelto": "Usamos denominador 21: 6/21 y 7/21.\nLa que tiene numerador mayor representa más.",
+        "visual": [
+          {
+            "label": "2/7",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 2
+          },
+          {
+            "label": "1/3",
+            "partes": [
+              1,
+              1,
+              1
+            ],
+            "pintadas": 1
+          }
+        ],
+        "id": "prof_op_comparar-v4"
+      },
+      {
+        "enunciado": "Del mismo entero, ¿cuál es mayor: 3/8 o 2/5?",
+        "respuesta_correcta": "2/5",
+        "opciones": [
+          "3/8",
+          "Son iguales",
+          "2/5"
+        ],
+        "paso_resuelto": "Usamos denominador 40: 15/40 y 16/40.\nLa que tiene numerador mayor representa más.",
+        "visual": [
+          {
+            "label": "3/8",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 3
+          },
+          {
+            "label": "2/5",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 2
+          }
+        ],
+        "id": "prof_op_comparar-v5"
+      },
+      {
+        "enunciado": "Del mismo entero, ¿cuál es mayor: 4/9 o 5/12?",
+        "respuesta_correcta": "4/9",
+        "opciones": [
+          "Son iguales",
+          "4/9",
+          "5/12"
+        ],
+        "paso_resuelto": "Usamos denominador 36: 16/36 y 15/36.\nLa que tiene numerador mayor representa más.",
+        "visual": [
+          {
+            "label": "4/9",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 4
+          },
+          {
+            "label": "5/12",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 5
+          }
+        ],
+        "id": "prof_op_comparar-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_op_restar",
+    "tema": "fracciones_operaciones",
+    "despues_de": "frac_op_2_distinto_denominador",
+    "titulo": "Restar fracciones de distinto denominador",
+    "explicacion": "Para restar fracciones, necesitamos partes del mismo tamaño. Las convertimos al denominador común, restamos los numeradores y conservamos ese denominador. Después simplificamos si podemos.",
+    "ejemplo": "5/6 − 1/4 = 7/12.",
+    "pasos": [
+      "MCM de 6 y 4: 12. Convertimos 5/6 = 10/12 y 1/4 = 3/12.",
+      "Restamos: (10 − 3)/12 = 7/12."
+    ],
+    "pista": "No restes los denominadores: primero igualá el tamaño de las partes.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Resolvé 5/6 − 1/4.",
+        "respuesta_correcta": "7/12",
+        "opciones": [
+          "7/12",
+          "13/12",
+          "6/10"
+        ],
+        "paso_resuelto": "Con denominador 12, queda 10/12 − 3/12.\nRestamos numeradores y simplificamos: 7/12.",
+        "visual": null,
+        "id": "prof_op_restar-v1"
+      },
+      {
+        "enunciado": "Resolvé 3/4 − 1/3.",
+        "respuesta_correcta": "5/12",
+        "opciones": [
+          "13/12",
+          "4/7",
+          "5/12"
+        ],
+        "paso_resuelto": "Con denominador 12, queda 9/12 − 4/12.\nRestamos numeradores y simplificamos: 5/12.",
+        "visual": null,
+        "id": "prof_op_restar-v2"
+      },
+      {
+        "enunciado": "Resolvé 4/5 − 1/2.",
+        "respuesta_correcta": "3/10",
+        "opciones": [
+          "5/7",
+          "3/10",
+          "13/10"
+        ],
+        "paso_resuelto": "Con denominador 10, queda 8/10 − 5/10.\nRestamos numeradores y simplificamos: 3/10.",
+        "visual": null,
+        "id": "prof_op_restar-v3"
+      },
+      {
+        "enunciado": "Resolvé 7/8 − 1/4.",
+        "respuesta_correcta": "5/8",
+        "opciones": [
+          "5/8",
+          "9/8",
+          "8/12"
+        ],
+        "paso_resuelto": "Con denominador 8, queda 7/8 − 2/8.\nRestamos numeradores y simplificamos: 5/8.",
+        "visual": null,
+        "id": "prof_op_restar-v4"
+      },
+      {
+        "enunciado": "Resolvé 5/6 − 1/3.",
+        "respuesta_correcta": "1/2",
+        "opciones": [
+          "7/6",
+          "6/9",
+          "1/2"
+        ],
+        "paso_resuelto": "Con denominador 6, queda 5/6 − 2/6.\nRestamos numeradores y simplificamos: 1/2.",
+        "visual": null,
+        "id": "prof_op_restar-v5"
+      },
+      {
+        "enunciado": "Resolvé 8/9 − 1/6.",
+        "respuesta_correcta": "13/18",
+        "opciones": [
+          "9/15",
+          "13/18",
+          "19/18"
+        ],
+        "paso_resuelto": "Con denominador 18, queda 16/18 − 3/18.\nRestamos numeradores y simplificamos: 13/18.",
+        "visual": null,
+        "id": "prof_op_restar-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_op_dividir_medida",
+    "tema": "fracciones_operaciones",
+    "despues_de": "frac_op_4_multiplicacion",
+    "titulo": "Dividir también pregunta cuántas partes caben",
+    "explicacion": "Dividir una cantidad por una fracción puede preguntar cuántas porciones de ese tamaño caben. Si un litro llena cuatro vasos de 1/4 de litro, dos litros llenan ocho. Dividir no siempre da un número menor.",
+    "ejemplo": "2 litros ÷ 1/4 de litro por vaso = 8 vasos.",
+    "pasos": [
+      "En cada litro caben 4 vasos de un cuarto.",
+      "En 2 litros caben 2 × 4 = 8 vasos."
+    ],
+    "pista": "Contá cuántas porciones caben en un entero y después en todos los enteros.",
+    "visual": [
+      {
+        "label": "Un litro",
+        "partes": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 4
+      },
+      {
+        "label": "Otro litro",
+        "partes": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 4
+      }
+    ],
+    "actividades": [
+      {
+        "enunciado": "Tenés 2 litros. Cada vaso contiene 1/4 de litro. ¿Cuántos vasos completos podés llenar?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "8",
+          "6",
+          "2"
+        ],
+        "paso_resuelto": "Cada litro llena 4 vasos.\n2 litros llenan 2 × 4 = 8 vasos.",
+        "visual": null,
+        "id": "prof_op_dividir_medida-v1"
+      },
+      {
+        "enunciado": "Tenés 3 litros. Cada vaso contiene 1/2 de litro. ¿Cuántos vasos completos podés llenar?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "5",
+          "3",
+          "6"
+        ],
+        "paso_resuelto": "Cada litro llena 2 vasos.\n3 litros llenan 3 × 2 = 6 vasos.",
+        "visual": null,
+        "id": "prof_op_dividir_medida-v2"
+      },
+      {
+        "enunciado": "Tenés 2 litros. Cada vaso contiene 1/3 de litro. ¿Cuántos vasos completos podés llenar?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "2",
+          "6",
+          "5"
+        ],
+        "paso_resuelto": "Cada litro llena 3 vasos.\n2 litros llenan 2 × 3 = 6 vasos.",
+        "visual": null,
+        "id": "prof_op_dividir_medida-v3"
+      },
+      {
+        "enunciado": "Tenés 4 litros. Cada vaso contiene 1/5 de litro. ¿Cuántos vasos completos podés llenar?",
+        "respuesta_correcta": "20",
+        "opciones": [
+          "20",
+          "9",
+          "4"
+        ],
+        "paso_resuelto": "Cada litro llena 5 vasos.\n4 litros llenan 4 × 5 = 20 vasos.",
+        "visual": null,
+        "id": "prof_op_dividir_medida-v4"
+      },
+      {
+        "enunciado": "Tenés 3 litros. Cada vaso contiene 1/4 de litro. ¿Cuántos vasos completos podés llenar?",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "7",
+          "3",
+          "12"
+        ],
+        "paso_resuelto": "Cada litro llena 4 vasos.\n3 litros llenan 3 × 4 = 12 vasos.",
+        "visual": null,
+        "id": "prof_op_dividir_medida-v5"
+      },
+      {
+        "enunciado": "Tenés 5 litros. Cada vaso contiene 1/2 de litro. ¿Cuántos vasos completos podés llenar?",
+        "respuesta_correcta": "10",
+        "opciones": [
+          "5",
+          "10",
+          "7"
+        ],
+        "paso_resuelto": "Cada litro llena 2 vasos.\n5 litros llenan 5 × 2 = 10 vasos.",
+        "visual": null,
+        "id": "prof_op_dividir_medida-v6"
+      }
+    ]
+  }
+];
+for (const unidad of PROFUNDIZACION) {
+ const indice = UNIDADES_BASES.findIndex(u => u.id === unidad.despues_de);
+ if (indice < 0) throw new Error('Falta el paso anterior de ' + unidad.id);
+ UNIDADES_BASES.splice(indice + 1, 0, unidad);
+}
+// FIN R10
+
 export const TEMAS_BASES = [...new Set(UNIDADES_BASES.map(u => u.tema))];
 export function getUnidadBase(id) { return UNIDADES_BASES.find(u => u.id === id) || null; }
 export function crearActividadBase(id, modo, sesiones = []) {
@@ -7938,11 +9811,23 @@ export function getFichaBase(tema) {
 export function getCierreBase(tema) {
  const unidades=UNIDADES_BASES.filter(u=>u.tema===tema);
  if(!unidades.length)return null;
- const preguntas=unidades.map((u,i)=>{const a=u.actividades[5];return {id:String(i+1),objetivo_id:u.id,texto:a.enunciado,visual:a.visual,opciones:a.opciones,respuesta_correcta:a.respuesta_correcta};});
+ const ampliado=unidades.some(u=>u.id.startsWith('prof_'));
+ // La preparación cubre toda la secuencia; el cierre breve toma una muestra de tres ideas.
+ const seleccion=ampliado ? [unidades[0],unidades[Math.floor(unidades.length/2)],unidades.at(-1)] : unidades;
+ const preguntas=seleccion.map((u,i)=>{const a=u.actividades[5];return {id:String(i+1),objetivo_id:u.id,texto:a.enunciado,visual:a.visual,opciones:a.opciones,respuesta_correcta:a.respuesta_correcta};});
  const min_correctas=Math.ceil(preguntas.length*2/3);
- return {tipo:'examen_final',dificultad:'basico',contenido_version:VERSION_BASES,tiempo_estimado:Math.max(3,preguntas.length),min_correctas,
+ return {tipo:'examen_final',dificultad:'basico',contenido_version:VERSION_BASES,
+ ...(ampliado ? {revision_cierre:'secuencia:'+unidades.map(u=>u.id).join('|')} : {}),
+ tiempo_estimado:Math.max(3,preguntas.length),min_correctas,
  instrucciones:`Cierre de primeros pasos. Necesitás ${min_correctas} de ${preguntas.length} respuestas correctas. Podés releer los textos.`,
- enunciado:'Revisamos las ideas que ya practicaste. Este cierre trabaja las bases; no es un examen oficial de ingreso.',preguntas};
+ enunciado:ampliado ? 'Este cierre breve repasa tres ideas de la secuencia que ya practicaste. No es un examen oficial de ingreso.' : 'Revisamos las ideas que ya practicaste. Este cierre trabaja las bases; no es un examen oficial de ingreso.',preguntas};
+}
+
+export function esCierreActual(examen, tema) {
+ const actual=getCierreBase(tema);
+ if(!actual)return true;
+ if(actual.revision_cierre)return examen?.revision_cierre===actual.revision_cierre;
+ return examen?.contenido_version===VERSION_BASES;
 }
 
 // Alias para consumidores anteriores de los cierres de Lengua.

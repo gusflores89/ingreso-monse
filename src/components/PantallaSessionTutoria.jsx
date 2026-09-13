@@ -2597,6 +2597,7 @@ function extraerTodosLosNumeros(texto) {
 }
 
 function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRespuesta, onRespuestaTexto, onSubmit, visualParaEjercicio, onSwitchTopic, onOpenTheory, onForzarPractica }) {
+  const cierreGuiado = pregunta.contenido_version === VERSION_BASES;
   const tienePreguntas = pregunta.preguntas?.length > 0;
   const puedeEnviar = tienePreguntas
     ? pregunta.preguntas.every((item) => String(respuestas[item.id] || "").trim())
@@ -2605,7 +2606,7 @@ function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRe
   return (
     <div className="exam-final-shell">
       <section className="exam-banner">
-        <p className="eyebrow">Examen Final de Evaluación</p>
+        <p className="eyebrow">{cierreGuiado ? "Cierre de aprendizaje" : "Examen Final de Evaluación"}</p>
         <h2>{tema.replace(/_/g, " ")}</h2>
         <p>{parseInlineMarkdown(pregunta.instrucciones)}</p>
 
@@ -2627,7 +2628,7 @@ function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRe
             <span style={{ fontSize: "1.4rem" }}>🎓</span>
             <div>
               <strong style={{ color: "#ffffff", fontSize: "0.92rem", display: "block" }}>
-                ¿Querés repasar antes de rendir el examen?
+                {cierreGuiado ? "Podés repasar antes de completar el cierre" : "¿Querés repasar antes de rendir el examen?"}
               </strong>
               <span style={{ color: "#a59ec9", fontSize: "0.82rem" }}>
                 Podés leer las fichas teóricas, practicar sin nota o cambiar de materia.
@@ -2735,7 +2736,7 @@ function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRe
         )}
 
         <button type="button" className="primary exam-submit" onClick={onSubmit} disabled={!puedeEnviar || loading}>
-          {loading ? "Enviando examen..." : "Enviar examen final"}
+          {loading ? "Guardando..." : cierreGuiado ? "Terminar cierre" : "Enviar examen final"}
         </button>
 
         {onSwitchTopic && (

@@ -12,6 +12,7 @@ s=(root/'src/lib/apuntes-bases.js').read_text(encoding='utf-8');units=json.loads
 pdfmetrics.registerFont(TTFont('Segoe',r'C:\Windows\Fonts\segoeui.ttf'))
 pdfmetrics.registerFont(TTFont('SegoeBold',r'C:\Windows\Fonts\segoeuib.ttf'))
 for tema in dict.fromkeys(u['tema'] for u in units):
+ if '--temas' in sys.argv and tema not in sys.argv[sys.argv.index('--temas')+1].split(','): continue
  if '--lengua' in sys.argv and not any(u['tema']==tema and u['id'].startswith('leng_') for u in units): continue
  us=[u for u in units if u['tema']==tema];p=root/'public/apuntes'/('bases-'+tema+'.pdf');c=canvas.Canvas(str(p),pagesize=(595,842));c.setTitle('Primeros pasos: '+tema.replace('_',' '))
  for i,u in enumerate(us):

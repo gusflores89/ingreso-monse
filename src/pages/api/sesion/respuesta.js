@@ -1,5 +1,5 @@
 import { iniciarEnvio, guardarPasoEnvio, completarEnvio, liberarEnvio } from "@/lib/registro-envios";
-import { evaluarActividadBase } from "@/lib/contenido-bases";
+import { evaluarActividadBase, getCierreBase, esCierreActual } from "@/lib/contenido-bases";
 import { validarEvaluacion, huboAyuda } from "@/lib/validacion-pedagogica";
 import { daysUntilExam } from "@/lib/date";
 import {
@@ -81,11 +81,16 @@ export default async function handler(req, res) {
       const resultadoExamen = evaluarExamenFinal(examen, respuesta_usuario);
       const esRevisionDiferida = resultadoExamen.es_correcta === null || resultadoExamen.respuesta === "revision_diferida";
 
+      const cierre = getCierreBase(sesion.tema);
+      const esCierreAnterior = Boolean(cierre?.revision_cierre && !esCierreActual(examen, sesion.tema));
+      const nombreEvaluacion = examen?.contenido_version ? "Cierre de aprendizaje" : "Examen final";
       const retroalimentacion = esRevisionDiferida
         ? "Tu producción escrita fue guardada con éxito y quedó registrada para revisión con rúbrica docente y familiar. ¡Gran trabajo expresándote por escrito!"
         : resultadoExamen.es_correcta
-          ? `Examen final aprobado con ${resultadoExamen.puntaje}%. Podés seguir con este tema o elegir otro cuando quieras.`
-          : `Todavia no aprobaste el examen final. Puntaje: ${resultadoExamen.puntaje}%. Podemos repasar juntos y volver a intentarlo cuando quieras.`;
+          ? esCierreAnterior ? "Completaste el cierre anterior. Tu logro queda guardado; hay nuevas ideas para aprender paso a paso." : `${nombreEvaluacion} aprobado con ${resultadoExamen.puntaje}%. Podés seguir con este tema o elegir otro cuando quieras.`
+          : examen?.contenido_version
+            ? `Terminaste el cierre. Podemos repasar los pasos que costaron y volver a probar cuando quieras. Resultado: ${resultadoExamen.puntaje}%.`
+            : `Todavia no aprobaste el examen final. Puntaje: ${resultadoExamen.puntaje}%. Podemos repasar juntos y volver a intentarlo cuando quieras.`;
 
       await guardarPasoEnvio(supabase, sesion_id, envio, {
             respuesta_usuario,

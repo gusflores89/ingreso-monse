@@ -1,6 +1,6 @@
 import { temasHabilitados } from "@/lib/acceso-temas";
 import { TEMAS_BASES_MATEMATICA } from "@/lib/metadatos-bases";
-import { VERSION_BASES, getUnidadBase, crearActividadBase, getCierreBase } from "@/lib/contenido-bases";
+import { VERSION_BASES, getUnidadBase, crearActividadBase, getCierreBase, esCierreActual } from "@/lib/contenido-bases";
 import { quitarClaves } from "@/lib/contrato-actividad";
 import { getLeccionH } from "@/lib/contenido-h";
 import { daysUntilExam } from "@/lib/date";
@@ -194,7 +194,7 @@ export default async function handler(req, res) {
 
     const { data: sesionesTema } = await supabase
       .from("sesiones")
-      .select("id, tema, tipo_pregunta, es_correcta, created_at, ia_parametros_usados")
+      .select("id, tema, tipo_pregunta, es_correcta, created_at, ia_parametros_usados, contexto_json")
       .eq("user_id", user_id)
       .eq("tema", temaActual);
 
@@ -216,8 +216,8 @@ export default async function handler(req, res) {
       }).select().single(), 'No se pudo guardar la actividad');
       const cierre = getCierreBase(temaActual);
       const examenes = (sesionesTema || []).filter(s => s.tipo_pregunta === 'examen_final').sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at)));
-      const aprobado = examenes.some(s=>s.es_correcta === true);
-      const ultimo = examenes.find(s=>s.ia_parametros_usados?.contenido_version === VERSION_BASES);
+      const aprobado = examenes.some(s=>s.es_correcta === true && (!cierre?.revision_cierre || esCierreActual(s.contexto_json?.examen_final, temaActual)));
+      const ultimo = examenes.find(s=>esCierreActual(s.contexto_json?.examen_final, temaActual));
       const pendiente = ultimo?.es_correcta === null && !ultimo.ia_parametros_usados?.revision_pendiente && !ultimo.ia_parametros_usados?.revision_familiar;
       const practicas = (sesionesTema || []).filter(s=>typeof s.es_correcta === 'boolean' && !['leccion','examen_final'].includes(s.tipo_pregunta))
         .sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at))).slice(0,5);
@@ -630,21 +630,21 @@ async function maybeAsignarTareaManuscrita(supabase, userId, tema) {
 async function maybeCrearExamenFinal(supabase, userId, tema, capa, modo, contexto, opciones = {}) {
   if (opciones.forzar_practica && !opciones.retomar_examen) return null;
 
-  // 1. Verificar si ya tiene el examen final aprobado
+  const cierreRevisado = getCierreBase(tema);
+  // Un aprobado anterior se conserva, pero no acredita la secuencia ampliada.
   const examenAprobadoResult = await supabase
     .from("sesiones")
-    .select("id")
+    .select("id, contexto_json")
     .eq("user_id", userId)
     .eq("tema", tema)
     .eq("tipo_pregunta", "examen_final")
-    .eq("es_correcta", true)
-    .limit(1);
+    .eq("es_correcta", true);
 
   if (examenAprobadoResult.error) {
     throw new Error(`No se pudo verificar examen final aprobado: ${examenAprobadoResult.error.message}`);
   }
 
-  if ((examenAprobadoResult.data || []).length > 0) return null;
+  if ((examenAprobadoResult.data || []).some(s => !cierreRevisado?.revision_cierre || esCierreActual(s.contexto_json?.examen_final, tema))) return null;
 
   // 2. Consultar el último examen final del tema (para evitar bucles ante examen fallido o pendiente)
   const ultimosExamenesResult = await supabase
@@ -653,17 +653,15 @@ async function maybeCrearExamenFinal(supabase, userId, tema, capa, modo, context
     .eq("user_id", userId)
     .eq("tema", tema)
     .eq("tipo_pregunta", "examen_final")
-    .order("created_at", { ascending: false })
-    .limit(1);
+    .order("created_at", { ascending: false });
 
   if (ultimosExamenesResult.error) {
     throw new Error(`No se pudo verificar examen final previo: ${ultimosExamenesResult.error.message}`);
   }
 
-  const cierreRevisado = getCierreBase(tema);
-  const examenPrevio = (ultimosExamenesResult.data || [])[0];
+  const examenPrevio = (ultimosExamenesResult.data || []).find(s => !cierreRevisado?.revision_cierre || esCierreActual(s.contexto_json?.examen_final, tema));
   // El examen legado se conserva como historial; no reabre preguntas ajenas a la enseñanza revisada.
-  const ultimoExamen = cierreRevisado && examenPrevio?.contexto_json?.examen_final?.contenido_version !== VERSION_BASES ? null : examenPrevio;
+  const ultimoExamen = cierreRevisado && !esCierreActual(examenPrevio?.contexto_json?.examen_final, tema) ? null : examenPrevio;
 
   // Si el último examen quedó pendiente (es_correcta === null):
   // - Si ya fue entregado y espera revisión (revision_pendiente: true), NO ofrecerlo como examen nuevo a rendir
