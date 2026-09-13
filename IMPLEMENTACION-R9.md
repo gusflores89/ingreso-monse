@@ -1,6 +1,12 @@
 # R9 — Fundamentos revisados de Matemática
 
-Estado: implementación, compilación y 60 comprobaciones de navegador verificadas localmente el 13/09/2026. Publicación en curso.
+Estado: publicado y verificado en https://www.ingresomonserrat.online el 13/09/2026.
+
+- Commit de implementación: `dd23273`.
+- Despliegue Ready: `dpl_4AsiBbCefPUmgAVabJ877DGNuZVT`.
+- Versión: https://ingreso-monse-2027-f25znh9al-gustavos-projects-b8e409fb.vercel.app
+- Las 60 comprobaciones de interfaz también pasan en la publicación, usando controladores reales y datos sintéticos; las descargas provienen del servidor publicado.
+- Cinco comprobaciones adicionales de extremo a extremo pasaron contra la API y Supabase reales: lección nueva de numeración, corrección determinista, recuperación entre dos navegadores y salida confirmada. Se utilizó una cuenta temporal propia, eliminada junto con sus datos. No se alteró el historial de Abril.
 
 ## Resultado y alcance
 
@@ -30,6 +36,8 @@ Programa e índice del archivo aportado `material_estudio_ingreso_matematica.pdf
 - PDF: texto, cantidad de páginas e inspección visual de todas las 54 páginas nuevas, sin cortes de contenido.
 - Edge: 60 comprobaciones pasan, incluidas las 54 lecciones nuevas, tres descargas PDF, error/pista/acierto con asistencia persistente, cierre de fracciones con barras y vista de 390 px. Sin errores JavaScript ni desbordamiento en las vistas comprobadas. Capturas inspeccionadas.
 - Prueba de navegador reproducible: `node tests/verify-r9-browser.cjs`. Usa Edge, controladores reales con datos sintéticos y descarga los PDF del servidor. No debe confundirse con una prueba de extremo a extremo contra la cuenta de Abril.
+
+Prueba de producción reproducible: `node tests/verify-r9-browser-live.cjs`. Requiere las variables locales del servidor y Playwright/Edge; no forma parte de la suite automática predeterminada. No imprime credenciales ni cookies. Verifica expresamente el objetivo nuevo `mat_num_decenas`. Evidencia de interfaz y PDF: carpeta `implementacion-r9` de las visualizaciones de esta tarea.
 
 ## Cobertura de fundamentos por tema
 
