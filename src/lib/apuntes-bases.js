@@ -1397,6 +1397,58 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "prof_med_long_escala",
+    "tema": "si_me_la_longitud",
+    "titulo": "Una escala para medir longitudes",
+    "explicacion": "Ordenamos las unidades de mayor a menor: km → hm → dam → m → dm → cm → mm. Se llaman kilómetro, hectómetro, decámetro, metro, decímetro, centímetro y milímetro. Cada unidad contiene diez de la siguiente: al usar una unidad menor necesitamos más partes para la misma longitud.",
+    "ejemplo": "3 m = 30 dm: de m a dm hay un paso hacia una unidad menor.",
+    "pasos": [
+      "Un metro contiene diez decímetros.",
+      "Tres metros contienen 3 × 10 = 30 decímetros."
+    ],
+    "pista": "La medida no cambia: cambia cuántas partes de esa unidad contamos.",
+    "visual": null
+  },
+  {
+    "id": "prof_med_long_menor",
+    "tema": "si_me_la_longitud",
+    "titulo": "Contar varios pasos hacia unidades menores",
+    "explicacion": "Cada paso hacia una unidad menor multiplica el número por diez. Dos pasos multiplican por 100 y tres por 1000. Contamos los saltos entre unidades, no la cantidad de nombres escritos.",
+    "ejemplo": "2 m = 2000 mm.",
+    "pasos": [
+      "De m a mm recorremos m → dm → cm → mm: tres saltos.",
+      "2 × 10 × 10 × 10 = 2000 mm."
+    ],
+    "pista": "Marcá la unidad inicial y la final; contá los saltos.",
+    "visual": null
+  },
+  {
+    "id": "prof_med_long_mayor",
+    "tema": "si_me_la_longitud",
+    "titulo": "Agrupar en unidades mayores",
+    "explicacion": "Para pasar a una unidad mayor agrupamos partes pequeñas. De centímetros a metros agrupamos de cien: dividimos por 100. Cada salto hacia una unidad mayor divide por diez. La cantidad escrita disminuye y la longitud se conserva.",
+    "ejemplo": "300 cm = 3 m.",
+    "pasos": [
+      "Cada metro reúne 100 centímetros.",
+      "300 ÷ 100 = 3 grupos: son 3 metros."
+    ],
+    "pista": "Hacia una unidad mayor, dividí por diez en cada salto.",
+    "visual": null
+  },
+  {
+    "id": "prof_med_long_decimal",
+    "tema": "si_me_la_longitud",
+    "titulo": "Cuando la medida incluye parte de una unidad",
+    "explicacion": "Un decimal puede expresar una parte de una medida. En 1,25 m hay un metro y 25 centésimos de metro. Como un metro tiene 100 centímetros, esos 25 centésimos son 25 cm. Para convertir usamos la misma equivalencia aunque el número tenga coma.",
+    "ejemplo": "1,25 m = 125 cm; 75 cm = 0,75 m.",
+    "pasos": [
+      "1 m aporta 100 cm y 0,25 m aporta 25 cm: 100 + 25 = 125 cm.",
+      "75 cm son 75 de las 100 partes de un metro: 75 ÷ 100 = 0,75 m."
+    ],
+    "pista": "Pensá cuánto vale un entero en la unidad de destino.",
+    "visual": null
+  },
+  {
     "id": "mat_long_combinar",
     "tema": "si_me_la_longitud",
     "titulo": "Sumar longitudes con la misma unidad",
@@ -1407,6 +1459,19 @@ const UNIDADES = [
       "100 cm + 25 cm = 125 cm."
     ],
     "pista": "Convertí las medidas a la unidad que pide la pregunta.",
+    "visual": null
+  },
+  {
+    "id": "prof_med_long_problema",
+    "tema": "si_me_la_longitud",
+    "titulo": "Convertir primero, cortar después",
+    "explicacion": "Para saber cuánto queda de una cinta, expresamos la cinta y el corte en la misma unidad antes de restar. Elegimos una unidad que permita hacer la cuenta y escribimos la unidad del resultado.",
+    "ejemplo": "Una cinta de 2 m pierde un trozo de 35 cm. Quedan 165 cm.",
+    "pasos": [
+      "Pasamos la cinta a centímetros: 2 × 100 = 200 cm.",
+      "Restamos el corte: 200 − 35 = 165 cm."
+    ],
+    "pista": "Primero igualá las unidades; después restá el corte.",
     "visual": null
   },
   {
@@ -1423,6 +1488,71 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "prof_med_masa_escala",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "titulo": "La escala de la masa",
+    "explicacion": "Las unidades de masa forman esta escala: kg → hg → dag → g → dg → cg → mg. Son kilogramo, hectogramo, decagramo, gramo, decigramo, centigramo y miligramo. Cada paso hacia una unidad menor multiplica por diez; hacia una mayor divide por diez.",
+    "ejemplo": "2 kg = 200 dag.",
+    "pasos": [
+      "De kg a dag hay dos pasos: kg → hg → dag.",
+      "2 × 100 = 200 dag; seguimos midiendo la misma masa."
+    ],
+    "pista": "Usá solo unidades de masa y contá los saltos de su escala.",
+    "visual": null
+  },
+  {
+    "id": "prof_med_cap_escala",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "titulo": "La escala de la capacidad",
+    "explicacion": "Para medir capacidad usamos kL → hL → daL → L → dL → cL → mL: kilolitro, hectolitro, decalitro, litro, decilitro, centilitro y mililitro. Cada salto cambia el número por un factor diez. Los litros miden capacidad; los gramos miden masa. No los intercambiamos.",
+    "ejemplo": "3 L = 300 cL.",
+    "pasos": [
+      "De L a cL hay dos pasos: L → dL → cL.",
+      "3 × 100 = 300 cL. Es la misma capacidad."
+    ],
+    "pista": "Conservá la magnitud: una capacidad se convierte a otra unidad de capacidad.",
+    "visual": null
+  },
+  {
+    "id": "prof_med_masa_decimal",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "titulo": "Partes de un kilogramo",
+    "explicacion": "Un kilogramo tiene 1000 gramos. Medio kilogramo, escrito 0,5 kg, contiene 500 g. Para pasar de kg a g multiplicamos por 1000; para volver dividimos por 1000. La coma puede indicar una parte de kilogramo, no una masa diferente.",
+    "ejemplo": "1,25 kg = 1250 g; 750 g = 0,75 kg.",
+    "pasos": [
+      "1 kg aporta 1000 g y un cuarto de kg, 0,25 kg, aporta 250 g: suman 1250 g.",
+      "750 g son 750 de las 1000 partes de un kg: 750 ÷ 1000 = 0,75 kg."
+    ],
+    "pista": "Un kilogramo contiene mil gramos; usá esa equivalencia en ambos sentidos.",
+    "visual": null
+  },
+  {
+    "id": "prof_med_masa_problema",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "titulo": "Cuánto queda en la bolsa",
+    "explicacion": "Para calcular cuánto queda de un material, pasamos todas las masas a gramos y luego restamos. El número del paquete puede estar en kilogramos y el de una porción en gramos: primero los hacemos comparables.",
+    "ejemplo": "Una bolsa tiene 1,5 kg de harina. Si usamos 250 g, quedan 1250 g.",
+    "pasos": [
+      "1,5 × 1000 = 1500 g.",
+      "1500 − 250 = 1250 g."
+    ],
+    "pista": "Convertí la masa inicial a gramos antes de quitar lo usado.",
+    "visual": null
+  },
+  {
+    "id": "prof_med_cap_problema",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "titulo": "Repartir una bebida en vasos",
+    "explicacion": "Un litro contiene 1000 mL y medio litro, 0,5 L, contiene 500 mL. Para saber cuántos vasos podemos llenar, convertimos la bebida a mililitros y dividimos entre la capacidad de un vaso. Contamos vasos completos; en estos ejemplos no sobra bebida.",
+    "ejemplo": "1,5 L de jugo llenan 6 vasos de 250 mL.",
+    "pasos": [
+      "1,5 L = 1000 mL + 500 mL = 1500 mL.",
+      "1500 ÷ 250 = 6. Comprobamos: 6 × 250 = 1500 mL."
+    ],
+    "pista": "Primero pasá todo a mL; después buscá cuántas veces entra un vaso.",
+    "visual": null
+  },
+  {
     "id": "mat_med_tiempo",
     "tema": "si_me_la_masa_capacidad_tiempo",
     "titulo": "Una hora tiene sesenta minutos",
@@ -1433,6 +1563,32 @@ const UNIDADES = [
       "60 + 20 = 80 min."
     ],
     "pista": "Para las horas usá 60, no 100.",
+    "visual": null
+  },
+  {
+    "id": "prof_med_tiempo_resto",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "titulo": "Agrupar minutos en horas",
+    "explicacion": "Para escribir minutos como horas y minutos, agrupamos de sesenta. El cociente indica las horas completas y el resto, los minutos que todavía no forman otra hora. No escribimos 90 minutos como 0,90 horas.",
+    "ejemplo": "95 minutos son 1 h y 35 min.",
+    "pasos": [
+      "95 ÷ 60 da 1 hora completa y sobran 35 minutos.",
+      "Comprobamos: 1 × 60 + 35 = 95 minutos."
+    ],
+    "pista": "Cada hora completa reúne 60 minutos; conservá lo que sobra.",
+    "visual": null
+  },
+  {
+    "id": "prof_med_tiempo_duracion",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "titulo": "Cuánto dura una actividad",
+    "explicacion": "Para hallar una duración dentro del mismo día, podemos avanzar desde la hora de inicio hasta la siguiente hora y después hasta el final. Sumamos los dos tramos en minutos. Esta cuenta usa 60 minutos por hora.",
+    "ejemplo": "Una actividad de 14:40 a 15:15 dura 35 minutos.",
+    "pasos": [
+      "De 14:40 a 15:00 pasan 60 − 40 = 20 minutos.",
+      "De 15:00 a 15:15 pasan 15 minutos: 20 + 15 = 35 minutos."
+    ],
+    "pista": "Partí el recorrido en la hora en punto y sumá los minutos.",
     "visual": null
   },
   {

@@ -10848,6 +10848,1072 @@ for (const unidad of DECIMALES_R11) {
 }
 // FIN R11
 
+// R12: medidas paso a paso.
+const MEDIDAS_R12 = [
+  {
+    "id": "prof_med_long_escala",
+    "tema": "si_me_la_longitud",
+    "despues_de": "mat_long_metros",
+    "titulo": "Una escala para medir longitudes",
+    "explicacion": "Ordenamos las unidades de mayor a menor: km → hm → dam → m → dm → cm → mm. Se llaman kilómetro, hectómetro, decámetro, metro, decímetro, centímetro y milímetro. Cada unidad contiene diez de la siguiente: al usar una unidad menor necesitamos más partes para la misma longitud.",
+    "ejemplo": "3 m = 30 dm: de m a dm hay un paso hacia una unidad menor.",
+    "pasos": [
+      "Un metro contiene diez decímetros.",
+      "Tres metros contienen 3 × 10 = 30 decímetros."
+    ],
+    "pista": "La medida no cambia: cambia cuántas partes de esa unidad contamos.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Convertí 3 m a dm. ¿Qué número va delante de dm?",
+        "respuesta_correcta": "30",
+        "opciones": [
+          "30",
+          "0,3",
+          "31"
+        ],
+        "paso_resuelto": "1 m = 10 dm.\n3 × 10 = 30. Son 30 dm; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_escala-v1"
+      },
+      {
+        "enunciado": "Convertí 2 km a hm. ¿Qué número va delante de hm?",
+        "respuesta_correcta": "20",
+        "opciones": [
+          "0,2",
+          "21",
+          "20"
+        ],
+        "paso_resuelto": "1 km = 10 hm.\n2 × 10 = 20. Son 20 hm; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_escala-v2"
+      },
+      {
+        "enunciado": "Convertí 4 hm a dam. ¿Qué número va delante de dam?",
+        "respuesta_correcta": "40",
+        "opciones": [
+          "41",
+          "40",
+          "0,4"
+        ],
+        "paso_resuelto": "1 hm = 10 dam.\n4 × 10 = 40. Son 40 dam; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_escala-v3"
+      },
+      {
+        "enunciado": "Convertí 5 dam a m. ¿Qué número va delante de m?",
+        "respuesta_correcta": "50",
+        "opciones": [
+          "50",
+          "0,5",
+          "51"
+        ],
+        "paso_resuelto": "1 dam = 10 m.\n5 × 10 = 50. Son 50 m; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_escala-v4"
+      },
+      {
+        "enunciado": "Convertí 6 dm a cm. ¿Qué número va delante de cm?",
+        "respuesta_correcta": "60",
+        "opciones": [
+          "0,6",
+          "61",
+          "60"
+        ],
+        "paso_resuelto": "1 dm = 10 cm.\n6 × 10 = 60. Son 60 cm; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_escala-v5"
+      },
+      {
+        "enunciado": "Convertí 7 cm a mm. ¿Qué número va delante de mm?",
+        "respuesta_correcta": "70",
+        "opciones": [
+          "71",
+          "70",
+          "0,7"
+        ],
+        "paso_resuelto": "1 cm = 10 mm.\n7 × 10 = 70. Son 70 mm; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_escala-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_med_long_menor",
+    "tema": "si_me_la_longitud",
+    "despues_de": "prof_med_long_escala",
+    "titulo": "Contar varios pasos hacia unidades menores",
+    "explicacion": "Cada paso hacia una unidad menor multiplica el número por diez. Dos pasos multiplican por 100 y tres por 1000. Contamos los saltos entre unidades, no la cantidad de nombres escritos.",
+    "ejemplo": "2 m = 2000 mm.",
+    "pasos": [
+      "De m a mm recorremos m → dm → cm → mm: tres saltos.",
+      "2 × 10 × 10 × 10 = 2000 mm."
+    ],
+    "pista": "Marcá la unidad inicial y la final; contá los saltos.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Convertí 2 m a mm. ¿Qué número va delante de mm?",
+        "respuesta_correcta": "2000",
+        "opciones": [
+          "2000",
+          "0,002",
+          "2001"
+        ],
+        "paso_resuelto": "1 m = 1000 mm.\n2 × 1000 = 2000. Son 2000 mm; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_menor-v1"
+      },
+      {
+        "enunciado": "Convertí 3 km a m. ¿Qué número va delante de m?",
+        "respuesta_correcta": "3000",
+        "opciones": [
+          "0,003",
+          "3001",
+          "3000"
+        ],
+        "paso_resuelto": "1 km = 1000 m.\n3 × 1000 = 3000. Son 3000 m; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_menor-v2"
+      },
+      {
+        "enunciado": "Convertí 4 hm a m. ¿Qué número va delante de m?",
+        "respuesta_correcta": "400",
+        "opciones": [
+          "401",
+          "400",
+          "0,04"
+        ],
+        "paso_resuelto": "1 hm = 100 m.\n4 × 100 = 400. Son 400 m; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_menor-v3"
+      },
+      {
+        "enunciado": "Convertí 5 dam a cm. ¿Qué número va delante de cm?",
+        "respuesta_correcta": "5000",
+        "opciones": [
+          "5000",
+          "0,005",
+          "5001"
+        ],
+        "paso_resuelto": "1 dam = 1000 cm.\n5 × 1000 = 5000. Son 5000 cm; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_menor-v4"
+      },
+      {
+        "enunciado": "Convertí 6 dm a mm. ¿Qué número va delante de mm?",
+        "respuesta_correcta": "600",
+        "opciones": [
+          "0,06",
+          "601",
+          "600"
+        ],
+        "paso_resuelto": "1 dm = 100 mm.\n6 × 100 = 600. Son 600 mm; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_menor-v5"
+      },
+      {
+        "enunciado": "Convertí 7 m a cm. ¿Qué número va delante de cm?",
+        "respuesta_correcta": "700",
+        "opciones": [
+          "701",
+          "700",
+          "0,07"
+        ],
+        "paso_resuelto": "1 m = 100 cm.\n7 × 100 = 700. Son 700 cm; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_menor-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_med_long_mayor",
+    "tema": "si_me_la_longitud",
+    "despues_de": "prof_med_long_menor",
+    "titulo": "Agrupar en unidades mayores",
+    "explicacion": "Para pasar a una unidad mayor agrupamos partes pequeñas. De centímetros a metros agrupamos de cien: dividimos por 100. Cada salto hacia una unidad mayor divide por diez. La cantidad escrita disminuye y la longitud se conserva.",
+    "ejemplo": "300 cm = 3 m.",
+    "pasos": [
+      "Cada metro reúne 100 centímetros.",
+      "300 ÷ 100 = 3 grupos: son 3 metros."
+    ],
+    "pista": "Hacia una unidad mayor, dividí por diez en cada salto.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Convertí 300 cm a m. ¿Qué número va delante de m?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "3",
+          "30000",
+          "4"
+        ],
+        "paso_resuelto": "1 m = 100 cm.\n300 ÷ 100 = 3. Son 3 m; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_mayor-v1"
+      },
+      {
+        "enunciado": "Convertí 4000 m a km. ¿Qué número va delante de km?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "4000000",
+          "5",
+          "4"
+        ],
+        "paso_resuelto": "1 km = 1000 m.\n4000 ÷ 1000 = 4. Son 4 km; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_mayor-v2"
+      },
+      {
+        "enunciado": "Convertí 50 mm a cm. ¿Qué número va delante de cm?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "6",
+          "5",
+          "500"
+        ],
+        "paso_resuelto": "1 cm = 10 mm.\n50 ÷ 10 = 5. Son 5 cm; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_mayor-v3"
+      },
+      {
+        "enunciado": "Convertí 600 dm a dam. ¿Qué número va delante de dam?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "6",
+          "60000",
+          "7"
+        ],
+        "paso_resuelto": "1 dam = 100 dm.\n600 ÷ 100 = 6. Son 6 dam; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_mayor-v4"
+      },
+      {
+        "enunciado": "Convertí 7000 mm a m. ¿Qué número va delante de m?",
+        "respuesta_correcta": "7",
+        "opciones": [
+          "7000000",
+          "8",
+          "7"
+        ],
+        "paso_resuelto": "1 m = 1000 mm.\n7000 ÷ 1000 = 7. Son 7 m; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_mayor-v5"
+      },
+      {
+        "enunciado": "Convertí 800 m a hm. ¿Qué número va delante de hm?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "9",
+          "8",
+          "80000"
+        ],
+        "paso_resuelto": "1 hm = 100 m.\n800 ÷ 100 = 8. Son 8 hm; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_mayor-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_med_long_decimal",
+    "tema": "si_me_la_longitud",
+    "despues_de": "prof_med_long_mayor",
+    "titulo": "Cuando la medida incluye parte de una unidad",
+    "explicacion": "Un decimal puede expresar una parte de una medida. En 1,25 m hay un metro y 25 centésimos de metro. Como un metro tiene 100 centímetros, esos 25 centésimos son 25 cm. Para convertir usamos la misma equivalencia aunque el número tenga coma.",
+    "ejemplo": "1,25 m = 125 cm; 75 cm = 0,75 m.",
+    "pasos": [
+      "1 m aporta 100 cm y 0,25 m aporta 25 cm: 100 + 25 = 125 cm.",
+      "75 cm son 75 de las 100 partes de un metro: 75 ÷ 100 = 0,75 m."
+    ],
+    "pista": "Pensá cuánto vale un entero en la unidad de destino.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Convertí 1,25 m a cm. ¿Qué número va delante de cm?",
+        "respuesta_correcta": "125",
+        "opciones": [
+          "125",
+          "0,0125",
+          "126"
+        ],
+        "paso_resuelto": "1 m = 100 cm.\n1,25 × 100 = 125. Son 125 cm; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_decimal-v1"
+      },
+      {
+        "enunciado": "Convertí 2,5 km a m. ¿Qué número va delante de m?",
+        "respuesta_correcta": "2500",
+        "opciones": [
+          "0,0025",
+          "2501",
+          "2500"
+        ],
+        "paso_resuelto": "1 km = 1000 m.\n2,5 × 1000 = 2500. Son 2500 m; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_decimal-v2"
+      },
+      {
+        "enunciado": "Convertí 0,4 m a mm. ¿Qué número va delante de mm?",
+        "respuesta_correcta": "400",
+        "opciones": [
+          "401",
+          "400",
+          "0,0004"
+        ],
+        "paso_resuelto": "1 m = 1000 mm.\n0,4 × 1000 = 400. Son 400 mm; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_decimal-v3"
+      },
+      {
+        "enunciado": "Convertí 75 cm a m. ¿Qué número va delante de m?",
+        "respuesta_correcta": "0,75",
+        "opciones": [
+          "0,75",
+          "7500",
+          "1,75"
+        ],
+        "paso_resuelto": "1 m = 100 cm.\n75 ÷ 100 = 0,75. Son 0,75 m; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_decimal-v4"
+      },
+      {
+        "enunciado": "Convertí 1500 m a km. ¿Qué número va delante de km?",
+        "respuesta_correcta": "1,5",
+        "opciones": [
+          "1500000",
+          "2,5",
+          "1,5"
+        ],
+        "paso_resuelto": "1 km = 1000 m.\n1500 ÷ 1000 = 1,5. Son 1,5 km; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_decimal-v5"
+      },
+      {
+        "enunciado": "Convertí 35 mm a cm. ¿Qué número va delante de cm?",
+        "respuesta_correcta": "3,5",
+        "opciones": [
+          "4,5",
+          "3,5",
+          "350"
+        ],
+        "paso_resuelto": "1 cm = 10 mm.\n35 ÷ 10 = 3,5. Son 3,5 cm; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_long_decimal-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_med_long_problema",
+    "tema": "si_me_la_longitud",
+    "despues_de": "mat_long_combinar",
+    "titulo": "Convertir primero, cortar después",
+    "explicacion": "Para saber cuánto queda de una cinta, expresamos la cinta y el corte en la misma unidad antes de restar. Elegimos una unidad que permita hacer la cuenta y escribimos la unidad del resultado.",
+    "ejemplo": "Una cinta de 2 m pierde un trozo de 35 cm. Quedan 165 cm.",
+    "pasos": [
+      "Pasamos la cinta a centímetros: 2 × 100 = 200 cm.",
+      "Restamos el corte: 200 − 35 = 165 cm."
+    ],
+    "pista": "Primero igualá las unidades; después restá el corte.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Una cinta mide 2 m. Cortás 35 cm. ¿Cuántos centímetros quedan?",
+        "respuesta_correcta": "165",
+        "opciones": [
+          "165",
+          "235",
+          "200"
+        ],
+        "paso_resuelto": "2 m = 200 cm.\n200 − 35 = 165 cm.",
+        "visual": null,
+        "id": "prof_med_long_problema-v1"
+      },
+      {
+        "enunciado": "Una cinta mide 1,5 m. Cortás 40 cm. ¿Cuántos centímetros quedan?",
+        "respuesta_correcta": "110",
+        "opciones": [
+          "190",
+          "150",
+          "110"
+        ],
+        "paso_resuelto": "1,5 m = 150 cm.\n150 − 40 = 110 cm.",
+        "visual": null,
+        "id": "prof_med_long_problema-v2"
+      },
+      {
+        "enunciado": "Una cinta mide 3 m. Cortás 75 cm. ¿Cuántos centímetros quedan?",
+        "respuesta_correcta": "225",
+        "opciones": [
+          "300",
+          "225",
+          "375"
+        ],
+        "paso_resuelto": "3 m = 300 cm.\n300 − 75 = 225 cm.",
+        "visual": null,
+        "id": "prof_med_long_problema-v3"
+      },
+      {
+        "enunciado": "Una cinta mide 2,25 m. Cortás 50 cm. ¿Cuántos centímetros quedan?",
+        "respuesta_correcta": "175",
+        "opciones": [
+          "175",
+          "275",
+          "225"
+        ],
+        "paso_resuelto": "2,25 m = 225 cm.\n225 − 50 = 175 cm.",
+        "visual": null,
+        "id": "prof_med_long_problema-v4"
+      },
+      {
+        "enunciado": "Una cinta mide 1,2 m. Cortás 35 cm. ¿Cuántos centímetros quedan?",
+        "respuesta_correcta": "85",
+        "opciones": [
+          "155",
+          "120",
+          "85"
+        ],
+        "paso_resuelto": "1,2 m = 120 cm.\n120 − 35 = 85 cm.",
+        "visual": null,
+        "id": "prof_med_long_problema-v5"
+      },
+      {
+        "enunciado": "Una cinta mide 4 m. Cortás 125 cm. ¿Cuántos centímetros quedan?",
+        "respuesta_correcta": "275",
+        "opciones": [
+          "400",
+          "275",
+          "525"
+        ],
+        "paso_resuelto": "4 m = 400 cm.\n400 − 125 = 275 cm.",
+        "visual": null,
+        "id": "prof_med_long_problema-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_med_masa_escala",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "despues_de": "mat_med_masa_capacidad",
+    "titulo": "La escala de la masa",
+    "explicacion": "Las unidades de masa forman esta escala: kg → hg → dag → g → dg → cg → mg. Son kilogramo, hectogramo, decagramo, gramo, decigramo, centigramo y miligramo. Cada paso hacia una unidad menor multiplica por diez; hacia una mayor divide por diez.",
+    "ejemplo": "2 kg = 200 dag.",
+    "pasos": [
+      "De kg a dag hay dos pasos: kg → hg → dag.",
+      "2 × 100 = 200 dag; seguimos midiendo la misma masa."
+    ],
+    "pista": "Usá solo unidades de masa y contá los saltos de su escala.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Convertí 2 kg a dag. ¿Qué número va delante de dag?",
+        "respuesta_correcta": "200",
+        "opciones": [
+          "200",
+          "0,02",
+          "201"
+        ],
+        "paso_resuelto": "1 kg = 100 dag.\n2 × 100 = 200. Son 200 dag; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_masa_escala-v1"
+      },
+      {
+        "enunciado": "Convertí 3 hg a g. ¿Qué número va delante de g?",
+        "respuesta_correcta": "300",
+        "opciones": [
+          "0,03",
+          "301",
+          "300"
+        ],
+        "paso_resuelto": "1 hg = 100 g.\n3 × 100 = 300. Son 300 g; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_masa_escala-v2"
+      },
+      {
+        "enunciado": "Convertí 4 g a mg. ¿Qué número va delante de mg?",
+        "respuesta_correcta": "4000",
+        "opciones": [
+          "4001",
+          "4000",
+          "0,004"
+        ],
+        "paso_resuelto": "1 g = 1000 mg.\n4 × 1000 = 4000. Son 4000 mg; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_masa_escala-v3"
+      },
+      {
+        "enunciado": "Convertí 5000 mg a g. ¿Qué número va delante de g?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "5",
+          "5000000",
+          "6"
+        ],
+        "paso_resuelto": "1 g = 1000 mg.\n5000 ÷ 1000 = 5. Son 5 g; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_masa_escala-v4"
+      },
+      {
+        "enunciado": "Convertí 600 cg a g. ¿Qué número va delante de g?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "60000",
+          "7",
+          "6"
+        ],
+        "paso_resuelto": "1 g = 100 cg.\n600 ÷ 100 = 6. Son 6 g; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_masa_escala-v5"
+      },
+      {
+        "enunciado": "Convertí 700 dag a kg. ¿Qué número va delante de kg?",
+        "respuesta_correcta": "7",
+        "opciones": [
+          "8",
+          "7",
+          "70000"
+        ],
+        "paso_resuelto": "1 kg = 100 dag.\n700 ÷ 100 = 7. Son 7 kg; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_masa_escala-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_med_cap_escala",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "despues_de": "prof_med_masa_escala",
+    "titulo": "La escala de la capacidad",
+    "explicacion": "Para medir capacidad usamos kL → hL → daL → L → dL → cL → mL: kilolitro, hectolitro, decalitro, litro, decilitro, centilitro y mililitro. Cada salto cambia el número por un factor diez. Los litros miden capacidad; los gramos miden masa. No los intercambiamos.",
+    "ejemplo": "3 L = 300 cL.",
+    "pasos": [
+      "De L a cL hay dos pasos: L → dL → cL.",
+      "3 × 100 = 300 cL. Es la misma capacidad."
+    ],
+    "pista": "Conservá la magnitud: una capacidad se convierte a otra unidad de capacidad.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Convertí 3 L a cL. ¿Qué número va delante de cL?",
+        "respuesta_correcta": "300",
+        "opciones": [
+          "300",
+          "0,03",
+          "301"
+        ],
+        "paso_resuelto": "1 L = 100 cL.\n3 × 100 = 300. Son 300 cL; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_cap_escala-v1"
+      },
+      {
+        "enunciado": "Convertí 2 kL a L. ¿Qué número va delante de L?",
+        "respuesta_correcta": "2000",
+        "opciones": [
+          "0,002",
+          "2001",
+          "2000"
+        ],
+        "paso_resuelto": "1 kL = 1000 L.\n2 × 1000 = 2000. Son 2000 L; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_cap_escala-v2"
+      },
+      {
+        "enunciado": "Convertí 4 hL a L. ¿Qué número va delante de L?",
+        "respuesta_correcta": "400",
+        "opciones": [
+          "401",
+          "400",
+          "0,04"
+        ],
+        "paso_resuelto": "1 hL = 100 L.\n4 × 100 = 400. Son 400 L; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_cap_escala-v3"
+      },
+      {
+        "enunciado": "Convertí 5000 mL a L. ¿Qué número va delante de L?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "5",
+          "5000000",
+          "6"
+        ],
+        "paso_resuelto": "1 L = 1000 mL.\n5000 ÷ 1000 = 5. Son 5 L; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_cap_escala-v4"
+      },
+      {
+        "enunciado": "Convertí 600 cL a L. ¿Qué número va delante de L?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "60000",
+          "7",
+          "6"
+        ],
+        "paso_resuelto": "1 L = 100 cL.\n600 ÷ 100 = 6. Son 6 L; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_cap_escala-v5"
+      },
+      {
+        "enunciado": "Convertí 700 dL a daL. ¿Qué número va delante de daL?",
+        "respuesta_correcta": "7",
+        "opciones": [
+          "8",
+          "7",
+          "70000"
+        ],
+        "paso_resuelto": "1 daL = 100 dL.\n700 ÷ 100 = 7. Son 7 daL; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_cap_escala-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_med_masa_decimal",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "despues_de": "prof_med_cap_escala",
+    "titulo": "Partes de un kilogramo",
+    "explicacion": "Un kilogramo tiene 1000 gramos. Medio kilogramo, escrito 0,5 kg, contiene 500 g. Para pasar de kg a g multiplicamos por 1000; para volver dividimos por 1000. La coma puede indicar una parte de kilogramo, no una masa diferente.",
+    "ejemplo": "1,25 kg = 1250 g; 750 g = 0,75 kg.",
+    "pasos": [
+      "1 kg aporta 1000 g y un cuarto de kg, 0,25 kg, aporta 250 g: suman 1250 g.",
+      "750 g son 750 de las 1000 partes de un kg: 750 ÷ 1000 = 0,75 kg."
+    ],
+    "pista": "Un kilogramo contiene mil gramos; usá esa equivalencia en ambos sentidos.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Convertí 1,25 kg a g. ¿Qué número va delante de g?",
+        "respuesta_correcta": "1250",
+        "opciones": [
+          "1250",
+          "0,00125",
+          "1251"
+        ],
+        "paso_resuelto": "1 kg = 1000 g.\n1,25 × 1000 = 1250. Son 1250 g; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_masa_decimal-v1"
+      },
+      {
+        "enunciado": "Convertí 0,5 kg a g. ¿Qué número va delante de g?",
+        "respuesta_correcta": "500",
+        "opciones": [
+          "0,0005",
+          "501",
+          "500"
+        ],
+        "paso_resuelto": "1 kg = 1000 g.\n0,5 × 1000 = 500. Son 500 g; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_masa_decimal-v2"
+      },
+      {
+        "enunciado": "Convertí 2,4 kg a g. ¿Qué número va delante de g?",
+        "respuesta_correcta": "2400",
+        "opciones": [
+          "2401",
+          "2400",
+          "0,0024"
+        ],
+        "paso_resuelto": "1 kg = 1000 g.\n2,4 × 1000 = 2400. Son 2400 g; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_masa_decimal-v3"
+      },
+      {
+        "enunciado": "Convertí 750 g a kg. ¿Qué número va delante de kg?",
+        "respuesta_correcta": "0,75",
+        "opciones": [
+          "0,75",
+          "750000",
+          "1,75"
+        ],
+        "paso_resuelto": "1 kg = 1000 g.\n750 ÷ 1000 = 0,75. Son 0,75 kg; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_masa_decimal-v4"
+      },
+      {
+        "enunciado": "Convertí 1500 g a kg. ¿Qué número va delante de kg?",
+        "respuesta_correcta": "1,5",
+        "opciones": [
+          "1500000",
+          "2,5",
+          "1,5"
+        ],
+        "paso_resuelto": "1 kg = 1000 g.\n1500 ÷ 1000 = 1,5. Son 1,5 kg; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_masa_decimal-v5"
+      },
+      {
+        "enunciado": "Convertí 250 g a kg. ¿Qué número va delante de kg?",
+        "respuesta_correcta": "0,25",
+        "opciones": [
+          "1,25",
+          "0,25",
+          "250000"
+        ],
+        "paso_resuelto": "1 kg = 1000 g.\n250 ÷ 1000 = 0,25. Son 0,25 kg; la cantidad medida es la misma.",
+        "visual": null,
+        "id": "prof_med_masa_decimal-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_med_masa_problema",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "despues_de": "prof_med_masa_decimal",
+    "titulo": "Cuánto queda en la bolsa",
+    "explicacion": "Para calcular cuánto queda de un material, pasamos todas las masas a gramos y luego restamos. El número del paquete puede estar en kilogramos y el de una porción en gramos: primero los hacemos comparables.",
+    "ejemplo": "Una bolsa tiene 1,5 kg de harina. Si usamos 250 g, quedan 1250 g.",
+    "pasos": [
+      "1,5 × 1000 = 1500 g.",
+      "1500 − 250 = 1250 g."
+    ],
+    "pista": "Convertí la masa inicial a gramos antes de quitar lo usado.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Una bolsa contiene 1,5 kg de harina. Usás 250 g. ¿Cuántos gramos quedan?",
+        "respuesta_correcta": "1250",
+        "opciones": [
+          "1250",
+          "1750",
+          "1500"
+        ],
+        "paso_resuelto": "1,5 × 1000 = 1500 g.\n1500 − 250 = 1250 g.",
+        "visual": null,
+        "id": "prof_med_masa_problema-v1"
+      },
+      {
+        "enunciado": "Una bolsa contiene 2 kg de harina. Usás 750 g. ¿Cuántos gramos quedan?",
+        "respuesta_correcta": "1250",
+        "opciones": [
+          "2750",
+          "2000",
+          "1250"
+        ],
+        "paso_resuelto": "2 × 1000 = 2000 g.\n2000 − 750 = 1250 g.",
+        "visual": null,
+        "id": "prof_med_masa_problema-v2"
+      },
+      {
+        "enunciado": "Una bolsa contiene 0,75 kg de harina. Usás 200 g. ¿Cuántos gramos quedan?",
+        "respuesta_correcta": "550",
+        "opciones": [
+          "750",
+          "550",
+          "950"
+        ],
+        "paso_resuelto": "0,75 × 1000 = 750 g.\n750 − 200 = 550 g.",
+        "visual": null,
+        "id": "prof_med_masa_problema-v3"
+      },
+      {
+        "enunciado": "Una bolsa contiene 1,25 kg de harina. Usás 450 g. ¿Cuántos gramos quedan?",
+        "respuesta_correcta": "800",
+        "opciones": [
+          "800",
+          "1700",
+          "1250"
+        ],
+        "paso_resuelto": "1,25 × 1000 = 1250 g.\n1250 − 450 = 800 g.",
+        "visual": null,
+        "id": "prof_med_masa_problema-v4"
+      },
+      {
+        "enunciado": "Una bolsa contiene 3 kg de harina. Usás 1250 g. ¿Cuántos gramos quedan?",
+        "respuesta_correcta": "1750",
+        "opciones": [
+          "4250",
+          "3000",
+          "1750"
+        ],
+        "paso_resuelto": "3 × 1000 = 3000 g.\n3000 − 1250 = 1750 g.",
+        "visual": null,
+        "id": "prof_med_masa_problema-v5"
+      },
+      {
+        "enunciado": "Una bolsa contiene 2,5 kg de harina. Usás 800 g. ¿Cuántos gramos quedan?",
+        "respuesta_correcta": "1700",
+        "opciones": [
+          "2500",
+          "1700",
+          "3300"
+        ],
+        "paso_resuelto": "2,5 × 1000 = 2500 g.\n2500 − 800 = 1700 g.",
+        "visual": null,
+        "id": "prof_med_masa_problema-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_med_cap_problema",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "despues_de": "prof_med_masa_problema",
+    "titulo": "Repartir una bebida en vasos",
+    "explicacion": "Un litro contiene 1000 mL y medio litro, 0,5 L, contiene 500 mL. Para saber cuántos vasos podemos llenar, convertimos la bebida a mililitros y dividimos entre la capacidad de un vaso. Contamos vasos completos; en estos ejemplos no sobra bebida.",
+    "ejemplo": "1,5 L de jugo llenan 6 vasos de 250 mL.",
+    "pasos": [
+      "1,5 L = 1000 mL + 500 mL = 1500 mL.",
+      "1500 ÷ 250 = 6. Comprobamos: 6 × 250 = 1500 mL."
+    ],
+    "pista": "Primero pasá todo a mL; después buscá cuántas veces entra un vaso.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Tenés 1,5 L de jugo y vasos de 250 mL. ¿Cuántos vasos completos llenás sin que sobre?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "6",
+          "7",
+          "5"
+        ],
+        "paso_resuelto": "1,5 L = 1500 mL.\n1500 ÷ 250 = 6 vasos. Comprobación: 6 × 250 = 1500 mL.",
+        "visual": null,
+        "id": "prof_med_cap_problema-v1"
+      },
+      {
+        "enunciado": "Tenés 2 L de jugo y vasos de 200 mL. ¿Cuántos vasos completos llenás sin que sobre?",
+        "respuesta_correcta": "10",
+        "opciones": [
+          "11",
+          "9",
+          "10"
+        ],
+        "paso_resuelto": "2 L = 2000 mL.\n2000 ÷ 200 = 10 vasos. Comprobación: 10 × 200 = 2000 mL.",
+        "visual": null,
+        "id": "prof_med_cap_problema-v2"
+      },
+      {
+        "enunciado": "Tenés 0,75 L de jugo y vasos de 250 mL. ¿Cuántos vasos completos llenás sin que sobre?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "2",
+          "3",
+          "4"
+        ],
+        "paso_resuelto": "0,75 L = 750 mL.\n750 ÷ 250 = 3 vasos. Comprobación: 3 × 250 = 750 mL.",
+        "visual": null,
+        "id": "prof_med_cap_problema-v3"
+      },
+      {
+        "enunciado": "Tenés 1,2 L de jugo y vasos de 200 mL. ¿Cuántos vasos completos llenás sin que sobre?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "6",
+          "7",
+          "5"
+        ],
+        "paso_resuelto": "1,2 L = 1200 mL.\n1200 ÷ 200 = 6 vasos. Comprobación: 6 × 200 = 1200 mL.",
+        "visual": null,
+        "id": "prof_med_cap_problema-v4"
+      },
+      {
+        "enunciado": "Tenés 2,5 L de jugo y vasos de 500 mL. ¿Cuántos vasos completos llenás sin que sobre?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "6",
+          "4",
+          "5"
+        ],
+        "paso_resuelto": "2,5 L = 2500 mL.\n2500 ÷ 500 = 5 vasos. Comprobación: 5 × 500 = 2500 mL.",
+        "visual": null,
+        "id": "prof_med_cap_problema-v5"
+      },
+      {
+        "enunciado": "Tenés 3 L de jugo y vasos de 250 mL. ¿Cuántos vasos completos llenás sin que sobre?",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "11",
+          "12",
+          "13"
+        ],
+        "paso_resuelto": "3 L = 3000 mL.\n3000 ÷ 250 = 12 vasos. Comprobación: 12 × 250 = 3000 mL.",
+        "visual": null,
+        "id": "prof_med_cap_problema-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_med_tiempo_resto",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "despues_de": "mat_med_tiempo",
+    "titulo": "Agrupar minutos en horas",
+    "explicacion": "Para escribir minutos como horas y minutos, agrupamos de sesenta. El cociente indica las horas completas y el resto, los minutos que todavía no forman otra hora. No escribimos 90 minutos como 0,90 horas.",
+    "ejemplo": "95 minutos son 1 h y 35 min.",
+    "pasos": [
+      "95 ÷ 60 da 1 hora completa y sobran 35 minutos.",
+      "Comprobamos: 1 × 60 + 35 = 95 minutos."
+    ],
+    "pista": "Cada hora completa reúne 60 minutos; conservá lo que sobra.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Expresá 95 minutos como horas y minutos.",
+        "respuesta_correcta": "1 h 35 min",
+        "opciones": [
+          "1 h 35 min",
+          "0 h 95 min",
+          "1 h 36 min"
+        ],
+        "paso_resuelto": "95 ÷ 60: 1 hora(s) y resto 35 minutos.\n1 × 60 + 35 = 95.",
+        "visual": null,
+        "id": "prof_med_tiempo_resto-v1"
+      },
+      {
+        "enunciado": "Expresá 130 minutos como horas y minutos.",
+        "respuesta_correcta": "2 h 10 min",
+        "opciones": [
+          "1 h 30 min",
+          "2 h 11 min",
+          "2 h 10 min"
+        ],
+        "paso_resuelto": "130 ÷ 60: 2 hora(s) y resto 10 minutos.\n2 × 60 + 10 = 130.",
+        "visual": null,
+        "id": "prof_med_tiempo_resto-v2"
+      },
+      {
+        "enunciado": "Expresá 75 minutos como horas y minutos.",
+        "respuesta_correcta": "1 h 15 min",
+        "opciones": [
+          "1 h 16 min",
+          "1 h 15 min",
+          "0 h 75 min"
+        ],
+        "paso_resuelto": "75 ÷ 60: 1 hora(s) y resto 15 minutos.\n1 × 60 + 15 = 75.",
+        "visual": null,
+        "id": "prof_med_tiempo_resto-v3"
+      },
+      {
+        "enunciado": "Expresá 145 minutos como horas y minutos.",
+        "respuesta_correcta": "2 h 25 min",
+        "opciones": [
+          "2 h 25 min",
+          "1 h 45 min",
+          "2 h 26 min"
+        ],
+        "paso_resuelto": "145 ÷ 60: 2 hora(s) y resto 25 minutos.\n2 × 60 + 25 = 145.",
+        "visual": null,
+        "id": "prof_med_tiempo_resto-v4"
+      },
+      {
+        "enunciado": "Expresá 185 minutos como horas y minutos.",
+        "respuesta_correcta": "3 h 5 min",
+        "opciones": [
+          "1 h 85 min",
+          "3 h 6 min",
+          "3 h 5 min"
+        ],
+        "paso_resuelto": "185 ÷ 60: 3 hora(s) y resto 5 minutos.\n3 × 60 + 5 = 185.",
+        "visual": null,
+        "id": "prof_med_tiempo_resto-v5"
+      },
+      {
+        "enunciado": "Expresá 250 minutos como horas y minutos.",
+        "respuesta_correcta": "4 h 10 min",
+        "opciones": [
+          "4 h 11 min",
+          "4 h 10 min",
+          "2 h 50 min"
+        ],
+        "paso_resuelto": "250 ÷ 60: 4 hora(s) y resto 10 minutos.\n4 × 60 + 10 = 250.",
+        "visual": null,
+        "id": "prof_med_tiempo_resto-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_med_tiempo_duracion",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "despues_de": "prof_med_tiempo_resto",
+    "titulo": "Cuánto dura una actividad",
+    "explicacion": "Para hallar una duración dentro del mismo día, podemos avanzar desde la hora de inicio hasta la siguiente hora y después hasta el final. Sumamos los dos tramos en minutos. Esta cuenta usa 60 minutos por hora.",
+    "ejemplo": "Una actividad de 14:40 a 15:15 dura 35 minutos.",
+    "pasos": [
+      "De 14:40 a 15:00 pasan 60 − 40 = 20 minutos.",
+      "De 15:00 a 15:15 pasan 15 minutos: 20 + 15 = 35 minutos."
+    ],
+    "pista": "Partí el recorrido en la hora en punto y sumá los minutos.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Una actividad empieza a las 14:40 y termina a las 15:15 del mismo día. ¿Cuántos minutos dura?",
+        "respuesta_correcta": "35",
+        "opciones": [
+          "35",
+          "75",
+          "45"
+        ],
+        "paso_resuelto": "Hasta las 15:00: 60 − 40 = 20 minutos.\nDespués pasan 15 minutos más: 20 + 15 = 35 minutos.",
+        "visual": null,
+        "id": "prof_med_tiempo_duracion-v1"
+      },
+      {
+        "enunciado": "Una actividad empieza a las 09:50 y termina a las 10:20 del mismo día. ¿Cuántos minutos dura?",
+        "respuesta_correcta": "30",
+        "opciones": [
+          "70",
+          "40",
+          "30"
+        ],
+        "paso_resuelto": "Hasta las 10:00: 60 − 50 = 10 minutos.\nDespués pasan 20 minutos más: 10 + 20 = 30 minutos.",
+        "visual": null,
+        "id": "prof_med_tiempo_duracion-v2"
+      },
+      {
+        "enunciado": "Una actividad empieza a las 16:35 y termina a las 17:10 del mismo día. ¿Cuántos minutos dura?",
+        "respuesta_correcta": "35",
+        "opciones": [
+          "45",
+          "35",
+          "75"
+        ],
+        "paso_resuelto": "Hasta las 17:00: 60 − 35 = 25 minutos.\nDespués pasan 10 minutos más: 25 + 10 = 35 minutos.",
+        "visual": null,
+        "id": "prof_med_tiempo_duracion-v3"
+      },
+      {
+        "enunciado": "Una actividad empieza a las 11:45 y termina a las 12:05 del mismo día. ¿Cuántos minutos dura?",
+        "respuesta_correcta": "20",
+        "opciones": [
+          "20",
+          "60",
+          "30"
+        ],
+        "paso_resuelto": "Hasta las 12:00: 60 − 45 = 15 minutos.\nDespués pasan 5 minutos más: 15 + 5 = 20 minutos.",
+        "visual": null,
+        "id": "prof_med_tiempo_duracion-v4"
+      },
+      {
+        "enunciado": "Una actividad empieza a las 18:20 y termina a las 19:25 del mismo día. ¿Cuántos minutos dura?",
+        "respuesta_correcta": "65",
+        "opciones": [
+          "105",
+          "75",
+          "65"
+        ],
+        "paso_resuelto": "Hasta las 19:00: 60 − 20 = 40 minutos.\nDespués pasan 25 minutos más: 40 + 25 = 65 minutos.",
+        "visual": null,
+        "id": "prof_med_tiempo_duracion-v5"
+      },
+      {
+        "enunciado": "Una actividad empieza a las 08:55 y termina a las 09:15 del mismo día. ¿Cuántos minutos dura?",
+        "respuesta_correcta": "20",
+        "opciones": [
+          "30",
+          "20",
+          "60"
+        ],
+        "paso_resuelto": "Hasta las 09:00: 60 − 55 = 5 minutos.\nDespués pasan 15 minutos más: 5 + 15 = 20 minutos.",
+        "visual": null,
+        "id": "prof_med_tiempo_duracion-v6"
+      }
+    ]
+  }
+];
+for (const unidad of MEDIDAS_R12) {
+ const indice = UNIDADES_BASES.findIndex(u => u.id === unidad.despues_de);
+ if (indice < 0) throw new Error('Falta el paso anterior de ' + unidad.id);
+ UNIDADES_BASES.splice(indice + 1, 0, unidad);
+}
+// FIN R12
+
 export const TEMAS_BASES = [...new Set(UNIDADES_BASES.map(u => u.tema))];
 export function getUnidadBase(id) { return UNIDADES_BASES.find(u => u.id === id) || null; }
 export function crearActividadBase(id, modo, sesiones = []) {

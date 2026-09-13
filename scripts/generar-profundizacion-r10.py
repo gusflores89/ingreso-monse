@@ -50,5 +50,5 @@ for (const unidad of PROFUNDIZACION) {
  UNIDADES_BASES.splice(indice + 1, 0, unidad);
 }
 '''+end+'\n\n'
-i=s.index('// R11: decimales paso a paso.') if '// R11: decimales paso a paso.' in s else s.index('export const TEMAS_BASES');s=s[:i]+code+s[i:];p.write_text(s,encoding='utf-8')
+i=min(s.index(m) for m in ['// R11: decimales paso a paso.','// R12: medidas paso a paso.','export const TEMAS_BASES'] if m in s);s=s[:i]+code+s[i:];p.write_text(s,encoding='utf-8')
 print(len(U),'unidades nuevas;',len(U)*6,'actividades')

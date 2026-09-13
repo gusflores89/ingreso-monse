@@ -2598,6 +2598,7 @@ function extraerTodosLosNumeros(texto) {
 
 function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRespuesta, onRespuestaTexto, onSubmit, visualParaEjercicio, onSwitchTopic, onOpenTheory, onForzarPractica }) {
   const cierreGuiado = pregunta.contenido_version === VERSION_BASES;
+  const tituloTema = { si_me_la_longitud: "Medidas de longitud", si_me_la_masa_capacidad_tiempo: "Masa, capacidad y tiempo" }[tema] || tema.replace(/_/g, " ");
   const tienePreguntas = pregunta.preguntas?.length > 0;
   const puedeEnviar = tienePreguntas
     ? pregunta.preguntas.every((item) => String(respuestas[item.id] || "").trim())
@@ -2607,7 +2608,7 @@ function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRe
     <div className="exam-final-shell">
       <section className="exam-banner">
         <p className="eyebrow">{cierreGuiado ? "Cierre de aprendizaje" : "Examen Final de Evaluación"}</p>
-        <h2>{tema.replace(/_/g, " ")}</h2>
+        <h2>{tituloTema}</h2>
         <p>{parseInlineMarkdown(pregunta.instrucciones)}</p>
 
         {/* Barra de opciones de estudio y repaso */}
