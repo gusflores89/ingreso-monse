@@ -3195,6 +3195,4713 @@ export const UNIDADES_BASES = [
   }
 ];
 
+// R9: fundamentos adicionales de Matemática.
+UNIDADES_BASES.push(...[
+  {
+    "id": "mat_num_decenas",
+    "tema": "numeros_naturales_sistema_decimal",
+    "titulo": "Diez unidades forman una decena",
+    "explicacion": "Podemos contar objetos formando paquetes de diez. Cada paquete es una decena. Los objetos que no completan un paquete quedan como unidades.",
+    "ejemplo": "23 fichas son 2 decenas y 3 unidades.",
+    "pasos": [
+      "Formamos dos paquetes de diez: 20 fichas.",
+      "Quedan 3 fichas sueltas: 20 + 3 = 23."
+    ],
+    "pista": "Separá los paquetes completos de las unidades sueltas.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Tenés 23 fichas. ¿Cuántas decenas completas podés formar?",
+        "respuesta_correcta": "2",
+        "opciones": [
+          "2",
+          "3",
+          "23"
+        ],
+        "paso_resuelto": "Formamos 2 paquetes de 10; quedan 3 fichas sueltas.",
+        "visual": null,
+        "id": "mat_num_decenas-v1"
+      },
+      {
+        "enunciado": "Tenés 34 fichas. ¿Cuántas decenas completas podés formar?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "4",
+          "34",
+          "3"
+        ],
+        "paso_resuelto": "Formamos 3 paquetes de 10; quedan 4 fichas sueltas.",
+        "visual": null,
+        "id": "mat_num_decenas-v2"
+      },
+      {
+        "enunciado": "Tenés 45 fichas. ¿Cuántas decenas completas podés formar?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "45",
+          "4",
+          "5"
+        ],
+        "paso_resuelto": "Formamos 4 paquetes de 10; quedan 5 fichas sueltas.",
+        "visual": null,
+        "id": "mat_num_decenas-v3"
+      },
+      {
+        "enunciado": "Tenés 56 fichas. ¿Cuántas decenas completas podés formar?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "5",
+          "6",
+          "56"
+        ],
+        "paso_resuelto": "Formamos 5 paquetes de 10; quedan 6 fichas sueltas.",
+        "visual": null,
+        "id": "mat_num_decenas-v4"
+      },
+      {
+        "enunciado": "Tenés 67 fichas. ¿Cuántas decenas completas podés formar?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "7",
+          "67",
+          "6"
+        ],
+        "paso_resuelto": "Formamos 6 paquetes de 10; quedan 7 fichas sueltas.",
+        "visual": null,
+        "id": "mat_num_decenas-v5"
+      },
+      {
+        "enunciado": "Tenés 78 fichas. ¿Cuántas decenas completas podés formar?",
+        "respuesta_correcta": "7",
+        "opciones": [
+          "78",
+          "7",
+          "8"
+        ],
+        "paso_resuelto": "Formamos 7 paquetes de 10; quedan 8 fichas sueltas.",
+        "visual": null,
+        "id": "mat_num_decenas-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_num_posicion",
+    "tema": "numeros_naturales_sistema_decimal",
+    "titulo": "El lugar de cada cifra",
+    "explicacion": "De derecha a izquierda están unidades, decenas y centenas. Un cero conserva un lugar vacío. En 304 hay 3 centenas, ninguna decena y 4 unidades.",
+    "ejemplo": "En 352, el 5 vale 50 porque ocupa las decenas.",
+    "pasos": [
+      "Leemos 3 centenas, 5 decenas y 2 unidades.",
+      "Descomponemos: 300 + 50 + 2 = 352."
+    ],
+    "pista": "Contá las posiciones desde la derecha.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "En 352, ¿cuánto vale la cifra 5 de las decenas?",
+        "respuesta_correcta": "50",
+        "opciones": [
+          "50",
+          "5",
+          "500",
+          "100"
+        ],
+        "paso_resuelto": "Hay 5 decenas: 5 × 10 = 50.",
+        "visual": null,
+        "id": "mat_num_posicion-v1"
+      },
+      {
+        "enunciado": "En 426, ¿cuánto vale la cifra 2 de las decenas?",
+        "respuesta_correcta": "20",
+        "opciones": [
+          "2",
+          "200",
+          "100",
+          "20"
+        ],
+        "paso_resuelto": "Hay 2 decenas: 2 × 10 = 20.",
+        "visual": null,
+        "id": "mat_num_posicion-v2"
+      },
+      {
+        "enunciado": "En 571, ¿cuánto vale la cifra 7 de las decenas?",
+        "respuesta_correcta": "70",
+        "opciones": [
+          "700",
+          "100",
+          "70",
+          "7"
+        ],
+        "paso_resuelto": "Hay 7 decenas: 7 × 10 = 70.",
+        "visual": null,
+        "id": "mat_num_posicion-v3"
+      },
+      {
+        "enunciado": "En 683, ¿cuánto vale la cifra 8 de las decenas?",
+        "respuesta_correcta": "80",
+        "opciones": [
+          "100",
+          "80",
+          "8",
+          "800"
+        ],
+        "paso_resuelto": "Hay 8 decenas: 8 × 10 = 80.",
+        "visual": null,
+        "id": "mat_num_posicion-v4"
+      },
+      {
+        "enunciado": "En 794, ¿cuánto vale la cifra 9 de las decenas?",
+        "respuesta_correcta": "90",
+        "opciones": [
+          "90",
+          "9",
+          "900",
+          "100"
+        ],
+        "paso_resuelto": "Hay 9 decenas: 9 × 10 = 90.",
+        "visual": null,
+        "id": "mat_num_posicion-v5"
+      },
+      {
+        "enunciado": "En 208, ¿cuánto vale la cifra 0 de las decenas?",
+        "respuesta_correcta": "0",
+        "opciones": [
+          "100",
+          "0"
+        ],
+        "paso_resuelto": "Hay 0 decenas: 0 × 10 = 0.",
+        "visual": null,
+        "id": "mat_num_posicion-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_num_orden",
+    "tema": "numeros_naturales_sistema_decimal",
+    "titulo": "Comparar desde el lugar más grande",
+    "explicacion": "Para comparar números naturales, miramos primero cuántas cifras tienen. Con igual cantidad de cifras, comparamos desde la izquierda. Si son iguales, seguimos a la siguiente posición.",
+    "ejemplo": "418 es mayor que 391.",
+    "pasos": [
+      "Ambos tienen tres cifras.",
+      "418 tiene 4 centenas y 391 tiene 3: elegimos 418."
+    ],
+    "pista": "Compará centenas antes que decenas y unidades.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "¿Cuál es mayor: 418 o 391?",
+        "respuesta_correcta": "418",
+        "opciones": [
+          "418",
+          "391"
+        ],
+        "paso_resuelto": "Al comparar de izquierda a derecha, 418 es mayor que 391.",
+        "visual": null,
+        "id": "mat_num_orden-v1"
+      },
+      {
+        "enunciado": "¿Cuál es mayor: 507 o 570?",
+        "respuesta_correcta": "570",
+        "opciones": [
+          "507",
+          "570"
+        ],
+        "paso_resuelto": "Al comparar de izquierda a derecha, 570 es mayor que 507.",
+        "visual": null,
+        "id": "mat_num_orden-v2"
+      },
+      {
+        "enunciado": "¿Cuál es mayor: 632 o 623?",
+        "respuesta_correcta": "632",
+        "opciones": [
+          "632",
+          "623"
+        ],
+        "paso_resuelto": "Al comparar de izquierda a derecha, 632 es mayor que 623.",
+        "visual": null,
+        "id": "mat_num_orden-v3"
+      },
+      {
+        "enunciado": "¿Cuál es mayor: 804 o 480?",
+        "respuesta_correcta": "804",
+        "opciones": [
+          "480",
+          "804"
+        ],
+        "paso_resuelto": "Al comparar de izquierda a derecha, 804 es mayor que 480.",
+        "visual": null,
+        "id": "mat_num_orden-v4"
+      },
+      {
+        "enunciado": "¿Cuál es mayor: 109 o 190?",
+        "respuesta_correcta": "190",
+        "opciones": [
+          "190",
+          "109"
+        ],
+        "paso_resuelto": "Al comparar de izquierda a derecha, 190 es mayor que 109.",
+        "visual": null,
+        "id": "mat_num_orden-v5"
+      },
+      {
+        "enunciado": "¿Cuál es mayor: 725 o 752?",
+        "respuesta_correcta": "752",
+        "opciones": [
+          "725",
+          "752"
+        ],
+        "paso_resuelto": "Al comparar de izquierda a derecha, 752 es mayor que 725.",
+        "visual": null,
+        "id": "mat_num_orden-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_num_suma",
+    "tema": "numeros_naturales_sistema_decimal",
+    "titulo": "Sumar y reagrupar",
+    "explicacion": "Sumar reúne cantidades. Alineamos unidades con unidades y decenas con decenas. Si juntamos diez unidades, las cambiamos por una decena.",
+    "ejemplo": "27 + 15 = 42.",
+    "pasos": [
+      "7 + 5 = 12: una decena y 2 unidades.",
+      "2 + 1 + 1 decenas = 4 decenas; quedan 42."
+    ],
+    "pista": "Si las unidades llegan a diez, llevá una decena.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Tenés 27 fichas y recibís 15. ¿Cuántas tenés ahora?",
+        "respuesta_correcta": "42",
+        "opciones": [
+          "42",
+          "43",
+          "52"
+        ],
+        "paso_resuelto": "Unidades: 7 + 5 = 12.\nSumamos también las decenas: 27 + 15 = 42.",
+        "visual": null,
+        "id": "mat_num_suma-v1"
+      },
+      {
+        "enunciado": "Tenés 36 fichas y recibís 18. ¿Cuántas tenés ahora?",
+        "respuesta_correcta": "54",
+        "opciones": [
+          "55",
+          "64",
+          "54"
+        ],
+        "paso_resuelto": "Unidades: 6 + 8 = 14.\nSumamos también las decenas: 36 + 18 = 54.",
+        "visual": null,
+        "id": "mat_num_suma-v2"
+      },
+      {
+        "enunciado": "Tenés 48 fichas y recibís 24. ¿Cuántas tenés ahora?",
+        "respuesta_correcta": "72",
+        "opciones": [
+          "82",
+          "72",
+          "73"
+        ],
+        "paso_resuelto": "Unidades: 8 + 4 = 12.\nSumamos también las decenas: 48 + 24 = 72.",
+        "visual": null,
+        "id": "mat_num_suma-v3"
+      },
+      {
+        "enunciado": "Tenés 56 fichas y recibís 27. ¿Cuántas tenés ahora?",
+        "respuesta_correcta": "83",
+        "opciones": [
+          "83",
+          "84",
+          "93"
+        ],
+        "paso_resuelto": "Unidades: 6 + 7 = 13.\nSumamos también las decenas: 56 + 27 = 83.",
+        "visual": null,
+        "id": "mat_num_suma-v4"
+      },
+      {
+        "enunciado": "Tenés 19 fichas y recibís 34. ¿Cuántas tenés ahora?",
+        "respuesta_correcta": "53",
+        "opciones": [
+          "54",
+          "63",
+          "53"
+        ],
+        "paso_resuelto": "Unidades: 9 + 4 = 13.\nSumamos también las decenas: 19 + 34 = 53.",
+        "visual": null,
+        "id": "mat_num_suma-v5"
+      },
+      {
+        "enunciado": "Tenés 65 fichas y recibís 28. ¿Cuántas tenés ahora?",
+        "respuesta_correcta": "93",
+        "opciones": [
+          "103",
+          "93",
+          "94"
+        ],
+        "paso_resuelto": "Unidades: 5 + 8 = 13.\nSumamos también las decenas: 65 + 28 = 93.",
+        "visual": null,
+        "id": "mat_num_suma-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_num_resta",
+    "tema": "numeros_naturales_sistema_decimal",
+    "titulo": "Restar y comprobar",
+    "explicacion": "Restar permite saber cuánto queda. Si faltan unidades para quitar, cambiamos una decena por diez unidades. Podemos comprobar sumando lo que quitamos a lo que quedó.",
+    "ejemplo": "42 − 17 = 25.",
+    "pasos": [
+      "42 son también 3 decenas y 12 unidades.",
+      "12 − 7 = 5 y 3 − 1 = 2 decenas. Comprobamos: 25 + 17 = 42."
+    ],
+    "pista": "Podés cambiar una decena por diez unidades.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Había 42 fichas y usaste 17. ¿Cuántas quedan?",
+        "respuesta_correcta": "25",
+        "opciones": [
+          "25",
+          "26",
+          "35"
+        ],
+        "paso_resuelto": "Cambiamos una decena: 3 decenas y 12 unidades.\n42 − 17 = 25. Comprobamos: 25 + 17 = 42.",
+        "visual": null,
+        "id": "mat_num_resta-v1"
+      },
+      {
+        "enunciado": "Había 53 fichas y usaste 28. ¿Cuántas quedan?",
+        "respuesta_correcta": "25",
+        "opciones": [
+          "26",
+          "35",
+          "25"
+        ],
+        "paso_resuelto": "Cambiamos una decena: 4 decenas y 13 unidades.\n53 − 28 = 25. Comprobamos: 25 + 28 = 53.",
+        "visual": null,
+        "id": "mat_num_resta-v2"
+      },
+      {
+        "enunciado": "Había 61 fichas y usaste 36. ¿Cuántas quedan?",
+        "respuesta_correcta": "25",
+        "opciones": [
+          "35",
+          "25",
+          "26"
+        ],
+        "paso_resuelto": "Cambiamos una decena: 5 decenas y 11 unidades.\n61 − 36 = 25. Comprobamos: 25 + 36 = 61.",
+        "visual": null,
+        "id": "mat_num_resta-v3"
+      },
+      {
+        "enunciado": "Había 74 fichas y usaste 49. ¿Cuántas quedan?",
+        "respuesta_correcta": "25",
+        "opciones": [
+          "25",
+          "26",
+          "35"
+        ],
+        "paso_resuelto": "Cambiamos una decena: 6 decenas y 14 unidades.\n74 − 49 = 25. Comprobamos: 25 + 49 = 74.",
+        "visual": null,
+        "id": "mat_num_resta-v4"
+      },
+      {
+        "enunciado": "Había 82 fichas y usaste 57. ¿Cuántas quedan?",
+        "respuesta_correcta": "25",
+        "opciones": [
+          "26",
+          "35",
+          "25"
+        ],
+        "paso_resuelto": "Cambiamos una decena: 7 decenas y 12 unidades.\n82 − 57 = 25. Comprobamos: 25 + 57 = 82.",
+        "visual": null,
+        "id": "mat_num_resta-v5"
+      },
+      {
+        "enunciado": "Había 95 fichas y usaste 68. ¿Cuántas quedan?",
+        "respuesta_correcta": "27",
+        "opciones": [
+          "37",
+          "27",
+          "28"
+        ],
+        "paso_resuelto": "Cambiamos una decena: 8 decenas y 15 unidades.\n95 − 68 = 27. Comprobamos: 27 + 68 = 95.",
+        "visual": null,
+        "id": "mat_num_resta-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_tab_grupos",
+    "tema": "tablas_multiplicar_2_5",
+    "titulo": "Multiplicar cuenta grupos iguales",
+    "explicacion": "Una multiplicación abrevia una suma repetida. En 3 × 4 tenemos tres grupos de cuatro. Los números que multiplicamos se llaman factores y el resultado es el producto.",
+    "ejemplo": "3 platos con 4 galletitas suman 12.",
+    "pasos": [
+      "Sumamos 4 + 4 + 4.",
+      "Escribimos 3 × 4 = 12."
+    ],
+    "pista": "Contá los grupos y cuánto hay en cada uno.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Hay 3 platos con 4 galletitas en cada uno. ¿Cuántas hay en total?",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "12",
+          "7",
+          "16"
+        ],
+        "paso_resuelto": "4 + 4 + 4 = 12. Son 3 × 4.",
+        "visual": null,
+        "id": "mat_tab_grupos-v1"
+      },
+      {
+        "enunciado": "Hay 2 platos con 5 galletitas en cada uno. ¿Cuántas hay en total?",
+        "respuesta_correcta": "10",
+        "opciones": [
+          "7",
+          "15",
+          "10"
+        ],
+        "paso_resuelto": "5 + 5 = 10. Son 2 × 5.",
+        "visual": null,
+        "id": "mat_tab_grupos-v2"
+      },
+      {
+        "enunciado": "Hay 4 platos con 3 galletitas en cada uno. ¿Cuántas hay en total?",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "15",
+          "12",
+          "7"
+        ],
+        "paso_resuelto": "3 + 3 + 3 + 3 = 12. Son 4 × 3.",
+        "visual": null,
+        "id": "mat_tab_grupos-v3"
+      },
+      {
+        "enunciado": "Hay 5 platos con 4 galletitas en cada uno. ¿Cuántas hay en total?",
+        "respuesta_correcta": "20",
+        "opciones": [
+          "20",
+          "9",
+          "24"
+        ],
+        "paso_resuelto": "4 + 4 + 4 + 4 + 4 = 20. Son 5 × 4.",
+        "visual": null,
+        "id": "mat_tab_grupos-v4"
+      },
+      {
+        "enunciado": "Hay 3 platos con 5 galletitas en cada uno. ¿Cuántas hay en total?",
+        "respuesta_correcta": "15",
+        "opciones": [
+          "8",
+          "20",
+          "15"
+        ],
+        "paso_resuelto": "5 + 5 + 5 = 15. Son 3 × 5.",
+        "visual": null,
+        "id": "mat_tab_grupos-v5"
+      },
+      {
+        "enunciado": "Hay 4 platos con 5 galletitas en cada uno. ¿Cuántas hay en total?",
+        "respuesta_correcta": "20",
+        "opciones": [
+          "25",
+          "20",
+          "9"
+        ],
+        "paso_resuelto": "5 + 5 + 5 + 5 = 20. Son 4 × 5.",
+        "visual": null,
+        "id": "mat_tab_grupos-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_tab_dobles",
+    "tema": "tablas_multiplicar_2_5",
+    "titulo": "Dobles y el orden de los factores",
+    "explicacion": "El doble es dos veces una cantidad. Para multiplicar por cuatro podemos hacer el doble del doble. Cambiar el orden de los factores conserva el total: 3 × 4 = 4 × 3.",
+    "ejemplo": "4 × 3 = 12.",
+    "pasos": [
+      "El doble de 3 es 6.",
+      "El doble de 6 es 12: cuatro veces 3."
+    ],
+    "pista": "Calculá un doble y después otro doble.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Calculá 4 × 3 usando dobles.",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "12",
+          "13",
+          "22"
+        ],
+        "paso_resuelto": "El doble de 3 es 6.\nEl doble de 6 es 12.",
+        "visual": null,
+        "id": "mat_tab_dobles-v1"
+      },
+      {
+        "enunciado": "Calculá 4 × 4 usando dobles.",
+        "respuesta_correcta": "16",
+        "opciones": [
+          "17",
+          "26",
+          "16"
+        ],
+        "paso_resuelto": "El doble de 4 es 8.\nEl doble de 8 es 16.",
+        "visual": null,
+        "id": "mat_tab_dobles-v2"
+      },
+      {
+        "enunciado": "Calculá 4 × 5 usando dobles.",
+        "respuesta_correcta": "20",
+        "opciones": [
+          "30",
+          "20",
+          "21"
+        ],
+        "paso_resuelto": "El doble de 5 es 10.\nEl doble de 10 es 20.",
+        "visual": null,
+        "id": "mat_tab_dobles-v3"
+      },
+      {
+        "enunciado": "Calculá 4 × 6 usando dobles.",
+        "respuesta_correcta": "24",
+        "opciones": [
+          "24",
+          "25",
+          "34"
+        ],
+        "paso_resuelto": "El doble de 6 es 12.\nEl doble de 12 es 24.",
+        "visual": null,
+        "id": "mat_tab_dobles-v4"
+      },
+      {
+        "enunciado": "Calculá 4 × 7 usando dobles.",
+        "respuesta_correcta": "28",
+        "opciones": [
+          "29",
+          "38",
+          "28"
+        ],
+        "paso_resuelto": "El doble de 7 es 14.\nEl doble de 14 es 28.",
+        "visual": null,
+        "id": "mat_tab_dobles-v5"
+      },
+      {
+        "enunciado": "Calculá 4 × 8 usando dobles.",
+        "respuesta_correcta": "32",
+        "opciones": [
+          "42",
+          "32",
+          "33"
+        ],
+        "paso_resuelto": "El doble de 8 es 16.\nEl doble de 16 es 32.",
+        "visual": null,
+        "id": "mat_tab_dobles-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_tab_cinco",
+    "tema": "tablas_multiplicar_2_5",
+    "titulo": "Contar de cinco en cinco",
+    "explicacion": "Cada grupo nuevo de cinco suma cinco al total. Los resultados de la tabla del cinco terminan en 0 o 5. Este patrón ayuda a comprobar, pero para saber el total contamos los grupos.",
+    "ejemplo": "5 × 4 = 20.",
+    "pasos": [
+      "Contamos cuatro saltos: 5, 10, 15, 20.",
+      "Son cuatro grupos de cinco: 20."
+    ],
+    "pista": "Contá los saltos, además de mirar la última cifra.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "¿Cuánto es 5 × 4?",
+        "respuesta_correcta": "20",
+        "opciones": [
+          "20",
+          "21",
+          "30"
+        ],
+        "paso_resuelto": "5, 10, 15, 20: 4 grupos dan 20.",
+        "visual": null,
+        "id": "mat_tab_cinco-v1"
+      },
+      {
+        "enunciado": "¿Cuánto es 5 × 3?",
+        "respuesta_correcta": "15",
+        "opciones": [
+          "16",
+          "25",
+          "15"
+        ],
+        "paso_resuelto": "5, 10, 15: 3 grupos dan 15.",
+        "visual": null,
+        "id": "mat_tab_cinco-v2"
+      },
+      {
+        "enunciado": "¿Cuánto es 5 × 6?",
+        "respuesta_correcta": "30",
+        "opciones": [
+          "40",
+          "30",
+          "31"
+        ],
+        "paso_resuelto": "5, 10, 15, 20, 25, 30: 6 grupos dan 30.",
+        "visual": null,
+        "id": "mat_tab_cinco-v3"
+      },
+      {
+        "enunciado": "¿Cuánto es 5 × 7?",
+        "respuesta_correcta": "35",
+        "opciones": [
+          "35",
+          "36",
+          "45"
+        ],
+        "paso_resuelto": "5, 10, 15, 20, 25, 30, 35: 7 grupos dan 35.",
+        "visual": null,
+        "id": "mat_tab_cinco-v4"
+      },
+      {
+        "enunciado": "¿Cuánto es 5 × 8?",
+        "respuesta_correcta": "40",
+        "opciones": [
+          "41",
+          "50",
+          "40"
+        ],
+        "paso_resuelto": "5, 10, 15, 20, 25, 30, 35, 40: 8 grupos dan 40.",
+        "visual": null,
+        "id": "mat_tab_cinco-v5"
+      },
+      {
+        "enunciado": "¿Cuánto es 5 × 9?",
+        "respuesta_correcta": "45",
+        "opciones": [
+          "55",
+          "45",
+          "46"
+        ],
+        "paso_resuelto": "5, 10, 15, 20, 25, 30, 35, 40, 45: 9 grupos dan 45.",
+        "visual": null,
+        "id": "mat_tab_cinco-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_tab_seis_ocho",
+    "tema": "tablas_multiplicar_6_8",
+    "titulo": "Construir las tablas del seis y del ocho",
+    "explicacion": "Para multiplicar por seis duplicamos el resultado de multiplicar por tres. Para multiplicar por ocho duplicamos el resultado de multiplicar por cuatro. Podés escribir los pasos.",
+    "ejemplo": "8 × 5 = 40.",
+    "pasos": [
+      "4 × 5 = 20.",
+      "Duplicamos: 20 + 20 = 40."
+    ],
+    "pista": "Buscá primero la tabla de la mitad del factor.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Calculá 8 × 5 con un doble.",
+        "respuesta_correcta": "40",
+        "opciones": [
+          "40",
+          "41",
+          "50"
+        ],
+        "paso_resuelto": "4 × 5 = 20.\nSu doble es 40.",
+        "visual": null,
+        "id": "mat_tab_seis_ocho-v1"
+      },
+      {
+        "enunciado": "Calculá 6 × 4 con un doble.",
+        "respuesta_correcta": "24",
+        "opciones": [
+          "25",
+          "34",
+          "24"
+        ],
+        "paso_resuelto": "3 × 4 = 12.\nSu doble es 24.",
+        "visual": null,
+        "id": "mat_tab_seis_ocho-v2"
+      },
+      {
+        "enunciado": "Calculá 8 × 3 con un doble.",
+        "respuesta_correcta": "24",
+        "opciones": [
+          "34",
+          "24",
+          "25"
+        ],
+        "paso_resuelto": "4 × 3 = 12.\nSu doble es 24.",
+        "visual": null,
+        "id": "mat_tab_seis_ocho-v3"
+      },
+      {
+        "enunciado": "Calculá 6 × 7 con un doble.",
+        "respuesta_correcta": "42",
+        "opciones": [
+          "42",
+          "43",
+          "52"
+        ],
+        "paso_resuelto": "3 × 7 = 21.\nSu doble es 42.",
+        "visual": null,
+        "id": "mat_tab_seis_ocho-v4"
+      },
+      {
+        "enunciado": "Calculá 8 × 6 con un doble.",
+        "respuesta_correcta": "48",
+        "opciones": [
+          "49",
+          "58",
+          "48"
+        ],
+        "paso_resuelto": "4 × 6 = 24.\nSu doble es 48.",
+        "visual": null,
+        "id": "mat_tab_seis_ocho-v5"
+      },
+      {
+        "enunciado": "Calculá 6 × 8 con un doble.",
+        "respuesta_correcta": "48",
+        "opciones": [
+          "58",
+          "48",
+          "49"
+        ],
+        "paso_resuelto": "3 × 8 = 24.\nSu doble es 48.",
+        "visual": null,
+        "id": "mat_tab_seis_ocho-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_tab_siete",
+    "tema": "tablas_multiplicar_6_8",
+    "titulo": "Siete grupos: cinco más dos",
+    "explicacion": "Podemos separar siete grupos en cinco grupos y dos grupos. Multiplicamos cada parte por la misma cantidad y sumamos los resultados.",
+    "ejemplo": "7 × 6 = 42.",
+    "pasos": [
+      "5 × 6 = 30 y 2 × 6 = 12.",
+      "Sumamos 30 + 12 = 42."
+    ],
+    "pista": "Separá 7 en 5 + 2 sin cambiar el otro factor.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Calculá 7 × 6.",
+        "respuesta_correcta": "42",
+        "opciones": [
+          "42",
+          "43",
+          "52"
+        ],
+        "paso_resuelto": "5 × 6 = 30; 2 × 6 = 12.\n30 + 12 = 42.",
+        "visual": null,
+        "id": "mat_tab_siete-v1"
+      },
+      {
+        "enunciado": "Calculá 7 × 3.",
+        "respuesta_correcta": "21",
+        "opciones": [
+          "22",
+          "31",
+          "21"
+        ],
+        "paso_resuelto": "5 × 3 = 15; 2 × 3 = 6.\n15 + 6 = 21.",
+        "visual": null,
+        "id": "mat_tab_siete-v2"
+      },
+      {
+        "enunciado": "Calculá 7 × 4.",
+        "respuesta_correcta": "28",
+        "opciones": [
+          "38",
+          "28",
+          "29"
+        ],
+        "paso_resuelto": "5 × 4 = 20; 2 × 4 = 8.\n20 + 8 = 28.",
+        "visual": null,
+        "id": "mat_tab_siete-v3"
+      },
+      {
+        "enunciado": "Calculá 7 × 5.",
+        "respuesta_correcta": "35",
+        "opciones": [
+          "35",
+          "36",
+          "45"
+        ],
+        "paso_resuelto": "5 × 5 = 25; 2 × 5 = 10.\n25 + 10 = 35.",
+        "visual": null,
+        "id": "mat_tab_siete-v4"
+      },
+      {
+        "enunciado": "Calculá 7 × 7.",
+        "respuesta_correcta": "49",
+        "opciones": [
+          "50",
+          "59",
+          "49"
+        ],
+        "paso_resuelto": "5 × 7 = 35; 2 × 7 = 14.\n35 + 14 = 49.",
+        "visual": null,
+        "id": "mat_tab_siete-v5"
+      },
+      {
+        "enunciado": "Calculá 7 × 8.",
+        "respuesta_correcta": "56",
+        "opciones": [
+          "66",
+          "56",
+          "57"
+        ],
+        "paso_resuelto": "5 × 8 = 40; 2 × 8 = 16.\n40 + 16 = 56.",
+        "visual": null,
+        "id": "mat_tab_siete-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_tab_diez",
+    "tema": "tablas_multiplicar_9_10",
+    "titulo": "Multiplicar por diez cambia el valor",
+    "explicacion": "Al multiplicar un natural por diez, cada unidad pasa a valer una decena. Escribimos un cero a la derecha. Por cien, cada unidad pasa a valer una centena.",
+    "ejemplo": "23 × 10 = 230.",
+    "pasos": [
+      "23 grupos de diez son 23 decenas.",
+      "23 decenas equivalen a 230 unidades."
+    ],
+    "pista": "Pensá en decenas para × 10 y centenas para × 100.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "¿Cuánto es 23 × 10?",
+        "respuesta_correcta": "230",
+        "opciones": [
+          "230",
+          "33",
+          "23"
+        ],
+        "paso_resuelto": "23 grupos de 10 dan 230.",
+        "visual": null,
+        "id": "mat_tab_diez-v1"
+      },
+      {
+        "enunciado": "¿Cuánto es 14 × 10?",
+        "respuesta_correcta": "140",
+        "opciones": [
+          "24",
+          "14",
+          "140"
+        ],
+        "paso_resuelto": "14 grupos de 10 dan 140.",
+        "visual": null,
+        "id": "mat_tab_diez-v2"
+      },
+      {
+        "enunciado": "¿Cuánto es 32 × 100?",
+        "respuesta_correcta": "3200",
+        "opciones": [
+          "320",
+          "3200",
+          "132"
+        ],
+        "paso_resuelto": "32 grupos de 100 dan 3200.",
+        "visual": null,
+        "id": "mat_tab_diez-v3"
+      },
+      {
+        "enunciado": "¿Cuánto es 7 × 100?",
+        "respuesta_correcta": "700",
+        "opciones": [
+          "700",
+          "107",
+          "70"
+        ],
+        "paso_resuelto": "7 grupos de 100 dan 700.",
+        "visual": null,
+        "id": "mat_tab_diez-v4"
+      },
+      {
+        "enunciado": "¿Cuánto es 45 × 10?",
+        "respuesta_correcta": "450",
+        "opciones": [
+          "55",
+          "45",
+          "450"
+        ],
+        "paso_resuelto": "45 grupos de 10 dan 450.",
+        "visual": null,
+        "id": "mat_tab_diez-v5"
+      },
+      {
+        "enunciado": "¿Cuánto es 16 × 100?",
+        "respuesta_correcta": "1600",
+        "opciones": [
+          "160",
+          "1600",
+          "116"
+        ],
+        "paso_resuelto": "16 grupos de 100 dan 1600.",
+        "visual": null,
+        "id": "mat_tab_diez-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_tab_nueve",
+    "tema": "tablas_multiplicar_9_10",
+    "titulo": "Nueve veces: diez veces menos una",
+    "explicacion": "Nueve grupos son diez grupos menos un grupo. Para calcular 9 × 6 hacemos 10 × 6 y quitamos 6, porque quitamos un grupo completo.",
+    "ejemplo": "9 × 6 = 54.",
+    "pasos": [
+      "10 × 6 = 60.",
+      "Quitamos un grupo de 6: 60 − 6 = 54."
+    ],
+    "pista": "Restá el tamaño de un grupo, no el número uno.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Calculá 9 × 6.",
+        "respuesta_correcta": "54",
+        "opciones": [
+          "54",
+          "59",
+          "60"
+        ],
+        "paso_resuelto": "10 × 6 = 60.\n60 − 6 = 54.",
+        "visual": null,
+        "id": "mat_tab_nueve-v1"
+      },
+      {
+        "enunciado": "Calculá 9 × 3.",
+        "respuesta_correcta": "27",
+        "opciones": [
+          "29",
+          "30",
+          "27"
+        ],
+        "paso_resuelto": "10 × 3 = 30.\n30 − 3 = 27.",
+        "visual": null,
+        "id": "mat_tab_nueve-v2"
+      },
+      {
+        "enunciado": "Calculá 9 × 4.",
+        "respuesta_correcta": "36",
+        "opciones": [
+          "40",
+          "36",
+          "39"
+        ],
+        "paso_resuelto": "10 × 4 = 40.\n40 − 4 = 36.",
+        "visual": null,
+        "id": "mat_tab_nueve-v3"
+      },
+      {
+        "enunciado": "Calculá 9 × 5.",
+        "respuesta_correcta": "45",
+        "opciones": [
+          "45",
+          "49",
+          "50"
+        ],
+        "paso_resuelto": "10 × 5 = 50.\n50 − 5 = 45.",
+        "visual": null,
+        "id": "mat_tab_nueve-v4"
+      },
+      {
+        "enunciado": "Calculá 9 × 7.",
+        "respuesta_correcta": "63",
+        "opciones": [
+          "69",
+          "70",
+          "63"
+        ],
+        "paso_resuelto": "10 × 7 = 70.\n70 − 7 = 63.",
+        "visual": null,
+        "id": "mat_tab_nueve-v5"
+      },
+      {
+        "enunciado": "Calculá 9 × 8.",
+        "respuesta_correcta": "72",
+        "opciones": [
+          "80",
+          "72",
+          "79"
+        ],
+        "paso_resuelto": "10 × 8 = 80.\n80 − 8 = 72.",
+        "visual": null,
+        "id": "mat_tab_nueve-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_div_repartir",
+    "tema": "division_1_digito",
+    "titulo": "Repartir la misma cantidad",
+    "explicacion": "Dividir reparte un total en grupos iguales. El dividendo es el total; el divisor, la cantidad de grupos; el cociente, lo que recibe cada grupo. Nunca dividimos por cero.",
+    "ejemplo": "12 fichas entre 3 personas: 4 para cada una.",
+    "pasos": [
+      "Buscamos qué número multiplicado por 3 da 12.",
+      "3 × 4 = 12; entonces 12 ÷ 3 = 4."
+    ],
+    "pista": "Buscá una multiplicación que reconstruya el total.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Repartí 12 fichas entre 3 personas por igual. ¿Cuántas recibe cada una?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "4",
+          "5",
+          "14"
+        ],
+        "paso_resuelto": "3 × 4 = 12; cada persona recibe 4.",
+        "visual": null,
+        "id": "mat_div_repartir-v1"
+      },
+      {
+        "enunciado": "Repartí 20 fichas entre 4 personas por igual. ¿Cuántas recibe cada una?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "6",
+          "15",
+          "5"
+        ],
+        "paso_resuelto": "4 × 5 = 20; cada persona recibe 5.",
+        "visual": null,
+        "id": "mat_div_repartir-v2"
+      },
+      {
+        "enunciado": "Repartí 18 fichas entre 3 personas por igual. ¿Cuántas recibe cada una?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "16",
+          "6",
+          "7"
+        ],
+        "paso_resuelto": "3 × 6 = 18; cada persona recibe 6.",
+        "visual": null,
+        "id": "mat_div_repartir-v3"
+      },
+      {
+        "enunciado": "Repartí 24 fichas entre 4 personas por igual. ¿Cuántas recibe cada una?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "6",
+          "7",
+          "16"
+        ],
+        "paso_resuelto": "4 × 6 = 24; cada persona recibe 6.",
+        "visual": null,
+        "id": "mat_div_repartir-v4"
+      },
+      {
+        "enunciado": "Repartí 35 fichas entre 5 personas por igual. ¿Cuántas recibe cada una?",
+        "respuesta_correcta": "7",
+        "opciones": [
+          "8",
+          "17",
+          "7"
+        ],
+        "paso_resuelto": "5 × 7 = 35; cada persona recibe 7.",
+        "visual": null,
+        "id": "mat_div_repartir-v5"
+      },
+      {
+        "enunciado": "Repartí 32 fichas entre 4 personas por igual. ¿Cuántas recibe cada una?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "18",
+          "8",
+          "9"
+        ],
+        "paso_resuelto": "4 × 8 = 32; cada persona recibe 8.",
+        "visual": null,
+        "id": "mat_div_repartir-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_div_resto",
+    "tema": "division_1_digito",
+    "titulo": "Lo que sobra es el resto",
+    "explicacion": "Cuando no se puede repartir todo por igual, quedan elementos sin repartir: el resto. El resto debe ser menor que el divisor; de lo contrario todavía podríamos dar uno más a cada grupo.",
+    "ejemplo": "17 fichas entre 3: 5 para cada una y sobran 2.",
+    "pasos": [
+      "3 × 5 = 15: repartimos 15.",
+      "17 − 15 = 2. El resto 2 es menor que 3."
+    ],
+    "pista": "Buscá el mayor múltiplo del divisor que no supere el total.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Repartí 17 fichas entre 3 personas, todas reciben lo mismo. ¿Cuántas sobran?",
+        "respuesta_correcta": "2",
+        "opciones": [
+          "2",
+          "0",
+          "3"
+        ],
+        "paso_resuelto": "3 × 5 = 15.\n17 − 15 = 2; ese es el resto.",
+        "visual": null,
+        "id": "mat_div_resto-v1"
+      },
+      {
+        "enunciado": "Repartí 22 fichas entre 4 personas, todas reciben lo mismo. ¿Cuántas sobran?",
+        "respuesta_correcta": "2",
+        "opciones": [
+          "0",
+          "4",
+          "2"
+        ],
+        "paso_resuelto": "4 × 5 = 20.\n22 − 20 = 2; ese es el resto.",
+        "visual": null,
+        "id": "mat_div_resto-v2"
+      },
+      {
+        "enunciado": "Repartí 19 fichas entre 5 personas, todas reciben lo mismo. ¿Cuántas sobran?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "5",
+          "4",
+          "0"
+        ],
+        "paso_resuelto": "5 × 3 = 15.\n19 − 15 = 4; ese es el resto.",
+        "visual": null,
+        "id": "mat_div_resto-v3"
+      },
+      {
+        "enunciado": "Repartí 26 fichas entre 4 personas, todas reciben lo mismo. ¿Cuántas sobran?",
+        "respuesta_correcta": "2",
+        "opciones": [
+          "2",
+          "0",
+          "4"
+        ],
+        "paso_resuelto": "4 × 6 = 24.\n26 − 24 = 2; ese es el resto.",
+        "visual": null,
+        "id": "mat_div_resto-v4"
+      },
+      {
+        "enunciado": "Repartí 32 fichas entre 5 personas, todas reciben lo mismo. ¿Cuántas sobran?",
+        "respuesta_correcta": "2",
+        "opciones": [
+          "0",
+          "5",
+          "2"
+        ],
+        "paso_resuelto": "5 × 6 = 30.\n32 − 30 = 2; ese es el resto.",
+        "visual": null,
+        "id": "mat_div_resto-v5"
+      },
+      {
+        "enunciado": "Repartí 29 fichas entre 3 personas, todas reciben lo mismo. ¿Cuántas sobran?",
+        "respuesta_correcta": "2",
+        "opciones": [
+          "3",
+          "2",
+          "0"
+        ],
+        "paso_resuelto": "3 × 9 = 27.\n29 − 27 = 2; ese es el resto.",
+        "visual": null,
+        "id": "mat_div_resto-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_div_descomponer",
+    "tema": "division_1_digito",
+    "titulo": "Dividir en partes conocidas",
+    "explicacion": "Podemos separar el total en dos cantidades que sepamos repartir. Dividimos ambas por el mismo divisor y sumamos sus cocientes.",
+    "ejemplo": "84 ÷ 4 = 21.",
+    "pasos": [
+      "80 ÷ 4 = 20 y 4 ÷ 4 = 1.",
+      "20 + 1 = 21; comprobamos 21 × 4 = 84."
+    ],
+    "pista": "Separá una parte grande que puedas dividir y repartí lo que queda.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Calculá 84 ÷ 4.",
+        "respuesta_correcta": "21",
+        "opciones": [
+          "21",
+          "22",
+          "31"
+        ],
+        "paso_resuelto": "80 ÷ 4 = 20; 4 ÷ 4 = 1.\n20 + 1 = 21.",
+        "visual": null,
+        "id": "mat_div_descomponer-v1"
+      },
+      {
+        "enunciado": "Calculá 69 ÷ 3.",
+        "respuesta_correcta": "23",
+        "opciones": [
+          "24",
+          "33",
+          "23"
+        ],
+        "paso_resuelto": "60 ÷ 3 = 20; 9 ÷ 3 = 3.\n20 + 3 = 23.",
+        "visual": null,
+        "id": "mat_div_descomponer-v2"
+      },
+      {
+        "enunciado": "Calculá 92 ÷ 4.",
+        "respuesta_correcta": "23",
+        "opciones": [
+          "33",
+          "23",
+          "24"
+        ],
+        "paso_resuelto": "80 ÷ 4 = 20; 12 ÷ 4 = 3.\n20 + 3 = 23.",
+        "visual": null,
+        "id": "mat_div_descomponer-v3"
+      },
+      {
+        "enunciado": "Calculá 115 ÷ 5.",
+        "respuesta_correcta": "23",
+        "opciones": [
+          "23",
+          "24",
+          "33"
+        ],
+        "paso_resuelto": "100 ÷ 5 = 20; 15 ÷ 5 = 3.\n20 + 3 = 23.",
+        "visual": null,
+        "id": "mat_div_descomponer-v4"
+      },
+      {
+        "enunciado": "Calculá 72 ÷ 3.",
+        "respuesta_correcta": "24",
+        "opciones": [
+          "25",
+          "34",
+          "24"
+        ],
+        "paso_resuelto": "60 ÷ 3 = 20; 12 ÷ 3 = 4.\n20 + 4 = 24.",
+        "visual": null,
+        "id": "mat_div_descomponer-v5"
+      },
+      {
+        "enunciado": "Calculá 56 ÷ 4.",
+        "respuesta_correcta": "14",
+        "opciones": [
+          "24",
+          "14",
+          "15"
+        ],
+        "paso_resuelto": "40 ÷ 4 = 10; 16 ÷ 4 = 4.\n10 + 4 = 14.",
+        "visual": null,
+        "id": "mat_div_descomponer-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_rom_sumar",
+    "tema": "numeros_romanos",
+    "titulo": "Leer símbolos romanos que suman",
+    "explicacion": "I vale 1, V vale 5, X vale 10, L vale 50, C vale 100, D vale 500 y M vale 1000. Si los símbolos van de mayor a menor, sumamos. I, X, C y M pueden repetirse hasta tres veces seguidas.",
+    "ejemplo": "XVI representa 16.",
+    "pasos": [
+      "X vale 10, V vale 5 e I vale 1.",
+      "10 + 5 + 1 = 16."
+    ],
+    "pista": "Sumá cuando los símbolos van de mayor a menor.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "¿Qué número representa XVI?",
+        "respuesta_correcta": "16",
+        "opciones": [
+          "16",
+          "17",
+          "26"
+        ],
+        "paso_resuelto": "10 + 5 + 1 = 16.",
+        "visual": null,
+        "id": "mat_rom_sumar-v1"
+      },
+      {
+        "enunciado": "¿Qué número representa VIII?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "9",
+          "18",
+          "8"
+        ],
+        "paso_resuelto": "5 + 1 + 1 + 1 = 8.",
+        "visual": null,
+        "id": "mat_rom_sumar-v2"
+      },
+      {
+        "enunciado": "¿Qué número representa XXI?",
+        "respuesta_correcta": "21",
+        "opciones": [
+          "31",
+          "21",
+          "22"
+        ],
+        "paso_resuelto": "10 + 10 + 1 = 21.",
+        "visual": null,
+        "id": "mat_rom_sumar-v3"
+      },
+      {
+        "enunciado": "¿Qué número representa LX?",
+        "respuesta_correcta": "60",
+        "opciones": [
+          "60",
+          "61",
+          "70"
+        ],
+        "paso_resuelto": "50 + 10 = 60.",
+        "visual": null,
+        "id": "mat_rom_sumar-v4"
+      },
+      {
+        "enunciado": "¿Qué número representa CXV?",
+        "respuesta_correcta": "115",
+        "opciones": [
+          "116",
+          "125",
+          "115"
+        ],
+        "paso_resuelto": "100 + 10 + 5 = 115.",
+        "visual": null,
+        "id": "mat_rom_sumar-v5"
+      },
+      {
+        "enunciado": "¿Qué número representa DII?",
+        "respuesta_correcta": "502",
+        "opciones": [
+          "512",
+          "502",
+          "503"
+        ],
+        "paso_resuelto": "500 + 1 + 1 = 502.",
+        "visual": null,
+        "id": "mat_rom_sumar-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_rom_restar",
+    "tema": "numeros_romanos",
+    "titulo": "Los seis pares que restan",
+    "explicacion": "Solo usamos estos pares para restar: IV = 4, IX = 9, XL = 40, XC = 90, CD = 400 y CM = 900. En cada par el símbolo pequeño se resta del grande. No podemos inventar cualquier pareja.",
+    "ejemplo": "XIV representa 14.",
+    "pasos": [
+      "Separamos X y IV.",
+      "X vale 10; IV vale 5 − 1 = 4. Total: 14."
+    ],
+    "pista": "Buscá primero uno de los seis pares permitidos.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "¿Qué número representa XIV?",
+        "respuesta_correcta": "14",
+        "opciones": [
+          "14",
+          "15",
+          "24"
+        ],
+        "paso_resuelto": "10 + (5 − 1) = 14.",
+        "visual": null,
+        "id": "mat_rom_restar-v1"
+      },
+      {
+        "enunciado": "¿Qué número representa XIX?",
+        "respuesta_correcta": "19",
+        "opciones": [
+          "20",
+          "29",
+          "19"
+        ],
+        "paso_resuelto": "10 + (10 − 1) = 19.",
+        "visual": null,
+        "id": "mat_rom_restar-v2"
+      },
+      {
+        "enunciado": "¿Qué número representa XLII?",
+        "respuesta_correcta": "42",
+        "opciones": [
+          "52",
+          "42",
+          "43"
+        ],
+        "paso_resuelto": "(50 − 10) + 2 = 42.",
+        "visual": null,
+        "id": "mat_rom_restar-v3"
+      },
+      {
+        "enunciado": "¿Qué número representa XCIII?",
+        "respuesta_correcta": "93",
+        "opciones": [
+          "93",
+          "94",
+          "103"
+        ],
+        "paso_resuelto": "(100 − 10) + 3 = 93.",
+        "visual": null,
+        "id": "mat_rom_restar-v4"
+      },
+      {
+        "enunciado": "¿Qué número representa CDV?",
+        "respuesta_correcta": "405",
+        "opciones": [
+          "406",
+          "415",
+          "405"
+        ],
+        "paso_resuelto": "(500 − 100) + 5 = 405.",
+        "visual": null,
+        "id": "mat_rom_restar-v5"
+      },
+      {
+        "enunciado": "¿Qué número representa CMVI?",
+        "respuesta_correcta": "906",
+        "opciones": [
+          "916",
+          "906",
+          "907"
+        ],
+        "paso_resuelto": "(1000 − 100) + 6 = 906.",
+        "visual": null,
+        "id": "mat_rom_restar-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_resto_entero",
+    "tema": "fracciones_del_resto",
+    "titulo": "Primero averiguamos cuánto queda",
+    "explicacion": "El resto es lo que queda después de usar una parte. Calculamos esa parte y la restamos del entero. El entero de referencia debe estar claro.",
+    "ejemplo": "De 24 fichas usamos 1/3. Quedan 16.",
+    "pasos": [
+      "24 ÷ 3 = 8: usamos 8 fichas.",
+      "24 − 8 = 16: ese es el resto."
+    ],
+    "pista": "Calculá lo usado antes de restarlo del total.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "De 24 fichas usás 1/3. ¿Cuántas quedan?",
+        "respuesta_correcta": "16",
+        "opciones": [
+          "16",
+          "17",
+          "26"
+        ],
+        "paso_resuelto": "Usamos 24 ÷ 3 = 8.\nQuedan 24 − 8 = 16.",
+        "visual": null,
+        "id": "mat_resto_entero-v1"
+      },
+      {
+        "enunciado": "De 20 fichas usás 1/4. ¿Cuántas quedan?",
+        "respuesta_correcta": "15",
+        "opciones": [
+          "16",
+          "25",
+          "15"
+        ],
+        "paso_resuelto": "Usamos 20 ÷ 4 = 5.\nQuedan 20 − 5 = 15.",
+        "visual": null,
+        "id": "mat_resto_entero-v2"
+      },
+      {
+        "enunciado": "De 30 fichas usás 1/5. ¿Cuántas quedan?",
+        "respuesta_correcta": "24",
+        "opciones": [
+          "34",
+          "24",
+          "25"
+        ],
+        "paso_resuelto": "Usamos 30 ÷ 5 = 6.\nQuedan 30 − 6 = 24.",
+        "visual": null,
+        "id": "mat_resto_entero-v3"
+      },
+      {
+        "enunciado": "De 18 fichas usás 1/3. ¿Cuántas quedan?",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "12",
+          "13",
+          "22"
+        ],
+        "paso_resuelto": "Usamos 18 ÷ 3 = 6.\nQuedan 18 − 6 = 12.",
+        "visual": null,
+        "id": "mat_resto_entero-v4"
+      },
+      {
+        "enunciado": "De 32 fichas usás 1/4. ¿Cuántas quedan?",
+        "respuesta_correcta": "24",
+        "opciones": [
+          "25",
+          "34",
+          "24"
+        ],
+        "paso_resuelto": "Usamos 32 ÷ 4 = 8.\nQuedan 32 − 8 = 24.",
+        "visual": null,
+        "id": "mat_resto_entero-v5"
+      },
+      {
+        "enunciado": "De 40 fichas usás 1/5. ¿Cuántas quedan?",
+        "respuesta_correcta": "32",
+        "opciones": [
+          "42",
+          "32",
+          "33"
+        ],
+        "paso_resuelto": "Usamos 40 ÷ 5 = 8.\nQuedan 40 − 8 = 32.",
+        "visual": null,
+        "id": "mat_resto_entero-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_resto_nuevo_total",
+    "tema": "fracciones_del_resto",
+    "titulo": "Una fracción de lo que quedó",
+    "explicacion": "Si una consigna dice «del resto», la segunda fracción se calcula sobre lo que quedó, no sobre el total inicial. Escribimos las cantidades de cada etapa.",
+    "ejemplo": "De 24 fichas usamos 1/3; después, la mitad del resto. En la segunda etapa usamos 8.",
+    "pasos": [
+      "Primero usamos 8 y quedan 16.",
+      "La mitad del resto es 16 ÷ 2 = 8."
+    ],
+    "pista": "Encerrá el resto: ese es el nuevo total para el segundo cálculo.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Tenés 24 fichas. Usás 1/3 del total y después la mitad del resto. ¿Cuántas usás en la segunda etapa?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "8",
+          "12",
+          "24"
+        ],
+        "paso_resuelto": "Primero: 24 ÷ 3 = 8; quedan 16.\nSegunda etapa: 16 ÷ 2 = 8.",
+        "visual": null,
+        "id": "mat_resto_nuevo_total-v1"
+      },
+      {
+        "enunciado": "Tenés 40 fichas. Usás 1/5 del total y después la mitad del resto. ¿Cuántas usás en la segunda etapa?",
+        "respuesta_correcta": "16",
+        "opciones": [
+          "20",
+          "8",
+          "40",
+          "16"
+        ],
+        "paso_resuelto": "Primero: 40 ÷ 5 = 8; quedan 32.\nSegunda etapa: 32 ÷ 2 = 16.",
+        "visual": null,
+        "id": "mat_resto_nuevo_total-v2"
+      },
+      {
+        "enunciado": "Tenés 32 fichas. Usás 1/4 del total y después la mitad del resto. ¿Cuántas usás en la segunda etapa?",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "8",
+          "32",
+          "12",
+          "16"
+        ],
+        "paso_resuelto": "Primero: 32 ÷ 4 = 8; quedan 24.\nSegunda etapa: 24 ÷ 2 = 12.",
+        "visual": null,
+        "id": "mat_resto_nuevo_total-v3"
+      },
+      {
+        "enunciado": "Tenés 36 fichas. Usás 1/3 del total y después la mitad del resto. ¿Cuántas usás en la segunda etapa?",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "12",
+          "18",
+          "36"
+        ],
+        "paso_resuelto": "Primero: 36 ÷ 3 = 12; quedan 24.\nSegunda etapa: 24 ÷ 2 = 12.",
+        "visual": null,
+        "id": "mat_resto_nuevo_total-v4"
+      },
+      {
+        "enunciado": "Tenés 48 fichas. Usás 1/4 del total y después la mitad del resto. ¿Cuántas usás en la segunda etapa?",
+        "respuesta_correcta": "18",
+        "opciones": [
+          "18",
+          "24",
+          "12",
+          "48"
+        ],
+        "paso_resuelto": "Primero: 48 ÷ 4 = 12; quedan 36.\nSegunda etapa: 36 ÷ 2 = 18.",
+        "visual": null,
+        "id": "mat_resto_nuevo_total-v5"
+      },
+      {
+        "enunciado": "Tenés 60 fichas. Usás 1/5 del total y después la mitad del resto. ¿Cuántas usás en la segunda etapa?",
+        "respuesta_correcta": "24",
+        "opciones": [
+          "30",
+          "12",
+          "60",
+          "24"
+        ],
+        "paso_resuelto": "Primero: 60 ÷ 5 = 12; quedan 48.\nSegunda etapa: 48 ÷ 2 = 24.",
+        "visual": null,
+        "id": "mat_resto_nuevo_total-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_dec_fraccion",
+    "tema": "decimales_conversion",
+    "titulo": "Décimos y centésimos",
+    "explicacion": "A la derecha de la coma, la primera cifra cuenta décimos y la segunda centésimos. 0,3 son tres décimos; 0,03 son tres centésimos. El denominador indica las partes iguales de la unidad.",
+    "ejemplo": "7/10 se escribe 0,7.",
+    "pasos": [
+      "El denominador 10 indica décimos.",
+      "Ponemos 7 en el lugar de los décimos: 0,7."
+    ],
+    "pista": "Contá cuántas posiciones necesitás después de la coma.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Escribí 7/10 como decimal.",
+        "respuesta_correcta": "0,7",
+        "opciones": [
+          "0,7",
+          "7,0",
+          "0,07"
+        ],
+        "paso_resuelto": "El denominador es 10; usamos una cifra después de la coma.",
+        "visual": null,
+        "id": "mat_dec_fraccion-v1"
+      },
+      {
+        "enunciado": "Escribí 3/100 como decimal.",
+        "respuesta_correcta": "0,03",
+        "opciones": [
+          "3,0",
+          "3,00",
+          "0,03"
+        ],
+        "paso_resuelto": "El denominador es 100; usamos dos cifras después de la coma.",
+        "visual": null,
+        "id": "mat_dec_fraccion-v2"
+      },
+      {
+        "enunciado": "Escribí 5/10 como decimal.",
+        "respuesta_correcta": "0,5",
+        "opciones": [
+          "0,05",
+          "0,5",
+          "5,0"
+        ],
+        "paso_resuelto": "El denominador es 10; usamos una cifra después de la coma.",
+        "visual": null,
+        "id": "mat_dec_fraccion-v3"
+      },
+      {
+        "enunciado": "Escribí 25/100 como decimal.",
+        "respuesta_correcta": "0,25",
+        "opciones": [
+          "0,25",
+          "25,0",
+          "25,00"
+        ],
+        "paso_resuelto": "El denominador es 100; usamos dos cifras después de la coma.",
+        "visual": null,
+        "id": "mat_dec_fraccion-v4"
+      },
+      {
+        "enunciado": "Escribí 8/100 como decimal.",
+        "respuesta_correcta": "0,08",
+        "opciones": [
+          "8,0",
+          "8,00",
+          "0,08"
+        ],
+        "paso_resuelto": "El denominador es 100; usamos dos cifras después de la coma.",
+        "visual": null,
+        "id": "mat_dec_fraccion-v5"
+      },
+      {
+        "enunciado": "Escribí 42/100 como decimal.",
+        "respuesta_correcta": "0,42",
+        "opciones": [
+          "42,00",
+          "0,42",
+          "42,0"
+        ],
+        "paso_resuelto": "El denominador es 100; usamos dos cifras después de la coma.",
+        "visual": null,
+        "id": "mat_dec_fraccion-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_dec_sumar",
+    "tema": "decimales_conversion",
+    "titulo": "Sumar decimales alineando la coma",
+    "explicacion": "Al sumar decimales juntamos unidades con unidades y décimos con décimos. Podemos escribir ceros al final de la parte decimal sin cambiar el valor.",
+    "ejemplo": "1,2 + 0,5 = 1,7.",
+    "pasos": [
+      "Son 12 décimos más 5 décimos.",
+      "17 décimos equivalen a 1,7."
+    ],
+    "pista": "Alineá las comas antes de sumar.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Calculá 1,2 + 0,5.",
+        "respuesta_correcta": "1,7",
+        "opciones": [
+          "1,7",
+          "2,7",
+          "1,8"
+        ],
+        "paso_resuelto": "12 décimos + 5 décimos = 17 décimos: 1,7.",
+        "visual": null,
+        "id": "mat_dec_sumar-v1"
+      },
+      {
+        "enunciado": "Calculá 2,4 + 1,3.",
+        "respuesta_correcta": "3,7",
+        "opciones": [
+          "4,7",
+          "3,8",
+          "3,7"
+        ],
+        "paso_resuelto": "24 décimos + 13 décimos = 37 décimos: 3,7.",
+        "visual": null,
+        "id": "mat_dec_sumar-v2"
+      },
+      {
+        "enunciado": "Calculá 3,6 + 1,8.",
+        "respuesta_correcta": "5,4",
+        "opciones": [
+          "5,5",
+          "5,4",
+          "6,4"
+        ],
+        "paso_resuelto": "36 décimos + 18 décimos = 54 décimos: 5,4.",
+        "visual": null,
+        "id": "mat_dec_sumar-v3"
+      },
+      {
+        "enunciado": "Calculá 4,7 + 2,5.",
+        "respuesta_correcta": "7,2",
+        "opciones": [
+          "7,2",
+          "8,2",
+          "7,3"
+        ],
+        "paso_resuelto": "47 décimos + 25 décimos = 72 décimos: 7,2.",
+        "visual": null,
+        "id": "mat_dec_sumar-v4"
+      },
+      {
+        "enunciado": "Calculá 5,9 + 1,2.",
+        "respuesta_correcta": "7,1",
+        "opciones": [
+          "8,1",
+          "7,2",
+          "7,1"
+        ],
+        "paso_resuelto": "59 décimos + 12 décimos = 71 décimos: 7,1.",
+        "visual": null,
+        "id": "mat_dec_sumar-v5"
+      },
+      {
+        "enunciado": "Calculá 6,3 + 2,9.",
+        "respuesta_correcta": "9,2",
+        "opciones": [
+          "9,3",
+          "9,2",
+          "10,2"
+        ],
+        "paso_resuelto": "63 décimos + 29 décimos = 92 décimos: 9,2.",
+        "visual": null,
+        "id": "mat_dec_sumar-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_dec_restar",
+    "tema": "decimales_conversion",
+    "titulo": "Restar decimales",
+    "explicacion": "Restamos cantidades de la misma posición: décimos con décimos, unidades con unidades. Si lo necesitás, expresá todo en décimos antes de calcular.",
+    "ejemplo": "2,4 − 0,7 = 1,7.",
+    "pasos": [
+      "24 décimos menos 7 décimos son 17 décimos.",
+      "17 décimos equivalen a 1,7."
+    ],
+    "pista": "Alineá las comas y comprobá sumando.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Calculá 2,4 − 0,7.",
+        "respuesta_correcta": "1,7",
+        "opciones": [
+          "1,7",
+          "3,1",
+          "1,8"
+        ],
+        "paso_resuelto": "24 − 7 = 17 décimos: 1,7.",
+        "visual": null,
+        "id": "mat_dec_restar-v1"
+      },
+      {
+        "enunciado": "Calculá 3,5 − 0,8.",
+        "respuesta_correcta": "2,7",
+        "opciones": [
+          "4,3",
+          "2,8",
+          "2,7"
+        ],
+        "paso_resuelto": "35 − 8 = 27 décimos: 2,7.",
+        "visual": null,
+        "id": "mat_dec_restar-v2"
+      },
+      {
+        "enunciado": "Calculá 4,6 − 1,9.",
+        "respuesta_correcta": "2,7",
+        "opciones": [
+          "2,8",
+          "2,7",
+          "6,5"
+        ],
+        "paso_resuelto": "46 − 19 = 27 décimos: 2,7.",
+        "visual": null,
+        "id": "mat_dec_restar-v3"
+      },
+      {
+        "enunciado": "Calculá 5,7 − 2,8.",
+        "respuesta_correcta": "2,9",
+        "opciones": [
+          "2,9",
+          "8,5",
+          "3,0"
+        ],
+        "paso_resuelto": "57 − 28 = 29 décimos: 2,9.",
+        "visual": null,
+        "id": "mat_dec_restar-v4"
+      },
+      {
+        "enunciado": "Calculá 6,8 − 3,9.",
+        "respuesta_correcta": "2,9",
+        "opciones": [
+          "10,7",
+          "3,0",
+          "2,9"
+        ],
+        "paso_resuelto": "68 − 39 = 29 décimos: 2,9.",
+        "visual": null,
+        "id": "mat_dec_restar-v5"
+      },
+      {
+        "enunciado": "Calculá 7,9 − 4,5.",
+        "respuesta_correcta": "3,4",
+        "opciones": [
+          "3,5",
+          "3,4",
+          "12,4"
+        ],
+        "paso_resuelto": "79 − 45 = 34 décimos: 3,4.",
+        "visual": null,
+        "id": "mat_dec_restar-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_dec_producto",
+    "tema": "decimales_conversion",
+    "titulo": "Multiplicar decimales por un natural",
+    "explicacion": "Multiplicar por un natural reúne grupos iguales, también con decimales. Si cada botella contiene 0,5 litros, tres botellas contienen tres veces esa cantidad.",
+    "ejemplo": "3 × 0,5 = 1,5.",
+    "pasos": [
+      "0,5 + 0,5 + 0,5 suma 15 décimos.",
+      "15 décimos son 1,5."
+    ],
+    "pista": "Contá los décimos de todos los grupos.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Hay 3 botellas de 0,5 litros cada una. ¿Cuántos litros hay?",
+        "respuesta_correcta": "1,5",
+        "opciones": [
+          "1,5",
+          "1,6",
+          "15"
+        ],
+        "paso_resuelto": "3 × 5 décimos = 15 décimos: 1,5 litros.",
+        "visual": null,
+        "id": "mat_dec_producto-v1"
+      },
+      {
+        "enunciado": "Hay 4 botellas de 0,2 litros cada una. ¿Cuántos litros hay?",
+        "respuesta_correcta": "0,8",
+        "opciones": [
+          "0,9",
+          "8",
+          "0,8"
+        ],
+        "paso_resuelto": "4 × 2 décimos = 8 décimos: 0,8 litros.",
+        "visual": null,
+        "id": "mat_dec_producto-v2"
+      },
+      {
+        "enunciado": "Hay 2 botellas de 0,7 litros cada una. ¿Cuántos litros hay?",
+        "respuesta_correcta": "1,4",
+        "opciones": [
+          "14",
+          "1,4",
+          "1,5"
+        ],
+        "paso_resuelto": "2 × 7 décimos = 14 décimos: 1,4 litros.",
+        "visual": null,
+        "id": "mat_dec_producto-v3"
+      },
+      {
+        "enunciado": "Hay 5 botellas de 0,3 litros cada una. ¿Cuántos litros hay?",
+        "respuesta_correcta": "1,5",
+        "opciones": [
+          "1,5",
+          "1,6",
+          "15"
+        ],
+        "paso_resuelto": "5 × 3 décimos = 15 décimos: 1,5 litros.",
+        "visual": null,
+        "id": "mat_dec_producto-v4"
+      },
+      {
+        "enunciado": "Hay 3 botellas de 0,8 litros cada una. ¿Cuántos litros hay?",
+        "respuesta_correcta": "2,4",
+        "opciones": [
+          "2,5",
+          "24",
+          "2,4"
+        ],
+        "paso_resuelto": "3 × 8 décimos = 24 décimos: 2,4 litros.",
+        "visual": null,
+        "id": "mat_dec_producto-v5"
+      },
+      {
+        "enunciado": "Hay 4 botellas de 0,6 litros cada una. ¿Cuántos litros hay?",
+        "respuesta_correcta": "2,4",
+        "opciones": [
+          "24",
+          "2,4",
+          "2,5"
+        ],
+        "paso_resuelto": "4 × 6 décimos = 24 décimos: 2,4 litros.",
+        "visual": null,
+        "id": "mat_dec_producto-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_dec_dividir",
+    "tema": "decimales_conversion",
+    "titulo": "Repartir una cantidad decimal",
+    "explicacion": "Dividir una cantidad decimal entre un natural reparte partes iguales. Podemos convertir la cantidad a décimos, repartirlos y volver a escribir el decimal.",
+    "ejemplo": "1,8 litros en 3 botellas: 0,6 litros en cada una.",
+    "pasos": [
+      "1,8 litros son 18 décimos.",
+      "18 ÷ 3 = 6 décimos; cada botella recibe 0,6 litros."
+    ],
+    "pista": "Repartí los décimos y conservá la unidad.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Repartís 1,8 litros por igual en 3 botellas. ¿Cuántos litros van en cada botella?",
+        "respuesta_correcta": "0,6",
+        "opciones": [
+          "0,6",
+          "6",
+          "0,7"
+        ],
+        "paso_resuelto": "18 décimos ÷ 3 = 6 décimos: 0,6 litros.",
+        "visual": null,
+        "id": "mat_dec_dividir-v1"
+      },
+      {
+        "enunciado": "Repartís 2,4 litros por igual en 4 botellas. ¿Cuántos litros van en cada botella?",
+        "respuesta_correcta": "0,6",
+        "opciones": [
+          "6",
+          "0,7",
+          "0,6"
+        ],
+        "paso_resuelto": "24 décimos ÷ 4 = 6 décimos: 0,6 litros.",
+        "visual": null,
+        "id": "mat_dec_dividir-v2"
+      },
+      {
+        "enunciado": "Repartís 3,5 litros por igual en 5 botellas. ¿Cuántos litros van en cada botella?",
+        "respuesta_correcta": "0,7",
+        "opciones": [
+          "0,8",
+          "0,7",
+          "7"
+        ],
+        "paso_resuelto": "35 décimos ÷ 5 = 7 décimos: 0,7 litros.",
+        "visual": null,
+        "id": "mat_dec_dividir-v3"
+      },
+      {
+        "enunciado": "Repartís 2,8 litros por igual en 4 botellas. ¿Cuántos litros van en cada botella?",
+        "respuesta_correcta": "0,7",
+        "opciones": [
+          "0,7",
+          "7",
+          "0,8"
+        ],
+        "paso_resuelto": "28 décimos ÷ 4 = 7 décimos: 0,7 litros.",
+        "visual": null,
+        "id": "mat_dec_dividir-v4"
+      },
+      {
+        "enunciado": "Repartís 3,6 litros por igual en 3 botellas. ¿Cuántos litros van en cada botella?",
+        "respuesta_correcta": "1,2",
+        "opciones": [
+          "12",
+          "1,3",
+          "1,2"
+        ],
+        "paso_resuelto": "36 décimos ÷ 3 = 12 décimos: 1,2 litros.",
+        "visual": null,
+        "id": "mat_dec_dividir-v5"
+      },
+      {
+        "enunciado": "Repartís 4,5 litros por igual en 5 botellas. ¿Cuántos litros van en cada botella?",
+        "respuesta_correcta": "0,9",
+        "opciones": [
+          "1,0",
+          "0,9",
+          "9"
+        ],
+        "paso_resuelto": "45 décimos ÷ 5 = 9 décimos: 0,9 litros.",
+        "visual": null,
+        "id": "mat_dec_dividir-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_pot_repetir",
+    "tema": "potenciacion_y_raiz_cuadrada",
+    "titulo": "Una potencia repite factores",
+    "explicacion": "En 3², el 3 es la base y el 2 es el exponente. El exponente dice cuántas veces aparece la base como factor. 3² es 3 × 3, no 3 × 2.",
+    "ejemplo": "2³ = 2 × 2 × 2 = 8.",
+    "pasos": [
+      "Escribimos tres factores iguales a 2.",
+      "2 × 2 = 4; 4 × 2 = 8."
+    ],
+    "pista": "El exponente cuenta factores.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Calculá 2 elevado a 3.",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "8",
+          "6",
+          "9"
+        ],
+        "paso_resuelto": "2 × 2 × 2 = 8.",
+        "visual": null,
+        "id": "mat_pot_repetir-v1"
+      },
+      {
+        "enunciado": "Calculá 3 elevado a 2.",
+        "respuesta_correcta": "9",
+        "opciones": [
+          "6",
+          "10",
+          "9"
+        ],
+        "paso_resuelto": "3 × 3 = 9.",
+        "visual": null,
+        "id": "mat_pot_repetir-v2"
+      },
+      {
+        "enunciado": "Calculá 4 elevado a 2.",
+        "respuesta_correcta": "16",
+        "opciones": [
+          "17",
+          "16",
+          "8"
+        ],
+        "paso_resuelto": "4 × 4 = 16.",
+        "visual": null,
+        "id": "mat_pot_repetir-v3"
+      },
+      {
+        "enunciado": "Calculá 3 elevado a 3.",
+        "respuesta_correcta": "27",
+        "opciones": [
+          "27",
+          "9",
+          "28"
+        ],
+        "paso_resuelto": "3 × 3 × 3 = 27.",
+        "visual": null,
+        "id": "mat_pot_repetir-v4"
+      },
+      {
+        "enunciado": "Calculá 5 elevado a 2.",
+        "respuesta_correcta": "25",
+        "opciones": [
+          "10",
+          "26",
+          "25"
+        ],
+        "paso_resuelto": "5 × 5 = 25.",
+        "visual": null,
+        "id": "mat_pot_repetir-v5"
+      },
+      {
+        "enunciado": "Calculá 6 elevado a 2.",
+        "respuesta_correcta": "36",
+        "opciones": [
+          "37",
+          "36",
+          "12"
+        ],
+        "paso_resuelto": "6 × 6 = 36.",
+        "visual": null,
+        "id": "mat_pot_repetir-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_raiz_cuadrado",
+    "tema": "potenciacion_y_raiz_cuadrada",
+    "titulo": "La raíz busca el lado del cuadrado",
+    "explicacion": "La raíz cuadrada busca el número no negativo que, multiplicado por sí mismo, da el total. Con fichas, podemos imaginar un cuadrado con igual cantidad de filas y columnas.",
+    "ejemplo": "La raíz cuadrada de 25 es 5.",
+    "pasos": [
+      "5 filas de 5 fichas forman 25 fichas.",
+      "Como 5 × 5 = 25, la raíz cuadrada de 25 es 5."
+    ],
+    "pista": "Buscá dos factores iguales cuyo producto sea el total.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "¿Cuál es la raíz cuadrada de 25?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "5",
+          "6",
+          "15"
+        ],
+        "paso_resuelto": "5 × 5 = 25. La raíz cuadrada es 5.",
+        "visual": null,
+        "id": "mat_raiz_cuadrado-v1"
+      },
+      {
+        "enunciado": "¿Cuál es la raíz cuadrada de 9?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "4",
+          "13",
+          "3"
+        ],
+        "paso_resuelto": "3 × 3 = 9. La raíz cuadrada es 3.",
+        "visual": null,
+        "id": "mat_raiz_cuadrado-v2"
+      },
+      {
+        "enunciado": "¿Cuál es la raíz cuadrada de 16?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "14",
+          "4",
+          "5"
+        ],
+        "paso_resuelto": "4 × 4 = 16. La raíz cuadrada es 4.",
+        "visual": null,
+        "id": "mat_raiz_cuadrado-v3"
+      },
+      {
+        "enunciado": "¿Cuál es la raíz cuadrada de 36?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "6",
+          "7",
+          "16"
+        ],
+        "paso_resuelto": "6 × 6 = 36. La raíz cuadrada es 6.",
+        "visual": null,
+        "id": "mat_raiz_cuadrado-v4"
+      },
+      {
+        "enunciado": "¿Cuál es la raíz cuadrada de 49?",
+        "respuesta_correcta": "7",
+        "opciones": [
+          "8",
+          "17",
+          "7"
+        ],
+        "paso_resuelto": "7 × 7 = 49. La raíz cuadrada es 7.",
+        "visual": null,
+        "id": "mat_raiz_cuadrado-v5"
+      },
+      {
+        "enunciado": "¿Cuál es la raíz cuadrada de 64?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "18",
+          "8",
+          "9"
+        ],
+        "paso_resuelto": "8 × 8 = 64. La raíz cuadrada es 8.",
+        "visual": null,
+        "id": "mat_raiz_cuadrado-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_jer_producto",
+    "tema": "jerarquia_operaciones",
+    "titulo": "Antes de sumar, resolvemos los productos",
+    "explicacion": "Primero resolvemos potencias y raíces; después multiplicaciones y divisiones; al final sumas y restas. Entre operaciones del mismo nivel avanzamos de izquierda a derecha.",
+    "ejemplo": "2 + 3 × 4 = 14.",
+    "pasos": [
+      "Primero 3 × 4 = 12.",
+      "Después 2 + 12 = 14."
+    ],
+    "pista": "Marcá el producto antes de sumar.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Calculá 2 + 3 × 4.",
+        "respuesta_correcta": "14",
+        "opciones": [
+          "14",
+          "20",
+          "9"
+        ],
+        "paso_resuelto": "Primero 3 × 4 = 12.\nDespués 2 + 12 = 14.",
+        "visual": null,
+        "id": "mat_jer_producto-v1"
+      },
+      {
+        "enunciado": "Calculá 3 + 4 × 5.",
+        "respuesta_correcta": "23",
+        "opciones": [
+          "35",
+          "12",
+          "23"
+        ],
+        "paso_resuelto": "Primero 4 × 5 = 20.\nDespués 3 + 20 = 23.",
+        "visual": null,
+        "id": "mat_jer_producto-v2"
+      },
+      {
+        "enunciado": "Calculá 4 + 2 × 6.",
+        "respuesta_correcta": "16",
+        "opciones": [
+          "12",
+          "16",
+          "36"
+        ],
+        "paso_resuelto": "Primero 2 × 6 = 12.\nDespués 4 + 12 = 16.",
+        "visual": null,
+        "id": "mat_jer_producto-v3"
+      },
+      {
+        "enunciado": "Calculá 5 + 3 × 7.",
+        "respuesta_correcta": "26",
+        "opciones": [
+          "26",
+          "56",
+          "15"
+        ],
+        "paso_resuelto": "Primero 3 × 7 = 21.\nDespués 5 + 21 = 26.",
+        "visual": null,
+        "id": "mat_jer_producto-v4"
+      },
+      {
+        "enunciado": "Calculá 6 + 4 × 3.",
+        "respuesta_correcta": "18",
+        "opciones": [
+          "30",
+          "13",
+          "18"
+        ],
+        "paso_resuelto": "Primero 4 × 3 = 12.\nDespués 6 + 12 = 18.",
+        "visual": null,
+        "id": "mat_jer_producto-v5"
+      },
+      {
+        "enunciado": "Calculá 7 + 2 × 8.",
+        "respuesta_correcta": "23",
+        "opciones": [
+          "17",
+          "23",
+          "72"
+        ],
+        "paso_resuelto": "Primero 2 × 8 = 16.\nDespués 7 + 16 = 23.",
+        "visual": null,
+        "id": "mat_jer_producto-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_jer_parentesis",
+    "tema": "jerarquia_operaciones",
+    "titulo": "Los paréntesis indican por dónde empezar",
+    "explicacion": "Un paréntesis agrupa una cuenta que debemos resolver primero. Después seguimos el orden de operaciones. Copiar la cuenta reemplazando solo el paso resuelto ayuda a no perder números.",
+    "ejemplo": "(2 + 3) × 4 = 20.",
+    "pasos": [
+      "Dentro del paréntesis: 2 + 3 = 5.",
+      "Ahora 5 × 4 = 20."
+    ],
+    "pista": "Resolvé el grupo entre paréntesis antes de seguir.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Calculá (2 + 3) × 4.",
+        "respuesta_correcta": "20",
+        "opciones": [
+          "20",
+          "14",
+          "9"
+        ],
+        "paso_resuelto": "Primero 2 + 3 = 5.\nDespués 5 × 4 = 20.",
+        "visual": null,
+        "id": "mat_jer_parentesis-v1"
+      },
+      {
+        "enunciado": "Calculá (3 + 4) × 5.",
+        "respuesta_correcta": "35",
+        "opciones": [
+          "23",
+          "12",
+          "35"
+        ],
+        "paso_resuelto": "Primero 3 + 4 = 7.\nDespués 7 × 5 = 35.",
+        "visual": null,
+        "id": "mat_jer_parentesis-v2"
+      },
+      {
+        "enunciado": "Calculá (4 + 2) × 6.",
+        "respuesta_correcta": "36",
+        "opciones": [
+          "12",
+          "36",
+          "16"
+        ],
+        "paso_resuelto": "Primero 4 + 2 = 6.\nDespués 6 × 6 = 36.",
+        "visual": null,
+        "id": "mat_jer_parentesis-v3"
+      },
+      {
+        "enunciado": "Calculá (5 + 3) × 7.",
+        "respuesta_correcta": "56",
+        "opciones": [
+          "56",
+          "26",
+          "15"
+        ],
+        "paso_resuelto": "Primero 5 + 3 = 8.\nDespués 8 × 7 = 56.",
+        "visual": null,
+        "id": "mat_jer_parentesis-v4"
+      },
+      {
+        "enunciado": "Calculá (6 + 4) × 3.",
+        "respuesta_correcta": "30",
+        "opciones": [
+          "18",
+          "13",
+          "30"
+        ],
+        "paso_resuelto": "Primero 6 + 4 = 10.\nDespués 10 × 3 = 30.",
+        "visual": null,
+        "id": "mat_jer_parentesis-v5"
+      },
+      {
+        "enunciado": "Calculá (7 + 2) × 8.",
+        "respuesta_correcta": "72",
+        "opciones": [
+          "17",
+          "72",
+          "23"
+        ],
+        "paso_resuelto": "Primero 7 + 2 = 9.\nDespués 9 × 8 = 72.",
+        "visual": null,
+        "id": "mat_jer_parentesis-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_long_metros",
+    "tema": "si_me_la_longitud",
+    "titulo": "El metro y el centímetro",
+    "explicacion": "Medir una longitud es compararla con una unidad. Un metro contiene 100 centímetros. Al pasar de metros a centímetros usamos más unidades pequeñas para expresar la misma longitud.",
+    "ejemplo": "2 m = 200 cm.",
+    "pasos": [
+      "Cada metro contiene 100 centímetros.",
+      "2 × 100 = 200 centímetros."
+    ],
+    "pista": "La longitud no cambia; cambia la unidad.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "¿Cuántos centímetros son 2 metros?",
+        "respuesta_correcta": "200",
+        "opciones": [
+          "200",
+          "20",
+          "102"
+        ],
+        "paso_resuelto": "2 × 100 = 200 cm.",
+        "visual": null,
+        "id": "mat_long_metros-v1"
+      },
+      {
+        "enunciado": "¿Cuántos centímetros son 3 metros?",
+        "respuesta_correcta": "300",
+        "opciones": [
+          "30",
+          "103",
+          "300"
+        ],
+        "paso_resuelto": "3 × 100 = 300 cm.",
+        "visual": null,
+        "id": "mat_long_metros-v2"
+      },
+      {
+        "enunciado": "¿Cuántos centímetros son 4 metros?",
+        "respuesta_correcta": "400",
+        "opciones": [
+          "104",
+          "400",
+          "40"
+        ],
+        "paso_resuelto": "4 × 100 = 400 cm.",
+        "visual": null,
+        "id": "mat_long_metros-v3"
+      },
+      {
+        "enunciado": "¿Cuántos centímetros son 5 metros?",
+        "respuesta_correcta": "500",
+        "opciones": [
+          "500",
+          "50",
+          "105"
+        ],
+        "paso_resuelto": "5 × 100 = 500 cm.",
+        "visual": null,
+        "id": "mat_long_metros-v4"
+      },
+      {
+        "enunciado": "¿Cuántos centímetros son 6 metros?",
+        "respuesta_correcta": "600",
+        "opciones": [
+          "60",
+          "106",
+          "600"
+        ],
+        "paso_resuelto": "6 × 100 = 600 cm.",
+        "visual": null,
+        "id": "mat_long_metros-v5"
+      },
+      {
+        "enunciado": "¿Cuántos centímetros son 7 metros?",
+        "respuesta_correcta": "700",
+        "opciones": [
+          "107",
+          "700",
+          "70"
+        ],
+        "paso_resuelto": "7 × 100 = 700 cm.",
+        "visual": null,
+        "id": "mat_long_metros-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_long_combinar",
+    "tema": "si_me_la_longitud",
+    "titulo": "Sumar longitudes con la misma unidad",
+    "explicacion": "Antes de sumar medidas, las expresamos en la misma unidad. 1 km = 1000 m; 1 m = 100 cm y 1 cm = 10 mm. No sumamos directamente números de unidades distintas.",
+    "ejemplo": "1 m y 25 cm suman 125 cm.",
+    "pasos": [
+      "1 m = 100 cm.",
+      "100 cm + 25 cm = 125 cm."
+    ],
+    "pista": "Convertí las medidas a la unidad que pide la pregunta.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Una cinta mide 1 m y 25 cm. ¿Cuántos centímetros mide en total?",
+        "respuesta_correcta": "125",
+        "opciones": [
+          "125",
+          "26",
+          "35"
+        ],
+        "paso_resuelto": "1 m = 100 cm.\n100 + 25 = 125 cm.",
+        "visual": null,
+        "id": "mat_long_combinar-v1"
+      },
+      {
+        "enunciado": "Una cinta mide 2 m y 30 cm. ¿Cuántos centímetros mide en total?",
+        "respuesta_correcta": "230",
+        "opciones": [
+          "32",
+          "50",
+          "230"
+        ],
+        "paso_resuelto": "2 m = 200 cm.\n200 + 30 = 230 cm.",
+        "visual": null,
+        "id": "mat_long_combinar-v2"
+      },
+      {
+        "enunciado": "Una cinta mide 3 m y 45 cm. ¿Cuántos centímetros mide en total?",
+        "respuesta_correcta": "345",
+        "opciones": [
+          "75",
+          "345",
+          "48"
+        ],
+        "paso_resuelto": "3 m = 300 cm.\n300 + 45 = 345 cm.",
+        "visual": null,
+        "id": "mat_long_combinar-v3"
+      },
+      {
+        "enunciado": "Una cinta mide 4 m y 50 cm. ¿Cuántos centímetros mide en total?",
+        "respuesta_correcta": "450",
+        "opciones": [
+          "450",
+          "54",
+          "90"
+        ],
+        "paso_resuelto": "4 m = 400 cm.\n400 + 50 = 450 cm.",
+        "visual": null,
+        "id": "mat_long_combinar-v4"
+      },
+      {
+        "enunciado": "Una cinta mide 5 m y 75 cm. ¿Cuántos centímetros mide en total?",
+        "respuesta_correcta": "575",
+        "opciones": [
+          "80",
+          "125",
+          "575"
+        ],
+        "paso_resuelto": "5 m = 500 cm.\n500 + 75 = 575 cm.",
+        "visual": null,
+        "id": "mat_long_combinar-v5"
+      },
+      {
+        "enunciado": "Una cinta mide 6 m y 20 cm. ¿Cuántos centímetros mide en total?",
+        "respuesta_correcta": "620",
+        "opciones": [
+          "80",
+          "620",
+          "26"
+        ],
+        "paso_resuelto": "6 m = 600 cm.\n600 + 20 = 620 cm.",
+        "visual": null,
+        "id": "mat_long_combinar-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_med_masa_capacidad",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "titulo": "Mil partes: gramos y mililitros",
+    "explicacion": "Un kilogramo contiene 1000 gramos. Un litro contiene 1000 mililitros. Son dos equivalencias distintas: la masa y la capacidad no se convierten entre sí usando esta regla.",
+    "ejemplo": "2 kg = 2000 g; 3 L = 3000 mL.",
+    "pasos": [
+      "Elegimos la magnitud: masa o capacidad.",
+      "Multiplicamos por 1000 para pasar a gramos o mililitros."
+    ],
+    "pista": "Conservá la magnitud y escribí la unidad pedida.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "¿Cuántos g son 2 kg?",
+        "respuesta_correcta": "2000",
+        "opciones": [
+          "2000",
+          "200",
+          "1002"
+        ],
+        "paso_resuelto": "Cada kg contiene 1000 g.\n2 × 1000 = 2000 g.",
+        "visual": null,
+        "id": "mat_med_masa_capacidad-v1"
+      },
+      {
+        "enunciado": "¿Cuántos mL son 3 L?",
+        "respuesta_correcta": "3000",
+        "opciones": [
+          "300",
+          "1003",
+          "3000"
+        ],
+        "paso_resuelto": "Cada L contiene 1000 mL.\n3 × 1000 = 3000 mL.",
+        "visual": null,
+        "id": "mat_med_masa_capacidad-v2"
+      },
+      {
+        "enunciado": "¿Cuántos g son 4 kg?",
+        "respuesta_correcta": "4000",
+        "opciones": [
+          "1004",
+          "4000",
+          "400"
+        ],
+        "paso_resuelto": "Cada kg contiene 1000 g.\n4 × 1000 = 4000 g.",
+        "visual": null,
+        "id": "mat_med_masa_capacidad-v3"
+      },
+      {
+        "enunciado": "¿Cuántos mL son 5 L?",
+        "respuesta_correcta": "5000",
+        "opciones": [
+          "5000",
+          "500",
+          "1005"
+        ],
+        "paso_resuelto": "Cada L contiene 1000 mL.\n5 × 1000 = 5000 mL.",
+        "visual": null,
+        "id": "mat_med_masa_capacidad-v4"
+      },
+      {
+        "enunciado": "¿Cuántos g son 6 kg?",
+        "respuesta_correcta": "6000",
+        "opciones": [
+          "600",
+          "1006",
+          "6000"
+        ],
+        "paso_resuelto": "Cada kg contiene 1000 g.\n6 × 1000 = 6000 g.",
+        "visual": null,
+        "id": "mat_med_masa_capacidad-v5"
+      },
+      {
+        "enunciado": "¿Cuántos mL son 7 L?",
+        "respuesta_correcta": "7000",
+        "opciones": [
+          "1007",
+          "7000",
+          "700"
+        ],
+        "paso_resuelto": "Cada L contiene 1000 mL.\n7 × 1000 = 7000 mL.",
+        "visual": null,
+        "id": "mat_med_masa_capacidad-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_med_tiempo",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "titulo": "Una hora tiene sesenta minutos",
+    "explicacion": "El tiempo no sigue los saltos de diez de las medidas anteriores. Una hora tiene 60 minutos y un minuto tiene 60 segundos. Para sumar horas y minutos, primero los expresamos en minutos.",
+    "ejemplo": "1 h y 20 min son 80 min.",
+    "pasos": [
+      "1 h = 60 min.",
+      "60 + 20 = 80 min."
+    ],
+    "pista": "Para las horas usá 60, no 100.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "¿Cuántos minutos son 1 h y 20 min?",
+        "respuesta_correcta": "80",
+        "opciones": [
+          "80",
+          "120",
+          "21"
+        ],
+        "paso_resuelto": "1 × 60 = 60 min.\nSumamos 20: 80 min.",
+        "visual": null,
+        "id": "mat_med_tiempo-v1"
+      },
+      {
+        "enunciado": "¿Cuántos minutos son 2 h y 15 min?",
+        "respuesta_correcta": "135",
+        "opciones": [
+          "215",
+          "17",
+          "135"
+        ],
+        "paso_resuelto": "2 × 60 = 120 min.\nSumamos 15: 135 min.",
+        "visual": null,
+        "id": "mat_med_tiempo-v2"
+      },
+      {
+        "enunciado": "¿Cuántos minutos son 1 h y 45 min?",
+        "respuesta_correcta": "105",
+        "opciones": [
+          "46",
+          "105",
+          "145"
+        ],
+        "paso_resuelto": "1 × 60 = 60 min.\nSumamos 45: 105 min.",
+        "visual": null,
+        "id": "mat_med_tiempo-v3"
+      },
+      {
+        "enunciado": "¿Cuántos minutos son 3 h y 10 min?",
+        "respuesta_correcta": "190",
+        "opciones": [
+          "190",
+          "310",
+          "13"
+        ],
+        "paso_resuelto": "3 × 60 = 180 min.\nSumamos 10: 190 min.",
+        "visual": null,
+        "id": "mat_med_tiempo-v4"
+      },
+      {
+        "enunciado": "¿Cuántos minutos son 2 h y 30 min?",
+        "respuesta_correcta": "150",
+        "opciones": [
+          "230",
+          "32",
+          "150"
+        ],
+        "paso_resuelto": "2 × 60 = 120 min.\nSumamos 30: 150 min.",
+        "visual": null,
+        "id": "mat_med_tiempo-v5"
+      },
+      {
+        "enunciado": "¿Cuántos minutos son 4 h y 5 min?",
+        "respuesta_correcta": "245",
+        "opciones": [
+          "9",
+          "245",
+          "405"
+        ],
+        "paso_resuelto": "4 × 60 = 240 min.\nSumamos 5: 245 min.",
+        "visual": null,
+        "id": "mat_med_tiempo-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_ang_clases",
+    "tema": "geometria_angulos",
+    "titulo": "Comparar una abertura con un ángulo recto",
+    "explicacion": "Un ángulo es la abertura entre dos semirrectas que parten del mismo vértice. Se mide en grados. Recto: 90°. Agudo: más de 0° y menos de 90°. Obtuso: más de 90° y menos de 180°. Llano: 180°.",
+    "ejemplo": "Un ángulo de 60° es agudo.",
+    "pasos": [
+      "Comparamos 60 con 90.",
+      "Como 0 < 60 < 90, es agudo."
+    ],
+    "pista": "Compará la medida con 90° y 180°.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "¿Cómo se clasifica un ángulo de 60°?",
+        "respuesta_correcta": "agudo",
+        "opciones": [
+          "agudo",
+          "recto",
+          "obtuso",
+          "llano"
+        ],
+        "paso_resuelto": "60° está entre 0° y 90°.",
+        "visual": null,
+        "id": "mat_ang_clases-v1"
+      },
+      {
+        "enunciado": "¿Cómo se clasifica un ángulo de 90°?",
+        "respuesta_correcta": "recto",
+        "opciones": [
+          "agudo",
+          "obtuso",
+          "llano",
+          "recto"
+        ],
+        "paso_resuelto": "90° es exactamente 90°.",
+        "visual": null,
+        "id": "mat_ang_clases-v2"
+      },
+      {
+        "enunciado": "¿Cómo se clasifica un ángulo de 120°?",
+        "respuesta_correcta": "obtuso",
+        "opciones": [
+          "recto",
+          "llano",
+          "obtuso",
+          "agudo"
+        ],
+        "paso_resuelto": "120° está entre 90° y 180°.",
+        "visual": null,
+        "id": "mat_ang_clases-v3"
+      },
+      {
+        "enunciado": "¿Cómo se clasifica un ángulo de 180°?",
+        "respuesta_correcta": "llano",
+        "opciones": [
+          "obtuso",
+          "llano",
+          "agudo",
+          "recto"
+        ],
+        "paso_resuelto": "180° es exactamente 180°.",
+        "visual": null,
+        "id": "mat_ang_clases-v4"
+      },
+      {
+        "enunciado": "¿Cómo se clasifica un ángulo de 35°?",
+        "respuesta_correcta": "agudo",
+        "opciones": [
+          "agudo",
+          "recto",
+          "obtuso",
+          "llano"
+        ],
+        "paso_resuelto": "35° está entre 0° y 90°.",
+        "visual": null,
+        "id": "mat_ang_clases-v5"
+      },
+      {
+        "enunciado": "¿Cómo se clasifica un ángulo de 150°?",
+        "respuesta_correcta": "obtuso",
+        "opciones": [
+          "agudo",
+          "recto",
+          "llano",
+          "obtuso"
+        ],
+        "paso_resuelto": "150° está entre 90° y 180°.",
+        "visual": null,
+        "id": "mat_ang_clases-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_ang_complemento",
+    "tema": "geometria_angulos",
+    "titulo": "Dos ángulos que completan una abertura",
+    "explicacion": "Dos ángulos son complementarios si suman 90° y suplementarios si suman 180°. Para hallar el que falta restamos el conocido de la suma que deben completar.",
+    "ejemplo": "Si dos ángulos suman 90° y uno mide 30°, el otro mide 60°.",
+    "pasos": [
+      "La suma buscada es 90°.",
+      "90° − 30° = 60°."
+    ],
+    "pista": "Identificá si deben sumar 90° o 180°.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Dos ángulos suman 90°. Uno mide 30°. ¿Cuántos grados mide el otro?",
+        "respuesta_correcta": "60",
+        "opciones": [
+          "60",
+          "61",
+          "70"
+        ],
+        "paso_resuelto": "90 − 30 = 60.\nComprobamos: 30 + 60 = 90.",
+        "visual": null,
+        "id": "mat_ang_complemento-v1"
+      },
+      {
+        "enunciado": "Dos ángulos suman 180°. Uno mide 50°. ¿Cuántos grados mide el otro?",
+        "respuesta_correcta": "130",
+        "opciones": [
+          "131",
+          "140",
+          "130"
+        ],
+        "paso_resuelto": "180 − 50 = 130.\nComprobamos: 50 + 130 = 180.",
+        "visual": null,
+        "id": "mat_ang_complemento-v2"
+      },
+      {
+        "enunciado": "Dos ángulos suman 90°. Uno mide 25°. ¿Cuántos grados mide el otro?",
+        "respuesta_correcta": "65",
+        "opciones": [
+          "75",
+          "65",
+          "66"
+        ],
+        "paso_resuelto": "90 − 25 = 65.\nComprobamos: 25 + 65 = 90.",
+        "visual": null,
+        "id": "mat_ang_complemento-v3"
+      },
+      {
+        "enunciado": "Dos ángulos suman 180°. Uno mide 110°. ¿Cuántos grados mide el otro?",
+        "respuesta_correcta": "70",
+        "opciones": [
+          "70",
+          "71",
+          "80"
+        ],
+        "paso_resuelto": "180 − 110 = 70.\nComprobamos: 110 + 70 = 180.",
+        "visual": null,
+        "id": "mat_ang_complemento-v4"
+      },
+      {
+        "enunciado": "Dos ángulos suman 90°. Uno mide 40°. ¿Cuántos grados mide el otro?",
+        "respuesta_correcta": "50",
+        "opciones": [
+          "51",
+          "60",
+          "50"
+        ],
+        "paso_resuelto": "90 − 40 = 50.\nComprobamos: 40 + 50 = 90.",
+        "visual": null,
+        "id": "mat_ang_complemento-v5"
+      },
+      {
+        "enunciado": "Dos ángulos suman 180°. Uno mide 135°. ¿Cuántos grados mide el otro?",
+        "respuesta_correcta": "45",
+        "opciones": [
+          "55",
+          "45",
+          "46"
+        ],
+        "paso_resuelto": "180 − 135 = 45.\nComprobamos: 135 + 45 = 180.",
+        "visual": null,
+        "id": "mat_ang_complemento-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_tri_lados",
+    "tema": "geometria_triangulos",
+    "titulo": "Clasificar triángulos por sus lados",
+    "explicacion": "Un triángulo tiene tres lados. Es equilátero si los tres son iguales, isósceles si tiene al menos dos lados iguales y escaleno si los tres son distintos. Para elegir una sola respuesta, usamos el nombre más específico.",
+    "ejemplo": "Un triángulo de lados 4, 4 y 6 es isósceles.",
+    "pasos": [
+      "Comparamos las tres longitudes.",
+      "Tiene dos iguales y uno distinto: isósceles."
+    ],
+    "pista": "Contá cuántos lados tienen la misma medida.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Un triángulo tiene lados 4, 4 y 6 cm. Elegí el nombre más específico.",
+        "respuesta_correcta": "isósceles",
+        "opciones": [
+          "isósceles",
+          "equilátero",
+          "escaleno"
+        ],
+        "paso_resuelto": "Los lados 4, 4, 6 tienen dos iguales y uno distinto.",
+        "visual": null,
+        "id": "mat_tri_lados-v1"
+      },
+      {
+        "enunciado": "Un triángulo tiene lados 3, 3 y 3 cm. Elegí el nombre más específico.",
+        "respuesta_correcta": "equilátero",
+        "opciones": [
+          "isósceles",
+          "escaleno",
+          "equilátero"
+        ],
+        "paso_resuelto": "Los lados 3, 3, 3 tienen tres medidas iguales.",
+        "visual": null,
+        "id": "mat_tri_lados-v2"
+      },
+      {
+        "enunciado": "Un triángulo tiene lados 3, 4 y 5 cm. Elegí el nombre más específico.",
+        "respuesta_correcta": "escaleno",
+        "opciones": [
+          "isósceles",
+          "escaleno",
+          "equilátero"
+        ],
+        "paso_resuelto": "Los lados 3, 4, 5 tienen tres medidas distintas.",
+        "visual": null,
+        "id": "mat_tri_lados-v3"
+      },
+      {
+        "enunciado": "Un triángulo tiene lados 5, 5 y 8 cm. Elegí el nombre más específico.",
+        "respuesta_correcta": "isósceles",
+        "opciones": [
+          "isósceles",
+          "equilátero",
+          "escaleno"
+        ],
+        "paso_resuelto": "Los lados 5, 5, 8 tienen dos iguales y uno distinto.",
+        "visual": null,
+        "id": "mat_tri_lados-v4"
+      },
+      {
+        "enunciado": "Un triángulo tiene lados 7, 7 y 7 cm. Elegí el nombre más específico.",
+        "respuesta_correcta": "equilátero",
+        "opciones": [
+          "isósceles",
+          "escaleno",
+          "equilátero"
+        ],
+        "paso_resuelto": "Los lados 7, 7, 7 tienen tres medidas iguales.",
+        "visual": null,
+        "id": "mat_tri_lados-v5"
+      },
+      {
+        "enunciado": "Un triángulo tiene lados 5, 6 y 8 cm. Elegí el nombre más específico.",
+        "respuesta_correcta": "escaleno",
+        "opciones": [
+          "isósceles",
+          "escaleno",
+          "equilátero"
+        ],
+        "paso_resuelto": "Los lados 5, 6, 8 tienen tres medidas distintas.",
+        "visual": null,
+        "id": "mat_tri_lados-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_tri_angulos",
+    "tema": "geometria_triangulos",
+    "titulo": "Los tres ángulos suman 180 grados",
+    "explicacion": "Los ángulos interiores de todo triángulo suman 180°. Si conocemos dos, sumamos sus medidas y restamos esa suma de 180°.",
+    "ejemplo": "Un triángulo tiene ángulos de 50° y 60°. El tercero mide 70°.",
+    "pasos": [
+      "50° + 60° = 110°.",
+      "180° − 110° = 70°."
+    ],
+    "pista": "Restá de 180° la suma de los dos ángulos conocidos.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Dos ángulos de un triángulo miden 50° y 60°. ¿Cuántos grados mide el tercero?",
+        "respuesta_correcta": "70",
+        "opciones": [
+          "70",
+          "71",
+          "80"
+        ],
+        "paso_resuelto": "50 + 60 = 110.\n180 − 110 = 70.",
+        "visual": null,
+        "id": "mat_tri_angulos-v1"
+      },
+      {
+        "enunciado": "Dos ángulos de un triángulo miden 40° y 80°. ¿Cuántos grados mide el tercero?",
+        "respuesta_correcta": "60",
+        "opciones": [
+          "61",
+          "70",
+          "60"
+        ],
+        "paso_resuelto": "40 + 80 = 120.\n180 − 120 = 60.",
+        "visual": null,
+        "id": "mat_tri_angulos-v2"
+      },
+      {
+        "enunciado": "Dos ángulos de un triángulo miden 90° y 35°. ¿Cuántos grados mide el tercero?",
+        "respuesta_correcta": "55",
+        "opciones": [
+          "65",
+          "55",
+          "56"
+        ],
+        "paso_resuelto": "90 + 35 = 125.\n180 − 125 = 55.",
+        "visual": null,
+        "id": "mat_tri_angulos-v3"
+      },
+      {
+        "enunciado": "Dos ángulos de un triángulo miden 65° y 65°. ¿Cuántos grados mide el tercero?",
+        "respuesta_correcta": "50",
+        "opciones": [
+          "50",
+          "51",
+          "60"
+        ],
+        "paso_resuelto": "65 + 65 = 130.\n180 − 130 = 50.",
+        "visual": null,
+        "id": "mat_tri_angulos-v4"
+      },
+      {
+        "enunciado": "Dos ángulos de un triángulo miden 30° y 70°. ¿Cuántos grados mide el tercero?",
+        "respuesta_correcta": "80",
+        "opciones": [
+          "81",
+          "90",
+          "80"
+        ],
+        "paso_resuelto": "30 + 70 = 100.\n180 − 100 = 80.",
+        "visual": null,
+        "id": "mat_tri_angulos-v5"
+      },
+      {
+        "enunciado": "Dos ángulos de un triángulo miden 45° y 55°. ¿Cuántos grados mide el tercero?",
+        "respuesta_correcta": "80",
+        "opciones": [
+          "90",
+          "80",
+          "81"
+        ],
+        "paso_resuelto": "45 + 55 = 100.\n180 − 100 = 80.",
+        "visual": null,
+        "id": "mat_tri_angulos-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_cuad_lados",
+    "tema": "geometria_cuadrilateros_circunferencia",
+    "titulo": "Cuatro lados y líneas paralelas",
+    "explicacion": "Un cuadrilátero tiene cuatro lados. Un paralelogramo tiene dos pares de lados opuestos paralelos. El cuadrado tiene cuatro lados iguales y cuatro ángulos rectos: también es rectángulo y rombo. En el cuadernillo, trapecio tiene un solo par de lados paralelos.",
+    "ejemplo": "Todo cuadrado es también un rectángulo.",
+    "pasos": [
+      "Rectángulo significa cuatro ángulos rectos.",
+      "El cuadrado cumple esa condición y además tiene lados iguales."
+    ],
+    "pista": "Una figura puede pertenecer a más de una familia.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "¿Todo cuadrado tiene cuatro ángulos rectos?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "Es parte de la definición de cuadrado.",
+        "visual": null,
+        "id": "mat_cuad_lados-v1"
+      },
+      {
+        "enunciado": "¿Todo rectángulo tiene los cuatro lados iguales?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "Eso ocurre en los cuadrados; otros rectángulos tienen largo y ancho diferentes.",
+        "visual": null,
+        "id": "mat_cuad_lados-v2"
+      },
+      {
+        "enunciado": "¿Un cuadrado también es un rombo?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "Sus cuatro lados son iguales.",
+        "visual": null,
+        "id": "mat_cuad_lados-v3"
+      },
+      {
+        "enunciado": "¿Un paralelogramo tiene dos pares de lados opuestos paralelos?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "Esa condición define al paralelogramo.",
+        "visual": null,
+        "id": "mat_cuad_lados-v4"
+      },
+      {
+        "enunciado": "Según el cuadernillo, ¿un trapecio tiene dos pares de lados paralelos?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "El trapecio tiene un solo par.",
+        "visual": null,
+        "id": "mat_cuad_lados-v5"
+      },
+      {
+        "enunciado": "¿Todo rombo tiene cuatro ángulos rectos?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "Tiene cuatro lados iguales, pero sus ángulos no necesariamente son rectos.",
+        "visual": null,
+        "id": "mat_cuad_lados-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_circ_radio",
+    "tema": "geometria_cuadrilateros_circunferencia",
+    "titulo": "Radio y diámetro",
+    "explicacion": "La circunferencia es la línea cuyos puntos están a la misma distancia del centro. El radio une el centro con esa línea. El diámetro une dos puntos de la circunferencia pasando por el centro y mide dos radios.",
+    "ejemplo": "Si el radio es 3 cm, el diámetro mide 6 cm.",
+    "pasos": [
+      "Un diámetro reúne dos radios.",
+      "3 + 3 = 6 cm."
+    ],
+    "pista": "El diámetro mide el doble del radio.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "El radio mide 3 cm. ¿Cuántos centímetros mide el diámetro?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "6",
+          "7",
+          "16"
+        ],
+        "paso_resuelto": "El diámetro reúne dos radios: 3 + 3 = 6 cm.",
+        "visual": null,
+        "id": "mat_circ_radio-v1"
+      },
+      {
+        "enunciado": "El radio mide 4 cm. ¿Cuántos centímetros mide el diámetro?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "9",
+          "18",
+          "8"
+        ],
+        "paso_resuelto": "El diámetro reúne dos radios: 4 + 4 = 8 cm.",
+        "visual": null,
+        "id": "mat_circ_radio-v2"
+      },
+      {
+        "enunciado": "El radio mide 5 cm. ¿Cuántos centímetros mide el diámetro?",
+        "respuesta_correcta": "10",
+        "opciones": [
+          "20",
+          "10",
+          "11"
+        ],
+        "paso_resuelto": "El diámetro reúne dos radios: 5 + 5 = 10 cm.",
+        "visual": null,
+        "id": "mat_circ_radio-v3"
+      },
+      {
+        "enunciado": "El radio mide 6 cm. ¿Cuántos centímetros mide el diámetro?",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "12",
+          "13",
+          "22"
+        ],
+        "paso_resuelto": "El diámetro reúne dos radios: 6 + 6 = 12 cm.",
+        "visual": null,
+        "id": "mat_circ_radio-v4"
+      },
+      {
+        "enunciado": "El radio mide 7 cm. ¿Cuántos centímetros mide el diámetro?",
+        "respuesta_correcta": "14",
+        "opciones": [
+          "15",
+          "24",
+          "14"
+        ],
+        "paso_resuelto": "El diámetro reúne dos radios: 7 + 7 = 14 cm.",
+        "visual": null,
+        "id": "mat_circ_radio-v5"
+      },
+      {
+        "enunciado": "El radio mide 8 cm. ¿Cuántos centímetros mide el diámetro?",
+        "respuesta_correcta": "16",
+        "opciones": [
+          "26",
+          "16",
+          "17"
+        ],
+        "paso_resuelto": "El diámetro reúne dos radios: 8 + 8 = 16 cm.",
+        "visual": null,
+        "id": "mat_circ_radio-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_per_rectangulo",
+    "tema": "perimetros_simples",
+    "titulo": "Recorrer todo el borde",
+    "explicacion": "El perímetro es la longitud del borde de una figura. En un rectángulo sumamos largo, ancho, largo y ancho. Se expresa en unidades de longitud, no de superficie.",
+    "ejemplo": "Un rectángulo de 5 cm por 3 cm tiene perímetro 16 cm.",
+    "pasos": [
+      "Recorremos sus cuatro lados: 5, 3, 5, 3.",
+      "5 + 3 + 5 + 3 = 16 cm."
+    ],
+    "pista": "Sumá cada lado del borde una sola vez.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Un rectángulo mide 5 cm de largo y 3 cm de ancho. ¿Cuál es su perímetro en cm?",
+        "respuesta_correcta": "16",
+        "opciones": [
+          "16",
+          "15",
+          "8",
+          "17"
+        ],
+        "paso_resuelto": "5 + 3 + 5 + 3 = 16 cm.",
+        "visual": null,
+        "id": "mat_per_rectangulo-v1"
+      },
+      {
+        "enunciado": "Un rectángulo mide 6 cm de largo y 4 cm de ancho. ¿Cuál es su perímetro en cm?",
+        "respuesta_correcta": "20",
+        "opciones": [
+          "24",
+          "10",
+          "21",
+          "20"
+        ],
+        "paso_resuelto": "6 + 4 + 6 + 4 = 20 cm.",
+        "visual": null,
+        "id": "mat_per_rectangulo-v2"
+      },
+      {
+        "enunciado": "Un rectángulo mide 7 cm de largo y 2 cm de ancho. ¿Cuál es su perímetro en cm?",
+        "respuesta_correcta": "18",
+        "opciones": [
+          "9",
+          "19",
+          "18",
+          "14"
+        ],
+        "paso_resuelto": "7 + 2 + 7 + 2 = 18 cm.",
+        "visual": null,
+        "id": "mat_per_rectangulo-v3"
+      },
+      {
+        "enunciado": "Un rectángulo mide 8 cm de largo y 3 cm de ancho. ¿Cuál es su perímetro en cm?",
+        "respuesta_correcta": "22",
+        "opciones": [
+          "23",
+          "22",
+          "24",
+          "11"
+        ],
+        "paso_resuelto": "8 + 3 + 8 + 3 = 22 cm.",
+        "visual": null,
+        "id": "mat_per_rectangulo-v4"
+      },
+      {
+        "enunciado": "Un rectángulo mide 9 cm de largo y 4 cm de ancho. ¿Cuál es su perímetro en cm?",
+        "respuesta_correcta": "26",
+        "opciones": [
+          "26",
+          "36",
+          "13",
+          "27"
+        ],
+        "paso_resuelto": "9 + 4 + 9 + 4 = 26 cm.",
+        "visual": null,
+        "id": "mat_per_rectangulo-v5"
+      },
+      {
+        "enunciado": "Un rectángulo mide 10 cm de largo y 5 cm de ancho. ¿Cuál es su perímetro en cm?",
+        "respuesta_correcta": "30",
+        "opciones": [
+          "50",
+          "15",
+          "31",
+          "30"
+        ],
+        "paso_resuelto": "10 + 5 + 10 + 5 = 30 cm.",
+        "visual": null,
+        "id": "mat_per_rectangulo-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_per_circunferencia",
+    "tema": "perimetros_simples",
+    "titulo": "Medir el borde de una circunferencia",
+    "explicacion": "La longitud de una circunferencia se calcula multiplicando su diámetro por pi. Usaremos pi aproximado a 3,14. Si conocemos el radio, primero lo duplicamos.",
+    "ejemplo": "Diámetro 10 cm: longitud aproximada 31,4 cm.",
+    "pasos": [
+      "Usamos L = pi × diámetro.",
+      "3,14 × 10 = 31,4 cm."
+    ],
+    "pista": "Revisá si te dieron radio o diámetro.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Una circunferencia tiene diámetro 10 cm. Usá pi = 3,14. ¿Cuál es su longitud aproximada en cm?",
+        "respuesta_correcta": "31,40",
+        "opciones": [
+          "31,40",
+          "20",
+          "30"
+        ],
+        "paso_resuelto": "3,14 × 10 = 31,40 cm.",
+        "visual": null,
+        "id": "mat_per_circunferencia-v1"
+      },
+      {
+        "enunciado": "Una circunferencia tiene diámetro 2 cm. Usá pi = 3,14. ¿Cuál es su longitud aproximada en cm?",
+        "respuesta_correcta": "6,28",
+        "opciones": [
+          "4",
+          "6",
+          "6,28"
+        ],
+        "paso_resuelto": "3,14 × 2 = 6,28 cm.",
+        "visual": null,
+        "id": "mat_per_circunferencia-v2"
+      },
+      {
+        "enunciado": "Una circunferencia tiene diámetro 4 cm. Usá pi = 3,14. ¿Cuál es su longitud aproximada en cm?",
+        "respuesta_correcta": "12,56",
+        "opciones": [
+          "12",
+          "12,56",
+          "8"
+        ],
+        "paso_resuelto": "3,14 × 4 = 12,56 cm.",
+        "visual": null,
+        "id": "mat_per_circunferencia-v3"
+      },
+      {
+        "enunciado": "Una circunferencia tiene diámetro 6 cm. Usá pi = 3,14. ¿Cuál es su longitud aproximada en cm?",
+        "respuesta_correcta": "18,84",
+        "opciones": [
+          "18,84",
+          "12",
+          "18"
+        ],
+        "paso_resuelto": "3,14 × 6 = 18,84 cm.",
+        "visual": null,
+        "id": "mat_per_circunferencia-v4"
+      },
+      {
+        "enunciado": "Una circunferencia tiene diámetro 8 cm. Usá pi = 3,14. ¿Cuál es su longitud aproximada en cm?",
+        "respuesta_correcta": "25,12",
+        "opciones": [
+          "16",
+          "24",
+          "25,12"
+        ],
+        "paso_resuelto": "3,14 × 8 = 25,12 cm.",
+        "visual": null,
+        "id": "mat_per_circunferencia-v5"
+      },
+      {
+        "enunciado": "Una circunferencia tiene diámetro 20 cm. Usá pi = 3,14. ¿Cuál es su longitud aproximada en cm?",
+        "respuesta_correcta": "62,80",
+        "opciones": [
+          "60",
+          "62,80",
+          "40"
+        ],
+        "paso_resuelto": "3,14 × 20 = 62,80 cm.",
+        "visual": null,
+        "id": "mat_per_circunferencia-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_per_union",
+    "tema": "perimetros_compuestos",
+    "titulo": "Los lados compartidos quedan adentro",
+    "explicacion": "Al unir figuras sin superponerlas, un lado pegado deja de formar parte del borde exterior. Si sumamos sus perímetros, ese lado se contó dos veces. Restamos dos veces la longitud compartida.",
+    "ejemplo": "Dos cuadrados de lado 3 cm unidos por un lado tienen perímetro exterior 18 cm.",
+    "pasos": [
+      "Cada cuadrado tiene perímetro 12 cm: juntos suman 24.",
+      "Quitamos dos veces el lado interno: 24 − 6 = 18 cm."
+    ],
+    "pista": "Recorré solo el borde exterior.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Dos cuadrados de lado 3 cm se unen por un lado completo. ¿Cuál es el perímetro exterior en cm?",
+        "respuesta_correcta": "18",
+        "opciones": [
+          "18",
+          "24",
+          "12"
+        ],
+        "paso_resuelto": "Los perímetros suman 24.\nQuitamos el lado compartido dos veces: 24 − 6 = 18 cm.",
+        "visual": null,
+        "id": "mat_per_union-v1"
+      },
+      {
+        "enunciado": "Dos cuadrados de lado 4 cm se unen por un lado completo. ¿Cuál es el perímetro exterior en cm?",
+        "respuesta_correcta": "24",
+        "opciones": [
+          "32",
+          "16",
+          "24"
+        ],
+        "paso_resuelto": "Los perímetros suman 32.\nQuitamos el lado compartido dos veces: 32 − 8 = 24 cm.",
+        "visual": null,
+        "id": "mat_per_union-v2"
+      },
+      {
+        "enunciado": "Dos cuadrados de lado 5 cm se unen por un lado completo. ¿Cuál es el perímetro exterior en cm?",
+        "respuesta_correcta": "30",
+        "opciones": [
+          "20",
+          "30",
+          "40"
+        ],
+        "paso_resuelto": "Los perímetros suman 40.\nQuitamos el lado compartido dos veces: 40 − 10 = 30 cm.",
+        "visual": null,
+        "id": "mat_per_union-v3"
+      },
+      {
+        "enunciado": "Dos cuadrados de lado 6 cm se unen por un lado completo. ¿Cuál es el perímetro exterior en cm?",
+        "respuesta_correcta": "36",
+        "opciones": [
+          "36",
+          "48",
+          "24"
+        ],
+        "paso_resuelto": "Los perímetros suman 48.\nQuitamos el lado compartido dos veces: 48 − 12 = 36 cm.",
+        "visual": null,
+        "id": "mat_per_union-v4"
+      },
+      {
+        "enunciado": "Dos cuadrados de lado 7 cm se unen por un lado completo. ¿Cuál es el perímetro exterior en cm?",
+        "respuesta_correcta": "42",
+        "opciones": [
+          "56",
+          "28",
+          "42"
+        ],
+        "paso_resuelto": "Los perímetros suman 56.\nQuitamos el lado compartido dos veces: 56 − 14 = 42 cm.",
+        "visual": null,
+        "id": "mat_per_union-v5"
+      },
+      {
+        "enunciado": "Dos cuadrados de lado 8 cm se unen por un lado completo. ¿Cuál es el perímetro exterior en cm?",
+        "respuesta_correcta": "48",
+        "opciones": [
+          "32",
+          "48",
+          "64"
+        ],
+        "paso_resuelto": "Los perímetros suman 64.\nQuitamos el lado compartido dos veces: 64 − 16 = 48 cm.",
+        "visual": null,
+        "id": "mat_per_union-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_per_faltante",
+    "tema": "perimetros_compuestos",
+    "titulo": "Encontrar un tramo que falta",
+    "explicacion": "Si un lado total está dividido en dos tramos, el desconocido se encuentra restando el conocido al total. Antes de calcular un perímetro compuesto, identificamos todos los tramos exteriores.",
+    "ejemplo": "Un lado de 10 cm tiene un tramo de 4 cm: faltan 6 cm.",
+    "pasos": [
+      "El total es la suma de ambos tramos.",
+      "10 − 4 = 6 cm."
+    ],
+    "pista": "Los dos tramos deben sumar el lado completo.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Un lado recto de 10 cm se divide en un tramo de 4 cm y otro desconocido. ¿Cuántos cm mide el tramo que falta?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "6",
+          "7",
+          "16"
+        ],
+        "paso_resuelto": "10 − 4 = 6.\n4 + 6 = 10 cm.",
+        "visual": null,
+        "id": "mat_per_faltante-v1"
+      },
+      {
+        "enunciado": "Un lado recto de 12 cm se divide en un tramo de 5 cm y otro desconocido. ¿Cuántos cm mide el tramo que falta?",
+        "respuesta_correcta": "7",
+        "opciones": [
+          "8",
+          "17",
+          "7"
+        ],
+        "paso_resuelto": "12 − 5 = 7.\n5 + 7 = 12 cm.",
+        "visual": null,
+        "id": "mat_per_faltante-v2"
+      },
+      {
+        "enunciado": "Un lado recto de 15 cm se divide en un tramo de 6 cm y otro desconocido. ¿Cuántos cm mide el tramo que falta?",
+        "respuesta_correcta": "9",
+        "opciones": [
+          "19",
+          "9",
+          "10"
+        ],
+        "paso_resuelto": "15 − 6 = 9.\n6 + 9 = 15 cm.",
+        "visual": null,
+        "id": "mat_per_faltante-v3"
+      },
+      {
+        "enunciado": "Un lado recto de 18 cm se divide en un tramo de 7 cm y otro desconocido. ¿Cuántos cm mide el tramo que falta?",
+        "respuesta_correcta": "11",
+        "opciones": [
+          "11",
+          "12",
+          "21"
+        ],
+        "paso_resuelto": "18 − 7 = 11.\n7 + 11 = 18 cm.",
+        "visual": null,
+        "id": "mat_per_faltante-v4"
+      },
+      {
+        "enunciado": "Un lado recto de 20 cm se divide en un tramo de 8 cm y otro desconocido. ¿Cuántos cm mide el tramo que falta?",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "13",
+          "22",
+          "12"
+        ],
+        "paso_resuelto": "20 − 8 = 12.\n8 + 12 = 20 cm.",
+        "visual": null,
+        "id": "mat_per_faltante-v5"
+      },
+      {
+        "enunciado": "Un lado recto de 24 cm se divide en un tramo de 9 cm y otro desconocido. ¿Cuántos cm mide el tramo que falta?",
+        "respuesta_correcta": "15",
+        "opciones": [
+          "25",
+          "15",
+          "16"
+        ],
+        "paso_resuelto": "24 − 9 = 15.\n9 + 15 = 24 cm.",
+        "visual": null,
+        "id": "mat_per_faltante-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_graf_leer",
+    "tema": "graficos_estadisticos",
+    "titulo": "Leer qué cuenta cada dato",
+    "explicacion": "Un gráfico o una tabla relaciona categorías con cantidades. Primero leemos qué se está contando y en qué unidad. Para buscar el mayor valor comparamos las cantidades, no el largo del nombre.",
+    "ejemplo": "Libros leídos: Ana 3, Bruno 5, Cami 2. Bruno leyó más.",
+    "pasos": [
+      "Buscamos 3, 5 y 2 libros.",
+      "5 es la mayor cantidad; corresponde a Bruno."
+    ],
+    "pista": "Leé los nombres y sus cantidades antes de comparar.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Libros leídos: Ana 3, Bruno 5, Cami 2. ¿Quién leyó más?",
+        "respuesta_correcta": "Bruno",
+        "opciones": [
+          "Bruno",
+          "Ana",
+          "Cami"
+        ],
+        "paso_resuelto": "Comparamos 3, 5 y 2. La mayor cantidad es 5.",
+        "visual": null,
+        "id": "mat_graf_leer-v1"
+      },
+      {
+        "enunciado": "Libros leídos: Ana 6, Bruno 2, Cami 4. ¿Quién leyó más?",
+        "respuesta_correcta": "Ana",
+        "opciones": [
+          "Bruno",
+          "Cami",
+          "Ana"
+        ],
+        "paso_resuelto": "Comparamos 6, 2 y 4. La mayor cantidad es 6.",
+        "visual": null,
+        "id": "mat_graf_leer-v2"
+      },
+      {
+        "enunciado": "Libros leídos: Ana 4, Bruno 3, Cami 7. ¿Quién leyó más?",
+        "respuesta_correcta": "Cami",
+        "opciones": [
+          "Bruno",
+          "Cami",
+          "Ana"
+        ],
+        "paso_resuelto": "Comparamos 4, 3 y 7. La mayor cantidad es 7.",
+        "visual": null,
+        "id": "mat_graf_leer-v3"
+      },
+      {
+        "enunciado": "Libros leídos: Ana 8, Bruno 9, Cami 5. ¿Quién leyó más?",
+        "respuesta_correcta": "Bruno",
+        "opciones": [
+          "Bruno",
+          "Ana",
+          "Cami"
+        ],
+        "paso_resuelto": "Comparamos 8, 9 y 5. La mayor cantidad es 9.",
+        "visual": null,
+        "id": "mat_graf_leer-v4"
+      },
+      {
+        "enunciado": "Libros leídos: Ana 7, Bruno 4, Cami 3. ¿Quién leyó más?",
+        "respuesta_correcta": "Ana",
+        "opciones": [
+          "Bruno",
+          "Cami",
+          "Ana"
+        ],
+        "paso_resuelto": "Comparamos 7, 4 y 3. La mayor cantidad es 7.",
+        "visual": null,
+        "id": "mat_graf_leer-v5"
+      },
+      {
+        "enunciado": "Libros leídos: Ana 5, Bruno 6, Cami 8. ¿Quién leyó más?",
+        "respuesta_correcta": "Cami",
+        "opciones": [
+          "Bruno",
+          "Cami",
+          "Ana"
+        ],
+        "paso_resuelto": "Comparamos 5, 6 y 8. La mayor cantidad es 8.",
+        "visual": null,
+        "id": "mat_graf_leer-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_graf_escala",
+    "tema": "graficos_estadisticos",
+    "titulo": "Una marca puede valer más de uno",
+    "explicacion": "En un pictograma cada símbolo puede representar varias unidades. Leemos la clave antes de contar. Si cada símbolo vale dos libros, cuatro símbolos representan ocho libros.",
+    "ejemplo": "4 símbolos de 2 libros cada uno representan 8 libros.",
+    "pasos": [
+      "Contamos 4 símbolos.",
+      "4 × 2 = 8 libros."
+    ],
+    "pista": "Buscá cuánto vale cada símbolo en la clave.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "En un pictograma, cada símbolo representa 2 libros. Hay 4 símbolos completos. ¿Cuántos libros representan?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "8",
+          "4",
+          "6"
+        ],
+        "paso_resuelto": "4 símbolos × 2 libros = 8 libros.",
+        "visual": null,
+        "id": "mat_graf_escala-v1"
+      },
+      {
+        "enunciado": "En un pictograma, cada símbolo representa 5 libros. Hay 3 símbolos completos. ¿Cuántos libros representan?",
+        "respuesta_correcta": "15",
+        "opciones": [
+          "3",
+          "8",
+          "15"
+        ],
+        "paso_resuelto": "3 símbolos × 5 libros = 15 libros.",
+        "visual": null,
+        "id": "mat_graf_escala-v2"
+      },
+      {
+        "enunciado": "En un pictograma, cada símbolo representa 2 libros. Hay 6 símbolos completos. ¿Cuántos libros representan?",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "8",
+          "12",
+          "6"
+        ],
+        "paso_resuelto": "6 símbolos × 2 libros = 12 libros.",
+        "visual": null,
+        "id": "mat_graf_escala-v3"
+      },
+      {
+        "enunciado": "En un pictograma, cada símbolo representa 3 libros. Hay 5 símbolos completos. ¿Cuántos libros representan?",
+        "respuesta_correcta": "15",
+        "opciones": [
+          "15",
+          "5",
+          "8"
+        ],
+        "paso_resuelto": "5 símbolos × 3 libros = 15 libros.",
+        "visual": null,
+        "id": "mat_graf_escala-v4"
+      },
+      {
+        "enunciado": "En un pictograma, cada símbolo representa 4 libros. Hay 7 símbolos completos. ¿Cuántos libros representan?",
+        "respuesta_correcta": "28",
+        "opciones": [
+          "7",
+          "11",
+          "28"
+        ],
+        "paso_resuelto": "7 símbolos × 4 libros = 28 libros.",
+        "visual": null,
+        "id": "mat_graf_escala-v5"
+      },
+      {
+        "enunciado": "En un pictograma, cada símbolo representa 5 libros. Hay 8 símbolos completos. ¿Cuántos libros representan?",
+        "respuesta_correcta": "40",
+        "opciones": [
+          "13",
+          "40",
+          "8"
+        ],
+        "paso_resuelto": "8 símbolos × 5 libros = 40 libros.",
+        "visual": null,
+        "id": "mat_graf_escala-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_prop_unidad",
+    "tema": "proporcionalidad_regla_3",
+    "titulo": "Primero averiguamos cuánto vale uno",
+    "explicacion": "En una relación directamente proporcional, cada unidad conserva el mismo valor. Si tres cuadernos cuestan 600 pesos, uno cuesta 600 ÷ 3. No hay descuentos ni cargos extra en estos ejercicios.",
+    "ejemplo": "3 cuadernos cuestan $600: uno cuesta $200.",
+    "pasos": [
+      "Dividimos el precio total entre la cantidad.",
+      "600 ÷ 3 = 200 pesos por cuaderno."
+    ],
+    "pista": "Buscá el valor de una unidad.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "3 cuadernos iguales cuestan $600, sin descuentos. ¿Cuántos pesos cuesta uno?",
+        "respuesta_correcta": "200",
+        "opciones": [
+          "200",
+          "600",
+          "203"
+        ],
+        "paso_resuelto": "600 ÷ 3 = 200 pesos por cuaderno.",
+        "visual": null,
+        "id": "mat_prop_unidad-v1"
+      },
+      {
+        "enunciado": "4 cuadernos iguales cuestan $600, sin descuentos. ¿Cuántos pesos cuesta uno?",
+        "respuesta_correcta": "150",
+        "opciones": [
+          "600",
+          "154",
+          "150"
+        ],
+        "paso_resuelto": "600 ÷ 4 = 150 pesos por cuaderno.",
+        "visual": null,
+        "id": "mat_prop_unidad-v2"
+      },
+      {
+        "enunciado": "5 cuadernos iguales cuestan $600, sin descuentos. ¿Cuántos pesos cuesta uno?",
+        "respuesta_correcta": "120",
+        "opciones": [
+          "125",
+          "120",
+          "600"
+        ],
+        "paso_resuelto": "600 ÷ 5 = 120 pesos por cuaderno.",
+        "visual": null,
+        "id": "mat_prop_unidad-v3"
+      },
+      {
+        "enunciado": "2 cuadernos iguales cuestan $500, sin descuentos. ¿Cuántos pesos cuesta uno?",
+        "respuesta_correcta": "250",
+        "opciones": [
+          "250",
+          "500",
+          "252"
+        ],
+        "paso_resuelto": "500 ÷ 2 = 250 pesos por cuaderno.",
+        "visual": null,
+        "id": "mat_prop_unidad-v4"
+      },
+      {
+        "enunciado": "6 cuadernos iguales cuestan $600, sin descuentos. ¿Cuántos pesos cuesta uno?",
+        "respuesta_correcta": "100",
+        "opciones": [
+          "600",
+          "106",
+          "100"
+        ],
+        "paso_resuelto": "600 ÷ 6 = 100 pesos por cuaderno.",
+        "visual": null,
+        "id": "mat_prop_unidad-v5"
+      },
+      {
+        "enunciado": "8 cuadernos iguales cuestan $400, sin descuentos. ¿Cuántos pesos cuesta uno?",
+        "respuesta_correcta": "50",
+        "opciones": [
+          "58",
+          "50",
+          "400"
+        ],
+        "paso_resuelto": "400 ÷ 8 = 50 pesos por cuaderno.",
+        "visual": null,
+        "id": "mat_prop_unidad-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_prop_otro_total",
+    "tema": "proporcionalidad_regla_3",
+    "titulo": "Del valor de uno a otra cantidad",
+    "explicacion": "Después de hallar el valor de una unidad, lo multiplicamos por la nueva cantidad. Este método sirve cuando el valor por unidad es constante.",
+    "ejemplo": "3 cuadernos cuestan $600. Cinco cuestan $1000.",
+    "pasos": [
+      "Uno cuesta 600 ÷ 3 = 200.",
+      "Cinco cuestan 5 × 200 = 1000."
+    ],
+    "pista": "Primero dividí para llegar a uno; después multiplicá.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "3 cuadernos cuestan $600. Al mismo precio por unidad, ¿cuántos pesos cuestan 5?",
+        "respuesta_correcta": "1000",
+        "opciones": [
+          "1000",
+          "600",
+          "1200"
+        ],
+        "paso_resuelto": "Uno cuesta 600 ÷ 3 = 200.\n5 cuestan 5 × 200 = 1000.",
+        "visual": null,
+        "id": "mat_prop_otro_total-v1"
+      },
+      {
+        "enunciado": "4 cuadernos cuestan $600. Al mismo precio por unidad, ¿cuántos pesos cuestan 6?",
+        "respuesta_correcta": "900",
+        "opciones": [
+          "600",
+          "1050",
+          "900"
+        ],
+        "paso_resuelto": "Uno cuesta 600 ÷ 4 = 150.\n6 cuestan 6 × 150 = 900.",
+        "visual": null,
+        "id": "mat_prop_otro_total-v2"
+      },
+      {
+        "enunciado": "5 cuadernos cuestan $600. Al mismo precio por unidad, ¿cuántos pesos cuestan 3?",
+        "respuesta_correcta": "360",
+        "opciones": [
+          "480",
+          "360",
+          "600"
+        ],
+        "paso_resuelto": "Uno cuesta 600 ÷ 5 = 120.\n3 cuestan 3 × 120 = 360.",
+        "visual": null,
+        "id": "mat_prop_otro_total-v3"
+      },
+      {
+        "enunciado": "2 cuadernos cuestan $500. Al mismo precio por unidad, ¿cuántos pesos cuestan 4?",
+        "respuesta_correcta": "1000",
+        "opciones": [
+          "1000",
+          "500",
+          "1250"
+        ],
+        "paso_resuelto": "Uno cuesta 500 ÷ 2 = 250.\n4 cuestan 4 × 250 = 1000.",
+        "visual": null,
+        "id": "mat_prop_otro_total-v4"
+      },
+      {
+        "enunciado": "6 cuadernos cuestan $600. Al mismo precio por unidad, ¿cuántos pesos cuestan 9?",
+        "respuesta_correcta": "900",
+        "opciones": [
+          "600",
+          "1000",
+          "900"
+        ],
+        "paso_resuelto": "Uno cuesta 600 ÷ 6 = 100.\n9 cuestan 9 × 100 = 900.",
+        "visual": null,
+        "id": "mat_prop_otro_total-v5"
+      },
+      {
+        "enunciado": "8 cuadernos cuestan $400. Al mismo precio por unidad, ¿cuántos pesos cuestan 7?",
+        "respuesta_correcta": "350",
+        "opciones": [
+          "400",
+          "350"
+        ],
+        "paso_resuelto": "Uno cuesta 400 ÷ 8 = 50.\n7 cuestan 7 × 50 = 350.",
+        "visual": null,
+        "id": "mat_prop_otro_total-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_sec_salto",
+    "tema": "secuencias_aritmeticas",
+    "titulo": "Repetir siempre el mismo salto",
+    "explicacion": "Una secuencia aritmética cambia sumando o restando siempre la misma cantidad. Calculamos la diferencia entre términos vecinos y la comprobamos en los demás.",
+    "ejemplo": "4, 7, 10, 13 continúa con 16.",
+    "pasos": [
+      "7 − 4 = 3 y 10 − 7 = 3.",
+      "Sumamos el mismo salto: 13 + 3 = 16."
+    ],
+    "pista": "Comprobá que el salto se repite antes de continuar.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Seguí sumando siempre lo mismo: 4, 7, 10, 13. ¿Qué número sigue?",
+        "respuesta_correcta": "16",
+        "opciones": [
+          "16",
+          "17",
+          "26"
+        ],
+        "paso_resuelto": "El salto es +3.\n13 + 3 = 16.",
+        "visual": null,
+        "id": "mat_sec_salto-v1"
+      },
+      {
+        "enunciado": "Seguí sumando siempre lo mismo: 2, 6, 10, 14. ¿Qué número sigue?",
+        "respuesta_correcta": "18",
+        "opciones": [
+          "19",
+          "28",
+          "18"
+        ],
+        "paso_resuelto": "El salto es +4.\n14 + 4 = 18.",
+        "visual": null,
+        "id": "mat_sec_salto-v2"
+      },
+      {
+        "enunciado": "Seguí sumando siempre lo mismo: 5, 7, 9, 11. ¿Qué número sigue?",
+        "respuesta_correcta": "13",
+        "opciones": [
+          "23",
+          "13",
+          "14"
+        ],
+        "paso_resuelto": "El salto es +2.\n11 + 2 = 13.",
+        "visual": null,
+        "id": "mat_sec_salto-v3"
+      },
+      {
+        "enunciado": "Seguí sumando siempre lo mismo: 7, 12, 17, 22. ¿Qué número sigue?",
+        "respuesta_correcta": "27",
+        "opciones": [
+          "27",
+          "28",
+          "37"
+        ],
+        "paso_resuelto": "El salto es +5.\n22 + 5 = 27.",
+        "visual": null,
+        "id": "mat_sec_salto-v4"
+      },
+      {
+        "enunciado": "Seguí sumando siempre lo mismo: 3, 9, 15, 21. ¿Qué número sigue?",
+        "respuesta_correcta": "27",
+        "opciones": [
+          "28",
+          "37",
+          "27"
+        ],
+        "paso_resuelto": "El salto es +6.\n21 + 6 = 27.",
+        "visual": null,
+        "id": "mat_sec_salto-v5"
+      },
+      {
+        "enunciado": "Seguí sumando siempre lo mismo: 10, 17, 24, 31. ¿Qué número sigue?",
+        "respuesta_correcta": "38",
+        "opciones": [
+          "48",
+          "38",
+          "39"
+        ],
+        "paso_resuelto": "El salto es +7.\n31 + 7 = 38.",
+        "visual": null,
+        "id": "mat_sec_salto-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_sec_restar",
+    "tema": "secuencias_aritmeticas",
+    "titulo": "Secuencias que bajan",
+    "explicacion": "Una secuencia también puede repetir una resta. Si los términos bajan de cuatro en cuatro, restamos cuatro al último término. No cambiamos a una suma porque veamos números más pequeños.",
+    "ejemplo": "25, 21, 17, 13 continúa con 9.",
+    "pasos": [
+      "25 − 21 = 4 y 21 − 17 = 4.",
+      "13 − 4 = 9."
+    ],
+    "pista": "Observá si la secuencia sube o baja.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Seguí restando siempre lo mismo: 25, 21, 17, 13. ¿Qué número sigue?",
+        "respuesta_correcta": "9",
+        "opciones": [
+          "9",
+          "10",
+          "19"
+        ],
+        "paso_resuelto": "Cada paso resta 4.\n13 − 4 = 9.",
+        "visual": null,
+        "id": "mat_sec_restar-v1"
+      },
+      {
+        "enunciado": "Seguí restando siempre lo mismo: 30, 25, 20, 15. ¿Qué número sigue?",
+        "respuesta_correcta": "10",
+        "opciones": [
+          "11",
+          "20",
+          "10"
+        ],
+        "paso_resuelto": "Cada paso resta 5.\n15 − 5 = 10.",
+        "visual": null,
+        "id": "mat_sec_restar-v2"
+      },
+      {
+        "enunciado": "Seguí restando siempre lo mismo: 40, 34, 28, 22. ¿Qué número sigue?",
+        "respuesta_correcta": "16",
+        "opciones": [
+          "26",
+          "16",
+          "17"
+        ],
+        "paso_resuelto": "Cada paso resta 6.\n22 − 6 = 16.",
+        "visual": null,
+        "id": "mat_sec_restar-v3"
+      },
+      {
+        "enunciado": "Seguí restando siempre lo mismo: 35, 32, 29, 26. ¿Qué número sigue?",
+        "respuesta_correcta": "23",
+        "opciones": [
+          "23",
+          "24",
+          "33"
+        ],
+        "paso_resuelto": "Cada paso resta 3.\n26 − 3 = 23.",
+        "visual": null,
+        "id": "mat_sec_restar-v4"
+      },
+      {
+        "enunciado": "Seguí restando siempre lo mismo: 50, 43, 36, 29. ¿Qué número sigue?",
+        "respuesta_correcta": "22",
+        "opciones": [
+          "23",
+          "32",
+          "22"
+        ],
+        "paso_resuelto": "Cada paso resta 7.\n29 − 7 = 22.",
+        "visual": null,
+        "id": "mat_sec_restar-v5"
+      },
+      {
+        "enunciado": "Seguí restando siempre lo mismo: 60, 52, 44, 36. ¿Qué número sigue?",
+        "respuesta_correcta": "28",
+        "opciones": [
+          "38",
+          "28",
+          "29"
+        ],
+        "paso_resuelto": "Cada paso resta 8.\n36 − 8 = 28.",
+        "visual": null,
+        "id": "mat_sec_restar-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_sec_factor",
+    "tema": "secuencias_geometricas_fibonacci",
+    "titulo": "Repetir una multiplicación",
+    "explicacion": "En algunas secuencias cada término se obtiene multiplicando el anterior por el mismo número. La diferencia entre términos puede cambiar, pero el factor se conserva.",
+    "ejemplo": "2, 4, 8, 16 continúa con 32.",
+    "pasos": [
+      "Cada término es el anterior multiplicado por 2.",
+      "16 × 2 = 32."
+    ],
+    "pista": "Probá el mismo factor en todos los pasos.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Cada término se multiplica por 2: 2, 4, 8. ¿Qué número sigue?",
+        "respuesta_correcta": "16",
+        "opciones": [
+          "16",
+          "17",
+          "26"
+        ],
+        "paso_resuelto": "8 × 2 = 16.",
+        "visual": null,
+        "id": "mat_sec_factor-v1"
+      },
+      {
+        "enunciado": "Cada término se multiplica por 2: 3, 6, 12. ¿Qué número sigue?",
+        "respuesta_correcta": "24",
+        "opciones": [
+          "25",
+          "34",
+          "24"
+        ],
+        "paso_resuelto": "12 × 2 = 24.",
+        "visual": null,
+        "id": "mat_sec_factor-v2"
+      },
+      {
+        "enunciado": "Cada término se multiplica por 3: 1, 3, 9. ¿Qué número sigue?",
+        "respuesta_correcta": "27",
+        "opciones": [
+          "37",
+          "27",
+          "28"
+        ],
+        "paso_resuelto": "9 × 3 = 27.",
+        "visual": null,
+        "id": "mat_sec_factor-v3"
+      },
+      {
+        "enunciado": "Cada término se multiplica por 2: 4, 8, 16. ¿Qué número sigue?",
+        "respuesta_correcta": "32",
+        "opciones": [
+          "32",
+          "33",
+          "42"
+        ],
+        "paso_resuelto": "16 × 2 = 32.",
+        "visual": null,
+        "id": "mat_sec_factor-v4"
+      },
+      {
+        "enunciado": "Cada término se multiplica por 3: 2, 6, 18. ¿Qué número sigue?",
+        "respuesta_correcta": "54",
+        "opciones": [
+          "55",
+          "64",
+          "54"
+        ],
+        "paso_resuelto": "18 × 3 = 54.",
+        "visual": null,
+        "id": "mat_sec_factor-v5"
+      },
+      {
+        "enunciado": "Cada término se multiplica por 2: 5, 10, 20. ¿Qué número sigue?",
+        "respuesta_correcta": "40",
+        "opciones": [
+          "50",
+          "40",
+          "41"
+        ],
+        "paso_resuelto": "20 × 2 = 40.",
+        "visual": null,
+        "id": "mat_sec_factor-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_sec_fibonacci",
+    "tema": "secuencias_geometricas_fibonacci",
+    "titulo": "Sumar los dos anteriores",
+    "explicacion": "Otra regla consiste en sumar los dos términos anteriores para obtener el siguiente. Necesitamos conservar ambos, no solo el último. La secuencia de Fibonacci usa esta regla comenzando con 1 y 1.",
+    "ejemplo": "1, 1, 2, 3, 5 continúa con 8.",
+    "pasos": [
+      "2 + 3 = 5.",
+      "Para seguir usamos 3 + 5 = 8."
+    ],
+    "pista": "Marcá los últimos dos términos y sumalos.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Cada término nuevo suma los dos anteriores: 1, 1, 2, 3. ¿Qué número sigue?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "5",
+          "6",
+          "15"
+        ],
+        "paso_resuelto": "Los últimos son 2 y 3.\n2 + 3 = 5.",
+        "visual": null,
+        "id": "mat_sec_fibonacci-v1"
+      },
+      {
+        "enunciado": "Cada término nuevo suma los dos anteriores: 1, 2, 3, 5. ¿Qué número sigue?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "9",
+          "18",
+          "8"
+        ],
+        "paso_resuelto": "Los últimos son 3 y 5.\n3 + 5 = 8.",
+        "visual": null,
+        "id": "mat_sec_fibonacci-v2"
+      },
+      {
+        "enunciado": "Cada término nuevo suma los dos anteriores: 2, 3, 5, 8. ¿Qué número sigue?",
+        "respuesta_correcta": "13",
+        "opciones": [
+          "23",
+          "13",
+          "14"
+        ],
+        "paso_resuelto": "Los últimos son 5 y 8.\n5 + 8 = 13.",
+        "visual": null,
+        "id": "mat_sec_fibonacci-v3"
+      },
+      {
+        "enunciado": "Cada término nuevo suma los dos anteriores: 3, 4, 7, 11. ¿Qué número sigue?",
+        "respuesta_correcta": "18",
+        "opciones": [
+          "18",
+          "19",
+          "28"
+        ],
+        "paso_resuelto": "Los últimos son 7 y 11.\n7 + 11 = 18.",
+        "visual": null,
+        "id": "mat_sec_fibonacci-v4"
+      },
+      {
+        "enunciado": "Cada término nuevo suma los dos anteriores: 2, 5, 7, 12. ¿Qué número sigue?",
+        "respuesta_correcta": "19",
+        "opciones": [
+          "20",
+          "29",
+          "19"
+        ],
+        "paso_resuelto": "Los últimos son 7 y 12.\n7 + 12 = 19.",
+        "visual": null,
+        "id": "mat_sec_fibonacci-v5"
+      },
+      {
+        "enunciado": "Cada término nuevo suma los dos anteriores: 4, 5, 9, 14. ¿Qué número sigue?",
+        "respuesta_correcta": "23",
+        "opciones": [
+          "33",
+          "23",
+          "24"
+        ],
+        "paso_resuelto": "Los últimos son 9 y 14.\n9 + 14 = 23.",
+        "visual": null,
+        "id": "mat_sec_fibonacci-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_sec_ciclo",
+    "tema": "secuencias_alfanumericas_y_figuras",
+    "titulo": "Un bloque que se repite",
+    "explicacion": "En un patrón repetitivo se repite un bloque completo, como rojo, azul, verde. Para continuar buscamos dónde termina el bloque y volvemos a empezar.",
+    "ejemplo": "Rojo, azul, verde, rojo, azul continúa con verde.",
+    "pasos": [
+      "El bloque es rojo, azul, verde.",
+      "Después de azul viene verde."
+    ],
+    "pista": "Separá el patrón en bloques iguales.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Repetimos el bloque rojo, azul, verde. La fila termina en azul, posición 5. ¿Qué sigue?",
+        "respuesta_correcta": "verde",
+        "opciones": [
+          "verde",
+          "rojo",
+          "azul"
+        ],
+        "paso_resuelto": "La posición siguiente en el bloque corresponde a verde.",
+        "visual": null,
+        "id": "mat_sec_ciclo-v1"
+      },
+      {
+        "enunciado": "Repetimos el bloque círculo, cuadrado. La fila termina en círculo, posición 3. ¿Qué sigue?",
+        "respuesta_correcta": "cuadrado",
+        "opciones": [
+          "círculo",
+          "cuadrado"
+        ],
+        "paso_resuelto": "La posición siguiente en el bloque corresponde a cuadrado.",
+        "visual": null,
+        "id": "mat_sec_ciclo-v2"
+      },
+      {
+        "enunciado": "Repetimos el bloque sol, luna, estrella. La fila termina en estrella, posición 6. ¿Qué sigue?",
+        "respuesta_correcta": "sol",
+        "opciones": [
+          "estrella",
+          "sol",
+          "luna"
+        ],
+        "paso_resuelto": "La posición siguiente en el bloque corresponde a sol.",
+        "visual": null,
+        "id": "mat_sec_ciclo-v3"
+      },
+      {
+        "enunciado": "Repetimos el bloque A, B, C. La fila termina en A, posición 4. ¿Qué sigue?",
+        "respuesta_correcta": "B",
+        "opciones": [
+          "B",
+          "A",
+          "C"
+        ],
+        "paso_resuelto": "La posición siguiente en el bloque corresponde a B.",
+        "visual": null,
+        "id": "mat_sec_ciclo-v4"
+      },
+      {
+        "enunciado": "Repetimos el bloque grande, pequeño. La fila termina en pequeño, posición 4. ¿Qué sigue?",
+        "respuesta_correcta": "grande",
+        "opciones": [
+          "grande",
+          "pequeño"
+        ],
+        "paso_resuelto": "La posición siguiente en el bloque corresponde a grande.",
+        "visual": null,
+        "id": "mat_sec_ciclo-v5"
+      },
+      {
+        "enunciado": "Repetimos el bloque uno, dos, tres. La fila termina en uno, posición 7. ¿Qué sigue?",
+        "respuesta_correcta": "dos",
+        "opciones": [
+          "tres",
+          "dos",
+          "uno"
+        ],
+        "paso_resuelto": "La posición siguiente en el bloque corresponde a dos.",
+        "visual": null,
+        "id": "mat_sec_ciclo-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_sec_dos_reglas",
+    "tema": "secuencias_alfanumericas_y_figuras",
+    "titulo": "Separar letras y números",
+    "explicacion": "Una secuencia puede combinar dos reglas. Leemos las letras por un lado y los números por otro. En A1, B3, C5, las letras avanzan una posición y los números aumentan dos.",
+    "ejemplo": "A1, B3, C5 continúa con D7.",
+    "pasos": [
+      "A, B, C continúa con D.",
+      "1, 3, 5 continúa con 7. Juntamos D7."
+    ],
+    "pista": "Seguí cada regla por separado y después unilas.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Las letras avanzan una posición; los números suman 2. A1, B3, C5. ¿Qué sigue?",
+        "respuesta_correcta": "D7",
+        "opciones": [
+          "D7",
+          "C7",
+          "D5"
+        ],
+        "paso_resuelto": "Después de C viene D; 5 + 2 = 7.",
+        "visual": null,
+        "id": "mat_sec_dos_reglas-v1"
+      },
+      {
+        "enunciado": "Las letras avanzan una posición; los números suman 3. A2, B5, C8. ¿Qué sigue?",
+        "respuesta_correcta": "D11",
+        "opciones": [
+          "C11",
+          "D8",
+          "D11"
+        ],
+        "paso_resuelto": "Después de C viene D; 8 + 3 = 11.",
+        "visual": null,
+        "id": "mat_sec_dos_reglas-v2"
+      },
+      {
+        "enunciado": "Las letras avanzan una posición; los números suman 4. A3, B7, C11. ¿Qué sigue?",
+        "respuesta_correcta": "D15",
+        "opciones": [
+          "D11",
+          "D15",
+          "C15"
+        ],
+        "paso_resuelto": "Después de C viene D; 11 + 4 = 15.",
+        "visual": null,
+        "id": "mat_sec_dos_reglas-v3"
+      },
+      {
+        "enunciado": "Las letras avanzan una posición; los números suman 5. A4, B9, C14. ¿Qué sigue?",
+        "respuesta_correcta": "D19",
+        "opciones": [
+          "D19",
+          "C19",
+          "D14"
+        ],
+        "paso_resuelto": "Después de C viene D; 14 + 5 = 19.",
+        "visual": null,
+        "id": "mat_sec_dos_reglas-v4"
+      },
+      {
+        "enunciado": "Las letras avanzan una posición; los números suman 2. A5, B7, C9. ¿Qué sigue?",
+        "respuesta_correcta": "D11",
+        "opciones": [
+          "C11",
+          "D9",
+          "D11"
+        ],
+        "paso_resuelto": "Después de C viene D; 9 + 2 = 11.",
+        "visual": null,
+        "id": "mat_sec_dos_reglas-v5"
+      },
+      {
+        "enunciado": "Las letras avanzan una posición; los números suman 3. A6, B9, C12. ¿Qué sigue?",
+        "respuesta_correcta": "D15",
+        "opciones": [
+          "D12",
+          "D15",
+          "C15"
+        ],
+        "paso_resuelto": "Después de C viene D; 12 + 3 = 15.",
+        "visual": null,
+        "id": "mat_sec_dos_reglas-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_igual_simbolo",
+    "tema": "ecuaciones_con_imagenes_2_incognitas",
+    "titulo": "El mismo símbolo conserva su valor",
+    "explicacion": "En estos acertijos, el mismo símbolo representa siempre la misma cantidad. Dos soles que suman 12 valen 6 cada uno. La igualdad indica que ambos lados tienen el mismo valor.",
+    "ejemplo": "sol + sol = 12: cada sol vale 6.",
+    "pasos": [
+      "Hay dos cantidades iguales que suman 12.",
+      "12 ÷ 2 = 6; comprobamos 6 + 6 = 12."
+    ],
+    "pista": "Contá cuántas veces aparece el mismo símbolo.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "sol + sol = 12. ¿Cuánto vale un sol?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "6",
+          "7",
+          "16"
+        ],
+        "paso_resuelto": "Dos soles suman 12; uno vale 12 ÷ 2 = 6.",
+        "visual": null,
+        "id": "mat_igual_simbolo-v1"
+      },
+      {
+        "enunciado": "sol + sol = 8. ¿Cuánto vale un sol?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "5",
+          "14",
+          "4"
+        ],
+        "paso_resuelto": "Dos soles suman 8; uno vale 8 ÷ 2 = 4.",
+        "visual": null,
+        "id": "mat_igual_simbolo-v2"
+      },
+      {
+        "enunciado": "sol + sol = 10. ¿Cuánto vale un sol?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "15",
+          "5",
+          "6"
+        ],
+        "paso_resuelto": "Dos soles suman 10; uno vale 10 ÷ 2 = 5.",
+        "visual": null,
+        "id": "mat_igual_simbolo-v3"
+      },
+      {
+        "enunciado": "sol + sol = 14. ¿Cuánto vale un sol?",
+        "respuesta_correcta": "7",
+        "opciones": [
+          "7",
+          "8",
+          "17"
+        ],
+        "paso_resuelto": "Dos soles suman 14; uno vale 14 ÷ 2 = 7.",
+        "visual": null,
+        "id": "mat_igual_simbolo-v4"
+      },
+      {
+        "enunciado": "sol + sol = 16. ¿Cuánto vale un sol?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "9",
+          "18",
+          "8"
+        ],
+        "paso_resuelto": "Dos soles suman 16; uno vale 16 ÷ 2 = 8.",
+        "visual": null,
+        "id": "mat_igual_simbolo-v5"
+      },
+      {
+        "enunciado": "sol + sol = 18. ¿Cuánto vale un sol?",
+        "respuesta_correcta": "9",
+        "opciones": [
+          "19",
+          "9",
+          "10"
+        ],
+        "paso_resuelto": "Dos soles suman 18; uno vale 18 ÷ 2 = 9.",
+        "visual": null,
+        "id": "mat_igual_simbolo-v6"
+      }
+    ]
+  },
+  {
+    "id": "mat_igual_dos",
+    "tema": "ecuaciones_con_imagenes_2_incognitas",
+    "titulo": "Reemplazar lo conocido para hallar lo que falta",
+    "explicacion": "Si encontramos el valor de un símbolo, podemos reemplazarlo en otra igualdad. Después buscamos cuánto falta para completar el total. Comprobamos los dos resultados.",
+    "ejemplo": "sol + sol = 12 y sol + luna = 10: luna vale 4.",
+    "pasos": [
+      "Cada sol vale 12 ÷ 2 = 6.",
+      "6 + luna = 10; entonces luna = 10 − 6 = 4."
+    ],
+    "pista": "Primero resolvé el símbolo repetido; después reemplazalo.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "sol + sol = 12; sol + luna = 10. ¿Cuánto vale luna?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "4",
+          "6",
+          "10"
+        ],
+        "paso_resuelto": "Sol = 12 ÷ 2 = 6.\nLuna = 10 − 6 = 4.",
+        "visual": null,
+        "id": "mat_igual_dos-v1"
+      },
+      {
+        "enunciado": "sol + sol = 8; sol + luna = 11. ¿Cuánto vale luna?",
+        "respuesta_correcta": "7",
+        "opciones": [
+          "4",
+          "11",
+          "7"
+        ],
+        "paso_resuelto": "Sol = 8 ÷ 2 = 4.\nLuna = 11 − 4 = 7.",
+        "visual": null,
+        "id": "mat_igual_dos-v2"
+      },
+      {
+        "enunciado": "sol + sol = 10; sol + luna = 8. ¿Cuánto vale luna?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "8",
+          "3",
+          "5"
+        ],
+        "paso_resuelto": "Sol = 10 ÷ 2 = 5.\nLuna = 8 − 5 = 3.",
+        "visual": null,
+        "id": "mat_igual_dos-v3"
+      },
+      {
+        "enunciado": "sol + sol = 14; sol + luna = 9. ¿Cuánto vale luna?",
+        "respuesta_correcta": "2",
+        "opciones": [
+          "2",
+          "7",
+          "9"
+        ],
+        "paso_resuelto": "Sol = 14 ÷ 2 = 7.\nLuna = 9 − 7 = 2.",
+        "visual": null,
+        "id": "mat_igual_dos-v4"
+      },
+      {
+        "enunciado": "sol + sol = 16; sol + luna = 13. ¿Cuánto vale luna?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "8",
+          "13",
+          "5"
+        ],
+        "paso_resuelto": "Sol = 16 ÷ 2 = 8.\nLuna = 13 − 8 = 5.",
+        "visual": null,
+        "id": "mat_igual_dos-v5"
+      },
+      {
+        "enunciado": "sol + sol = 18; sol + luna = 15. ¿Cuánto vale luna?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "15",
+          "6",
+          "9"
+        ],
+        "paso_resuelto": "Sol = 18 ÷ 2 = 9.\nLuna = 15 − 9 = 6.",
+        "visual": null,
+        "id": "mat_igual_dos-v6"
+      }
+    ]
+  }
+]);
+
 export const TEMAS_BASES = [...new Set(UNIDADES_BASES.map(u => u.tema))];
 export function getUnidadBase(id) { return UNIDADES_BASES.find(u => u.id === id) || null; }
 export function crearActividadBase(id, modo, sesiones = []) {
@@ -3228,12 +7935,15 @@ export function getFichaBase(tema) {
 }
 
 // Cierre básico alineado con las habilidades enseñadas; no es una simulación del ingreso.
-export function getCierreLengua(tema) {
- const unidades=UNIDADES_BASES.filter(u=>u.tema===tema && u.id.startsWith('leng_'));
+export function getCierreBase(tema) {
+ const unidades=UNIDADES_BASES.filter(u=>u.tema===tema);
  if(!unidades.length)return null;
- const preguntas=unidades.map((u,i)=>{const a=u.actividades[5];return {id:String(i+1),objetivo_id:u.id,texto:a.enunciado,opciones:a.opciones,respuesta_correcta:a.respuesta_correcta};});
+ const preguntas=unidades.map((u,i)=>{const a=u.actividades[5];return {id:String(i+1),objetivo_id:u.id,texto:a.enunciado,visual:a.visual,opciones:a.opciones,respuesta_correcta:a.respuesta_correcta};});
  const min_correctas=Math.ceil(preguntas.length*2/3);
- return {tipo:'examen_final',dificultad:'basico',contenido_version:VERSION_BASES,tiempo_estimado:5,min_correctas,
+ return {tipo:'examen_final',dificultad:'basico',contenido_version:VERSION_BASES,tiempo_estimado:Math.max(3,preguntas.length),min_correctas,
  instrucciones:`Cierre de primeros pasos. Necesitás ${min_correctas} de ${preguntas.length} respuestas correctas. Podés releer los textos.`,
  enunciado:'Revisamos las ideas que ya practicaste. Este cierre trabaja las bases; no es un examen oficial de ingreso.',preguntas};
 }
+
+// Alias para consumidores anteriores de los cierres de Lengua.
+export function getCierreLengua(tema) { return getCierreBase(tema); }

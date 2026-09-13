@@ -527,6 +527,708 @@ const UNIDADES = [
     ],
     "pista": "Contá desde el final. Si la fuerza está antes de la tercera sílaba, estas formas llevan tilde.",
     "visual": null
+  },
+  {
+    "id": "mat_num_decenas",
+    "tema": "numeros_naturales_sistema_decimal",
+    "titulo": "Diez unidades forman una decena",
+    "explicacion": "Podemos contar objetos formando paquetes de diez. Cada paquete es una decena. Los objetos que no completan un paquete quedan como unidades.",
+    "ejemplo": "23 fichas son 2 decenas y 3 unidades.",
+    "pasos": [
+      "Formamos dos paquetes de diez: 20 fichas.",
+      "Quedan 3 fichas sueltas: 20 + 3 = 23."
+    ],
+    "pista": "Separá los paquetes completos de las unidades sueltas.",
+    "visual": null
+  },
+  {
+    "id": "mat_num_posicion",
+    "tema": "numeros_naturales_sistema_decimal",
+    "titulo": "El lugar de cada cifra",
+    "explicacion": "De derecha a izquierda están unidades, decenas y centenas. Un cero conserva un lugar vacío. En 304 hay 3 centenas, ninguna decena y 4 unidades.",
+    "ejemplo": "En 352, el 5 vale 50 porque ocupa las decenas.",
+    "pasos": [
+      "Leemos 3 centenas, 5 decenas y 2 unidades.",
+      "Descomponemos: 300 + 50 + 2 = 352."
+    ],
+    "pista": "Contá las posiciones desde la derecha.",
+    "visual": null
+  },
+  {
+    "id": "mat_num_orden",
+    "tema": "numeros_naturales_sistema_decimal",
+    "titulo": "Comparar desde el lugar más grande",
+    "explicacion": "Para comparar números naturales, miramos primero cuántas cifras tienen. Con igual cantidad de cifras, comparamos desde la izquierda. Si son iguales, seguimos a la siguiente posición.",
+    "ejemplo": "418 es mayor que 391.",
+    "pasos": [
+      "Ambos tienen tres cifras.",
+      "418 tiene 4 centenas y 391 tiene 3: elegimos 418."
+    ],
+    "pista": "Compará centenas antes que decenas y unidades.",
+    "visual": null
+  },
+  {
+    "id": "mat_num_suma",
+    "tema": "numeros_naturales_sistema_decimal",
+    "titulo": "Sumar y reagrupar",
+    "explicacion": "Sumar reúne cantidades. Alineamos unidades con unidades y decenas con decenas. Si juntamos diez unidades, las cambiamos por una decena.",
+    "ejemplo": "27 + 15 = 42.",
+    "pasos": [
+      "7 + 5 = 12: una decena y 2 unidades.",
+      "2 + 1 + 1 decenas = 4 decenas; quedan 42."
+    ],
+    "pista": "Si las unidades llegan a diez, llevá una decena.",
+    "visual": null
+  },
+  {
+    "id": "mat_num_resta",
+    "tema": "numeros_naturales_sistema_decimal",
+    "titulo": "Restar y comprobar",
+    "explicacion": "Restar permite saber cuánto queda. Si faltan unidades para quitar, cambiamos una decena por diez unidades. Podemos comprobar sumando lo que quitamos a lo que quedó.",
+    "ejemplo": "42 − 17 = 25.",
+    "pasos": [
+      "42 son también 3 decenas y 12 unidades.",
+      "12 − 7 = 5 y 3 − 1 = 2 decenas. Comprobamos: 25 + 17 = 42."
+    ],
+    "pista": "Podés cambiar una decena por diez unidades.",
+    "visual": null
+  },
+  {
+    "id": "mat_tab_grupos",
+    "tema": "tablas_multiplicar_2_5",
+    "titulo": "Multiplicar cuenta grupos iguales",
+    "explicacion": "Una multiplicación abrevia una suma repetida. En 3 × 4 tenemos tres grupos de cuatro. Los números que multiplicamos se llaman factores y el resultado es el producto.",
+    "ejemplo": "3 platos con 4 galletitas suman 12.",
+    "pasos": [
+      "Sumamos 4 + 4 + 4.",
+      "Escribimos 3 × 4 = 12."
+    ],
+    "pista": "Contá los grupos y cuánto hay en cada uno.",
+    "visual": null
+  },
+  {
+    "id": "mat_tab_dobles",
+    "tema": "tablas_multiplicar_2_5",
+    "titulo": "Dobles y el orden de los factores",
+    "explicacion": "El doble es dos veces una cantidad. Para multiplicar por cuatro podemos hacer el doble del doble. Cambiar el orden de los factores conserva el total: 3 × 4 = 4 × 3.",
+    "ejemplo": "4 × 3 = 12.",
+    "pasos": [
+      "El doble de 3 es 6.",
+      "El doble de 6 es 12: cuatro veces 3."
+    ],
+    "pista": "Calculá un doble y después otro doble.",
+    "visual": null
+  },
+  {
+    "id": "mat_tab_cinco",
+    "tema": "tablas_multiplicar_2_5",
+    "titulo": "Contar de cinco en cinco",
+    "explicacion": "Cada grupo nuevo de cinco suma cinco al total. Los resultados de la tabla del cinco terminan en 0 o 5. Este patrón ayuda a comprobar, pero para saber el total contamos los grupos.",
+    "ejemplo": "5 × 4 = 20.",
+    "pasos": [
+      "Contamos cuatro saltos: 5, 10, 15, 20.",
+      "Son cuatro grupos de cinco: 20."
+    ],
+    "pista": "Contá los saltos, además de mirar la última cifra.",
+    "visual": null
+  },
+  {
+    "id": "mat_tab_seis_ocho",
+    "tema": "tablas_multiplicar_6_8",
+    "titulo": "Construir las tablas del seis y del ocho",
+    "explicacion": "Para multiplicar por seis duplicamos el resultado de multiplicar por tres. Para multiplicar por ocho duplicamos el resultado de multiplicar por cuatro. Podés escribir los pasos.",
+    "ejemplo": "8 × 5 = 40.",
+    "pasos": [
+      "4 × 5 = 20.",
+      "Duplicamos: 20 + 20 = 40."
+    ],
+    "pista": "Buscá primero la tabla de la mitad del factor.",
+    "visual": null
+  },
+  {
+    "id": "mat_tab_siete",
+    "tema": "tablas_multiplicar_6_8",
+    "titulo": "Siete grupos: cinco más dos",
+    "explicacion": "Podemos separar siete grupos en cinco grupos y dos grupos. Multiplicamos cada parte por la misma cantidad y sumamos los resultados.",
+    "ejemplo": "7 × 6 = 42.",
+    "pasos": [
+      "5 × 6 = 30 y 2 × 6 = 12.",
+      "Sumamos 30 + 12 = 42."
+    ],
+    "pista": "Separá 7 en 5 + 2 sin cambiar el otro factor.",
+    "visual": null
+  },
+  {
+    "id": "mat_tab_diez",
+    "tema": "tablas_multiplicar_9_10",
+    "titulo": "Multiplicar por diez cambia el valor",
+    "explicacion": "Al multiplicar un natural por diez, cada unidad pasa a valer una decena. Escribimos un cero a la derecha. Por cien, cada unidad pasa a valer una centena.",
+    "ejemplo": "23 × 10 = 230.",
+    "pasos": [
+      "23 grupos de diez son 23 decenas.",
+      "23 decenas equivalen a 230 unidades."
+    ],
+    "pista": "Pensá en decenas para × 10 y centenas para × 100.",
+    "visual": null
+  },
+  {
+    "id": "mat_tab_nueve",
+    "tema": "tablas_multiplicar_9_10",
+    "titulo": "Nueve veces: diez veces menos una",
+    "explicacion": "Nueve grupos son diez grupos menos un grupo. Para calcular 9 × 6 hacemos 10 × 6 y quitamos 6, porque quitamos un grupo completo.",
+    "ejemplo": "9 × 6 = 54.",
+    "pasos": [
+      "10 × 6 = 60.",
+      "Quitamos un grupo de 6: 60 − 6 = 54."
+    ],
+    "pista": "Restá el tamaño de un grupo, no el número uno.",
+    "visual": null
+  },
+  {
+    "id": "mat_div_repartir",
+    "tema": "division_1_digito",
+    "titulo": "Repartir la misma cantidad",
+    "explicacion": "Dividir reparte un total en grupos iguales. El dividendo es el total; el divisor, la cantidad de grupos; el cociente, lo que recibe cada grupo. Nunca dividimos por cero.",
+    "ejemplo": "12 fichas entre 3 personas: 4 para cada una.",
+    "pasos": [
+      "Buscamos qué número multiplicado por 3 da 12.",
+      "3 × 4 = 12; entonces 12 ÷ 3 = 4."
+    ],
+    "pista": "Buscá una multiplicación que reconstruya el total.",
+    "visual": null
+  },
+  {
+    "id": "mat_div_resto",
+    "tema": "division_1_digito",
+    "titulo": "Lo que sobra es el resto",
+    "explicacion": "Cuando no se puede repartir todo por igual, quedan elementos sin repartir: el resto. El resto debe ser menor que el divisor; de lo contrario todavía podríamos dar uno más a cada grupo.",
+    "ejemplo": "17 fichas entre 3: 5 para cada una y sobran 2.",
+    "pasos": [
+      "3 × 5 = 15: repartimos 15.",
+      "17 − 15 = 2. El resto 2 es menor que 3."
+    ],
+    "pista": "Buscá el mayor múltiplo del divisor que no supere el total.",
+    "visual": null
+  },
+  {
+    "id": "mat_div_descomponer",
+    "tema": "division_1_digito",
+    "titulo": "Dividir en partes conocidas",
+    "explicacion": "Podemos separar el total en dos cantidades que sepamos repartir. Dividimos ambas por el mismo divisor y sumamos sus cocientes.",
+    "ejemplo": "84 ÷ 4 = 21.",
+    "pasos": [
+      "80 ÷ 4 = 20 y 4 ÷ 4 = 1.",
+      "20 + 1 = 21; comprobamos 21 × 4 = 84."
+    ],
+    "pista": "Separá una parte grande que puedas dividir y repartí lo que queda.",
+    "visual": null
+  },
+  {
+    "id": "mat_rom_sumar",
+    "tema": "numeros_romanos",
+    "titulo": "Leer símbolos romanos que suman",
+    "explicacion": "I vale 1, V vale 5, X vale 10, L vale 50, C vale 100, D vale 500 y M vale 1000. Si los símbolos van de mayor a menor, sumamos. I, X, C y M pueden repetirse hasta tres veces seguidas.",
+    "ejemplo": "XVI representa 16.",
+    "pasos": [
+      "X vale 10, V vale 5 e I vale 1.",
+      "10 + 5 + 1 = 16."
+    ],
+    "pista": "Sumá cuando los símbolos van de mayor a menor.",
+    "visual": null
+  },
+  {
+    "id": "mat_rom_restar",
+    "tema": "numeros_romanos",
+    "titulo": "Los seis pares que restan",
+    "explicacion": "Solo usamos estos pares para restar: IV = 4, IX = 9, XL = 40, XC = 90, CD = 400 y CM = 900. En cada par el símbolo pequeño se resta del grande. No podemos inventar cualquier pareja.",
+    "ejemplo": "XIV representa 14.",
+    "pasos": [
+      "Separamos X y IV.",
+      "X vale 10; IV vale 5 − 1 = 4. Total: 14."
+    ],
+    "pista": "Buscá primero uno de los seis pares permitidos.",
+    "visual": null
+  },
+  {
+    "id": "mat_resto_entero",
+    "tema": "fracciones_del_resto",
+    "titulo": "Primero averiguamos cuánto queda",
+    "explicacion": "El resto es lo que queda después de usar una parte. Calculamos esa parte y la restamos del entero. El entero de referencia debe estar claro.",
+    "ejemplo": "De 24 fichas usamos 1/3. Quedan 16.",
+    "pasos": [
+      "24 ÷ 3 = 8: usamos 8 fichas.",
+      "24 − 8 = 16: ese es el resto."
+    ],
+    "pista": "Calculá lo usado antes de restarlo del total.",
+    "visual": null
+  },
+  {
+    "id": "mat_resto_nuevo_total",
+    "tema": "fracciones_del_resto",
+    "titulo": "Una fracción de lo que quedó",
+    "explicacion": "Si una consigna dice «del resto», la segunda fracción se calcula sobre lo que quedó, no sobre el total inicial. Escribimos las cantidades de cada etapa.",
+    "ejemplo": "De 24 fichas usamos 1/3; después, la mitad del resto. En la segunda etapa usamos 8.",
+    "pasos": [
+      "Primero usamos 8 y quedan 16.",
+      "La mitad del resto es 16 ÷ 2 = 8."
+    ],
+    "pista": "Encerrá el resto: ese es el nuevo total para el segundo cálculo.",
+    "visual": null
+  },
+  {
+    "id": "mat_dec_fraccion",
+    "tema": "decimales_conversion",
+    "titulo": "Décimos y centésimos",
+    "explicacion": "A la derecha de la coma, la primera cifra cuenta décimos y la segunda centésimos. 0,3 son tres décimos; 0,03 son tres centésimos. El denominador indica las partes iguales de la unidad.",
+    "ejemplo": "7/10 se escribe 0,7.",
+    "pasos": [
+      "El denominador 10 indica décimos.",
+      "Ponemos 7 en el lugar de los décimos: 0,7."
+    ],
+    "pista": "Contá cuántas posiciones necesitás después de la coma.",
+    "visual": null
+  },
+  {
+    "id": "mat_dec_sumar",
+    "tema": "decimales_conversion",
+    "titulo": "Sumar decimales alineando la coma",
+    "explicacion": "Al sumar decimales juntamos unidades con unidades y décimos con décimos. Podemos escribir ceros al final de la parte decimal sin cambiar el valor.",
+    "ejemplo": "1,2 + 0,5 = 1,7.",
+    "pasos": [
+      "Son 12 décimos más 5 décimos.",
+      "17 décimos equivalen a 1,7."
+    ],
+    "pista": "Alineá las comas antes de sumar.",
+    "visual": null
+  },
+  {
+    "id": "mat_dec_restar",
+    "tema": "decimales_conversion",
+    "titulo": "Restar decimales",
+    "explicacion": "Restamos cantidades de la misma posición: décimos con décimos, unidades con unidades. Si lo necesitás, expresá todo en décimos antes de calcular.",
+    "ejemplo": "2,4 − 0,7 = 1,7.",
+    "pasos": [
+      "24 décimos menos 7 décimos son 17 décimos.",
+      "17 décimos equivalen a 1,7."
+    ],
+    "pista": "Alineá las comas y comprobá sumando.",
+    "visual": null
+  },
+  {
+    "id": "mat_dec_producto",
+    "tema": "decimales_conversion",
+    "titulo": "Multiplicar decimales por un natural",
+    "explicacion": "Multiplicar por un natural reúne grupos iguales, también con decimales. Si cada botella contiene 0,5 litros, tres botellas contienen tres veces esa cantidad.",
+    "ejemplo": "3 × 0,5 = 1,5.",
+    "pasos": [
+      "0,5 + 0,5 + 0,5 suma 15 décimos.",
+      "15 décimos son 1,5."
+    ],
+    "pista": "Contá los décimos de todos los grupos.",
+    "visual": null
+  },
+  {
+    "id": "mat_dec_dividir",
+    "tema": "decimales_conversion",
+    "titulo": "Repartir una cantidad decimal",
+    "explicacion": "Dividir una cantidad decimal entre un natural reparte partes iguales. Podemos convertir la cantidad a décimos, repartirlos y volver a escribir el decimal.",
+    "ejemplo": "1,8 litros en 3 botellas: 0,6 litros en cada una.",
+    "pasos": [
+      "1,8 litros son 18 décimos.",
+      "18 ÷ 3 = 6 décimos; cada botella recibe 0,6 litros."
+    ],
+    "pista": "Repartí los décimos y conservá la unidad.",
+    "visual": null
+  },
+  {
+    "id": "mat_pot_repetir",
+    "tema": "potenciacion_y_raiz_cuadrada",
+    "titulo": "Una potencia repite factores",
+    "explicacion": "En 3², el 3 es la base y el 2 es el exponente. El exponente dice cuántas veces aparece la base como factor. 3² es 3 × 3, no 3 × 2.",
+    "ejemplo": "2³ = 2 × 2 × 2 = 8.",
+    "pasos": [
+      "Escribimos tres factores iguales a 2.",
+      "2 × 2 = 4; 4 × 2 = 8."
+    ],
+    "pista": "El exponente cuenta factores.",
+    "visual": null
+  },
+  {
+    "id": "mat_raiz_cuadrado",
+    "tema": "potenciacion_y_raiz_cuadrada",
+    "titulo": "La raíz busca el lado del cuadrado",
+    "explicacion": "La raíz cuadrada busca el número no negativo que, multiplicado por sí mismo, da el total. Con fichas, podemos imaginar un cuadrado con igual cantidad de filas y columnas.",
+    "ejemplo": "La raíz cuadrada de 25 es 5.",
+    "pasos": [
+      "5 filas de 5 fichas forman 25 fichas.",
+      "Como 5 × 5 = 25, la raíz cuadrada de 25 es 5."
+    ],
+    "pista": "Buscá dos factores iguales cuyo producto sea el total.",
+    "visual": null
+  },
+  {
+    "id": "mat_jer_producto",
+    "tema": "jerarquia_operaciones",
+    "titulo": "Antes de sumar, resolvemos los productos",
+    "explicacion": "Primero resolvemos potencias y raíces; después multiplicaciones y divisiones; al final sumas y restas. Entre operaciones del mismo nivel avanzamos de izquierda a derecha.",
+    "ejemplo": "2 + 3 × 4 = 14.",
+    "pasos": [
+      "Primero 3 × 4 = 12.",
+      "Después 2 + 12 = 14."
+    ],
+    "pista": "Marcá el producto antes de sumar.",
+    "visual": null
+  },
+  {
+    "id": "mat_jer_parentesis",
+    "tema": "jerarquia_operaciones",
+    "titulo": "Los paréntesis indican por dónde empezar",
+    "explicacion": "Un paréntesis agrupa una cuenta que debemos resolver primero. Después seguimos el orden de operaciones. Copiar la cuenta reemplazando solo el paso resuelto ayuda a no perder números.",
+    "ejemplo": "(2 + 3) × 4 = 20.",
+    "pasos": [
+      "Dentro del paréntesis: 2 + 3 = 5.",
+      "Ahora 5 × 4 = 20."
+    ],
+    "pista": "Resolvé el grupo entre paréntesis antes de seguir.",
+    "visual": null
+  },
+  {
+    "id": "mat_long_metros",
+    "tema": "si_me_la_longitud",
+    "titulo": "El metro y el centímetro",
+    "explicacion": "Medir una longitud es compararla con una unidad. Un metro contiene 100 centímetros. Al pasar de metros a centímetros usamos más unidades pequeñas para expresar la misma longitud.",
+    "ejemplo": "2 m = 200 cm.",
+    "pasos": [
+      "Cada metro contiene 100 centímetros.",
+      "2 × 100 = 200 centímetros."
+    ],
+    "pista": "La longitud no cambia; cambia la unidad.",
+    "visual": null
+  },
+  {
+    "id": "mat_long_combinar",
+    "tema": "si_me_la_longitud",
+    "titulo": "Sumar longitudes con la misma unidad",
+    "explicacion": "Antes de sumar medidas, las expresamos en la misma unidad. 1 km = 1000 m; 1 m = 100 cm y 1 cm = 10 mm. No sumamos directamente números de unidades distintas.",
+    "ejemplo": "1 m y 25 cm suman 125 cm.",
+    "pasos": [
+      "1 m = 100 cm.",
+      "100 cm + 25 cm = 125 cm."
+    ],
+    "pista": "Convertí las medidas a la unidad que pide la pregunta.",
+    "visual": null
+  },
+  {
+    "id": "mat_med_masa_capacidad",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "titulo": "Mil partes: gramos y mililitros",
+    "explicacion": "Un kilogramo contiene 1000 gramos. Un litro contiene 1000 mililitros. Son dos equivalencias distintas: la masa y la capacidad no se convierten entre sí usando esta regla.",
+    "ejemplo": "2 kg = 2000 g; 3 L = 3000 mL.",
+    "pasos": [
+      "Elegimos la magnitud: masa o capacidad.",
+      "Multiplicamos por 1000 para pasar a gramos o mililitros."
+    ],
+    "pista": "Conservá la magnitud y escribí la unidad pedida.",
+    "visual": null
+  },
+  {
+    "id": "mat_med_tiempo",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "titulo": "Una hora tiene sesenta minutos",
+    "explicacion": "El tiempo no sigue los saltos de diez de las medidas anteriores. Una hora tiene 60 minutos y un minuto tiene 60 segundos. Para sumar horas y minutos, primero los expresamos en minutos.",
+    "ejemplo": "1 h y 20 min son 80 min.",
+    "pasos": [
+      "1 h = 60 min.",
+      "60 + 20 = 80 min."
+    ],
+    "pista": "Para las horas usá 60, no 100.",
+    "visual": null
+  },
+  {
+    "id": "mat_ang_clases",
+    "tema": "geometria_angulos",
+    "titulo": "Comparar una abertura con un ángulo recto",
+    "explicacion": "Un ángulo es la abertura entre dos semirrectas que parten del mismo vértice. Se mide en grados. Recto: 90°. Agudo: más de 0° y menos de 90°. Obtuso: más de 90° y menos de 180°. Llano: 180°.",
+    "ejemplo": "Un ángulo de 60° es agudo.",
+    "pasos": [
+      "Comparamos 60 con 90.",
+      "Como 0 < 60 < 90, es agudo."
+    ],
+    "pista": "Compará la medida con 90° y 180°.",
+    "visual": null
+  },
+  {
+    "id": "mat_ang_complemento",
+    "tema": "geometria_angulos",
+    "titulo": "Dos ángulos que completan una abertura",
+    "explicacion": "Dos ángulos son complementarios si suman 90° y suplementarios si suman 180°. Para hallar el que falta restamos el conocido de la suma que deben completar.",
+    "ejemplo": "Si dos ángulos suman 90° y uno mide 30°, el otro mide 60°.",
+    "pasos": [
+      "La suma buscada es 90°.",
+      "90° − 30° = 60°."
+    ],
+    "pista": "Identificá si deben sumar 90° o 180°.",
+    "visual": null
+  },
+  {
+    "id": "mat_tri_lados",
+    "tema": "geometria_triangulos",
+    "titulo": "Clasificar triángulos por sus lados",
+    "explicacion": "Un triángulo tiene tres lados. Es equilátero si los tres son iguales, isósceles si tiene al menos dos lados iguales y escaleno si los tres son distintos. Para elegir una sola respuesta, usamos el nombre más específico.",
+    "ejemplo": "Un triángulo de lados 4, 4 y 6 es isósceles.",
+    "pasos": [
+      "Comparamos las tres longitudes.",
+      "Tiene dos iguales y uno distinto: isósceles."
+    ],
+    "pista": "Contá cuántos lados tienen la misma medida.",
+    "visual": null
+  },
+  {
+    "id": "mat_tri_angulos",
+    "tema": "geometria_triangulos",
+    "titulo": "Los tres ángulos suman 180 grados",
+    "explicacion": "Los ángulos interiores de todo triángulo suman 180°. Si conocemos dos, sumamos sus medidas y restamos esa suma de 180°.",
+    "ejemplo": "Un triángulo tiene ángulos de 50° y 60°. El tercero mide 70°.",
+    "pasos": [
+      "50° + 60° = 110°.",
+      "180° − 110° = 70°."
+    ],
+    "pista": "Restá de 180° la suma de los dos ángulos conocidos.",
+    "visual": null
+  },
+  {
+    "id": "mat_cuad_lados",
+    "tema": "geometria_cuadrilateros_circunferencia",
+    "titulo": "Cuatro lados y líneas paralelas",
+    "explicacion": "Un cuadrilátero tiene cuatro lados. Un paralelogramo tiene dos pares de lados opuestos paralelos. El cuadrado tiene cuatro lados iguales y cuatro ángulos rectos: también es rectángulo y rombo. En el cuadernillo, trapecio tiene un solo par de lados paralelos.",
+    "ejemplo": "Todo cuadrado es también un rectángulo.",
+    "pasos": [
+      "Rectángulo significa cuatro ángulos rectos.",
+      "El cuadrado cumple esa condición y además tiene lados iguales."
+    ],
+    "pista": "Una figura puede pertenecer a más de una familia.",
+    "visual": null
+  },
+  {
+    "id": "mat_circ_radio",
+    "tema": "geometria_cuadrilateros_circunferencia",
+    "titulo": "Radio y diámetro",
+    "explicacion": "La circunferencia es la línea cuyos puntos están a la misma distancia del centro. El radio une el centro con esa línea. El diámetro une dos puntos de la circunferencia pasando por el centro y mide dos radios.",
+    "ejemplo": "Si el radio es 3 cm, el diámetro mide 6 cm.",
+    "pasos": [
+      "Un diámetro reúne dos radios.",
+      "3 + 3 = 6 cm."
+    ],
+    "pista": "El diámetro mide el doble del radio.",
+    "visual": null
+  },
+  {
+    "id": "mat_per_rectangulo",
+    "tema": "perimetros_simples",
+    "titulo": "Recorrer todo el borde",
+    "explicacion": "El perímetro es la longitud del borde de una figura. En un rectángulo sumamos largo, ancho, largo y ancho. Se expresa en unidades de longitud, no de superficie.",
+    "ejemplo": "Un rectángulo de 5 cm por 3 cm tiene perímetro 16 cm.",
+    "pasos": [
+      "Recorremos sus cuatro lados: 5, 3, 5, 3.",
+      "5 + 3 + 5 + 3 = 16 cm."
+    ],
+    "pista": "Sumá cada lado del borde una sola vez.",
+    "visual": null
+  },
+  {
+    "id": "mat_per_circunferencia",
+    "tema": "perimetros_simples",
+    "titulo": "Medir el borde de una circunferencia",
+    "explicacion": "La longitud de una circunferencia se calcula multiplicando su diámetro por pi. Usaremos pi aproximado a 3,14. Si conocemos el radio, primero lo duplicamos.",
+    "ejemplo": "Diámetro 10 cm: longitud aproximada 31,4 cm.",
+    "pasos": [
+      "Usamos L = pi × diámetro.",
+      "3,14 × 10 = 31,4 cm."
+    ],
+    "pista": "Revisá si te dieron radio o diámetro.",
+    "visual": null
+  },
+  {
+    "id": "mat_per_union",
+    "tema": "perimetros_compuestos",
+    "titulo": "Los lados compartidos quedan adentro",
+    "explicacion": "Al unir figuras sin superponerlas, un lado pegado deja de formar parte del borde exterior. Si sumamos sus perímetros, ese lado se contó dos veces. Restamos dos veces la longitud compartida.",
+    "ejemplo": "Dos cuadrados de lado 3 cm unidos por un lado tienen perímetro exterior 18 cm.",
+    "pasos": [
+      "Cada cuadrado tiene perímetro 12 cm: juntos suman 24.",
+      "Quitamos dos veces el lado interno: 24 − 6 = 18 cm."
+    ],
+    "pista": "Recorré solo el borde exterior.",
+    "visual": null
+  },
+  {
+    "id": "mat_per_faltante",
+    "tema": "perimetros_compuestos",
+    "titulo": "Encontrar un tramo que falta",
+    "explicacion": "Si un lado total está dividido en dos tramos, el desconocido se encuentra restando el conocido al total. Antes de calcular un perímetro compuesto, identificamos todos los tramos exteriores.",
+    "ejemplo": "Un lado de 10 cm tiene un tramo de 4 cm: faltan 6 cm.",
+    "pasos": [
+      "El total es la suma de ambos tramos.",
+      "10 − 4 = 6 cm."
+    ],
+    "pista": "Los dos tramos deben sumar el lado completo.",
+    "visual": null
+  },
+  {
+    "id": "mat_graf_leer",
+    "tema": "graficos_estadisticos",
+    "titulo": "Leer qué cuenta cada dato",
+    "explicacion": "Un gráfico o una tabla relaciona categorías con cantidades. Primero leemos qué se está contando y en qué unidad. Para buscar el mayor valor comparamos las cantidades, no el largo del nombre.",
+    "ejemplo": "Libros leídos: Ana 3, Bruno 5, Cami 2. Bruno leyó más.",
+    "pasos": [
+      "Buscamos 3, 5 y 2 libros.",
+      "5 es la mayor cantidad; corresponde a Bruno."
+    ],
+    "pista": "Leé los nombres y sus cantidades antes de comparar.",
+    "visual": null
+  },
+  {
+    "id": "mat_graf_escala",
+    "tema": "graficos_estadisticos",
+    "titulo": "Una marca puede valer más de uno",
+    "explicacion": "En un pictograma cada símbolo puede representar varias unidades. Leemos la clave antes de contar. Si cada símbolo vale dos libros, cuatro símbolos representan ocho libros.",
+    "ejemplo": "4 símbolos de 2 libros cada uno representan 8 libros.",
+    "pasos": [
+      "Contamos 4 símbolos.",
+      "4 × 2 = 8 libros."
+    ],
+    "pista": "Buscá cuánto vale cada símbolo en la clave.",
+    "visual": null
+  },
+  {
+    "id": "mat_prop_unidad",
+    "tema": "proporcionalidad_regla_3",
+    "titulo": "Primero averiguamos cuánto vale uno",
+    "explicacion": "En una relación directamente proporcional, cada unidad conserva el mismo valor. Si tres cuadernos cuestan 600 pesos, uno cuesta 600 ÷ 3. No hay descuentos ni cargos extra en estos ejercicios.",
+    "ejemplo": "3 cuadernos cuestan $600: uno cuesta $200.",
+    "pasos": [
+      "Dividimos el precio total entre la cantidad.",
+      "600 ÷ 3 = 200 pesos por cuaderno."
+    ],
+    "pista": "Buscá el valor de una unidad.",
+    "visual": null
+  },
+  {
+    "id": "mat_prop_otro_total",
+    "tema": "proporcionalidad_regla_3",
+    "titulo": "Del valor de uno a otra cantidad",
+    "explicacion": "Después de hallar el valor de una unidad, lo multiplicamos por la nueva cantidad. Este método sirve cuando el valor por unidad es constante.",
+    "ejemplo": "3 cuadernos cuestan $600. Cinco cuestan $1000.",
+    "pasos": [
+      "Uno cuesta 600 ÷ 3 = 200.",
+      "Cinco cuestan 5 × 200 = 1000."
+    ],
+    "pista": "Primero dividí para llegar a uno; después multiplicá.",
+    "visual": null
+  },
+  {
+    "id": "mat_sec_salto",
+    "tema": "secuencias_aritmeticas",
+    "titulo": "Repetir siempre el mismo salto",
+    "explicacion": "Una secuencia aritmética cambia sumando o restando siempre la misma cantidad. Calculamos la diferencia entre términos vecinos y la comprobamos en los demás.",
+    "ejemplo": "4, 7, 10, 13 continúa con 16.",
+    "pasos": [
+      "7 − 4 = 3 y 10 − 7 = 3.",
+      "Sumamos el mismo salto: 13 + 3 = 16."
+    ],
+    "pista": "Comprobá que el salto se repite antes de continuar.",
+    "visual": null
+  },
+  {
+    "id": "mat_sec_restar",
+    "tema": "secuencias_aritmeticas",
+    "titulo": "Secuencias que bajan",
+    "explicacion": "Una secuencia también puede repetir una resta. Si los términos bajan de cuatro en cuatro, restamos cuatro al último término. No cambiamos a una suma porque veamos números más pequeños.",
+    "ejemplo": "25, 21, 17, 13 continúa con 9.",
+    "pasos": [
+      "25 − 21 = 4 y 21 − 17 = 4.",
+      "13 − 4 = 9."
+    ],
+    "pista": "Observá si la secuencia sube o baja.",
+    "visual": null
+  },
+  {
+    "id": "mat_sec_factor",
+    "tema": "secuencias_geometricas_fibonacci",
+    "titulo": "Repetir una multiplicación",
+    "explicacion": "En algunas secuencias cada término se obtiene multiplicando el anterior por el mismo número. La diferencia entre términos puede cambiar, pero el factor se conserva.",
+    "ejemplo": "2, 4, 8, 16 continúa con 32.",
+    "pasos": [
+      "Cada término es el anterior multiplicado por 2.",
+      "16 × 2 = 32."
+    ],
+    "pista": "Probá el mismo factor en todos los pasos.",
+    "visual": null
+  },
+  {
+    "id": "mat_sec_fibonacci",
+    "tema": "secuencias_geometricas_fibonacci",
+    "titulo": "Sumar los dos anteriores",
+    "explicacion": "Otra regla consiste en sumar los dos términos anteriores para obtener el siguiente. Necesitamos conservar ambos, no solo el último. La secuencia de Fibonacci usa esta regla comenzando con 1 y 1.",
+    "ejemplo": "1, 1, 2, 3, 5 continúa con 8.",
+    "pasos": [
+      "2 + 3 = 5.",
+      "Para seguir usamos 3 + 5 = 8."
+    ],
+    "pista": "Marcá los últimos dos términos y sumalos.",
+    "visual": null
+  },
+  {
+    "id": "mat_sec_ciclo",
+    "tema": "secuencias_alfanumericas_y_figuras",
+    "titulo": "Un bloque que se repite",
+    "explicacion": "En un patrón repetitivo se repite un bloque completo, como rojo, azul, verde. Para continuar buscamos dónde termina el bloque y volvemos a empezar.",
+    "ejemplo": "Rojo, azul, verde, rojo, azul continúa con verde.",
+    "pasos": [
+      "El bloque es rojo, azul, verde.",
+      "Después de azul viene verde."
+    ],
+    "pista": "Separá el patrón en bloques iguales.",
+    "visual": null
+  },
+  {
+    "id": "mat_sec_dos_reglas",
+    "tema": "secuencias_alfanumericas_y_figuras",
+    "titulo": "Separar letras y números",
+    "explicacion": "Una secuencia puede combinar dos reglas. Leemos las letras por un lado y los números por otro. En A1, B3, C5, las letras avanzan una posición y los números aumentan dos.",
+    "ejemplo": "A1, B3, C5 continúa con D7.",
+    "pasos": [
+      "A, B, C continúa con D.",
+      "1, 3, 5 continúa con 7. Juntamos D7."
+    ],
+    "pista": "Seguí cada regla por separado y después unilas.",
+    "visual": null
+  },
+  {
+    "id": "mat_igual_simbolo",
+    "tema": "ecuaciones_con_imagenes_2_incognitas",
+    "titulo": "El mismo símbolo conserva su valor",
+    "explicacion": "En estos acertijos, el mismo símbolo representa siempre la misma cantidad. Dos soles que suman 12 valen 6 cada uno. La igualdad indica que ambos lados tienen el mismo valor.",
+    "ejemplo": "sol + sol = 12: cada sol vale 6.",
+    "pasos": [
+      "Hay dos cantidades iguales que suman 12.",
+      "12 ÷ 2 = 6; comprobamos 6 + 6 = 12."
+    ],
+    "pista": "Contá cuántas veces aparece el mismo símbolo.",
+    "visual": null
+  },
+  {
+    "id": "mat_igual_dos",
+    "tema": "ecuaciones_con_imagenes_2_incognitas",
+    "titulo": "Reemplazar lo conocido para hallar lo que falta",
+    "explicacion": "Si encontramos el valor de un símbolo, podemos reemplazarlo en otra igualdad. Después buscamos cuánto falta para completar el total. Comprobamos los dos resultados.",
+    "ejemplo": "sol + sol = 12 y sol + luna = 10: luna vale 4.",
+    "pasos": [
+      "Cada sol vale 12 ÷ 2 = 6.",
+      "6 + luna = 10; entonces luna = 10 − 6 = 4."
+    ],
+    "pista": "Primero resolvé el símbolo repetido; después reemplazalo.",
+    "visual": null
   }
 ];
 export function getFichaBase(tema) {

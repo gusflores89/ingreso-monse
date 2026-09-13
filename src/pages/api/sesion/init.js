@@ -1,6 +1,6 @@
 import { temasHabilitados } from "@/lib/acceso-temas";
 import { TEMAS_BASES_MATEMATICA } from "@/lib/metadatos-bases";
-import { VERSION_BASES, getUnidadBase, crearActividadBase, getCierreLengua } from "@/lib/contenido-bases";
+import { VERSION_BASES, getUnidadBase, crearActividadBase, getCierreBase } from "@/lib/contenido-bases";
 import { quitarClaves } from "@/lib/contrato-actividad";
 import { getLeccionH } from "@/lib/contenido-h";
 import { daysUntilExam } from "@/lib/date";
@@ -214,7 +214,7 @@ export default async function handler(req, res) {
         contexto_json:{...contexto, leccion:modoBase === 'leccion' ? actividad:null},
         ia_parametros_usados:{provider:'contenido_revisado',modo_sesion:modoBase,objetivo_id,contenido_version:VERSION_BASES,actividad_id:actividad.actividad_id}
       }).select().single(), 'No se pudo guardar la actividad');
-      const cierre = getCierreLengua(temaActual);
+      const cierre = getCierreBase(temaActual);
       const examenes = (sesionesTema || []).filter(s => s.tipo_pregunta === 'examen_final').sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at)));
       const aprobado = examenes.some(s=>s.es_correcta === true);
       const ultimo = examenes.find(s=>s.ia_parametros_usados?.contenido_version === VERSION_BASES);
@@ -660,7 +660,7 @@ async function maybeCrearExamenFinal(supabase, userId, tema, capa, modo, context
     throw new Error(`No se pudo verificar examen final previo: ${ultimosExamenesResult.error.message}`);
   }
 
-  const cierreRevisado = getCierreLengua(tema);
+  const cierreRevisado = getCierreBase(tema);
   const examenPrevio = (ultimosExamenesResult.data || [])[0];
   // El examen legado se conserva como historial; no reabre preguntas ajenas a la enseñanza revisada.
   const ultimoExamen = cierreRevisado && examenPrevio?.contexto_json?.examen_final?.contenido_version !== VERSION_BASES ? null : examenPrevio;

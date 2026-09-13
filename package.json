@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "node tests/verify-r1.cjs && node tests/verify-h-teoria.cjs && node tests/verify-r2.cjs && node tests/verify-r3.cjs && node scripts/sincronizar-apuntes-bases.cjs --check && node tests/verify-r4.cjs && node tests/verify-r5.cjs && node tests/verify-r6.cjs && node tests/verify-r7.cjs && node tests/verify-r8.cjs",
+    "test": "node tests/verify-r1.cjs && node tests/verify-h-teoria.cjs && node tests/verify-r2.cjs && node tests/verify-r3.cjs && node scripts/sincronizar-apuntes-bases.cjs --check && node tests/verify-r4.cjs && node tests/verify-r5.cjs && node tests/verify-r6.cjs && node tests/verify-r7.cjs && node tests/verify-r8.cjs && node tests/verify-r9.cjs",
     "apuntes:sync": "node scripts/sincronizar-apuntes-bases.cjs"
   },
   "dependencies": {

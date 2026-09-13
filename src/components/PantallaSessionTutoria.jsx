@@ -2713,6 +2713,7 @@ function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRe
               <label htmlFor={`respuesta-examen-${item.id}`} style={{whiteSpace:"pre-line"}}>
                 {item.id}) {parseInlineMarkdown(item.texto)}
               </label>
+              <BarrasFraccion barras={item.visual} />
               {item.opciones?.length ? <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
                 {item.opciones.map(opcion => <button key={opcion} type="button" aria-pressed={respuestas[item.id]===opcion}
                   onClick={()=>onRespuesta(item.id,opcion)} disabled={loading}

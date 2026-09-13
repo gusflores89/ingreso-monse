@@ -1266,9 +1266,9 @@ export const OBJETIVOS_POR_TEMA = {
  */
 export function getObjetivosParaTema(tema = "") {
   const temaNormalizado = String(tema || "").toLowerCase().trim();
-  const revisadasLengua = UNIDADES_BASES.filter(u => u.tema === temaNormalizado && u.id.startsWith("leng_"));
+  const revisadasLengua = UNIDADES_BASES.filter(u => u.tema === temaNormalizado && (u.id.startsWith("leng_") || u.id.startsWith("mat_")));
   if (revisadasLengua.length) return revisadasLengua.map((u, i) => ({
-    id: u.id, titulo: u.titulo, fuente: "Cuadernillo Monserrat de Lengua; secuencia y ejemplos propios de la aplicación",
+    id: u.id, titulo: u.titulo, fuente: "Cuadernillo Monserrat; secuencia y ejemplos propios de la aplicación",
     bases: i ? revisadasLengua[i - 1].titulo : "Comenzamos desde una explicación breve",
     secuencia: u.pasos.join(" "), evidencia_propuesta: "Resolver dos actividades diferentes sin ayuda después de la explicación",
     pista: u.pista, error_esperado: "Aplicar una regla distinta de la que estamos practicando",

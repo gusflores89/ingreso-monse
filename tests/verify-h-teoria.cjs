@@ -15,7 +15,7 @@ function load(p, names, deps={}) {
  if(['src/pages/api/sesion/respuesta.js','src/pages/api/sesion/ayuda.js'].includes(p))deps={...load('src/lib/registro-envios.js',['iniciarEnvio','guardarPasoEnvio','completarEnvio','liberarEnvio','registrarAyuda']),...deps};
  if (p==='src/lib/apuntes-bases.js')deps={...load('src/lib/metadatos-bases.js',['VERSION_BASES']),...deps};
  if (p==='src/lib/diapositivas.js')deps={...load('src/lib/apuntes-bases.js',['getFichaBase']),...deps};
- if (['src/lib/objetivos-pedagogicos.js','src/pages/api/sesion/init.js','src/pages/api/sesion/respuesta.js'].includes(p))deps={...load('src/lib/contenido-bases.js',['UNIDADES_BASES','TEMAS_BASES','VERSION_BASES','getUnidadBase','crearActividadBase','evaluarActividadBase','getCierreLengua']),...deps};
+ if (['src/lib/objetivos-pedagogicos.js','src/pages/api/sesion/init.js','src/pages/api/sesion/respuesta.js'].includes(p))deps={...load('src/lib/contenido-bases.js',['UNIDADES_BASES','TEMAS_BASES','VERSION_BASES','getUnidadBase','crearActividadBase','evaluarActividadBase','getCierreLengua','getCierreBase']),...deps};
  if(p==='src/pages/api/sesion/init.js')deps={...load('src/lib/contrato-actividad.js',['quitarClaves']),...deps};
  if(p==='src/pages/api/sesion/respuesta.js')deps={...load('src/lib/validacion-pedagogica.js',['validarEvaluacion','huboAyuda']),requireOwnership:()=>true,...deps};
  if(p==='src/lib/diapositivas.js')deps={...load('src/lib/contenido-h.js',['FICHA_H']),...deps};

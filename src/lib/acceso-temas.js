@@ -1,5 +1,4 @@
 import { CURRICULUM_MATEMATICA, CURRICULUM_LENGUA, PRERREQUISITOS } from "./curriculum.js";
-import { TEMAS_BASES } from "./metadatos-bases.js";
 import { TRIAL_TOPICS } from "./planes.js";
 
 // Única política para iniciar sesiones, dibujar el mapa y mostrar el panel familiar.
@@ -10,7 +9,7 @@ export function accesoTema(tema, { plan = "full", aprobados = [], rutaFlexible =
   if (plan === "trial") return { habilitado: TRIAL_TOPICS.includes(tema), pendientes: [],
     motivo: TRIAL_TOPICS.includes(tema) ? "Disponible en la muestra." : "Este tema requiere acceso completo." };
   const completados = new Set(aprobados);
-  if (rutaFlexible || completados.has(tema) || TEMAS_BASES.includes(tema)) {
+  if (rutaFlexible || completados.has(tema) || ["fracciones_concepto", "divisibilidad_primos_mcm_mcd", "fracciones_operaciones", "comprension_lectora_literal_inferida", "ortografia_b_v", "tildes_generales_agudas_graves_esdrujulas"].includes(tema)) {
     return { habilitado: true, pendientes: [], motivo: "Disponible para aprender o repasar." };
   }
   const pendientes = (PRERREQUISITOS[tema] || []).filter(t => !completados.has(t));
