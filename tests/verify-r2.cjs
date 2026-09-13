@@ -101,7 +101,7 @@ async function start(database,body={},aiType="practica") {
 (async()=>{
  const bases=load('src/lib/contenido-bases.js',['UNIDADES_BASES','VERSION_BASES']);
  const database=db({sesiones:[],lecciones_completadas:[]});let count=0;
- for(const unidad of bases.UNIDADES_BASES.filter(u=>!u.id.startsWith('leng_') && !u.id.startsWith('mat_'))){
+ for(const unidad of bases.UNIDADES_BASES.filter(u=>['fracciones_concepto','divisibilidad_primos_mcm_mcd','fracciones_operaciones'].includes(u.tema))){
   const lesson=await start(database,{tema:'fracciones_concepto'});
   assert.equal(lesson.output.tipo,'leccion',unidad.id);
   const rowLesson=database.tables.sesiones.find(s=>s.id===lesson.output.sesion_id);

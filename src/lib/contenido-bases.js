@@ -9775,6 +9775,1079 @@ for (const unidad of PROFUNDIZACION) {
 }
 // FIN R10
 
+
+
+// R11: decimales paso a paso.
+const DECIMALES_R11 = [
+  {
+    "id": "prof_dec_milesimos",
+    "tema": "decimales_conversion",
+    "despues_de": "mat_dec_fraccion",
+    "titulo": "Un lugar para cada parte",
+    "explicacion": "Después de la coma vienen décimos, centésimos y milésimos, en ese orden. Un milésimo es una de mil partes iguales de la unidad. Un cero guarda un lugar: 0,006 tiene seis milésimos, no seis décimos.",
+    "ejemplo": "0,375 = 3 décimos + 7 centésimos + 5 milésimos.",
+    "pasos": [
+      "Contamos desde la coma: primer, segundo y tercer lugar.",
+      "La tercera cifra es 5; cuenta milésimos."
+    ],
+    "pista": "Contá los lugares desde la coma, también cuando aparece un cero.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "En 0,375, ¿qué cifra ocupa el lugar de los milésimos?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "5",
+          "3",
+          "7",
+          "9"
+        ],
+        "paso_resuelto": "Después de la coma leemos 3, 7 y 5. El tercer lugar es el de los milésimos.",
+        "visual": null,
+        "id": "prof_dec_milesimos-v1"
+      },
+      {
+        "enunciado": "En 2,406, ¿qué cifra ocupa el lugar de los milésimos?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "4",
+          "0",
+          "9",
+          "6"
+        ],
+        "paso_resuelto": "Después de la coma leemos 4, 0 y 6. El tercer lugar es el de los milésimos.",
+        "visual": null,
+        "id": "prof_dec_milesimos-v2"
+      },
+      {
+        "enunciado": "En 1,052, ¿qué cifra ocupa el lugar de los milésimos?",
+        "respuesta_correcta": "2",
+        "opciones": [
+          "5",
+          "9",
+          "2",
+          "0"
+        ],
+        "paso_resuelto": "Después de la coma leemos 0, 5 y 2. El tercer lugar es el de los milésimos.",
+        "visual": null,
+        "id": "prof_dec_milesimos-v3"
+      },
+      {
+        "enunciado": "En 3,108, ¿qué cifra ocupa el lugar de los milésimos?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "9",
+          "8",
+          "1",
+          "0"
+        ],
+        "paso_resuelto": "Después de la coma leemos 1, 0 y 8. El tercer lugar es el de los milésimos.",
+        "visual": null,
+        "id": "prof_dec_milesimos-v4"
+      },
+      {
+        "enunciado": "En 0,924, ¿qué cifra ocupa el lugar de los milésimos?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "9",
+          "2",
+          "4"
+        ],
+        "paso_resuelto": "Después de la coma leemos 9, 2 y 4. El tercer lugar es el de los milésimos.",
+        "visual": null,
+        "id": "prof_dec_milesimos-v5"
+      },
+      {
+        "enunciado": "En 4,630, ¿qué cifra ocupa el lugar de los milésimos?",
+        "respuesta_correcta": "0",
+        "opciones": [
+          "6",
+          "3",
+          "9",
+          "0"
+        ],
+        "paso_resuelto": "Después de la coma leemos 6, 3 y 0. El tercer lugar es el de los milésimos.",
+        "visual": null,
+        "id": "prof_dec_milesimos-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_dec_ceros",
+    "tema": "decimales_conversion",
+    "despues_de": "prof_dec_milesimos",
+    "titulo": "Ceros que conservan el valor",
+    "explicacion": "Podemos agregar o quitar ceros al final de la parte decimal sin cambiar la cantidad: tres décimos equivalen a treinta centésimos. Un cero entre la coma y otra cifra sí cambia su posición: 0,03 no es 0,3.",
+    "ejemplo": "0,3 = 0,30 = 0,300.",
+    "pasos": [
+      "Tres décimos ocupan lo mismo que treinta centésimos.",
+      "Quitamos solo ceros finales: 0,300 vuelve a ser 0,3."
+    ],
+    "pista": "Quitá solo ceros al final de la parte decimal.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "¿Cuál de estas escrituras representa la misma cantidad que 0,30?",
+        "respuesta_correcta": "0,3",
+        "opciones": [
+          "0,3",
+          "0,03",
+          "3"
+        ],
+        "paso_resuelto": "Los ceros finales no cambian el valor: 0,30 = 0,3.",
+        "visual": null,
+        "id": "prof_dec_ceros-v1"
+      },
+      {
+        "enunciado": "¿Cuál de estas escrituras representa la misma cantidad que 2,500?",
+        "respuesta_correcta": "2,5",
+        "opciones": [
+          "2,05",
+          "25",
+          "2,5"
+        ],
+        "paso_resuelto": "Los ceros finales no cambian el valor: 2,500 = 2,5.",
+        "visual": null,
+        "id": "prof_dec_ceros-v2"
+      },
+      {
+        "enunciado": "¿Cuál de estas escrituras representa la misma cantidad que 0,070?",
+        "respuesta_correcta": "0,07",
+        "opciones": [
+          "7",
+          "0,07",
+          "0,7"
+        ],
+        "paso_resuelto": "Los ceros finales no cambian el valor: 0,070 = 0,07.",
+        "visual": null,
+        "id": "prof_dec_ceros-v3"
+      },
+      {
+        "enunciado": "¿Cuál de estas escrituras representa la misma cantidad que 4,200?",
+        "respuesta_correcta": "4,2",
+        "opciones": [
+          "4,2",
+          "4,02",
+          "42"
+        ],
+        "paso_resuelto": "Los ceros finales no cambian el valor: 4,200 = 4,2.",
+        "visual": null,
+        "id": "prof_dec_ceros-v4"
+      },
+      {
+        "enunciado": "¿Cuál de estas escrituras representa la misma cantidad que 1,040?",
+        "respuesta_correcta": "1,04",
+        "opciones": [
+          "1,4",
+          "14",
+          "1,04"
+        ],
+        "paso_resuelto": "Los ceros finales no cambian el valor: 1,040 = 1,04.",
+        "visual": null,
+        "id": "prof_dec_ceros-v5"
+      },
+      {
+        "enunciado": "¿Cuál de estas escrituras representa la misma cantidad que 0,600?",
+        "respuesta_correcta": "0,6",
+        "opciones": [
+          "6",
+          "0,6",
+          "0,06"
+        ],
+        "paso_resuelto": "Los ceros finales no cambian el valor: 0,600 = 0,6.",
+        "visual": null,
+        "id": "prof_dec_ceros-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_dec_comparar",
+    "tema": "decimales_conversion",
+    "despues_de": "prof_dec_ceros",
+    "titulo": "Comparar decimales lugar por lugar",
+    "explicacion": "Primero comparamos las partes enteras. Si son iguales, comparamos décimos, luego centésimos y después milésimos. Podemos completar con ceros al final. Tener más cifras no significa valer más.",
+    "ejemplo": "0,8 es mayor que 0,75: 0,80 tiene 80 centésimos y 0,75 tiene 75.",
+    "pasos": [
+      "Escribimos 0,8 como 0,80 para comparar las mismas partes.",
+      "80 centésimos son más que 75 centésimos."
+    ],
+    "pista": "Igualá las posiciones con ceros finales y compará desde la izquierda.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "¿Qué número es mayor: 0,8 o 0,75?",
+        "respuesta_correcta": "0,8",
+        "opciones": [
+          "0,8",
+          "0,75",
+          "Son iguales"
+        ],
+        "paso_resuelto": "Comparamos posiciones: 0,800 y 0,750, El mayor es 0,8,",
+        "visual": null,
+        "id": "prof_dec_comparar-v1"
+      },
+      {
+        "enunciado": "¿Qué número es mayor: 2,09 o 2,1?",
+        "respuesta_correcta": "2,1",
+        "opciones": [
+          "2,09",
+          "Son iguales",
+          "2,1"
+        ],
+        "paso_resuelto": "Comparamos posiciones: 2,090 y 2,100, El mayor es 2,1,",
+        "visual": null,
+        "id": "prof_dec_comparar-v2"
+      },
+      {
+        "enunciado": "¿Qué número es mayor: 3,4 o 3,045?",
+        "respuesta_correcta": "3,4",
+        "opciones": [
+          "Son iguales",
+          "3,4",
+          "3,045"
+        ],
+        "paso_resuelto": "Comparamos posiciones: 3,400 y 3,045, El mayor es 3,4,",
+        "visual": null,
+        "id": "prof_dec_comparar-v3"
+      },
+      {
+        "enunciado": "¿Qué número es mayor: 0,125 o 0,12?",
+        "respuesta_correcta": "0,125",
+        "opciones": [
+          "0,125",
+          "0,12",
+          "Son iguales"
+        ],
+        "paso_resuelto": "Comparamos posiciones: 0,125 y 0,120, El mayor es 0,125,",
+        "visual": null,
+        "id": "prof_dec_comparar-v4"
+      },
+      {
+        "enunciado": "¿Qué número es mayor: 5,06 o 5,006?",
+        "respuesta_correcta": "5,06",
+        "opciones": [
+          "5,006",
+          "Son iguales",
+          "5,06"
+        ],
+        "paso_resuelto": "Comparamos posiciones: 5,060 y 5,006, El mayor es 5,06,",
+        "visual": null,
+        "id": "prof_dec_comparar-v5"
+      },
+      {
+        "enunciado": "¿Qué número es mayor: 1,009 o 1,01?",
+        "respuesta_correcta": "1,01",
+        "opciones": [
+          "Son iguales",
+          "1,01",
+          "1,009"
+        ],
+        "paso_resuelto": "Comparamos posiciones: 1,009 y 1,010, El mayor es 1,01,",
+        "visual": null,
+        "id": "prof_dec_comparar-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_dec_a_fraccion",
+    "tema": "decimales_conversion",
+    "despues_de": "prof_dec_comparar",
+    "titulo": "Escribir el decimal como fracción",
+    "explicacion": "Contamos las cifras después de la coma. Una cifra indica décimos y denominador 10; dos indican centésimos y denominador 100; tres indican milésimos y denominador 1000. El numerador es el número escrito sin coma.",
+    "ejemplo": "1,25 = 125/100.",
+    "pasos": [
+      "Hay dos cifras decimales: usamos denominador 100.",
+      "Sin la coma queda 125; escribimos 125/100."
+    ],
+    "pista": "El denominador tiene tantos ceros como cifras decimales.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Escribí 1,25 como fracción con denominador 100, sin simplificar.",
+        "respuesta_correcta": "125/100",
+        "opciones": [
+          "125/100",
+          "125/1000",
+          "126/100"
+        ],
+        "paso_resuelto": "Hay 2 cifras decimales. El numerador es 125 y el denominador es 100.",
+        "visual": null,
+        "id": "prof_dec_a_fraccion-v1"
+      },
+      {
+        "enunciado": "Escribí 0,6 como fracción con denominador 10, sin simplificar.",
+        "respuesta_correcta": "6/10",
+        "opciones": [
+          "6/100",
+          "7/10",
+          "6/10"
+        ],
+        "paso_resuelto": "Hay 1 cifras decimales. El numerador es 6 y el denominador es 10.",
+        "visual": null,
+        "id": "prof_dec_a_fraccion-v2"
+      },
+      {
+        "enunciado": "Escribí 0,075 como fracción con denominador 1000, sin simplificar.",
+        "respuesta_correcta": "75/1000",
+        "opciones": [
+          "76/1000",
+          "75/1000",
+          "75/10000"
+        ],
+        "paso_resuelto": "Hay 3 cifras decimales. El numerador es 75 y el denominador es 1000.",
+        "visual": null,
+        "id": "prof_dec_a_fraccion-v3"
+      },
+      {
+        "enunciado": "Escribí 2,04 como fracción con denominador 100, sin simplificar.",
+        "respuesta_correcta": "204/100",
+        "opciones": [
+          "204/100",
+          "204/1000",
+          "205/100"
+        ],
+        "paso_resuelto": "Hay 2 cifras decimales. El numerador es 204 y el denominador es 100.",
+        "visual": null,
+        "id": "prof_dec_a_fraccion-v4"
+      },
+      {
+        "enunciado": "Escribí 3,125 como fracción con denominador 1000, sin simplificar.",
+        "respuesta_correcta": "3125/1000",
+        "opciones": [
+          "3125/10000",
+          "3126/1000",
+          "3125/1000"
+        ],
+        "paso_resuelto": "Hay 3 cifras decimales. El numerador es 3125 y el denominador es 1000.",
+        "visual": null,
+        "id": "prof_dec_a_fraccion-v5"
+      },
+      {
+        "enunciado": "Escribí 0,08 como fracción con denominador 100, sin simplificar.",
+        "respuesta_correcta": "8/100",
+        "opciones": [
+          "9/100",
+          "8/100",
+          "8/1000"
+        ],
+        "paso_resuelto": "Hay 2 cifras decimales. El numerador es 8 y el denominador es 100.",
+        "visual": null,
+        "id": "prof_dec_a_fraccion-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_dec_desde_fraccion",
+    "tema": "decimales_conversion",
+    "despues_de": "prof_dec_a_fraccion",
+    "titulo": "Dividir para pasar a decimal",
+    "explicacion": "Una fracción también indica una división: numerador dividido por denominador. Si queda resto, podemos continuar con décimos y centésimos. Si el resto llega a cero, el decimal es exacto. Hay otras fracciones cuyo decimal no termina.",
+    "ejemplo": "3/4 = 3 ÷ 4 = 0,75.",
+    "pasos": [
+      "3 es menor que 4: anotamos 0 enteros y la coma. 30 décimos entre 4 dan 7 décimos y sobran 2.",
+      "Esos 2 décimos son 20 centésimos: entre 4 dan 5 centésimos. Queda 0,75 y resto cero."
+    ],
+    "pista": "Dividí el numerador por el denominador; si hay resto, seguí con partes diez veces menores.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Convertí 3/4 en un decimal exacto.",
+        "respuesta_correcta": "0,75",
+        "opciones": [
+          "0,75",
+          "7,5",
+          "0,075"
+        ],
+        "paso_resuelto": "3 ÷ 4: 0 entero(s), resto 3.\n30 décimos entre 4: 7 décimos, resto 2 décimos.\n20 centésimos entre 4: 5 centésimos, resto 0 centésimos.\nJuntamos los lugares: 0,75.",
+        "visual": null,
+        "id": "prof_dec_desde_fraccion-v1"
+      },
+      {
+        "enunciado": "Convertí 1/2 en un decimal exacto.",
+        "respuesta_correcta": "0,5",
+        "opciones": [
+          "5",
+          "0,05",
+          "0,5"
+        ],
+        "paso_resuelto": "1 ÷ 2: 0 entero(s), resto 1.\n10 décimos entre 2: 5 décimos, resto 0 décimos.\nJuntamos los lugares: 0,5.",
+        "visual": null,
+        "id": "prof_dec_desde_fraccion-v2"
+      },
+      {
+        "enunciado": "Convertí 7/4 en un decimal exacto.",
+        "respuesta_correcta": "1,75",
+        "opciones": [
+          "0,175",
+          "1,75",
+          "17,5"
+        ],
+        "paso_resuelto": "7 ÷ 4: 1 entero(s), resto 3.\n30 décimos entre 4: 7 décimos, resto 2 décimos.\n20 centésimos entre 4: 5 centésimos, resto 0 centésimos.\nJuntamos los lugares: 1,75.",
+        "visual": null,
+        "id": "prof_dec_desde_fraccion-v3"
+      },
+      {
+        "enunciado": "Convertí 3/8 en un decimal exacto.",
+        "respuesta_correcta": "0,375",
+        "opciones": [
+          "0,375",
+          "3,75",
+          "0,0375"
+        ],
+        "paso_resuelto": "3 ÷ 8: 0 entero(s), resto 3.\n30 décimos entre 8: 3 décimos, resto 6 décimos.\n60 centésimos entre 8: 7 centésimos, resto 4 centésimos.\n40 milésimos entre 8: 5 milésimos, resto 0 milésimos.\nJuntamos los lugares: 0,375.",
+        "visual": null,
+        "id": "prof_dec_desde_fraccion-v4"
+      },
+      {
+        "enunciado": "Convertí 9/5 en un decimal exacto.",
+        "respuesta_correcta": "1,8",
+        "opciones": [
+          "18",
+          "0,18",
+          "1,8"
+        ],
+        "paso_resuelto": "9 ÷ 5: 1 entero(s), resto 4.\n40 décimos entre 5: 8 décimos, resto 0 décimos.\nJuntamos los lugares: 1,8.",
+        "visual": null,
+        "id": "prof_dec_desde_fraccion-v5"
+      },
+      {
+        "enunciado": "Convertí 7/20 en un decimal exacto.",
+        "respuesta_correcta": "0,35",
+        "opciones": [
+          "0,035",
+          "0,35",
+          "3,5"
+        ],
+        "paso_resuelto": "7 ÷ 20: 0 entero(s), resto 7.\n70 décimos entre 20: 3 décimos, resto 10 décimos.\n100 centésimos entre 20: 5 centésimos, resto 0 centésimos.\nJuntamos los lugares: 0,35.",
+        "visual": null,
+        "id": "prof_dec_desde_fraccion-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_dec_sumar_distintas",
+    "tema": "decimales_conversion",
+    "despues_de": "mat_dec_sumar",
+    "titulo": "Sumar décimos y centésimos",
+    "explicacion": "Para sumar números con distinta cantidad de cifras decimales, alineamos las comas y completamos con ceros finales. Después sumamos partes del mismo tamaño. Cada cien centésimos forman una unidad.",
+    "ejemplo": "2,35 + 0,8 = 2,35 + 0,80 = 3,15.",
+    "pasos": [
+      "Son 235 centésimos más 80 centésimos: 315 centésimos.",
+      "300 centésimos forman 3 unidades y quedan 15 centésimos: 3,15."
+    ],
+    "pista": "Sumá partes del mismo tamaño; diez centésimos forman un décimo.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Resolvé 2,35 + 0,8.",
+        "respuesta_correcta": "3,15",
+        "opciones": [
+          "3,15",
+          "3,25",
+          "0,315"
+        ],
+        "paso_resuelto": "En centésimos: 235 + 80 = 315. Volvemos a escribir el resultado: 3,15.",
+        "visual": null,
+        "id": "prof_dec_sumar_distintas-v1"
+      },
+      {
+        "enunciado": "Resolvé 1,08 + 0,7.",
+        "respuesta_correcta": "1,78",
+        "opciones": [
+          "1,88",
+          "0,178",
+          "1,78"
+        ],
+        "paso_resuelto": "En centésimos: 108 + 70 = 178. Volvemos a escribir el resultado: 1,78.",
+        "visual": null,
+        "id": "prof_dec_sumar_distintas-v2"
+      },
+      {
+        "enunciado": "Resolvé 4,6 + 0,75.",
+        "respuesta_correcta": "5,35",
+        "opciones": [
+          "0,535",
+          "5,35",
+          "5,45"
+        ],
+        "paso_resuelto": "En centésimos: 460 + 75 = 535. Volvemos a escribir el resultado: 5,35.",
+        "visual": null,
+        "id": "prof_dec_sumar_distintas-v3"
+      },
+      {
+        "enunciado": "Resolvé 3,09 + 1,2.",
+        "respuesta_correcta": "4,29",
+        "opciones": [
+          "4,29",
+          "4,39",
+          "0,429"
+        ],
+        "paso_resuelto": "En centésimos: 309 + 120 = 429. Volvemos a escribir el resultado: 4,29.",
+        "visual": null,
+        "id": "prof_dec_sumar_distintas-v4"
+      },
+      {
+        "enunciado": "Resolvé 0,85 + 0,4.",
+        "respuesta_correcta": "1,25",
+        "opciones": [
+          "1,35",
+          "0,125",
+          "1,25"
+        ],
+        "paso_resuelto": "En centésimos: 85 + 40 = 125. Volvemos a escribir el resultado: 1,25.",
+        "visual": null,
+        "id": "prof_dec_sumar_distintas-v5"
+      },
+      {
+        "enunciado": "Resolvé 5,07 + 2,9.",
+        "respuesta_correcta": "7,97",
+        "opciones": [
+          "0,797",
+          "7,97",
+          "8,07"
+        ],
+        "paso_resuelto": "En centésimos: 507 + 290 = 797. Volvemos a escribir el resultado: 7,97.",
+        "visual": null,
+        "id": "prof_dec_sumar_distintas-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_dec_restar_reagrupar",
+    "tema": "decimales_conversion",
+    "despues_de": "mat_dec_restar",
+    "titulo": "Restar cuando necesitamos cambiar una unidad",
+    "explicacion": "Al restar, alineamos las comas y completamos con ceros finales. Podemos cambiar una unidad por cien centésimos sin cambiar el total. Así tenemos partes pequeñas para quitar.",
+    "ejemplo": "5 − 1,75 = 5,00 − 1,75 = 3,25.",
+    "pasos": [
+      "Reescribimos 5 unidades como 4 unidades y 100 centésimos.",
+      "Quitamos 1 unidad y 75 centésimos: quedan 3 unidades y 25 centésimos."
+    ],
+    "pista": "Podés cambiar una unidad por cien centésimos y conservar el total.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Resolvé 5 − 1,75.",
+        "respuesta_correcta": "3,25",
+        "opciones": [
+          "3,25",
+          "3,35",
+          "6,75"
+        ],
+        "paso_resuelto": "En centésimos: 500 − 175 = 325. Quedan 3,25.",
+        "visual": null,
+        "id": "prof_dec_restar_reagrupar-v1"
+      },
+      {
+        "enunciado": "Resolvé 4,2 − 0,85.",
+        "respuesta_correcta": "3,35",
+        "opciones": [
+          "3,45",
+          "5,05",
+          "3,35"
+        ],
+        "paso_resuelto": "En centésimos: 420 − 85 = 335. Quedan 3,35.",
+        "visual": null,
+        "id": "prof_dec_restar_reagrupar-v2"
+      },
+      {
+        "enunciado": "Resolvé 6 − 2,08.",
+        "respuesta_correcta": "3,92",
+        "opciones": [
+          "8,08",
+          "3,92",
+          "4,02"
+        ],
+        "paso_resuelto": "En centésimos: 600 − 208 = 392. Quedan 3,92.",
+        "visual": null,
+        "id": "prof_dec_restar_reagrupar-v3"
+      },
+      {
+        "enunciado": "Resolvé 3,5 − 1,76.",
+        "respuesta_correcta": "1,74",
+        "opciones": [
+          "1,74",
+          "1,84",
+          "5,26"
+        ],
+        "paso_resuelto": "En centésimos: 350 − 176 = 174. Quedan 1,74.",
+        "visual": null,
+        "id": "prof_dec_restar_reagrupar-v4"
+      },
+      {
+        "enunciado": "Resolvé 7,1 − 3,25.",
+        "respuesta_correcta": "3,85",
+        "opciones": [
+          "3,95",
+          "10,35",
+          "3,85"
+        ],
+        "paso_resuelto": "En centésimos: 710 − 325 = 385. Quedan 3,85.",
+        "visual": null,
+        "id": "prof_dec_restar_reagrupar-v5"
+      },
+      {
+        "enunciado": "Resolvé 2 − 0,65.",
+        "respuesta_correcta": "1,35",
+        "opciones": [
+          "2,65",
+          "1,35",
+          "1,45"
+        ],
+        "paso_resuelto": "En centésimos: 200 − 65 = 135. Quedan 1,35.",
+        "visual": null,
+        "id": "prof_dec_restar_reagrupar-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_dec_escalar",
+    "tema": "decimales_conversion",
+    "despues_de": "prof_dec_restar_reagrupar",
+    "titulo": "Diez veces más, diez veces menos",
+    "explicacion": "Multiplicar por 10 hace que cada cifra valga diez veces más; dividir por 10 hace que valga diez veces menos. Con 100 son dos cambios de posición y con 1000 son tres. Agregar ceros al final del decimal no multiplica su valor.",
+    "ejemplo": "0,45 × 10 = 4,5; 4,5 ÷ 10 = 0,45.",
+    "pasos": [
+      "Al multiplicar por 10, 45 centésimos se convierten en 45 décimos.",
+      "Al dividir por 10 hacemos el cambio inverso: 45 décimos pasan a ser 45 centésimos."
+    ],
+    "pista": "Pensá primero si el resultado debe ser mayor o menor; después contá los cambios de posición.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Resolvé 0,45 × 10.",
+        "respuesta_correcta": "4,5",
+        "opciones": [
+          "4,5",
+          "0,045",
+          "0,45"
+        ],
+        "paso_resuelto": "Cada cifra cambia 1 lugar(es) hacia un valor mayor. Resultado: 4,5.",
+        "visual": null,
+        "id": "prof_dec_escalar-v1"
+      },
+      {
+        "enunciado": "Resolvé 2,07 × 100.",
+        "respuesta_correcta": "207",
+        "opciones": [
+          "0,0207",
+          "2,07",
+          "207"
+        ],
+        "paso_resuelto": "Cada cifra cambia 2 lugar(es) hacia un valor mayor. Resultado: 207.",
+        "visual": null,
+        "id": "prof_dec_escalar-v2"
+      },
+      {
+        "enunciado": "Resolvé 0,006 × 1000.",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "0,006",
+          "6",
+          "0,000006"
+        ],
+        "paso_resuelto": "Cada cifra cambia 3 lugar(es) hacia un valor mayor. Resultado: 6.",
+        "visual": null,
+        "id": "prof_dec_escalar-v3"
+      },
+      {
+        "enunciado": "Resolvé 4,5 ÷ 10.",
+        "respuesta_correcta": "0,45",
+        "opciones": [
+          "0,45",
+          "45",
+          "4,5"
+        ],
+        "paso_resuelto": "Cada cifra cambia 1 lugar(es) hacia un valor menor. Resultado: 0,45.",
+        "visual": null,
+        "id": "prof_dec_escalar-v4"
+      },
+      {
+        "enunciado": "Resolvé 7 ÷ 100.",
+        "respuesta_correcta": "0,07",
+        "opciones": [
+          "700",
+          "7",
+          "0,07"
+        ],
+        "paso_resuelto": "Cada cifra cambia 2 lugar(es) hacia un valor menor. Resultado: 0,07.",
+        "visual": null,
+        "id": "prof_dec_escalar-v5"
+      },
+      {
+        "enunciado": "Resolvé 65 ÷ 1000.",
+        "respuesta_correcta": "0,065",
+        "opciones": [
+          "65",
+          "0,065",
+          "65000"
+        ],
+        "paso_resuelto": "Cada cifra cambia 3 lugar(es) hacia un valor menor. Resultado: 0,065.",
+        "visual": null,
+        "id": "prof_dec_escalar-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_dec_producto",
+    "tema": "decimales_conversion",
+    "despues_de": "mat_dec_producto",
+    "titulo": "Multiplicar dos cantidades decimales",
+    "explicacion": "Para multiplicar decimales, multiplicamos como si no hubiera comas y luego contamos las cifras decimales de ambos factores. El producto lleva esa cantidad total de posiciones decimales; si faltan cifras, completamos con ceros a la izquierda. Multiplicar por una cantidad entre 0 y 1 toma solo una parte.",
+    "ejemplo": "1,2 × 0,3 = 0,36.",
+    "pasos": [
+      "12 × 3 = 36. Cada factor tiene una cifra decimal: son dos en total.",
+      "36 centésimos se escriben 0,36. Tomar tres décimos de 1,2 da menos que 1,2."
+    ],
+    "pista": "Sumá las posiciones decimales de los dos factores.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Resolvé 1,2 × 0,3.",
+        "respuesta_correcta": "0,36",
+        "opciones": [
+          "0,36",
+          "3,6",
+          "1,5"
+        ],
+        "paso_resuelto": "Sin comas: 12 × 3 = 36.\nLos factores tienen 1 y 1 cifra(s) decimal(es): 2 en total.\nColocamos la coma contando 2 lugares desde la derecha: 0,36.",
+        "visual": null,
+        "id": "prof_dec_producto-v1"
+      },
+      {
+        "enunciado": "Resolvé 0,4 × 0,2.",
+        "respuesta_correcta": "0,08",
+        "opciones": [
+          "0,8",
+          "0,6",
+          "0,08"
+        ],
+        "paso_resuelto": "Sin comas: 4 × 2 = 8.\nLos factores tienen 1 y 1 cifra(s) decimal(es): 2 en total.\nColocamos la coma contando 2 lugares desde la derecha: 0,08.",
+        "visual": null,
+        "id": "prof_dec_producto-v2"
+      },
+      {
+        "enunciado": "Resolvé 2,5 × 1,2.",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "3,7",
+          "3",
+          "30"
+        ],
+        "paso_resuelto": "Sin comas: 25 × 12 = 300.\nLos factores tienen 1 y 1 cifra(s) decimal(es): 2 en total.\nColocamos la coma contando 2 lugares desde la derecha: 3.",
+        "visual": null,
+        "id": "prof_dec_producto-v3"
+      },
+      {
+        "enunciado": "Resolvé 0,06 × 0,5.",
+        "respuesta_correcta": "0,03",
+        "opciones": [
+          "0,03",
+          "0,3",
+          "0,56"
+        ],
+        "paso_resuelto": "Sin comas: 6 × 5 = 30.\nLos factores tienen 2 y 1 cifra(s) decimal(es): 3 en total.\nColocamos la coma contando 3 lugares desde la derecha: 0,03.",
+        "visual": null,
+        "id": "prof_dec_producto-v4"
+      },
+      {
+        "enunciado": "Resolvé 1,25 × 0,4.",
+        "respuesta_correcta": "0,5",
+        "opciones": [
+          "5",
+          "1,65",
+          "0,5"
+        ],
+        "paso_resuelto": "Sin comas: 125 × 4 = 500.\nLos factores tienen 2 y 1 cifra(s) decimal(es): 3 en total.\nColocamos la coma contando 3 lugares desde la derecha: 0,5.",
+        "visual": null,
+        "id": "prof_dec_producto-v5"
+      },
+      {
+        "enunciado": "Resolvé 3,2 × 0,25.",
+        "respuesta_correcta": "0,8",
+        "opciones": [
+          "3,45",
+          "0,8",
+          "8"
+        ],
+        "paso_resuelto": "Sin comas: 32 × 25 = 800.\nLos factores tienen 1 y 2 cifra(s) decimal(es): 3 en total.\nColocamos la coma contando 3 lugares desde la derecha: 0,8.",
+        "visual": null,
+        "id": "prof_dec_producto-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_dec_dividir_natural",
+    "tema": "decimales_conversion",
+    "despues_de": "mat_dec_dividir",
+    "titulo": "Repartir también los centésimos",
+    "explicacion": "Podemos repartir una cantidad decimal convirtiéndola a centésimos. Dividimos esos centésimos entre la cantidad de grupos y escribimos de nuevo el decimal. Si quedan partes por repartir, seguimos con una unidad más pequeña.",
+    "ejemplo": "4,5 litros entre 6 botellas: 0,75 litros en cada una.",
+    "pasos": [
+      "4,5 litros equivalen a 450 centésimos de litro.",
+      "450 ÷ 6 = 75 centésimos por botella: 0,75 litros."
+    ],
+    "pista": "Convertí a partes pequeñas del mismo tamaño antes de repartir.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Resolvé 4,5 ÷ 6.",
+        "respuesta_correcta": "0,75",
+        "opciones": [
+          "0,75",
+          "7,5",
+          "0,075"
+        ],
+        "paso_resuelto": "4,5 equivale a 450 centésimos. 450 ÷ 6 = 75 centésimos: 0,75.",
+        "visual": null,
+        "id": "prof_dec_dividir_natural-v1"
+      },
+      {
+        "enunciado": "Resolvé 3,6 ÷ 8.",
+        "respuesta_correcta": "0,45",
+        "opciones": [
+          "4,5",
+          "0,045",
+          "0,45"
+        ],
+        "paso_resuelto": "3,6 equivale a 360 centésimos. 360 ÷ 8 = 45 centésimos: 0,45.",
+        "visual": null,
+        "id": "prof_dec_dividir_natural-v2"
+      },
+      {
+        "enunciado": "Resolvé 7,2 ÷ 5.",
+        "respuesta_correcta": "1,44",
+        "opciones": [
+          "0,144",
+          "1,44",
+          "14,4"
+        ],
+        "paso_resuelto": "7,2 equivale a 720 centésimos. 720 ÷ 5 = 144 centésimos: 1,44.",
+        "visual": null,
+        "id": "prof_dec_dividir_natural-v3"
+      },
+      {
+        "enunciado": "Resolvé 1,8 ÷ 4.",
+        "respuesta_correcta": "0,45",
+        "opciones": [
+          "0,45",
+          "4,5",
+          "0,045"
+        ],
+        "paso_resuelto": "1,8 equivale a 180 centésimos. 180 ÷ 4 = 45 centésimos: 0,45.",
+        "visual": null,
+        "id": "prof_dec_dividir_natural-v4"
+      },
+      {
+        "enunciado": "Resolvé 6,3 ÷ 9.",
+        "respuesta_correcta": "0,7",
+        "opciones": [
+          "7",
+          "0,07",
+          "0,7"
+        ],
+        "paso_resuelto": "6,3 equivale a 630 centésimos. 630 ÷ 9 = 70 centésimos: 0,7.",
+        "visual": null,
+        "id": "prof_dec_dividir_natural-v5"
+      },
+      {
+        "enunciado": "Resolvé 2,5 ÷ 2.",
+        "respuesta_correcta": "1,25",
+        "opciones": [
+          "0,125",
+          "1,25",
+          "12,5"
+        ],
+        "paso_resuelto": "2,5 equivale a 250 centésimos. 250 ÷ 2 = 125 centésimos: 1,25.",
+        "visual": null,
+        "id": "prof_dec_dividir_natural-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_dec_dividir_decimal",
+    "tema": "decimales_conversion",
+    "despues_de": "prof_dec_dividir_natural",
+    "titulo": "Dividir por una cantidad decimal",
+    "explicacion": "Una división conserva su resultado si multiplicamos dividendo y divisor por el mismo número distinto de cero. Podemos multiplicar ambos por 10 o por 100 para quitar la coma del divisor. Nunca cambiamos solo uno.",
+    "ejemplo": "1,5 ÷ 0,3 = 15 ÷ 3 = 5.",
+    "pasos": [
+      "Multiplicamos ambos números por 10: 1,5 pasa a 15 y 0,3 pasa a 3.",
+      "15 ÷ 3 = 5. Comprobamos: 5 × 0,3 = 1,5."
+    ],
+    "pista": "Multiplicá los dos números por el mismo factor hasta que el divisor sea entero.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "Resolvé 1,5 ÷ 0,3.",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "5",
+          "0,5",
+          "0,45"
+        ],
+        "paso_resuelto": "Multiplicamos ambos por 10: 15 ÷ 3. Resultado: 5.",
+        "visual": null,
+        "id": "prof_dec_dividir_decimal-v1"
+      },
+      {
+        "enunciado": "Resolvé 2,4 ÷ 0,6.",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "0,4",
+          "1,44",
+          "4"
+        ],
+        "paso_resuelto": "Multiplicamos ambos por 10: 24 ÷ 6. Resultado: 4.",
+        "visual": null,
+        "id": "prof_dec_dividir_decimal-v2"
+      },
+      {
+        "enunciado": "Resolvé 1,8 ÷ 0,12.",
+        "respuesta_correcta": "15",
+        "opciones": [
+          "0,216",
+          "15",
+          "1,5"
+        ],
+        "paso_resuelto": "Multiplicamos ambos por 100: 180 ÷ 12. Resultado: 15.",
+        "visual": null,
+        "id": "prof_dec_dividir_decimal-v3"
+      },
+      {
+        "enunciado": "Resolvé 0,75 ÷ 0,25.",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "3",
+          "0,3",
+          "0,1875"
+        ],
+        "paso_resuelto": "Multiplicamos ambos por 100: 75 ÷ 25. Resultado: 3.",
+        "visual": null,
+        "id": "prof_dec_dividir_decimal-v4"
+      },
+      {
+        "enunciado": "Resolvé 3,6 ÷ 1,2.",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "0,3",
+          "4,32",
+          "3"
+        ],
+        "paso_resuelto": "Multiplicamos ambos por 10: 36 ÷ 12. Resultado: 3.",
+        "visual": null,
+        "id": "prof_dec_dividir_decimal-v5"
+      },
+      {
+        "enunciado": "Resolvé 2,5 ÷ 0,5.",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "1,25",
+          "5",
+          "0,5"
+        ],
+        "paso_resuelto": "Multiplicamos ambos por 10: 25 ÷ 5. Resultado: 5.",
+        "visual": null,
+        "id": "prof_dec_dividir_decimal-v6"
+      }
+    ]
+  },
+  {
+    "id": "prof_dec_dos_pasos",
+    "tema": "decimales_conversion",
+    "despues_de": "prof_dec_dividir_decimal",
+    "titulo": "Un problema, dos cuentas pequeñas",
+    "explicacion": "En un problema podemos encontrar un resultado intermedio antes de responder. Primero anotamos qué necesitamos averiguar y después usamos ese resultado en la siguiente cuenta. Al final comprobamos si tiene sentido.",
+    "ejemplo": "Tenés 10 pesos de juego. Comprás dos fichas de 2,35 pesos cada una. Te quedan 5,30 pesos.",
+    "pasos": [
+      "Las dos fichas cuestan 2 × 2,35 = 4,70 pesos.",
+      "Restamos el gasto al dinero inicial: 10 − 4,70 = 5,30 pesos."
+    ],
+    "pista": "Primero calculá el gasto total; después restalo del dinero inicial.",
+    "visual": null,
+    "actividades": [
+      {
+        "enunciado": "En una tienda de juego tenés 10 pesos. Comprás 2 fichas de 2,35 pesos cada una. ¿Cuántos pesos te quedan?",
+        "respuesta_correcta": "5,3",
+        "opciones": [
+          "5,3",
+          "7,65",
+          "4,7"
+        ],
+        "paso_resuelto": "Gasto: 2 × 2,35 = 4,7. Después: 10 − 4,7 = 5,3 pesos.",
+        "visual": null,
+        "id": "prof_dec_dos_pasos-v1"
+      },
+      {
+        "enunciado": "En una tienda de juego tenés 8 pesos. Comprás 3 fichas de 1,2 pesos cada una. ¿Cuántos pesos te quedan?",
+        "respuesta_correcta": "4,4",
+        "opciones": [
+          "6,8",
+          "3,6",
+          "4,4"
+        ],
+        "paso_resuelto": "Gasto: 3 × 1,2 = 3,6. Después: 8 − 3,6 = 4,4 pesos.",
+        "visual": null,
+        "id": "prof_dec_dos_pasos-v2"
+      },
+      {
+        "enunciado": "En una tienda de juego tenés 12 pesos. Comprás 4 fichas de 2,15 pesos cada una. ¿Cuántos pesos te quedan?",
+        "respuesta_correcta": "3,4",
+        "opciones": [
+          "8,6",
+          "3,4",
+          "9,85"
+        ],
+        "paso_resuelto": "Gasto: 4 × 2,15 = 8,6. Después: 12 − 8,6 = 3,4 pesos.",
+        "visual": null,
+        "id": "prof_dec_dos_pasos-v3"
+      },
+      {
+        "enunciado": "En una tienda de juego tenés 5 pesos. Comprás 2 fichas de 1,75 pesos cada una. ¿Cuántos pesos te quedan?",
+        "respuesta_correcta": "1,5",
+        "opciones": [
+          "1,5",
+          "3,25",
+          "3,5"
+        ],
+        "paso_resuelto": "Gasto: 2 × 1,75 = 3,5. Después: 5 − 3,5 = 1,5 pesos.",
+        "visual": null,
+        "id": "prof_dec_dos_pasos-v4"
+      },
+      {
+        "enunciado": "En una tienda de juego tenés 15 pesos. Comprás 3 fichas de 2,4 pesos cada una. ¿Cuántos pesos te quedan?",
+        "respuesta_correcta": "7,8",
+        "opciones": [
+          "12,6",
+          "7,2",
+          "7,8"
+        ],
+        "paso_resuelto": "Gasto: 3 × 2,4 = 7,2. Después: 15 − 7,2 = 7,8 pesos.",
+        "visual": null,
+        "id": "prof_dec_dos_pasos-v5"
+      },
+      {
+        "enunciado": "En una tienda de juego tenés 20 pesos. Comprás 4 fichas de 3,25 pesos cada una. ¿Cuántos pesos te quedan?",
+        "respuesta_correcta": "7",
+        "opciones": [
+          "13",
+          "7",
+          "16,75"
+        ],
+        "paso_resuelto": "Gasto: 4 × 3,25 = 13. Después: 20 − 13 = 7 pesos.",
+        "visual": null,
+        "id": "prof_dec_dos_pasos-v6"
+      }
+    ]
+  }
+];
+for (const unidad of DECIMALES_R11) {
+ const indice = UNIDADES_BASES.findIndex(u => u.id === unidad.despues_de);
+ if (indice < 0) throw new Error('Falta el paso anterior de ' + unidad.id);
+ UNIDADES_BASES.splice(indice + 1, 0, unidad);
+}
+// FIN R11
+
 export const TEMAS_BASES = [...new Set(UNIDADES_BASES.map(u => u.tema))];
 export function getUnidadBase(id) { return UNIDADES_BASES.find(u => u.id === id) || null; }
 export function crearActividadBase(id, modo, sesiones = []) {

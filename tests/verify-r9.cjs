@@ -27,7 +27,7 @@ mat_graf_leer:['Bruno','Ana','Cami','Bruno','Ana','Cami'],mat_graf_escala:[8,15,
   // Prerrequisitos sintéticos aprobados; no es una migración de la alumna.
   const seed=curriculum.CURRICULUM_MATEMATICA.filter(t=>t.tema!==tema).map((t,i)=>({id:'approved'+i,user_id:user.id,tema:t.tema,tipo_pregunta:'examen_final',es_correcta:true,created_at:'2026-09-01',ia_parametros_usados:{}}));
   const d=db({sesiones:seed,lecciones_completadas:[]});
-  for(const u of fresh.filter(u=>u.tema===tema)){
+  for(const u of units.filter(u=>u.tema===tema)){
    const first=await start(d,{tema,rendir_examen:true,forzar_practica:false});assert.equal(first.output.tipo,'leccion');assert.equal(first.calls.length,0);assert.equal(first.output.ejercicio_practica.enunciado,u.actividades[0].enunciado);
    assert.equal(first.output.ejercicio_practica.respuesta_correcta,undefined);
    await answer(d,first.output.sesion_id,{respuesta_usuario:u.actividades[0].respuesta_correcta});

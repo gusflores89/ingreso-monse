@@ -16,7 +16,7 @@ const prereqs=tema=>h.curriculum.CURRICULUM_MATEMATICA.filter(t=>t.tema!==tema).
  });
  const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
  for(let i=0;i<fresh.length;i++){
-  const u=fresh[i];database=h.db({sesiones:[...prereqs(u.tema),...fresh.slice(0,i).filter(v=>v.tema===u.tema).flatMap(proof)]});
+  const u=fresh[i];database=h.db({sesiones:[...prereqs(u.tema),...units.filter(v=>v.tema===u.tema && units.indexOf(v)<units.indexOf(u)).flatMap(proof)]});
   if(i)await page.evaluate(()=>localStorage.clear());
   await page.goto(base+'/tutoria?user_id='+h.user.id+'&tema='+u.tema,{waitUntil:'networkidle'});
   await page.getByText(u.explicacion,{exact:true}).waitFor();

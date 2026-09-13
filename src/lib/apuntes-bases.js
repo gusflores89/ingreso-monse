@@ -1124,6 +1124,71 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "prof_dec_milesimos",
+    "tema": "decimales_conversion",
+    "titulo": "Un lugar para cada parte",
+    "explicacion": "Después de la coma vienen décimos, centésimos y milésimos, en ese orden. Un milésimo es una de mil partes iguales de la unidad. Un cero guarda un lugar: 0,006 tiene seis milésimos, no seis décimos.",
+    "ejemplo": "0,375 = 3 décimos + 7 centésimos + 5 milésimos.",
+    "pasos": [
+      "Contamos desde la coma: primer, segundo y tercer lugar.",
+      "La tercera cifra es 5; cuenta milésimos."
+    ],
+    "pista": "Contá los lugares desde la coma, también cuando aparece un cero.",
+    "visual": null
+  },
+  {
+    "id": "prof_dec_ceros",
+    "tema": "decimales_conversion",
+    "titulo": "Ceros que conservan el valor",
+    "explicacion": "Podemos agregar o quitar ceros al final de la parte decimal sin cambiar la cantidad: tres décimos equivalen a treinta centésimos. Un cero entre la coma y otra cifra sí cambia su posición: 0,03 no es 0,3.",
+    "ejemplo": "0,3 = 0,30 = 0,300.",
+    "pasos": [
+      "Tres décimos ocupan lo mismo que treinta centésimos.",
+      "Quitamos solo ceros finales: 0,300 vuelve a ser 0,3."
+    ],
+    "pista": "Quitá solo ceros al final de la parte decimal.",
+    "visual": null
+  },
+  {
+    "id": "prof_dec_comparar",
+    "tema": "decimales_conversion",
+    "titulo": "Comparar decimales lugar por lugar",
+    "explicacion": "Primero comparamos las partes enteras. Si son iguales, comparamos décimos, luego centésimos y después milésimos. Podemos completar con ceros al final. Tener más cifras no significa valer más.",
+    "ejemplo": "0,8 es mayor que 0,75: 0,80 tiene 80 centésimos y 0,75 tiene 75.",
+    "pasos": [
+      "Escribimos 0,8 como 0,80 para comparar las mismas partes.",
+      "80 centésimos son más que 75 centésimos."
+    ],
+    "pista": "Igualá las posiciones con ceros finales y compará desde la izquierda.",
+    "visual": null
+  },
+  {
+    "id": "prof_dec_a_fraccion",
+    "tema": "decimales_conversion",
+    "titulo": "Escribir el decimal como fracción",
+    "explicacion": "Contamos las cifras después de la coma. Una cifra indica décimos y denominador 10; dos indican centésimos y denominador 100; tres indican milésimos y denominador 1000. El numerador es el número escrito sin coma.",
+    "ejemplo": "1,25 = 125/100.",
+    "pasos": [
+      "Hay dos cifras decimales: usamos denominador 100.",
+      "Sin la coma queda 125; escribimos 125/100."
+    ],
+    "pista": "El denominador tiene tantos ceros como cifras decimales.",
+    "visual": null
+  },
+  {
+    "id": "prof_dec_desde_fraccion",
+    "tema": "decimales_conversion",
+    "titulo": "Dividir para pasar a decimal",
+    "explicacion": "Una fracción también indica una división: numerador dividido por denominador. Si queda resto, podemos continuar con décimos y centésimos. Si el resto llega a cero, el decimal es exacto. Hay otras fracciones cuyo decimal no termina.",
+    "ejemplo": "3/4 = 3 ÷ 4 = 0,75.",
+    "pasos": [
+      "3 es menor que 4: anotamos 0 enteros y la coma. 30 décimos entre 4 dan 7 décimos y sobran 2.",
+      "Esos 2 décimos son 20 centésimos: entre 4 dan 5 centésimos. Queda 0,75 y resto cero."
+    ],
+    "pista": "Dividí el numerador por el denominador; si hay resto, seguí con partes diez veces menores.",
+    "visual": null
+  },
+  {
     "id": "mat_dec_sumar",
     "tema": "decimales_conversion",
     "titulo": "Sumar decimales alineando la coma",
@@ -1134,6 +1199,19 @@ const UNIDADES = [
       "17 décimos equivalen a 1,7."
     ],
     "pista": "Alineá las comas antes de sumar.",
+    "visual": null
+  },
+  {
+    "id": "prof_dec_sumar_distintas",
+    "tema": "decimales_conversion",
+    "titulo": "Sumar décimos y centésimos",
+    "explicacion": "Para sumar números con distinta cantidad de cifras decimales, alineamos las comas y completamos con ceros finales. Después sumamos partes del mismo tamaño. Cada cien centésimos forman una unidad.",
+    "ejemplo": "2,35 + 0,8 = 2,35 + 0,80 = 3,15.",
+    "pasos": [
+      "Son 235 centésimos más 80 centésimos: 315 centésimos.",
+      "300 centésimos forman 3 unidades y quedan 15 centésimos: 3,15."
+    ],
+    "pista": "Sumá partes del mismo tamaño; diez centésimos forman un décimo.",
     "visual": null
   },
   {
@@ -1150,6 +1228,32 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "prof_dec_restar_reagrupar",
+    "tema": "decimales_conversion",
+    "titulo": "Restar cuando necesitamos cambiar una unidad",
+    "explicacion": "Al restar, alineamos las comas y completamos con ceros finales. Podemos cambiar una unidad por cien centésimos sin cambiar el total. Así tenemos partes pequeñas para quitar.",
+    "ejemplo": "5 − 1,75 = 5,00 − 1,75 = 3,25.",
+    "pasos": [
+      "Reescribimos 5 unidades como 4 unidades y 100 centésimos.",
+      "Quitamos 1 unidad y 75 centésimos: quedan 3 unidades y 25 centésimos."
+    ],
+    "pista": "Podés cambiar una unidad por cien centésimos y conservar el total.",
+    "visual": null
+  },
+  {
+    "id": "prof_dec_escalar",
+    "tema": "decimales_conversion",
+    "titulo": "Diez veces más, diez veces menos",
+    "explicacion": "Multiplicar por 10 hace que cada cifra valga diez veces más; dividir por 10 hace que valga diez veces menos. Con 100 son dos cambios de posición y con 1000 son tres. Agregar ceros al final del decimal no multiplica su valor.",
+    "ejemplo": "0,45 × 10 = 4,5; 4,5 ÷ 10 = 0,45.",
+    "pasos": [
+      "Al multiplicar por 10, 45 centésimos se convierten en 45 décimos.",
+      "Al dividir por 10 hacemos el cambio inverso: 45 décimos pasan a ser 45 centésimos."
+    ],
+    "pista": "Pensá primero si el resultado debe ser mayor o menor; después contá los cambios de posición.",
+    "visual": null
+  },
+  {
     "id": "mat_dec_producto",
     "tema": "decimales_conversion",
     "titulo": "Multiplicar decimales por un natural",
@@ -1163,6 +1267,19 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "prof_dec_producto",
+    "tema": "decimales_conversion",
+    "titulo": "Multiplicar dos cantidades decimales",
+    "explicacion": "Para multiplicar decimales, multiplicamos como si no hubiera comas y luego contamos las cifras decimales de ambos factores. El producto lleva esa cantidad total de posiciones decimales; si faltan cifras, completamos con ceros a la izquierda. Multiplicar por una cantidad entre 0 y 1 toma solo una parte.",
+    "ejemplo": "1,2 × 0,3 = 0,36.",
+    "pasos": [
+      "12 × 3 = 36. Cada factor tiene una cifra decimal: son dos en total.",
+      "36 centésimos se escriben 0,36. Tomar tres décimos de 1,2 da menos que 1,2."
+    ],
+    "pista": "Sumá las posiciones decimales de los dos factores.",
+    "visual": null
+  },
+  {
     "id": "mat_dec_dividir",
     "tema": "decimales_conversion",
     "titulo": "Repartir una cantidad decimal",
@@ -1173,6 +1290,45 @@ const UNIDADES = [
       "18 ÷ 3 = 6 décimos; cada botella recibe 0,6 litros."
     ],
     "pista": "Repartí los décimos y conservá la unidad.",
+    "visual": null
+  },
+  {
+    "id": "prof_dec_dividir_natural",
+    "tema": "decimales_conversion",
+    "titulo": "Repartir también los centésimos",
+    "explicacion": "Podemos repartir una cantidad decimal convirtiéndola a centésimos. Dividimos esos centésimos entre la cantidad de grupos y escribimos de nuevo el decimal. Si quedan partes por repartir, seguimos con una unidad más pequeña.",
+    "ejemplo": "4,5 litros entre 6 botellas: 0,75 litros en cada una.",
+    "pasos": [
+      "4,5 litros equivalen a 450 centésimos de litro.",
+      "450 ÷ 6 = 75 centésimos por botella: 0,75 litros."
+    ],
+    "pista": "Convertí a partes pequeñas del mismo tamaño antes de repartir.",
+    "visual": null
+  },
+  {
+    "id": "prof_dec_dividir_decimal",
+    "tema": "decimales_conversion",
+    "titulo": "Dividir por una cantidad decimal",
+    "explicacion": "Una división conserva su resultado si multiplicamos dividendo y divisor por el mismo número distinto de cero. Podemos multiplicar ambos por 10 o por 100 para quitar la coma del divisor. Nunca cambiamos solo uno.",
+    "ejemplo": "1,5 ÷ 0,3 = 15 ÷ 3 = 5.",
+    "pasos": [
+      "Multiplicamos ambos números por 10: 1,5 pasa a 15 y 0,3 pasa a 3.",
+      "15 ÷ 3 = 5. Comprobamos: 5 × 0,3 = 1,5."
+    ],
+    "pista": "Multiplicá los dos números por el mismo factor hasta que el divisor sea entero.",
+    "visual": null
+  },
+  {
+    "id": "prof_dec_dos_pasos",
+    "tema": "decimales_conversion",
+    "titulo": "Un problema, dos cuentas pequeñas",
+    "explicacion": "En un problema podemos encontrar un resultado intermedio antes de responder. Primero anotamos qué necesitamos averiguar y después usamos ese resultado en la siguiente cuenta. Al final comprobamos si tiene sentido.",
+    "ejemplo": "Tenés 10 pesos de juego. Comprás dos fichas de 2,35 pesos cada una. Te quedan 5,30 pesos.",
+    "pasos": [
+      "Las dos fichas cuestan 2 × 2,35 = 4,70 pesos.",
+      "Restamos el gasto al dinero inicial: 10 − 4,70 = 5,30 pesos."
+    ],
+    "pista": "Primero calculá el gasto total; después restalo del dinero inicial.",
     "visual": null
   },
   {
