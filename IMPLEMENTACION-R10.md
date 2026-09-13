@@ -38,7 +38,18 @@ node tests/verify-r10-browser.cjs
 node tests/verify-r10-browser-live.cjs
 ```
 
-La última prueba usa una cuenta sintética y API/Supabase reales; requiere credenciales de servicio locales y elimina únicamente sus propios datos al terminar. El resultado de producción se documentará después de publicarlo.
+La última prueba usa una cuenta sintética y API/Supabase reales; requiere credenciales de servicio locales y elimina únicamente sus propios datos al terminar. La comprobación real de producción pasó y la cuenta temporal se eliminó, junto con sus sesiones, continuidad, lecciones y progreso.
 
 ## Alcance pendiente
 Esta entrega profundiza tres temas; no completa toda la preparación de ingreso. Queda ampliar el resto de Matemática más allá de sus fundamentos (problemas de varios pasos, operaciones más complejas y construcciones geométricas), extender los recorridos revisados de Lengua y preparar simulaciones progresivas con exámenes anteriores. Las barras son apoyos visuales, no manipulativos interactivos nuevos. No se modificó directamente la cuenta de Abril.
+
+## Publicación y comprobación real
+
+- Implementación: commit `bcc8710`.
+- Vercel: `dpl_45RLnBUxu59sZqVdr4BkqbrUEPBM`, estado READY, producción.
+- Dominio: https://www.ingresomonserrat.online
+- Despliegue: https://ingreso-monse-2027-hj569bpcx-gustavos-projects-b8e409fb.vercel.app
+- La verificación de interfaz se repitió sobre el dominio publicado: 20 comprobaciones correctas, sin errores JavaScript. Los tres PDF descargados coinciden por SHA-256 con los archivos inspeccionados localmente.
+- Prueba adicional sin interceptar API, con Supabase real: una cuenta sintética con las cuatro primeras habilidades de fracciones ya aprendidas recibió la nueva explicación de amplificación. Dos navegadores independientes recuperaron el mismo ejercicio y la opción elegida; la corrección revisada guardó un reto y dos estrellas; volver al primer navegador no duplicó la sesión ni la recompensa; Guardar y salir volvió al inicio.
+- Cinco comprobaciones reales correctas, sin errores HTTP/JavaScript. Limpieza confirmada de los datos de prueba. La cuenta de Abril no fue utilizada ni modificada por estas pruebas.
+- Evidencias locales: directorio `implementacion-r10` y subdirectorio `produccion` dentro del espacio de visualizaciones de esta tarea. Informes `navegador-r10.json` y `continuidad-real.json`; capturas de navegador y cuatro hojas de contacto con las 32 páginas PDF.
