@@ -32,3 +32,16 @@ Comandos: npm test; node tests/verify-r12-browser.cjs; node tests/verify-r12-bro
 
 ## Pendientes
 Quedan conversiones y operaciones con segundos y días, duraciones que cruzan medianoche, toneladas, estimación, recipientes con resto y problemas de varias etapas más cercanos al examen. Las escalas de esta entrega son explicaciones textuales; no se añadieron manipulativos nuevos. Sigue pendiente ampliar geometría con representaciones y construcciones guiadas, Lengua y simulacros progresivos. El siguiente bloque propuesto es ángulos y construcciones geométricas, con apoyo visual.
+
+## Publicación verificada
+
+- Commit de implementación: `2f02043`.
+- Vercel: `dpl_4sWc6dNg7TjUfpf4Rj8jCcMTiHYw`, READY, producción.
+- Dominio: https://www.ingresomonserrat.online
+- Versión: https://ingreso-monse-2027-1fa2uhv80-gustavos-projects-b8e409fb.vercel.app
+- Edge contra la publicación: las 19 comprobaciones pasan, incluidos los títulos finales de ambos cierres. Sin errores JavaScript ni desbordamiento en las vistas verificadas.
+- Los dos PDF descargados de la publicación coinciden por SHA-256 con los archivos revisados de 7 y 9 páginas.
+- Cinco comprobaciones adicionales sin interceptar API, con Supabase real: el objetivo nuevo prof_med_long_escala se explica, guarda la opción elegida, se recupera en otro navegador, se corrige con contenido revisado y sincroniza un reto y dos estrellas sin duplicarlos; Guardar y salir confirma el avance.
+- La cuenta temporal de prueba y sus sesiones, continuidad, lecciones y progreso se eliminaron y la limpieza se confirmó. No se utilizó la cuenta de Abril.
+- El servidor local de verificación quedó cerrado.
+- Evidencia: carpeta implementacion-r12 y subcarpeta produccion del espacio de visualizaciones de esta tarea; navegador-r12.json, continuidad-real.json, capturas del navegador y dos hojas de contacto con las 16 páginas PDF.
