@@ -28,9 +28,22 @@ Los generadores R9 y R10 conservan su orden antes del bloque R11 al regenerar co
 - La comprobación R11 se repitió tras ampliar las resoluciones guiadas: correcta.
 - Compilación de producción: correcta.
 - Inspección visual: las 17 páginas del PDF, sin texto cortado.
-- La prueba de interfaz recorre cada habilidad, error/pista/acierto, resolución tras dos errores, descarga PDF, cierre breve y vista de 390 px. Las 17 comprobaciones locales pasaron, sin errores JavaScript ni desbordamiento en las vistas verificadas. Capturas inspeccionadas. La publicación se comprobará al finalizar.
+- La prueba de interfaz recorre cada habilidad, error/pista/acierto, resolución tras dos errores, descarga PDF, cierre breve y vista de 390 px. Las 17 comprobaciones locales pasaron, sin errores JavaScript ni desbordamiento en las vistas verificadas. Capturas inspeccionadas. La misma verificación pasó sobre el dominio publicado.
 
 Pruebas reproducibles: npm test; node tests/verify-r11-browser.cjs; node tests/verify-r11-browser-live.cjs. El navegador de prueba usa Edge y el runtime Playwright disponible en esta instalación; TEST_BASE_URL y TEST_OUTPUT_DIR permiten cambiar el servidor y la carpeta de evidencia. La prueba live usa una cuenta propia temporal, API y Supabase reales, y elimina sus datos al terminar.
 
 ## Límites y siguiente bloque
 Quedan por ampliar el cálculo con más cifras y milésimos en operaciones generales, decimales periódicos, aproximaciones y problemas combinados más largos. También siguen pendientes escalas de medidas, construcciones geométricas, recorridos adicionales de Lengua y simulaciones progresivas de exámenes anteriores. La siguiente prioridad propuesta es convertir medidas paso a paso y utilizarlas en problemas breves. Esta entrega no añade manipulativos visuales nuevos ni permite afirmar preparación completa para el ingreso.
+
+## Publicación verificada
+
+- Commit de implementación: `97360bc`.
+- Despliegue: `dpl_8wdLrmat3SrK7H5QYFm4SDtcDXYZ`, READY, producción.
+- Dominio: https://www.ingresomonserrat.online
+- Versión: https://ingreso-monse-2027-ql64d0oar-gustavos-projects-b8e409fb.vercel.app
+- Edge contra el dominio publicado: 17 comprobaciones correctas con controladores reales y datos simulados. El PDF descargado coincide por SHA-256 con el archivo revisado de 17 páginas. Captura de la resolución tras dos errores inspeccionada una vez terminada la animación de entrada.
+- API y Supabase reales, sin interceptar solicitudes: cinco comprobaciones correctas con una cuenta técnica temporal. Se verificó el objetivo nuevo prof_dec_milesimos, recuperar ejercicio y opción entre dos navegadores, corregir con contenido revisado, persistir un reto y dos estrellas, evitar duplicaciones y guardar/salir.
+- La cuenta temporal y sus sesiones, continuidad, lecciones y progreso fueron eliminados y se verificó la limpieza. No se utilizó ni alteró la cuenta de Abril.
+- Cuatro regeneraciones de contenido R9/R10/R11, ejecutadas en una copia temporal, conservaron exactamente las 113 unidades y sus actividades. La copia temporal fue eliminada.
+- El servidor local de verificación quedó cerrado.
+- Evidencia: carpeta implementacion-r11 y subcarpeta produccion del espacio de visualizaciones de esta tarea; navegador-r11.json, continuidad-real.json, capturas del navegador y dos hojas de contacto de las 17 páginas PDF.
