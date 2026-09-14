@@ -32,4 +32,12 @@ Comandos: npm test; node tests/verify-r17-browser.cjs; node tests/verify-r17-bro
 Construcción guiada de un resumen con palabras propias y devolución sobre qué idea falta o qué afirmación cambia el texto. Comenzar con una frase apoyada en preguntas antes de pedir párrafos completos.
 
 ## Publicación
-Pendiente de completar la verificación en producción.
+- Commit de implementación: `ed522ae`.
+- Vercel: `dpl_Dg74qT4hsnG5AEDH9ApBkdTJL65M`, READY, producción.
+- Dominio: https://www.ingresomonserrat.online
+- Versión: https://ingreso-monse-2027-jj3fyvl5y-gustavos-projects-b8e409fb.vercel.app
+- Las 13 comprobaciones de navegador pasan contra la publicación; sin errores JavaScript en el recorrido verificado.
+- El PDF descargado de producción coincide por SHA-256 con el apunte revisado de 16 páginas.
+- Cinco comprobaciones adicionales con API y Supabase reales: enseñanza de leng_res_tema, selección sincronizada, mismo ejercicio y texto en otro navegador, corrección con contenido revisado, un reto y dos estrellas sin duplicaciones al recargar, y Guardar y salir.
+- Cuenta temporal y sus sesiones, continuidad, lecciones y progreso eliminados; limpieza verificada. No se utilizó la cuenta de Abril.
+- Evidencia: implementacion-r17 en el espacio de visualizaciones de esta tarea; capturas, hojas de contacto PDF, navegador-r17.json y produccion/continuidad-real.json.
