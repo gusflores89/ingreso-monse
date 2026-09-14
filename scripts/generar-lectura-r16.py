@@ -76,4 +76,4 @@ for (const id of ['leng_lect_1_literal','leng_lect_2_inferencia','leng_lect_3_id
   if(partes.length>1){a.visual={tipo:'lectura',titulo:'Texto para releer',texto:partes[0]};a.enunciado=partes.slice(1).join('\\n');}
  }
 }
-"""+end+'\n\n';i=s.index('export const TEMAS_BASES');p.write_text(s[:i]+code+s[i:],encoding='utf-8');print(len(U),'unidades;',len(U)*6,'actividades')
+"""+end+'\n\n';i=min(s.index(marker) for marker in ['// R17: idea principal y resumen.','export const TEMAS_BASES'] if marker in s);p.write_text(s[:i]+code+s[i:],encoding='utf-8');print(len(U),'unidades;',len(U)*6,'actividades')

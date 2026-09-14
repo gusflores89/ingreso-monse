@@ -56,5 +56,5 @@ for (const unidad of DECIMALES_R11) {
  UNIDADES_BASES.splice(indice + 1, 0, unidad);
 }
 '''+end+'\n\n'
-i=min(s.index(m) for m in ['// R12: medidas paso a paso.','// R13: geometria con diagramas.','// R14: figuras y superficies.','// R15: problemas por etapas.','// R16: lectura con evidencia.','export const TEMAS_BASES'] if m in s);p.write_text(s[:i]+code+s[i:],encoding='utf-8')
+i=min(s.index(m) for m in ['// R12: medidas paso a paso.','// R13: geometria con diagramas.','// R14: figuras y superficies.','// R15: problemas por etapas.','// R16: lectura con evidencia.','// R17: idea principal y resumen.','export const TEMAS_BASES'] if m in s);p.write_text(s[:i]+code+s[i:],encoding='utf-8')
 print(len(U),'unidades nuevas;',sum(len(u['actividades']) for u in U),'actividades')

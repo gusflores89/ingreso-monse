@@ -25,7 +25,7 @@ for tema in dict.fromkeys(u['tema'] for u in units):
   style=ParagraphStyle('body',fontName='Segoe',fontSize=13,leading=21,textColor=HexColor('#263449'))
   lectura=['Texto para releer: '+u['visual']['texto']] if isinstance(u['visual'],dict) and u['visual'].get('tipo')=='lectura' else []
   for text in [*lectura,u['explicacion'],'Ejemplo: '+u['ejemplo'],*[(str(j+1)+'. '+step) for j,step in enumerate(u['pasos'])], 'Para recordar: '+u['pista']]:
-   para=Paragraph(escape(text),style);w,h=para.wrap(490,450);para.drawOn(c,48,y-h);y-=h+18
+   para=Paragraph(escape(text).replace("\n", "<br/>"),style);w,h=para.wrap(490,450);para.drawOn(c,48,y-h);y-=h+18
   if isinstance(u['visual'],dict) and u['visual'].get('tipo')!='lectura':
    diagram=diagrams[json.dumps(u['visual'],sort_keys=True)];scale=min(440/480,(y-105)/310);assert scale>=.65,(u['id'],y)
    left=(595-480*scale)/2

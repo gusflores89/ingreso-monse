@@ -19037,6 +19037,712 @@ for (const id of ['leng_lect_1_literal','leng_lect_2_inferencia','leng_lect_3_id
 }
 // FIN R16
 
+// R17: idea principal y resumen.
+const RESUMEN_R17 = [
+  {
+    "id": "leng_res_tema",
+    "tema": "comprension_lectora_literal_inferida",
+    "despues_de": "leng_prof_limites",
+    "titulo": "Reconocer de qué trata todo el texto",
+    "explicacion": "El tema responde de qué trata el texto y puede nombrarse con pocas palabras. Buscamos lo que une sus frases. Un objeto que aparece una sola vez puede ser un detalle; un tema demasiado amplio puede dejar afuera lo especial de esta lectura.",
+    "ejemplo": "¿Cuál es el tema del texto? La biblioteca del club.",
+    "pasos": [
+      "Buscamos la pista: «los prestan a las familias».",
+      "Recibir, ordenar y prestar libros son tareas de esa biblioteca. El color de la mesa es un detalle."
+    ],
+    "pista": "Buscá qué asunto comparten las frases.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "En el club, los vecinos reciben libros usados. Revisan que estén completos y los ordenan por edades. Después los prestan a las familias. Una mesa azul sirve para anotar los préstamos."
+    },
+    "actividades": [
+      {
+        "id": "leng_res_tema-v1",
+        "enunciado": "¿Cuál es el tema del texto?",
+        "respuesta_correcta": "La biblioteca del club",
+        "opciones": [
+          "La biblioteca del club",
+          "El color de una mesa",
+          "Todos los deportes del club"
+        ],
+        "paso_resuelto": "El texto dice «los prestan a las familias». Recibir, ordenar y prestar libros son tareas de esa biblioteca. El color de la mesa es un detalle.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "En el club, los vecinos reciben libros usados. Revisan que estén completos y los ordenan por edades. Después los prestan a las familias. Una mesa azul sirve para anotar los préstamos."
+        }
+      },
+      {
+        "id": "leng_res_tema-v2",
+        "enunciado": "¿Qué tema une las acciones?",
+        "respuesta_correcta": "El cuidado de la huerta escolar",
+        "opciones": [
+          "La pintura del patio",
+          "Todas las comidas de la escuela",
+          "El cuidado de la huerta escolar"
+        ],
+        "paso_resuelto": "El texto dice «se turna para regar». Preparar, sembrar y cuidar forman parte del trabajo en la huerta.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "En el patio escolar, la clase preparó canteros. Sembró lechuga y zanahoria. Cada semana se turna para regar y retirar las hierbas que crecen entre las plantas."
+        }
+      },
+      {
+        "id": "leng_res_tema-v3",
+        "enunciado": "¿De qué trata principalmente?",
+        "respuesta_correcta": "Reutilizar papel",
+        "opciones": [
+          "Todos los pasatiempos de Mara",
+          "Reutilizar papel",
+          "Comprar lápices"
+        ],
+        "paso_resuelto": "El texto dice «necesita menos hojas nuevas». Las acciones muestran distintas maneras de volver a usar papel.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Mara separa los papeles que ya no usa. Aprovecha el reverso para dibujar y guarda los recortes para hacer collages. Así necesita menos hojas nuevas."
+        }
+      },
+      {
+        "id": "leng_res_tema-v4",
+        "enunciado": "¿Qué tema reúne las frases?",
+        "respuesta_correcta": "La preparación de la radio escolar",
+        "opciones": [
+          "La preparación de la radio escolar",
+          "Los gustos de un invitado",
+          "Todas las actividades del viernes"
+        ],
+        "paso_resuelto": "El texto dice «Todos revisan el programa». Noticias, entrevistas y música son partes del mismo programa.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La radio escolar sale al aire los viernes. Un grupo prepara noticias, otro entrevista a los invitados y otro elige música. Todos revisan el programa antes de transmitirlo."
+        }
+      },
+      {
+        "id": "leng_res_tema-v5",
+        "enunciado": "¿De qué trata el texto?",
+        "respuesta_correcta": "Preparar una muestra de juguetes",
+        "opciones": [
+          "Construir un museo",
+          "Las ventanas del pasillo",
+          "Preparar una muestra de juguetes"
+        ],
+        "paso_resuelto": "El texto dice «una muestra de juguetes antiguos». Las tareas están orientadas a organizar esa muestra.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El museo prepara una muestra de juguetes antiguos. El equipo limpia las piezas, escribe sus carteles y las coloca en vitrinas. Al terminar comprueba que puedan verse desde el pasillo."
+        }
+      },
+      {
+        "id": "leng_res_tema-v6",
+        "enunciado": "¿Cuál es el tema?",
+        "respuesta_correcta": "La reparación de bicicletas",
+        "opciones": [
+          "Todos los transportes del barrio",
+          "La reparación de bicicletas",
+          "Una carrera de bicicletas"
+        ],
+        "paso_resuelto": "El texto dice «Revisan frenos y ruedas». Revisar, cambiar piezas y probar son etapas de la reparación.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Los chicos reparan bicicletas en el taller del barrio. Revisan frenos y ruedas, cambian las piezas gastadas y prueban cada bicicleta antes de entregarla."
+        }
+      }
+    ]
+  },
+  {
+    "id": "leng_res_detalles",
+    "tema": "comprension_lectora_literal_inferida",
+    "despues_de": "leng_res_tema",
+    "titulo": "Separar lo esencial de un detalle",
+    "explicacion": "Para contar lo principal no hace falta repetir cada dato. Conservamos qué pasó, a quién y el resultado importante. Probamos quitar un detalle: si todavía se entiende el hecho central, puede quedar fuera del resumen. Un color o una hora pueden importar en otros textos; depende de lo que expliquen.",
+    "ejemplo": "¿Qué detalle puede omitirse al resumir la colecta? La cinta violeta de la caja.",
+    "pasos": [
+      "Buscamos la pista: «reunieron cien».",
+      "El aporte de las familias y el resultado explican la colecta. El color de la cinta no cambia ese hecho."
+    ],
+    "pista": "Probá quitar el dato y comprobá si se sigue entendiendo lo principal.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "La clase organizó una colecta para la biblioteca. Cada familia aportó libros y al final reunieron cien. La caja donde los guardaron tenía una cinta violeta."
+    },
+    "actividades": [
+      {
+        "id": "leng_res_detalles-v1",
+        "enunciado": "¿Qué detalle puede omitirse al resumir la colecta?",
+        "respuesta_correcta": "La cinta violeta de la caja",
+        "opciones": [
+          "La cinta violeta de la caja",
+          "Que las familias aportaron libros",
+          "Que reunieron cien libros"
+        ],
+        "paso_resuelto": "El texto dice «reunieron cien». El aporte de las familias y el resultado explican la colecta. El color de la cinta no cambia ese hecho.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La clase organizó una colecta para la biblioteca. Cada familia aportó libros y al final reunieron cien. La caja donde los guardaron tenía una cinta violeta."
+        }
+      },
+      {
+        "id": "leng_res_detalles-v2",
+        "enunciado": "¿Qué puede quedar fuera del resumen del problema y su solución?",
+        "respuesta_correcta": "El color de la gorra",
+        "opciones": [
+          "La rama que bloqueaba el sendero",
+          "Que retiraron la rama",
+          "El color de la gorra"
+        ],
+        "paso_resuelto": "El texto dice «el camino volvió a quedar libre». La rama y su retiro explican la solución; la gorra no interviene.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Una rama bloqueaba el sendero. Los vecinos la retiraron y el camino volvió a quedar libre. Uno de ellos llevaba una gorra verde."
+        }
+      },
+      {
+        "id": "leng_res_detalles-v3",
+        "enunciado": "¿Qué detalle no hace falta para resumir la reparación?",
+        "respuesta_correcta": "El color de la caja",
+        "opciones": [
+          "El resultado de la reparación",
+          "El color de la caja",
+          "La pérdida de agua"
+        ],
+        "paso_resuelto": "El texto dice «dejó de gotear». La pérdida y su solución son esenciales; el color de la caja no explica el arreglo.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La escuela cambió una canilla que perdía agua. Después de la reparación dejó de gotear. La caja de herramientas era amarilla."
+        }
+      },
+      {
+        "id": "leng_res_detalles-v4",
+        "enunciado": "¿Qué detalle se puede omitir sin perder la solución?",
+        "respuesta_correcta": "La pegatina de la guitarra",
+        "opciones": [
+          "La pegatina de la guitarra",
+          "Que faltaba la música grabada",
+          "Que una compañera tocó en vivo"
+        ],
+        "paso_resuelto": "El texto dice «Una compañera tocó la guitarra». Tocar en vivo permitió hacer la función. La pegatina no explica cómo resolvieron el problema.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El equipo de teatro olvidó la música grabada. Una compañera tocó la guitarra y pudieron hacer la función. La guitarra tenía una pegatina de una estrella."
+        }
+      },
+      {
+        "id": "leng_res_detalles-v5",
+        "enunciado": "¿Qué dato puede quedar fuera de un resumen sobre el nuevo horario?",
+        "respuesta_correcta": "La forma de la maceta",
+        "opciones": [
+          "Que abre después de las seis",
+          "Para quién ampliaron el horario",
+          "La forma de la maceta"
+        ],
+        "paso_resuelto": "El texto dice «amplió su horario». El cambio de horario y su finalidad son centrales; la forma de la maceta no los explica.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La biblioteca amplió su horario para que pudieran ir quienes salen tarde de la escuela. Ahora abre también después de las seis. En la entrada colocaron una maceta cuadrada."
+        }
+      },
+      {
+        "id": "leng_res_detalles-v6",
+        "enunciado": "¿Qué detalle puede omitirse al resumir cómo evitaron la mezcla?",
+        "respuesta_correcta": "La forma de la mesa",
+        "opciones": [
+          "Qué semillas guardaron en cada caja",
+          "La forma de la mesa",
+          "Que usaron colores para distinguir cajas"
+        ],
+        "paso_resuelto": "El texto dice «marcó las cajas con colores». Aquí los colores sí ayudan a organizar las semillas. La forma de la mesa no cumple esa función.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El grupo marcó las cajas con colores para no mezclar semillas. Guardó las de flores en la caja roja y las de verduras en la azul. Trabajó sobre una mesa redonda."
+        }
+      }
+    ]
+  },
+  {
+    "id": "leng_res_titulo",
+    "tema": "comprension_lectora_literal_inferida",
+    "despues_de": "leng_lect_3_idea_central",
+    "titulo": "Elegir un título que abarque el texto",
+    "explicacion": "Un título breve puede anticipar el tema o la idea principal. Comparamos cada título con todo el texto: debe abarcar lo importante, sin centrarse solo en un detalle ni prometer algo que no se cuenta.",
+    "ejemplo": "¿Qué título abarca mejor el texto? Un intercambio de plantas en la plaza.",
+    "pasos": [
+      "Buscamos la pista: «intercambiar plantas».",
+      "El título reúne la actividad y su lugar; los consejos forman parte del intercambio."
+    ],
+    "pista": "Elegí un título que sirva para el texto entero.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "Los vecinos reservaron una esquina de la plaza para intercambiar plantas. Cada persona lleva una y elige otra. Junto a las macetas dejan consejos para cuidarlas."
+    },
+    "actividades": [
+      {
+        "id": "leng_res_titulo-v1",
+        "enunciado": "¿Qué título abarca mejor el texto?",
+        "respuesta_correcta": "Un intercambio de plantas en la plaza",
+        "opciones": [
+          "Un intercambio de plantas en la plaza",
+          "Consejos junto a una maceta",
+          "Una competencia de jardinería"
+        ],
+        "paso_resuelto": "El texto dice «intercambiar plantas». El título reúne la actividad y su lugar; los consejos forman parte del intercambio.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Los vecinos reservaron una esquina de la plaza para intercambiar plantas. Cada persona lleva una y elige otra. Junto a las macetas dejan consejos para cuidarlas."
+        }
+      },
+      {
+        "id": "leng_res_titulo-v2",
+        "enunciado": "¿Qué título elegirías?",
+        "respuesta_correcta": "Cuentos compartidos entre cursos",
+        "opciones": [
+          "Cómo ganar un concurso de cuentos",
+          "Una práctica de voz",
+          "Cuentos compartidos entre cursos"
+        ],
+        "paso_resuelto": "El texto dice «leer a los más pequeños». El texto trata de organizar y compartir lecturas, no solo de practicar la voz.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "En la escuela, cada curso eligió cuentos para leer a los más pequeños. Practicaron en voz alta y prepararon encuentros semanales. Al final de cada lectura conversan sobre la historia."
+        }
+      },
+      {
+        "id": "leng_res_titulo-v3",
+        "enunciado": "¿Qué título resume el asunto principal?",
+        "respuesta_correcta": "Una sala para reunirse en el club",
+        "opciones": [
+          "La construcción de un estadio",
+          "Una sala para reunirse en el club",
+          "El calendario de una pared"
+        ],
+        "paso_resuelto": "El texto dice «para que los vecinos pudieran reunirse». Los arreglos y los turnos hacen posible ese uso compartido.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El club arregló una sala vacía para que los vecinos pudieran reunirse. Pintó las paredes, agregó mesas y puso un calendario para reservar turnos. Desde entonces varios grupos la usan."
+        }
+      },
+      {
+        "id": "leng_res_titulo-v4",
+        "enunciado": "¿Qué título representa todo el texto?",
+        "respuesta_correcta": "Menos papel desperdiciado en la clase",
+        "opciones": [
+          "Menos papel desperdiciado en la clase",
+          "Las bolsas del mes siguiente",
+          "Una clase que dejó de escribir"
+        ],
+        "paso_resuelto": "El texto dice «llenó menos bolsas de papel usado». El texto une la observación, las decisiones y la reducción del desperdicio.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Durante una semana, la clase anotó cuánto papel desechaba. Después decidió usar ambas caras de las hojas y reunir los recortes. Al mes siguiente llenó menos bolsas de papel usado."
+        }
+      },
+      {
+        "id": "leng_res_titulo-v5",
+        "enunciado": "¿Qué título abarca la lectura?",
+        "respuesta_correcta": "La historia del barrio contada por sus vecinos",
+        "opciones": [
+          "Una foto antigua",
+          "Un viaje a otra ciudad",
+          "La historia del barrio contada por sus vecinos"
+        ],
+        "paso_resuelto": "El texto dice «Para conocer la historia del barrio». Las entrevistas, las fotos y la muestra sirven a ese propósito común.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Para conocer la historia del barrio, los alumnos entrevistaron a vecinos mayores. Reunieron fotos y escribieron sus relatos. Luego armaron una muestra abierta a las familias."
+        }
+      },
+      {
+        "id": "leng_res_titulo-v6",
+        "enunciado": "¿Cuál es el título más adecuado?",
+        "respuesta_correcta": "Libros que llegan a los hogares",
+        "opciones": [
+          "El cierre de una biblioteca",
+          "Libros que llegan a los hogares",
+          "La compra de mochilas nuevas"
+        ],
+        "paso_resuelto": "El texto dice «Así más familias pueden leer». La entrega y la devolución acercan la lectura a familias alejadas.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La biblioteca armó mochilas con libros para quienes viven lejos. Cada semana una voluntaria las lleva a distintos hogares y recoge las de la semana anterior. Así más familias pueden leer."
+        }
+      }
+    ]
+  },
+  {
+    "id": "leng_res_reformular",
+    "tema": "comprension_lectora_literal_inferida",
+    "despues_de": "leng_res_titulo",
+    "titulo": "Decir una idea con otras palabras",
+    "explicacion": "Reformular es expresar la misma idea de otra manera. Podemos cambiar palabras y ordenar la frase, pero conservamos quién actúa, qué hace y las relaciones importantes. No cambiamos un intento por un logro ni algunas personas por todas.",
+    "ejemplo": "¿Qué frase dice lo mismo que la primera oración? Juntaron dinero para arreglar el techo.",
+    "pasos": [
+      "Buscamos la pista: «reunieron dinero para reparar el techo».",
+      "Juntar y reunir expresan aquí lo mismo; la frase no afirma que la obra esté terminada."
+    ],
+    "pista": "Compará quién, qué pasó y si se conserva el mismo alcance.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "Los vecinos reunieron dinero para reparar el techo del salón. Todavía no empezaron la obra: primero deben conseguir los materiales."
+    },
+    "actividades": [
+      {
+        "id": "leng_res_reformular-v1",
+        "enunciado": "¿Qué frase dice lo mismo que la primera oración?",
+        "respuesta_correcta": "Juntaron dinero para arreglar el techo",
+        "opciones": [
+          "Juntaron dinero para arreglar el techo",
+          "Terminaron de arreglar el techo",
+          "Repararon todos los edificios"
+        ],
+        "paso_resuelto": "El texto dice «reunieron dinero para reparar el techo». Juntar y reunir expresan aquí lo mismo; la frase no afirma que la obra esté terminada.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Los vecinos reunieron dinero para reparar el techo del salón. Todavía no empezaron la obra: primero deben conseguir los materiales."
+        }
+      },
+      {
+        "id": "leng_res_reformular-v2",
+        "enunciado": "¿Qué reformulación conserva el sentido de la primera frase?",
+        "respuesta_correcta": "Una parte de los alumnos elige leer en el patio",
+        "opciones": [
+          "Todos los alumnos leen en el patio",
+          "Ningún alumno quiere jugar",
+          "Una parte de los alumnos elige leer en el patio"
+        ],
+        "paso_resuelto": "El texto dice «Algunos alumnos prefieren leer». Algunos indica una parte, no todos ni ninguno.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Algunos alumnos prefieren leer en el patio durante el recreo. Otros eligen jugar o conversar."
+        }
+      },
+      {
+        "id": "leng_res_reformular-v3",
+        "enunciado": "¿Qué frase expresa la misma causa?",
+        "respuesta_correcta": "El cierre del puente impidió realizar el paseo",
+        "opciones": [
+          "Las familias cerraron el puente",
+          "El cierre del puente impidió realizar el paseo",
+          "El paseo provocó el cierre del puente"
+        ],
+        "paso_resuelto": "El texto dice «porque el puente estaba cerrado». Se conserva la relación entre el puente cerrado y la suspensión.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El club suspendió el paseo porque el puente estaba cerrado. Avisó a las familias antes de la salida."
+        }
+      },
+      {
+        "id": "leng_res_reformular-v4",
+        "enunciado": "¿Qué frase conserva lo dicho en la primera oración?",
+        "respuesta_correcta": "Los libros se pueden llevar prestados durante siete días",
+        "opciones": [
+          "Los libros se pueden llevar prestados durante siete días",
+          "La biblioteca regala libros cada semana",
+          "Todos deben terminar un libro en un día"
+        ],
+        "paso_resuelto": "El texto dice «presta libros por una semana». Siete días equivale a una semana; sigue siendo un préstamo.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La biblioteca presta libros por una semana. Quien necesita más tiempo puede pedir una renovación."
+        }
+      },
+      {
+        "id": "leng_res_reformular-v5",
+        "enunciado": "¿Qué frase conserva el resultado?",
+        "respuesta_correcta": "Quisieron llegar a la cima, pero volvieron antes",
+        "opciones": [
+          "Llegaron a la cima durante la tormenta",
+          "No salieron del refugio",
+          "Quisieron llegar a la cima, pero volvieron antes"
+        ],
+        "paso_resuelto": "El texto dice «regresó al refugio antes de llegar». El intento no se convirtió en llegada. El resumen debe conservar que regresaron.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El equipo intentó alcanzar la cima, pero regresó al refugio antes de llegar porque comenzó una tormenta."
+        }
+      },
+      {
+        "id": "leng_res_reformular-v6",
+        "enunciado": "¿Cuál expresa lo mismo que la primera frase?",
+        "respuesta_correcta": "Con la rampa se puede ingresar sin usar escalones",
+        "opciones": [
+          "La rampa obliga a subir escalones",
+          "Con la rampa se puede ingresar sin usar escalones",
+          "Movieron la puerta a otro lugar"
+        ],
+        "paso_resuelto": "El texto dice «sin subir escalones». Ingresar y entrar tienen aquí el mismo sentido. No se cambió la puerta.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La nueva rampa permite entrar al salón sin subir escalones. La puerta sigue en el mismo lugar."
+        }
+      }
+    ]
+  },
+  {
+    "id": "leng_res_unir",
+    "tema": "comprension_lectora_literal_inferida",
+    "despues_de": "leng_res_reformular",
+    "titulo": "Unir las ideas de dos párrafos",
+    "explicacion": "Leemos un párrafo por vez y decimos qué aporta cada uno. Después unimos sus ideas principales. Si uno presenta un problema y el otro una solución, el resumen necesita ambos. Podemos usar por eso o después solo cuando esa relación aparece en el texto.",
+    "ejemplo": "¿Qué resumen reúne los dos párrafos? Los libros eran difíciles de encontrar; los ordenaron y etiquetaron para ubicarlos.",
+    "pasos": [
+      "Buscamos la pista: «los ordenó por temas y escribió nuevas etiquetas».",
+      "El resumen conserva el problema del primer párrafo y la solución del segundo."
+    ],
+    "pista": "Buscá qué aporta cada párrafo y conservá ambas ideas.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "En la biblioteca había libros que nadie encontraba. Estaban mezclados en cajas y los carteles se habían perdido.\n\nEl grupo los ordenó por temas y escribió nuevas etiquetas. Desde entonces los lectores pueden ubicarlos sin abrir todas las cajas."
+    },
+    "actividades": [
+      {
+        "id": "leng_res_unir-v1",
+        "enunciado": "¿Qué resumen reúne los dos párrafos?",
+        "respuesta_correcta": "Los libros eran difíciles de encontrar; los ordenaron y etiquetaron para ubicarlos",
+        "opciones": [
+          "Los libros eran difíciles de encontrar; los ordenaron y etiquetaron para ubicarlos",
+          "Había cajas en la biblioteca",
+          "Compraron libros porque las cajas estaban vacías"
+        ],
+        "paso_resuelto": "El texto dice «los ordenó por temas y escribió nuevas etiquetas». El resumen conserva el problema del primer párrafo y la solución del segundo.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "En la biblioteca había libros que nadie encontraba. Estaban mezclados en cajas y los carteles se habían perdido.\n\nEl grupo los ordenó por temas y escribió nuevas etiquetas. Desde entonces los lectores pueden ubicarlos sin abrir todas las cajas."
+        }
+      },
+      {
+        "id": "leng_res_unir-v2",
+        "enunciado": "¿Qué resumen incluye lo esencial de ambos párrafos?",
+        "respuesta_correcta": "Un toldo dio sombra a los bancos y permitió volver a usarlos",
+        "opciones": [
+          "Los alumnos se sientan en bancos",
+          "Quitaron los bancos para construir un patio",
+          "Un toldo dio sombra a los bancos y permitió volver a usarlos"
+        ],
+        "paso_resuelto": "El texto dice «Ahora los bancos quedan a la sombra». Se conserva la falta de sombra y el cambio que resolvió esa dificultad.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "En el patio no había sombra cerca de los bancos. Los alumnos evitaban sentarse allí al mediodía.\n\nLa escuela colocó un toldo sobre ese sector. Ahora los bancos quedan a la sombra y vuelven a usarse durante el recreo."
+        }
+      },
+      {
+        "id": "leng_res_unir-v3",
+        "enunciado": "¿Qué resumen une problema y organización?",
+        "respuesta_correcta": "Para no perder avisos, el grupo los guarda y revisa en una carpeta común",
+        "opciones": [
+          "La escuela dejó de mandar avisos",
+          "Para no perder avisos, el grupo los guarda y revisa en una carpeta común",
+          "Las mochilas tienen libros"
+        ],
+        "paso_resuelto": "El texto dice «guardar todos los avisos en una carpeta común». La carpeta y la revisión responden a la pérdida de notas del primer párrafo.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El grupo recibía tantas hojas sueltas que perdía avisos de la escuela. Algunas notas quedaban dentro de libros y otras en mochilas.\n\nDecidió guardar todos los avisos en una carpeta común. Cada día alguien revisa si hay una nota nueva para compartirla."
+        }
+      },
+      {
+        "id": "leng_res_unir-v4",
+        "enunciado": "¿Qué resumen conserva lo principal?",
+        "respuesta_correcta": "Renovaron las señales del sendero para orientar a los visitantes",
+        "opciones": [
+          "Renovaron las señales del sendero para orientar a los visitantes",
+          "En el parque hay un lago",
+          "Cerraron el parque porque nadie quería visitarlo"
+        ],
+        "paso_resuelto": "El texto dice «repintaron las flechas y agregaron un mapa». Las señales nuevas solucionan la falta de orientación.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Los carteles del sendero se habían borrado. Quienes visitaban el parque no sabían qué camino llevaba al lago.\n\nLos guardaparques repintaron las flechas y agregaron un mapa en la entrada. Así los visitantes pueden elegir el recorrido."
+        }
+      },
+      {
+        "id": "leng_res_unir-v5",
+        "enunciado": "¿Qué resumen reúne ambas partes?",
+        "respuesta_correcta": "El club reunió juegos donados y organizó encuentros para usarlos",
+        "opciones": [
+          "Algunos juegos tienen muchas piezas",
+          "El club compró todos los juegos nuevos",
+          "El club reunió juegos donados y organizó encuentros para usarlos"
+        ],
+        "paso_resuelto": "El texto dice «organizó tardes para compartirlos». La colecta y los encuentros forman las dos etapas centrales.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El club quería ofrecer juegos de mesa, pero tenía pocos. Invitó a las familias a donar los que ya no usaban.\n\nLlegaron juegos de distintas edades. Un equipo revisó sus piezas y organizó tardes para compartirlos."
+        }
+      },
+      {
+        "id": "leng_res_unir-v6",
+        "enunciado": "¿Qué resumen incluye el proceso completo?",
+        "respuesta_correcta": "La clase revisó sus cuentos para que se entendieran antes de compartirlos",
+        "opciones": [
+          "Los autores borraron todos los cuentos y no hicieron la muestra",
+          "La clase revisó sus cuentos para que se entendieran antes de compartirlos",
+          "Las familias escucharon cuentos"
+        ],
+        "paso_resuelto": "El texto dice «cambiaron frases confusas». Se conserva la dificultad encontrada y la revisión previa a la muestra.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La clase escribió cuentos para una muestra. Al leerlos en voz alta, descubrió que algunas partes no se entendían.\n\nLos autores agregaron información y cambiaron frases confusas. Después compartieron las versiones revisadas con las familias."
+        }
+      }
+    ]
+  },
+  {
+    "id": "leng_res_revisar",
+    "tema": "comprension_lectora_literal_inferida",
+    "despues_de": "leng_res_unir",
+    "titulo": "Revisar que el resumen sea fiel",
+    "explicacion": "Volvemos del resumen al texto y comprobamos cada afirmación. Revisamos si cambió quién hizo algo, si se invirtió una causa, si se agregó un dato o si falta el resultado principal. Un resumen puede ser breve y aun así estar equivocado.",
+    "ejemplo": "Un resumen dice: «El grupo plantó diez árboles». ¿Qué hay que corregir? Plantó seis; diez era la cantidad que quería.",
+    "pasos": [
+      "Buscamos la pista: «consiguió seis. Plantó esos seis».",
+      "El resumen confundió el propósito con lo realizado."
+    ],
+    "pista": "Compará la afirmación del resumen con lo que realmente dice el texto.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "El grupo quería plantar diez árboles, pero consiguió seis. Plantó esos seis y decidió buscar más para el mes siguiente."
+    },
+    "actividades": [
+      {
+        "id": "leng_res_revisar-v1",
+        "enunciado": "Un resumen dice: «El grupo plantó diez árboles». ¿Qué hay que corregir?",
+        "respuesta_correcta": "Plantó seis; diez era la cantidad que quería",
+        "opciones": [
+          "Plantó seis; diez era la cantidad que quería",
+          "No hay que corregir nada",
+          "Plantó dieciséis árboles"
+        ],
+        "paso_resuelto": "El texto dice «consiguió seis. Plantó esos seis». El resumen confundió el propósito con lo realizado.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El grupo quería plantar diez árboles, pero consiguió seis. Plantó esos seis y decidió buscar más para el mes siguiente."
+        }
+      },
+      {
+        "id": "leng_res_revisar-v2",
+        "enunciado": "Un resumen dice: «La función empezó tarde porque los actores no llegaron». ¿Qué hay que corregir?",
+        "respuesta_correcta": "La causa fue la falla de una luz",
+        "opciones": [
+          "Los actores llegaron al día siguiente",
+          "No hay que corregir nada",
+          "La causa fue la falla de una luz"
+        ],
+        "paso_resuelto": "El texto dice «porque falló una luz del escenario». El resumen agregó una causa que el texto no dice.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La función empezó tarde porque falló una luz del escenario. Cuando la repararon, los actores pudieron comenzar."
+        }
+      },
+      {
+        "id": "leng_res_revisar-v3",
+        "enunciado": "Un resumen dice: «Los alumnos donaron telas a las familias». ¿Qué cambió?",
+        "respuesta_correcta": "Se intercambiaron quienes donaron y quienes recibieron",
+        "opciones": [
+          "No cambió nada importante",
+          "Se intercambiaron quienes donaron y quienes recibieron",
+          "Cambió el día de la donación"
+        ],
+        "paso_resuelto": "El texto dice «Las familias donaron telas al taller». El resumen invierte los participantes y omite el uso de las telas.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Las familias donaron telas al taller. Los alumnos las usaron para fabricar bolsas reutilizables."
+        }
+      },
+      {
+        "id": "leng_res_revisar-v4",
+        "enunciado": "Un resumen dice: «El club reunió juguetes». ¿Qué conviene agregar para contar el resultado?",
+        "respuesta_correcta": "Que preparó los juguetes y organizó una tarde de juegos",
+        "opciones": [
+          "Que preparó los juguetes y organizó una tarde de juegos",
+          "El precio de cada juguete",
+          "El color de todas las cajas"
+        ],
+        "paso_resuelto": "El texto dice «organizó una tarde de juegos». La frase inicial es verdadera, pero omite lo que hicieron con la colecta.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El club reunió juguetes para compartir. Separó los que estaban rotos, reparó varios y organizó una tarde de juegos con los que podían usarse."
+        }
+      },
+      {
+        "id": "leng_res_revisar-v5",
+        "enunciado": "Un resumen dice: «La biblioteca decidió mantener para siempre el nuevo horario». ¿Qué debe cambiar?",
+        "respuesta_correcta": "Todavía falta consultar y decidir si lo mantienen",
+        "opciones": [
+          "La biblioteca cerró para siempre",
+          "No debe cambiar nada",
+          "Todavía falta consultar y decidir si lo mantienen"
+        ],
+        "paso_resuelto": "El texto dice «para decidir si lo mantiene». El texto describe una prueba, no una decisión definitiva.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La biblioteca ensayó un horario nuevo durante dos semanas. Después consultará a los lectores para decidir si lo mantiene."
+        }
+      },
+      {
+        "id": "leng_res_revisar-v6",
+        "enunciado": "Un resumen dice: «La clase corrigió un mapa y compartió la versión nueva». ¿Es fiel al texto?",
+        "respuesta_correcta": "Sí, conserva las acciones principales",
+        "opciones": [
+          "No, debería decir que construyeron otro barrio",
+          "Sí, conserva las acciones principales",
+          "No, debería decir que tiraron el mapa"
+        ],
+        "paso_resuelto": "El texto dice «Los corrigió y entregó una copia nueva». La frase reformula sin inventar hechos ni cambiar el resultado.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La clase encontró errores en un mapa del barrio. Los corrigió y entregó una copia nueva al centro vecinal."
+        }
+      }
+    ]
+  }
+];
+for (const unidad of RESUMEN_R17) {
+ const indice=UNIDADES_BASES.findIndex(u=>u.id===unidad.despues_de);
+ if(indice<0)throw new Error('Falta el paso anterior de '+unidad.id);
+ UNIDADES_BASES.splice(indice+1,0,unidad);
+}
+// FIN R17
+
 export const TEMAS_BASES = [...new Set(UNIDADES_BASES.map(u => u.tema))];
 export function getUnidadBase(id) { return UNIDADES_BASES.find(u => u.id === id) || null; }
 export function crearActividadBase(id, modo, sesiones = []) {

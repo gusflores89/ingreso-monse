@@ -40,5 +40,5 @@ function oldExam(tema,correct=true){return {id:'old-exam',user_id:h.user.id,tema
   }
  }
  for(const unit of units.filter(u=>u.tema==='comprension_lectora_literal_inferida'))for(const a of unit.actividades){assert.equal(a.visual.tipo,'lectura');assert(a.visual.texto.trim());}
- console.log(JSON.stringify({passed:checks,newUnits:7,newActivities:42,readingUnits:10,closureQuestions:3,realAI:false,realDatabase:false}));
+ console.log(JSON.stringify({passed:checks,newUnits:7,newActivities:42,readingUnits:units.filter(u=>u.tema==='comprension_lectora_literal_inferida').length,closureQuestions:3,realAI:false,realDatabase:false}));
 })().catch(e=>{console.error(e);process.exitCode=1});

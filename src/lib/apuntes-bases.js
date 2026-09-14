@@ -822,6 +822,40 @@ const UNIDADES = [
     }
   },
   {
+    "id": "leng_res_tema",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Reconocer de qué trata todo el texto",
+    "explicacion": "El tema responde de qué trata el texto y puede nombrarse con pocas palabras. Buscamos lo que une sus frases. Un objeto que aparece una sola vez puede ser un detalle; un tema demasiado amplio puede dejar afuera lo especial de esta lectura.",
+    "ejemplo": "¿Cuál es el tema del texto? La biblioteca del club.",
+    "pasos": [
+      "Buscamos la pista: «los prestan a las familias».",
+      "Recibir, ordenar y prestar libros son tareas de esa biblioteca. El color de la mesa es un detalle."
+    ],
+    "pista": "Buscá qué asunto comparten las frases.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "En el club, los vecinos reciben libros usados. Revisan que estén completos y los ordenan por edades. Después los prestan a las familias. Una mesa azul sirve para anotar los préstamos."
+    }
+  },
+  {
+    "id": "leng_res_detalles",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Separar lo esencial de un detalle",
+    "explicacion": "Para contar lo principal no hace falta repetir cada dato. Conservamos qué pasó, a quién y el resultado importante. Probamos quitar un detalle: si todavía se entiende el hecho central, puede quedar fuera del resumen. Un color o una hora pueden importar en otros textos; depende de lo que expliquen.",
+    "ejemplo": "¿Qué detalle puede omitirse al resumir la colecta? La cinta violeta de la caja.",
+    "pasos": [
+      "Buscamos la pista: «reunieron cien».",
+      "El aporte de las familias y el resultado explican la colecta. El color de la cinta no cambia ese hecho."
+    ],
+    "pista": "Probá quitar el dato y comprobá si se sigue entendiendo lo principal.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "La clase organizó una colecta para la biblioteca. Cada familia aportó libros y al final reunieron cien. La caja donde los guardaron tenía una cinta violeta."
+    }
+  },
+  {
     "id": "leng_lect_3_idea_central",
     "tema": "comprension_lectora_literal_inferida",
     "titulo": "Contar la idea más importante",
@@ -836,6 +870,74 @@ const UNIDADES = [
       "tipo": "lectura",
       "titulo": "Texto para releer",
       "texto": "El club juntó papel, separó cartón y lo llevó a reciclar."
+    }
+  },
+  {
+    "id": "leng_res_titulo",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Elegir un título que abarque el texto",
+    "explicacion": "Un título breve puede anticipar el tema o la idea principal. Comparamos cada título con todo el texto: debe abarcar lo importante, sin centrarse solo en un detalle ni prometer algo que no se cuenta.",
+    "ejemplo": "¿Qué título abarca mejor el texto? Un intercambio de plantas en la plaza.",
+    "pasos": [
+      "Buscamos la pista: «intercambiar plantas».",
+      "El título reúne la actividad y su lugar; los consejos forman parte del intercambio."
+    ],
+    "pista": "Elegí un título que sirva para el texto entero.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "Los vecinos reservaron una esquina de la plaza para intercambiar plantas. Cada persona lleva una y elige otra. Junto a las macetas dejan consejos para cuidarlas."
+    }
+  },
+  {
+    "id": "leng_res_reformular",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Decir una idea con otras palabras",
+    "explicacion": "Reformular es expresar la misma idea de otra manera. Podemos cambiar palabras y ordenar la frase, pero conservamos quién actúa, qué hace y las relaciones importantes. No cambiamos un intento por un logro ni algunas personas por todas.",
+    "ejemplo": "¿Qué frase dice lo mismo que la primera oración? Juntaron dinero para arreglar el techo.",
+    "pasos": [
+      "Buscamos la pista: «reunieron dinero para reparar el techo».",
+      "Juntar y reunir expresan aquí lo mismo; la frase no afirma que la obra esté terminada."
+    ],
+    "pista": "Compará quién, qué pasó y si se conserva el mismo alcance.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "Los vecinos reunieron dinero para reparar el techo del salón. Todavía no empezaron la obra: primero deben conseguir los materiales."
+    }
+  },
+  {
+    "id": "leng_res_unir",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Unir las ideas de dos párrafos",
+    "explicacion": "Leemos un párrafo por vez y decimos qué aporta cada uno. Después unimos sus ideas principales. Si uno presenta un problema y el otro una solución, el resumen necesita ambos. Podemos usar por eso o después solo cuando esa relación aparece en el texto.",
+    "ejemplo": "¿Qué resumen reúne los dos párrafos? Los libros eran difíciles de encontrar; los ordenaron y etiquetaron para ubicarlos.",
+    "pasos": [
+      "Buscamos la pista: «los ordenó por temas y escribió nuevas etiquetas».",
+      "El resumen conserva el problema del primer párrafo y la solución del segundo."
+    ],
+    "pista": "Buscá qué aporta cada párrafo y conservá ambas ideas.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "En la biblioteca había libros que nadie encontraba. Estaban mezclados en cajas y los carteles se habían perdido.\n\nEl grupo los ordenó por temas y escribió nuevas etiquetas. Desde entonces los lectores pueden ubicarlos sin abrir todas las cajas."
+    }
+  },
+  {
+    "id": "leng_res_revisar",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Revisar que el resumen sea fiel",
+    "explicacion": "Volvemos del resumen al texto y comprobamos cada afirmación. Revisamos si cambió quién hizo algo, si se invirtió una causa, si se agregó un dato o si falta el resultado principal. Un resumen puede ser breve y aun así estar equivocado.",
+    "ejemplo": "Un resumen dice: «El grupo plantó diez árboles». ¿Qué hay que corregir? Plantó seis; diez era la cantidad que quería.",
+    "pasos": [
+      "Buscamos la pista: «consiguió seis. Plantó esos seis».",
+      "El resumen confundió el propósito con lo realizado."
+    ],
+    "pista": "Compará la afirmación del resumen con lo que realmente dice el texto.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "El grupo quería plantar diez árboles, pero consiguió seis. Plantó esos seis y decidió buscar más para el mes siguiente."
     }
   },
   {
