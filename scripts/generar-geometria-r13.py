@@ -27,4 +27,4 @@ for (const unidad of GEOMETRIA_R13) {
  if (indice < 0) throw new Error('Falta el paso de referencia de ' + unidad.id);
  UNIDADES_BASES.splice(indice + (unidad.antes_de ? 0 : 1), 0, unidad);
 }
-'''+end+'\n\n';i=min(s.index(m) for m in ['// R14: figuras y superficies.','export const TEMAS_BASES'] if m in s);p.write_text(s[:i]+code+s[i:],encoding='utf-8');print(len(U),'unidades;',len(U)*6,'actividades')
+'''+end+'\n\n';i=min(s.index(m) for m in ['// R14: figuras y superficies.','// R15: problemas por etapas.','export const TEMAS_BASES'] if m in s);p.write_text(s[:i]+code+s[i:],encoding='utf-8');print(len(U),'unidades;',len(U)*6,'actividades')

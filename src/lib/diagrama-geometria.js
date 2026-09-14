@@ -7,6 +7,15 @@ export function crearDiagramaGeometria(d = {}) {
  const arc=(x,y,r,start,end,color='#64748b',dash=false,width=1)=>{
   const steps=Math.max(2,Math.ceil(Math.abs(end-start)/2));line(Array.from({length:steps+1},(_,i)=>point(x,y,r,start+(end-start)*i/steps)),color,dash,width);
  };
+ if(d.tipo==='datos'){
+  text(240,36,'Leemos la situación','#172554',18);
+  d.lineas.forEach((label,i)=>{
+   const y=70+i*70;
+   line([[35,y],[445,y],[445,y+50],[35,y+50],[35,y]],'#94a3b8',false,1);
+   text(240,y+31,label,'#172554',16);
+  });
+  return {trazos,textos,ancho:480,alto:310};
+ }
  if(d.tipo==='circunferencia'){
   arc(240,145,95,0,360,'#2563eb',false,3);
   line([[145,145],[335,145]],'#15803d',false,2);

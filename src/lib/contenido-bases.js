@@ -16264,6 +16264,1945 @@ const APOYOS_R14 = {"mat_tri_lados": {"tipo": "poligono", "puntos": [[0, 0], [4,
 for (const [id, visual] of Object.entries(APOYOS_R14)) { UNIDADES_BASES.find(u => u.id === id).visual = visual; }
 // FIN R14
 
+
+
+// R15: problemas por etapas.
+const PROBLEMAS_R15 = [
+  {
+    "id": "prof_prob_datos",
+    "tema": "si_me_la_longitud",
+    "despues_de": "prof_med_long_problema",
+    "titulo": "Leer qué nos piden y elegir los datos",
+    "explicacion": "Antes de calcular, leemos la pregunta: ¿qué cantidad buscamos y en qué unidad? Elegimos los datos que ayudan a encontrarla. El precio o el color de una cinta no cambian cuánto mide. Si hay varios cortes, necesitamos saber cuántos y de qué longitud.",
+    "ejemplo": "Una cinta de 2 m cuesta $40. Cortamos 3 trozos de 25 cm. Para saber cuántos cm quedan usamos 2 m, 3 cortes y 25 cm; el precio no interviene.",
+    "pasos": [
+      "Buscamos una longitud restante, en centímetros.",
+      "Anotamos longitud inicial, cantidad de cortes y longitud de cada corte. Dejamos fuera el precio."
+    ],
+    "pista": "La pregunta pide cuánto queda de cinta, no cuánto cuesta.",
+    "actividades": [
+      {
+        "enunciado": "Una cinta de 2 m cuesta $40. Cortás 3 trozos de 25 cm. Para saber cuántos centímetros quedan, ¿qué datos necesitás?",
+        "respuesta_correcta": "2 m, 3 cortes y 25 cm",
+        "opciones": [
+          "2 m, 3 cortes y 25 cm",
+          "$40 y 3 cortes",
+          "Solo 25 cm"
+        ],
+        "paso_resuelto": "Buscamos la longitud restante. Usamos 2 m al inicio y 3 cortes de 25 cm. El precio no cambia la longitud.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Cinta: 2 m",
+            "Cortes: 3 de 25 cm",
+            "Precio: $40"
+          ]
+        },
+        "id": "prof_prob_datos-v1"
+      },
+      {
+        "enunciado": "Una cinta de 1,5 m cuesta $50. Cortás 2 trozos de 30 cm. Para saber cuántos centímetros quedan, ¿qué datos necesitás?",
+        "respuesta_correcta": "1,5 m, 2 cortes y 30 cm",
+        "opciones": [
+          "$50 y 2 cortes",
+          "Solo 30 cm",
+          "1,5 m, 2 cortes y 30 cm"
+        ],
+        "paso_resuelto": "Buscamos la longitud restante. Usamos 1,5 m al inicio y 2 cortes de 30 cm. El precio no cambia la longitud.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Cinta: 1,5 m",
+            "Cortes: 2 de 30 cm",
+            "Precio: $50"
+          ]
+        },
+        "id": "prof_prob_datos-v2"
+      },
+      {
+        "enunciado": "Una cinta de 3 m cuesta $60. Cortás 4 trozos de 40 cm. Para saber cuántos centímetros quedan, ¿qué datos necesitás?",
+        "respuesta_correcta": "3 m, 4 cortes y 40 cm",
+        "opciones": [
+          "Solo 40 cm",
+          "3 m, 4 cortes y 40 cm",
+          "$60 y 4 cortes"
+        ],
+        "paso_resuelto": "Buscamos la longitud restante. Usamos 3 m al inicio y 4 cortes de 40 cm. El precio no cambia la longitud.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Cinta: 3 m",
+            "Cortes: 4 de 40 cm",
+            "Precio: $60"
+          ]
+        },
+        "id": "prof_prob_datos-v3"
+      },
+      {
+        "enunciado": "Una cinta de 2,5 m cuesta $30. Cortás 3 trozos de 50 cm. Para saber cuántos centímetros quedan, ¿qué datos necesitás?",
+        "respuesta_correcta": "2,5 m, 3 cortes y 50 cm",
+        "opciones": [
+          "2,5 m, 3 cortes y 50 cm",
+          "$30 y 3 cortes",
+          "Solo 50 cm"
+        ],
+        "paso_resuelto": "Buscamos la longitud restante. Usamos 2,5 m al inicio y 3 cortes de 50 cm. El precio no cambia la longitud.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Cinta: 2,5 m",
+            "Cortes: 3 de 50 cm",
+            "Precio: $30"
+          ]
+        },
+        "id": "prof_prob_datos-v4"
+      },
+      {
+        "enunciado": "Una cinta de 1,2 m cuesta $70. Cortás 4 trozos de 20 cm. Para saber cuántos centímetros quedan, ¿qué datos necesitás?",
+        "respuesta_correcta": "1,2 m, 4 cortes y 20 cm",
+        "opciones": [
+          "$70 y 4 cortes",
+          "Solo 20 cm",
+          "1,2 m, 4 cortes y 20 cm"
+        ],
+        "paso_resuelto": "Buscamos la longitud restante. Usamos 1,2 m al inicio y 4 cortes de 20 cm. El precio no cambia la longitud.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Cinta: 1,2 m",
+            "Cortes: 4 de 20 cm",
+            "Precio: $70"
+          ]
+        },
+        "id": "prof_prob_datos-v5"
+      },
+      {
+        "enunciado": "Una cinta de 4 m cuesta $80. Cortás 5 trozos de 60 cm. Para saber cuántos centímetros quedan, ¿qué datos necesitás?",
+        "respuesta_correcta": "4 m, 5 cortes y 60 cm",
+        "opciones": [
+          "Solo 60 cm",
+          "4 m, 5 cortes y 60 cm",
+          "$80 y 5 cortes"
+        ],
+        "paso_resuelto": "Buscamos la longitud restante. Usamos 4 m al inicio y 5 cortes de 60 cm. El precio no cambia la longitud.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Cinta: 4 m",
+            "Cortes: 5 de 60 cm",
+            "Precio: $80"
+          ]
+        },
+        "id": "prof_prob_datos-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "datos",
+      "lineas": [
+        "Cinta: 2 m",
+        "Cortes: 3 de 25 cm",
+        "Precio: $40"
+      ]
+    }
+  },
+  {
+    "id": "prof_prob_plan_cortes",
+    "tema": "si_me_la_longitud",
+    "despues_de": "prof_prob_datos",
+    "titulo": "Ordenar el plan antes de hacer las cuentas",
+    "explicacion": "Para varios cortes, primero expresamos toda la cinta en centímetros. Después multiplicamos la cantidad de cortes por lo que mide cada uno. Finalmente restamos esa longitud usada de la inicial. Escribir el plan permite saber para qué sirve cada cuenta.",
+    "ejemplo": "Para una cinta de 2 m y tres cortes de 25 cm: convertir 2 m a cm, calcular tres cortes y restar lo usado.",
+    "pasos": [
+      "Primero: 2 × 100 = 200 cm. Después: 3 × 25 = 75 cm usados.",
+      "Finalmente: 200 − 75 = 125 cm. Comprobamos: 75 + 125 = 200."
+    ],
+    "pista": "El último paso debe dar la longitud que queda, después de todos los cortes.",
+    "actividades": [
+      {
+        "enunciado": "Tenés 2 m de cinta y hacés 3 cortes de 25 cm. Querés saber cuánto queda en cm. ¿Qué plan sirve?",
+        "respuesta_correcta": "Convertir → calcular todos los cortes → restar",
+        "opciones": [
+          "Convertir → calcular todos los cortes → restar",
+          "Sumar metros y centímetros → restar un corte",
+          "Restar un corte → multiplicar lo que queda"
+        ],
+        "paso_resuelto": "Pasamos 2 m a cm. Calculamos 3 × 25 para reunir todos los cortes. Restamos lo usado de la cinta inicial.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Cinta: 2 m",
+            "Cortes: 3 de 25 cm",
+            "Buscamos: centímetros restantes"
+          ]
+        },
+        "id": "prof_prob_plan_cortes-v1"
+      },
+      {
+        "enunciado": "Tenés 1,5 m de cinta y hacés 2 cortes de 30 cm. Querés saber cuánto queda en cm. ¿Qué plan sirve?",
+        "respuesta_correcta": "Convertir → calcular todos los cortes → restar",
+        "opciones": [
+          "Sumar metros y centímetros → restar un corte",
+          "Restar un corte → multiplicar lo que queda",
+          "Convertir → calcular todos los cortes → restar"
+        ],
+        "paso_resuelto": "Pasamos 1,5 m a cm. Calculamos 2 × 30 para reunir todos los cortes. Restamos lo usado de la cinta inicial.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Cinta: 1,5 m",
+            "Cortes: 2 de 30 cm",
+            "Buscamos: centímetros restantes"
+          ]
+        },
+        "id": "prof_prob_plan_cortes-v2"
+      },
+      {
+        "enunciado": "Tenés 3 m de cinta y hacés 4 cortes de 40 cm. Querés saber cuánto queda en cm. ¿Qué plan sirve?",
+        "respuesta_correcta": "Convertir → calcular todos los cortes → restar",
+        "opciones": [
+          "Restar un corte → multiplicar lo que queda",
+          "Convertir → calcular todos los cortes → restar",
+          "Sumar metros y centímetros → restar un corte"
+        ],
+        "paso_resuelto": "Pasamos 3 m a cm. Calculamos 4 × 40 para reunir todos los cortes. Restamos lo usado de la cinta inicial.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Cinta: 3 m",
+            "Cortes: 4 de 40 cm",
+            "Buscamos: centímetros restantes"
+          ]
+        },
+        "id": "prof_prob_plan_cortes-v3"
+      },
+      {
+        "enunciado": "Tenés 2,5 m de cinta y hacés 3 cortes de 50 cm. Querés saber cuánto queda en cm. ¿Qué plan sirve?",
+        "respuesta_correcta": "Convertir → calcular todos los cortes → restar",
+        "opciones": [
+          "Convertir → calcular todos los cortes → restar",
+          "Sumar metros y centímetros → restar un corte",
+          "Restar un corte → multiplicar lo que queda"
+        ],
+        "paso_resuelto": "Pasamos 2,5 m a cm. Calculamos 3 × 50 para reunir todos los cortes. Restamos lo usado de la cinta inicial.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Cinta: 2,5 m",
+            "Cortes: 3 de 50 cm",
+            "Buscamos: centímetros restantes"
+          ]
+        },
+        "id": "prof_prob_plan_cortes-v4"
+      },
+      {
+        "enunciado": "Tenés 1,2 m de cinta y hacés 4 cortes de 20 cm. Querés saber cuánto queda en cm. ¿Qué plan sirve?",
+        "respuesta_correcta": "Convertir → calcular todos los cortes → restar",
+        "opciones": [
+          "Sumar metros y centímetros → restar un corte",
+          "Restar un corte → multiplicar lo que queda",
+          "Convertir → calcular todos los cortes → restar"
+        ],
+        "paso_resuelto": "Pasamos 1,2 m a cm. Calculamos 4 × 20 para reunir todos los cortes. Restamos lo usado de la cinta inicial.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Cinta: 1,2 m",
+            "Cortes: 4 de 20 cm",
+            "Buscamos: centímetros restantes"
+          ]
+        },
+        "id": "prof_prob_plan_cortes-v5"
+      },
+      {
+        "enunciado": "Tenés 4 m de cinta y hacés 5 cortes de 60 cm. Querés saber cuánto queda en cm. ¿Qué plan sirve?",
+        "respuesta_correcta": "Convertir → calcular todos los cortes → restar",
+        "opciones": [
+          "Restar un corte → multiplicar lo que queda",
+          "Convertir → calcular todos los cortes → restar",
+          "Sumar metros y centímetros → restar un corte"
+        ],
+        "paso_resuelto": "Pasamos 4 m a cm. Calculamos 5 × 60 para reunir todos los cortes. Restamos lo usado de la cinta inicial.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Cinta: 4 m",
+            "Cortes: 5 de 60 cm",
+            "Buscamos: centímetros restantes"
+          ]
+        },
+        "id": "prof_prob_plan_cortes-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "datos",
+      "lineas": [
+        "Cinta: 2 m",
+        "Cortes: 3 de 25 cm",
+        "Buscamos: centímetros restantes"
+      ]
+    }
+  },
+  {
+    "id": "prof_prob_cortes",
+    "tema": "si_me_la_longitud",
+    "despues_de": "prof_prob_plan_cortes",
+    "titulo": "Resolver y comprobar varios cortes",
+    "explicacion": "Ahora usamos el plan completo: convertimos, calculamos lo usado en todos los cortes y restamos. Para comprobar, sumamos lo usado y lo que queda: debe recuperar la cinta inicial. La respuesta lleva la unidad pedida.",
+    "ejemplo": "De 2 m cortamos tres trozos de 25 cm. Quedan 125 cm de cinta.",
+    "pasos": [
+      "2 m = 200 cm. Los tres cortes usan 3 × 25 = 75 cm.",
+      "200 − 75 = 125 cm. Comprobación: 75 + 125 = 200 cm."
+    ],
+    "pista": "Calculá cuánto usan todos los cortes antes de restar.",
+    "actividades": [
+      {
+        "enunciado": "Una cinta mide 2 m. Cortás 3 trozos de 25 cm. ¿Cuántos centímetros quedan?",
+        "respuesta_correcta": "125",
+        "opciones": [
+          "125",
+          "175",
+          "275"
+        ],
+        "paso_resuelto": "Inicial: 2 × 100 = 200 cm.\nUsado: 3 × 25 = 75 cm.\nQueda: 200 − 75 = 125 cm.\nComprobamos: 75 + 125 = 200 cm.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Cinta: 2 m",
+            "Cortes: 3 de 25 cm",
+            "Buscamos: centímetros restantes"
+          ]
+        },
+        "id": "prof_prob_cortes-v1"
+      },
+      {
+        "enunciado": "Una cinta mide 1,5 m. Cortás 2 trozos de 30 cm. ¿Cuántos centímetros quedan?",
+        "respuesta_correcta": "90",
+        "opciones": [
+          "120",
+          "210",
+          "90"
+        ],
+        "paso_resuelto": "Inicial: 1,5 × 100 = 150 cm.\nUsado: 2 × 30 = 60 cm.\nQueda: 150 − 60 = 90 cm.\nComprobamos: 60 + 90 = 150 cm.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Cinta: 1,5 m",
+            "Cortes: 2 de 30 cm",
+            "Buscamos: centímetros restantes"
+          ]
+        },
+        "id": "prof_prob_cortes-v2"
+      },
+      {
+        "enunciado": "Una cinta mide 3 m. Cortás 4 trozos de 40 cm. ¿Cuántos centímetros quedan?",
+        "respuesta_correcta": "140",
+        "opciones": [
+          "460",
+          "140",
+          "260"
+        ],
+        "paso_resuelto": "Inicial: 3 × 100 = 300 cm.\nUsado: 4 × 40 = 160 cm.\nQueda: 300 − 160 = 140 cm.\nComprobamos: 160 + 140 = 300 cm.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Cinta: 3 m",
+            "Cortes: 4 de 40 cm",
+            "Buscamos: centímetros restantes"
+          ]
+        },
+        "id": "prof_prob_cortes-v3"
+      },
+      {
+        "enunciado": "Una cinta mide 2,5 m. Cortás 3 trozos de 50 cm. ¿Cuántos centímetros quedan?",
+        "respuesta_correcta": "100",
+        "opciones": [
+          "100",
+          "200",
+          "400"
+        ],
+        "paso_resuelto": "Inicial: 2,5 × 100 = 250 cm.\nUsado: 3 × 50 = 150 cm.\nQueda: 250 − 150 = 100 cm.\nComprobamos: 150 + 100 = 250 cm.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Cinta: 2,5 m",
+            "Cortes: 3 de 50 cm",
+            "Buscamos: centímetros restantes"
+          ]
+        },
+        "id": "prof_prob_cortes-v4"
+      },
+      {
+        "enunciado": "Una cinta mide 1,2 m. Cortás 4 trozos de 20 cm. ¿Cuántos centímetros quedan?",
+        "respuesta_correcta": "40",
+        "opciones": [
+          "100",
+          "200",
+          "40"
+        ],
+        "paso_resuelto": "Inicial: 1,2 × 100 = 120 cm.\nUsado: 4 × 20 = 80 cm.\nQueda: 120 − 80 = 40 cm.\nComprobamos: 80 + 40 = 120 cm.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Cinta: 1,2 m",
+            "Cortes: 4 de 20 cm",
+            "Buscamos: centímetros restantes"
+          ]
+        },
+        "id": "prof_prob_cortes-v5"
+      },
+      {
+        "enunciado": "Una cinta mide 4 m. Cortás 5 trozos de 60 cm. ¿Cuántos centímetros quedan?",
+        "respuesta_correcta": "100",
+        "opciones": [
+          "700",
+          "100",
+          "340"
+        ],
+        "paso_resuelto": "Inicial: 4 × 100 = 400 cm.\nUsado: 5 × 60 = 300 cm.\nQueda: 400 − 300 = 100 cm.\nComprobamos: 300 + 100 = 400 cm.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Cinta: 4 m",
+            "Cortes: 5 de 60 cm",
+            "Buscamos: centímetros restantes"
+          ]
+        },
+        "id": "prof_prob_cortes-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "datos",
+      "lineas": [
+        "Cinta: 2 m",
+        "Cortes: 3 de 25 cm",
+        "Buscamos: centímetros restantes"
+      ]
+    }
+  },
+  {
+    "id": "prof_prob_vasos",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "despues_de": "prof_med_cap_problema",
+    "titulo": "Llenar solo los vasos que alcanzan",
+    "explicacion": "Cuando la división no es exacta, distinguimos vasos completos y líquido restante. Convertimos litros a mililitros y buscamos cuántos vasos enteros podemos llenar. Si el siguiente necesita más líquido del que queda, no lo contamos como completo.",
+    "ejemplo": "Con 1,4 L y vasos de 250 mL se llenan 5 vasos: usan 1250 mL. El sexto necesitaría 1500 mL, más de lo disponible.",
+    "pasos": [
+      "1,4 L = 1400 mL. Cinco vasos usan 5 × 250 = 1250 mL.",
+      "Seis vasos usarían 1500 mL: no alcanza. Podemos llenar cinco completos."
+    ],
+    "pista": "Probá cuántos vasos enteros alcanzan; el siguiente no debe superar lo disponible.",
+    "actividades": [
+      {
+        "enunciado": "Tenés 1,4 L de jugo y vasos de 250 mL. ¿Cuántos vasos completos podés llenar?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "5",
+          "6",
+          "4"
+        ],
+        "paso_resuelto": "1,4 L = 1400 mL.\n5 vasos usan 1250 mL. El siguiente llevaría 1500 mL: no alcanza.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Bebida: 1,4 L",
+            "Cada vaso: 250 mL",
+            "Buscamos: vasos completos"
+          ]
+        },
+        "id": "prof_prob_vasos-v1"
+      },
+      {
+        "enunciado": "Tenés 1,7 L de jugo y vasos de 200 mL. ¿Cuántos vasos completos podés llenar?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "9",
+          "7",
+          "8"
+        ],
+        "paso_resuelto": "1,7 L = 1700 mL.\n8 vasos usan 1600 mL. El siguiente llevaría 1800 mL: no alcanza.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Bebida: 1,7 L",
+            "Cada vaso: 200 mL",
+            "Buscamos: vasos completos"
+          ]
+        },
+        "id": "prof_prob_vasos-v2"
+      },
+      {
+        "enunciado": "Tenés 2,3 L de jugo y vasos de 300 mL. ¿Cuántos vasos completos podés llenar?",
+        "respuesta_correcta": "7",
+        "opciones": [
+          "6",
+          "7",
+          "8"
+        ],
+        "paso_resuelto": "2,3 L = 2300 mL.\n7 vasos usan 2100 mL. El siguiente llevaría 2400 mL: no alcanza.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Bebida: 2,3 L",
+            "Cada vaso: 300 mL",
+            "Buscamos: vasos completos"
+          ]
+        },
+        "id": "prof_prob_vasos-v3"
+      },
+      {
+        "enunciado": "Tenés 1,1 L de jugo y vasos de 300 mL. ¿Cuántos vasos completos podés llenar?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "3",
+          "4",
+          "2"
+        ],
+        "paso_resuelto": "1,1 L = 1100 mL.\n3 vasos usan 900 mL. El siguiente llevaría 1200 mL: no alcanza.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Bebida: 1,1 L",
+            "Cada vaso: 300 mL",
+            "Buscamos: vasos completos"
+          ]
+        },
+        "id": "prof_prob_vasos-v4"
+      },
+      {
+        "enunciado": "Tenés 2,6 L de jugo y vasos de 400 mL. ¿Cuántos vasos completos podés llenar?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "7",
+          "5",
+          "6"
+        ],
+        "paso_resuelto": "2,6 L = 2600 mL.\n6 vasos usan 2400 mL. El siguiente llevaría 2800 mL: no alcanza.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Bebida: 2,6 L",
+            "Cada vaso: 400 mL",
+            "Buscamos: vasos completos"
+          ]
+        },
+        "id": "prof_prob_vasos-v5"
+      },
+      {
+        "enunciado": "Tenés 1,8 L de jugo y vasos de 250 mL. ¿Cuántos vasos completos podés llenar?",
+        "respuesta_correcta": "7",
+        "opciones": [
+          "6",
+          "7",
+          "8"
+        ],
+        "paso_resuelto": "1,8 L = 1800 mL.\n7 vasos usan 1750 mL. El siguiente llevaría 2000 mL: no alcanza.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Bebida: 1,8 L",
+            "Cada vaso: 250 mL",
+            "Buscamos: vasos completos"
+          ]
+        },
+        "id": "prof_prob_vasos-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "datos",
+      "lineas": [
+        "Bebida: 1,4 L",
+        "Cada vaso: 250 mL",
+        "Buscamos: vasos completos"
+      ]
+    }
+  },
+  {
+    "id": "prof_prob_sobra",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "despues_de": "prof_prob_vasos",
+    "titulo": "Conservar el líquido que sobra",
+    "explicacion": "Después de contar los vasos completos, calculamos cuánto líquido usaron y lo restamos del total. El resto se expresa en mililitros, no en vasos. Debe ser menor que la capacidad de un vaso: si alcanzara para otro, todavía podríamos llenarlo.",
+    "ejemplo": "Con 1400 mL llenamos cinco vasos de 250 mL y quedan 150 mL.",
+    "pasos": [
+      "Cinco vasos usan 5 × 250 = 1250 mL.",
+      "1400 − 1250 = 150 mL. Es menos que 250 mL y 1250 + 150 = 1400."
+    ],
+    "pista": "Restá el líquido usado en todos los vasos completos; conservá la unidad mL.",
+    "actividades": [
+      {
+        "enunciado": "Tenés 1,4 L de jugo. Llenás todos los vasos completos posibles de 250 mL. ¿Cuántos mililitros sobran?",
+        "respuesta_correcta": "150",
+        "opciones": [
+          "150",
+          "5",
+          "250"
+        ],
+        "paso_resuelto": "1,4 L = 1400 mL.\nCaben 5 vasos: usan 1250 mL.\nResto: 1400 − 1250 = 150 mL, menos que un vaso.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Bebida: 1,4 L",
+            "Cada vaso: 250 mL",
+            "Buscamos: mililitros sobrantes"
+          ]
+        },
+        "id": "prof_prob_sobra-v1"
+      },
+      {
+        "enunciado": "Tenés 1,7 L de jugo. Llenás todos los vasos completos posibles de 200 mL. ¿Cuántos mililitros sobran?",
+        "respuesta_correcta": "100",
+        "opciones": [
+          "8",
+          "200",
+          "100"
+        ],
+        "paso_resuelto": "1,7 L = 1700 mL.\nCaben 8 vasos: usan 1600 mL.\nResto: 1700 − 1600 = 100 mL, menos que un vaso.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Bebida: 1,7 L",
+            "Cada vaso: 200 mL",
+            "Buscamos: mililitros sobrantes"
+          ]
+        },
+        "id": "prof_prob_sobra-v2"
+      },
+      {
+        "enunciado": "Tenés 2,3 L de jugo. Llenás todos los vasos completos posibles de 300 mL. ¿Cuántos mililitros sobran?",
+        "respuesta_correcta": "200",
+        "opciones": [
+          "300",
+          "200",
+          "7"
+        ],
+        "paso_resuelto": "2,3 L = 2300 mL.\nCaben 7 vasos: usan 2100 mL.\nResto: 2300 − 2100 = 200 mL, menos que un vaso.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Bebida: 2,3 L",
+            "Cada vaso: 300 mL",
+            "Buscamos: mililitros sobrantes"
+          ]
+        },
+        "id": "prof_prob_sobra-v3"
+      },
+      {
+        "enunciado": "Tenés 1,1 L de jugo. Llenás todos los vasos completos posibles de 300 mL. ¿Cuántos mililitros sobran?",
+        "respuesta_correcta": "200",
+        "opciones": [
+          "200",
+          "3",
+          "300"
+        ],
+        "paso_resuelto": "1,1 L = 1100 mL.\nCaben 3 vasos: usan 900 mL.\nResto: 1100 − 900 = 200 mL, menos que un vaso.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Bebida: 1,1 L",
+            "Cada vaso: 300 mL",
+            "Buscamos: mililitros sobrantes"
+          ]
+        },
+        "id": "prof_prob_sobra-v4"
+      },
+      {
+        "enunciado": "Tenés 2,6 L de jugo. Llenás todos los vasos completos posibles de 400 mL. ¿Cuántos mililitros sobran?",
+        "respuesta_correcta": "200",
+        "opciones": [
+          "6",
+          "400",
+          "200"
+        ],
+        "paso_resuelto": "2,6 L = 2600 mL.\nCaben 6 vasos: usan 2400 mL.\nResto: 2600 − 2400 = 200 mL, menos que un vaso.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Bebida: 2,6 L",
+            "Cada vaso: 400 mL",
+            "Buscamos: mililitros sobrantes"
+          ]
+        },
+        "id": "prof_prob_sobra-v5"
+      },
+      {
+        "enunciado": "Tenés 1,8 L de jugo. Llenás todos los vasos completos posibles de 250 mL. ¿Cuántos mililitros sobran?",
+        "respuesta_correcta": "50",
+        "opciones": [
+          "250",
+          "50",
+          "7"
+        ],
+        "paso_resuelto": "1,8 L = 1800 mL.\nCaben 7 vasos: usan 1750 mL.\nResto: 1800 − 1750 = 50 mL, menos que un vaso.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Bebida: 1,8 L",
+            "Cada vaso: 250 mL",
+            "Buscamos: mililitros sobrantes"
+          ]
+        },
+        "id": "prof_prob_sobra-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "datos",
+      "lineas": [
+        "Bebida: 1,4 L",
+        "Cada vaso: 250 mL",
+        "Buscamos: mililitros sobrantes"
+      ]
+    }
+  },
+  {
+    "id": "prof_prob_porciones",
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "despues_de": "prof_med_masa_problema",
+    "titulo": "Preparar varias porciones y guardar el resto",
+    "explicacion": "Para preparar porciones iguales, convertimos la masa inicial a gramos. Multiplicamos la cantidad de porciones por los gramos de cada una y restamos lo usado. Comprobamos que el resto más todas las porciones recuperen la masa inicial.",
+    "ejemplo": "Con 2 kg de harina preparamos tres porciones de 250 g. Usamos 750 g y quedan 1250 g.",
+    "pasos": [
+      "2 kg = 2000 g. Tres porciones usan 3 × 250 = 750 g.",
+      "2000 − 750 = 1250 g. Comprobamos: 750 + 1250 = 2000 g."
+    ],
+    "pista": "Multiplicá todas las porciones antes de quitar lo usado.",
+    "actividades": [
+      {
+        "enunciado": "Tenés 2 kg de harina y preparás 3 porciones de 250 g. ¿Cuántos gramos quedan?",
+        "respuesta_correcta": "1250",
+        "opciones": [
+          "1250",
+          "1750",
+          "2750"
+        ],
+        "paso_resuelto": "Inicial: 2 kg = 2000 g.\nUsado: 3 × 250 = 750 g.\nQueda: 2000 − 750 = 1250 g.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Harina: 2 kg",
+            "Porciones: 3 de 250 g",
+            "Buscamos: gramos restantes"
+          ]
+        },
+        "id": "prof_prob_porciones-v1"
+      },
+      {
+        "enunciado": "Tenés 1,5 kg de harina y preparás 4 porciones de 200 g. ¿Cuántos gramos quedan?",
+        "respuesta_correcta": "700",
+        "opciones": [
+          "1300",
+          "2300",
+          "700"
+        ],
+        "paso_resuelto": "Inicial: 1,5 kg = 1500 g.\nUsado: 4 × 200 = 800 g.\nQueda: 1500 − 800 = 700 g.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Harina: 1,5 kg",
+            "Porciones: 4 de 200 g",
+            "Buscamos: gramos restantes"
+          ]
+        },
+        "id": "prof_prob_porciones-v2"
+      },
+      {
+        "enunciado": "Tenés 3 kg de harina y preparás 5 porciones de 400 g. ¿Cuántos gramos quedan?",
+        "respuesta_correcta": "1000",
+        "opciones": [
+          "5000",
+          "1000",
+          "2600"
+        ],
+        "paso_resuelto": "Inicial: 3 kg = 3000 g.\nUsado: 5 × 400 = 2000 g.\nQueda: 3000 − 2000 = 1000 g.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Harina: 3 kg",
+            "Porciones: 5 de 400 g",
+            "Buscamos: gramos restantes"
+          ]
+        },
+        "id": "prof_prob_porciones-v3"
+      },
+      {
+        "enunciado": "Tenés 2,5 kg de harina y preparás 6 porciones de 300 g. ¿Cuántos gramos quedan?",
+        "respuesta_correcta": "700",
+        "opciones": [
+          "700",
+          "2200",
+          "4300"
+        ],
+        "paso_resuelto": "Inicial: 2,5 kg = 2500 g.\nUsado: 6 × 300 = 1800 g.\nQueda: 2500 − 1800 = 700 g.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Harina: 2,5 kg",
+            "Porciones: 6 de 300 g",
+            "Buscamos: gramos restantes"
+          ]
+        },
+        "id": "prof_prob_porciones-v4"
+      },
+      {
+        "enunciado": "Tenés 1,2 kg de harina y preparás 3 porciones de 150 g. ¿Cuántos gramos quedan?",
+        "respuesta_correcta": "750",
+        "opciones": [
+          "1050",
+          "1650",
+          "750"
+        ],
+        "paso_resuelto": "Inicial: 1,2 kg = 1200 g.\nUsado: 3 × 150 = 450 g.\nQueda: 1200 − 450 = 750 g.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Harina: 1,2 kg",
+            "Porciones: 3 de 150 g",
+            "Buscamos: gramos restantes"
+          ]
+        },
+        "id": "prof_prob_porciones-v5"
+      },
+      {
+        "enunciado": "Tenés 4 kg de harina y preparás 7 porciones de 500 g. ¿Cuántos gramos quedan?",
+        "respuesta_correcta": "500",
+        "opciones": [
+          "7500",
+          "500",
+          "3500"
+        ],
+        "paso_resuelto": "Inicial: 4 kg = 4000 g.\nUsado: 7 × 500 = 3500 g.\nQueda: 4000 − 3500 = 500 g.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "Harina: 4 kg",
+            "Porciones: 7 de 500 g",
+            "Buscamos: gramos restantes"
+          ]
+        },
+        "id": "prof_prob_porciones-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "datos",
+      "lineas": [
+        "Harina: 2 kg",
+        "Porciones: 3 de 250 g",
+        "Buscamos: gramos restantes"
+      ]
+    }
+  },
+  {
+    "id": "prof_prob_plan_per",
+    "tema": "perimetros_simples",
+    "despues_de": "mat_per_circunferencia",
+    "titulo": "Preparar un plan para rodear varias veces",
+    "explicacion": "Si un rectángulo tiene lados en metros y centímetros, primero elegimos una sola unidad. Después sumamos sus cuatro lados para una vuelta. Recién entonces multiplicamos por la cantidad de vueltas. La pregunta indica en qué unidad responder.",
+    "ejemplo": "Un marco de 2 m por 50 cm lleva tres vueltas de cinta. Podemos convertir todo a cm, hallar una vuelta y multiplicarla por tres.",
+    "pasos": [
+      "En cm, los lados son 200 y 50. Una vuelta: 200 + 50 + 200 + 50 = 500 cm.",
+      "Tres vueltas: 500 × 3 = 1500 cm. Si piden metros: 1500 ÷ 100 = 15 m."
+    ],
+    "pista": "Primero igualá las unidades; una vuelta incluye los cuatro lados.",
+    "actividades": [
+      {
+        "enunciado": "Un marco mide 2 m por 50 cm y necesita 3 vueltas de cinta. ¿Qué plan calcula la longitud total?",
+        "respuesta_correcta": "Igualar unidades → sumar cuatro lados → multiplicar vueltas",
+        "opciones": [
+          "Igualar unidades → sumar cuatro lados → multiplicar vueltas",
+          "Sumar los dos números → multiplicar vueltas",
+          "Multiplicar largo por ancho → sumar vueltas"
+        ],
+        "paso_resuelto": "Convertimos los lados a una misma unidad, sumamos una vuelta completa y multiplicamos por 3.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              2.0,
+              0
+            ],
+            [
+              2.0,
+              0.5
+            ],
+            [
+              0,
+              0.5
+            ]
+          ],
+          "lados": [
+            "2 m",
+            "50 cm",
+            "",
+            ""
+          ],
+          "nota": "3 vueltas de cinta"
+        },
+        "id": "prof_prob_plan_per-v1"
+      },
+      {
+        "enunciado": "Un marco mide 1,5 m por 40 cm y necesita 2 vueltas de cinta. ¿Qué plan calcula la longitud total?",
+        "respuesta_correcta": "Igualar unidades → sumar cuatro lados → multiplicar vueltas",
+        "opciones": [
+          "Sumar los dos números → multiplicar vueltas",
+          "Multiplicar largo por ancho → sumar vueltas",
+          "Igualar unidades → sumar cuatro lados → multiplicar vueltas"
+        ],
+        "paso_resuelto": "Convertimos los lados a una misma unidad, sumamos una vuelta completa y multiplicamos por 2.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              1.5,
+              0
+            ],
+            [
+              1.5,
+              0.4
+            ],
+            [
+              0,
+              0.4
+            ]
+          ],
+          "lados": [
+            "1,5 m",
+            "40 cm",
+            "",
+            ""
+          ],
+          "nota": "2 vueltas de cinta"
+        },
+        "id": "prof_prob_plan_per-v2"
+      },
+      {
+        "enunciado": "Un marco mide 3 m por 75 cm y necesita 2 vueltas de cinta. ¿Qué plan calcula la longitud total?",
+        "respuesta_correcta": "Igualar unidades → sumar cuatro lados → multiplicar vueltas",
+        "opciones": [
+          "Multiplicar largo por ancho → sumar vueltas",
+          "Igualar unidades → sumar cuatro lados → multiplicar vueltas",
+          "Sumar los dos números → multiplicar vueltas"
+        ],
+        "paso_resuelto": "Convertimos los lados a una misma unidad, sumamos una vuelta completa y multiplicamos por 2.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              3.0,
+              0
+            ],
+            [
+              3.0,
+              0.75
+            ],
+            [
+              0,
+              0.75
+            ]
+          ],
+          "lados": [
+            "3 m",
+            "75 cm",
+            "",
+            ""
+          ],
+          "nota": "2 vueltas de cinta"
+        },
+        "id": "prof_prob_plan_per-v3"
+      },
+      {
+        "enunciado": "Un marco mide 2,5 m por 50 cm y necesita 4 vueltas de cinta. ¿Qué plan calcula la longitud total?",
+        "respuesta_correcta": "Igualar unidades → sumar cuatro lados → multiplicar vueltas",
+        "opciones": [
+          "Igualar unidades → sumar cuatro lados → multiplicar vueltas",
+          "Sumar los dos números → multiplicar vueltas",
+          "Multiplicar largo por ancho → sumar vueltas"
+        ],
+        "paso_resuelto": "Convertimos los lados a una misma unidad, sumamos una vuelta completa y multiplicamos por 4.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              2.5,
+              0
+            ],
+            [
+              2.5,
+              0.5
+            ],
+            [
+              0,
+              0.5
+            ]
+          ],
+          "lados": [
+            "2,5 m",
+            "50 cm",
+            "",
+            ""
+          ],
+          "nota": "4 vueltas de cinta"
+        },
+        "id": "prof_prob_plan_per-v4"
+      },
+      {
+        "enunciado": "Un marco mide 1,2 m por 30 cm y necesita 3 vueltas de cinta. ¿Qué plan calcula la longitud total?",
+        "respuesta_correcta": "Igualar unidades → sumar cuatro lados → multiplicar vueltas",
+        "opciones": [
+          "Sumar los dos números → multiplicar vueltas",
+          "Multiplicar largo por ancho → sumar vueltas",
+          "Igualar unidades → sumar cuatro lados → multiplicar vueltas"
+        ],
+        "paso_resuelto": "Convertimos los lados a una misma unidad, sumamos una vuelta completa y multiplicamos por 3.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              1.2,
+              0
+            ],
+            [
+              1.2,
+              0.3
+            ],
+            [
+              0,
+              0.3
+            ]
+          ],
+          "lados": [
+            "1,2 m",
+            "30 cm",
+            "",
+            ""
+          ],
+          "nota": "3 vueltas de cinta"
+        },
+        "id": "prof_prob_plan_per-v5"
+      },
+      {
+        "enunciado": "Un marco mide 4 m por 50 cm y necesita 2 vueltas de cinta. ¿Qué plan calcula la longitud total?",
+        "respuesta_correcta": "Igualar unidades → sumar cuatro lados → multiplicar vueltas",
+        "opciones": [
+          "Multiplicar largo por ancho → sumar vueltas",
+          "Igualar unidades → sumar cuatro lados → multiplicar vueltas",
+          "Sumar los dos números → multiplicar vueltas"
+        ],
+        "paso_resuelto": "Convertimos los lados a una misma unidad, sumamos una vuelta completa y multiplicamos por 2.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              4.0,
+              0
+            ],
+            [
+              4.0,
+              0.5
+            ],
+            [
+              0,
+              0.5
+            ]
+          ],
+          "lados": [
+            "4 m",
+            "50 cm",
+            "",
+            ""
+          ],
+          "nota": "2 vueltas de cinta"
+        },
+        "id": "prof_prob_plan_per-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          2.0,
+          0
+        ],
+        [
+          2.0,
+          0.5
+        ],
+        [
+          0,
+          0.5
+        ]
+      ],
+      "lados": [
+        "2 m",
+        "50 cm",
+        "",
+        ""
+      ],
+      "nota": "3 vueltas de cinta"
+    }
+  },
+  {
+    "id": "prof_prob_vueltas",
+    "tema": "perimetros_simples",
+    "despues_de": "prof_prob_plan_per",
+    "titulo": "Calcular la cinta para varias vueltas",
+    "explicacion": "Resolvemos el plan y cuidamos la unidad final. Una vuelta es el perímetro del marco; varias vueltas repiten esa longitud. Podemos calcular en centímetros y, si piden metros, dividir el total por 100 al final.",
+    "ejemplo": "El marco de 2 m por 50 cm necesita 15 m de cinta para tres vueltas.",
+    "pasos": [
+      "2 m = 200 cm. Perímetro: 200 + 50 + 200 + 50 = 500 cm.",
+      "Tres vueltas: 500 × 3 = 1500 cm. En metros: 1500 ÷ 100 = 15 m."
+    ],
+    "pista": "Anotá por separado una vuelta y todas las vueltas; revisá la unidad pedida.",
+    "actividades": [
+      {
+        "enunciado": "Un marco mide 2 m de largo y 50 cm de ancho. Lo rodeás con 3 vueltas completas de cinta. ¿Cuántos metros de cinta necesitás?",
+        "respuesta_correcta": "15",
+        "opciones": [
+          "15",
+          "5",
+          "7,5"
+        ],
+        "paso_resuelto": "Largo: 2 m = 200 cm.\nUna vuelta: 2 × (200 + 50) = 500 cm.\n3 vueltas: 1500 cm = 15 m.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              2.0,
+              0
+            ],
+            [
+              2.0,
+              0.5
+            ],
+            [
+              0,
+              0.5
+            ]
+          ],
+          "lados": [
+            "2 m",
+            "50 cm",
+            "",
+            ""
+          ],
+          "nota": "3 vueltas; respuesta en metros"
+        },
+        "id": "prof_prob_vueltas-v1"
+      },
+      {
+        "enunciado": "Un marco mide 1,5 m de largo y 40 cm de ancho. Lo rodeás con 2 vueltas completas de cinta. ¿Cuántos metros de cinta necesitás?",
+        "respuesta_correcta": "7,6",
+        "opciones": [
+          "3,8",
+          "7,6"
+        ],
+        "paso_resuelto": "Largo: 1,5 m = 150 cm.\nUna vuelta: 2 × (150 + 40) = 380 cm.\n2 vueltas: 760 cm = 7,6 m.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              1.5,
+              0
+            ],
+            [
+              1.5,
+              0.4
+            ],
+            [
+              0,
+              0.4
+            ]
+          ],
+          "lados": [
+            "1,5 m",
+            "40 cm",
+            "",
+            ""
+          ],
+          "nota": "2 vueltas; respuesta en metros"
+        },
+        "id": "prof_prob_vueltas-v2"
+      },
+      {
+        "enunciado": "Un marco mide 3 m de largo y 75 cm de ancho. Lo rodeás con 2 vueltas completas de cinta. ¿Cuántos metros de cinta necesitás?",
+        "respuesta_correcta": "15",
+        "opciones": [
+          "15",
+          "7,5"
+        ],
+        "paso_resuelto": "Largo: 3 m = 300 cm.\nUna vuelta: 2 × (300 + 75) = 750 cm.\n2 vueltas: 1500 cm = 15 m.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              3.0,
+              0
+            ],
+            [
+              3.0,
+              0.75
+            ],
+            [
+              0,
+              0.75
+            ]
+          ],
+          "lados": [
+            "3 m",
+            "75 cm",
+            "",
+            ""
+          ],
+          "nota": "2 vueltas; respuesta en metros"
+        },
+        "id": "prof_prob_vueltas-v3"
+      },
+      {
+        "enunciado": "Un marco mide 2,5 m de largo y 50 cm de ancho. Lo rodeás con 4 vueltas completas de cinta. ¿Cuántos metros de cinta necesitás?",
+        "respuesta_correcta": "24",
+        "opciones": [
+          "24",
+          "6",
+          "12"
+        ],
+        "paso_resuelto": "Largo: 2,5 m = 250 cm.\nUna vuelta: 2 × (250 + 50) = 600 cm.\n4 vueltas: 2400 cm = 24 m.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              2.5,
+              0
+            ],
+            [
+              2.5,
+              0.5
+            ],
+            [
+              0,
+              0.5
+            ]
+          ],
+          "lados": [
+            "2,5 m",
+            "50 cm",
+            "",
+            ""
+          ],
+          "nota": "4 vueltas; respuesta en metros"
+        },
+        "id": "prof_prob_vueltas-v4"
+      },
+      {
+        "enunciado": "Un marco mide 1,2 m de largo y 30 cm de ancho. Lo rodeás con 3 vueltas completas de cinta. ¿Cuántos metros de cinta necesitás?",
+        "respuesta_correcta": "9",
+        "opciones": [
+          "3",
+          "4,5",
+          "9"
+        ],
+        "paso_resuelto": "Largo: 1,2 m = 120 cm.\nUna vuelta: 2 × (120 + 30) = 300 cm.\n3 vueltas: 900 cm = 9 m.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              1.2,
+              0
+            ],
+            [
+              1.2,
+              0.3
+            ],
+            [
+              0,
+              0.3
+            ]
+          ],
+          "lados": [
+            "1,2 m",
+            "30 cm",
+            "",
+            ""
+          ],
+          "nota": "3 vueltas; respuesta en metros"
+        },
+        "id": "prof_prob_vueltas-v5"
+      },
+      {
+        "enunciado": "Un marco mide 4 m de largo y 50 cm de ancho. Lo rodeás con 2 vueltas completas de cinta. ¿Cuántos metros de cinta necesitás?",
+        "respuesta_correcta": "18",
+        "opciones": [
+          "9",
+          "18"
+        ],
+        "paso_resuelto": "Largo: 4 m = 400 cm.\nUna vuelta: 2 × (400 + 50) = 900 cm.\n2 vueltas: 1800 cm = 18 m.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              4.0,
+              0
+            ],
+            [
+              4.0,
+              0.5
+            ],
+            [
+              0,
+              0.5
+            ]
+          ],
+          "lados": [
+            "4 m",
+            "50 cm",
+            "",
+            ""
+          ],
+          "nota": "2 vueltas; respuesta en metros"
+        },
+        "id": "prof_prob_vueltas-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          2.0,
+          0
+        ],
+        [
+          2.0,
+          0.5
+        ],
+        [
+          0,
+          0.5
+        ]
+      ],
+      "lados": [
+        "2 m",
+        "50 cm",
+        "",
+        ""
+      ],
+      "nota": "3 vueltas; respuesta en metros"
+    }
+  },
+  {
+    "id": "prof_prob_rollos",
+    "tema": "perimetros_simples",
+    "despues_de": "prof_prob_vueltas",
+    "titulo": "Comprar rollos completos que alcancen",
+    "explicacion": "Para una vuelta de alambre calculamos el perímetro del terreno. Dividimos por la longitud de cada rollo. Si queda una parte por cubrir, necesitamos un rollo más; si la división es exacta, no agregamos otro. Aquí se puede unir el alambre de los rollos.",
+    "ejemplo": "Un terreno de 4 m por 3 m tiene 14 m de borde. Con rollos de 5 m, dos dan 10 m y no alcanzan: compramos tres.",
+    "pasos": [
+      "Perímetro: 4 + 3 + 4 + 3 = 14 m. Dos rollos dan 10 m, faltan 4 m.",
+      "Tres rollos dan 15 m: alcanzan y sobra 1 m. No necesitamos un cuarto."
+    ],
+    "pista": "Comprobá que los rollos comprados alcancen y que uno menos no alcance.",
+    "actividades": [
+      {
+        "enunciado": "Un terreno rectangular mide 4 m por 3 m. Querés una vuelta de alambre y podés unir los rollos. Cada rollo tiene 5 m y se vende entero. ¿Cuál es la menor cantidad de rollos que alcanza?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "3",
+          "2",
+          "4"
+        ],
+        "paso_resuelto": "Perímetro: 2 × (4 + 3) = 14 m.\n3 rollos dan 15 m: alcanza.\nUno menos da 10 m: no alcanza.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              4.0,
+              0
+            ],
+            [
+              4.0,
+              3.0
+            ],
+            [
+              0,
+              3.0
+            ]
+          ],
+          "lados": [
+            "4 m",
+            "3 m",
+            "",
+            ""
+          ],
+          "nota": "Una vuelta; rollos de 5 m"
+        },
+        "id": "prof_prob_rollos-v1"
+      },
+      {
+        "enunciado": "Un terreno rectangular mide 5 m por 3 m. Querés una vuelta de alambre y podés unir los rollos. Cada rollo tiene 4 m y se vende entero. ¿Cuál es la menor cantidad de rollos que alcanza?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "3",
+          "5",
+          "4"
+        ],
+        "paso_resuelto": "Perímetro: 2 × (5 + 3) = 16 m.\n4 rollos dan 16 m: alcanza.\nUno menos da 12 m: no alcanza.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              5.0,
+              0
+            ],
+            [
+              5.0,
+              3.0
+            ],
+            [
+              0,
+              3.0
+            ]
+          ],
+          "lados": [
+            "5 m",
+            "3 m",
+            "",
+            ""
+          ],
+          "nota": "Una vuelta; rollos de 4 m"
+        },
+        "id": "prof_prob_rollos-v2"
+      },
+      {
+        "enunciado": "Un terreno rectangular mide 6 m por 4 m. Querés una vuelta de alambre y podés unir los rollos. Cada rollo tiene 3 m y se vende entero. ¿Cuál es la menor cantidad de rollos que alcanza?",
+        "respuesta_correcta": "7",
+        "opciones": [
+          "8",
+          "7",
+          "6"
+        ],
+        "paso_resuelto": "Perímetro: 2 × (6 + 4) = 20 m.\n7 rollos dan 21 m: alcanza.\nUno menos da 18 m: no alcanza.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              6.0,
+              0
+            ],
+            [
+              6.0,
+              4.0
+            ],
+            [
+              0,
+              4.0
+            ]
+          ],
+          "lados": [
+            "6 m",
+            "4 m",
+            "",
+            ""
+          ],
+          "nota": "Una vuelta; rollos de 3 m"
+        },
+        "id": "prof_prob_rollos-v3"
+      },
+      {
+        "enunciado": "Un terreno rectangular mide 3 m por 2 m. Querés una vuelta de alambre y podés unir los rollos. Cada rollo tiene 4 m y se vende entero. ¿Cuál es la menor cantidad de rollos que alcanza?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "3",
+          "2",
+          "4"
+        ],
+        "paso_resuelto": "Perímetro: 2 × (3 + 2) = 10 m.\n3 rollos dan 12 m: alcanza.\nUno menos da 8 m: no alcanza.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              3.0,
+              0
+            ],
+            [
+              3.0,
+              2.0
+            ],
+            [
+              0,
+              2.0
+            ]
+          ],
+          "lados": [
+            "3 m",
+            "2 m",
+            "",
+            ""
+          ],
+          "nota": "Una vuelta; rollos de 4 m"
+        },
+        "id": "prof_prob_rollos-v4"
+      },
+      {
+        "enunciado": "Un terreno rectangular mide 7 m por 3 m. Querés una vuelta de alambre y podés unir los rollos. Cada rollo tiene 5 m y se vende entero. ¿Cuál es la menor cantidad de rollos que alcanza?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "3",
+          "5",
+          "4"
+        ],
+        "paso_resuelto": "Perímetro: 2 × (7 + 3) = 20 m.\n4 rollos dan 20 m: alcanza.\nUno menos da 15 m: no alcanza.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              7.0,
+              0
+            ],
+            [
+              7.0,
+              3.0
+            ],
+            [
+              0,
+              3.0
+            ]
+          ],
+          "lados": [
+            "7 m",
+            "3 m",
+            "",
+            ""
+          ],
+          "nota": "Una vuelta; rollos de 5 m"
+        },
+        "id": "prof_prob_rollos-v5"
+      },
+      {
+        "enunciado": "Un terreno rectangular mide 8 m por 3 m. Querés una vuelta de alambre y podés unir los rollos. Cada rollo tiene 4 m y se vende entero. ¿Cuál es la menor cantidad de rollos que alcanza?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "7",
+          "6",
+          "5"
+        ],
+        "paso_resuelto": "Perímetro: 2 × (8 + 3) = 22 m.\n6 rollos dan 24 m: alcanza.\nUno menos da 20 m: no alcanza.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              8.0,
+              0
+            ],
+            [
+              8.0,
+              3.0
+            ],
+            [
+              0,
+              3.0
+            ]
+          ],
+          "lados": [
+            "8 m",
+            "3 m",
+            "",
+            ""
+          ],
+          "nota": "Una vuelta; rollos de 4 m"
+        },
+        "id": "prof_prob_rollos-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          4.0,
+          0
+        ],
+        [
+          4.0,
+          3.0
+        ],
+        [
+          0,
+          3.0
+        ]
+      ],
+      "lados": [
+        "4 m",
+        "3 m",
+        "",
+        ""
+      ],
+      "nota": "Una vuelta; rollos de 5 m"
+    }
+  },
+  {
+    "id": "prof_prob_costo",
+    "tema": "perimetros_simples",
+    "despues_de": "prof_prob_rollos",
+    "titulo": "Calcular cuánto cuesta la cinta",
+    "explicacion": "Cuando la cinta se vende por metro, primero calculamos los metros necesarios para todas las vueltas. Después multiplicamos esa longitud por el precio de un metro. No multiplicamos el precio por la superficie: compramos cinta para el borde.",
+    "ejemplo": "Un marco de 3 m por 2 m necesita 20 m para dos vueltas. A $4 por metro, la cinta cuesta $80.",
+    "pasos": [
+      "Una vuelta: 3 + 2 + 3 + 2 = 10 m. Dos vueltas: 10 × 2 = 20 m.",
+      "Costo: 20 × 4 = $80. Respondemos dinero, no metros."
+    ],
+    "pista": "Calculá los metros de todas las vueltas antes de usar el precio por metro.",
+    "actividades": [
+      {
+        "enunciado": "Un marco rectangular mide 3 m por 2 m. Lleva 2 vuelta(s) de cinta. La cinta se vende por metro a $4. ¿Cuántos pesos cuesta la cinta necesaria?",
+        "respuesta_correcta": "80",
+        "opciones": [
+          "80",
+          "20",
+          "48"
+        ],
+        "paso_resuelto": "Una vuelta: 2 × (3 + 2) = 10 m.\nTodas las vueltas: 10 × 2 = 20 m.\nCosto: 20 × 4 = $80.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              3.0,
+              0
+            ],
+            [
+              3.0,
+              2.0
+            ],
+            [
+              0,
+              2.0
+            ]
+          ],
+          "lados": [
+            "3 m",
+            "2 m",
+            "",
+            ""
+          ],
+          "nota": "2 vuelta(s); $4 por metro"
+        },
+        "id": "prof_prob_costo-v1"
+      },
+      {
+        "enunciado": "Un marco rectangular mide 4 m por 3 m. Lleva 1 vuelta(s) de cinta. La cinta se vende por metro a $5. ¿Cuántos pesos cuesta la cinta necesaria?",
+        "respuesta_correcta": "70",
+        "opciones": [
+          "14",
+          "60",
+          "70"
+        ],
+        "paso_resuelto": "Una vuelta: 2 × (4 + 3) = 14 m.\nTodas las vueltas: 14 × 1 = 14 m.\nCosto: 14 × 5 = $70.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              4.0,
+              0
+            ],
+            [
+              4.0,
+              3.0
+            ],
+            [
+              0,
+              3.0
+            ]
+          ],
+          "lados": [
+            "4 m",
+            "3 m",
+            "",
+            ""
+          ],
+          "nota": "1 vuelta(s); $5 por metro"
+        },
+        "id": "prof_prob_costo-v2"
+      },
+      {
+        "enunciado": "Un marco rectangular mide 5 m por 2 m. Lleva 3 vuelta(s) de cinta. La cinta se vende por metro a $2. ¿Cuántos pesos cuesta la cinta necesaria?",
+        "respuesta_correcta": "84",
+        "opciones": [
+          "60",
+          "84",
+          "42"
+        ],
+        "paso_resuelto": "Una vuelta: 2 × (5 + 2) = 14 m.\nTodas las vueltas: 14 × 3 = 42 m.\nCosto: 42 × 2 = $84.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              5.0,
+              0
+            ],
+            [
+              5.0,
+              2.0
+            ],
+            [
+              0,
+              2.0
+            ]
+          ],
+          "lados": [
+            "5 m",
+            "2 m",
+            "",
+            ""
+          ],
+          "nota": "3 vuelta(s); $2 por metro"
+        },
+        "id": "prof_prob_costo-v3"
+      },
+      {
+        "enunciado": "Un marco rectangular mide 6 m por 4 m. Lleva 2 vuelta(s) de cinta. La cinta se vende por metro a $3. ¿Cuántos pesos cuesta la cinta necesaria?",
+        "respuesta_correcta": "120",
+        "opciones": [
+          "120",
+          "40",
+          "144"
+        ],
+        "paso_resuelto": "Una vuelta: 2 × (6 + 4) = 20 m.\nTodas las vueltas: 20 × 2 = 40 m.\nCosto: 40 × 3 = $120.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              6.0,
+              0
+            ],
+            [
+              6.0,
+              4.0
+            ],
+            [
+              0,
+              4.0
+            ]
+          ],
+          "lados": [
+            "6 m",
+            "4 m",
+            "",
+            ""
+          ],
+          "nota": "2 vuelta(s); $3 por metro"
+        },
+        "id": "prof_prob_costo-v4"
+      },
+      {
+        "enunciado": "Un marco rectangular mide 3 m por 3 m. Lleva 2 vuelta(s) de cinta. La cinta se vende por metro a $5. ¿Cuántos pesos cuesta la cinta necesaria?",
+        "respuesta_correcta": "120",
+        "opciones": [
+          "24",
+          "90",
+          "120"
+        ],
+        "paso_resuelto": "Una vuelta: 2 × (3 + 3) = 12 m.\nTodas las vueltas: 12 × 2 = 24 m.\nCosto: 24 × 5 = $120.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              3.0,
+              0
+            ],
+            [
+              3.0,
+              3.0
+            ],
+            [
+              0,
+              3.0
+            ]
+          ],
+          "lados": [
+            "3 m",
+            "3 m",
+            "",
+            ""
+          ],
+          "nota": "2 vuelta(s); $5 por metro"
+        },
+        "id": "prof_prob_costo-v5"
+      },
+      {
+        "enunciado": "Un marco rectangular mide 7 m por 2 m. Lleva 1 vuelta(s) de cinta. La cinta se vende por metro a $6. ¿Cuántos pesos cuesta la cinta necesaria?",
+        "respuesta_correcta": "108",
+        "opciones": [
+          "84",
+          "108",
+          "18"
+        ],
+        "paso_resuelto": "Una vuelta: 2 × (7 + 2) = 18 m.\nTodas las vueltas: 18 × 1 = 18 m.\nCosto: 18 × 6 = $108.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              7.0,
+              0
+            ],
+            [
+              7.0,
+              2.0
+            ],
+            [
+              0,
+              2.0
+            ]
+          ],
+          "lados": [
+            "7 m",
+            "2 m",
+            "",
+            ""
+          ],
+          "nota": "1 vuelta(s); $6 por metro"
+        },
+        "id": "prof_prob_costo-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          3.0,
+          0
+        ],
+        [
+          3.0,
+          2.0
+        ],
+        [
+          0,
+          2.0
+        ]
+      ],
+      "lados": [
+        "3 m",
+        "2 m",
+        "",
+        ""
+      ],
+      "nota": "2 vueltas; $4 por metro"
+    }
+  }
+];
+for (const unidad of PROBLEMAS_R15) {
+ const indice = UNIDADES_BASES.findIndex(u => u.id === unidad.despues_de);
+ if (indice < 0) throw new Error('Falta el paso anterior de ' + unidad.id);
+ UNIDADES_BASES.splice(indice + 1, 0, unidad);
+}
+// FIN R15
+
 export const TEMAS_BASES = [...new Set(UNIDADES_BASES.map(u => u.tema))];
 export function getUnidadBase(id) { return UNIDADES_BASES.find(u => u.id === id) || null; }
 export function crearActividadBase(id, modo, sesiones = []) {
