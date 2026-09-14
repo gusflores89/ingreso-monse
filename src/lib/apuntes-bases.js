@@ -1763,6 +1763,40 @@ const UNIDADES = [
     }
   },
   {
+    "id": "prof_fig_vertices",
+    "tema": "geometria_triangulos",
+    "titulo": "Reconocer lados y vértices de un triángulo",
+    "explicacion": "Un triángulo es una figura cerrada con tres lados rectos y tres vértices. Un lado une dos vértices. El vértice que queda enfrente de ese lado se llama opuesto: no es ninguno de sus extremos.",
+    "ejemplo": "En el triángulo ABC, el lado AB une A con B y su vértice opuesto es C.",
+    "pasos": [
+      "Seguimos el lado AB desde A hasta B.",
+      "El vértice que no está en ese lado es C."
+    ],
+    "pista": "Buscá la letra que no es un extremo del lado nombrado.",
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          1.8,
+          2.4
+        ]
+      ],
+      "vertices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  },
+  {
     "id": "mat_tri_lados",
     "tema": "geometria_triangulos",
     "titulo": "Clasificar triángulos por sus lados",
@@ -1773,7 +1807,28 @@ const UNIDADES = [
       "Tiene dos iguales y uno distinto: isósceles."
     ],
     "pista": "Contá cuántos lados tienen la misma medida.",
-    "visual": null
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4.5,
+          3.968626966596886
+        ]
+      ],
+      "lados": [
+        "4 cm",
+        "4 cm",
+        "6 cm"
+      ]
+    }
   },
   {
     "id": "mat_tri_angulos",
@@ -1786,7 +1841,173 @@ const UNIDADES = [
       "180° − 110° = 70°."
     ],
     "pista": "Restá de 180° la suma de los dos ángulos conocidos.",
-    "visual": null
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0.5923962654520477,
+          0.7059903775918711
+        ]
+      ],
+      "angulos": [
+        "50°",
+        "60°",
+        "70°"
+      ]
+    }
+  },
+  {
+    "id": "prof_fig_angulos",
+    "tema": "geometria_triangulos",
+    "titulo": "Clasificar mirando los tres ángulos",
+    "explicacion": "Un triángulo es acutángulo si sus tres ángulos son menores que 90°. Es rectángulo si tiene un ángulo de 90°, y obtusángulo si tiene uno mayor que 90°. Miramos las tres medidas, no solamente la forma del dibujo.",
+    "ejemplo": "Con 60°, 60° y 60°, los tres ángulos son agudos: es acutángulo.",
+    "pasos": [
+      "Comparamos cada medida con 90°.",
+      "Las tres son menores: elegimos acutángulo."
+    ],
+    "pista": "Buscá primero si hay un ángulo de 90° o uno mayor.",
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0.5000000000000001,
+          0.8660254037844386
+        ]
+      ],
+      "angulos": [
+        "60°",
+        "60°",
+        "60°"
+      ]
+    }
+  },
+  {
+    "id": "prof_fig_existencia",
+    "tema": "geometria_triangulos",
+    "titulo": "Comprobar si tres lados pueden cerrar",
+    "explicacion": "Para formar un triángulo, los dos lados más cortos juntos deben medir más que el más largo. Si suman lo mismo, quedan estirados en una recta; si suman menos, no alcanzan a cerrar.",
+    "ejemplo": "Con tiras de 3, 4 y 5 cm, podemos cerrar porque 3 + 4 es mayor que 5.",
+    "pasos": [
+      "Ordenamos las medidas: 3, 4 y 5.",
+      "Sumamos las dos menores: 3 + 4 = 7. Como 7 > 5, sí se puede."
+    ],
+    "pista": "La suma de los dos menores debe superar al mayor.",
+    "visual": {
+      "tipo": "segmentos",
+      "longitudes": [
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  {
+    "id": "prof_fig_poligonos",
+    "tema": "geometria_cuadrilateros_circunferencia",
+    "titulo": "Contar el borde de un polígono",
+    "explicacion": "Un polígono es una figura cerrada formada por segmentos que no se cruzan. Tiene tantos lados como vértices. Con 3 lados es triángulo; con 4, cuadrilátero; con 5, pentágono; con 6, hexágono; con 7, heptágono; con 8, octógono.",
+    "ejemplo": "El dibujo tiene cinco lados y cinco vértices: es un pentágono.",
+    "pasos": [
+      "Elegimos un vértice para empezar y recorremos el borde una sola vez.",
+      "Contamos cinco lados: buscamos el nombre pentágono."
+    ],
+    "pista": "Contá cada tramo recto del contorno una sola vez.",
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          1
+        ],
+        [
+          -0.95105652,
+          0.30901699
+        ],
+        [
+          -0.58778525,
+          -0.80901699
+        ],
+        [
+          0.58778525,
+          -0.80901699
+        ],
+        [
+          0.95105652,
+          0.30901699
+        ]
+      ]
+    }
+  },
+  {
+    "id": "prof_fig_diagonales",
+    "tema": "geometria_cuadrilateros_circunferencia",
+    "titulo": "Unir vértices que no son vecinos",
+    "explicacion": "Una diagonal une dos vértices no consecutivos de un polígono. Desde un vértice no trazamos una diagonal hacia él mismo ni hacia sus dos vecinos. En estos polígonos convexos, las diagonales quedan dentro de la figura.",
+    "ejemplo": "Desde A en un pentágono podemos trazar dos diagonales.",
+    "pasos": [
+      "Ubicamos A y dejamos fuera a sus dos vecinos.",
+      "Unimos A con los otros dos vértices: son dos diagonales."
+    ],
+    "pista": "Las uniones con los vecinos ya son lados, no diagonales.",
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          1
+        ],
+        [
+          -0.95105652,
+          0.30901699
+        ],
+        [
+          -0.58778525,
+          -0.80901699
+        ],
+        [
+          0.58778525,
+          -0.80901699
+        ],
+        [
+          0.95105652,
+          0.30901699
+        ]
+      ],
+      "vertices": [
+        "A",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "diagonales": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ]
+      ]
+    }
   },
   {
     "id": "mat_cuad_lados",
@@ -1799,7 +2020,39 @@ const UNIDADES = [
       "El cuadrado cumple esa condición y además tiene lados iguales."
     ],
     "pista": "Una figura puede pertenecer a más de una familia.",
-    "visual": null
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "angulos": [
+        "90°",
+        "90°",
+        "90°",
+        "90°"
+      ],
+      "lados": [
+        "3 cm",
+        "3 cm",
+        "3 cm",
+        "3 cm"
+      ]
+    }
   },
   {
     "id": "mat_circ_radio",
@@ -1812,7 +2065,10 @@ const UNIDADES = [
       "3 + 3 = 6 cm."
     ],
     "pista": "El diámetro mide el doble del radio.",
-    "visual": null
+    "visual": {
+      "tipo": "circunferencia",
+      "radio": 3
+    }
   },
   {
     "id": "mat_per_rectangulo",
@@ -1825,7 +2081,111 @@ const UNIDADES = [
       "5 + 3 + 5 + 3 = 16 cm."
     ],
     "pista": "Sumá cada lado del borde una sola vez.",
-    "visual": null
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "lados": [
+        "5 cm",
+        "3 cm",
+        "5 cm",
+        "3 cm"
+      ]
+    }
+  },
+  {
+    "id": "prof_fig_per_tri",
+    "tema": "perimetros_simples",
+    "titulo": "Rodear un triángulo con cinta",
+    "explicacion": "El perímetro mide todo el borde. Para rodear un triángulo con cinta sumamos sus tres lados una sola vez. Todas las medidas deben estar en la misma unidad.",
+    "ejemplo": "Un triángulo de lados 3, 4 y 5 cm necesita 12 cm de cinta para una vuelta.",
+    "pasos": [
+      "Seguimos el borde: 3 + 4 + 5.",
+      "La suma es 12: escribimos 12 cm de perímetro."
+    ],
+    "pista": "Sumá los tres lados; no multipliques dos medidas.",
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "lados": [
+        "3 cm",
+        "4 cm",
+        "5 cm"
+      ]
+    }
+  },
+  {
+    "id": "prof_fig_per_regular",
+    "tema": "perimetros_simples",
+    "titulo": "Sumar lados iguales sin perder ninguno",
+    "explicacion": "Un polígono regular tiene todos los lados y todos los ángulos iguales. Su perímetro se obtiene multiplicando la cantidad de lados por la medida de un lado. La cuenta resume la suma de todos los lados.",
+    "ejemplo": "Un pentágono regular con lado de 3 cm tiene perímetro 5 × 3 = 15 cm.",
+    "pasos": [
+      "Contamos cinco lados iguales.",
+      "Sumamos cinco veces 3: 5 × 3 = 15 cm."
+    ],
+    "pista": "Cantidad de lados por longitud de un lado.",
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          1
+        ],
+        [
+          -0.95105652,
+          0.30901699
+        ],
+        [
+          -0.58778525,
+          -0.80901699
+        ],
+        [
+          0.58778525,
+          -0.80901699
+        ],
+        [
+          0.95105652,
+          0.30901699
+        ]
+      ],
+      "lados": [
+        "3 cm",
+        "3 cm",
+        "3 cm",
+        "3 cm",
+        "3 cm"
+      ]
+    }
   },
   {
     "id": "mat_per_circunferencia",
@@ -1838,7 +2198,10 @@ const UNIDADES = [
       "3,14 × 10 = 31,4 cm."
     ],
     "pista": "Revisá si te dieron radio o diámetro.",
-    "visual": null
+    "visual": {
+      "tipo": "circunferencia",
+      "diametro": 10
+    }
   },
   {
     "id": "mat_per_union",
@@ -1851,7 +2214,46 @@ const UNIDADES = [
       "Quitamos dos veces el lado interno: 24 − 6 = 18 cm."
     ],
     "pista": "Recorré solo el borde exterior.",
-    "visual": null
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "lados": [
+        "6 cm",
+        "3 cm",
+        "6 cm",
+        "3 cm"
+      ],
+      "auxiliares": [
+        [
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      ],
+      "nota": "Línea interior: lado compartido de 3 cm"
+    }
   },
   {
     "id": "mat_per_faltante",
@@ -1864,7 +2266,230 @@ const UNIDADES = [
       "10 − 4 = 6 cm."
     ],
     "pista": "Los dos tramos deben sumar el lado completo.",
-    "visual": null
+    "visual": {
+      "tipo": "tramo",
+      "total": 10,
+      "parte": 4
+    }
+  },
+  {
+    "id": "prof_fig_borde_l",
+    "tema": "perimetros_compuestos",
+    "titulo": "Recorrer un contorno con entrante",
+    "explicacion": "En una figura con forma de L recorremos todos los tramos del borde exterior, incluido el entrante. Las divisiones que dibujamos dentro no forman parte del perímetro. Sumamos cada tramo una sola vez.",
+    "ejemplo": "En la figura, el borde mide 6 + 2 + 3 + 2 + 3 + 4 = 20 cm.",
+    "pasos": [
+      "Empezamos abajo y seguimos el borde hasta volver al mismo punto.",
+      "Anotamos y sumamos los seis tramos: 20 cm."
+    ],
+    "pista": "Seguí el contorno sin saltarte el entrante.",
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "lados": [
+        "6 cm",
+        "2 cm",
+        "3 cm",
+        "2 cm",
+        "3 cm",
+        "4 cm"
+      ]
+    }
+  },
+  {
+    "id": "prof_fig_area_unidad",
+    "tema": "perimetros_compuestos",
+    "titulo": "Cubrir con cuadrados de un centímetro",
+    "explicacion": "El perímetro mide el borde; el área mide la superficie que cubrimos. Un cuadradito de 1 cm de lado ocupa 1 cm². Para medir el área contamos los cuadrados que cubren la figura sin huecos ni superposiciones.",
+    "ejemplo": "La figura tiene dos filas de tres cuadrados de 1 cm²: ocupa 6 cm².",
+    "pasos": [
+      "Contamos tres cuadrados en cada fila.",
+      "Hay dos filas: 3 + 3 = 6 cuadrados. El área es 6 cm²."
+    ],
+    "pista": "Contá las casillas interiores, no las líneas del borde.",
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "cuadricula": true,
+      "nota": "Cada casilla: 1 cm²"
+    }
+  },
+  {
+    "id": "prof_fig_area_rect",
+    "tema": "perimetros_compuestos",
+    "titulo": "Pasar de filas a una multiplicación",
+    "explicacion": "En un rectángulo, cada fila tiene tantos cuadrados de 1 cm² como centímetros mide la base. Hay tantas filas como centímetros mide la altura. Por eso el área es base por altura. En un cuadrado multiplicamos el lado por sí mismo.",
+    "ejemplo": "Un rectángulo de base 4 cm y altura 3 cm ocupa 4 × 3 = 12 cm².",
+    "pasos": [
+      "La base permite poner cuatro cuadrados por fila y la altura permite tres filas.",
+      "Multiplicamos 4 × 3 = 12 y escribimos cm²."
+    ],
+    "pista": "Para cubrir multiplicamos base por altura; para rodear sumamos lados.",
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "cuadricula": true,
+      "lados": [
+        "4 cm",
+        "3 cm",
+        "",
+        ""
+      ]
+    }
+  },
+  {
+    "id": "prof_fig_area_tri",
+    "tema": "perimetros_compuestos",
+    "titulo": "Un triángulo que ocupa medio rectángulo",
+    "explicacion": "Una diagonal divide un rectángulo en dos triángulos iguales. Cada uno ocupa la mitad del área del rectángulo. En este triángulo rectángulo, la base y la altura son los dos lados que forman el ángulo de 90°. Su área es base por altura, dividido por dos.",
+    "ejemplo": "Un triángulo rectángulo de base 6 cm y altura 4 cm ocupa la mitad de 24 cm²: 12 cm².",
+    "pasos": [
+      "Completamos el rectángulo: 6 × 4 = 24 cm².",
+      "Tomamos la mitad: 24 ÷ 2 = 12 cm²."
+    ],
+    "pista": "Calculá el rectángulo completo y dividí su área por dos.",
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "lados": [
+        "6 cm",
+        "",
+        "4 cm"
+      ],
+      "auxiliares": [
+        [
+          [
+            6,
+            0
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            0,
+            4
+          ]
+        ]
+      ],
+      "nota": "Línea punteada: completamos el rectángulo"
+    }
+  },
+  {
+    "id": "prof_fig_area_l",
+    "tema": "perimetros_compuestos",
+    "titulo": "Cubrir una figura por partes",
+    "explicacion": "Para hallar el área de una figura en L podemos dividirla en dos rectángulos que no se superpongan. Calculamos el área de cada parte y después las sumamos. La línea interior ayuda a separar las partes: no añade superficie.",
+    "ejemplo": "Separamos una franja inferior de 6 × 2 y un rectángulo superior de 3 × 2: 12 + 6 = 18 cm².",
+    "pasos": [
+      "Contamos 12 casillas en la franja inferior y 6 en la parte superior.",
+      "Sumamos las dos superficies: 12 + 6 = 18 cm²."
+    ],
+    "pista": "Separá en dos rectángulos y contá cada casilla una sola vez.",
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "cuadricula": true,
+      "division": 2,
+      "nota": "Cada casilla: 1 cm²"
+    }
   },
   {
     "id": "mat_graf_leer",

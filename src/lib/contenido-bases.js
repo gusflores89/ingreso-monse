@@ -12910,6 +12910,3360 @@ for (const unidad of GEOMETRIA_R13) {
 }
 // FIN R13
 
+
+
+// R14: figuras y superficies.
+const FIGURAS_R14 = [
+  {
+    "id": "prof_fig_vertices",
+    "tema": "geometria_triangulos",
+    "antes_de": "mat_tri_lados",
+    "titulo": "Reconocer lados y vértices de un triángulo",
+    "explicacion": "Un triángulo es una figura cerrada con tres lados rectos y tres vértices. Un lado une dos vértices. El vértice que queda enfrente de ese lado se llama opuesto: no es ninguno de sus extremos.",
+    "ejemplo": "En el triángulo ABC, el lado AB une A con B y su vértice opuesto es C.",
+    "pasos": [
+      "Seguimos el lado AB desde A hasta B.",
+      "El vértice que no está en ese lado es C."
+    ],
+    "pista": "Buscá la letra que no es un extremo del lado nombrado.",
+    "actividades": [
+      {
+        "enunciado": "En el dibujo, ¿qué vértice queda opuesto al lado AB?",
+        "respuesta_correcta": "C",
+        "opciones": [
+          "C",
+          "A",
+          "B"
+        ],
+        "paso_resuelto": "El lado AB une A con B. El otro vértice es C.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              1.8,
+              2.4
+            ]
+          ],
+          "vertices": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        "id": "prof_fig_vertices-v1"
+      },
+      {
+        "enunciado": "En el dibujo, ¿qué vértice queda opuesto al lado PQ?",
+        "respuesta_correcta": "R",
+        "opciones": [
+          "P",
+          "Q",
+          "R"
+        ],
+        "paso_resuelto": "El lado PQ une P con Q. El otro vértice es R.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              1.8,
+              2.4
+            ]
+          ],
+          "vertices": [
+            "P",
+            "Q",
+            "R"
+          ]
+        },
+        "id": "prof_fig_vertices-v2"
+      },
+      {
+        "enunciado": "En el dibujo, ¿qué vértice queda opuesto al lado DE?",
+        "respuesta_correcta": "F",
+        "opciones": [
+          "E",
+          "F",
+          "D"
+        ],
+        "paso_resuelto": "El lado DE une D con E. El otro vértice es F.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              1.8,
+              2.4
+            ]
+          ],
+          "vertices": [
+            "D",
+            "E",
+            "F"
+          ]
+        },
+        "id": "prof_fig_vertices-v3"
+      },
+      {
+        "enunciado": "En el dibujo, ¿qué vértice queda opuesto al lado LM?",
+        "respuesta_correcta": "N",
+        "opciones": [
+          "N",
+          "L",
+          "M"
+        ],
+        "paso_resuelto": "El lado LM une L con M. El otro vértice es N.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              1.8,
+              2.4
+            ]
+          ],
+          "vertices": [
+            "L",
+            "M",
+            "N"
+          ]
+        },
+        "id": "prof_fig_vertices-v4"
+      },
+      {
+        "enunciado": "En el dibujo, ¿qué vértice queda opuesto al lado RS?",
+        "respuesta_correcta": "T",
+        "opciones": [
+          "R",
+          "S",
+          "T"
+        ],
+        "paso_resuelto": "El lado RS une R con S. El otro vértice es T.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              1.8,
+              2.4
+            ]
+          ],
+          "vertices": [
+            "R",
+            "S",
+            "T"
+          ]
+        },
+        "id": "prof_fig_vertices-v5"
+      },
+      {
+        "enunciado": "En el dibujo, ¿qué vértice queda opuesto al lado XY?",
+        "respuesta_correcta": "Z",
+        "opciones": [
+          "Y",
+          "Z",
+          "X"
+        ],
+        "paso_resuelto": "El lado XY une X con Y. El otro vértice es Z.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              1.8,
+              2.4
+            ]
+          ],
+          "vertices": [
+            "X",
+            "Y",
+            "Z"
+          ]
+        },
+        "id": "prof_fig_vertices-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          1.8,
+          2.4
+        ]
+      ],
+      "vertices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  },
+  {
+    "id": "prof_fig_angulos",
+    "tema": "geometria_triangulos",
+    "despues_de": "mat_tri_angulos",
+    "titulo": "Clasificar mirando los tres ángulos",
+    "explicacion": "Un triángulo es acutángulo si sus tres ángulos son menores que 90°. Es rectángulo si tiene un ángulo de 90°, y obtusángulo si tiene uno mayor que 90°. Miramos las tres medidas, no solamente la forma del dibujo.",
+    "ejemplo": "Con 60°, 60° y 60°, los tres ángulos son agudos: es acutángulo.",
+    "pasos": [
+      "Comparamos cada medida con 90°.",
+      "Las tres son menores: elegimos acutángulo."
+    ],
+    "pista": "Buscá primero si hay un ángulo de 90° o uno mayor.",
+    "actividades": [
+      {
+        "enunciado": "Los ángulos miden 60°, 60° y 60°. ¿Cómo se clasifica el triángulo por sus ángulos?",
+        "respuesta_correcta": "Acutángulo",
+        "opciones": [
+          "Acutángulo",
+          "Rectángulo",
+          "Obtusángulo"
+        ],
+        "paso_resuelto": "La mayor medida es 60°. Todos son menores que 90°.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0.5000000000000001,
+              0.8660254037844386
+            ]
+          ],
+          "angulos": [
+            "60°",
+            "60°",
+            "60°"
+          ]
+        },
+        "id": "prof_fig_angulos-v1"
+      },
+      {
+        "enunciado": "Los ángulos miden 90°, 60° y 30°. ¿Cómo se clasifica el triángulo por sus ángulos?",
+        "respuesta_correcta": "Rectángulo",
+        "opciones": [
+          "Acutángulo",
+          "Obtusángulo",
+          "Rectángulo"
+        ],
+        "paso_resuelto": "La mayor medida es 90°. Tiene un ángulo de 90°.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1.0605752387249069e-16,
+              1.7320508075688774
+            ]
+          ],
+          "angulos": [
+            "90°",
+            "60°",
+            "30°"
+          ]
+        },
+        "id": "prof_fig_angulos-v2"
+      },
+      {
+        "enunciado": "Los ángulos miden 110°, 40° y 30°. ¿Cómo se clasifica el triángulo por sus ángulos?",
+        "respuesta_correcta": "Obtusángulo",
+        "opciones": [
+          "Rectángulo",
+          "Obtusángulo",
+          "Acutángulo"
+        ],
+        "paso_resuelto": "La mayor medida es 110°. Tiene un ángulo mayor que 90°.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              -0.4396926207859084,
+              1.2080455471101075
+            ]
+          ],
+          "angulos": [
+            "110°",
+            "40°",
+            "30°"
+          ]
+        },
+        "id": "prof_fig_angulos-v3"
+      },
+      {
+        "enunciado": "Los ángulos miden 80°, 60° y 40°. ¿Cómo se clasifica el triángulo por sus ángulos?",
+        "respuesta_correcta": "Acutángulo",
+        "opciones": [
+          "Acutángulo",
+          "Rectángulo",
+          "Obtusángulo"
+        ],
+        "paso_resuelto": "La mayor medida es 80°. Todos son menores que 90°.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0.23395555688102207,
+              1.3268278963378768
+            ]
+          ],
+          "angulos": [
+            "80°",
+            "60°",
+            "40°"
+          ]
+        },
+        "id": "prof_fig_angulos-v4"
+      },
+      {
+        "enunciado": "Los ángulos miden 100°, 40° y 40°. ¿Cómo se clasifica el triángulo por sus ángulos?",
+        "respuesta_correcta": "Obtusángulo",
+        "opciones": [
+          "Acutángulo",
+          "Rectángulo",
+          "Obtusángulo"
+        ],
+        "paso_resuelto": "La mayor medida es 100°. Tiene un ángulo mayor que 90°.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              -0.1736481776669303,
+              0.984807753012208
+            ]
+          ],
+          "angulos": [
+            "100°",
+            "40°",
+            "40°"
+          ]
+        },
+        "id": "prof_fig_angulos-v5"
+      },
+      {
+        "enunciado": "Los ángulos miden 90°, 45° y 45°. ¿Cómo se clasifica el triángulo por sus ángulos?",
+        "respuesta_correcta": "Rectángulo",
+        "opciones": [
+          "Obtusángulo",
+          "Rectángulo",
+          "Acutángulo"
+        ],
+        "paso_resuelto": "La mayor medida es 90°. Tiene un ángulo de 90°.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              6.123233995736766e-17,
+              1.0
+            ]
+          ],
+          "angulos": [
+            "90°",
+            "45°",
+            "45°"
+          ]
+        },
+        "id": "prof_fig_angulos-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0.5000000000000001,
+          0.8660254037844386
+        ]
+      ],
+      "angulos": [
+        "60°",
+        "60°",
+        "60°"
+      ]
+    }
+  },
+  {
+    "id": "prof_fig_existencia",
+    "tema": "geometria_triangulos",
+    "despues_de": "prof_fig_angulos",
+    "titulo": "Comprobar si tres lados pueden cerrar",
+    "explicacion": "Para formar un triángulo, los dos lados más cortos juntos deben medir más que el más largo. Si suman lo mismo, quedan estirados en una recta; si suman menos, no alcanzan a cerrar.",
+    "ejemplo": "Con tiras de 3, 4 y 5 cm, podemos cerrar porque 3 + 4 es mayor que 5.",
+    "pasos": [
+      "Ordenamos las medidas: 3, 4 y 5.",
+      "Sumamos las dos menores: 3 + 4 = 7. Como 7 > 5, sí se puede."
+    ],
+    "pista": "La suma de los dos menores debe superar al mayor.",
+    "actividades": [
+      {
+        "enunciado": "Tenemos tiras de 3, 4 y 5 cm. ¿Pueden ser los lados de un triángulo?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "3 + 4 = 7. Supera a 5: pueden cerrar.",
+        "visual": {
+          "tipo": "segmentos",
+          "longitudes": [
+            3,
+            4,
+            5
+          ]
+        },
+        "id": "prof_fig_existencia-v1"
+      },
+      {
+        "enunciado": "Tenemos tiras de 2, 3 y 5 cm. ¿Pueden ser los lados de un triángulo?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "2 + 3 = 5. No supera a 5: no forman un triángulo.",
+        "visual": {
+          "tipo": "segmentos",
+          "longitudes": [
+            2,
+            3,
+            5
+          ]
+        },
+        "id": "prof_fig_existencia-v2"
+      },
+      {
+        "enunciado": "Tenemos tiras de 2, 3 y 6 cm. ¿Pueden ser los lados de un triángulo?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "2 + 3 = 5. No supera a 6: no forman un triángulo.",
+        "visual": {
+          "tipo": "segmentos",
+          "longitudes": [
+            2,
+            3,
+            6
+          ]
+        },
+        "id": "prof_fig_existencia-v3"
+      },
+      {
+        "enunciado": "Tenemos tiras de 4, 4 y 6 cm. ¿Pueden ser los lados de un triángulo?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "4 + 4 = 8. Supera a 6: pueden cerrar.",
+        "visual": {
+          "tipo": "segmentos",
+          "longitudes": [
+            4,
+            4,
+            6
+          ]
+        },
+        "id": "prof_fig_existencia-v4"
+      },
+      {
+        "enunciado": "Tenemos tiras de 2, 2 y 3 cm. ¿Pueden ser los lados de un triángulo?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "2 + 2 = 4. Supera a 3: pueden cerrar.",
+        "visual": {
+          "tipo": "segmentos",
+          "longitudes": [
+            2,
+            2,
+            3
+          ]
+        },
+        "id": "prof_fig_existencia-v5"
+      },
+      {
+        "enunciado": "Tenemos tiras de 1, 2 y 4 cm. ¿Pueden ser los lados de un triángulo?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "1 + 2 = 3. No supera a 4: no forman un triángulo.",
+        "visual": {
+          "tipo": "segmentos",
+          "longitudes": [
+            1,
+            2,
+            4
+          ]
+        },
+        "id": "prof_fig_existencia-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "segmentos",
+      "longitudes": [
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  {
+    "id": "prof_fig_poligonos",
+    "tema": "geometria_cuadrilateros_circunferencia",
+    "antes_de": "mat_cuad_lados",
+    "titulo": "Contar el borde de un polígono",
+    "explicacion": "Un polígono es una figura cerrada formada por segmentos que no se cruzan. Tiene tantos lados como vértices. Con 3 lados es triángulo; con 4, cuadrilátero; con 5, pentágono; con 6, hexágono; con 7, heptágono; con 8, octógono.",
+    "ejemplo": "El dibujo tiene cinco lados y cinco vértices: es un pentágono.",
+    "pasos": [
+      "Elegimos un vértice para empezar y recorremos el borde una sola vez.",
+      "Contamos cinco lados: buscamos el nombre pentágono."
+    ],
+    "pista": "Contá cada tramo recto del contorno una sola vez.",
+    "actividades": [
+      {
+        "enunciado": "Recorré el borde. ¿Cómo se llama este polígono según su cantidad de lados?",
+        "respuesta_correcta": "Pentágono",
+        "opciones": [
+          "Pentágono",
+          "Hexágono",
+          "Circunferencia"
+        ],
+        "paso_resuelto": "Tiene 5 lados y 5 vértices: es un pentágono.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              -0.95105652,
+              0.30901699
+            ],
+            [
+              -0.58778525,
+              -0.80901699
+            ],
+            [
+              0.58778525,
+              -0.80901699
+            ],
+            [
+              0.95105652,
+              0.30901699
+            ]
+          ]
+        },
+        "id": "prof_fig_poligonos-v1"
+      },
+      {
+        "enunciado": "Recorré el borde. ¿Cómo se llama este polígono según su cantidad de lados?",
+        "respuesta_correcta": "Triángulo",
+        "opciones": [
+          "Cuadrilátero",
+          "Circunferencia",
+          "Triángulo"
+        ],
+        "paso_resuelto": "Tiene 3 lados y 3 vértices: es un triángulo.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              -0.8660254,
+              -0.5
+            ],
+            [
+              0.8660254,
+              -0.5
+            ]
+          ]
+        },
+        "id": "prof_fig_poligonos-v2"
+      },
+      {
+        "enunciado": "Recorré el borde. ¿Cómo se llama este polígono según su cantidad de lados?",
+        "respuesta_correcta": "Hexágono",
+        "opciones": [
+          "Circunferencia",
+          "Hexágono",
+          "Pentágono"
+        ],
+        "paso_resuelto": "Tiene 6 lados y 6 vértices: es un hexágono.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              -0.8660254,
+              0.5
+            ],
+            [
+              -0.8660254,
+              -0.5
+            ],
+            [
+              -0.0,
+              -1.0
+            ],
+            [
+              0.8660254,
+              -0.5
+            ],
+            [
+              0.8660254,
+              0.5
+            ]
+          ]
+        },
+        "id": "prof_fig_poligonos-v3"
+      },
+      {
+        "enunciado": "Recorré el borde. ¿Cómo se llama este polígono según su cantidad de lados?",
+        "respuesta_correcta": "Cuadrilátero",
+        "opciones": [
+          "Cuadrilátero",
+          "Triángulo",
+          "Circunferencia"
+        ],
+        "paso_resuelto": "Tiene 4 lados y 4 vértices: es un cuadrilátero.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              -1.0,
+              0.0
+            ],
+            [
+              -0.0,
+              -1.0
+            ],
+            [
+              1.0,
+              -0.0
+            ]
+          ]
+        },
+        "id": "prof_fig_poligonos-v4"
+      },
+      {
+        "enunciado": "Recorré el borde. ¿Cómo se llama este polígono según su cantidad de lados?",
+        "respuesta_correcta": "Octógono",
+        "opciones": [
+          "Heptágono",
+          "Circunferencia",
+          "Octógono"
+        ],
+        "paso_resuelto": "Tiene 8 lados y 8 vértices: es un octógono.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              -0.70710678,
+              0.70710678
+            ],
+            [
+              -1.0,
+              0.0
+            ],
+            [
+              -0.70710678,
+              -0.70710678
+            ],
+            [
+              -0.0,
+              -1.0
+            ],
+            [
+              0.70710678,
+              -0.70710678
+            ],
+            [
+              1.0,
+              -0.0
+            ],
+            [
+              0.70710678,
+              0.70710678
+            ]
+          ]
+        },
+        "id": "prof_fig_poligonos-v5"
+      },
+      {
+        "enunciado": "Recorré el borde. ¿Cómo se llama este polígono según su cantidad de lados?",
+        "respuesta_correcta": "Heptágono",
+        "opciones": [
+          "Circunferencia",
+          "Heptágono",
+          "Octógono"
+        ],
+        "paso_resuelto": "Tiene 7 lados y 7 vértices: es un heptágono.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              -0.78183148,
+              0.6234898
+            ],
+            [
+              -0.97492791,
+              -0.22252093
+            ],
+            [
+              -0.43388374,
+              -0.90096887
+            ],
+            [
+              0.43388374,
+              -0.90096887
+            ],
+            [
+              0.97492791,
+              -0.22252093
+            ],
+            [
+              0.78183148,
+              0.6234898
+            ]
+          ]
+        },
+        "id": "prof_fig_poligonos-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          -0.95105652,
+          0.30901699
+        ],
+        [
+          -0.58778525,
+          -0.80901699
+        ],
+        [
+          0.58778525,
+          -0.80901699
+        ],
+        [
+          0.95105652,
+          0.30901699
+        ]
+      ]
+    }
+  },
+  {
+    "id": "prof_fig_diagonales",
+    "tema": "geometria_cuadrilateros_circunferencia",
+    "despues_de": "prof_fig_poligonos",
+    "titulo": "Unir vértices que no son vecinos",
+    "explicacion": "Una diagonal une dos vértices no consecutivos de un polígono. Desde un vértice no trazamos una diagonal hacia él mismo ni hacia sus dos vecinos. En estos polígonos convexos, las diagonales quedan dentro de la figura.",
+    "ejemplo": "Desde A en un pentágono podemos trazar dos diagonales.",
+    "pasos": [
+      "Ubicamos A y dejamos fuera a sus dos vecinos.",
+      "Unimos A con los otros dos vértices: son dos diagonales."
+    ],
+    "pista": "Las uniones con los vecinos ya son lados, no diagonales.",
+    "actividades": [
+      {
+        "enunciado": "Las líneas verdes salen de A. ¿Cuántas diagonales se trazaron desde ese vértice?",
+        "respuesta_correcta": "2",
+        "opciones": [
+          "2",
+          "3",
+          "5"
+        ],
+        "paso_resuelto": "Hay 5 vértices. Excluimos A y sus dos vecinos: 5 − 3 = 2.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              -0.95105652,
+              0.30901699
+            ],
+            [
+              -0.58778525,
+              -0.80901699
+            ],
+            [
+              0.58778525,
+              -0.80901699
+            ],
+            [
+              0.95105652,
+              0.30901699
+            ]
+          ],
+          "vertices": [
+            "A",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "diagonales": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ]
+          ]
+        },
+        "id": "prof_fig_diagonales-v1"
+      },
+      {
+        "enunciado": "Las líneas verdes salen de A. ¿Cuántas diagonales se trazaron desde ese vértice?",
+        "respuesta_correcta": "1",
+        "opciones": [
+          "2",
+          "4",
+          "1"
+        ],
+        "paso_resuelto": "Hay 4 vértices. Excluimos A y sus dos vecinos: 4 − 3 = 1.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              -1.0,
+              0.0
+            ],
+            [
+              -0.0,
+              -1.0
+            ],
+            [
+              1.0,
+              -0.0
+            ]
+          ],
+          "vertices": [
+            "A",
+            "",
+            "",
+            ""
+          ],
+          "diagonales": [
+            [
+              0,
+              2
+            ]
+          ]
+        },
+        "id": "prof_fig_diagonales-v2"
+      },
+      {
+        "enunciado": "Las líneas verdes salen de A. ¿Cuántas diagonales se trazaron desde ese vértice?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "6",
+          "3",
+          "4"
+        ],
+        "paso_resuelto": "Hay 6 vértices. Excluimos A y sus dos vecinos: 6 − 3 = 3.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              -0.8660254,
+              0.5
+            ],
+            [
+              -0.8660254,
+              -0.5
+            ],
+            [
+              -0.0,
+              -1.0
+            ],
+            [
+              0.8660254,
+              -0.5
+            ],
+            [
+              0.8660254,
+              0.5
+            ]
+          ],
+          "vertices": [
+            "A",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "diagonales": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              4
+            ]
+          ]
+        },
+        "id": "prof_fig_diagonales-v3"
+      },
+      {
+        "enunciado": "Las líneas verdes salen de A. ¿Cuántas diagonales se trazaron desde ese vértice?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "4",
+          "5",
+          "7"
+        ],
+        "paso_resuelto": "Hay 7 vértices. Excluimos A y sus dos vecinos: 7 − 3 = 4.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              -0.78183148,
+              0.6234898
+            ],
+            [
+              -0.97492791,
+              -0.22252093
+            ],
+            [
+              -0.43388374,
+              -0.90096887
+            ],
+            [
+              0.43388374,
+              -0.90096887
+            ],
+            [
+              0.97492791,
+              -0.22252093
+            ],
+            [
+              0.78183148,
+              0.6234898
+            ]
+          ],
+          "vertices": [
+            "A",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "diagonales": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              5
+            ]
+          ]
+        },
+        "id": "prof_fig_diagonales-v4"
+      },
+      {
+        "enunciado": "Las líneas verdes salen de A. ¿Cuántas diagonales se trazaron desde ese vértice?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "6",
+          "8",
+          "5"
+        ],
+        "paso_resuelto": "Hay 8 vértices. Excluimos A y sus dos vecinos: 8 − 3 = 5.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              -0.70710678,
+              0.70710678
+            ],
+            [
+              -1.0,
+              0.0
+            ],
+            [
+              -0.70710678,
+              -0.70710678
+            ],
+            [
+              -0.0,
+              -1.0
+            ],
+            [
+              0.70710678,
+              -0.70710678
+            ],
+            [
+              1.0,
+              -0.0
+            ],
+            [
+              0.70710678,
+              0.70710678
+            ]
+          ],
+          "vertices": [
+            "A",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "diagonales": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              0,
+              6
+            ]
+          ]
+        },
+        "id": "prof_fig_diagonales-v5"
+      },
+      {
+        "enunciado": "Las líneas verdes salen de A. ¿Cuántas diagonales se trazaron desde ese vértice?",
+        "respuesta_correcta": "0",
+        "opciones": [
+          "3",
+          "0",
+          "1"
+        ],
+        "paso_resuelto": "Hay 3 vértices. Excluimos A y sus dos vecinos: 3 − 3 = 0.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              -0.8660254,
+              -0.5
+            ],
+            [
+              0.8660254,
+              -0.5
+            ]
+          ],
+          "vertices": [
+            "A",
+            "",
+            ""
+          ],
+          "diagonales": []
+        },
+        "id": "prof_fig_diagonales-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          -0.95105652,
+          0.30901699
+        ],
+        [
+          -0.58778525,
+          -0.80901699
+        ],
+        [
+          0.58778525,
+          -0.80901699
+        ],
+        [
+          0.95105652,
+          0.30901699
+        ]
+      ],
+      "vertices": [
+        "A",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "diagonales": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ]
+      ]
+    }
+  },
+  {
+    "id": "prof_fig_per_tri",
+    "tema": "perimetros_simples",
+    "despues_de": "mat_per_rectangulo",
+    "titulo": "Rodear un triángulo con cinta",
+    "explicacion": "El perímetro mide todo el borde. Para rodear un triángulo con cinta sumamos sus tres lados una sola vez. Todas las medidas deben estar en la misma unidad.",
+    "ejemplo": "Un triángulo de lados 3, 4 y 5 cm necesita 12 cm de cinta para una vuelta.",
+    "pasos": [
+      "Seguimos el borde: 3 + 4 + 5.",
+      "La suma es 12: escribimos 12 cm de perímetro."
+    ],
+    "pista": "Sumá los tres lados; no multipliques dos medidas.",
+    "actividades": [
+      {
+        "enunciado": "Para una vuelta de cinta alrededor de este triángulo de lados 3, 4 y 5 cm, ¿cuántos centímetros necesitamos?",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "12",
+          "7"
+        ],
+        "paso_resuelto": "3 + 4 + 5 = 12 cm de borde.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              3.0,
+              4.0
+            ]
+          ],
+          "lados": [
+            "3 cm",
+            "4 cm",
+            "5 cm"
+          ]
+        },
+        "id": "prof_fig_per_tri-v1"
+      },
+      {
+        "enunciado": "Para una vuelta de cinta alrededor de este triángulo de lados 4, 4 y 6 cm, ¿cuántos centímetros necesitamos?",
+        "respuesta_correcta": "14",
+        "opciones": [
+          "8",
+          "16",
+          "14"
+        ],
+        "paso_resuelto": "4 + 4 + 6 = 14 cm de borde.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4.5,
+              3.968626966596886
+            ]
+          ],
+          "lados": [
+            "4 cm",
+            "4 cm",
+            "6 cm"
+          ]
+        },
+        "id": "prof_fig_per_tri-v2"
+      },
+      {
+        "enunciado": "Para una vuelta de cinta alrededor de este triángulo de lados 5, 5 y 5 cm, ¿cuántos centímetros necesitamos?",
+        "respuesta_correcta": "15",
+        "opciones": [
+          "25",
+          "15",
+          "10"
+        ],
+        "paso_resuelto": "5 + 5 + 5 = 15 cm de borde.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              2.5,
+              4.330127018922194
+            ]
+          ],
+          "lados": [
+            "5 cm",
+            "5 cm",
+            "5 cm"
+          ]
+        },
+        "id": "prof_fig_per_tri-v3"
+      },
+      {
+        "enunciado": "Para una vuelta de cinta alrededor de este triángulo de lados 5, 6 y 7 cm, ¿cuántos centímetros necesitamos?",
+        "respuesta_correcta": "18",
+        "opciones": [
+          "18",
+          "11",
+          "30"
+        ],
+        "paso_resuelto": "5 + 6 + 7 = 18 cm de borde.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              3.8,
+              5.878775382679628
+            ]
+          ],
+          "lados": [
+            "5 cm",
+            "6 cm",
+            "7 cm"
+          ]
+        },
+        "id": "prof_fig_per_tri-v4"
+      },
+      {
+        "enunciado": "Para una vuelta de cinta alrededor de este triángulo de lados 6, 8 y 10 cm, ¿cuántos centímetros necesitamos?",
+        "respuesta_correcta": "24",
+        "opciones": [
+          "14",
+          "48",
+          "24"
+        ],
+        "paso_resuelto": "6 + 8 + 10 = 24 cm de borde.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              6.0,
+              8.0
+            ]
+          ],
+          "lados": [
+            "6 cm",
+            "8 cm",
+            "10 cm"
+          ]
+        },
+        "id": "prof_fig_per_tri-v5"
+      },
+      {
+        "enunciado": "Para una vuelta de cinta alrededor de este triángulo de lados 7, 7 y 4 cm, ¿cuántos centímetros necesitamos?",
+        "respuesta_correcta": "18",
+        "opciones": [
+          "49",
+          "18",
+          "14"
+        ],
+        "paso_resuelto": "7 + 7 + 4 = 18 cm de borde.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              7,
+              0
+            ],
+            [
+              1.1428571428571428,
+              3.8332593899996397
+            ]
+          ],
+          "lados": [
+            "7 cm",
+            "7 cm",
+            "4 cm"
+          ]
+        },
+        "id": "prof_fig_per_tri-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3.0,
+          4.0
+        ]
+      ],
+      "lados": [
+        "3 cm",
+        "4 cm",
+        "5 cm"
+      ]
+    }
+  },
+  {
+    "id": "prof_fig_per_regular",
+    "tema": "perimetros_simples",
+    "despues_de": "prof_fig_per_tri",
+    "titulo": "Sumar lados iguales sin perder ninguno",
+    "explicacion": "Un polígono regular tiene todos los lados y todos los ángulos iguales. Su perímetro se obtiene multiplicando la cantidad de lados por la medida de un lado. La cuenta resume la suma de todos los lados.",
+    "ejemplo": "Un pentágono regular con lado de 3 cm tiene perímetro 5 × 3 = 15 cm.",
+    "pasos": [
+      "Contamos cinco lados iguales.",
+      "Sumamos cinco veces 3: 5 × 3 = 15 cm."
+    ],
+    "pista": "Cantidad de lados por longitud de un lado.",
+    "actividades": [
+      {
+        "enunciado": "El polígono es regular, tiene 5 lados y cada lado mide 3 cm. ¿Cuántos centímetros mide su perímetro?",
+        "respuesta_correcta": "15",
+        "opciones": [
+          "15",
+          "8",
+          "12"
+        ],
+        "paso_resuelto": "Sumamos 3 cm 5 veces: 5 × 3 = 15 cm.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              -0.95105652,
+              0.30901699
+            ],
+            [
+              -0.58778525,
+              -0.80901699
+            ],
+            [
+              0.58778525,
+              -0.80901699
+            ],
+            [
+              0.95105652,
+              0.30901699
+            ]
+          ],
+          "lados": [
+            "3 cm",
+            "3 cm",
+            "3 cm",
+            "3 cm",
+            "3 cm"
+          ]
+        },
+        "id": "prof_fig_per_regular-v1"
+      },
+      {
+        "enunciado": "El polígono es regular, tiene 4 lados y cada lado mide 4 cm. ¿Cuántos centímetros mide su perímetro?",
+        "respuesta_correcta": "16",
+        "opciones": [
+          "8",
+          "12",
+          "16"
+        ],
+        "paso_resuelto": "Sumamos 4 cm 4 veces: 4 × 4 = 16 cm.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              -1.0,
+              0.0
+            ],
+            [
+              -0.0,
+              -1.0
+            ],
+            [
+              1.0,
+              -0.0
+            ]
+          ],
+          "lados": [
+            "4 cm",
+            "4 cm",
+            "4 cm",
+            "4 cm"
+          ]
+        },
+        "id": "prof_fig_per_regular-v2"
+      },
+      {
+        "enunciado": "El polígono es regular, tiene 6 lados y cada lado mide 2 cm. ¿Cuántos centímetros mide su perímetro?",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "10",
+          "12",
+          "8"
+        ],
+        "paso_resuelto": "Sumamos 2 cm 6 veces: 6 × 2 = 12 cm.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              -0.8660254,
+              0.5
+            ],
+            [
+              -0.8660254,
+              -0.5
+            ],
+            [
+              -0.0,
+              -1.0
+            ],
+            [
+              0.8660254,
+              -0.5
+            ],
+            [
+              0.8660254,
+              0.5
+            ]
+          ],
+          "lados": [
+            "2 cm",
+            "2 cm",
+            "2 cm",
+            "2 cm",
+            "2 cm",
+            "2 cm"
+          ]
+        },
+        "id": "prof_fig_per_regular-v3"
+      },
+      {
+        "enunciado": "El polígono es regular, tiene 3 lados y cada lado mide 5 cm. ¿Cuántos centímetros mide su perímetro?",
+        "respuesta_correcta": "15",
+        "opciones": [
+          "15",
+          "8",
+          "10"
+        ],
+        "paso_resuelto": "Sumamos 5 cm 3 veces: 3 × 5 = 15 cm.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              -0.8660254,
+              -0.5
+            ],
+            [
+              0.8660254,
+              -0.5
+            ]
+          ],
+          "lados": [
+            "5 cm",
+            "5 cm",
+            "5 cm"
+          ]
+        },
+        "id": "prof_fig_per_regular-v4"
+      },
+      {
+        "enunciado": "El polígono es regular, tiene 8 lados y cada lado mide 3 cm. ¿Cuántos centímetros mide su perímetro?",
+        "respuesta_correcta": "24",
+        "opciones": [
+          "11",
+          "21",
+          "24"
+        ],
+        "paso_resuelto": "Sumamos 3 cm 8 veces: 8 × 3 = 24 cm.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              -0.70710678,
+              0.70710678
+            ],
+            [
+              -1.0,
+              0.0
+            ],
+            [
+              -0.70710678,
+              -0.70710678
+            ],
+            [
+              -0.0,
+              -1.0
+            ],
+            [
+              0.70710678,
+              -0.70710678
+            ],
+            [
+              1.0,
+              -0.0
+            ],
+            [
+              0.70710678,
+              0.70710678
+            ]
+          ],
+          "lados": [
+            "3 cm",
+            "3 cm",
+            "3 cm",
+            "3 cm",
+            "3 cm",
+            "3 cm",
+            "3 cm",
+            "3 cm"
+          ]
+        },
+        "id": "prof_fig_per_regular-v5"
+      },
+      {
+        "enunciado": "El polígono es regular, tiene 7 lados y cada lado mide 2 cm. ¿Cuántos centímetros mide su perímetro?",
+        "respuesta_correcta": "14",
+        "opciones": [
+          "12",
+          "14",
+          "9"
+        ],
+        "paso_resuelto": "Sumamos 2 cm 7 veces: 7 × 2 = 14 cm.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              -0.78183148,
+              0.6234898
+            ],
+            [
+              -0.97492791,
+              -0.22252093
+            ],
+            [
+              -0.43388374,
+              -0.90096887
+            ],
+            [
+              0.43388374,
+              -0.90096887
+            ],
+            [
+              0.97492791,
+              -0.22252093
+            ],
+            [
+              0.78183148,
+              0.6234898
+            ]
+          ],
+          "lados": [
+            "2 cm",
+            "2 cm",
+            "2 cm",
+            "2 cm",
+            "2 cm",
+            "2 cm",
+            "2 cm"
+          ]
+        },
+        "id": "prof_fig_per_regular-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          -0.95105652,
+          0.30901699
+        ],
+        [
+          -0.58778525,
+          -0.80901699
+        ],
+        [
+          0.58778525,
+          -0.80901699
+        ],
+        [
+          0.95105652,
+          0.30901699
+        ]
+      ],
+      "lados": [
+        "3 cm",
+        "3 cm",
+        "3 cm",
+        "3 cm",
+        "3 cm"
+      ]
+    }
+  },
+  {
+    "id": "prof_fig_borde_l",
+    "tema": "perimetros_compuestos",
+    "despues_de": "mat_per_faltante",
+    "titulo": "Recorrer un contorno con entrante",
+    "explicacion": "En una figura con forma de L recorremos todos los tramos del borde exterior, incluido el entrante. Las divisiones que dibujamos dentro no forman parte del perímetro. Sumamos cada tramo una sola vez.",
+    "ejemplo": "En la figura, el borde mide 6 + 2 + 3 + 2 + 3 + 4 = 20 cm.",
+    "pasos": [
+      "Empezamos abajo y seguimos el borde hasta volver al mismo punto.",
+      "Anotamos y sumamos los seis tramos: 20 cm."
+    ],
+    "pista": "Seguí el contorno sin saltarte el entrante.",
+    "actividades": [
+      {
+        "enunciado": "Cada tramo del borde está medido en cm. ¿Cuántos centímetros mide el perímetro de esta figura?",
+        "respuesta_correcta": "20",
+        "opciones": [
+          "20",
+          "10",
+          "18"
+        ],
+        "paso_resuelto": "6 + 2 + 3 + 2 + 3 + 4 = 20 cm.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "lados": [
+            "6 cm",
+            "2 cm",
+            "3 cm",
+            "2 cm",
+            "3 cm",
+            "4 cm"
+          ]
+        },
+        "id": "prof_fig_borde_l-v1"
+      },
+      {
+        "enunciado": "Cada tramo del borde está medido en cm. ¿Cuántos centímetros mide el perímetro de esta figura?",
+        "respuesta_correcta": "26",
+        "opciones": [
+          "13",
+          "23",
+          "26"
+        ],
+        "paso_resuelto": "8 + 2 + 4 + 3 + 4 + 5 = 26 cm.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              8,
+              0
+            ],
+            [
+              8,
+              2
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "lados": [
+            "8 cm",
+            "2 cm",
+            "4 cm",
+            "3 cm",
+            "4 cm",
+            "5 cm"
+          ]
+        },
+        "id": "prof_fig_borde_l-v2"
+      },
+      {
+        "enunciado": "Cada tramo del borde está medido en cm. ¿Cuántos centímetros mide el perímetro de esta figura?",
+        "respuesta_correcta": "26",
+        "opciones": [
+          "22",
+          "26",
+          "13"
+        ],
+        "paso_resuelto": "7 + 2 + 4 + 4 + 3 + 6 = 26 cm.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              7,
+              0
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "lados": [
+            "7 cm",
+            "2 cm",
+            "4 cm",
+            "4 cm",
+            "3 cm",
+            "6 cm"
+          ]
+        },
+        "id": "prof_fig_borde_l-v3"
+      },
+      {
+        "enunciado": "Cada tramo del borde está medido en cm. ¿Cuántos centímetros mide el perímetro de esta figura?",
+        "respuesta_correcta": "28",
+        "opciones": [
+          "28",
+          "14",
+          "26"
+        ],
+        "paso_resuelto": "9 + 3 + 5 + 2 + 4 + 5 = 28 cm.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              9,
+              0
+            ],
+            [
+              9,
+              3
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "lados": [
+            "9 cm",
+            "3 cm",
+            "5 cm",
+            "2 cm",
+            "4 cm",
+            "5 cm"
+          ]
+        },
+        "id": "prof_fig_borde_l-v4"
+      },
+      {
+        "enunciado": "Cada tramo del borde está medido en cm. ¿Cuántos centímetros mide el perímetro de esta figura?",
+        "respuesta_correcta": "28",
+        "opciones": [
+          "14",
+          "24",
+          "28"
+        ],
+        "paso_resuelto": "8 + 2 + 3 + 4 + 5 + 6 = 28 cm.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              8,
+              0
+            ],
+            [
+              8,
+              2
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "lados": [
+            "8 cm",
+            "2 cm",
+            "3 cm",
+            "4 cm",
+            "5 cm",
+            "6 cm"
+          ]
+        },
+        "id": "prof_fig_borde_l-v5"
+      },
+      {
+        "enunciado": "Cada tramo del borde está medido en cm. ¿Cuántos centímetros mide el perímetro de esta figura?",
+        "respuesta_correcta": "34",
+        "opciones": [
+          "30",
+          "34",
+          "17"
+        ],
+        "paso_resuelto": "10 + 3 + 6 + 4 + 4 + 7 = 34 cm.",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              10,
+              0
+            ],
+            [
+              10,
+              3
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "lados": [
+            "10 cm",
+            "3 cm",
+            "6 cm",
+            "4 cm",
+            "4 cm",
+            "7 cm"
+          ]
+        },
+        "id": "prof_fig_borde_l-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "lados": [
+        "6 cm",
+        "2 cm",
+        "3 cm",
+        "2 cm",
+        "3 cm",
+        "4 cm"
+      ]
+    }
+  },
+  {
+    "id": "prof_fig_area_unidad",
+    "tema": "perimetros_compuestos",
+    "despues_de": "prof_fig_borde_l",
+    "titulo": "Cubrir con cuadrados de un centímetro",
+    "explicacion": "El perímetro mide el borde; el área mide la superficie que cubrimos. Un cuadradito de 1 cm de lado ocupa 1 cm². Para medir el área contamos los cuadrados que cubren la figura sin huecos ni superposiciones.",
+    "ejemplo": "La figura tiene dos filas de tres cuadrados de 1 cm²: ocupa 6 cm².",
+    "pasos": [
+      "Contamos tres cuadrados en cada fila.",
+      "Hay dos filas: 3 + 3 = 6 cuadrados. El área es 6 cm²."
+    ],
+    "pista": "Contá las casillas interiores, no las líneas del borde.",
+    "actividades": [
+      {
+        "enunciado": "Cada casilla mide 1 cm². ¿Cuántos centímetros cuadrados ocupa la figura?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "6",
+          "10",
+          "5"
+        ],
+        "paso_resuelto": "Hay 2 filas de 3 casillas: 3 + 3 = 6 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "cuadricula": true,
+          "nota": "Cada casilla: 1 cm²"
+        },
+        "id": "prof_fig_area_unidad-v1"
+      },
+      {
+        "enunciado": "Cada casilla mide 1 cm². ¿Cuántos centímetros cuadrados ocupa la figura?",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "14",
+          "7",
+          "12"
+        ],
+        "paso_resuelto": "Hay 3 filas de 4 casillas: 4 + 4 + 4 = 12 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "cuadricula": true,
+          "nota": "Cada casilla: 1 cm²"
+        },
+        "id": "prof_fig_area_unidad-v2"
+      },
+      {
+        "enunciado": "Cada casilla mide 1 cm². ¿Cuántos centímetros cuadrados ocupa la figura?",
+        "respuesta_correcta": "10",
+        "opciones": [
+          "7",
+          "10",
+          "14"
+        ],
+        "paso_resuelto": "Hay 2 filas de 5 casillas: 5 + 5 = 10 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "cuadricula": true,
+          "nota": "Cada casilla: 1 cm²"
+        },
+        "id": "prof_fig_area_unidad-v3"
+      },
+      {
+        "enunciado": "Cada casilla mide 1 cm². ¿Cuántos centímetros cuadrados ocupa la figura?",
+        "respuesta_correcta": "9",
+        "opciones": [
+          "9",
+          "12",
+          "6"
+        ],
+        "paso_resuelto": "Hay 3 filas de 3 casillas: 3 + 3 + 3 = 9 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "cuadricula": true,
+          "nota": "Cada casilla: 1 cm²"
+        },
+        "id": "prof_fig_area_unidad-v4"
+      },
+      {
+        "enunciado": "Cada casilla mide 1 cm². ¿Cuántos centímetros cuadrados ocupa la figura?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "12",
+          "6",
+          "8"
+        ],
+        "paso_resuelto": "Hay 2 filas de 4 casillas: 4 + 4 = 8 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "cuadricula": true,
+          "nota": "Cada casilla: 1 cm²"
+        },
+        "id": "prof_fig_area_unidad-v5"
+      },
+      {
+        "enunciado": "Cada casilla mide 1 cm². ¿Cuántos centímetros cuadrados ocupa la figura?",
+        "respuesta_correcta": "15",
+        "opciones": [
+          "8",
+          "15",
+          "16"
+        ],
+        "paso_resuelto": "Hay 3 filas de 5 casillas: 5 + 5 + 5 = 15 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "cuadricula": true,
+          "nota": "Cada casilla: 1 cm²"
+        },
+        "id": "prof_fig_area_unidad-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "cuadricula": true,
+      "nota": "Cada casilla: 1 cm²"
+    }
+  },
+  {
+    "id": "prof_fig_area_rect",
+    "tema": "perimetros_compuestos",
+    "despues_de": "prof_fig_area_unidad",
+    "titulo": "Pasar de filas a una multiplicación",
+    "explicacion": "En un rectángulo, cada fila tiene tantos cuadrados de 1 cm² como centímetros mide la base. Hay tantas filas como centímetros mide la altura. Por eso el área es base por altura. En un cuadrado multiplicamos el lado por sí mismo.",
+    "ejemplo": "Un rectángulo de base 4 cm y altura 3 cm ocupa 4 × 3 = 12 cm².",
+    "pasos": [
+      "La base permite poner cuatro cuadrados por fila y la altura permite tres filas.",
+      "Multiplicamos 4 × 3 = 12 y escribimos cm²."
+    ],
+    "pista": "Para cubrir multiplicamos base por altura; para rodear sumamos lados.",
+    "actividades": [
+      {
+        "enunciado": "La base mide 4 cm y la altura 3 cm. ¿Cuál es el área en cm²?",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "12",
+          "14",
+          "7"
+        ],
+        "paso_resuelto": "Área = base × altura = 4 × 3 = 12 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "cuadricula": true,
+          "lados": [
+            "4 cm",
+            "3 cm",
+            "",
+            ""
+          ]
+        },
+        "id": "prof_fig_area_rect-v1"
+      },
+      {
+        "enunciado": "La base mide 6 cm y la altura 2 cm. ¿Cuál es el área en cm²?",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "16",
+          "8",
+          "12"
+        ],
+        "paso_resuelto": "Área = base × altura = 6 × 2 = 12 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "cuadricula": true,
+          "lados": [
+            "6 cm",
+            "2 cm",
+            "",
+            ""
+          ]
+        },
+        "id": "prof_fig_area_rect-v2"
+      },
+      {
+        "enunciado": "La base mide 5 cm y la altura 4 cm. ¿Cuál es el área en cm²?",
+        "respuesta_correcta": "20",
+        "opciones": [
+          "9",
+          "20",
+          "18"
+        ],
+        "paso_resuelto": "Área = base × altura = 5 × 4 = 20 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "cuadricula": true,
+          "lados": [
+            "5 cm",
+            "4 cm",
+            "",
+            ""
+          ]
+        },
+        "id": "prof_fig_area_rect-v3"
+      },
+      {
+        "enunciado": "La base mide 4 cm y la altura 4 cm. ¿Cuál es el área en cm²?",
+        "respuesta_correcta": "16",
+        "opciones": [
+          "8",
+          "16"
+        ],
+        "paso_resuelto": "Área = base × altura = 4 × 4 = 16 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "cuadricula": true,
+          "lados": [
+            "4 cm",
+            "4 cm",
+            "",
+            ""
+          ]
+        },
+        "id": "prof_fig_area_rect-v4"
+      },
+      {
+        "enunciado": "La base mide 7 cm y la altura 3 cm. ¿Cuál es el área en cm²?",
+        "respuesta_correcta": "21",
+        "opciones": [
+          "20",
+          "10",
+          "21"
+        ],
+        "paso_resuelto": "Área = base × altura = 7 × 3 = 21 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              7,
+              0
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "cuadricula": true,
+          "lados": [
+            "7 cm",
+            "3 cm",
+            "",
+            ""
+          ]
+        },
+        "id": "prof_fig_area_rect-v5"
+      },
+      {
+        "enunciado": "La base mide 6 cm y la altura 5 cm. ¿Cuál es el área en cm²?",
+        "respuesta_correcta": "30",
+        "opciones": [
+          "11",
+          "30",
+          "22"
+        ],
+        "paso_resuelto": "Área = base × altura = 6 × 5 = 30 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "cuadricula": true,
+          "lados": [
+            "6 cm",
+            "5 cm",
+            "",
+            ""
+          ]
+        },
+        "id": "prof_fig_area_rect-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "cuadricula": true,
+      "lados": [
+        "4 cm",
+        "3 cm",
+        "",
+        ""
+      ]
+    }
+  },
+  {
+    "id": "prof_fig_area_tri",
+    "tema": "perimetros_compuestos",
+    "despues_de": "prof_fig_area_rect",
+    "titulo": "Un triángulo que ocupa medio rectángulo",
+    "explicacion": "Una diagonal divide un rectángulo en dos triángulos iguales. Cada uno ocupa la mitad del área del rectángulo. En este triángulo rectángulo, la base y la altura son los dos lados que forman el ángulo de 90°. Su área es base por altura, dividido por dos.",
+    "ejemplo": "Un triángulo rectángulo de base 6 cm y altura 4 cm ocupa la mitad de 24 cm²: 12 cm².",
+    "pasos": [
+      "Completamos el rectángulo: 6 × 4 = 24 cm².",
+      "Tomamos la mitad: 24 ÷ 2 = 12 cm²."
+    ],
+    "pista": "Calculá el rectángulo completo y dividí su área por dos.",
+    "actividades": [
+      {
+        "enunciado": "El triángulo rectángulo tiene base 6 cm y altura 4 cm. ¿Cuál es su área en cm²?",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "12",
+          "24",
+          "10"
+        ],
+        "paso_resuelto": "El rectángulo completo ocupa 6 × 4 = 24 cm².\nEl triángulo ocupa la mitad: 24 ÷ 2 = 12 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "lados": [
+            "6 cm",
+            "",
+            "4 cm"
+          ],
+          "auxiliares": [
+            [
+              [
+                6,
+                0
+              ],
+              [
+                6,
+                4
+              ],
+              [
+                0,
+                4
+              ]
+            ]
+          ],
+          "nota": "Línea punteada: completamos el rectángulo"
+        },
+        "id": "prof_fig_area_tri-v1"
+      },
+      {
+        "enunciado": "El triángulo rectángulo tiene base 4 cm y altura 3 cm. ¿Cuál es su área en cm²?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "12",
+          "7",
+          "6"
+        ],
+        "paso_resuelto": "El rectángulo completo ocupa 4 × 3 = 12 cm².\nEl triángulo ocupa la mitad: 12 ÷ 2 = 6 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "lados": [
+            "4 cm",
+            "",
+            "3 cm"
+          ],
+          "auxiliares": [
+            [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                3
+              ],
+              [
+                0,
+                3
+              ]
+            ]
+          ],
+          "nota": "Línea punteada: completamos el rectángulo"
+        },
+        "id": "prof_fig_area_tri-v2"
+      },
+      {
+        "enunciado": "El triángulo rectángulo tiene base 8 cm y altura 3 cm. ¿Cuál es su área en cm²?",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "11",
+          "12",
+          "24"
+        ],
+        "paso_resuelto": "El rectángulo completo ocupa 8 × 3 = 24 cm².\nEl triángulo ocupa la mitad: 24 ÷ 2 = 12 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              8,
+              0
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "lados": [
+            "8 cm",
+            "",
+            "3 cm"
+          ],
+          "auxiliares": [
+            [
+              [
+                8,
+                0
+              ],
+              [
+                8,
+                3
+              ],
+              [
+                0,
+                3
+              ]
+            ]
+          ],
+          "nota": "Línea punteada: completamos el rectángulo"
+        },
+        "id": "prof_fig_area_tri-v3"
+      },
+      {
+        "enunciado": "El triángulo rectángulo tiene base 6 cm y altura 5 cm. ¿Cuál es su área en cm²?",
+        "respuesta_correcta": "15",
+        "opciones": [
+          "15",
+          "30",
+          "11"
+        ],
+        "paso_resuelto": "El rectángulo completo ocupa 6 × 5 = 30 cm².\nEl triángulo ocupa la mitad: 30 ÷ 2 = 15 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "lados": [
+            "6 cm",
+            "",
+            "5 cm"
+          ],
+          "auxiliares": [
+            [
+              [
+                6,
+                0
+              ],
+              [
+                6,
+                5
+              ],
+              [
+                0,
+                5
+              ]
+            ]
+          ],
+          "nota": "Línea punteada: completamos el rectángulo"
+        },
+        "id": "prof_fig_area_tri-v4"
+      },
+      {
+        "enunciado": "El triángulo rectángulo tiene base 10 cm y altura 4 cm. ¿Cuál es su área en cm²?",
+        "respuesta_correcta": "20",
+        "opciones": [
+          "40",
+          "14",
+          "20"
+        ],
+        "paso_resuelto": "El rectángulo completo ocupa 10 × 4 = 40 cm².\nEl triángulo ocupa la mitad: 40 ÷ 2 = 20 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              10,
+              0
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "lados": [
+            "10 cm",
+            "",
+            "4 cm"
+          ],
+          "auxiliares": [
+            [
+              [
+                10,
+                0
+              ],
+              [
+                10,
+                4
+              ],
+              [
+                0,
+                4
+              ]
+            ]
+          ],
+          "nota": "Línea punteada: completamos el rectángulo"
+        },
+        "id": "prof_fig_area_tri-v5"
+      },
+      {
+        "enunciado": "El triángulo rectángulo tiene base 8 cm y altura 6 cm. ¿Cuál es su área en cm²?",
+        "respuesta_correcta": "24",
+        "opciones": [
+          "14",
+          "24",
+          "48"
+        ],
+        "paso_resuelto": "El rectángulo completo ocupa 8 × 6 = 48 cm².\nEl triángulo ocupa la mitad: 48 ÷ 2 = 24 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              8,
+              0
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "lados": [
+            "8 cm",
+            "",
+            "6 cm"
+          ],
+          "auxiliares": [
+            [
+              [
+                8,
+                0
+              ],
+              [
+                8,
+                6
+              ],
+              [
+                0,
+                6
+              ]
+            ]
+          ],
+          "nota": "Línea punteada: completamos el rectángulo"
+        },
+        "id": "prof_fig_area_tri-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "lados": [
+        "6 cm",
+        "",
+        "4 cm"
+      ],
+      "auxiliares": [
+        [
+          [
+            6,
+            0
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            0,
+            4
+          ]
+        ]
+      ],
+      "nota": "Línea punteada: completamos el rectángulo"
+    }
+  },
+  {
+    "id": "prof_fig_area_l",
+    "tema": "perimetros_compuestos",
+    "despues_de": "prof_fig_area_tri",
+    "titulo": "Cubrir una figura por partes",
+    "explicacion": "Para hallar el área de una figura en L podemos dividirla en dos rectángulos que no se superpongan. Calculamos el área de cada parte y después las sumamos. La línea interior ayuda a separar las partes: no añade superficie.",
+    "ejemplo": "Separamos una franja inferior de 6 × 2 y un rectángulo superior de 3 × 2: 12 + 6 = 18 cm².",
+    "pasos": [
+      "Contamos 12 casillas en la franja inferior y 6 en la parte superior.",
+      "Sumamos las dos superficies: 12 + 6 = 18 cm²."
+    ],
+    "pista": "Separá en dos rectángulos y contá cada casilla una sola vez.",
+    "actividades": [
+      {
+        "enunciado": "Cada casilla mide 1 cm². ¿Cuál es el área total de la figura en L, en cm²?",
+        "respuesta_correcta": "18",
+        "opciones": [
+          "18",
+          "24",
+          "20"
+        ],
+        "paso_resuelto": "Franja inferior: 6 × 2 = 12 cm².\nParte superior: 3 × 2 = 6 cm².\nÁrea total: 12 + 6 = 18 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "cuadricula": true,
+          "division": 2,
+          "nota": "Cada casilla: 1 cm²"
+        },
+        "id": "prof_fig_area_l-v1"
+      },
+      {
+        "enunciado": "Cada casilla mide 1 cm². ¿Cuál es el área total de la figura en L, en cm²?",
+        "respuesta_correcta": "28",
+        "opciones": [
+          "40",
+          "26",
+          "28"
+        ],
+        "paso_resuelto": "Franja inferior: 8 × 2 = 16 cm².\nParte superior: 4 × 3 = 12 cm².\nÁrea total: 16 + 12 = 28 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              8,
+              0
+            ],
+            [
+              8,
+              2
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "cuadricula": true,
+          "division": 2,
+          "nota": "Cada casilla: 1 cm²"
+        },
+        "id": "prof_fig_area_l-v2"
+      },
+      {
+        "enunciado": "Cada casilla mide 1 cm². ¿Cuál es el área total de la figura en L, en cm²?",
+        "respuesta_correcta": "26",
+        "opciones": [
+          "26",
+          "42"
+        ],
+        "paso_resuelto": "Franja inferior: 7 × 2 = 14 cm².\nParte superior: 3 × 4 = 12 cm².\nÁrea total: 14 + 12 = 26 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              7,
+              0
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "cuadricula": true,
+          "division": 2,
+          "nota": "Cada casilla: 1 cm²"
+        },
+        "id": "prof_fig_area_l-v3"
+      },
+      {
+        "enunciado": "Cada casilla mide 1 cm². ¿Cuál es el área total de la figura en L, en cm²?",
+        "respuesta_correcta": "35",
+        "opciones": [
+          "35",
+          "45",
+          "28"
+        ],
+        "paso_resuelto": "Franja inferior: 9 × 3 = 27 cm².\nParte superior: 4 × 2 = 8 cm².\nÁrea total: 27 + 8 = 35 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              9,
+              0
+            ],
+            [
+              9,
+              3
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "cuadricula": true,
+          "division": 3,
+          "nota": "Cada casilla: 1 cm²"
+        },
+        "id": "prof_fig_area_l-v4"
+      },
+      {
+        "enunciado": "Cada casilla mide 1 cm². ¿Cuál es el área total de la figura en L, en cm²?",
+        "respuesta_correcta": "36",
+        "opciones": [
+          "48",
+          "28",
+          "36"
+        ],
+        "paso_resuelto": "Franja inferior: 8 × 2 = 16 cm².\nParte superior: 5 × 4 = 20 cm².\nÁrea total: 16 + 20 = 36 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              8,
+              0
+            ],
+            [
+              8,
+              2
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "cuadricula": true,
+          "division": 2,
+          "nota": "Cada casilla: 1 cm²"
+        },
+        "id": "prof_fig_area_l-v5"
+      },
+      {
+        "enunciado": "Cada casilla mide 1 cm². ¿Cuál es el área total de la figura en L, en cm²?",
+        "respuesta_correcta": "46",
+        "opciones": [
+          "34",
+          "46",
+          "70"
+        ],
+        "paso_resuelto": "Franja inferior: 10 × 3 = 30 cm².\nParte superior: 4 × 4 = 16 cm².\nÁrea total: 30 + 16 = 46 cm².",
+        "visual": {
+          "tipo": "poligono",
+          "puntos": [
+            [
+              0,
+              0
+            ],
+            [
+              10,
+              0
+            ],
+            [
+              10,
+              3
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "cuadricula": true,
+          "division": 3,
+          "nota": "Cada casilla: 1 cm²"
+        },
+        "id": "prof_fig_area_l-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "cuadricula": true,
+      "division": 2,
+      "nota": "Cada casilla: 1 cm²"
+    }
+  }
+];
+for (const unidad of FIGURAS_R14) {
+ const indice = UNIDADES_BASES.findIndex(u => u.id === (unidad.antes_de || unidad.despues_de));
+ if (indice < 0) throw new Error('Falta el paso de referencia de ' + unidad.id);
+ UNIDADES_BASES.splice(indice + (unidad.antes_de ? 0 : 1), 0, unidad);
+}
+const APOYOS_R14 = {"mat_tri_lados": {"tipo": "poligono", "puntos": [[0, 0], [4, 0], [4.5, 3.968626966596886]], "lados": ["4 cm", "4 cm", "6 cm"]}, "mat_tri_angulos": {"tipo": "poligono", "puntos": [[0, 0], [1, 0], [0.5923962654520477, 0.7059903775918711]], "angulos": ["50°", "60°", "70°"]}, "mat_cuad_lados": {"tipo": "poligono", "puntos": [[0, 0], [3, 0], [3, 3], [0, 3]], "angulos": ["90°", "90°", "90°", "90°"], "lados": ["3 cm", "3 cm", "3 cm", "3 cm"]}, "mat_circ_radio": {"tipo": "circunferencia", "radio": 3}, "mat_per_rectangulo": {"tipo": "poligono", "puntos": [[0, 0], [5, 0], [5, 3], [0, 3]], "lados": ["5 cm", "3 cm", "5 cm", "3 cm"]}, "mat_per_circunferencia": {"tipo": "circunferencia", "diametro": 10}, "mat_per_union": {"tipo": "poligono", "puntos": [[0, 0], [6, 0], [6, 3], [0, 3]], "lados": ["6 cm", "3 cm", "6 cm", "3 cm"], "auxiliares": [[[3, 0], [3, 3]]], "nota": "Línea interior: lado compartido de 3 cm"}, "mat_per_faltante": {"tipo": "tramo", "total": 10, "parte": 4}};
+for (const [id, visual] of Object.entries(APOYOS_R14)) { UNIDADES_BASES.find(u => u.id === id).visual = visual; }
+// FIN R14
+
 export const TEMAS_BASES = [...new Set(UNIDADES_BASES.map(u => u.tema))];
 export function getUnidadBase(id) { return UNIDADES_BASES.find(u => u.id === id) || null; }
 export function crearActividadBase(id, modo, sesiones = []) {

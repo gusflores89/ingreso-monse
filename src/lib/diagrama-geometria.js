@@ -7,6 +7,53 @@ export function crearDiagramaGeometria(d = {}) {
  const arc=(x,y,r,start,end,color='#64748b',dash=false,width=1)=>{
   const steps=Math.max(2,Math.ceil(Math.abs(end-start)/2));line(Array.from({length:steps+1},(_,i)=>point(x,y,r,start+(end-start)*i/steps)),color,dash,width);
  };
+ if(d.tipo==='circunferencia'){
+  arc(240,145,95,0,360,'#2563eb',false,3);
+  line([[145,145],[335,145]],'#15803d',false,2);
+  text(240,138,'O');
+  if(d.radio){line([[240,145],[335,145]],'#c2410c',false,3);text(290,171,'r = '+d.radio+' cm','#9a3412');text(240,268,'Diámetro = '+(2*d.radio)+' cm');}
+  else text(240,171,'d = '+d.diametro+' cm');
+  return {trazos,textos,ancho:480,alto:310};
+ }
+ if(d.tipo==='tramo'){
+  const x=90+300*d.parte/d.total;
+  line([[90,160],[390,160]]);line([[90,145],[90,175]]);line([[x,145],[x,175]],'#15803d');line([[390,145],[390,175]]);
+  text(240,110,'Total: '+d.total+' cm');text((90+x)/2,200,d.parte+' cm');text((x+390)/2,200,'? cm');
+  return {trazos,textos,ancho:480,alto:310};
+ }
+ if(d.tipo==='segmentos'){
+  const longest=Math.max(...d.longitudes);
+  d.longitudes.forEach((n,i)=>{const y=65+i*75;line([[90,y],[90+280*n/longest,y]]);text(240,y-14,n+' cm');});
+  return {trazos,textos,ancho:480,alto:310};
+ }
+ if(d.tipo==='poligono'){
+  const ps=d.puntos,n=ps.length,xs=ps.map(p=>p[0]),ys=ps.map(p=>p[1]);
+  const loX=Math.min(...xs),hiX=Math.max(...xs),loY=Math.min(...ys),hiY=Math.max(...ys);
+  const scale=Math.min(290/(hiX-loX),165/(hiY-loY));
+  const project=([x,y])=>[240+(x-(loX+hiX)/2)*scale,150-(y-(loY+hiY)/2)*scale];
+  const p=ps.map(project),center=[p.reduce((a,v)=>a+v[0],0)/n,p.reduce((a,v)=>a+v[1],0)/n];
+  const offset=(q,distance)=>{const x=q[0]-center[0],y=q[1]-center[1],norm=Math.hypot(x,y)||1;return [q[0]+distance*x/norm,q[1]+distance*y/norm];};
+  if(d.cuadricula){
+   const w=hiX,h=hiY,a=n===6?ps[3][0]:w,b=n===6?ps[2][1]:h;
+   for(let x=1;x<w;x++)line([project([x,0]),project([x,x<=a?h:b])],'#94a3b8',false,1);
+   for(let y=1;y<h;y++)line([project([0,y]),project([y<=b?w:a,y])],'#94a3b8',false,1);
+  }
+  for(const aux of d.auxiliares||[])line(aux.map(project),'#64748b',true,1);
+  for(const [a,b] of d.diagonales||[])line([p[a],p[b]],'#15803d',false,2);
+  if(d.division)line([project([0,d.division]),project([ps[3][0],d.division])],'#15803d',true,2);
+  line([...p,p[0]],'#2563eb',false,3);
+  p.forEach((v,i)=>{
+   if(d.vertices?.[i]){const q=offset(v,18);text(q[0],q[1]+4,d.vertices[i]);}
+   if(d.angulos?.[i]){const q=offset(v,-30);text(q[0],q[1]+4,d.angulos[i],'#9a3412');}
+   if(d.lados?.[i]){
+    const next=p[(i+1)%n],dx=next[0]-v[0],dy=next[1]-v[1],len=Math.hypot(dx,dy);
+    // Los puntos están en sentido antihorario matemático; la normal queda fuera en SVG.
+    text((v[0]+next[0])/2-dy/len*22,(v[1]+next[1])/2+dx/len*22+4,d.lados[i]);
+   }
+  });
+  if(d.nota)text(240,288,d.nota,'#334155',13);
+  return {trazos,textos,ancho:480,alto:310};
+ }
  if(d.tipo==='mediatriz'){
   const x1=150,x2=330,cy=155,r=115,half=(x2-x1)/2,dy=Math.sqrt(r*r-half*half);
   arc(x1,cy,r,0,360,'#94a3b8',true);arc(x2,cy,r,0,360,'#94a3b8',true);
