@@ -11914,6 +11914,1002 @@ for (const unidad of MEDIDAS_R12) {
 }
 // FIN R12
 
+
+
+// R13: geometria con diagramas.
+const GEOMETRIA_R13 = [
+  {
+    "id": "prof_geo_elementos",
+    "tema": "geometria_angulos",
+    "antes_de": "mat_ang_clases",
+    "titulo": "Dos lados que nacen del mismo punto",
+    "explicacion": "Un ángulo tiene dos lados que son semirrectas y nacen en un punto común, el vértice. Medimos la abertura entre los lados, no su longitud. Al escribir AOB, la letra del medio, O, nombra el vértice.",
+    "ejemplo": "En el dibujo, OA y OB son los lados y O es el vértice.",
+    "pasos": [
+      "Buscamos dónde se encuentran los dos lados.",
+      "Ese punto común es O: es el vértice."
+    ],
+    "pista": "Buscá el punto del que salen ambos lados.",
+    "actividades": [
+      {
+        "enunciado": "Mirá el dibujo. ¿Qué letra nombra el vértice?",
+        "respuesta_correcta": "O",
+        "opciones": [
+          "O",
+          "A",
+          "B"
+        ],
+        "paso_resuelto": "Los dos lados salen de O. Ese punto común es el vértice.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 60,
+          "letras": [
+            "O",
+            "A",
+            "B"
+          ]
+        },
+        "id": "prof_geo_elementos-v1"
+      },
+      {
+        "enunciado": "Mirá el dibujo. ¿Qué letra nombra el vértice?",
+        "respuesta_correcta": "P",
+        "opciones": [
+          "C",
+          "D",
+          "P"
+        ],
+        "paso_resuelto": "Los dos lados salen de P. Ese punto común es el vértice.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 80,
+          "letras": [
+            "P",
+            "C",
+            "D"
+          ]
+        },
+        "id": "prof_geo_elementos-v2"
+      },
+      {
+        "enunciado": "Mirá el dibujo. ¿Qué letra nombra el vértice?",
+        "respuesta_correcta": "Q",
+        "opciones": [
+          "F",
+          "Q",
+          "E"
+        ],
+        "paso_resuelto": "Los dos lados salen de Q. Ese punto común es el vértice.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 40,
+          "letras": [
+            "Q",
+            "E",
+            "F"
+          ]
+        },
+        "id": "prof_geo_elementos-v3"
+      },
+      {
+        "enunciado": "Mirá el dibujo. ¿Qué letra nombra el vértice?",
+        "respuesta_correcta": "R",
+        "opciones": [
+          "R",
+          "G",
+          "H"
+        ],
+        "paso_resuelto": "Los dos lados salen de R. Ese punto común es el vértice.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 120,
+          "letras": [
+            "R",
+            "G",
+            "H"
+          ]
+        },
+        "id": "prof_geo_elementos-v4"
+      },
+      {
+        "enunciado": "Mirá el dibujo. ¿Qué letra nombra el vértice?",
+        "respuesta_correcta": "S",
+        "opciones": [
+          "J",
+          "K",
+          "S"
+        ],
+        "paso_resuelto": "Los dos lados salen de S. Ese punto común es el vértice.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 100,
+          "letras": [
+            "S",
+            "J",
+            "K"
+          ]
+        },
+        "id": "prof_geo_elementos-v5"
+      },
+      {
+        "enunciado": "Mirá el dibujo. ¿Qué letra nombra el vértice?",
+        "respuesta_correcta": "T",
+        "opciones": [
+          "M",
+          "T",
+          "L"
+        ],
+        "paso_resuelto": "Los dos lados salen de T. Ese punto común es el vértice.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 30,
+          "letras": [
+            "T",
+            "L",
+            "M"
+          ]
+        },
+        "id": "prof_geo_elementos-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "angulo",
+      "angulo": 60,
+      "letras": [
+        "O",
+        "A",
+        "B"
+      ]
+    }
+  },
+  {
+    "id": "prof_geo_transportador",
+    "tema": "geometria_angulos",
+    "despues_de": "mat_ang_clases",
+    "titulo": "Empezar por el cero correcto",
+    "explicacion": "Ponemos el centro del transportador en el vértice y alineamos un lado con el cero. Leemos la escala que comienza en ese cero hasta el otro lado. Si el lado inicial apunta a la izquierda, usamos el cero de la izquierda.",
+    "ejemplo": "El lado naranja llega a 60° si empezamos en el cero derecho.",
+    "pasos": [
+      "El centro coincide con O y el lado azul pasa por el cero derecho.",
+      "Seguimos esa escala hasta el lado naranja: 60°."
+    ],
+    "pista": "Elegí primero el cero sobre el lado azul.",
+    "actividades": [
+      {
+        "enunciado": "Medí la abertura marcada. ¿Cuántos grados hay desde el lado azul hasta el naranja?",
+        "respuesta_correcta": "60",
+        "opciones": [
+          "60",
+          "120",
+          "70"
+        ],
+        "paso_resuelto": "Empezamos en el cero de la derecha.\nSeguimos esa escala hasta el lado naranja: 60°.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 60,
+          "transportador": true,
+          "izquierda": false
+        },
+        "id": "prof_geo_transportador-v1"
+      },
+      {
+        "enunciado": "Medí la abertura marcada. ¿Cuántos grados hay desde el lado azul hasta el naranja?",
+        "respuesta_correcta": "40",
+        "opciones": [
+          "140",
+          "50",
+          "40"
+        ],
+        "paso_resuelto": "Empezamos en el cero de la izquierda.\nSeguimos esa escala hasta el lado naranja: 40°.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 40,
+          "transportador": true,
+          "izquierda": true
+        },
+        "id": "prof_geo_transportador-v2"
+      },
+      {
+        "enunciado": "Medí la abertura marcada. ¿Cuántos grados hay desde el lado azul hasta el naranja?",
+        "respuesta_correcta": "120",
+        "opciones": [
+          "130",
+          "120",
+          "60"
+        ],
+        "paso_resuelto": "Empezamos en el cero de la derecha.\nSeguimos esa escala hasta el lado naranja: 120°.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 120,
+          "transportador": true,
+          "izquierda": false
+        },
+        "id": "prof_geo_transportador-v3"
+      },
+      {
+        "enunciado": "Medí la abertura marcada. ¿Cuántos grados hay desde el lado azul hasta el naranja?",
+        "respuesta_correcta": "70",
+        "opciones": [
+          "70",
+          "110",
+          "80"
+        ],
+        "paso_resuelto": "Empezamos en el cero de la izquierda.\nSeguimos esa escala hasta el lado naranja: 70°.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 70,
+          "transportador": true,
+          "izquierda": true
+        },
+        "id": "prof_geo_transportador-v4"
+      },
+      {
+        "enunciado": "Medí la abertura marcada. ¿Cuántos grados hay desde el lado azul hasta el naranja?",
+        "respuesta_correcta": "130",
+        "opciones": [
+          "50",
+          "140",
+          "130"
+        ],
+        "paso_resuelto": "Empezamos en el cero de la izquierda.\nSeguimos esa escala hasta el lado naranja: 130°.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 130,
+          "transportador": true,
+          "izquierda": true
+        },
+        "id": "prof_geo_transportador-v5"
+      },
+      {
+        "enunciado": "Medí la abertura marcada. ¿Cuántos grados hay desde el lado azul hasta el naranja?",
+        "respuesta_correcta": "30",
+        "opciones": [
+          "40",
+          "30",
+          "150"
+        ],
+        "paso_resuelto": "Empezamos en el cero de la derecha.\nSeguimos esa escala hasta el lado naranja: 30°.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 30,
+          "transportador": true,
+          "izquierda": false
+        },
+        "id": "prof_geo_transportador-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "angulo",
+      "angulo": 60,
+      "transportador": true
+    }
+  },
+  {
+    "id": "prof_geo_trazado",
+    "tema": "geometria_angulos",
+    "despues_de": "prof_geo_transportador",
+    "titulo": "Construir un ángulo con transportador",
+    "explicacion": "Para dibujar un ángulo, trazamos un lado y marcamos el vértice. Apoyamos allí el centro del transportador, alineamos el cero con el lado y marcamos la medida pedida. Al unir el vértice con esa marca obtenemos el segundo lado.",
+    "ejemplo": "Para dibujar 60°, marcamos 60 en la escala que empieza en el lado azul.",
+    "pasos": [
+      "En la app, explorá la abertura con el control. En papel, dibujá el primer lado y ubicá el centro y el cero.",
+      "Marcá 60° y trazá desde el vértice una semirrecta que pase por la marca."
+    ],
+    "pista": "La marca indica por dónde debe pasar el segundo lado.",
+    "actividades": [
+      {
+        "enunciado": "Queremos construir un ángulo de 60°. ¿En qué número de la escala que empieza en el lado azul marcamos el punto?",
+        "respuesta_correcta": "60",
+        "opciones": [
+          "60",
+          "120",
+          "70"
+        ],
+        "paso_resuelto": "El centro va en el vértice. Usamos el cero del lado azul y marcamos 60°.\nUnimos el vértice con esa marca para trazar el segundo lado.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 60,
+          "transportador": true
+        },
+        "id": "prof_geo_trazado-v1"
+      },
+      {
+        "enunciado": "Queremos construir un ángulo de 40°. ¿En qué número de la escala que empieza en el lado azul marcamos el punto?",
+        "respuesta_correcta": "40",
+        "opciones": [
+          "140",
+          "50",
+          "40"
+        ],
+        "paso_resuelto": "El centro va en el vértice. Usamos el cero del lado azul y marcamos 40°.\nUnimos el vértice con esa marca para trazar el segundo lado.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 40,
+          "transportador": true
+        },
+        "id": "prof_geo_trazado-v2"
+      },
+      {
+        "enunciado": "Queremos construir un ángulo de 120°. ¿En qué número de la escala que empieza en el lado azul marcamos el punto?",
+        "respuesta_correcta": "120",
+        "opciones": [
+          "130",
+          "120",
+          "60"
+        ],
+        "paso_resuelto": "El centro va en el vértice. Usamos el cero del lado azul y marcamos 120°.\nUnimos el vértice con esa marca para trazar el segundo lado.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 120,
+          "transportador": true
+        },
+        "id": "prof_geo_trazado-v3"
+      },
+      {
+        "enunciado": "Queremos construir un ángulo de 70°. ¿En qué número de la escala que empieza en el lado azul marcamos el punto?",
+        "respuesta_correcta": "70",
+        "opciones": [
+          "70",
+          "110",
+          "80"
+        ],
+        "paso_resuelto": "El centro va en el vértice. Usamos el cero del lado azul y marcamos 70°.\nUnimos el vértice con esa marca para trazar el segundo lado.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 70,
+          "transportador": true
+        },
+        "id": "prof_geo_trazado-v4"
+      },
+      {
+        "enunciado": "Queremos construir un ángulo de 130°. ¿En qué número de la escala que empieza en el lado azul marcamos el punto?",
+        "respuesta_correcta": "130",
+        "opciones": [
+          "50",
+          "140",
+          "130"
+        ],
+        "paso_resuelto": "El centro va en el vértice. Usamos el cero del lado azul y marcamos 130°.\nUnimos el vértice con esa marca para trazar el segundo lado.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 130,
+          "transportador": true
+        },
+        "id": "prof_geo_trazado-v5"
+      },
+      {
+        "enunciado": "Queremos construir un ángulo de 30°. ¿En qué número de la escala que empieza en el lado azul marcamos el punto?",
+        "respuesta_correcta": "30",
+        "opciones": [
+          "40",
+          "30",
+          "150"
+        ],
+        "paso_resuelto": "El centro va en el vértice. Usamos el cero del lado azul y marcamos 30°.\nUnimos el vértice con esa marca para trazar el segundo lado.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 30,
+          "transportador": true
+        },
+        "id": "prof_geo_trazado-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "angulo",
+      "angulo": 60,
+      "transportador": true,
+      "interactivo": true
+    }
+  },
+  {
+    "id": "prof_geo_perpendiculares",
+    "tema": "geometria_angulos",
+    "despues_de": "prof_geo_trazado",
+    "titulo": "Rectas que forman cuatro ángulos rectos",
+    "explicacion": "Dos rectas perpendiculares se cortan formando cuatro ángulos de 90°. Una escuadra permite comprobar el ángulo recto. Que dos rectas se crucen no alcanza para que sean perpendiculares.",
+    "ejemplo": "Las rectas del dibujo forman cuatro ángulos de 90°.",
+    "pasos": [
+      "Apoyamos los dos lados del ángulo recto de la escuadra sobre las rectas.",
+      "Si coinciden, las rectas son perpendiculares. Cada abertura mide 90°."
+    ],
+    "pista": "Buscá ángulos rectos, no solo un cruce.",
+    "actividades": [
+      {
+        "enunciado": "Dos rectas se cortan y uno de sus ángulos mide 90°. ¿Son perpendiculares?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "90° es un ángulo recto: las rectas son perpendiculares.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 90,
+          "rectas": true,
+          "medida": true
+        },
+        "id": "prof_geo_perpendiculares-v1"
+      },
+      {
+        "enunciado": "Dos rectas se cortan y uno de sus ángulos mide 60°. ¿Son perpendiculares?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "paso_resuelto": "60° no es 90°: estas rectas no son perpendiculares.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 60,
+          "rectas": true,
+          "medida": true
+        },
+        "id": "prof_geo_perpendiculares-v2"
+      },
+      {
+        "enunciado": "Dos rectas se cortan y uno de sus ángulos mide 120°. ¿Son perpendiculares?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "120° no es 90°: estas rectas no son perpendiculares.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 120,
+          "rectas": true,
+          "medida": true
+        },
+        "id": "prof_geo_perpendiculares-v3"
+      },
+      {
+        "enunciado": "Dos rectas se cortan y uno de sus ángulos mide 90°. ¿Son perpendiculares?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "90° es un ángulo recto: las rectas son perpendiculares.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 90,
+          "rectas": true,
+          "medida": true
+        },
+        "id": "prof_geo_perpendiculares-v4"
+      },
+      {
+        "enunciado": "Dos rectas se cortan y uno de sus ángulos mide 40°. ¿Son perpendiculares?",
+        "respuesta_correcta": "No",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "40° no es 90°: estas rectas no son perpendiculares.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 40,
+          "rectas": true,
+          "medida": true
+        },
+        "id": "prof_geo_perpendiculares-v5"
+      },
+      {
+        "enunciado": "Dos rectas se cortan y uno de sus ángulos mide 90°. ¿Son perpendiculares?",
+        "respuesta_correcta": "Sí",
+        "opciones": [
+          "No",
+          "Sí"
+        ],
+        "paso_resuelto": "90° es un ángulo recto: las rectas son perpendiculares.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 90,
+          "rectas": true,
+          "medida": true
+        },
+        "id": "prof_geo_perpendiculares-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "angulo",
+      "angulo": 90,
+      "rectas": true,
+      "medida": true
+    }
+  },
+  {
+    "id": "prof_geo_opuestos",
+    "tema": "geometria_angulos",
+    "despues_de": "mat_ang_complemento",
+    "titulo": "Ángulos enfrentados en un cruce",
+    "explicacion": "Cuando dos rectas se cruzan, los ángulos opuestos por el vértice están enfrentados y miden lo mismo. Los que quedan uno al lado del otro sobre una recta suman 180°. Miramos qué ángulo pide la pregunta antes de calcular.",
+    "ejemplo": "Si el ángulo naranja mide 60°, el que está enfrente también mide 60°.",
+    "pasos": [
+      "Ubicamos el ángulo enfrentado: sus lados prolongan los del ángulo naranja.",
+      "Los opuestos por el vértice son iguales: el ángulo pedido mide 60°."
+    ],
+    "pista": "El opuesto está enfrente; el adyacente queda al lado.",
+    "actividades": [
+      {
+        "enunciado": "El ángulo naranja mide 60°. ¿Cuánto mide el ángulo verde enfrentado?",
+        "respuesta_correcta": "60",
+        "opciones": [
+          "60",
+          "120",
+          "70"
+        ],
+        "paso_resuelto": "Son opuestos por el vértice, por eso tienen la misma medida.\nEl verde mide 60°.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 60,
+          "rectas": true,
+          "opuesto": true,
+          "medida": true
+        },
+        "id": "prof_geo_opuestos-v1"
+      },
+      {
+        "enunciado": "El ángulo naranja mide 40°. ¿Cuánto mide el ángulo verde enfrentado?",
+        "respuesta_correcta": "40",
+        "opciones": [
+          "140",
+          "50",
+          "40"
+        ],
+        "paso_resuelto": "Son opuestos por el vértice, por eso tienen la misma medida.\nEl verde mide 40°.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 40,
+          "rectas": true,
+          "opuesto": true,
+          "medida": true
+        },
+        "id": "prof_geo_opuestos-v2"
+      },
+      {
+        "enunciado": "El ángulo naranja mide 120°. ¿Cuánto mide el ángulo verde enfrentado?",
+        "respuesta_correcta": "120",
+        "opciones": [
+          "130",
+          "120",
+          "60"
+        ],
+        "paso_resuelto": "Son opuestos por el vértice, por eso tienen la misma medida.\nEl verde mide 120°.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 120,
+          "rectas": true,
+          "opuesto": true,
+          "medida": true
+        },
+        "id": "prof_geo_opuestos-v3"
+      },
+      {
+        "enunciado": "El ángulo naranja mide 70°. ¿Cuánto mide el ángulo verde enfrentado?",
+        "respuesta_correcta": "70",
+        "opciones": [
+          "70",
+          "110",
+          "80"
+        ],
+        "paso_resuelto": "Son opuestos por el vértice, por eso tienen la misma medida.\nEl verde mide 70°.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 70,
+          "rectas": true,
+          "opuesto": true,
+          "medida": true
+        },
+        "id": "prof_geo_opuestos-v4"
+      },
+      {
+        "enunciado": "El ángulo naranja mide 130°. ¿Cuánto mide el ángulo verde enfrentado?",
+        "respuesta_correcta": "130",
+        "opciones": [
+          "50",
+          "140",
+          "130"
+        ],
+        "paso_resuelto": "Son opuestos por el vértice, por eso tienen la misma medida.\nEl verde mide 130°.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 130,
+          "rectas": true,
+          "opuesto": true,
+          "medida": true
+        },
+        "id": "prof_geo_opuestos-v5"
+      },
+      {
+        "enunciado": "El ángulo naranja mide 30°. ¿Cuánto mide el ángulo verde enfrentado?",
+        "respuesta_correcta": "30",
+        "opciones": [
+          "40",
+          "30",
+          "150"
+        ],
+        "paso_resuelto": "Son opuestos por el vértice, por eso tienen la misma medida.\nEl verde mide 30°.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 30,
+          "rectas": true,
+          "opuesto": true,
+          "medida": true
+        },
+        "id": "prof_geo_opuestos-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "angulo",
+      "angulo": 60,
+      "rectas": true,
+      "opuesto": true,
+      "medida": true
+    }
+  },
+  {
+    "id": "prof_geo_bisectriz",
+    "tema": "geometria_angulos",
+    "despues_de": "prof_geo_opuestos",
+    "titulo": "Partir una abertura en dos iguales",
+    "explicacion": "La bisectriz es una semirrecta que sale del vértice y divide el ángulo en dos ángulos iguales. Cada parte mide la mitad del ángulo original. No alcanza con dibujar una línea cualquiera dentro del ángulo.",
+    "ejemplo": "La bisectriz de un ángulo de 80° forma dos ángulos de 40°.",
+    "pasos": [
+      "Dividimos la medida total por dos: 80 ÷ 2 = 40°.",
+      "Comprobamos: 40° + 40° = 80°."
+    ],
+    "pista": "La bisectriz reparte la medida en dos partes iguales.",
+    "actividades": [
+      {
+        "enunciado": "La línea verde es la bisectriz de un ángulo de 80°. ¿Cuántos grados mide cada mitad?",
+        "respuesta_correcta": "40",
+        "opciones": [
+          "40",
+          "80",
+          "100"
+        ],
+        "paso_resuelto": "80 ÷ 2 = 40°.\nComprobamos: 40° + 40° = 80°.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 80,
+          "bisectriz": true,
+          "medida": true
+        },
+        "id": "prof_geo_bisectriz-v1"
+      },
+      {
+        "enunciado": "La línea verde es la bisectriz de un ángulo de 60°. ¿Cuántos grados mide cada mitad?",
+        "respuesta_correcta": "30",
+        "opciones": [
+          "60",
+          "120",
+          "30"
+        ],
+        "paso_resuelto": "60 ÷ 2 = 30°.\nComprobamos: 30° + 30° = 60°.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 60,
+          "bisectriz": true,
+          "medida": true
+        },
+        "id": "prof_geo_bisectriz-v2"
+      },
+      {
+        "enunciado": "La línea verde es la bisectriz de un ángulo de 100°. ¿Cuántos grados mide cada mitad?",
+        "respuesta_correcta": "50",
+        "opciones": [
+          "80",
+          "50",
+          "100"
+        ],
+        "paso_resuelto": "100 ÷ 2 = 50°.\nComprobamos: 50° + 50° = 100°.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 100,
+          "bisectriz": true,
+          "medida": true
+        },
+        "id": "prof_geo_bisectriz-v3"
+      },
+      {
+        "enunciado": "La línea verde es la bisectriz de un ángulo de 120°. ¿Cuántos grados mide cada mitad?",
+        "respuesta_correcta": "60",
+        "opciones": [
+          "120",
+          "60"
+        ],
+        "paso_resuelto": "120 ÷ 2 = 60°.\nComprobamos: 60° + 60° = 120°.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 120,
+          "bisectriz": true,
+          "medida": true
+        },
+        "id": "prof_geo_bisectriz-v4"
+      },
+      {
+        "enunciado": "La línea verde es la bisectriz de un ángulo de 140°. ¿Cuántos grados mide cada mitad?",
+        "respuesta_correcta": "70",
+        "opciones": [
+          "140",
+          "40",
+          "70"
+        ],
+        "paso_resuelto": "140 ÷ 2 = 70°.\nComprobamos: 70° + 70° = 140°.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 140,
+          "bisectriz": true,
+          "medida": true
+        },
+        "id": "prof_geo_bisectriz-v5"
+      },
+      {
+        "enunciado": "La línea verde es la bisectriz de un ángulo de 40°. ¿Cuántos grados mide cada mitad?",
+        "respuesta_correcta": "20",
+        "opciones": [
+          "140",
+          "20",
+          "40"
+        ],
+        "paso_resuelto": "40 ÷ 2 = 20°.\nComprobamos: 20° + 20° = 40°.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 40,
+          "bisectriz": true,
+          "medida": true
+        },
+        "id": "prof_geo_bisectriz-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "angulo",
+      "angulo": 80,
+      "bisectriz": true,
+      "medida": true
+    }
+  },
+  {
+    "id": "prof_geo_compas",
+    "tema": "geometria_angulos",
+    "despues_de": "prof_geo_bisectriz",
+    "titulo": "Trazar la bisectriz con regla y compás",
+    "explicacion": "Con centro en O trazamos un arco que corte los lados en A y B. Desde A y B hacemos dos arcos con la misma apertura, suficientemente grande para que se crucen dentro del ángulo en P. La semirrecta OP es la bisectriz.",
+    "ejemplo": "Los arcos con centro en A y B usan la misma apertura del compás.",
+    "pasos": [
+      "En papel, trazá el arco desde O. Desde A y B, sin cambiar la apertura entre esos dos arcos, marcá el cruce interior P.",
+      "Con regla, trazá la semirrecta que sale de O y pasa por P. Comprobá las dos mitades con el transportador."
+    ],
+    "pista": "Conservá la misma apertura para los arcos con centro en A y B.",
+    "actividades": [
+      {
+        "enunciado": "¿Qué debe mantenerse igual al trazar los arcos desde A y B?",
+        "respuesta_correcta": "La apertura del compás",
+        "opciones": [
+          "La apertura del compás",
+          "La longitud de la regla",
+          "El nombre del vértice"
+        ],
+        "paso_resuelto": "Los arcos desde A y B tienen el mismo radio.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 60,
+          "compas": true,
+          "bisectriz": true
+        },
+        "id": "prof_geo_compas-v1"
+      },
+      {
+        "enunciado": "¿Dónde apoyamos primero la punta del compás para marcar A y B?",
+        "respuesta_correcta": "En O",
+        "opciones": [
+          "En P",
+          "Fuera del ángulo",
+          "En O"
+        ],
+        "paso_resuelto": "El primer arco se traza con centro en el vértice O.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 60,
+          "compas": true,
+          "bisectriz": true
+        },
+        "id": "prof_geo_compas-v2"
+      },
+      {
+        "enunciado": "Ya marcamos el cruce interior P. ¿Qué semirrecta trazamos?",
+        "respuesta_correcta": "OP",
+        "opciones": [
+          "AP",
+          "OP",
+          "AB"
+        ],
+        "paso_resuelto": "Unimos el vértice O con el cruce P y prolongamos desde O.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 60,
+          "compas": true,
+          "bisectriz": true
+        },
+        "id": "prof_geo_compas-v3"
+      },
+      {
+        "enunciado": "Si los arcos desde A y B no se cruzan, ¿cómo seguimos?",
+        "respuesta_correcta": "Aumentamos la apertura por igual en ambos",
+        "opciones": [
+          "Aumentamos la apertura por igual en ambos",
+          "Cambiamos solo el arco de A",
+          "Elegimos cualquier punto"
+        ],
+        "paso_resuelto": "Rehacemos ambos arcos con un mismo radio mayor hasta que se crucen.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 60,
+          "compas": true,
+          "bisectriz": true
+        },
+        "id": "prof_geo_compas-v4"
+      },
+      {
+        "enunciado": "¿Para qué marcamos A y B con el mismo arco desde O?",
+        "respuesta_correcta": "Para que OA y OB midan lo mismo",
+        "opciones": [
+          "Para que el ángulo mida 90°",
+          "Para alargar un solo lado",
+          "Para que OA y OB midan lo mismo"
+        ],
+        "paso_resuelto": "A y B están sobre un mismo arco con centro en O: OA y OB son radios iguales.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 60,
+          "compas": true,
+          "bisectriz": true
+        },
+        "id": "prof_geo_compas-v5"
+      },
+      {
+        "enunciado": "Al comprobar el trazado, ¿cómo deben ser las dos mitades?",
+        "respuesta_correcta": "De igual medida",
+        "opciones": [
+          "Siempre de 90°",
+          "De igual medida",
+          "Una mayor que la otra"
+        ],
+        "paso_resuelto": "La bisectriz divide el ángulo en dos ángulos iguales.",
+        "visual": {
+          "tipo": "angulo",
+          "angulo": 60,
+          "compas": true,
+          "bisectriz": true
+        },
+        "id": "prof_geo_compas-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "angulo",
+      "angulo": 60,
+      "compas": true,
+      "bisectriz": true
+    }
+  },
+  {
+    "id": "prof_geo_mediatriz",
+    "tema": "geometria_angulos",
+    "despues_de": "prof_geo_compas",
+    "titulo": "Encontrar la mitad y trazar una perpendicular",
+    "explicacion": "La mediatriz es la recta perpendicular a un segmento que pasa por su punto medio. Para construirla, trazamos arcos desde A y B con el mismo radio, mayor que la mitad del segmento. Unimos sus dos cruces C y D: la recta resultante corta AB en su mitad M.",
+    "ejemplo": "Si AB mide 8 cm, M deja 4 cm a cada lado y la mediatriz forma 90° con AB.",
+    "pasos": [
+      "En papel, dibujá AB. Sin cambiar la apertura entre A y B, trazá arcos que se crucen arriba y abajo.",
+      "Uní C con D usando la regla. Comprobá que AM = MB y que el cruce forma un ángulo recto."
+    ],
+    "pista": "La mediatriz cumple dos condiciones: punto medio y perpendicularidad.",
+    "actividades": [
+      {
+        "enunciado": "AB mide 8 cm y la recta verde es su mediatriz. ¿Cuántos centímetros mide AM?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "4",
+          "8",
+          "5"
+        ],
+        "paso_resuelto": "M es el punto medio: 8 ÷ 2 = 4 cm.\nAM = MB = 4 cm y la recta CD es perpendicular a AB.",
+        "visual": {
+          "tipo": "mediatriz",
+          "longitud": 8
+        },
+        "id": "prof_geo_mediatriz-v1"
+      },
+      {
+        "enunciado": "AB mide 6 cm y la recta verde es su mediatriz. ¿Cuántos centímetros mide AM?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "6",
+          "4",
+          "3"
+        ],
+        "paso_resuelto": "M es el punto medio: 6 ÷ 2 = 3 cm.\nAM = MB = 3 cm y la recta CD es perpendicular a AB.",
+        "visual": {
+          "tipo": "mediatriz",
+          "longitud": 6
+        },
+        "id": "prof_geo_mediatriz-v2"
+      },
+      {
+        "enunciado": "AB mide 10 cm y la recta verde es su mediatriz. ¿Cuántos centímetros mide AM?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "6",
+          "5",
+          "10"
+        ],
+        "paso_resuelto": "M es el punto medio: 10 ÷ 2 = 5 cm.\nAM = MB = 5 cm y la recta CD es perpendicular a AB.",
+        "visual": {
+          "tipo": "mediatriz",
+          "longitud": 10
+        },
+        "id": "prof_geo_mediatriz-v3"
+      },
+      {
+        "enunciado": "AB mide 12 cm y la recta verde es su mediatriz. ¿Cuántos centímetros mide AM?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "6",
+          "12",
+          "7"
+        ],
+        "paso_resuelto": "M es el punto medio: 12 ÷ 2 = 6 cm.\nAM = MB = 6 cm y la recta CD es perpendicular a AB.",
+        "visual": {
+          "tipo": "mediatriz",
+          "longitud": 12
+        },
+        "id": "prof_geo_mediatriz-v4"
+      },
+      {
+        "enunciado": "AB mide 14 cm y la recta verde es su mediatriz. ¿Cuántos centímetros mide AM?",
+        "respuesta_correcta": "7",
+        "opciones": [
+          "14",
+          "8",
+          "7"
+        ],
+        "paso_resuelto": "M es el punto medio: 14 ÷ 2 = 7 cm.\nAM = MB = 7 cm y la recta CD es perpendicular a AB.",
+        "visual": {
+          "tipo": "mediatriz",
+          "longitud": 14
+        },
+        "id": "prof_geo_mediatriz-v5"
+      },
+      {
+        "enunciado": "AB mide 16 cm y la recta verde es su mediatriz. ¿Cuántos centímetros mide AM?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "9",
+          "8",
+          "16"
+        ],
+        "paso_resuelto": "M es el punto medio: 16 ÷ 2 = 8 cm.\nAM = MB = 8 cm y la recta CD es perpendicular a AB.",
+        "visual": {
+          "tipo": "mediatriz",
+          "longitud": 16
+        },
+        "id": "prof_geo_mediatriz-v6"
+      }
+    ],
+    "visual": {
+      "tipo": "mediatriz",
+      "longitud": 8
+    }
+  }
+];
+for (const unidad of GEOMETRIA_R13) {
+ const indice = UNIDADES_BASES.findIndex(u => u.id === (unidad.antes_de || unidad.despues_de));
+ if (indice < 0) throw new Error('Falta el paso de referencia de ' + unidad.id);
+ UNIDADES_BASES.splice(indice + (unidad.antes_de ? 0 : 1), 0, unidad);
+}
+// FIN R13
+
 export const TEMAS_BASES = [...new Set(UNIDADES_BASES.map(u => u.tema))];
 export function getUnidadBase(id) { return UNIDADES_BASES.find(u => u.id === id) || null; }
 export function crearActividadBase(id, modo, sesiones = []) {
@@ -11942,7 +12938,7 @@ export function evaluarActividadBase(sesion, respuesta, noVisto=false) {
 export function getFichaBase(tema) {
  const unidades=UNIDADES_BASES.filter(u=>u.tema===tema);if(!unidades.length)return null;
  return {titulo:'Primeros pasos: '+tema.replaceAll('_',' '),disponible:true,pdf_url:'/apuntes/bases-'+tema+'.pdf',contenido_version:VERSION_BASES,
- slides:unidades.map(u=>({titulo:u.titulo,contenido:u.explicacion+'\n\n'+u.ejemplo+'\n'+u.pasos.join('\n'),concepto_clave:u.pista})),
+ slides:unidades.map(u=>({titulo:u.titulo,contenido:u.explicacion+'\n\n'+u.ejemplo+'\n'+u.pasos.join('\n'),concepto_clave:u.pista,visual_apoyo:u.visual})),
  apunte_completo:unidades.map(u=>'## '+u.titulo+'\n\n'+u.explicacion+'\n\n'+u.ejemplo+'\n\n'+u.pasos.join('\n')+'\n\nPara probar: '+u.actividades[0].enunciado+'\nRespuesta para revisar: '+u.actividades[0].respuesta_correcta).join('\n\n')};
 }
 

@@ -4,7 +4,7 @@ import { accesoTema } from "@/lib/acceso-temas";
 import { fetchRegistrado, leerEnvioPendiente, restaurarEnvioPendiente } from "@/lib/envios-cliente";
 import { TEMAS_BASES, VERSION_BASES } from "@/lib/metadatos-bases";
 import { puedeRetomarMision } from "@/lib/continuidad-mision";
-import BarrasFraccion from "./BarrasFraccion";
+import ApoyoVisual from "./ApoyoVisual";
 import { visualizacionSegura } from "@/lib/visualizaciones-seguras";
 import { useEffect, useMemo, useRef, useState } from "react";
 import PantallaCasoResuelto from "./PantallaCasoResuelto";
@@ -1077,7 +1077,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         <RepasoSugerido userId={user_id} loading={loading} refrescar={sesionId + ':' + misionTerminada} onStart={handleIniciarRepaso} />
       )}
 
-      {!evaluacion && <BarrasFraccion barras={pregunta?.tipo === 'leccion' ? (pasoActual === 0 ? pregunta.visual_apoyo : pasoActualData?.contenido?.visual) : pregunta?.visual_apoyo} />}
+      {!misionTerminada && (!evaluacion || pregunta?.visual_apoyo?.tipo === "angulo" || pregunta?.visual_apoyo?.tipo === "mediatriz") && <ApoyoVisual permitirExplorar={pregunta?.tipo === 'leccion' && pasoActual < 2} datos={pregunta?.tipo === 'leccion' ? (pasoActual === 0 ? pregunta.visual_apoyo : pasoActualData?.contenido?.visual) : pregunta?.visual_apoyo} />}
       {loading && <p className="status">{tutor.nombre} esta pensando...</p>}
       {error && <p className="error" role="alert" style={{ color: "#fecaca" }}>{error}</p>}
 
@@ -2107,6 +2107,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
 
                     </div>
 
+                    <ApoyoVisual datos={currentSlide.visual_apoyo} permitirExplorar />
                     {/* Controles de Slide */}
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto", paddingTop: "20px", borderTop: "1px solid #2a204d" }}>
                       <button
@@ -2598,7 +2599,7 @@ function extraerTodosLosNumeros(texto) {
 
 function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRespuesta, onRespuestaTexto, onSubmit, visualParaEjercicio, onSwitchTopic, onOpenTheory, onForzarPractica }) {
   const cierreGuiado = pregunta.contenido_version === VERSION_BASES;
-  const tituloTema = { si_me_la_longitud: "Medidas de longitud", si_me_la_masa_capacidad_tiempo: "Masa, capacidad y tiempo" }[tema] || tema.replace(/_/g, " ");
+  const tituloTema = { geometria_angulos: "Ángulos y construcciones", si_me_la_longitud: "Medidas de longitud", si_me_la_masa_capacidad_tiempo: "Masa, capacidad y tiempo" }[tema] || tema.replace(/_/g, " ");
   const tienePreguntas = pregunta.preguntas?.length > 0;
   const puedeEnviar = tienePreguntas
     ? pregunta.preguntas.every((item) => String(respuestas[item.id] || "").trim())
@@ -2715,7 +2716,7 @@ function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRe
               <label htmlFor={`respuesta-examen-${item.id}`} style={{whiteSpace:"pre-line"}}>
                 {item.id}) {parseInlineMarkdown(item.texto)}
               </label>
-              <BarrasFraccion barras={item.visual} />
+              <ApoyoVisual datos={item.visual} />
               {item.opciones?.length ? <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
                 {item.opciones.map(opcion => <button key={opcion} type="button" aria-pressed={respuestas[item.id]===opcion}
                   onClick={()=>onRespuesta(item.id,opcion)} disabled={loading}

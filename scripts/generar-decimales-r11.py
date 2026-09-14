@@ -56,5 +56,5 @@ for (const unidad of DECIMALES_R11) {
  UNIDADES_BASES.splice(indice + 1, 0, unidad);
 }
 '''+end+'\n\n'
-i=s.index('// R12: medidas paso a paso.') if '// R12: medidas paso a paso.' in s else s.index('export const TEMAS_BASES');p.write_text(s[:i]+code+s[i:],encoding='utf-8')
+i=min(s.index(m) for m in ['// R12: medidas paso a paso.','// R13: geometria con diagramas.','export const TEMAS_BASES'] if m in s);p.write_text(s[:i]+code+s[i:],encoding='utf-8')
 print(len(U),'unidades nuevas;',sum(len(u['actividades']) for u in U),'actividades')

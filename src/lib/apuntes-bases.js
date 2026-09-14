@@ -1592,6 +1592,27 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "prof_geo_elementos",
+    "tema": "geometria_angulos",
+    "titulo": "Dos lados que nacen del mismo punto",
+    "explicacion": "Un ángulo tiene dos lados que son semirrectas y nacen en un punto común, el vértice. Medimos la abertura entre los lados, no su longitud. Al escribir AOB, la letra del medio, O, nombra el vértice.",
+    "ejemplo": "En el dibujo, OA y OB son los lados y O es el vértice.",
+    "pasos": [
+      "Buscamos dónde se encuentran los dos lados.",
+      "Ese punto común es O: es el vértice."
+    ],
+    "pista": "Buscá el punto del que salen ambos lados.",
+    "visual": {
+      "tipo": "angulo",
+      "angulo": 60,
+      "letras": [
+        "O",
+        "A",
+        "B"
+      ]
+    }
+  },
+  {
     "id": "mat_ang_clases",
     "tema": "geometria_angulos",
     "titulo": "Comparar una abertura con un ángulo recto",
@@ -1605,6 +1626,59 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "prof_geo_transportador",
+    "tema": "geometria_angulos",
+    "titulo": "Empezar por el cero correcto",
+    "explicacion": "Ponemos el centro del transportador en el vértice y alineamos un lado con el cero. Leemos la escala que comienza en ese cero hasta el otro lado. Si el lado inicial apunta a la izquierda, usamos el cero de la izquierda.",
+    "ejemplo": "El lado naranja llega a 60° si empezamos en el cero derecho.",
+    "pasos": [
+      "El centro coincide con O y el lado azul pasa por el cero derecho.",
+      "Seguimos esa escala hasta el lado naranja: 60°."
+    ],
+    "pista": "Elegí primero el cero sobre el lado azul.",
+    "visual": {
+      "tipo": "angulo",
+      "angulo": 60,
+      "transportador": true
+    }
+  },
+  {
+    "id": "prof_geo_trazado",
+    "tema": "geometria_angulos",
+    "titulo": "Construir un ángulo con transportador",
+    "explicacion": "Para dibujar un ángulo, trazamos un lado y marcamos el vértice. Apoyamos allí el centro del transportador, alineamos el cero con el lado y marcamos la medida pedida. Al unir el vértice con esa marca obtenemos el segundo lado.",
+    "ejemplo": "Para dibujar 60°, marcamos 60 en la escala que empieza en el lado azul.",
+    "pasos": [
+      "En la app, explorá la abertura con el control. En papel, dibujá el primer lado y ubicá el centro y el cero.",
+      "Marcá 60° y trazá desde el vértice una semirrecta que pase por la marca."
+    ],
+    "pista": "La marca indica por dónde debe pasar el segundo lado.",
+    "visual": {
+      "tipo": "angulo",
+      "angulo": 60,
+      "transportador": true,
+      "interactivo": true
+    }
+  },
+  {
+    "id": "prof_geo_perpendiculares",
+    "tema": "geometria_angulos",
+    "titulo": "Rectas que forman cuatro ángulos rectos",
+    "explicacion": "Dos rectas perpendiculares se cortan formando cuatro ángulos de 90°. Una escuadra permite comprobar el ángulo recto. Que dos rectas se crucen no alcanza para que sean perpendiculares.",
+    "ejemplo": "Las rectas del dibujo forman cuatro ángulos de 90°.",
+    "pasos": [
+      "Apoyamos los dos lados del ángulo recto de la escuadra sobre las rectas.",
+      "Si coinciden, las rectas son perpendiculares. Cada abertura mide 90°."
+    ],
+    "pista": "Buscá ángulos rectos, no solo un cruce.",
+    "visual": {
+      "tipo": "angulo",
+      "angulo": 90,
+      "rectas": true,
+      "medida": true
+    }
+  },
+  {
     "id": "mat_ang_complemento",
     "tema": "geometria_angulos",
     "titulo": "Dos ángulos que completan una abertura",
@@ -1616,6 +1690,77 @@ const UNIDADES = [
     ],
     "pista": "Identificá si deben sumar 90° o 180°.",
     "visual": null
+  },
+  {
+    "id": "prof_geo_opuestos",
+    "tema": "geometria_angulos",
+    "titulo": "Ángulos enfrentados en un cruce",
+    "explicacion": "Cuando dos rectas se cruzan, los ángulos opuestos por el vértice están enfrentados y miden lo mismo. Los que quedan uno al lado del otro sobre una recta suman 180°. Miramos qué ángulo pide la pregunta antes de calcular.",
+    "ejemplo": "Si el ángulo naranja mide 60°, el que está enfrente también mide 60°.",
+    "pasos": [
+      "Ubicamos el ángulo enfrentado: sus lados prolongan los del ángulo naranja.",
+      "Los opuestos por el vértice son iguales: el ángulo pedido mide 60°."
+    ],
+    "pista": "El opuesto está enfrente; el adyacente queda al lado.",
+    "visual": {
+      "tipo": "angulo",
+      "angulo": 60,
+      "rectas": true,
+      "opuesto": true,
+      "medida": true
+    }
+  },
+  {
+    "id": "prof_geo_bisectriz",
+    "tema": "geometria_angulos",
+    "titulo": "Partir una abertura en dos iguales",
+    "explicacion": "La bisectriz es una semirrecta que sale del vértice y divide el ángulo en dos ángulos iguales. Cada parte mide la mitad del ángulo original. No alcanza con dibujar una línea cualquiera dentro del ángulo.",
+    "ejemplo": "La bisectriz de un ángulo de 80° forma dos ángulos de 40°.",
+    "pasos": [
+      "Dividimos la medida total por dos: 80 ÷ 2 = 40°.",
+      "Comprobamos: 40° + 40° = 80°."
+    ],
+    "pista": "La bisectriz reparte la medida en dos partes iguales.",
+    "visual": {
+      "tipo": "angulo",
+      "angulo": 80,
+      "bisectriz": true,
+      "medida": true
+    }
+  },
+  {
+    "id": "prof_geo_compas",
+    "tema": "geometria_angulos",
+    "titulo": "Trazar la bisectriz con regla y compás",
+    "explicacion": "Con centro en O trazamos un arco que corte los lados en A y B. Desde A y B hacemos dos arcos con la misma apertura, suficientemente grande para que se crucen dentro del ángulo en P. La semirrecta OP es la bisectriz.",
+    "ejemplo": "Los arcos con centro en A y B usan la misma apertura del compás.",
+    "pasos": [
+      "En papel, trazá el arco desde O. Desde A y B, sin cambiar la apertura entre esos dos arcos, marcá el cruce interior P.",
+      "Con regla, trazá la semirrecta que sale de O y pasa por P. Comprobá las dos mitades con el transportador."
+    ],
+    "pista": "Conservá la misma apertura para los arcos con centro en A y B.",
+    "visual": {
+      "tipo": "angulo",
+      "angulo": 60,
+      "compas": true,
+      "bisectriz": true
+    }
+  },
+  {
+    "id": "prof_geo_mediatriz",
+    "tema": "geometria_angulos",
+    "titulo": "Encontrar la mitad y trazar una perpendicular",
+    "explicacion": "La mediatriz es la recta perpendicular a un segmento que pasa por su punto medio. Para construirla, trazamos arcos desde A y B con el mismo radio, mayor que la mitad del segmento. Unimos sus dos cruces C y D: la recta resultante corta AB en su mitad M.",
+    "ejemplo": "Si AB mide 8 cm, M deja 4 cm a cada lado y la mediatriz forma 90° con AB.",
+    "pasos": [
+      "En papel, dibujá AB. Sin cambiar la apertura entre A y B, trazá arcos que se crucen arriba y abajo.",
+      "Uní C con D usando la regla. Comprobá que AM = MB y que el cruce forma un ángulo recto."
+    ],
+    "pista": "La mediatriz cumple dos condiciones: punto medio y perpendicularidad.",
+    "visual": {
+      "tipo": "mediatriz",
+      "longitud": 8
+    }
   },
   {
     "id": "mat_tri_lados",
@@ -1881,6 +2026,6 @@ const UNIDADES = [
 export function getFichaBase(tema) {
  const us=UNIDADES.filter(u=>u.tema===tema);if(!us.length)return null;
  return {titulo:'Primeros pasos: '+tema.replaceAll('_',' '),disponible:true,pdf_url:'/apuntes/bases-'+tema+'.pdf',contenido_version:VERSION_BASES,
- slides:us.map(u=>({titulo:u.titulo,contenido:u.explicacion+'\n\n'+u.ejemplo+'\n'+u.pasos.join('\n'),concepto_clave:u.pista})),
+ slides:us.map(u=>({titulo:u.titulo,contenido:u.explicacion+'\n\n'+u.ejemplo+'\n'+u.pasos.join('\n'),concepto_clave:u.pista,visual_apoyo:u.visual})),
  apunte_completo:us.map(u=>'## '+u.titulo+'\n\n'+u.explicacion+'\n\n'+u.ejemplo+'\n\n'+u.pasos.join('\n')).join('\n\n')};
 }

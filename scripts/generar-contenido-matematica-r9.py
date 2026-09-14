@@ -96,7 +96,7 @@ root=Path(__file__).resolve().parents[1]
 p=root/'src/lib/contenido-bases.js';s=p.read_text(encoding='utf-8')
 marker='// R9: fundamentos adicionales de Matemática.'
 if marker in s:s=s[:s.index(marker)]+s[s.index('// FIN R9')+len('// FIN R9'):]
-idx=min(s.index(m) for m in ['// R10: pasos intermedios.','// R11: decimales paso a paso.','// R12: medidas paso a paso.','export const TEMAS_BASES'] if m in s)
+idx=min(s.index(m) for m in ['// R10: pasos intermedios.','// R11: decimales paso a paso.','// R12: medidas paso a paso.','// R13: geometria con diagramas.','export const TEMAS_BASES'] if m in s)
 s=s[:idx]+marker+'\nUNIDADES_BASES.push(...'+json.dumps(U,ensure_ascii=False,indent=2)+');\n// FIN R9\n\n'+s[idx:]
 p.write_text(s,encoding='utf-8')
 print(len(U),'unidades adicionales;',sum(len(u['actividades']) for u in U),'actividades; temas:',len(set(u['tema'] for u in U)))
