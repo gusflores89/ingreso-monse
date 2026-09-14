@@ -679,7 +679,96 @@ const UNIDADES = [
       "La frase dice «junto a la puerta»: esa es la respuesta."
     ],
     "pista": "Buscá la frase que responde exactamente a la pregunta.",
-    "visual": null
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "Lola dejó su mochila junto a la puerta."
+    }
+  },
+  {
+    "id": "leng_prof_precision",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Elegir el dato que responde a la pregunta",
+    "explicacion": "Primero miramos si la pregunta pide quién, dónde, cuándo o qué ocurrió. Puede haber varios datos parecidos. Seguimos al personaje y la acción nombrados; no elegimos un dato solo porque aparezca cerca. Podés volver al texto.",
+    "ejemplo": "¿Qué día devolvió Vera el libro? El viernes.",
+    "pasos": [
+      "Buscamos la pista: «El viernes regresó a la biblioteca para devolverlo».",
+      "El martes lo pidió; la devolución ocurrió el viernes."
+    ],
+    "pista": "Buscá juntos el personaje y la acción de la pregunta.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "El martes, Vera pidió un libro en la biblioteca. Lo leyó en casa durante dos días. El viernes regresó a la biblioteca para devolverlo."
+    }
+  },
+  {
+    "id": "leng_prof_orden",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Reconstruir el orden de los hechos",
+    "explicacion": "Palabras como antes, después y al final ayudan a ordenar lo que pasó. El orden de las frases no siempre coincide con el de los hechos. Buscamos esas señales y reconstruimos el recorrido.",
+    "ejemplo": "¿Qué hizo Leo primero? Llenó la maceta con tierra.",
+    "pasos": [
+      "Buscamos la pista: «Antes de sembrar, Leo llenó la maceta con tierra».",
+      "La palabra antes sitúa la tierra al comienzo."
+    ],
+    "pista": "Prestá atención a antes y después: indican el orden real.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "Antes de sembrar, Leo llenó la maceta con tierra. Después colocó las semillas. Al final agregó agua y dejó la maceta junto a la ventana."
+    }
+  },
+  {
+    "id": "leng_prof_referencias",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Reconocer de quién o de qué se habla",
+    "explicacion": "Para no repetir nombres, un texto puede usar palabras como ella, lo o allí. Volvemos a la frase anterior y probamos a qué se refieren. La sustitución debe conservar el sentido de la acción.",
+    "ejemplo": "¿A qué se refiere «Lo» en «Lo abrió»? Al cuaderno.",
+    "pasos": [
+      "Buscamos la pista: «encontró un cuaderno».",
+      "Lo que Elena abrió fue el cuaderno encontrado."
+    ],
+    "pista": "Reemplazá la palabra por el nombre y comprobá si la frase tiene sentido.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "Elena encontró un cuaderno bajo el banco. Lo abrió para buscar el nombre de su dueño. En la primera página había un teléfono."
+    }
+  },
+  {
+    "id": "leng_prof_contexto",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Entender una palabra por lo que la rodea",
+    "explicacion": "Si una palabra no es familiar, leemos las frases cercanas. A veces describen lo mismo con otras palabras o muestran un contraste. Probamos el significado en la frase y elegimos el que encaja en ese contexto.",
+    "ejemplo": "¿Qué significa «cauteloso» en este texto? Cuidadoso.",
+    "pasos": [
+      "Buscamos la pista: «Avanzó despacio, olfateó el suelo y miró a ambos lados».",
+      "Las acciones muestran que el gato actuó con cuidado."
+    ],
+    "pista": "Buscá una descripción cercana que explique la palabra.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "Al entrar al patio, el gato se mostró cauteloso. Avanzó despacio, olfateó el suelo y miró a ambos lados antes de acercarse al plato."
+    }
+  },
+  {
+    "id": "leng_prof_causa",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Entender causas, finalidades y consecuencias",
+    "explicacion": "Una causa explica por qué ocurrió algo; una finalidad indica para qué hacemos algo. Porque y por eso pueden señalar causas y consecuencias; para que presenta una finalidad. Buscamos la relación que indica el texto: no todo hecho anterior es la causa.",
+    "ejemplo": "¿Por qué cambiaron el lugar del partido? Porque la cancha estaba llena de agua.",
+    "pasos": [
+      "Buscamos la pista: «La lluvia llenó de agua la cancha. Por eso».",
+      "Por eso conecta el estado de la cancha con el cambio de lugar."
+    ],
+    "pista": "Preguntá qué hecho explica el resultado, no solo cuál sucedió antes.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "La lluvia llenó de agua la cancha. Por eso el partido se jugó dentro del gimnasio. Los equipos llegaron a la misma hora de siempre."
+    }
   },
   {
     "id": "leng_lect_2_inferencia",
@@ -692,7 +781,45 @@ const UNIDADES = [
       "Es probable que haya llovido. El texto no permite saber durante cuánto tiempo."
     ],
     "pista": "Elegí lo que mejor explican las pistas; no agregues datos que el texto no da.",
-    "visual": null
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "El suelo estaba mojado y Lara cerró su paraguas al entrar."
+    }
+  },
+  {
+    "id": "leng_prof_evidencia",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Justificar una inferencia con una pista",
+    "explicacion": "Una inferencia debe apoyarse en el texto. Después de elegir una explicación probable, buscamos la frase que la sostiene. Una frase puede ser verdadera y no servir como prueba de esa conclusión.",
+    "ejemplo": "¿Qué pista apoya que Lucía probablemente estaba nerviosa? Le temblaban las manos y respiraba rápido.",
+    "pasos": [
+      "Buscamos la pista: «le temblaban las manos y respiraba muy rápido».",
+      "Esas reacciones apoyan nervios; llevar una partitura no los demuestra."
+    ],
+    "pista": "Elegí la pista que realmente apoya la conclusión propuesta.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "Lucía llegó al ensayo con la partitura. Mientras esperaba su turno, le temblaban las manos y respiraba muy rápido. Cuando la llamaron, se quedó un instante en silencio."
+    }
+  },
+  {
+    "id": "leng_prof_limites",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Reconocer lo que todavía no sabemos",
+    "explicacion": "Leer con cuidado también es reconocer un dato ausente. Podemos afirmar lo escrito y proponer inferencias apoyadas en pistas. Si preguntan una edad, una cantidad o un detalle que no aparece ni puede deducirse, decimos que el texto no permite saberlo.",
+    "ejemplo": "¿Cuántos libros había en la caja? El texto no permite saberlo.",
+    "pasos": [
+      "Buscamos la pista: «repartieron los libros que había dentro».",
+      "Se mencionan libros, pero no se indica una cantidad."
+    ],
+    "pista": "No completes los datos ausentes con una suposición.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "Paula llevó una caja al club. Entre todos la abrieron y repartieron los libros que había dentro. Después acomodaron la caja vacía junto al estante."
+    }
   },
   {
     "id": "leng_lect_3_idea_central",
@@ -705,7 +832,11 @@ const UNIDADES = [
       "Idea principal: el club organizó una actividad de reciclaje."
     ],
     "pista": "Buscá la opción que reúne el texto entero y no solo un detalle.",
-    "visual": null
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "El club juntó papel, separó cartón y lo llevó a reciclar."
+    }
   },
   {
     "id": "leng_bv_1_mb_nv",
@@ -2932,5 +3063,5 @@ export function getFichaBase(tema) {
  const us=UNIDADES.filter(u=>u.tema===tema);if(!us.length)return null;
  return {titulo:'Primeros pasos: '+tema.replaceAll('_',' '),disponible:true,pdf_url:'/apuntes/bases-'+tema+'.pdf',contenido_version:VERSION_BASES,
  slides:us.map(u=>({titulo:u.titulo,contenido:u.explicacion+'\n\n'+u.ejemplo+'\n'+u.pasos.join('\n'),concepto_clave:u.pista,visual_apoyo:u.visual})),
- apunte_completo:us.map(u=>'## '+u.titulo+'\n\n'+u.explicacion+'\n\n'+u.ejemplo+'\n\n'+u.pasos.join('\n')).join('\n\n')};
+ apunte_completo:us.map(u=>'## '+u.titulo+'\n\n'+(u.visual?.tipo==='lectura'?'Texto: '+u.visual.texto+'\n\n':'')+u.explicacion+'\n\n'+u.ejemplo+'\n\n'+u.pasos.join('\n')).join('\n\n')};
 }

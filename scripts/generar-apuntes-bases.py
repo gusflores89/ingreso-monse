@@ -12,7 +12,7 @@ s=(root/'src/lib/apuntes-bases.js').read_text(encoding='utf-8');units=json.loads
 pdfmetrics.registerFont(TTFont('Segoe',r'C:\Windows\Fonts\segoeui.ttf'))
 pdfmetrics.registerFont(TTFont('SegoeBold',r'C:\Windows\Fonts\segoeuib.ttf'))
 diagram_js="const fs=require('fs'),vm=require('vm');const s=fs.readFileSync(process.argv[1],'utf8').replace(/^export /gm,'');const make=vm.runInNewContext(s+';crearDiagramaGeometria');const items=JSON.parse(fs.readFileSync(0,'utf8'));process.stdout.write(JSON.stringify(items.map(make)));"
-visuals=[u['visual'] for u in units if isinstance(u['visual'],dict)]
+visuals=[u['visual'] for u in units if isinstance(u['visual'],dict) and u['visual'].get('tipo')!='lectura']
 rendered=json.loads(subprocess.check_output([os.environ.get('NODE_BINARY','node'),'-e',diagram_js,str(root/'src/lib/diagrama-geometria.js')],input=json.dumps(visuals),encoding='utf-8')) if visuals else []
 diagrams={json.dumps(v,sort_keys=True):d for v,d in zip(visuals,rendered)}
 for tema in dict.fromkeys(u['tema'] for u in units):
@@ -23,9 +23,10 @@ for tema in dict.fromkeys(u['tema'] for u in units):
   c.setFillColor(HexColor('#172554'));c.setFont('SegoeBold',11);c.drawString(48,794,'APRENDER PASO A PASO  /  '+('LENGUA' if u['id'].startswith('leng_') else 'MATEMÁTICA'))
   style=ParagraphStyle('title',fontName='SegoeBold',fontSize=22,leading=29,textColor=HexColor('#172554'));para=Paragraph(escape(u['titulo']),style);w,h=para.wrap(490,120);para.drawOn(c,48,758-h);y=730-h
   style=ParagraphStyle('body',fontName='Segoe',fontSize=13,leading=21,textColor=HexColor('#263449'))
-  for text in [u['explicacion'],'Ejemplo: '+u['ejemplo'],*[(str(j+1)+'. '+step) for j,step in enumerate(u['pasos'])], 'Para recordar: '+u['pista']]:
+  lectura=['Texto para releer: '+u['visual']['texto']] if isinstance(u['visual'],dict) and u['visual'].get('tipo')=='lectura' else []
+  for text in [*lectura,u['explicacion'],'Ejemplo: '+u['ejemplo'],*[(str(j+1)+'. '+step) for j,step in enumerate(u['pasos'])], 'Para recordar: '+u['pista']]:
    para=Paragraph(escape(text),style);w,h=para.wrap(490,450);para.drawOn(c,48,y-h);y-=h+18
-  if isinstance(u['visual'],dict):
+  if isinstance(u['visual'],dict) and u['visual'].get('tipo')!='lectura':
    diagram=diagrams[json.dumps(u['visual'],sort_keys=True)];scale=min(440/480,(y-105)/310);assert scale>=.65,(u['id'],y)
    left=(595-480*scale)/2
    for line in diagram['trazos']:

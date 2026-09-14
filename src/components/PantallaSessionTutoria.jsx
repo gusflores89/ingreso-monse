@@ -1077,7 +1077,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         <RepasoSugerido userId={user_id} loading={loading} refrescar={sesionId + ':' + misionTerminada} onStart={handleIniciarRepaso} />
       )}
 
-      {!misionTerminada && (!evaluacion || ["angulo", "mediatriz", "poligono", "segmentos", "circunferencia", "tramo", "datos"].includes(pregunta?.visual_apoyo?.tipo)) && <ApoyoVisual permitirExplorar={pregunta?.tipo === 'leccion' && pasoActual < 2} datos={pregunta?.tipo === 'leccion' ? (pasoActual === 0 ? pregunta.visual_apoyo : pasoActualData?.contenido?.visual) : pregunta?.visual_apoyo} />}
+      {!misionTerminada && (!evaluacion || ["angulo", "mediatriz", "poligono", "segmentos", "circunferencia", "tramo", "datos", "lectura"].includes(pregunta?.visual_apoyo?.tipo)) && <ApoyoVisual permitirExplorar={pregunta?.tipo === 'leccion' && pasoActual < 2} datos={pregunta?.tipo === 'leccion' ? (pasoActual === 0 ? pregunta.visual_apoyo : pasoActualData?.contenido?.visual) : pregunta?.visual_apoyo} />}
       {loading && <p className="status">{tutor.nombre} esta pensando...</p>}
       {error && <p className="error" role="alert" style={{ color: "#fecaca" }}>{error}</p>}
 
@@ -2601,6 +2601,7 @@ function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRe
   const cierreGuiado = pregunta.contenido_version === VERSION_BASES;
   const tituloTema = { geometria_angulos: "Ángulos y construcciones",
       geometria_triangulos: "Triángulos",
+      comprension_lectora_literal_inferida: "Comprender lo que leemos",
       geometria_cuadrilateros_circunferencia: "Polígonos y circunferencia",
       perimetros_simples: "Perímetros",
       perimetros_compuestos: "Figuras compuestas y primeras áreas", si_me_la_longitud: "Medidas de longitud", si_me_la_masa_capacidad_tiempo: "Masa, capacidad y tiempo" }[tema] || tema.replace(/_/g, " ");

@@ -18203,6 +18203,840 @@ for (const unidad of PROBLEMAS_R15) {
 }
 // FIN R15
 
+
+
+
+
+// R16: lectura con evidencia.
+const LECTURA_R16 = [
+  {
+    "id": "leng_prof_precision",
+    "tema": "comprension_lectora_literal_inferida",
+    "despues_de": "leng_lect_1_literal",
+    "titulo": "Elegir el dato que responde a la pregunta",
+    "explicacion": "Primero miramos si la pregunta pide quién, dónde, cuándo o qué ocurrió. Puede haber varios datos parecidos. Seguimos al personaje y la acción nombrados; no elegimos un dato solo porque aparezca cerca. Podés volver al texto.",
+    "ejemplo": "¿Qué día devolvió Vera el libro? El viernes.",
+    "pasos": [
+      "Buscamos la pista: «El viernes regresó a la biblioteca para devolverlo».",
+      "El martes lo pidió; la devolución ocurrió el viernes."
+    ],
+    "pista": "Buscá juntos el personaje y la acción de la pregunta.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "El martes, Vera pidió un libro en la biblioteca. Lo leyó en casa durante dos días. El viernes regresó a la biblioteca para devolverlo."
+    },
+    "actividades": [
+      {
+        "id": "leng_prof_precision-v1",
+        "enunciado": "¿Qué día devolvió Vera el libro?",
+        "respuesta_correcta": "El viernes",
+        "opciones": [
+          "El viernes",
+          "El martes",
+          "El miércoles"
+        ],
+        "paso_resuelto": "El texto dice «El viernes regresó a la biblioteca para devolverlo». El martes lo pidió; la devolución ocurrió el viernes.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El martes, Vera pidió un libro en la biblioteca. Lo leyó en casa durante dos días. El viernes regresó a la biblioteca para devolverlo."
+        }
+      },
+      {
+        "id": "leng_prof_precision-v2",
+        "enunciado": "¿Dónde dejó Iván los lápices?",
+        "respuesta_correcta": "En un cajón",
+        "opciones": [
+          "Sobre la mesa",
+          "En el patio",
+          "En un cajón"
+        ],
+        "paso_resuelto": "El texto dice «los lápices en un cajón». El patio es el lugar al que llevó el dibujo, no los lápices.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "En el taller, Iván dejó las tijeras sobre la mesa y los lápices en un cajón. Después llevó su dibujo al patio para mostrárselo a su hermana."
+        }
+      },
+      {
+        "id": "leng_prof_precision-v3",
+        "enunciado": "¿Quién llevó la fruta?",
+        "respuesta_correcta": "Bruno",
+        "opciones": [
+          "La profesora",
+          "Bruno",
+          "Alma"
+        ],
+        "paso_resuelto": "El texto dice «Bruno llevó fruta». Buscamos a la persona asociada con la fruta.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Para la merienda, Alma llevó pan y Bruno llevó fruta. La profesora puso agua en una jarra. Entre todos acomodaron los alimentos sobre una manta."
+        }
+      },
+      {
+        "id": "leng_prof_precision-v4",
+        "enunciado": "¿Dónde subió Julia al tren?",
+        "respuesta_correcta": "En la estación del pueblo",
+        "opciones": [
+          "En la estación del pueblo",
+          "En la estación del lago",
+          "El texto no lo indica"
+        ],
+        "paso_resuelto": "El texto dice «llegó a la estación del pueblo y allí subió Julia». La estación del lago es donde bajó.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El tren salió a las nueve. A las diez llegó a la estación del pueblo y allí subió Julia. Una hora después, Julia bajó en la estación del lago."
+        }
+      },
+      {
+        "id": "leng_prof_precision-v5",
+        "enunciado": "¿Qué guardó en la caja grande?",
+        "respuesta_correcta": "Retazos",
+        "opciones": [
+          "Botones",
+          "Etiquetas rojas",
+          "Retazos"
+        ],
+        "paso_resuelto": "El texto dice «en la grande guardó retazos». Los botones están en la pequeña.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Sofía preparó dos cajas. En la pequeña puso botones y en la grande guardó retazos. Luego pegó una etiqueta roja en la caja de los botones."
+        }
+      },
+      {
+        "id": "leng_prof_precision-v6",
+        "enunciado": "¿Cuándo colgaron los carteles?",
+        "respuesta_correcta": "El domingo",
+        "opciones": [
+          "El lunes",
+          "El domingo",
+          "El sábado"
+        ],
+        "paso_resuelto": "El texto dice «El domingo los vecinos se reunieron en la plaza para colgarlos». La feria es el lunes; colgarlos fue una acción anterior.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El sábado el club abrió el salón para pintar carteles. El domingo los vecinos se reunieron en la plaza para colgarlos. Los carteles anunciaban la feria del lunes."
+        }
+      }
+    ]
+  },
+  {
+    "id": "leng_prof_orden",
+    "tema": "comprension_lectora_literal_inferida",
+    "despues_de": "leng_prof_precision",
+    "titulo": "Reconstruir el orden de los hechos",
+    "explicacion": "Palabras como antes, después y al final ayudan a ordenar lo que pasó. El orden de las frases no siempre coincide con el de los hechos. Buscamos esas señales y reconstruimos el recorrido.",
+    "ejemplo": "¿Qué hizo Leo primero? Llenó la maceta con tierra.",
+    "pasos": [
+      "Buscamos la pista: «Antes de sembrar, Leo llenó la maceta con tierra».",
+      "La palabra antes sitúa la tierra al comienzo."
+    ],
+    "pista": "Prestá atención a antes y después: indican el orden real.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "Antes de sembrar, Leo llenó la maceta con tierra. Después colocó las semillas. Al final agregó agua y dejó la maceta junto a la ventana."
+    },
+    "actividades": [
+      {
+        "id": "leng_prof_orden-v1",
+        "enunciado": "¿Qué hizo Leo primero?",
+        "respuesta_correcta": "Llenó la maceta con tierra",
+        "opciones": [
+          "Llenó la maceta con tierra",
+          "Agregó agua",
+          "Colocó las semillas"
+        ],
+        "paso_resuelto": "El texto dice «Antes de sembrar, Leo llenó la maceta con tierra». La palabra antes sitúa la tierra al comienzo.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Antes de sembrar, Leo llenó la maceta con tierra. Después colocó las semillas. Al final agregó agua y dejó la maceta junto a la ventana."
+        }
+      },
+      {
+        "id": "leng_prof_orden-v2",
+        "enunciado": "¿Qué ocurrió antes de llegar al club?",
+        "respuesta_correcta": "Revisó los frenos",
+        "opciones": [
+          "Entró al salón",
+          "Guardó la bicicleta",
+          "Revisó los frenos"
+        ],
+        "paso_resuelto": "El texto dice «Antes de salir de casa había revisado los frenos». La revisión ocurrió en casa, aunque se cuente en la segunda frase.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Cuando llegó al club, Sara guardó la bicicleta. Antes de salir de casa había revisado los frenos. Tras guardar la bicicleta, entró al salón."
+        }
+      },
+      {
+        "id": "leng_prof_orden-v3",
+        "enunciado": "¿Qué hizo justo después de dibujar el mapa?",
+        "respuesta_correcta": "Marcó el camino",
+        "opciones": [
+          "Revisó las marcas",
+          "Marcó el camino",
+          "Salió del refugio"
+        ],
+        "paso_resuelto": "El texto dice «dibujó un mapa y luego marcó el camino». Luego une esas dos acciones consecutivas.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El grupo dibujó un mapa y luego marcó el camino. Antes de empezar a caminar, revisó las marcas. Finalmente salió del refugio."
+        }
+      },
+      {
+        "id": "leng_prof_orden-v4",
+        "enunciado": "¿Qué hizo Mica al final?",
+        "respuesta_correcta": "Agregó yogur",
+        "opciones": [
+          "Agregó yogur",
+          "Lavó las frutillas",
+          "Cortó las frutillas"
+        ],
+        "paso_resuelto": "El texto dice «cuando terminó de cortarlas agregó yogur». El yogur se agregó después de lavar y cortar.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Mica lavó las frutillas. Después las cortó y las puso en un bol. Solo cuando terminó de cortarlas agregó yogur."
+        }
+      },
+      {
+        "id": "leng_prof_orden-v5",
+        "enunciado": "¿Qué hizo después de pegar las piezas y antes de colgar el trabajo?",
+        "respuesta_correcta": "Lo dejó secar",
+        "opciones": [
+          "Armó el rompecabezas",
+          "Lo colgó",
+          "Lo dejó secar"
+        ],
+        "paso_resuelto": "El texto dice «Después de pegarlas, lo dejó secar». Es la acción situada entre pegar y colgar.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Antes de pegar las piezas, Omar armó el rompecabezas sobre la mesa. Después de pegarlas, lo dejó secar. Al día siguiente lo colgó."
+        }
+      },
+      {
+        "id": "leng_prof_orden-v6",
+        "enunciado": "¿Cuál es el orden de esas actividades?",
+        "respuesta_correcta": "Preparar preguntas → visitar → escribir",
+        "opciones": [
+          "Escribir → visitar → preparar preguntas",
+          "Preparar preguntas → visitar → escribir",
+          "Visitar → preparar preguntas → escribir"
+        ],
+        "paso_resuelto": "El texto dice «El miércoles había preparado preguntas». Miércoles, jueves y viernes ordenan las tres actividades.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La clase visitó el museo el jueves. El miércoles había preparado preguntas. El viernes escribió un relato de la visita."
+        }
+      }
+    ]
+  },
+  {
+    "id": "leng_prof_referencias",
+    "tema": "comprension_lectora_literal_inferida",
+    "despues_de": "leng_prof_orden",
+    "titulo": "Reconocer de quién o de qué se habla",
+    "explicacion": "Para no repetir nombres, un texto puede usar palabras como ella, lo o allí. Volvemos a la frase anterior y probamos a qué se refieren. La sustitución debe conservar el sentido de la acción.",
+    "ejemplo": "¿A qué se refiere «Lo» en «Lo abrió»? Al cuaderno.",
+    "pasos": [
+      "Buscamos la pista: «encontró un cuaderno».",
+      "Lo que Elena abrió fue el cuaderno encontrado."
+    ],
+    "pista": "Reemplazá la palabra por el nombre y comprobá si la frase tiene sentido.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "Elena encontró un cuaderno bajo el banco. Lo abrió para buscar el nombre de su dueño. En la primera página había un teléfono."
+    },
+    "actividades": [
+      {
+        "id": "leng_prof_referencias-v1",
+        "enunciado": "¿A qué se refiere «Lo» en «Lo abrió»?",
+        "respuesta_correcta": "Al cuaderno",
+        "opciones": [
+          "Al cuaderno",
+          "Al banco",
+          "Al teléfono"
+        ],
+        "paso_resuelto": "El texto dice «encontró un cuaderno». Lo que Elena abrió fue el cuaderno encontrado.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Elena encontró un cuaderno bajo el banco. Lo abrió para buscar el nombre de su dueño. En la primera página había un teléfono."
+        }
+      },
+      {
+        "id": "leng_prof_referencias-v2",
+        "enunciado": "¿Qué lugar reemplaza «Allí»?",
+        "respuesta_correcta": "La biblioteca",
+        "opciones": [
+          "El viaje",
+          "La ruta",
+          "La biblioteca"
+        ],
+        "paso_resuelto": "El texto dice «El equipo llegó a la biblioteca». Revisar el atlas ocurrió en ese lugar.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El equipo llegó a la biblioteca. Allí revisó un atlas antes de comenzar el viaje. La bibliotecaria señaló una ruta en el mapa."
+        }
+      },
+      {
+        "id": "leng_prof_referencias-v3",
+        "enunciado": "¿A quién se refiere «Ella»?",
+        "respuesta_correcta": "A Clara",
+        "opciones": [
+          "A la puerta",
+          "A Clara",
+          "A la manta"
+        ],
+        "paso_resuelto": "El texto dice «Clara llevó una manta». Clara es la persona que quería ayudar al cachorro.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Clara llevó una manta al refugio. Ella quería que el cachorro tuviera un lugar cálido para dormir. La manta quedó junto a la puerta."
+        }
+      },
+      {
+        "id": "leng_prof_referencias-v4",
+        "enunciado": "¿Qué puso Tomás en la bolsa?",
+        "respuesta_correcta": "Las hojas secas",
+        "opciones": [
+          "Las hojas secas",
+          "El camino",
+          "El patio"
+        ],
+        "paso_resuelto": "El texto dice «juntó las hojas secas». Las retoma las hojas mencionadas antes.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Tomás juntó las hojas secas del patio. Las puso en una bolsa para llevarlas al compost. Después barrió el camino."
+        }
+      },
+      {
+        "id": "leng_prof_referencias-v5",
+        "enunciado": "¿Dónde prepararon las mesas?",
+        "respuesta_correcta": "En el salón",
+        "opciones": [
+          "En la plaza",
+          "El texto no lo indica",
+          "En el salón"
+        ],
+        "paso_resuelto": "El texto dice «Los vecinos se reunieron en el salón». Allí remite al salón; a la plaza fueron después.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Los vecinos se reunieron en el salón. Allí prepararon las mesas de la feria. Más tarde llevaron las mesas hasta la plaza."
+        }
+      },
+      {
+        "id": "leng_prof_referencias-v6",
+        "enunciado": "¿Qué reemplaza «La» en «La guardó»?",
+        "respuesta_correcta": "La novela",
+        "opciones": [
+          "La llegada",
+          "La novela",
+          "La mochila"
+        ],
+        "paso_resuelto": "El texto dice «Inés eligió una novela». Inés guardó la novela; la mochila era el lugar donde la puso.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Inés eligió una novela del estante. La guardó en su mochila para leer durante el viaje. Al llegar, buscó un lugar tranquilo."
+        }
+      }
+    ]
+  },
+  {
+    "id": "leng_prof_contexto",
+    "tema": "comprension_lectora_literal_inferida",
+    "despues_de": "leng_prof_referencias",
+    "titulo": "Entender una palabra por lo que la rodea",
+    "explicacion": "Si una palabra no es familiar, leemos las frases cercanas. A veces describen lo mismo con otras palabras o muestran un contraste. Probamos el significado en la frase y elegimos el que encaja en ese contexto.",
+    "ejemplo": "¿Qué significa «cauteloso» en este texto? Cuidadoso.",
+    "pasos": [
+      "Buscamos la pista: «Avanzó despacio, olfateó el suelo y miró a ambos lados».",
+      "Las acciones muestran que el gato actuó con cuidado."
+    ],
+    "pista": "Buscá una descripción cercana que explique la palabra.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "Al entrar al patio, el gato se mostró cauteloso. Avanzó despacio, olfateó el suelo y miró a ambos lados antes de acercarse al plato."
+    },
+    "actividades": [
+      {
+        "id": "leng_prof_contexto-v1",
+        "enunciado": "¿Qué significa «cauteloso» en este texto?",
+        "respuesta_correcta": "Cuidadoso",
+        "opciones": [
+          "Cuidadoso",
+          "Apurado",
+          "Dormido"
+        ],
+        "paso_resuelto": "El texto dice «Avanzó despacio, olfateó el suelo y miró a ambos lados». Las acciones muestran que el gato actuó con cuidado.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Al entrar al patio, el gato se mostró cauteloso. Avanzó despacio, olfateó el suelo y miró a ambos lados antes de acercarse al plato."
+        }
+      },
+      {
+        "id": "leng_prof_contexto-v2",
+        "enunciado": "¿Qué significa «estrecho»?",
+        "respuesta_correcta": "Angosto",
+        "opciones": [
+          "Muy largo",
+          "Resbaladizo",
+          "Angosto"
+        ],
+        "paso_resuelto": "El texto dice «dos personas no podían caminar una al lado de la otra». Esa descripción explica que había poco ancho.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El sendero era estrecho: dos personas no podían caminar una al lado de la otra. El grupo avanzó en fila hasta llegar al puente."
+        }
+      },
+      {
+        "id": "leng_prof_contexto-v3",
+        "enunciado": "¿Qué significa «transparente» aquí?",
+        "respuesta_correcta": "Que deja ver a través",
+        "opciones": [
+          "Que no contiene nada",
+          "Que deja ver a través",
+          "Que pesa mucho"
+        ],
+        "paso_resuelto": "El texto dice «pudo ver el agua y las piedritas que estaban dentro». Paula veía el interior sin abrir la botella.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La botella era transparente. Sin destaparla, Paula pudo ver el agua y las piedritas que estaban dentro. La puso frente a la ventana."
+        }
+      },
+      {
+        "id": "leng_prof_contexto-v4",
+        "enunciado": "¿Qué significa «desierto» en este caso?",
+        "respuesta_correcta": "Sin personas",
+        "opciones": [
+          "Sin personas",
+          "Cubierto de arena",
+          "Con mucho ruido"
+        ],
+        "paso_resuelto": "El texto dice «No había nadie en las sillas ni junto al escenario». Aquí describe un salón vacío de personas, no un paisaje.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El salón estaba desierto. No había nadie en las sillas ni junto al escenario. Bruno esperó cerca de la puerta hasta que llegó el grupo."
+        }
+      },
+      {
+        "id": "leng_prof_contexto-v5",
+        "enunciado": "¿Qué significa «breve»?",
+        "respuesta_correcta": "Corta",
+        "opciones": [
+          "Difícil",
+          "Incompleta",
+          "Corta"
+        ],
+        "paso_resuelto": "El texto dice «Duró apenas dos minutos». La duración y la selección de pasos muestran que no fue extensa.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La explicación fue breve. Duró apenas dos minutos y presentó solo los pasos necesarios. Después todos empezaron a trabajar."
+        }
+      },
+      {
+        "id": "leng_prof_contexto-v6",
+        "enunciado": "¿Qué significa «vigor» en este texto?",
+        "respuesta_correcta": "Fuerza",
+        "opciones": [
+          "Tamaño de la maceta",
+          "Fuerza",
+          "Color rojo"
+        ],
+        "paso_resuelto": "El texto dice «Sus tallos volvieron a estar firmes y aparecieron hojas nuevas». La firmeza y el crecimiento muestran que la planta recuperó fuerza.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La planta recuperó su vigor. Sus tallos volvieron a estar firmes y aparecieron hojas nuevas. Luz siguió cuidándola durante la semana."
+        }
+      }
+    ]
+  },
+  {
+    "id": "leng_prof_causa",
+    "tema": "comprension_lectora_literal_inferida",
+    "despues_de": "leng_prof_contexto",
+    "titulo": "Entender causas, finalidades y consecuencias",
+    "explicacion": "Una causa explica por qué ocurrió algo; una finalidad indica para qué hacemos algo. Porque y por eso pueden señalar causas y consecuencias; para que presenta una finalidad. Buscamos la relación que indica el texto: no todo hecho anterior es la causa.",
+    "ejemplo": "¿Por qué cambiaron el lugar del partido? Porque la cancha estaba llena de agua.",
+    "pasos": [
+      "Buscamos la pista: «La lluvia llenó de agua la cancha. Por eso».",
+      "Por eso conecta el estado de la cancha con el cambio de lugar."
+    ],
+    "pista": "Preguntá qué hecho explica el resultado, no solo cuál sucedió antes.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "La lluvia llenó de agua la cancha. Por eso el partido se jugó dentro del gimnasio. Los equipos llegaron a la misma hora de siempre."
+    },
+    "actividades": [
+      {
+        "id": "leng_prof_causa-v1",
+        "enunciado": "¿Por qué cambiaron el lugar del partido?",
+        "respuesta_correcta": "Porque la cancha estaba llena de agua",
+        "opciones": [
+          "Porque la cancha estaba llena de agua",
+          "Porque los equipos llegaron tarde",
+          "Porque cambiaron la hora"
+        ],
+        "paso_resuelto": "El texto dice «La lluvia llenó de agua la cancha. Por eso». Por eso conecta el estado de la cancha con el cambio de lugar.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La lluvia llenó de agua la cancha. Por eso el partido se jugó dentro del gimnasio. Los equipos llegaron a la misma hora de siempre."
+        }
+      },
+      {
+        "id": "leng_prof_causa-v2",
+        "enunciado": "¿Para qué puso Nara una piedra sobre las hojas?",
+        "respuesta_correcta": "Para que no se volaran",
+        "opciones": [
+          "Para borrar el dibujo",
+          "Para medir el árbol",
+          "Para que no se volaran"
+        ],
+        "paso_resuelto": "El texto dice «Para que no se volaran, Nara puso una piedra encima». El texto expresa directamente la finalidad de la piedra.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El viento movía las hojas del cuaderno. Para que no se volaran, Nara puso una piedra encima. Luego siguió dibujando el árbol."
+        }
+      },
+      {
+        "id": "leng_prof_causa-v3",
+        "enunciado": "¿Por qué no encendía la linterna?",
+        "respuesta_correcta": "Porque las pilas estaban gastadas",
+        "opciones": [
+          "Porque era de noche",
+          "Porque las pilas estaban gastadas",
+          "Porque habían encontrado la pelota"
+        ],
+        "paso_resuelto": "El texto dice «no encendía porque las pilas estaban gastadas». Porque introduce el motivo de la falla.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La linterna no encendía porque las pilas estaban gastadas. Al cambiarlas, volvió a funcionar. El grupo pudo seguir buscando la pelota."
+        }
+      },
+      {
+        "id": "leng_prof_causa-v4",
+        "enunciado": "¿Qué provocó el cambio de recorrido?",
+        "respuesta_correcta": "El cierre de una sala",
+        "opciones": [
+          "El cierre de una sala",
+          "El comienzo puntual de la visita",
+          "La llegada de un grupo nuevo"
+        ],
+        "paso_resuelto": "El texto dice «El museo cerró una sala para reparar el techo. Por ese motivo». La reparación cerró la sala y obligó a cambiar el recorrido.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El museo cerró una sala para reparar el techo. Por ese motivo, la guía eligió otro recorrido. La visita comenzó a horario."
+        }
+      },
+      {
+        "id": "leng_prof_causa-v5",
+        "enunciado": "¿Qué motivo tuvo Juli para mover la maceta?",
+        "respuesta_correcta": "Que recibiera más luz",
+        "opciones": [
+          "Dejar lugar para un libro",
+          "Cambiar el color de la maceta",
+          "Que recibiera más luz"
+        ],
+        "paso_resuelto": "El texto dice «recibía poca luz. Por eso Juli la acercó al vidrio». El espacio libre fue una consecuencia, no el motivo indicado.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La maceta estaba lejos de la ventana y recibía poca luz. Por eso Juli la acercó al vidrio. Al moverla, dejó espacio libre en el estante."
+        }
+      },
+      {
+        "id": "leng_prof_causa-v6",
+        "enunciado": "¿Por qué hicieron otro cartel?",
+        "respuesta_correcta": "Para que se pudiera leer desde la puerta",
+        "opciones": [
+          "Para cambiar el mensaje del cartel",
+          "Para que se pudiera leer desde la puerta",
+          "Porque faltaba cartulina"
+        ],
+        "paso_resuelto": "El texto dice «desde la puerta no se leía». Las letras grandes solucionaban ese problema.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El cartel tenía letras muy pequeñas y desde la puerta no se leía. Por eso el grupo lo rehízo con letras grandes. Usó la misma cartulina."
+        }
+      }
+    ]
+  },
+  {
+    "id": "leng_prof_evidencia",
+    "tema": "comprension_lectora_literal_inferida",
+    "despues_de": "leng_lect_2_inferencia",
+    "titulo": "Justificar una inferencia con una pista",
+    "explicacion": "Una inferencia debe apoyarse en el texto. Después de elegir una explicación probable, buscamos la frase que la sostiene. Una frase puede ser verdadera y no servir como prueba de esa conclusión.",
+    "ejemplo": "¿Qué pista apoya que Lucía probablemente estaba nerviosa? Le temblaban las manos y respiraba rápido.",
+    "pasos": [
+      "Buscamos la pista: «le temblaban las manos y respiraba muy rápido».",
+      "Esas reacciones apoyan nervios; llevar una partitura no los demuestra."
+    ],
+    "pista": "Elegí la pista que realmente apoya la conclusión propuesta.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "Lucía llegó al ensayo con la partitura. Mientras esperaba su turno, le temblaban las manos y respiraba muy rápido. Cuando la llamaron, se quedó un instante en silencio."
+    },
+    "actividades": [
+      {
+        "id": "leng_prof_evidencia-v1",
+        "enunciado": "¿Qué pista apoya que Lucía probablemente estaba nerviosa?",
+        "respuesta_correcta": "Le temblaban las manos y respiraba rápido",
+        "opciones": [
+          "Le temblaban las manos y respiraba rápido",
+          "Llevaba una partitura",
+          "Había un ensayo"
+        ],
+        "paso_resuelto": "El texto dice «le temblaban las manos y respiraba muy rápido». Esas reacciones apoyan nervios; llevar una partitura no los demuestra.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Lucía llegó al ensayo con la partitura. Mientras esperaba su turno, le temblaban las manos y respiraba muy rápido. Cuando la llamaron, se quedó un instante en silencio."
+        }
+      },
+      {
+        "id": "leng_prof_evidencia-v2",
+        "enunciado": "¿Qué pista apoya que el perro estaba contento por la llegada?",
+        "respuesta_correcta": "Movía la cola y daba pequeños saltos",
+        "opciones": [
+          "Había una mochila",
+          "La puerta tenía llave",
+          "Movía la cola y daba pequeños saltos"
+        ],
+        "paso_resuelto": "El texto dice «moviendo la cola y dio pequeños saltos». Esas acciones apoyan la alegría al recibir al cuidador.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El perro oyó la llave en la puerta. Corrió hacia ella moviendo la cola y dio pequeños saltos cuando entró su cuidador. Después se sentó junto a la mochila."
+        }
+      },
+      {
+        "id": "leng_prof_evidencia-v3",
+        "enunciado": "¿Qué pista apoya un corte de electricidad en la zona?",
+        "respuesta_correcta": "Tampoco había luz en la casa vecina",
+        "opciones": [
+          "Marcos conocía el interruptor",
+          "Tampoco había luz en la casa vecina",
+          "Marcos miró por la ventana"
+        ],
+        "paso_resuelto": "El texto dice «la casa vecina estaba a oscuras». La falta de luz en otra casa apoya un problema más amplio.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Al entrar, Marcos buscó el interruptor, pero la luz no encendió. Tampoco funcionaba la radio. Desde la ventana vio que la casa vecina estaba a oscuras."
+        }
+      },
+      {
+        "id": "leng_prof_evidencia-v4",
+        "enunciado": "¿Qué pista apoya que la planta probablemente necesitaba agua?",
+        "respuesta_correcta": "La tierra estaba seca y sin humedad",
+        "opciones": [
+          "La tierra estaba seca y sin humedad",
+          "Había una maceta",
+          "Lara tenía una regadera"
+        ],
+        "paso_resuelto": "El texto dice «estaba seca y separada de los bordes». La sequedad de la tierra apoya la necesidad de agua.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Lara observó la tierra de la maceta: estaba seca y separada de los bordes. Tocó la superficie y no sintió humedad. Luego buscó la regadera."
+        }
+      },
+      {
+        "id": "leng_prof_evidencia-v5",
+        "enunciado": "¿Qué pista apoya que Simón tenía sueño?",
+        "respuesta_correcta": "Cerraba los ojos y bostezaba",
+        "opciones": [
+          "Eran las seis",
+          "Había un reloj",
+          "Cerraba los ojos y bostezaba"
+        ],
+        "paso_resuelto": "El texto dice «cerraba los ojos, bostezaba». Esas acciones apoyan sueño; la hora sola no lo demuestra.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El reloj marcaba las seis. Simón cerraba los ojos, bostezaba y apoyaba la cabeza en el respaldo. Había esperado sentado durante un rato."
+        }
+      },
+      {
+        "id": "leng_prof_evidencia-v6",
+        "enunciado": "¿Qué pista apoya que Vera no encontraba el estuche?",
+        "respuesta_correcta": "Preguntó si alguien lo había visto",
+        "opciones": [
+          "Vera tenía una mochila",
+          "Preguntó si alguien lo había visto",
+          "Había varias sillas"
+        ],
+        "paso_resuelto": "El texto dice «preguntó si alguien había visto su estuche». La pregunta y la búsqueda apoyan que no lo encontraba.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Vera revisó dos veces su mochila. Luego buscó bajo la mesa y preguntó si alguien había visto su estuche. Continuó mirando detrás de las sillas."
+        }
+      }
+    ]
+  },
+  {
+    "id": "leng_prof_limites",
+    "tema": "comprension_lectora_literal_inferida",
+    "despues_de": "leng_prof_evidencia",
+    "titulo": "Reconocer lo que todavía no sabemos",
+    "explicacion": "Leer con cuidado también es reconocer un dato ausente. Podemos afirmar lo escrito y proponer inferencias apoyadas en pistas. Si preguntan una edad, una cantidad o un detalle que no aparece ni puede deducirse, decimos que el texto no permite saberlo.",
+    "ejemplo": "¿Cuántos libros había en la caja? El texto no permite saberlo.",
+    "pasos": [
+      "Buscamos la pista: «repartieron los libros que había dentro».",
+      "Se mencionan libros, pero no se indica una cantidad."
+    ],
+    "pista": "No completes los datos ausentes con una suposición.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "Paula llevó una caja al club. Entre todos la abrieron y repartieron los libros que había dentro. Después acomodaron la caja vacía junto al estante."
+    },
+    "actividades": [
+      {
+        "id": "leng_prof_limites-v1",
+        "enunciado": "¿Cuántos libros había en la caja?",
+        "respuesta_correcta": "El texto no permite saberlo",
+        "opciones": [
+          "El texto no permite saberlo",
+          "Cinco",
+          "Diez"
+        ],
+        "paso_resuelto": "El texto dice «repartieron los libros que había dentro». Se mencionan libros, pero no se indica una cantidad.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Paula llevó una caja al club. Entre todos la abrieron y repartieron los libros que había dentro. Después acomodaron la caja vacía junto al estante."
+        }
+      },
+      {
+        "id": "leng_prof_limites-v2",
+        "enunciado": "¿Qué edad tiene Joaquín?",
+        "respuesta_correcta": "El texto no permite saberlo",
+        "opciones": [
+          "Once años",
+          "Quince años",
+          "El texto no permite saberlo"
+        ],
+        "paso_resuelto": "El texto dice «Joaquín terminó la carrera y recibió una medalla». Participar en una carrera no indica una edad exacta.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Joaquín terminó la carrera y recibió una medalla. Su familia lo esperaba cerca de la llegada. Volvieron juntos a casa para descansar."
+        }
+      },
+      {
+        "id": "leng_prof_limites-v3",
+        "enunciado": "¿De qué color era el paraguas?",
+        "respuesta_correcta": "El texto no permite saberlo",
+        "opciones": [
+          "Rojo",
+          "El texto no permite saberlo",
+          "Azul"
+        ],
+        "paso_resuelto": "El texto dice «Lina abrió su paraguas al salir». La lluvia está apoyada por las gotas, pero el color no se menciona.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Lina abrió su paraguas al salir. Las gotas golpeaban la vereda y había charcos junto al cordón. Caminó despacio hasta la esquina."
+        }
+      },
+      {
+        "id": "leng_prof_limites-v4",
+        "enunciado": "¿Qué vio desde el mirador?",
+        "respuesta_correcta": "Un río y varios árboles",
+        "opciones": [
+          "Un río y varios árboles",
+          "El texto no permite saberlo",
+          "El mar y un puerto"
+        ],
+        "paso_resuelto": "El texto dice «Desde allí vio un río y varios árboles». Este dato sí está escrito: no hace falta inventarlo.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El grupo eligió un sendero y llegó a un mirador. Desde allí vio un río y varios árboles. Se sentó en un banco antes de regresar."
+        }
+      },
+      {
+        "id": "leng_prof_limites-v5",
+        "enunciado": "¿A qué hora abrió la feria?",
+        "respuesta_correcta": "A las diez",
+        "opciones": [
+          "El texto no permite saberlo",
+          "A las cuatro de la tarde",
+          "A las diez"
+        ],
+        "paso_resuelto": "El texto dice «Abrió a las diez». La hora de apertura está expresada en el texto.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El club organizó una feria el sábado. Abrió a las diez y cerró a las cuatro de la tarde. Varios vecinos ayudaron a ordenar al terminar."
+        }
+      },
+      {
+        "id": "leng_prof_limites-v6",
+        "enunciado": "¿A quién pertenecía la llave?",
+        "respuesta_correcta": "El texto no permite saberlo",
+        "opciones": [
+          "A una de sus amigas",
+          "El texto no permite saberlo",
+          "A Malena"
+        ],
+        "paso_resuelto": "El texto dice «para que su dueño pudiera recuperarla». Se menciona a un dueño, pero no se lo identifica.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Malena encontró una llave en el patio. La entregó en la oficina para que su dueño pudiera recuperarla. Al salir, volvió a jugar con sus amigas."
+        }
+      }
+    ]
+  }
+];
+for (const unidad of LECTURA_R16) {
+ const indice = UNIDADES_BASES.findIndex(u => u.id === unidad.despues_de);
+ if (indice < 0) throw new Error('Falta el paso anterior de ' + unidad.id);
+ UNIDADES_BASES.splice(indice + 1, 0, unidad);
+}
+for (const id of ['leng_lect_1_literal','leng_lect_2_inferencia','leng_lect_3_idea_central']) {
+ const u=UNIDADES_BASES.find(u=>u.id===id);
+ u.visual={tipo:'lectura',titulo:'Texto para releer',texto:u.ejemplo.split(' ¿')[0]};
+ for (const a of u.actividades) {
+  const partes=a.enunciado.split('\n');
+  if(partes.length>1){a.visual={tipo:'lectura',titulo:'Texto para releer',texto:partes[0]};a.enunciado=partes.slice(1).join('\n');}
+ }
+}
+// FIN R16
+
 export const TEMAS_BASES = [...new Set(UNIDADES_BASES.map(u => u.tema))];
 export function getUnidadBase(id) { return UNIDADES_BASES.find(u => u.id === id) || null; }
 export function crearActividadBase(id, modo, sesiones = []) {
@@ -18232,14 +19066,14 @@ export function getFichaBase(tema) {
  const unidades=UNIDADES_BASES.filter(u=>u.tema===tema);if(!unidades.length)return null;
  return {titulo:'Primeros pasos: '+tema.replaceAll('_',' '),disponible:true,pdf_url:'/apuntes/bases-'+tema+'.pdf',contenido_version:VERSION_BASES,
  slides:unidades.map(u=>({titulo:u.titulo,contenido:u.explicacion+'\n\n'+u.ejemplo+'\n'+u.pasos.join('\n'),concepto_clave:u.pista,visual_apoyo:u.visual})),
- apunte_completo:unidades.map(u=>'## '+u.titulo+'\n\n'+u.explicacion+'\n\n'+u.ejemplo+'\n\n'+u.pasos.join('\n')+'\n\nPara probar: '+u.actividades[0].enunciado+'\nRespuesta para revisar: '+u.actividades[0].respuesta_correcta).join('\n\n')};
+ apunte_completo:unidades.map(u=>'## '+u.titulo+'\n\n'+(u.visual?.tipo==='lectura'?'Texto: '+u.visual.texto+'\n\n':'')+u.explicacion+'\n\n'+u.ejemplo+'\n\n'+u.pasos.join('\n')+'\n\nPara probar: '+u.actividades[0].enunciado+'\nRespuesta para revisar: '+u.actividades[0].respuesta_correcta).join('\n\n')};
 }
 
 // Cierre básico alineado con las habilidades enseñadas; no es una simulación del ingreso.
 export function getCierreBase(tema) {
  const unidades=UNIDADES_BASES.filter(u=>u.tema===tema);
  if(!unidades.length)return null;
- const ampliado=unidades.some(u=>u.id.startsWith('prof_'));
+ const ampliado=unidades.some(u=>u.id.startsWith('prof_') || u.id.startsWith('leng_prof_'));
  // La preparación cubre toda la secuencia; el cierre breve toma una muestra de tres ideas.
  const seleccion=ampliado ? [unidades[0],unidades[Math.floor(unidades.length/2)],unidades.at(-1)] : unidades;
  const preguntas=seleccion.map((u,i)=>{const a=u.actividades[5];return {id:String(i+1),objetivo_id:u.id,texto:a.enunciado,visual:a.visual,opciones:a.opciones,respuesta_correcta:a.respuesta_correcta};});

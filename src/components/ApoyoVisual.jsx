@@ -3,6 +3,10 @@ import BarrasFraccion from "./BarrasFraccion";
 import { crearDiagramaGeometria } from "../lib/diagrama-geometria";
 
 export default function ApoyoVisual({ datos, permitirExplorar = false }) {
+ if(datos?.tipo === 'lectura')return <section className="texto-lectura" aria-label="Texto para releer" style={{width:'min(100%, 660px)',boxSizing:'border-box',margin:'16px auto',padding:'20px 24px',borderRadius:12,background:'#f8fafc',color:'#172554'}}>
+  <h3 style={{margin:'0 0 12px',fontSize:'1rem'}}>{datos.titulo || 'Texto para releer'}</h3>
+  <p style={{margin:0,fontSize:'1.1rem',lineHeight:1.65,whiteSpace:'pre-line'}}>{datos.texto}</p>
+ </section>;
  if(Array.isArray(datos))return <BarrasFraccion barras={datos} />;
  if(!datos || !["angulo","mediatriz","poligono","segmentos","circunferencia","tramo","datos"].includes(datos.tipo))return null;
  return <Geometria key={JSON.stringify(datos)} datos={datos} permitirExplorar={permitirExplorar} />;
