@@ -36,4 +36,14 @@ Falta resolver planes libres con devolución por cada paso, situaciones con otra
 Próximo bloque propuesto: comprensión lectora gradual en Lengua, con textos breves, localización de información, inferencias y justificación usando el texto; complementar la lectura que necesitan los problemas matemáticos. Los simulacros progresivos continúan pendientes.
 
 ## Publicación
-Pendiente de despliegue y verificación real.
+- Commit de implementación: `016795c`.
+- Vercel: `dpl_HTrd5shsRG7LQ2VDMhWJemyKALKh`, READY, producción.
+- Dominio: https://www.ingresomonserrat.online
+- Versión: https://ingreso-monse-2027-ciz2rfwsz-gustavos-projects-b8e409fb.vercel.app
+- Las 20 comprobaciones de navegador pasan contra la publicación; sin errores JavaScript en el recorrido verificado.
+- Los tres PDF publicados coinciden por SHA-256 con los archivos revisados de 10, 12 y 8 páginas.
+- Cinco comprobaciones adicionales con API y Supabase reales: prof_prob_datos presenta su explicación, guarda la selección, recupera la misma sesión en otro navegador, corrige con contenido revisado, sincroniza un reto y dos estrellas sin duplicación al recargar, y permite Guardar y salir.
+- Cuenta temporal y sus sesiones, continuidad, lecciones y progreso eliminados; limpieza verificada. No se utilizó la cuenta de Abril.
+- Servidor local de verificación cerrado.
+- Evidencia: implementacion-r15 en el espacio de visualizaciones de esta tarea; seis hojas de contacto PDF, capturas, navegador-r15.json y produccion/continuidad-real.json.
+
