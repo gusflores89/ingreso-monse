@@ -32,4 +32,14 @@ Comandos: npm test; node tests/verify-r14.cjs; node tests/verify-r14-browser.cjs
 La clasificación completa de cuadriláteros y sus construcciones requiere más práctica visual. Faltan problemas con arcos/semicircunferencias, conversiones de superficie, alturas externas y áreas de triángulos no rectángulos, figuras compuestas más variadas y situaciones de varias etapas. Estos contenidos no se presentan como ya cubiertos por las 72 actividades. Continúan pendientes las extensiones de medidas documentadas en R12, Lengua y simulacros progresivos. Próximo bloque propuesto: problemas de medidas y perímetros con varias etapas, graduando lectura, selección de datos, conversión y operación.
 
 ## Publicación
-Pendiente de despliegue y verificación real.
+- Commit de implementación: `994db80`.
+- Vercel: `dpl_2mAMLPAjoFYtvNtw7xJJXEig5PEJ`, READY, producción.
+- Dominio: https://www.ingresomonserrat.online
+- Versión: https://ingreso-monse-2027-pkgjikari-gustavos-projects-b8e409fb.vercel.app
+- Las 31 comprobaciones de navegador pasan contra la publicación; sin errores JavaScript en el recorrido comprobado.
+- Los cuatro PDF publicados coinciden por SHA-256 con las fichas inspeccionadas de 5, 4, 4 y 7 páginas.
+- Cinco comprobaciones adicionales con API y Supabase reales: el objetivo prof_fig_vertices presenta la explicación, guarda la opción C, recupera la misma sesión en otro navegador, corrige con contenido revisado, sincroniza un reto y dos estrellas sin duplicación al recargar y permite Guardar y salir.
+- Cuenta técnica temporal y sus sesiones, continuidad, lecciones y progreso eliminados; limpieza verificada. No se utilizó la cuenta de Abril.
+- Servidor local de verificación cerrado.
+- Evidencia: carpeta implementacion-r14 del espacio de visualizaciones de esta tarea; cinco hojas de contacto PDF, capturas, navegador-r14.json y subcarpeta produccion con continuidad-real.json.
+
