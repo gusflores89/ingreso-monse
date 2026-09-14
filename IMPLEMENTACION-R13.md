@@ -18,7 +18,7 @@ El PDF bases-geometria_angulos.pdf tiene diez páginas, renderizadas e inspeccio
 - Suite general: 1.840 comprobaciones correctas; 108 específicas de R13, incluidas las 48 claves, figuras, lectura desde ambos ceros y requisitos del cierre.
 - Compilación Next.js/Turbopack correcta.
 - Seis regeneraciones combinadas R9–R13 en una copia temporal conservan exactamente las 133 unidades y sus actividades.
-- Navegador Edge: recorrido de las ocho lecciones, control con teclado, pista y reintento, resolución tras dos errores, descarga PDF, cierre y pantalla de 390 px. Sin errores JavaScript ni desbordamiento en las vistas comprobadas. Capturas inspeccionadas.
+- Navegador Edge: 15 comprobaciones correctas; recorrido de las ocho lecciones, control con teclado, pista y reintento, resolución tras dos errores, descarga PDF, cierre y pantalla de 390 px. Sin errores JavaScript ni desbordamiento en las vistas comprobadas. Capturas inspeccionadas.
 - Los controladores se ejecutan con datos sintéticos en la prueba de navegador local; esta prueba no llama a IA ni a Supabase reales.
 
 Comandos: npm test; node tests/verify-r13-browser.cjs; node tests/verify-r13-browser-live.cjs. TEST_BASE_URL y TEST_OUTPUT_DIR seleccionan servidor y evidencia. La prueba live usa cuenta técnica temporal y elimina únicamente sus propios datos.
@@ -27,4 +27,14 @@ Comandos: npm test; node tests/verify-r13-browser.cjs; node tests/verify-r13-bro
 Ampliar triángulos, polígonos, perímetros y áreas con representaciones y problemas graduados. Comprobar trazados reales en papel requiere otro recorrido. También continúan pendientes las extensiones de medidas detalladas en R12, Lengua y simulacros progresivos. Esta entrega no completa todo el programa de ingreso.
 
 ## Publicación
-Pendiente de despliegue y verificación de continuidad contra API y base reales.
+- Commit de implementación: `797817e`.
+- Vercel: `dpl_WAr3DhRZqReg9Ni19b61pBqRDXpy`, READY, producción.
+- Dominio: https://www.ingresomonserrat.online
+- Versión: https://ingreso-monse-2027-qvss2tal8-gustavos-projects-b8e409fb.vercel.app
+- Las 15 comprobaciones de navegador pasan contra la publicación: incluye figuras en explicación consultable, reintento, resolución, cierre, descarga y vista de 390 px. Sin errores JavaScript.
+- PDF publicado idéntico al inspeccionado por SHA-256: E6076A9E9C02660CBF548FFF20B81853642F17B4C2CF4B10A62BA617DFF2A531.
+- Cinco comprobaciones adicionales con API y Supabase reales pasan: enseñanza de prof_geo_elementos, guardado de la opción O, recuperación en otro navegador de la misma sesión, corrección con contenido revisado, un reto y dos estrellas sin duplicación al recargar y Guardar y salir.
+- Se eliminó y verificó la eliminación de la cuenta técnica temporal y sus sesiones, continuidad, lecciones y progreso. No se utilizó la cuenta de Abril.
+- Servidor local de verificación cerrado.
+- Evidencia en implementacion-r13 del espacio de visualizaciones de esta tarea: PDF renderizado, capturas, navegador-r13.json y subcarpeta produccion con continuidad-real.json.
+
