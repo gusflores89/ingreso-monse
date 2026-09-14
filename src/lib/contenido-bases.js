@@ -19743,6 +19743,430 @@ for (const unidad of RESUMEN_R17) {
 }
 // FIN R17
 
+// R18: escritura guiada.
+const ESCRITURA_R18 = [
+  {
+    "id": "leng_esc_frase",
+    "tema": "comprension_lectora_literal_inferida",
+    "despues_de": "leng_res_revisar",
+    "titulo": "Escribir una idea con tus palabras",
+    "explicacion": "Primero preguntamos quién hace algo y qué hace. Con esas dos partes armamos una frase. Podemos usar otras palabras: chicos y alumnos pueden referirse al mismo grupo. En este paso importa conservar la idea; no hace falta copiar ni agregar todos los detalles.",
+    "ejemplo": "Una forma posible: Los chicos organizaron los libros.",
+    "pasos": [
+      "Conservamos quién actuó y qué hizo; la hora es un detalle.",
+      "Podés usar otras palabras si conservan la misma idea."
+    ],
+    "pista": "Contá quién hizo qué.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "Los alumnos ordenaron los libros de la biblioteca. Los pusieron por temas en los estantes. Trabajaron durante la mañana."
+    },
+    "actividades": [
+      {
+        "id": "leng_esc_frase-v1",
+        "enunciado": "Escribí una frase con tus palabras. Contá quién hizo qué.",
+        "respuesta_correcta": "Los chicos organizaron los libros.",
+        "paso_resuelto": "Una forma posible: Los chicos organizaron los libros.\nConservamos quién actuó y qué hizo; la hora es un detalle.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Los alumnos ordenaron los libros de la biblioteca. Los pusieron por temas en los estantes. Trabajaron durante la mañana."
+        },
+        "rubrica_escritura": [
+          {
+            "id": "idea1",
+            "descripcion": "Los alumnos ordenaron u organizaron los libros."
+          }
+        ]
+      },
+      {
+        "id": "leng_esc_frase-v2",
+        "enunciado": "Escribí una frase con tus palabras. Contá quién hizo qué.",
+        "respuesta_correcta": "Las vecinas organizaron la merienda.",
+        "paso_resuelto": "Una forma posible: Las vecinas organizaron la merienda.\nNo hace falta enumerar todos los alimentos para contar la acción central.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Las vecinas prepararon una merienda para el club. Llevaron pan, fruta y agua. Usaron las mesas del patio."
+        },
+        "rubrica_escritura": [
+          {
+            "id": "idea1",
+            "descripcion": "Las vecinas prepararon u organizaron una merienda."
+          }
+        ]
+      },
+      {
+        "id": "leng_esc_frase-v3",
+        "enunciado": "Escribí una frase con tus palabras. Contá quién hizo qué.",
+        "respuesta_correcta": "El equipo arregló las bicicletas.",
+        "paso_resuelto": "Una forma posible: El equipo arregló las bicicletas.\nArreglar y reparar conservan aquí la misma acción.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El equipo reparó las bicicletas del taller. Ajustó los frenos y cambió piezas gastadas. Al terminar guardó las herramientas."
+        },
+        "rubrica_escritura": [
+          {
+            "id": "idea1",
+            "descripcion": "El equipo reparó o arregló las bicicletas."
+          }
+        ]
+      },
+      {
+        "id": "leng_esc_frase-v4",
+        "enunciado": "Escribí una frase con tus palabras. Contá quién hizo qué.",
+        "respuesta_correcta": "Los vecinos pintaron el salón.",
+        "paso_resuelto": "Una forma posible: Los vecinos pintaron el salón.\nPreparar y limpiar acompañan la acción principal de pintar.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Los vecinos pintaron el salón del club. Cubrieron el piso antes de empezar. Después limpiaron los pinceles."
+        },
+        "rubrica_escritura": [
+          {
+            "id": "idea1",
+            "descripcion": "Los vecinos pintaron el salón del club."
+          }
+        ]
+      },
+      {
+        "id": "leng_esc_frase-v5",
+        "enunciado": "Escribí una frase con tus palabras. Contá quién hizo qué.",
+        "respuesta_correcta": "Las familias entregaron ropa al refugio.",
+        "paso_resuelto": "Una forma posible: Las familias entregaron ropa al refugio.\nConservamos quién entregó la ropa y a dónde la llevó.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Las familias donaron ropa al refugio. La llevaron en bolsas y ayudaron a separarla por talles."
+        },
+        "rubrica_escritura": [
+          {
+            "id": "idea1",
+            "descripcion": "Las familias donaron o entregaron ropa al refugio."
+          }
+        ]
+      },
+      {
+        "id": "leng_esc_frase-v6",
+        "enunciado": "Escribí una frase con tus palabras. Contá quién hizo qué.",
+        "respuesta_correcta": "Los chicos limpiaron la plaza.",
+        "paso_resuelto": "Una forma posible: Los chicos limpiaron la plaza.\nLa frase reúne la acción principal sin repetir todos sus pasos.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Los chicos limpiaron la plaza del barrio. Juntaron papeles y los pusieron en bolsas. Luego guardaron los guantes."
+        },
+        "rubrica_escritura": [
+          {
+            "id": "idea1",
+            "descripcion": "Los chicos limpiaron la plaza o retiraron la basura de ella."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "leng_esc_causa",
+    "tema": "comprension_lectora_literal_inferida",
+    "despues_de": "leng_esc_frase",
+    "titulo": "Escribir el problema y su solución",
+    "explicacion": "Una frase puede unir un problema con lo que se hizo para resolverlo. Primero identificamos qué dificultaba algo; después, qué cambió. Usamos porque o por eso cuando corresponda. Revisamos que el problema y la solución no queden al revés.",
+    "ejemplo": "Una forma posible: Los vecinos quitaron la rama que bloqueaba el camino.",
+    "pasos": [
+      "La frase incluye tanto el obstáculo como la acción que lo quitó.",
+      "Podés usar otras palabras si conservan la misma idea."
+    ],
+    "pista": "Contá qué problema había y cómo lo resolvieron.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "Una rama tapaba el camino. Los vecinos la retiraron y el paso volvió a quedar libre."
+    },
+    "actividades": [
+      {
+        "id": "leng_esc_causa-v1",
+        "enunciado": "Escribí una o dos frases con tus palabras. Contá qué problema había y cómo lo resolvieron.",
+        "respuesta_correcta": "Los vecinos quitaron la rama que bloqueaba el camino.",
+        "paso_resuelto": "Una forma posible: Los vecinos quitaron la rama que bloqueaba el camino.\nLa frase incluye tanto el obstáculo como la acción que lo quitó.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Una rama tapaba el camino. Los vecinos la retiraron y el paso volvió a quedar libre."
+        },
+        "rubrica_escritura": [
+          {
+            "id": "idea1",
+            "descripcion": "Una rama bloqueaba el camino."
+          },
+          {
+            "id": "idea2",
+            "descripcion": "Los vecinos retiraron la rama para liberar el paso."
+          }
+        ]
+      },
+      {
+        "id": "leng_esc_causa-v2",
+        "enunciado": "Escribí una o dos frases con tus palabras. Contá qué problema había y cómo lo resolvieron.",
+        "respuesta_correcta": "La encargada arregló la canilla que goteaba cambiando una pieza.",
+        "paso_resuelto": "Una forma posible: La encargada arregló la canilla que goteaba cambiando una pieza.\nUnimos la pérdida con la reparación, sin inventar otro problema.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La canilla perdía agua. La encargada cambió una pieza y dejó de gotear."
+        },
+        "rubrica_escritura": [
+          {
+            "id": "idea1",
+            "descripcion": "La canilla perdía agua o goteaba."
+          },
+          {
+            "id": "idea2",
+            "descripcion": "La encargada la reparó cambiando una pieza."
+          }
+        ]
+      },
+      {
+        "id": "leng_esc_causa-v3",
+        "enunciado": "Escribí una o dos frases con tus palabras. Contá qué problema había y cómo lo resolvieron.",
+        "respuesta_correcta": "Tomás movió la caja que impedía cerrar la puerta.",
+        "paso_resuelto": "Una forma posible: Tomás movió la caja que impedía cerrar la puerta.\nLa caja es la causa; moverla es la solución.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La puerta no cerraba porque una caja la trababa. Tomás apartó la caja y pudo cerrarla."
+        },
+        "rubrica_escritura": [
+          {
+            "id": "idea1",
+            "descripcion": "Una caja impedía cerrar la puerta."
+          },
+          {
+            "id": "idea2",
+            "descripcion": "Tomás apartó o movió la caja y la puerta pudo cerrarse."
+          }
+        ]
+      },
+      {
+        "id": "leng_esc_causa-v4",
+        "enunciado": "Escribí una o dos frases con tus palabras. Contá qué problema había y cómo lo resolvieron.",
+        "respuesta_correcta": "Repintaron los carteles borrados para que los visitantes encontraran el camino.",
+        "paso_resuelto": "Una forma posible: Repintaron los carteles borrados para que los visitantes encontraran el camino.\nEl resumen conserva la relación entre el problema y el arreglo; no es obligatorio repetir el sujeto si se entiende.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Los carteles se habían borrado y los visitantes no encontraban el sendero. Los guardaparques los repintaron para orientarlos."
+        },
+        "rubrica_escritura": [
+          {
+            "id": "idea1",
+            "descripcion": "Los carteles borrados dificultaban encontrar el camino."
+          },
+          {
+            "id": "idea2",
+            "descripcion": "Los guardaparques repintaron los carteles para orientar a los visitantes."
+          }
+        ]
+      },
+      {
+        "id": "leng_esc_causa-v5",
+        "enunciado": "Escribí una o dos frases con tus palabras. Contá qué problema había y cómo lo resolvieron.",
+        "respuesta_correcta": "Arreglaron el techo para que la gotera no mojara los libros.",
+        "paso_resuelto": "Una forma posible: Arreglaron el techo para que la gotera no mojara los libros.\nSe puede expresar la solución mediante su finalidad si queda claro que la reparación ocurrió.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Los libros se mojaban por una gotera. El personal arregló el techo y el agua dejó de caer sobre los estantes."
+        },
+        "rubrica_escritura": [
+          {
+            "id": "idea1",
+            "descripcion": "Una gotera mojaba los libros."
+          },
+          {
+            "id": "idea2",
+            "descripcion": "El personal reparó el techo y detuvo la entrada de agua."
+          }
+        ]
+      },
+      {
+        "id": "leng_esc_causa-v6",
+        "enunciado": "Escribí una o dos frases con tus palabras. Contá qué problema había y cómo lo resolvieron.",
+        "respuesta_correcta": "La clase sujetó con broches las hojas que el viento hacía volar.",
+        "paso_resuelto": "Una forma posible: La clase sujetó con broches las hojas que el viento hacía volar.\nLa frase incluye la dificultad y la acción concreta que la resolvió.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Las hojas del mural se volaban con el viento. La clase las sujetó con broches y quedaron en su lugar."
+        },
+        "rubrica_escritura": [
+          {
+            "id": "idea1",
+            "descripcion": "El viento hacía volar las hojas del mural."
+          },
+          {
+            "id": "idea2",
+            "descripcion": "La clase sujetó las hojas con broches."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "leng_esc_resumen",
+    "tema": "comprension_lectora_literal_inferida",
+    "despues_de": "leng_esc_causa",
+    "titulo": "Escribir un resumen breve de dos párrafos",
+    "explicacion": "Leemos un párrafo por vez y pensamos qué aporta cada uno. Escribimos una o dos frases que unan las dos ideas principales. Al releer, comprobamos que no falte el resultado y que no hayamos inventado información. El ejemplo muestra una posibilidad, no una frase obligatoria.",
+    "ejemplo": "Una forma posible: La clase juntó libros y los entregó al jardín para compartir lecturas.",
+    "pasos": [
+      "Incluimos la colecta y el destino de los libros; no hace falta enumerar cada revisión.",
+      "Podés usar otras palabras si conservan la misma idea."
+    ],
+    "pista": "Reuní lo principal de los dos párrafos y conservá el resultado.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "La clase reunió libros para compartir con el jardín. Cada familia aportó algunos que ya no leía.\n\nLos alumnos revisaron los libros y los entregaron al jardín. Allí los usaron en encuentros de lectura."
+    },
+    "actividades": [
+      {
+        "id": "leng_esc_resumen-v1",
+        "enunciado": "Escribí una o dos frases con tus palabras. Reuní lo principal de los dos párrafos y conservá el resultado.",
+        "respuesta_correcta": "La clase juntó libros y los entregó al jardín para compartir lecturas.",
+        "paso_resuelto": "Una forma posible: La clase juntó libros y los entregó al jardín para compartir lecturas.\nIncluimos la colecta y el destino de los libros; no hace falta enumerar cada revisión.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La clase reunió libros para compartir con el jardín. Cada familia aportó algunos que ya no leía.\n\nLos alumnos revisaron los libros y los entregaron al jardín. Allí los usaron en encuentros de lectura."
+        },
+        "rubrica_escritura": [
+          {
+            "id": "idea1",
+            "descripcion": "La clase reunió o recibió libros aportados por las familias."
+          },
+          {
+            "id": "idea2",
+            "descripcion": "Los libros se entregaron al jardín para leerlos o compartir lecturas."
+          }
+        ]
+      },
+      {
+        "id": "leng_esc_resumen-v2",
+        "enunciado": "Escribí una o dos frases con tus palabras. Reuní lo principal de los dos párrafos y conservá el resultado.",
+        "respuesta_correcta": "Los vecinos transformaron un terreno abandonado en una huerta que cuidan entre todos.",
+        "paso_resuelto": "Una forma posible: Los vecinos transformaron un terreno abandonado en una huerta que cuidan entre todos.\nTransformar reúne varias acciones; el resultado debe seguir siendo una huerta compartida.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Los vecinos querían usar un terreno abandonado como huerta. Limpiaron el lugar y prepararon la tierra.\n\nDespués sembraron verduras y se organizaron para regarlas. El terreno quedó convertido en una huerta compartida."
+        },
+        "rubrica_escritura": [
+          {
+            "id": "idea1",
+            "descripcion": "Los vecinos recuperaron o transformaron un terreno abandonado."
+          },
+          {
+            "id": "idea2",
+            "descripcion": "Crearon una huerta y se organizaron para cuidarla en conjunto."
+          }
+        ]
+      },
+      {
+        "id": "leng_esc_resumen-v3",
+        "enunciado": "Escribí una o dos frases con tus palabras. Reuní lo principal de los dos párrafos y conservá el resultado.",
+        "respuesta_correcta": "Los chicos revisaron sus cuentos para que se entendieran y compartieron las versiones mejoradas.",
+        "paso_resuelto": "Una forma posible: Los chicos revisaron sus cuentos para que se entendieran y compartieron las versiones mejoradas.\nConservamos la mejora y la entrega final, sin afirmar que descartaron los cuentos.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Los chicos escribieron cuentos para la biblioteca. Al leerlos juntos descubrieron partes que no se entendían.\n\nRevisaron las frases confusas y agregaron información. Luego compartieron las versiones nuevas con los lectores."
+        },
+        "rubrica_escritura": [
+          {
+            "id": "idea1",
+            "descripcion": "Los chicos revisaron o aclararon sus cuentos para que se entendieran."
+          },
+          {
+            "id": "idea2",
+            "descripcion": "Compartieron las versiones revisadas con lectores o en la biblioteca."
+          }
+        ]
+      },
+      {
+        "id": "leng_esc_resumen-v4",
+        "enunciado": "Escribí una o dos frases con tus palabras. Reuní lo principal de los dos párrafos y conservá el resultado.",
+        "respuesta_correcta": "El club recibió juegos donados y organizó encuentros para compartirlos.",
+        "paso_resuelto": "Una forma posible: El club recibió juegos donados y organizó encuentros para compartirlos.\nLa recepción y el uso de los juegos son las dos ideas que conectan los párrafos.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El club recibió juegos donados por las familias. Algunos estaban incompletos y el grupo separó los que podían usarse.\n\nOrganizaron encuentros con esos juegos. Desde entonces los vecinos se reúnen para jugar y compartir la tarde."
+        },
+        "rubrica_escritura": [
+          {
+            "id": "idea1",
+            "descripcion": "El club recibió juegos donados por las familias."
+          },
+          {
+            "id": "idea2",
+            "descripcion": "Organizaron encuentros para usar o compartir los juegos."
+          }
+        ]
+      },
+      {
+        "id": "leng_esc_resumen-v5",
+        "enunciado": "Escribí una o dos frases con tus palabras. Reuní lo principal de los dos párrafos y conservá el resultado.",
+        "respuesta_correcta": "La biblioteca envía libros a hogares lejanos y los renueva para que las familias puedan leer sin viajar.",
+        "paso_resuelto": "Una forma posible: La biblioteca envía libros a hogares lejanos y los renueva para que las familias puedan leer sin viajar.\nEl resumen conserva el servicio a distancia y su continuidad mediante el intercambio.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La biblioteca quería acercar libros a familias que viven lejos. Preparó bolsas con lecturas para distintas edades.\n\nUna voluntaria lleva las bolsas a los hogares y recoge las anteriores. Así las familias pueden pedir nuevos libros sin viajar hasta la biblioteca."
+        },
+        "rubrica_escritura": [
+          {
+            "id": "idea1",
+            "descripcion": "La biblioteca acerca o lleva libros a familias que viven lejos."
+          },
+          {
+            "id": "idea2",
+            "descripcion": "Las bolsas o libros se recogen y renuevan, permitiendo leer desde los hogares."
+          }
+        ]
+      },
+      {
+        "id": "leng_esc_resumen-v6",
+        "enunciado": "Escribí una o dos frases con tus palabras. Reuní lo principal de los dos párrafos y conservá el resultado.",
+        "respuesta_correcta": "Los alumnos reunieron recuerdos y fotos del barrio y prepararon una muestra para las familias.",
+        "paso_resuelto": "Una forma posible: Los alumnos reunieron recuerdos y fotos del barrio y prepararon una muestra para las familias.\nLas entrevistas y las fotos alimentaron la muestra; el resumen conserva también que se compartió.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La escuela preparó una muestra sobre la historia del barrio. Los alumnos entrevistaron a vecinos y reunieron fotografías.\n\nCon ese material escribieron relatos y armaron paneles. Al terminar abrieron la muestra a las familias."
+        },
+        "rubrica_escritura": [
+          {
+            "id": "idea1",
+            "descripcion": "Los alumnos investigaron o reunieron relatos, recuerdos o fotos sobre el barrio."
+          },
+          {
+            "id": "idea2",
+            "descripcion": "Prepararon y compartieron una muestra con las familias."
+          }
+        ]
+      }
+    ]
+  }
+];
+for (const unidad of ESCRITURA_R18) {
+ const indice=UNIDADES_BASES.findIndex(u=>u.id===unidad.despues_de);
+ if(indice<0)throw new Error('Falta el paso anterior de '+unidad.id);
+ UNIDADES_BASES.splice(indice+1,0,unidad);
+}
+// FIN R18
+
 export const TEMAS_BASES = [...new Set(UNIDADES_BASES.map(u => u.tema))];
 export function getUnidadBase(id) { return UNIDADES_BASES.find(u => u.id === id) || null; }
 export function crearActividadBase(id, modo, sesiones = []) {
@@ -19754,17 +20178,25 @@ export function crearActividadBase(id, modo, sesiones = []) {
  const variantes = u.actividades.slice(1);
  const siguiente = variantes.find(a => !ultimaAparicion.has(a.id)) || variantes.reduce((a,b) => ultimaAparicion.get(a.id) <= ultimaAparicion.get(b.id) ? a : b);
  const actividad = modo === 'leccion' ? u.actividades[0] : siguiente;
- const base = { contenido_version: VERSION_BASES, actividad_id: actividad.id, unidad_titulo: u.titulo, tiempo_estimado: 3 };
+ const tipoActividad=actividad.rubrica_escritura?'produccion':'multiple';
+ const base = { escritura_guiada:Boolean(actividad.rubrica_escritura), contenido_version: VERSION_BASES, actividad_id: actividad.id, unidad_titulo: u.titulo, tiempo_estimado: 3 };
  if (modo === 'leccion') return {...base, tipo:'leccion', saludo:'Miremos una idea juntos', explicacion_simple:u.explicacion, concepto_clave_repetir:u.pista, visual_apoyo:u.visual,
  ejemplos_resueltos:[{numero:1,enunciado:u.ejemplo,pasos:u.pasos,respuesta:u.ejemplo,visual:u.visual}],
- ejercicio_practica:{...actividad,tipo:'multiple'}, opciones:actividad.opciones};
- return {...base,tipo:'practica',tipo_pregunta:'multiple',pregunta:actividad.enunciado,opciones:actividad.opciones,visual_apoyo:actividad.visual};
+ ejercicio_practica:{...actividad,tipo:tipoActividad}, opciones:actividad.opciones};
+ return {...base,tipo:'practica',tipo_pregunta:tipoActividad,pregunta:actividad.enunciado,opciones:actividad.opciones,visual_apoyo:actividad.visual};
+}
+export function getEscrituraBase(sesion) {
+ const p=sesion.ia_parametros_usados || {};
+ if(p.contenido_version!==VERSION_BASES)return null;
+ const unidad=getUnidadBase(p.objetivo_id),actividad=unidad?.actividades.find(a=>a.id===p.actividad_id);
+ return actividad?.rubrica_escritura?{unidad,actividad}:null;
 }
 export function evaluarActividadBase(sesion, respuesta, noVisto=false) {
  const p=sesion.ia_parametros_usados || {};
  if(p.contenido_version !== VERSION_BASES) return null;
  const u=getUnidadBase(p.objetivo_id), a=u?.actividades.find(a=>a.id===p.actividad_id);
  if(!a) throw new Error('No se encuentra la actividad de esta versión.');
+ if(a.rubrica_escritura && !noVisto)return null;
  const correcta=String(respuesta).normalize('NFC').trim().toLowerCase()===a.respuesta_correcta.toLowerCase();
  return {es_correcta:noVisto?null:correcta, retroalimentacion:noVisto?u.explicacion:correcta?'¡Lo resolviste! Podés seguir cuando quieras.':'Miremos una pista y probemos otra vez.',pista_concreta:u.pista,paso_resuelto:a.paso_resuelto,razon_error:(noVisto || correcta)?null:'Revisemos este paso.'};
 }
@@ -19781,7 +20213,8 @@ export function getCierreBase(tema) {
  if(!unidades.length)return null;
  const ampliado=unidades.some(u=>u.id.startsWith('prof_') || u.id.startsWith('leng_prof_'));
  // La preparación cubre toda la secuencia; el cierre breve toma una muestra de tres ideas.
- const seleccion=ampliado ? [unidades[0],unidades[Math.floor(unidades.length/2)],unidades.at(-1)] : unidades;
+ const cerradas=unidades.filter(u=>!u.actividades[5].rubrica_escritura);
+ const seleccion=ampliado ? [cerradas[0],cerradas[Math.floor(cerradas.length/2)],cerradas.at(-1)] : cerradas;
  const preguntas=seleccion.map((u,i)=>{const a=u.actividades[5];return {id:String(i+1),objetivo_id:u.id,texto:a.enunciado,visual:a.visual,opciones:a.opciones,respuesta_correcta:a.respuesta_correcta};});
  const min_correctas=Math.ceil(preguntas.length*2/3);
  return {tipo:'examen_final',dificultad:'basico',contenido_version:VERSION_BASES,

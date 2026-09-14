@@ -941,6 +941,57 @@ const UNIDADES = [
     }
   },
   {
+    "id": "leng_esc_frase",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Escribir una idea con tus palabras",
+    "explicacion": "Primero preguntamos quién hace algo y qué hace. Con esas dos partes armamos una frase. Podemos usar otras palabras: chicos y alumnos pueden referirse al mismo grupo. En este paso importa conservar la idea; no hace falta copiar ni agregar todos los detalles.",
+    "ejemplo": "Una forma posible: Los chicos organizaron los libros.",
+    "pasos": [
+      "Conservamos quién actuó y qué hizo; la hora es un detalle.",
+      "Podés usar otras palabras si conservan la misma idea."
+    ],
+    "pista": "Contá quién hizo qué.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "Los alumnos ordenaron los libros de la biblioteca. Los pusieron por temas en los estantes. Trabajaron durante la mañana."
+    }
+  },
+  {
+    "id": "leng_esc_causa",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Escribir el problema y su solución",
+    "explicacion": "Una frase puede unir un problema con lo que se hizo para resolverlo. Primero identificamos qué dificultaba algo; después, qué cambió. Usamos porque o por eso cuando corresponda. Revisamos que el problema y la solución no queden al revés.",
+    "ejemplo": "Una forma posible: Los vecinos quitaron la rama que bloqueaba el camino.",
+    "pasos": [
+      "La frase incluye tanto el obstáculo como la acción que lo quitó.",
+      "Podés usar otras palabras si conservan la misma idea."
+    ],
+    "pista": "Contá qué problema había y cómo lo resolvieron.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "Una rama tapaba el camino. Los vecinos la retiraron y el paso volvió a quedar libre."
+    }
+  },
+  {
+    "id": "leng_esc_resumen",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Escribir un resumen breve de dos párrafos",
+    "explicacion": "Leemos un párrafo por vez y pensamos qué aporta cada uno. Escribimos una o dos frases que unan las dos ideas principales. Al releer, comprobamos que no falte el resultado y que no hayamos inventado información. El ejemplo muestra una posibilidad, no una frase obligatoria.",
+    "ejemplo": "Una forma posible: La clase juntó libros y los entregó al jardín para compartir lecturas.",
+    "pasos": [
+      "Incluimos la colecta y el destino de los libros; no hace falta enumerar cada revisión.",
+      "Podés usar otras palabras si conservan la misma idea."
+    ],
+    "pista": "Reuní lo principal de los dos párrafos y conservá el resultado.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "La clase reunió libros para compartir con el jardín. Cada familia aportó algunos que ya no leía.\n\nLos alumnos revisaron los libros y los entregaron al jardín. Allí los usaron en encuentros de lectura."
+    }
+  },
+  {
     "id": "leng_bv_1_mb_nv",
     "tema": "ortografia_b_v",
     "titulo": "Mirar la letra anterior: mb y nv",

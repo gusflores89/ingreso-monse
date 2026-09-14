@@ -1280,7 +1280,9 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                   </div>
                 )}
                 {pregunta.ejercicio_practica?.opciones ? <div role="group" aria-label="Elegí una respuesta" style={{display:'flex',gap:12,flexWrap:'wrap'}}>{pregunta.ejercicio_practica.opciones.map(op => <button type="button" key={op} disabled={loading} aria-pressed={respuesta===op} onClick={()=>{setRespuesta(op);saveMissionState({respuesta:op,borrador:op});}} style={{padding:'14px 22px',border:respuesta===op?'2px solid #38bdf8':'1px solid #a59ec9',borderRadius:12}}>{op}</button>)}</div> : <textarea
-                  placeholder="Escribi tu respuesta aca..."
+                  aria-label={pregunta?.escritura_guiada ? "Tu resumen" : "Tu respuesta"}
+              maxLength={2000}
+              placeholder={pregunta?.escritura_guiada ? "Escribí tu idea con tus palabras..." : "Escribi tu respuesta aca..."}
                   value={respuesta}
                   onChange={(event) => {
                     setRespuesta(event.target.value);
@@ -1564,7 +1566,9 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             </div>
           ) : (
             <textarea
-              placeholder="Escribi tu respuesta aca..."
+              aria-label={pregunta?.escritura_guiada ? "Tu resumen" : "Tu respuesta"}
+              maxLength={2000}
+              placeholder={pregunta?.escritura_guiada ? "Escribí tu idea con tus palabras..." : "Escribi tu respuesta aca..."}
               value={respuesta}
               onChange={(event) => {
                 setRespuesta(event.target.value);
@@ -1622,6 +1626,8 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             }
           />
 
+          {pregunta?.escritura_guiada && respuesta && <section aria-label="Tu texto guardado" style={{padding:16,marginTop:16,background:'rgba(255,255,255,.06)',borderRadius:10}}><strong>Tu texto</strong><p style={{whiteSpace:'pre-wrap',overflowWrap:'anywhere'}}>{respuesta}</p></section>}
+
           {/* Tarjeta explicativa si avisó que todavía no lo vio */}
           {evaluacion.no_visto && (
             <div style={{
@@ -1672,13 +1678,14 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                   setPistaActiva(pistaTexto);
                   setIntento(2);
                   setEvaluacion(null);
-                  setRespuesta("");
+                  const textoConservado = pregunta?.escritura_guiada ? respuesta : "";
+                  setRespuesta(textoConservado);
                   saveMissionState({
                     intento: 2,
                     evaluacion: null,
                     pistaActiva: pistaTexto,
-                    borrador: "",
-                    respuesta: "",
+                    borrador: textoConservado,
+                    respuesta: textoConservado,
                   });
                 }}
                 style={{
@@ -1714,7 +1721,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
           )}
 
           {/* Si falló en el primer intento (y no era no_visto ni examen final): Circuito de Segundo Intento con Pista Garantizada */}
-          {!evaluacion.no_visto && !evaluacion.es_correcta && intento === 1 && pregunta?.tipo !== "examen_final" && (
+          {!evaluacion.no_visto && !evaluacion.revision_pendiente && !evaluacion.es_correcta && intento === 1 && pregunta?.tipo !== "examen_final" && (
             <div style={{ marginTop: "16px" }}>
               <div style={{
                 padding: "12px 16px",
@@ -1783,7 +1790,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
           )}
 
           {/* Si falló el 2do intento (y no era no_visto ni examen final): Resolver un paso juntos */}
-          {!evaluacion.no_visto && !evaluacion.es_correcta && intento >= 2 && pregunta?.tipo !== "examen_final" && (
+          {!evaluacion.no_visto && !evaluacion.revision_pendiente && !evaluacion.es_correcta && intento >= 2 && pregunta?.tipo !== "examen_final" && (
             <div style={{
               marginTop: "16px",
               padding: "14px 16px",
@@ -1864,7 +1871,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             </div>
           )}
 
-          {!evaluacion.es_correcta && intento > 1 && (
+          {!evaluacion.es_correcta && !evaluacion.revision_pendiente && intento > 1 && (
             <button
               type="button"
               onClick={() => {
@@ -2736,7 +2743,9 @@ function ExamenFinal({ pregunta, tema, respuestas, respuestaTexto, loading, onRe
             <textarea
               value={respuestaTexto}
               onChange={(event) => onRespuestaTexto(event.target.value)}
-              placeholder="Escribi tu respuesta aca..."
+              aria-label={pregunta?.escritura_guiada ? "Tu resumen" : "Tu respuesta"}
+              maxLength={2000}
+              placeholder={pregunta?.escritura_guiada ? "Escribí tu idea con tus palabras..." : "Escribi tu respuesta aca..."}
               rows={7}
             />
           </label>

@@ -3,7 +3,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE || 'C:/Users/gusta/.cache
 const root=path.resolve(__dirname,'..'),out=process.env.TEST_OUTPUT_DIR||'C:/Users/gusta/.codex/visualizations/2026/09/09/01a086d6-a934-77a3-9a28-75f27a213064/implementacion-r16';fs.mkdirSync(out,{recursive:true});
 const base=process.env.TEST_BASE_URL||'http://127.0.0.1:3029',f=path.join(__dirname,'verify-r2.cjs'),m=new Module(f,module);m.filename=f;m.paths=module.paths;m._compile(fs.readFileSync(f,'utf8').split('\n(async()=>{')[0]+'\nmodule.exports={start,answer,db,user,load,curriculum};',f);const h=m.exports;
 const {UNIDADES_BASES:units,VERSION_BASES:version,getCierreBase}=h.load('src/lib/contenido-bases.js',['UNIDADES_BASES','VERSION_BASES','getCierreBase']);
-const fresh=units.filter(u=>u.tema==='comprension_lectora_literal_inferida'),errors=[],results=[];
+const fresh=units.filter(u=>u.tema==='comprension_lectora_literal_inferida'&&!u.actividades[0].rubrica_escritura),errors=[],results=[];
 const proof=u=>[0,1,2].map(n=>({id:u.id+n,user_id:h.user.id,tema:u.tema,es_correcta:true,tipo_pregunta:n?'multiple':'leccion',created_at:'2026-09-12T12:00:00Z',ia_parametros_usados:{objetivo_id:u.id,contenido_version:version,actividad_id:u.actividades[n].id}}));
 const prereqs=tema=>h.curriculum.CURRICULUM_MATEMATICA.filter(t=>t.tema!==tema).map((t,i)=>({id:'approved'+i,user_id:h.user.id,tema:t.tema,tipo_pregunta:'examen_final',es_correcta:true,created_at:'2026-09-01',ia_parametros_usados:{}}));
 (async()=>{const browser=await chromium.launch({channel:'msedge',headless:true});try{

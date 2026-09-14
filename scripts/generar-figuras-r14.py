@@ -52,4 +52,4 @@ for (const unidad of FIGURAS_R14) {
  if (indice < 0) throw new Error('Falta el paso de referencia de ' + unidad.id);
  UNIDADES_BASES.splice(indice + (unidad.antes_de ? 0 : 1), 0, unidad);
 }
-"""+'const APOYOS_R14 = '+json.dumps(APOYOS,ensure_ascii=False)+';\nfor (const [id, visual] of Object.entries(APOYOS_R14)) { UNIDADES_BASES.find(u => u.id === id).visual = visual; }\n'+end+'\n\n';i=min(s.index(m) for m in ['// R15: problemas por etapas.','// R16: lectura con evidencia.','// R17: idea principal y resumen.','export const TEMAS_BASES'] if m in s);p.write_text(s[:i]+code+s[i:],encoding='utf-8');print(len(U),'unidades;',len(U)*6,'actividades')
+"""+'const APOYOS_R14 = '+json.dumps(APOYOS,ensure_ascii=False)+';\nfor (const [id, visual] of Object.entries(APOYOS_R14)) { UNIDADES_BASES.find(u => u.id === id).visual = visual; }\n'+end+'\n\n';i=min(s.index(m) for m in ['// R15: problemas por etapas.','// R16: lectura con evidencia.','// R17: idea principal y resumen.','// R18: escritura guiada.','export const TEMAS_BASES'] if m in s);p.write_text(s[:i]+code+s[i:],encoding='utf-8');print(len(U),'unidades;',len(U)*6,'actividades')

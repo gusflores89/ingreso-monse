@@ -40,4 +40,4 @@ for (const unidad of PROBLEMAS_R15) {
  if (indice < 0) throw new Error('Falta el paso anterior de ' + unidad.id);
  UNIDADES_BASES.splice(indice + 1, 0, unidad);
 }
-"""+end+'\n\n';i=min(s.index(m) for m in ['// R16: lectura con evidencia.','// R17: idea principal y resumen.','export const TEMAS_BASES'] if m in s);p.write_text(s[:i]+code+s[i:],encoding='utf-8');print(len(U),'unidades;',len(U)*6,'actividades')
+"""+end+'\n\n';i=min(s.index(m) for m in ['// R16: lectura con evidencia.','// R17: idea principal y resumen.','// R18: escritura guiada.','export const TEMAS_BASES'] if m in s);p.write_text(s[:i]+code+s[i:],encoding='utf-8');print(len(U),'unidades;',len(U)*6,'actividades')

@@ -210,7 +210,7 @@ export default async function handler(req, res) {
       const actividad = crearActividadBase(objetivo_id, modoBase, sesionesTema || []);
       const texto = modoBase === 'leccion' ? actividad.ejercicio_practica.enunciado : actividad.pregunta;
       const fila = assertSupabaseOk(await supabase.from('sesiones').insert({user_id, tema:temaActual, capa:1, modo,
-        tipo_pregunta:modoBase === 'leccion' ? 'leccion':'multiple', pregunta_generada:texto,
+        tipo_pregunta:modoBase === 'leccion' ? 'leccion':actividad.tipo_pregunta, pregunta_generada:texto,
         contexto_json:{...contexto, leccion:modoBase === 'leccion' ? actividad:null},
         ia_parametros_usados:{provider:'contenido_revisado',modo_sesion:modoBase,objetivo_id,contenido_version:VERSION_BASES,actividad_id:actividad.actividad_id}
       }).select().single(), 'No se pudo guardar la actividad');
@@ -225,7 +225,7 @@ export default async function handler(req, res) {
       const suficientes = practicas.length >= 3 && independientes.length / practicas.length >= 0.8;
       const recuperado = ultimo?.es_correcta !== false || independientes.filter(s=>new Date(s.created_at)>new Date(ultimo.created_at)).length >= 2;
       const disponible = Boolean(cierre && objetivoInfo.temaCompletado && !aprobado && suficientes && recuperado);
-      return res.status(200).json(quitarClaves({...actividad, pregunta:texto, tipo_pregunta:modoBase === 'leccion'?'leccion':'multiple',
+      return res.status(200).json(quitarClaves({...actividad, pregunta:texto, tipo_pregunta:modoBase === 'leccion'?'leccion':actividad.tipo_pregunta,
         sesion_id:fila.id,tema:temaActual,capa:1,...tutor,...planPayload,examen_disponible:disponible && !pendiente,examen_pendiente:disponible && Boolean(pendiente)}));
     };
     if (unidadBase && !((rendir_examen || retomar_examen) && objetivoInfo.temaCompletado)) return responderBase();

@@ -6,6 +6,13 @@ const {UNIDADES_BASES,VERSION_BASES,getCierreLengua}=load('src/lib/contenido-bas
 const language=UNIDADES_BASES.filter(u=>u.id.startsWith('leng_'));
 const access=load('src/lib/acceso-temas.js',['accesoTema','temasHabilitados']);
 const dashboard=load('src/pages/api/progreso.js',['buildDashboardMetrics'],curriculum);
+// Stub semántico explícito: verifica el flujo; las pruebas live evalúan el modelo.
+async function respond(database,id,body){
+ const row=database.tables.sesiones.find(s=>s.id===id),u=UNIDADES_BASES.find(u=>u.id===row.ia_parametros_usados?.objetivo_id),a=u?.actividades.find(a=>a.id===row.ia_parametros_usados?.actividad_id);
+ const stub=a?.rubrica_escritura?{seguridad:'alta',criterios:a.rubrica_escritura.map(c=>({id:c.id,estado:'logrado',cita_respuesta:body.respuesta_usuario,orientacion:''})),fidelidad:{estado:'logrado',cita_respuesta:'',orientacion:''}}:undefined;
+ return answer(database,id,body,stub);
+}
+
 (async()=>{
  let checked=0;const all=[...curriculum.CURRICULUM_MATEMATICA,...curriculum.CURRICULUM_LENGUA];
  // API and family panel agree for every topic, including flexible and trial accounts.
@@ -28,11 +35,11 @@ const dashboard=load('src/pages/api/progreso.js',['buildDashboardMetrics'],curri
   for(const u of language.filter(u=>u.tema===tema)){
    const lesson=await start(database,{tema});assert.equal(lesson.output.tema,tema);assert.equal(lesson.output.tipo,'leccion');assert.equal(lesson.calls.length,0);assert.equal(lesson.output.unidad_titulo,u.titulo);
    assert.equal(lesson.output.ejercicio_practica.respuesta_correcta,undefined);assert.equal(lesson.output.ejercicio_practica.paso_resuelto,undefined);
-   await answer(database,lesson.output.sesion_id,{respuesta_usuario:u.actividades[0].respuesta_correcta});
+   await respond(database,lesson.output.sesion_id,{respuesta_usuario:u.actividades[0].respuesta_correcta});
    const ids=new Set();for(let i=0;i<2;i++){
     const practice=await start(database,{tema});assert.equal(practice.output.tipo,'practica');assert.equal(practice.output.tema,tema);assert.equal(practice.calls.length,0);
     const row=database.tables.sesiones.find(s=>s.id===practice.output.sesion_id);const a=u.actividades.find(a=>a.id===row.ia_parametros_usados.actividad_id);ids.add(a.id);
-    assert.equal((await answer(database,row.id,{respuesta_usuario:a.respuesta_correcta})).es_correcta,true);
+    assert.equal((await respond(database,row.id,{respuesta_usuario:a.respuesta_correcta})).es_correcta,true);
    }assert.equal(ids.size,2);checked++;
   }
   assert(objectives.esElegibleParaExamenFinal(tema,database.tables.sesiones));
@@ -42,14 +49,14 @@ const dashboard=load('src/pages/api/progreso.js',['buildDashboardMetrics'],curri
   const chosen=await start(database,{tema,capa:5,forzar_practica:false,rendir_examen:true});assert.equal(chosen.output.tipo,'examen_final');assert.equal(chosen.calls.length,0);
   assert.equal(chosen.output.contenido_version,VERSION_BASES);assert.equal(chosen.output.dificultad,'basico');assert.notEqual(chosen.output.sesion_id,'legacy');
   const closure=getCierreLengua(tema);assert.equal(chosen.output.preguntas.length,closure.preguntas.length);assert(chosen.output.preguntas.every(q=>q.respuesta_correcta===undefined && q.opciones.length));
-  const response=Object.fromEntries(closure.preguntas.map(q=>[q.id,q.respuesta_correcta]));const result=await answer(database,chosen.output.sesion_id,{respuesta_usuario:JSON.stringify(response)});assert.equal(result.es_correcta,true);assert.equal(result.decision.proximo_tema,tema);checked++;
+  const response=Object.fromEntries(closure.preguntas.map(q=>[q.id,q.respuesta_correcta]));const result=await respond(database,chosen.output.sesion_id,{respuesta_usuario:JSON.stringify(response)});assert.equal(result.es_correcta,true);assert.equal(result.decision.proximo_tema,tema);checked++;
  }
  // Old, unversioned success cannot skip reviewed teaching; help does not count as independent mastery.
  const first=language[0];const old=[1,2,3].map(i=>({id:'old'+i,tema:first.tema,tipo_pregunta:'multiple',es_correcta:true,ia_parametros_usados:{objetivo_id:first.id}}));
  assert.equal(objectives.determinarProximoObjetivo(first.tema,old).requiereExplicacion,true);
- const helpDb=db({sesiones:[]});const lesson=await start(helpDb,{tema:first.tema});await answer(helpDb,lesson.output.sesion_id,{respuesta_usuario:first.actividades[0].respuesta_correcta});
- const practice=await start(helpDb,{tema:first.tema});const scaffold=await answer(helpDb,practice.output.sesion_id,{respuesta_usuario:'Esto no lo vimos',no_visto:true});assert.equal(scaffold.es_correcta,null);
- await answer(helpDb,practice.output.sesion_id,{respuesta_usuario:first.actividades[1].respuesta_correcta});assert.equal(objectives.determinarProximoObjetivo(first.tema,helpDb.tables.sesiones).aciertosIndependientes,0);checked++;
+ const helpDb=db({sesiones:[]});const lesson=await start(helpDb,{tema:first.tema});await respond(helpDb,lesson.output.sesion_id,{respuesta_usuario:first.actividades[0].respuesta_correcta});
+ const practice=await start(helpDb,{tema:first.tema});const scaffold=await respond(helpDb,practice.output.sesion_id,{respuesta_usuario:'Esto no lo vimos',no_visto:true});assert.equal(scaffold.es_correcta,null);
+ await respond(helpDb,practice.output.sesion_id,{respuesta_usuario:first.actividades[1].respuesta_correcta});assert.equal(objectives.determinarProximoObjetivo(first.tema,helpDb.tables.sesiones).aciertosIndependientes,0);checked++;
  // Accent marks remain significant in the final closure (not just in practice).
  const {evaluarExamenFinal}=load('src/lib/examenes-monserrat.js',['evaluarExamenFinal']);const close=getCierreLengua('tildes_generales_agudas_graves_esdrujulas');const q=close.preguntas.find(q=>q.respuesta_correcta==='devuélvemelo');assert(q);assert.equal(evaluarExamenFinal({...close,preguntas:[q],min_correctas:1},{[q.id]:'devuelvemelo'}).es_correcta,false);checked++;
  console.log(JSON.stringify({passed:checked,newUnits:language.length,newActivities:language.reduce((n,u)=>n+u.actividades.length,0),realAI:false,realDatabase:false}));

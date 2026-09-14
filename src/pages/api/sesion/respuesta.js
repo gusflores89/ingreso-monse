@@ -1,5 +1,6 @@
+import { evaluarEscritura } from "@/lib/evaluacion-escritura";
 import { iniciarEnvio, guardarPasoEnvio, completarEnvio, liberarEnvio } from "@/lib/registro-envios";
-import { evaluarActividadBase, getCierreBase, esCierreActual } from "@/lib/contenido-bases";
+import { evaluarActividadBase, getEscrituraBase, getCierreBase, esCierreActual } from "@/lib/contenido-bases";
 import { validarEvaluacion, huboAyuda } from "@/lib/validacion-pedagogica";
 import { daysUntilExam } from "@/lib/date";
 import {
@@ -37,7 +38,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "sesion_id y respuesta_usuario son obligatorios." });
   }
 
-  if (typeof respuesta_usuario !== "string" || respuesta_usuario.length > 2000) {
+  if (typeof respuesta_usuario !== "string" || !respuesta_usuario.trim() || respuesta_usuario.length > 2000) {
     return res.status(400).json({ error: "Respuesta inválida o demasiado larga" });
   }
 
@@ -198,7 +199,12 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error, pista_concre
       : `Pregunta: ${sesion.pregunta_generada}\nRespuesta de ${alumno.nombre}: <respuesta_alumno>${respuesta_usuario}</respuesta_alumno>\n\nEvalua y retroalimenta. Devuelve solo JSON valido.`;
 
     const evaluacionBase = evaluarActividadBase(sesion, respuesta_usuario, Boolean(no_visto));
-    const respuestaIa = (envio.evaluacion || evaluacionBase) ? null : await callOpenRouter(
+    const escritura=getEscrituraBase(sesion);
+    const revisionEscritura=escritura && !no_visto && !envio.evaluacion
+      ? await evaluarEscritura(escritura.unidad,escritura.actividad,respuesta_usuario,
+          (system,data)=>callOpenRouter(MODEL_TUTOR,system,data,1300,{timeout:45_000,maxRetries:0,temperature:0}),parseJsonFromModel)
+      : null;
+    const respuestaIa = (envio.evaluacion || evaluacionBase || revisionEscritura) ? null : await callOpenRouter(
       MODEL_TUTOR,
       evaluacionPrompt,
       promptUserText,
@@ -206,20 +212,21 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error, pista_concre
       { timeout: 60_000, maxRetries: 0 }
     );
 
-    const evaluacion = validarEvaluacion(envio.evaluacion || evaluacionBase || parseJsonFromModel(respuestaIa), Boolean(no_visto));
+    const evaluacion = validarEvaluacion(envio.evaluacion || evaluacionBase || revisionEscritura || parseJsonFromModel(respuestaIa), Boolean(no_visto), Boolean(escritura));
     envio.evaluacion = evaluacion;
 
     const esNoVisto = Boolean(no_visto);
-    const esCorrectaDb = esNoVisto ? null : Boolean(evaluacion.es_correcta);
+    const esCorrectaDb = esNoVisto || (escritura && evaluacion.revision_pendiente) ? null : Boolean(evaluacion.es_correcta);
 
     const updatedIaParametros = {
       ...(sesion.ia_parametros_usados || {}),
       resuelto_con_ayuda: huboAyuda(sesion, resuelto_con_ayuda || no_visto),
       ayuda_utilizada: huboAyuda(sesion, resuelto_con_ayuda || no_visto),
       no_visto: esNoVisto,
+      ...(escritura?{revision_pendiente:Boolean(evaluacion.revision_pendiente),criterios_escritura:evaluacion.criterios_escritura || [],fidelidad_escritura:evaluacion.fidelidad_escritura || null}:{}),
       pista_concreta: evaluacion.pista_concreta || null,
       paso_resuelto: evaluacion.paso_resuelto || null,
-      evaluacion: { provider: evaluacionBase ? "contenido_revisado" : "openrouter", model: evaluacionBase ? null : MODEL_TUTOR, max_tokens: 700 },
+      evaluacion: { provider: evaluacionBase ? "contenido_revisado" : escritura ? "escritura_semantica" : "openrouter", model: evaluacionBase ? null : MODEL_TUTOR, max_tokens: escritura ? 1300 : 700 },
     };
     sesion.ia_parametros_usados = updatedIaParametros;
 
@@ -397,6 +404,7 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error, pista_concre
     return await responder({
       es_correcta: esCorrectaDb,
       no_visto: esNoVisto,
+      ...(escritura?{revision_pendiente:Boolean(evaluacion.revision_pendiente)}:{}),
       retroalimentacion: evaluacion.retroalimentacion,
       razon_error: evaluacion.razon_error || null,
       pista_concreta: evaluacion.pista_concreta || null,

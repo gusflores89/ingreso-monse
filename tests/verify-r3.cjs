@@ -12,7 +12,7 @@ const {UNIDADES_BASES:units,VERSION_BASES:version,crearActividadBase,evaluarActi
 (async()=>{
  let checked = 0;
  const allIds = new Set();
- for(const u of units){
+ for(const u of units.filter(u=>!u.actividades[0].rubrica_escritura)){
   const history=[];
   for(let i=0;i<5;i++){
    const activity=crearActividadBase(u.id,'practica',history);
@@ -67,7 +67,7 @@ const {UNIDADES_BASES:units,VERSION_BASES:version,crearActividadBase,evaluarActi
    assert.equal(scaffold.es_correcta,null);assert(scaffold.pista_concreta);checked++;
   }
  }
- for(const u of units.slice(8))assert(new Set(u.actividades.map(a=>a.opciones.indexOf(a.respuesta_correcta))).size>1, 'Correct option position varies');
+ for(const u of units.slice(8).filter(u=>!u.actividades[0].rubrica_escritura))assert(new Set(u.actividades.map(a=>a.opciones.indexOf(a.respuesta_correcta))).size>1, 'Correct option position varies');
  // Criteria are four separate objectives; mastering one cannot skip the others.
  const criteria=objectives.getObjetivosParaTema('divisibilidad_primos_mcm_mcd').map(o=>o.id);
  for(const n of [2,3,5,10])assert(criteria.includes('bases_criterio_'+n));
