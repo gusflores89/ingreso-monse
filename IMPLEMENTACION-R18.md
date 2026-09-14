@@ -41,4 +41,12 @@ Comandos: npm test; node tests/verify-r18-browser.cjs; node tests/verify-r18-mod
 Revisión y seguimiento familiar de escritos sin calificar o discutibles, con devolución recuperable por la alumna. También quedan selección directa de evidencia, comparación de textos, escritura de párrafos más extensos y simulacros progresivos. Continúan los pendientes de Matemática documentados en R15.
 
 ## Publicación
-Pendiente de verificación en producción.
+- Commit de implementación: `0800bb3`.
+- Vercel: `dpl_A98uwjDwcRzJhdc5o7irZquAhUU1`, READY, producción; compilación final correcta.
+- Dominio: https://www.ingresomonserrat.online
+- Versión: https://ingreso-monse-2027-auvcyn2uc-gustavos-projects-b8e409fb.vercel.app
+- Las nueve comprobaciones de interfaz pasan contra la publicación; sin errores JavaScript en el recorrido verificado.
+- El PDF descargado de producción coincide por SHA-256 con el apunte revisado de 19 páginas.
+- Cinco comprobaciones de punta a punta con API, Supabase e IA reales: enseñanza de leng_esc_frase, borrador sincronizado, mismo ejercicio en otro navegador, aceptación de «Los estudiantes acomodaron los libros.» mediante criterios semánticos, un reto y dos estrellas sin duplicación al volver, y Guardar y salir.
+- Cuenta temporal y sus sesiones, continuidad, lecciones y progreso eliminados; limpieza verificada. No se utilizó la cuenta de Abril.
+- Evidencia: implementacion-r18 en el espacio de visualizaciones de esta tarea; capturas, cuatro hojas de contacto PDF, modelo-real.json, navegador-r18.json y produccion/continuidad-real.json.
