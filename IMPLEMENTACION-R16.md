@@ -36,4 +36,12 @@ Respuestas con palabras propias y selección directa de evidencia; textos de var
 Siguiente bloque propuesto: idea principal y resumen por etapas, para avanzar desde elegir un dato hacia comprender el texto completo sin aumentar de golpe su extensión.
 
 ## Publicación
-Pendiente de completar la verificación contra producción.
+- Commit de implementación: `c66f0e1`.
+- Vercel: `dpl_2udfDy9BRGCEwDotUfUYr8PCn5KW`, READY, producción.
+- Dominio: https://www.ingresomonserrat.online
+- Versión: https://ingreso-monse-2027-81systg7l-gustavos-projects-b8e409fb.vercel.app
+- Las 17 comprobaciones de navegador pasan contra la publicación, sin errores JavaScript en el recorrido verificado.
+- El PDF descargado desde producción coincide por SHA-256 con el archivo revisado de diez páginas.
+- Cinco comprobaciones adicionales con API y Supabase reales: enseñanza de leng_prof_precision, selección sincronizada, recuperación del mismo ejercicio y texto en otro navegador, corrección con contenido revisado, un reto y dos estrellas sin duplicación al recargar, y Guardar y salir.
+- Cuenta temporal y sus sesiones, continuidad, lecciones y progreso eliminados; limpieza verificada. No se utilizó la cuenta de Abril.
+- Evidencia: implementacion-r16 en el espacio de visualizaciones de esta tarea; hojas de contacto PDF, capturas, navegador-r16.json y produccion/continuidad-real.json.
