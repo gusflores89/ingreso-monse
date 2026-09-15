@@ -27,3 +27,12 @@ Comandos: npm test; npm run build; node tests/verify-r19-browser-live.cjs. El ú
 
 ## Siguiente bloque
 Selección de evidencia textual: enseñar a encontrar y señalar qué frase sostiene una respuesta, con explicación, ejemplo y práctica breve antes de comparar dos textos. Continúan después los párrafos más extensos y los simulacros progresivos; pendientes de Matemática en R15.
+
+## Publicación
+- Implementación: cfa4a0c.
+- Vercel: dpl_FnqRPd5A4dvQzR7nyXkPJ4xeUK7d, READY, producción.
+- Dominio: https://www.ingresomonserrat.online
+- Versión: https://ingreso-monse-2027-cxiq4x21w-gustavos-projects-b8e409fb.vercel.app
+- Ocho comprobaciones de navegador repetidas contra producción con API y Supabase reales: todas correctas. Sin errores JavaScript en el recorrido verificado. Los dos estados de error/vacío siguen simulados explícitamente; el resto no intercepta la API.
+- La cuenta temporal de producción y sus registros fueron eliminados, con limpieza verificada.
+- Informe y capturas en implementacion-r19/produccion.
