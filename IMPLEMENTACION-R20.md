@@ -35,3 +35,13 @@ Comandos: npm test; npm run build; node tests/verify-r20-browser.cjs; node tests
 Comparar dos textos breves: identificar qué información comparten, en qué se diferencian y qué texto sostiene cada afirmación, siempre con explicación, ejemplo y práctica gradual. Después continúan los párrafos más extensos y simulacros progresivos; pendientes de Matemática documentados en R15.
 
 PDF SHA-256: 5a632e2cb391a469d65857066ad2df9108ebc40d9553dbf3998a92af564241d1
+
+## Publicación
+- Implementación: 2d7d6eb.
+- Vercel: dpl_FQ2zfic6pmwrcyKKF3E5gEELUQ7k, READY, producción.
+- Dominio: https://www.ingresomonserrat.online
+- Versión: https://ingreso-monse-2027-kemgrbs0c-gustavos-projects-b8e409fb.vercel.app
+- Diez comprobaciones de interfaz y cinco de continuidad con API/Supabase reales repetidas contra producción: todas correctas. Sin errores JavaScript en los recorridos verificados.
+- PDF descargado mediante la interfaz idéntico por SHA-256 al revisado de 22 páginas.
+- Cuenta temporal de producción y registros asociados eliminados; limpieza verificada.
+- Evidencia de producción: implementacion-r20/produccion/navegador-r20.json, continuidad-real.json, capturas y descarga del apunte.
