@@ -1,3 +1,4 @@
+import { UNIDADES_BASES } from "@/lib/contenido-bases";
 import { requireMethod } from "@/lib/http";
 import { requireAccess, requireOwnership } from "@/lib/access";
 import { getSupabaseAdmin, assertSupabaseOk } from "@/lib/supabaseAdmin";
@@ -7,11 +8,13 @@ export default async function handler(req,res) {
   res.setHeader("Cache-Control","private, no-store");
   if (!requireMethod(req,res,"GET") || !requireAccess(req,res,["student","admin"])) return;
   const {user_id, pagina = "0", vista = "historial"} = req.query || {};
-  if (typeof user_id !== "string" || !user_id || user_id.length > 100 || typeof pagina !== "string" || !/^\d{1,6}$/.test(pagina) || !["historial","pendientes"].includes(vista)) return res.status(400).json({error:"Consulta de recorrido inválida."});
+  if (typeof user_id !== "string" || !user_id || user_id.length > 100 || typeof pagina !== "string" || !/^\d{1,6}$/.test(pagina) || !["historial","pendientes","escritos","devoluciones"].includes(vista)) return res.status(400).json({error:"Consulta de recorrido inválida."});
   if (!requireOwnership(req,res,user_id)) return;
   try {
     let query = getSupabaseAdmin().from("sesiones").select("id, tema, tipo_pregunta, created_at, es_correcta, pregunta_generada, respuesta_usuario, ia_parametros_usados, contexto_json").eq("user_id",user_id);
     if (vista === "pendientes") query = query.eq("ia_parametros_usados->>revision_pendiente","true");
+    if (vista === "escritos") query = query.in("ia_parametros_usados->>objetivo_id",UNIDADES_BASES.filter(u=>u.actividades.some(a=>a.rubrica_escritura)).map(u=>u.id));
+    if (vista === "devoluciones") query = query.not("ia_parametros_usados->revision_familiar","is",null);
     const offset = Number(pagina)*20;
     const rows = assertSupabaseOk(await query.order("created_at",{ascending:false}).order("id",{ascending:false}).range(offset,offset+20),"No se pudo leer el recorrido");
     return res.status(200).json({sesiones:rows.slice(0,20).map(resumirSesionFamiliar),hay_mas:rows.length>20,pagina:Number(pagina)});

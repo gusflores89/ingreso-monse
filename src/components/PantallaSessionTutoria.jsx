@@ -1,3 +1,4 @@
+import MensajesFamiliares from "./MensajesFamiliares";
 import { crearSincronizador } from "@/lib/sincronizacion-mision";
 import RepasoSugerido from "./RepasoSugerido";
 import { accesoTema } from "@/lib/acceso-temas";
@@ -1072,6 +1073,8 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
           </button>
         </div>
       )}
+
+      <MensajesFamiliares key={user_id} userId={user_id} />
 
       {pregunta && !loading && (misionTerminada || (!pregunta.repaso_espaciado && !desafiosCompletadosMision && !respuesta && !pasoActual && !evaluacion && intento === 1)) && (
         <RepasoSugerido userId={user_id} loading={loading} refrescar={sesionId + ':' + misionTerminada} onStart={handleIniciarRepaso} />

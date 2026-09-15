@@ -8,6 +8,8 @@ const read = p => fs.readFileSync(path.join(root,p),'utf8');
 const hashes = {};
 function source(p) { const s=read(p); hashes[p]=crypto.createHash('sha256').update(s).digest('hex'); return s; }
 function load(p, names, deps={}) {
+ if(p==='src/lib/recorrido-familiar.js')deps={createHash:crypto.createHash,...load('src/lib/contenido-bases.js',['getEscrituraBase']),...deps};
+ if(p==='src/pages/api/familia/recorrido.js')deps={...load('src/lib/contenido-bases.js',['UNIDADES_BASES']),...deps};
  if(p==='src/pages/api/sesion/respuesta.js')deps={...load('src/lib/evaluacion-escritura.js',['evaluarEscritura']),...deps};
  if(p==='src/lib/acceso-temas.js')deps={...load('src/lib/curriculum.js',['CURRICULUM_MATEMATICA','CURRICULUM_LENGUA','PRERREQUISITOS']),...load('src/lib/metadatos-bases.js',['TEMAS_BASES']),...load('src/lib/planes.js',['TRIAL_TOPICS']),...deps};
  if(['src/pages/api/sesion/init.js','src/pages/api/progreso.js'].includes(p))deps={...load('src/lib/acceso-temas.js',['accesoTema','temasHabilitados']),...load('src/lib/metadatos-bases.js',['TEMAS_BASES_MATEMATICA']),...deps};
@@ -32,8 +34,8 @@ function db(initial={}) {
   tables[table]??=[]; let filters=[],sort=null,offset=0,n=Infinity,op=null,payload=null,conflict=null;
   const q={
    select(){return q},eq(k,v){filters.push(r=>(k.includes('->>') ? (r[k.split('->>')[0]]?.[k.split('->>')[1]] == null ? null : String(r[k.split('->>')[0]][k.split('->>')[1]])) : r[k])===v);return q},neq(k,v){filters.push(r=>r[k]!==v);return q},
-   not(k,op,v){assert.equal(op,'is');filters.push(r=>r[k]!==v);return q},is(k,v){filters.push(r=>(k.includes('->>') ? (r[k.split('->>')[0]]?.[k.split('->>')[1]] == null ? null : String(r[k.split('->>')[0]][k.split('->>')[1]])) : r[k])===v);return q},
-   in(k,vs){filters.push(r=>vs.includes(r[k]));return q},order(k,{ascending}){sort={k,ascending};return q},limit(v){n=v;return q},range(a,b){offset=a;n=b-a+1;return q},
+   not(k,op,v){assert.equal(op,'is');filters.push(r=>(k.includes('->') ? r[k.split('->')[0]]?.[k.split('->')[1]] ?? null : r[k])!==v);return q},is(k,v){filters.push(r=>(k.includes('->>') ? (r[k.split('->>')[0]]?.[k.split('->>')[1]] == null ? null : String(r[k.split('->>')[0]][k.split('->>')[1]])) : r[k])===v);return q},
+   in(k,vs){filters.push(r=>vs.includes(k.includes('->>') ? String(r[k.split('->>')[0]]?.[k.split('->>')[1]]) : r[k]));return q},order(k,{ascending}){sort={k,ascending};return q},limit(v){n=v;return q},range(a,b){offset=a;n=b-a+1;return q},
    update(v){op='update';payload=v;return q},insert(v){op='insert';payload=v;return q},
    upsert(v,opts={}){op='upsert';payload=v;conflict=opts.onConflict;return q},
    single(){return execute(true)},maybeSingle(){return execute(true)},then(a,b){return execute(false).then(a,b)}
