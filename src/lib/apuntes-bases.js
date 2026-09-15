@@ -992,6 +992,57 @@ const UNIDADES = [
     }
   },
   {
+    "id": "leng_evi_dato",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Encontrar la frase que responde",
+    "explicacion": "Una evidencia es una parte del texto que sirve para sostener una respuesta. Primero vemos qué dato necesitamos: quién, dónde o cuándo. Después releemos y elegimos la frase que aporta ese dato. Que una frase aparezca en el texto no significa que responda nuestra pregunta.",
+    "ejemplo": "Para sostener «La feria se hizo en el patio del club», elegimos «Los puestos se instalaron en el patio del club.».",
+    "pasos": [
+      "La frase nombra el lugar de los puestos. Las familias y la merienda no dicen dónde fue.",
+      "Las otras frases también están en el texto, pero no sostienen esta respuesta."
+    ],
+    "pista": "Releé la respuesta: ¿necesitás saber quién, dónde o cuándo? Buscá la frase que da ese dato.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "La feria reunió a varias familias del barrio. Los puestos se instalaron en el patio del club. Al final compartieron una merienda."
+    }
+  },
+  {
+    "id": "leng_evi_causa",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Buscar la frase que explica por qué",
+    "explicacion": "Para sostener una respuesta sobre una causa, buscamos qué produjo el cambio o impidió algo. Primero ubicamos lo que pasó; luego releemos qué lo explica. Una frase que cuenta algo ocurrido antes no siempre expresa la causa. Podemos encontrar pistas como porque o por falta de.",
+    "ejemplo": "Para sostener «La reparación del techo causó la suspensión de la visita», elegimos «La visita se suspendió porque el museo debía reparar el techo.».",
+    "pasos": [
+      "Porque conecta la suspensión con la reparación. Preparar preguntas no fue la causa.",
+      "Las otras frases también están en el texto, pero no sostienen esta respuesta."
+    ],
+    "pista": "Buscá qué provocó el cambio. Un horario, un objeto o algo que pasó antes puede ser solo un detalle.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "El grupo tenía una visita al museo. La visita se suspendió porque el museo debía reparar el techo. Los chicos habían preparado preguntas."
+    }
+  },
+  {
+    "id": "leng_evi_inferencia",
+    "tema": "comprension_lectora_literal_inferida",
+    "titulo": "Elegir una pista para una conclusión",
+    "explicacion": "A veces la respuesta no está escrita con las mismas palabras: la inferimos a partir de una pista. Elegimos una frase que permita explicar cómo llegamos a esa idea. Por ejemplo, un piso mojado puede resbalar. Una pista sostiene una conclusión razonable; no permite inventar detalles que el texto no cuenta.",
+    "ejemplo": "Para sostener «Había que caminar con cuidado para no resbalar», elegimos «El agua de la limpieza todavía cubría el piso.».",
+    "pasos": [
+      "El agua en el piso permite pensar que podía estar resbaladizo. El número de puertas no indica ese riesgo.",
+      "Las otras frases también están en el texto, pero no sostienen esta respuesta."
+    ],
+    "pista": "Preguntate: ¿cómo me ayuda esta frase a llegar a la conclusión? No alcanza con que nombre el mismo objeto.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "La entrada del salón tenía dos puertas. El agua de la limpieza todavía cubría el piso. En una pared colgaba un calendario."
+    }
+  },
+  {
     "id": "leng_bv_1_mb_nv",
     "tema": "ortografia_b_v",
     "titulo": "Mirar la letra anterior: mb y nv",

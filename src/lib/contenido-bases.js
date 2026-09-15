@@ -20167,6 +20167,364 @@ for (const unidad of ESCRITURA_R18) {
 }
 // FIN R18
 
+// R20: evidencia textual.
+const EVIDENCIA_R20 = [
+  {
+    "id": "leng_evi_dato",
+    "tema": "comprension_lectora_literal_inferida",
+    "despues_de": "leng_esc_resumen",
+    "titulo": "Encontrar la frase que responde",
+    "explicacion": "Una evidencia es una parte del texto que sirve para sostener una respuesta. Primero vemos qué dato necesitamos: quién, dónde o cuándo. Después releemos y elegimos la frase que aporta ese dato. Que una frase aparezca en el texto no significa que responda nuestra pregunta.",
+    "ejemplo": "Para sostener «La feria se hizo en el patio del club», elegimos «Los puestos se instalaron en el patio del club.».",
+    "pasos": [
+      "La frase nombra el lugar de los puestos. Las familias y la merienda no dicen dónde fue.",
+      "Las otras frases también están en el texto, pero no sostienen esta respuesta."
+    ],
+    "pista": "Releé la respuesta: ¿necesitás saber quién, dónde o cuándo? Buscá la frase que da ese dato.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "La feria reunió a varias familias del barrio. Los puestos se instalaron en el patio del club. Al final compartieron una merienda."
+    },
+    "actividades": [
+      {
+        "id": "leng_evi_dato-v1",
+        "enunciado": "La respuesta dice: «La feria se hizo en el patio del club». Elegí la frase del texto que la sostiene.",
+        "respuesta_correcta": "Los puestos se instalaron en el patio del club.",
+        "opciones": [
+          "Los puestos se instalaron en el patio del club.",
+          "La feria reunió a varias familias del barrio.",
+          "Al final compartieron una merienda."
+        ],
+        "paso_resuelto": "La frase es: «Los puestos se instalaron en el patio del club.». La frase nombra el lugar de los puestos. Las familias y la merienda no dicen dónde fue.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La feria reunió a varias familias del barrio. Los puestos se instalaron en el patio del club. Al final compartieron una merienda."
+        }
+      },
+      {
+        "id": "leng_evi_dato-v2",
+        "enunciado": "La respuesta dice: «Lucía hizo los dibujos de animales». Elegí la frase del texto que la sostiene.",
+        "respuesta_correcta": "Lucía dibujó los animales del afiche.",
+        "opciones": [
+          "Lucía y Mateo prepararon el afiche.",
+          "Lucía dibujó los animales del afiche.",
+          "Mateo escribió los horarios de la muestra."
+        ],
+        "paso_resuelto": "La frase es: «Lucía dibujó los animales del afiche.». La frase une a Lucía con la acción de dibujar. Escribir horarios fue tarea de Mateo.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Lucía y Mateo prepararon el afiche. Mateo escribió los horarios de la muestra. Lucía dibujó los animales del afiche."
+        }
+      },
+      {
+        "id": "leng_evi_dato-v3",
+        "enunciado": "La respuesta dice: «Los préstamos de juegos empiezan los jueves». Elegí la frase del texto que la sostiene.",
+        "respuesta_correcta": "El préstamo de juegos comienza los jueves.",
+        "opciones": [
+          "La biblioteca guarda los juegos en un armario.",
+          "Cada familia puede llevar un juego.",
+          "El préstamo de juegos comienza los jueves."
+        ],
+        "paso_resuelto": "La frase es: «El préstamo de juegos comienza los jueves.». Comienza los jueves indica cuándo se inicia el préstamo. El armario responde dónde se guardan.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El préstamo de juegos comienza los jueves. La biblioteca guarda los juegos en un armario. Cada familia puede llevar un juego."
+        }
+      },
+      {
+        "id": "leng_evi_dato-v4",
+        "enunciado": "La respuesta dice: «El grupo recibió semillas de lechuga». Elegí la frase del texto que la sostiene.",
+        "respuesta_correcta": "La encargada entregó semillas de lechuga al grupo.",
+        "opciones": [
+          "La encargada entregó semillas de lechuga al grupo.",
+          "La clase visitó el vivero por la mañana.",
+          "Los chicos llevaron las semillas a la escuela."
+        ],
+        "paso_resuelto": "La frase es: «La encargada entregó semillas de lechuga al grupo.». La frase identifica qué semillas recibieron. El viaje de regreso no aporta ese dato.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La clase visitó el vivero por la mañana. La encargada entregó semillas de lechuga al grupo. Los chicos llevaron las semillas a la escuela."
+        }
+      },
+      {
+        "id": "leng_evi_dato-v5",
+        "enunciado": "La respuesta dice: «La primera reunión será el sábado». Elegí la frase del texto que la sostiene.",
+        "respuesta_correcta": "La primera reunión será el sábado.",
+        "opciones": [
+          "El taller funcionará en la sala del fondo.",
+          "La primera reunión será el sábado.",
+          "Las familias pueden anotarse en la entrada."
+        ],
+        "paso_resuelto": "La frase es: «La primera reunión será el sábado.». La frase indica el día de la primera reunión. Las otras hablan de lugares.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El taller funcionará en la sala del fondo. Las familias pueden anotarse en la entrada. La primera reunión será el sábado."
+        }
+      },
+      {
+        "id": "leng_evi_dato-v6",
+        "enunciado": "La respuesta dice: «Las tijeras quedaron en el cajón azul». Elegí la frase del texto que la sostiene.",
+        "respuesta_correcta": "Sara guardó las tijeras en el cajón azul.",
+        "opciones": [
+          "Después dejó los papeles sobre la mesa.",
+          "Al terminar apagó la luz del salón.",
+          "Sara guardó las tijeras en el cajón azul."
+        ],
+        "paso_resuelto": "La frase es: «Sara guardó las tijeras en el cajón azul.». La frase conecta las tijeras con el cajón. La mesa es el lugar de los papeles.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Sara guardó las tijeras en el cajón azul. Después dejó los papeles sobre la mesa. Al terminar apagó la luz del salón."
+        }
+      }
+    ]
+  },
+  {
+    "id": "leng_evi_causa",
+    "tema": "comprension_lectora_literal_inferida",
+    "despues_de": "leng_evi_dato",
+    "titulo": "Buscar la frase que explica por qué",
+    "explicacion": "Para sostener una respuesta sobre una causa, buscamos qué produjo el cambio o impidió algo. Primero ubicamos lo que pasó; luego releemos qué lo explica. Una frase que cuenta algo ocurrido antes no siempre expresa la causa. Podemos encontrar pistas como porque o por falta de.",
+    "ejemplo": "Para sostener «La reparación del techo causó la suspensión de la visita», elegimos «La visita se suspendió porque el museo debía reparar el techo.».",
+    "pasos": [
+      "Porque conecta la suspensión con la reparación. Preparar preguntas no fue la causa.",
+      "Las otras frases también están en el texto, pero no sostienen esta respuesta."
+    ],
+    "pista": "Buscá qué provocó el cambio. Un horario, un objeto o algo que pasó antes puede ser solo un detalle.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "El grupo tenía una visita al museo. La visita se suspendió porque el museo debía reparar el techo. Los chicos habían preparado preguntas."
+    },
+    "actividades": [
+      {
+        "id": "leng_evi_causa-v1",
+        "enunciado": "La respuesta dice: «La reparación del techo causó la suspensión de la visita». Elegí la frase del texto que la sostiene.",
+        "respuesta_correcta": "La visita se suspendió porque el museo debía reparar el techo.",
+        "opciones": [
+          "La visita se suspendió porque el museo debía reparar el techo.",
+          "El grupo tenía una visita al museo.",
+          "Los chicos habían preparado preguntas."
+        ],
+        "paso_resuelto": "La frase es: «La visita se suspendió porque el museo debía reparar el techo.». Porque conecta la suspensión con la reparación. Preparar preguntas no fue la causa.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El grupo tenía una visita al museo. La visita se suspendió porque el museo debía reparar el techo. Los chicos habían preparado preguntas."
+        }
+      },
+      {
+        "id": "leng_evi_causa-v2",
+        "enunciado": "La respuesta dice: «Regaron porque la tierra necesitaba agua». Elegí la frase del texto que la sostiene.",
+        "respuesta_correcta": "Tras varios días sin lluvia, la tierra estaba seca.",
+        "opciones": [
+          "Los vecinos regaron las plantas por la mañana.",
+          "Tras varios días sin lluvia, la tierra estaba seca.",
+          "Las macetas estaban junto a una pared."
+        ],
+        "paso_resuelto": "La frase es: «Tras varios días sin lluvia, la tierra estaba seca.». La tierra seca tras días sin lluvia explica la necesidad de regar. La pared no explica esa necesidad.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Los vecinos regaron las plantas por la mañana. Las macetas estaban junto a una pared. Tras varios días sin lluvia, la tierra estaba seca."
+        }
+      },
+      {
+        "id": "leng_evi_causa-v3",
+        "enunciado": "La respuesta dice: «La falta de luz hizo que cambiaran de lugar». Elegí la frase del texto que la sostiene.",
+        "respuesta_correcta": "Por falta de luz en la sala, la lectura se trasladó al patio.",
+        "opciones": [
+          "Los libros estaban sobre una mesa.",
+          "La actividad comenzó a las diez.",
+          "Por falta de luz en la sala, la lectura se trasladó al patio."
+        ],
+        "paso_resuelto": "La frase es: «Por falta de luz en la sala, la lectura se trasladó al patio.». La frase conecta explícitamente la falta de luz con el traslado. La hora no explica el cambio.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Por falta de luz en la sala, la lectura se trasladó al patio. Los libros estaban sobre una mesa. La actividad comenzó a las diez."
+        }
+      },
+      {
+        "id": "leng_evi_causa-v4",
+        "enunciado": "La respuesta dice: «Entrenaron adentro porque la cancha estaba inundada». Elegí la frase del texto que la sostiene.",
+        "respuesta_correcta": "Como la cancha estaba inundada, entrenaron en el gimnasio.",
+        "opciones": [
+          "Como la cancha estaba inundada, entrenaron en el gimnasio.",
+          "El equipo llegó al club con sus pelotas.",
+          "Al terminar guardaron el material."
+        ],
+        "paso_resuelto": "La frase es: «Como la cancha estaba inundada, entrenaron en el gimnasio.». Como presenta la causa del cambio de lugar. Llegar y guardar el material son otros momentos.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El equipo llegó al club con sus pelotas. Como la cancha estaba inundada, entrenaron en el gimnasio. Al terminar guardaron el material."
+        }
+      },
+      {
+        "id": "leng_evi_causa-v5",
+        "enunciado": "La respuesta dice: «No encontrar la llave retrasó la apertura». Elegí la frase del texto que la sostiene.",
+        "respuesta_correcta": "La apertura se demoró porque no encontraban la llave.",
+        "opciones": [
+          "Los lectores esperaban frente a la biblioteca.",
+          "La apertura se demoró porque no encontraban la llave.",
+          "Había un cartel junto a la puerta."
+        ],
+        "paso_resuelto": "La frase es: «La apertura se demoró porque no encontraban la llave.». La frase dice por qué se demoró la apertura. No sabemos qué decía el cartel.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Los lectores esperaban frente a la biblioteca. Había un cartel junto a la puerta. La apertura se demoró porque no encontraban la llave."
+        }
+      },
+      {
+        "id": "leng_evi_causa-v6",
+        "enunciado": "La respuesta dice: «El peso de los libros rompió la caja». Elegí la frase del texto que la sostiene.",
+        "respuesta_correcta": "La caja se rompió por el peso de los libros.",
+        "opciones": [
+          "Tenía una etiqueta verde en un costado.",
+          "Los libros pertenecían a la escuela.",
+          "La caja se rompió por el peso de los libros."
+        ],
+        "paso_resuelto": "La frase es: «La caja se rompió por el peso de los libros.». Por el peso identifica la causa. El color y la pertenencia de los libros no explican la rotura.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La caja se rompió por el peso de los libros. Tenía una etiqueta verde en un costado. Los libros pertenecían a la escuela."
+        }
+      }
+    ]
+  },
+  {
+    "id": "leng_evi_inferencia",
+    "tema": "comprension_lectora_literal_inferida",
+    "despues_de": "leng_evi_causa",
+    "titulo": "Elegir una pista para una conclusión",
+    "explicacion": "A veces la respuesta no está escrita con las mismas palabras: la inferimos a partir de una pista. Elegimos una frase que permita explicar cómo llegamos a esa idea. Por ejemplo, un piso mojado puede resbalar. Una pista sostiene una conclusión razonable; no permite inventar detalles que el texto no cuenta.",
+    "ejemplo": "Para sostener «Había que caminar con cuidado para no resbalar», elegimos «El agua de la limpieza todavía cubría el piso.».",
+    "pasos": [
+      "El agua en el piso permite pensar que podía estar resbaladizo. El número de puertas no indica ese riesgo.",
+      "Las otras frases también están en el texto, pero no sostienen esta respuesta."
+    ],
+    "pista": "Preguntate: ¿cómo me ayuda esta frase a llegar a la conclusión? No alcanza con que nombre el mismo objeto.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Texto para releer",
+      "texto": "La entrada del salón tenía dos puertas. El agua de la limpieza todavía cubría el piso. En una pared colgaba un calendario."
+    },
+    "actividades": [
+      {
+        "id": "leng_evi_inferencia-v1",
+        "enunciado": "La respuesta dice: «Había que caminar con cuidado para no resbalar». Elegí la frase del texto que la sostiene.",
+        "respuesta_correcta": "El agua de la limpieza todavía cubría el piso.",
+        "opciones": [
+          "El agua de la limpieza todavía cubría el piso.",
+          "La entrada del salón tenía dos puertas.",
+          "En una pared colgaba un calendario."
+        ],
+        "paso_resuelto": "La frase es: «El agua de la limpieza todavía cubría el piso.». El agua en el piso permite pensar que podía estar resbaladizo. El número de puertas no indica ese riesgo.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La entrada del salón tenía dos puertas. El agua de la limpieza todavía cubría el piso. En una pared colgaba un calendario."
+        }
+      },
+      {
+        "id": "leng_evi_inferencia-v2",
+        "enunciado": "La respuesta dice: «El grupo parecía prepararse para irse». Elegí la frase del texto que la sostiene.",
+        "respuesta_correcta": "Cada integrante tomó su mochila y se acercó a la salida.",
+        "opciones": [
+          "El grupo se reunió en el salón del club.",
+          "Cada integrante tomó su mochila y se acercó a la salida.",
+          "Habían conversado sobre varios juegos."
+        ],
+        "paso_resuelto": "La frase es: «Cada integrante tomó su mochila y se acercó a la salida.». Tomar las mochilas y acercarse a la salida sugiere una partida. No nos dice a dónde irían.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El grupo se reunió en el salón del club. Habían conversado sobre varios juegos. Cada integrante tomó su mochila y se acercó a la salida."
+        }
+      },
+      {
+        "id": "leng_evi_inferencia-v3",
+        "enunciado": "La respuesta dice: «El libro mostraba señales de mucho uso». Elegí la frase del texto que la sostiene.",
+        "respuesta_correcta": "El libro tenía el lomo gastado y varias páginas dobladas.",
+        "opciones": [
+          "Su tapa mostraba un bosque.",
+          "Estaba junto a un diccionario.",
+          "El libro tenía el lomo gastado y varias páginas dobladas."
+        ],
+        "paso_resuelto": "La frase es: «El libro tenía el lomo gastado y varias páginas dobladas.». El desgaste y los dobleces son señales de uso. La imagen de la tapa no permite saber cuánto se leyó.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "El libro tenía el lomo gastado y varias páginas dobladas. Su tapa mostraba un bosque. Estaba junto a un diccionario."
+        }
+      },
+      {
+        "id": "leng_evi_inferencia-v4",
+        "enunciado": "La respuesta dice: «Era prudente dejar enfriar la olla antes de tocarla». Elegí la frase del texto que la sostiene.",
+        "respuesta_correcta": "Al destapar la olla salió vapor y Julia retiró la mano enseguida.",
+        "opciones": [
+          "Al destapar la olla salió vapor y Julia retiró la mano enseguida.",
+          "En la cocina había una mesa grande.",
+          "La olla tenía dos asas."
+        ],
+        "paso_resuelto": "La frase es: «Al destapar la olla salió vapor y Julia retiró la mano enseguida.». El vapor y el gesto de retirar la mano sugieren calor. No sabemos la temperatura exacta ni si Julia se quemó.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "En la cocina había una mesa grande. Al destapar la olla salió vapor y Julia retiró la mano enseguida. La olla tenía dos asas."
+        }
+      },
+      {
+        "id": "leng_evi_inferencia-v5",
+        "enunciado": "La respuesta dice: «Varios lectores querían usar el sillón». Elegí la frase del texto que la sostiene.",
+        "respuesta_correcta": "Apenas quedó libre el sillón, tres lectores se acercaron a ocuparlo.",
+        "opciones": [
+          "La biblioteca recibió un sillón nuevo.",
+          "Apenas quedó libre el sillón, tres lectores se acercaron a ocuparlo.",
+          "La sala tenía una ventana hacia la plaza."
+        ],
+        "paso_resuelto": "La frase es: «Apenas quedó libre el sillón, tres lectores se acercaron a ocuparlo.». Acercarse para ocuparlo muestra interés por usarlo. No permite afirmar que todos los lectores lo preferían.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "La biblioteca recibió un sillón nuevo. La sala tenía una ventana hacia la plaza. Apenas quedó libre el sillón, tres lectores se acercaron a ocuparlo."
+        }
+      },
+      {
+        "id": "leng_evi_inferencia-v6",
+        "enunciado": "La respuesta dice: «El perro parecía asustado por el trueno». Elegí la frase del texto que la sostiene.",
+        "respuesta_correcta": "Al oír el trueno, el perro se escondió bajo la cama y tembló.",
+        "opciones": [
+          "Su manta estaba junto a la puerta.",
+          "Afuera había empezado a llover.",
+          "Al oír el trueno, el perro se escondió bajo la cama y tembló."
+        ],
+        "paso_resuelto": "La frase es: «Al oír el trueno, el perro se escondió bajo la cama y tembló.». Esconderse y temblar al oírlo son pistas de miedo. La lluvia sola no cuenta cómo reaccionó el perro.",
+        "visual": {
+          "tipo": "lectura",
+          "titulo": "Texto para releer",
+          "texto": "Al oír el trueno, el perro se escondió bajo la cama y tembló. Su manta estaba junto a la puerta. Afuera había empezado a llover."
+        }
+      }
+    ]
+  }
+];
+for (const unidad of EVIDENCIA_R20) {
+ const indice=UNIDADES_BASES.findIndex(u=>u.id===unidad.despues_de);
+ if(indice<0)throw new Error('Falta el paso anterior de '+unidad.id);
+ UNIDADES_BASES.splice(indice+1,0,unidad);
+}
+// FIN R20
+
 export const TEMAS_BASES = [...new Set(UNIDADES_BASES.map(u => u.tema))];
 export function getUnidadBase(id) { return UNIDADES_BASES.find(u => u.id === id) || null; }
 export function crearActividadBase(id, modo, sesiones = []) {
