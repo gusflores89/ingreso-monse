@@ -38,3 +38,7 @@ Etapas 1 y 2 implementadas en R21: taller de siete habilidades/21 variantes, apo
 La etapa 3 permanece pendiente. Además faltan, dentro de la expansión del taller: tareas de conservación de cantidad, comparar cortes iguales/desiguales mediante construcción, transferencia a objetos físicos y recuperación espaciada específica de estas nuevas habilidades. Dos variantes correctas permiten sugerir otra idea; no demuestran dominio estable.
 
 El primer bloque quedó publicado y verificado en https://www.ingresomonserrat.online. La publicación no implica que la etapa 3 esté completada ni que se haya validado aún el aprendizaje con Abril.
+
+## Continuación R22
+
+El orden para los 26 temas está detallado en `PLAN-PRIORIDADES-MATEMATICA.md`. Se implementó su prioridad 1 con once lecciones y 66 actividades dentro del curso habitual, cuatro PDF actualizados y conexión con el taller. Las prioridades 2–4 siguen pendientes.

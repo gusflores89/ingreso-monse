@@ -408,7 +408,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
     setLoading(true);setError('');
     try {
       const anterior = pregunta?.tipo === 'concreta' ? null : {pregunta,sesionId,respuesta,evaluacion,pasoActual,pasoEjemplo,intento,pistaActiva,respuestasExamen};
-      const res = await fetch('/api/sesion/concreta',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({accion:'iniciar',user_id,tema:activeTema,habilidad,continuar})});
+      const res = await fetch('/api/sesion/concreta',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({accion:'iniciar',user_id,tema:activeTema,habilidad:habilidad || pregunta?.habilidad_concreta || null,continuar})});
       const data=await res.json();if(!res.ok)throw Error(data.error);
       const nueva={avatar:pregunta?.avatar,avatar_imagen:pregunta?.avatar_imagen,nombre_tutor:pregunta?.nombre_tutor,color_tema:pregunta?.color_tema,...data,plan:pregunta?.plan};
       const updates={pregunta:nueva,sesionId:data.sesion_id,respuesta:'',borrador:'',evaluacion:null,pasoActual:0,pasoEjemplo:0,intento:1,pistaActiva:null,...(anterior?{actividadAnterior:anterior}:{}),...(resetMision?{desafios:0,retosCompletadosIds:[],misionTerminada:false}:{})};
@@ -1132,7 +1132,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
 
       <MensajesFamiliares key={user_id} userId={user_id} />
       {pregunta && pregunta.tipo !== 'concreta' && !misionTerminada && CURRICULUM_MATEMATICA.some(t=>t.tema===activeTema) && (
-        <section style={{padding:16,margin:'16px 0',border:'1px solid #7091c5',borderRadius:12,background:'#17243b'}}>
+        <section style={{padding:16,margin:'16px 0',border:'1px solid #7091c5',borderRadius:12,background:'#17243b',color:'#f1f5ff'}}>
           <strong>Podemos empezar con objetos y una idea por vez.</strong>
           <p>Tu actividad queda guardada para volver cuando quieras.</p>
           <button type="button" className="primary" disabled={loading} onClick={()=>iniciarConcreto()}>Probemos con objetos</button>

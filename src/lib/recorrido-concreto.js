@@ -10,12 +10,29 @@ export const HABILIDADES_CONCRETAS = [
  {id:'cuartos',titulo:'Explorar cuartos',tipo:'fraccion',variantes:[[4,1],[4,2],[4,3]],idea:'Conservamos el mismo entero. Cada cuarto es una de sus cuatro partes iguales.'},
 ];
 export function habilidadConcreta(id) { return HABILIDADES_CONCRETAS.find(h=>h.id===id); }
+function evidenciasVigentes(sesiones) {
+ const independientes=new Set();
+ for(const s of sesiones) {
+  const p=s.ia_parametros_usados || {}, r=p.concreto_resultado;
+  // Una corrección posterior no debe ocultar el error previo del mismo reto.
+  const huboError=r?.correcta===false || (p.eventos_pedagogicos || []).some(e=>e.salida?.es_correcta===false);
+  if(huboError)independientes.clear();
+  if(r?.completado && r.independiente && !huboError)independientes.add(p.variante);
+ }
+ return independientes;
+}
+function ordenarEvidencias(sesiones) {
+ const fecha=s=>(s.ia_parametros_usados?.eventos_pedagogicos || []).filter(e=>e.tipo==='respuesta' && e.estado==='completado').at(-1)?.completado_el || s.created_at || '';
+ return sesiones.sort((a,b)=>String(fecha(a)).localeCompare(String(fecha(b))));
+}
 export function resumirEvidenciaConcreta(historia=[]) {
  return HABILIDADES_CONCRETAS.map(h=>{
-  const sesiones=historia.filter(s=>s.ia_parametros_usados?.concreto_version===VERSION_CONCRETA && s.ia_parametros_usados?.habilidad===h.id);
+  const sesiones=ordenarEvidencias(historia.filter(s=>s.ia_parametros_usados?.concreto_version===VERSION_CONCRETA && s.ia_parametros_usados?.habilidad===h.id));
   const terminadas=sesiones.filter(s=>s.ia_parametros_usados?.concreto_resultado?.completado);
-  const independientes=new Set(terminadas.filter(s=>s.ia_parametros_usados.concreto_resultado.independiente).map(s=>s.ia_parametros_usados.variante));
-  return {id:h.id,titulo:h.titulo,observada:terminadas.length>0,independientes:independientes.size,estado:independientes.size>=2?'Para volver a comprobar':terminadas.length?'En práctica':'Todavía no observado'};
+  const independientes=evidenciasVigentes(sesiones);
+  const ultima=sesiones.filter(s=>s.ia_parametros_usados?.concreto_resultado).at(-1);
+  const necesitaApoyo=ultima?.ia_parametros_usados.concreto_resultado.correcta===false;
+  return {id:h.id,titulo:h.titulo,observada:terminadas.length>0,independientes:necesitaApoyo?0:independientes.size,necesitaApoyo,estado:necesitaApoyo?'Volvamos a hacerlo juntos':independientes.size>=2?'Para volver a comprobar':terminadas.length?'En práctica':'Todavía no observado'};
  });
 }
 export function crearRetoConcreto(tema,historia=[],seleccion=null) {
@@ -23,11 +40,11 @@ export function crearRetoConcreto(tema,historia=[],seleccion=null) {
  const familia=/fracci/.test(tema)?['mitades','cuartos']:['cantidad','juntar','quitar','grupos','repartir'];
  const id=seleccion || familia.find(k=>resumen.find(r=>r.id===k).independientes<2) || familia[0];
  const h=habilidadConcreta(id); if(!h)throw Object.assign(Error('Elegí una actividad disponible.'),{status:400});
- const previas=historia.filter(s=>s.ia_parametros_usados?.concreto_version===VERSION_CONCRETA && s.ia_parametros_usados?.habilidad===id);
+ const previas=ordenarEvidencias(historia.filter(s=>s.ia_parametros_usados?.concreto_version===VERSION_CONCRETA && s.ia_parametros_usados?.habilidad===id));
  const completas=previas.filter(s=>s.ia_parametros_usados?.concreto_resultado?.completado);
- const independientes=new Set(completas.filter(s=>s.ia_parametros_usados.concreto_resultado.independiente).map(s=>s.ia_parametros_usados.variante));
+ const independientes=evidenciasVigentes(previas);
  const variante=!completas.length?0:([1,2].find(n=>!independientes.has(n)) ?? (completas.length%2+1));
- const ultima=completas.at(-1)?.ia_parametros_usados.concreto_resultado;
+ const ultima=previas.filter(s=>s.ia_parametros_usados?.concreto_resultado).at(-1)?.ia_parametros_usados.concreto_resultado;
  const ensenanza=!completas.length || ultima?.correcta===false;
  const [a,b]=h.variantes[variante];
  const consigna=h.tipo==='cantidad'?`Poné ${a} fichas en la bandeja.`:h.tipo==='juntar'?`Hay ${a} fichas. Agregá ${b}.`:h.tipo==='quitar'?`Hay ${a} fichas. Guardá ${b} en la caja.`:h.tipo==='grupos'?`Poné ${b} fichas en cada uno de los ${a} platos.`:h.tipo==='repartir'?`Repartí estas ${a} fichas entre los ${b} platos. Que tengan la misma cantidad.`:`Pintá ${b===1?'una parte':b+' partes'} de este entero dividido en ${a} partes iguales.`;

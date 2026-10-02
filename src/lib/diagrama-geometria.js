@@ -7,6 +7,16 @@ export function crearDiagramaGeometria(d = {}) {
  const arc=(x,y,r,start,end,color='#64748b',dash=false,width=1)=>{
   const steps=Math.max(2,Math.ceil(Math.abs(end-start)/2));line(Array.from({length:steps+1},(_,i)=>point(x,y,r,start+(end-start)*i/steps)),color,dash,width);
  };
+ if(d.tipo==='colecciones'){
+  const grupos=d.grupos || [];
+  grupos.forEach((g,i)=>{
+   const y=30+i*70;
+   line([[16,y],[464,y],[464,y+61],[16,y+61],[16,y]],'#94a3b8',false,1);
+   text(80,y+33,g.label,'#172554',13);
+   for(let j=0;j<g.cantidad;j++)arc(160+(j%10)*(g.separadas?30:25),y+22+Math.floor(j/10)*22,6,0,360,'#2563eb',false,2);
+  });
+  return {trazos,textos,ancho:480,alto:310};
+ }
  if(d.tipo==='datos'){
   text(240,36,'Leemos la situación','#172554',18);
   d.lineas.forEach((label,i)=>{

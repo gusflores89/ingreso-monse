@@ -20525,6 +20525,1941 @@ for (const unidad of EVIDENCIA_R20) {
 }
 // FIN R20
 
+// INICIO R22 — Pasos previos concretos sin reemplazar IDs históricos.
+const ENTRADA_R22 = [
+  {
+    "id": "entrada_contar",
+    "tema": "numeros_naturales_sistema_decimal",
+    "antes_de": "mat_num_decenas",
+    "titulo": "Contar una ficha por vez",
+    "explicacion": "Tocamos cada ficha una sola vez y decimos un número. El último número nos dice cuántas hay.",
+    "ejemplo": "Una, dos, tres: hay 3 fichas.",
+    "pasos": [
+      "Señalamos una ficha al decir cada número.",
+      "Al terminar, decimos cuántas hay en total."
+    ],
+    "pista": "Podés señalar cada ficha mientras contás.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Bandeja",
+          "cantidad": 3
+        }
+      ]
+    },
+    "actividades": [
+      {
+        "id": "entrada_contar-v1",
+        "enunciado": "Contá las fichas de la bandeja. ¿Cuántas hay?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "3",
+          "4",
+          "2"
+        ],
+        "paso_resuelto": "Contamos una por una hasta 3. Hay 3 fichas.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Bandeja",
+              "cantidad": 3
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_contar-v2",
+        "enunciado": "Contá las fichas de la bandeja. ¿Cuántas hay?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "5",
+          "3",
+          "4"
+        ],
+        "paso_resuelto": "Contamos una por una hasta 4. Hay 4 fichas.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Bandeja",
+              "cantidad": 4
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_contar-v3",
+        "enunciado": "Contá las fichas de la bandeja. ¿Cuántas hay?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "5",
+          "6",
+          "7"
+        ],
+        "paso_resuelto": "Contamos una por una hasta 6. Hay 6 fichas.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Bandeja",
+              "cantidad": 6
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_contar-v4",
+        "enunciado": "Contá las fichas de la bandeja. ¿Cuántas hay?",
+        "respuesta_correcta": "2",
+        "opciones": [
+          "2",
+          "3",
+          "1"
+        ],
+        "paso_resuelto": "Contamos una por una hasta 2. Hay 2 fichas.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Bandeja",
+              "cantidad": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_contar-v5",
+        "enunciado": "Contá las fichas de la bandeja. ¿Cuántas hay?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "6",
+          "4",
+          "5"
+        ],
+        "paso_resuelto": "Contamos una por una hasta 5. Hay 5 fichas.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Bandeja",
+              "cantidad": 5
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_contar-v6",
+        "enunciado": "Contá las fichas de la bandeja. ¿Cuántas hay?",
+        "respuesta_correcta": "7",
+        "opciones": [
+          "6",
+          "7",
+          "8"
+        ],
+        "paso_resuelto": "Contamos una por una hasta 7. Hay 7 fichas.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Bandeja",
+              "cantidad": 7
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "entrada_conservar",
+    "tema": "numeros_naturales_sistema_decimal",
+    "antes_de": "mat_num_decenas",
+    "titulo": "Mover las fichas no cambia cuántas hay",
+    "explicacion": "Si solo movemos las fichas, sigue habiendo la misma cantidad. Cambia el lugar, pero no agregamos ni quitamos ninguna.",
+    "ejemplo": "Había 4 fichas. Las separamos y siguen siendo 4.",
+    "pasos": [
+      "Contamos antes de mover.",
+      "Volvemos a contar después: no apareció ni se fue ninguna ficha."
+    ],
+    "pista": "Compará una ficha de antes con una de después.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Antes",
+          "cantidad": 4
+        },
+        {
+          "label": "Después",
+          "cantidad": 4,
+          "separadas": true
+        }
+      ]
+    },
+    "actividades": [
+      {
+        "id": "entrada_conservar-v1",
+        "enunciado": "Había 4 fichas. Solo las movimos. ¿Cuántas hay después?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "4",
+          "5",
+          "3"
+        ],
+        "paso_resuelto": "No agregamos ni quitamos: siguen siendo 4.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Antes",
+              "cantidad": 4
+            },
+            {
+              "label": "Después",
+              "cantidad": 4,
+              "separadas": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_conservar-v2",
+        "enunciado": "Había 3 fichas. Solo las movimos. ¿Cuántas hay después?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "4",
+          "2",
+          "3"
+        ],
+        "paso_resuelto": "No agregamos ni quitamos: siguen siendo 3.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Antes",
+              "cantidad": 3
+            },
+            {
+              "label": "Después",
+              "cantidad": 3,
+              "separadas": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_conservar-v3",
+        "enunciado": "Había 5 fichas. Solo las movimos. ¿Cuántas hay después?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "4",
+          "5",
+          "6"
+        ],
+        "paso_resuelto": "No agregamos ni quitamos: siguen siendo 5.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Antes",
+              "cantidad": 5
+            },
+            {
+              "label": "Después",
+              "cantidad": 5,
+              "separadas": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_conservar-v4",
+        "enunciado": "Había 6 fichas. Solo las movimos. ¿Cuántas hay después?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "6",
+          "7",
+          "5"
+        ],
+        "paso_resuelto": "No agregamos ni quitamos: siguen siendo 6.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Antes",
+              "cantidad": 6
+            },
+            {
+              "label": "Después",
+              "cantidad": 6,
+              "separadas": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_conservar-v5",
+        "enunciado": "Había 2 fichas. Solo las movimos. ¿Cuántas hay después?",
+        "respuesta_correcta": "2",
+        "opciones": [
+          "3",
+          "1",
+          "2"
+        ],
+        "paso_resuelto": "No agregamos ni quitamos: siguen siendo 2.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Antes",
+              "cantidad": 2
+            },
+            {
+              "label": "Después",
+              "cantidad": 2,
+              "separadas": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_conservar-v6",
+        "enunciado": "Había 7 fichas. Solo las movimos. ¿Cuántas hay después?",
+        "respuesta_correcta": "7",
+        "opciones": [
+          "6",
+          "7",
+          "8"
+        ],
+        "paso_resuelto": "No agregamos ni quitamos: siguen siendo 7.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Antes",
+              "cantidad": 7
+            },
+            {
+              "label": "Después",
+              "cantidad": 7,
+              "separadas": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "entrada_juntar",
+    "tema": "numeros_naturales_sistema_decimal",
+    "antes_de": "mat_num_decenas",
+    "titulo": "Sumar es juntar cantidades",
+    "explicacion": "Las fichas nuevas se juntan con las que ya estaban. Para saber cuántas hay ahora, contamos todas.",
+    "ejemplo": "Había 3 y llegaron 2. Ahora hay 5.",
+    "pasos": [
+      "Conservamos las tres fichas.",
+      "Agregamos dos y contamos todas: una, dos, tres, cuatro, cinco."
+    ],
+    "pista": "Las que estaban no se van: las nuevas se suman.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Había",
+          "cantidad": 3
+        },
+        {
+          "label": "Llegan",
+          "cantidad": 2
+        }
+      ]
+    },
+    "actividades": [
+      {
+        "id": "entrada_juntar-v1",
+        "enunciado": "Había 3 fichas y llegaron 2. ¿Cuántas hay ahora?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "5",
+          "6",
+          "4"
+        ],
+        "paso_resuelto": "Juntamos 3 con 2 y contamos 5. 3 + 2 = 5.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Había",
+              "cantidad": 3
+            },
+            {
+              "label": "Llegan",
+              "cantidad": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_juntar-v2",
+        "enunciado": "Había 2 fichas y llegaron 2. ¿Cuántas hay ahora?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "5",
+          "3",
+          "4"
+        ],
+        "paso_resuelto": "Juntamos 2 con 2 y contamos 4. 2 + 2 = 4.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Había",
+              "cantidad": 2
+            },
+            {
+              "label": "Llegan",
+              "cantidad": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_juntar-v3",
+        "enunciado": "Había 4 fichas y llegaron 1. ¿Cuántas hay ahora?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "4",
+          "5",
+          "6"
+        ],
+        "paso_resuelto": "Juntamos 4 con 1 y contamos 5. 4 + 1 = 5.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Había",
+              "cantidad": 4
+            },
+            {
+              "label": "Llegan",
+              "cantidad": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_juntar-v4",
+        "enunciado": "Había 1 fichas y llegaron 2. ¿Cuántas hay ahora?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "3",
+          "4",
+          "2"
+        ],
+        "paso_resuelto": "Juntamos 1 con 2 y contamos 3. 1 + 2 = 3.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Había",
+              "cantidad": 1
+            },
+            {
+              "label": "Llegan",
+              "cantidad": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_juntar-v5",
+        "enunciado": "Había 3 fichas y llegaron 3. ¿Cuántas hay ahora?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "7",
+          "5",
+          "6"
+        ],
+        "paso_resuelto": "Juntamos 3 con 3 y contamos 6. 3 + 3 = 6.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Había",
+              "cantidad": 3
+            },
+            {
+              "label": "Llegan",
+              "cantidad": 3
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_juntar-v6",
+        "enunciado": "Había 5 fichas y llegaron 2. ¿Cuántas hay ahora?",
+        "respuesta_correcta": "7",
+        "opciones": [
+          "6",
+          "7",
+          "8"
+        ],
+        "paso_resuelto": "Juntamos 5 con 2 y contamos 7. 5 + 2 = 7.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Había",
+              "cantidad": 5
+            },
+            {
+              "label": "Llegan",
+              "cantidad": 2
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "entrada_quitar",
+    "tema": "numeros_naturales_sistema_decimal",
+    "antes_de": "mat_num_decenas",
+    "titulo": "Restar es ver cuánto queda",
+    "explicacion": "Al guardar algunas fichas, quedan menos afuera. Contamos las que no guardamos.",
+    "ejemplo": "Había 5. Guardamos 2 y quedaron 3 afuera.",
+    "pasos": [
+      "Separamos las dos fichas que guardamos.",
+      "Contamos las que quedaron afuera: una, dos, tres."
+    ],
+    "pista": "Mirá solamente las que quedaron afuera.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Quedan afuera",
+          "cantidad": 3
+        },
+        {
+          "label": "Guardadas",
+          "cantidad": 2
+        }
+      ]
+    },
+    "actividades": [
+      {
+        "id": "entrada_quitar-v1",
+        "enunciado": "Había 5 fichas y guardamos 2. ¿Cuántas quedaron afuera?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "3",
+          "4",
+          "2"
+        ],
+        "paso_resuelto": "Separamos 2 de las 5. Quedan 3. 5 − 2 = 3.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Quedan afuera",
+              "cantidad": 3
+            },
+            {
+              "label": "Guardadas",
+              "cantidad": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_quitar-v2",
+        "enunciado": "Había 4 fichas y guardamos 1. ¿Cuántas quedaron afuera?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "4",
+          "2",
+          "3"
+        ],
+        "paso_resuelto": "Separamos 1 de las 4. Quedan 3. 4 − 1 = 3.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Quedan afuera",
+              "cantidad": 3
+            },
+            {
+              "label": "Guardadas",
+              "cantidad": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_quitar-v3",
+        "enunciado": "Había 6 fichas y guardamos 2. ¿Cuántas quedaron afuera?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "3",
+          "4",
+          "5"
+        ],
+        "paso_resuelto": "Separamos 2 de las 6. Quedan 4. 6 − 2 = 4.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Quedan afuera",
+              "cantidad": 4
+            },
+            {
+              "label": "Guardadas",
+              "cantidad": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_quitar-v4",
+        "enunciado": "Había 5 fichas y guardamos 3. ¿Cuántas quedaron afuera?",
+        "respuesta_correcta": "2",
+        "opciones": [
+          "2",
+          "3",
+          "1"
+        ],
+        "paso_resuelto": "Separamos 3 de las 5. Quedan 2. 5 − 3 = 2.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Quedan afuera",
+              "cantidad": 2
+            },
+            {
+              "label": "Guardadas",
+              "cantidad": 3
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_quitar-v5",
+        "enunciado": "Había 7 fichas y guardamos 2. ¿Cuántas quedaron afuera?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "6",
+          "4",
+          "5"
+        ],
+        "paso_resuelto": "Separamos 2 de las 7. Quedan 5. 7 − 2 = 5.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Quedan afuera",
+              "cantidad": 5
+            },
+            {
+              "label": "Guardadas",
+              "cantidad": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_quitar-v6",
+        "enunciado": "Había 6 fichas y guardamos 3. ¿Cuántas quedaron afuera?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "2",
+          "3",
+          "4"
+        ],
+        "paso_resuelto": "Separamos 3 de las 6. Quedan 3. 6 − 3 = 3.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Quedan afuera",
+              "cantidad": 3
+            },
+            {
+              "label": "Guardadas",
+              "cantidad": 3
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "entrada_diez",
+    "tema": "numeros_naturales_sistema_decimal",
+    "antes_de": "mat_num_decenas",
+    "titulo": "Diez fichas forman un paquete",
+    "explicacion": "Un paquete de diez guarda diez fichas. A ese paquete lo llamamos decena. Las fichas sueltas se llaman unidades.",
+    "ejemplo": "Un paquete de diez y 2 sueltas son 12 fichas.",
+    "pasos": [
+      "Contamos diez dentro del paquete.",
+      "Seguimos con las sueltas: once, doce."
+    ],
+    "pista": "El paquete contiene diez, no una sola ficha.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Paquete de diez",
+          "cantidad": 10
+        },
+        {
+          "label": "Sueltas",
+          "cantidad": 2
+        }
+      ]
+    },
+    "actividades": [
+      {
+        "id": "entrada_diez-v1",
+        "enunciado": "Hay un paquete de diez y 2 fichas sueltas. ¿Cuántas fichas hay?",
+        "respuesta_correcta": "12",
+        "opciones": [
+          "12",
+          "13",
+          "11"
+        ],
+        "paso_resuelto": "Diez del paquete y 2 sueltas: 12.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Paquete de diez",
+              "cantidad": 10
+            },
+            {
+              "label": "Sueltas",
+              "cantidad": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_diez-v2",
+        "enunciado": "Hay un paquete de diez y 1 fichas sueltas. ¿Cuántas fichas hay?",
+        "respuesta_correcta": "11",
+        "opciones": [
+          "12",
+          "10",
+          "11"
+        ],
+        "paso_resuelto": "Diez del paquete y 1 sueltas: 11.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Paquete de diez",
+              "cantidad": 10
+            },
+            {
+              "label": "Sueltas",
+              "cantidad": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_diez-v3",
+        "enunciado": "Hay un paquete de diez y 3 fichas sueltas. ¿Cuántas fichas hay?",
+        "respuesta_correcta": "13",
+        "opciones": [
+          "12",
+          "13",
+          "14"
+        ],
+        "paso_resuelto": "Diez del paquete y 3 sueltas: 13.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Paquete de diez",
+              "cantidad": 10
+            },
+            {
+              "label": "Sueltas",
+              "cantidad": 3
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_diez-v4",
+        "enunciado": "Hay un paquete de diez y 5 fichas sueltas. ¿Cuántas fichas hay?",
+        "respuesta_correcta": "15",
+        "opciones": [
+          "15",
+          "16",
+          "14"
+        ],
+        "paso_resuelto": "Diez del paquete y 5 sueltas: 15.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Paquete de diez",
+              "cantidad": 10
+            },
+            {
+              "label": "Sueltas",
+              "cantidad": 5
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_diez-v5",
+        "enunciado": "Hay un paquete de diez y 4 fichas sueltas. ¿Cuántas fichas hay?",
+        "respuesta_correcta": "14",
+        "opciones": [
+          "15",
+          "13",
+          "14"
+        ],
+        "paso_resuelto": "Diez del paquete y 4 sueltas: 14.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Paquete de diez",
+              "cantidad": 10
+            },
+            {
+              "label": "Sueltas",
+              "cantidad": 4
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_diez-v6",
+        "enunciado": "Hay un paquete de diez y 6 fichas sueltas. ¿Cuántas fichas hay?",
+        "respuesta_correcta": "16",
+        "opciones": [
+          "15",
+          "16",
+          "17"
+        ],
+        "paso_resuelto": "Diez del paquete y 6 sueltas: 16.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Paquete de diez",
+              "cantidad": 10
+            },
+            {
+              "label": "Sueltas",
+              "cantidad": 6
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "entrada_llevar",
+    "tema": "numeros_naturales_sistema_decimal",
+    "antes_de": "mat_num_suma",
+    "titulo": "Cambiar diez sueltas por un paquete",
+    "explicacion": "Al juntar diez fichas sueltas podemos guardarlas en un paquete. La cantidad de fichas no cambia: solo cambia cómo las agrupamos.",
+    "ejemplo": "8 fichas y 4 más son 12: un paquete de diez y 2 sueltas.",
+    "pasos": [
+      "Juntamos ocho y cuatro.",
+      "Apartamos diez para el paquete y quedan dos sueltas."
+    ],
+    "pista": "Podés contar todo antes de armar el paquete.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Primer grupo",
+          "cantidad": 8
+        },
+        {
+          "label": "Se agregan",
+          "cantidad": 4
+        }
+      ]
+    },
+    "actividades": [
+      {
+        "id": "entrada_llevar-v1",
+        "enunciado": "Juntamos 8 fichas y 4 más. ¿Cuántas quedan sueltas al armar un paquete de diez?",
+        "respuesta_correcta": "2",
+        "opciones": [
+          "2",
+          "3",
+          "1"
+        ],
+        "paso_resuelto": "Hay 12 fichas. Diez forman el paquete y quedan 2 sueltas.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Primer grupo",
+              "cantidad": 8
+            },
+            {
+              "label": "Se agregan",
+              "cantidad": 4
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_llevar-v2",
+        "enunciado": "Juntamos 7 fichas y 4 más. ¿Cuántas quedan sueltas al armar un paquete de diez?",
+        "respuesta_correcta": "1",
+        "opciones": [
+          "2",
+          "0",
+          "1"
+        ],
+        "paso_resuelto": "Hay 11 fichas. Diez forman el paquete y quedan 1 sueltas.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Primer grupo",
+              "cantidad": 7
+            },
+            {
+              "label": "Se agregan",
+              "cantidad": 4
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_llevar-v3",
+        "enunciado": "Juntamos 9 fichas y 4 más. ¿Cuántas quedan sueltas al armar un paquete de diez?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "2",
+          "3",
+          "4"
+        ],
+        "paso_resuelto": "Hay 13 fichas. Diez forman el paquete y quedan 3 sueltas.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Primer grupo",
+              "cantidad": 9
+            },
+            {
+              "label": "Se agregan",
+              "cantidad": 4
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_llevar-v4",
+        "enunciado": "Juntamos 8 fichas y 7 más. ¿Cuántas quedan sueltas al armar un paquete de diez?",
+        "respuesta_correcta": "5",
+        "opciones": [
+          "5",
+          "6",
+          "4"
+        ],
+        "paso_resuelto": "Hay 15 fichas. Diez forman el paquete y quedan 5 sueltas.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Primer grupo",
+              "cantidad": 8
+            },
+            {
+              "label": "Se agregan",
+              "cantidad": 7
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_llevar-v5",
+        "enunciado": "Juntamos 6 fichas y 8 más. ¿Cuántas quedan sueltas al armar un paquete de diez?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "5",
+          "3",
+          "4"
+        ],
+        "paso_resuelto": "Hay 14 fichas. Diez forman el paquete y quedan 4 sueltas.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Primer grupo",
+              "cantidad": 6
+            },
+            {
+              "label": "Se agregan",
+              "cantidad": 8
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_llevar-v6",
+        "enunciado": "Juntamos 9 fichas y 7 más. ¿Cuántas quedan sueltas al armar un paquete de diez?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "5",
+          "6",
+          "7"
+        ],
+        "paso_resuelto": "Hay 16 fichas. Diez forman el paquete y quedan 6 sueltas.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Primer grupo",
+              "cantidad": 9
+            },
+            {
+              "label": "Se agregan",
+              "cantidad": 7
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "entrada_desarmar",
+    "tema": "numeros_naturales_sistema_decimal",
+    "antes_de": "mat_num_resta",
+    "titulo": "Abrir un paquete para poder quitar",
+    "explicacion": "Podemos abrir un paquete de diez y usar sus fichas sueltas. No aparecen fichas nuevas: las diez ya estaban dentro.",
+    "ejemplo": "De 12 fichas quitamos 5. Quedan 7.",
+    "pasos": [
+      "Abrimos el paquete: tenemos doce fichas sueltas.",
+      "Guardamos cinco y contamos las siete que quedan."
+    ],
+    "pista": "Abrir el paquete cambia la forma de agrupar, no la cantidad.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Paquete de diez",
+          "cantidad": 10
+        },
+        {
+          "label": "Sueltas",
+          "cantidad": 2
+        }
+      ]
+    },
+    "actividades": [
+      {
+        "id": "entrada_desarmar-v1",
+        "enunciado": "Tenemos 12 fichas. Abrimos el paquete de diez y quitamos 5. ¿Cuántas quedan?",
+        "respuesta_correcta": "7",
+        "opciones": [
+          "7",
+          "8",
+          "6"
+        ],
+        "paso_resuelto": "Contamos 12 fichas en total. Quitamos 5 y quedan 7.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Paquete de diez",
+              "cantidad": 10
+            },
+            {
+              "label": "Sueltas",
+              "cantidad": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_desarmar-v2",
+        "enunciado": "Tenemos 11 fichas. Abrimos el paquete de diez y quitamos 3. ¿Cuántas quedan?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "9",
+          "7",
+          "8"
+        ],
+        "paso_resuelto": "Contamos 11 fichas en total. Quitamos 3 y quedan 8.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Paquete de diez",
+              "cantidad": 10
+            },
+            {
+              "label": "Sueltas",
+              "cantidad": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_desarmar-v3",
+        "enunciado": "Tenemos 13 fichas. Abrimos el paquete de diez y quitamos 6. ¿Cuántas quedan?",
+        "respuesta_correcta": "7",
+        "opciones": [
+          "6",
+          "7",
+          "8"
+        ],
+        "paso_resuelto": "Contamos 13 fichas en total. Quitamos 6 y quedan 7.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Paquete de diez",
+              "cantidad": 10
+            },
+            {
+              "label": "Sueltas",
+              "cantidad": 3
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_desarmar-v4",
+        "enunciado": "Tenemos 14 fichas. Abrimos el paquete de diez y quitamos 5. ¿Cuántas quedan?",
+        "respuesta_correcta": "9",
+        "opciones": [
+          "9",
+          "10",
+          "8"
+        ],
+        "paso_resuelto": "Contamos 14 fichas en total. Quitamos 5 y quedan 9.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Paquete de diez",
+              "cantidad": 10
+            },
+            {
+              "label": "Sueltas",
+              "cantidad": 4
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_desarmar-v5",
+        "enunciado": "Tenemos 12 fichas. Abrimos el paquete de diez y quitamos 4. ¿Cuántas quedan?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "9",
+          "7",
+          "8"
+        ],
+        "paso_resuelto": "Contamos 12 fichas en total. Quitamos 4 y quedan 8.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Paquete de diez",
+              "cantidad": 10
+            },
+            {
+              "label": "Sueltas",
+              "cantidad": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_desarmar-v6",
+        "enunciado": "Tenemos 15 fichas. Abrimos el paquete de diez y quitamos 7. ¿Cuántas quedan?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "7",
+          "8",
+          "9"
+        ],
+        "paso_resuelto": "Contamos 15 fichas en total. Quitamos 7 y quedan 8.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Paquete de diez",
+              "cantidad": 10
+            },
+            {
+              "label": "Sueltas",
+              "cantidad": 5
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "entrada_grupos",
+    "tema": "tablas_multiplicar_2_5",
+    "antes_de": "mat_tab_grupos",
+    "titulo": "Hacer grupos con la misma cantidad",
+    "explicacion": "Cada plato tiene la misma cantidad de fichas. Para contar todas podemos juntar lo que tiene cada plato.",
+    "ejemplo": "Dos platos con 2 fichas cada uno tienen 4 en total.",
+    "pasos": [
+      "Contamos dos en el primer plato.",
+      "Contamos dos en el segundo y juntamos: 2 + 2 = 4."
+    ],
+    "pista": "Contá cada plato; después reuní las cantidades.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Plato 1",
+          "cantidad": 2
+        },
+        {
+          "label": "Plato 2",
+          "cantidad": 2
+        }
+      ]
+    },
+    "actividades": [
+      {
+        "id": "entrada_grupos-v1",
+        "enunciado": "Hay 2 platos con 2 fichas cada uno. ¿Cuántas fichas hay en total?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "4",
+          "5",
+          "3"
+        ],
+        "paso_resuelto": "Sumamos lo que tiene cada plato: 2 + 2 = 4.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Plato 1",
+              "cantidad": 2
+            },
+            {
+              "label": "Plato 2",
+              "cantidad": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_grupos-v2",
+        "enunciado": "Hay 3 platos con 2 fichas cada uno. ¿Cuántas fichas hay en total?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "7",
+          "5",
+          "6"
+        ],
+        "paso_resuelto": "Sumamos lo que tiene cada plato: 2 + 2 + 2 = 6.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Plato 1",
+              "cantidad": 2
+            },
+            {
+              "label": "Plato 2",
+              "cantidad": 2
+            },
+            {
+              "label": "Plato 3",
+              "cantidad": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_grupos-v3",
+        "enunciado": "Hay 2 platos con 3 fichas cada uno. ¿Cuántas fichas hay en total?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "5",
+          "6",
+          "7"
+        ],
+        "paso_resuelto": "Sumamos lo que tiene cada plato: 3 + 3 = 6.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Plato 1",
+              "cantidad": 3
+            },
+            {
+              "label": "Plato 2",
+              "cantidad": 3
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_grupos-v4",
+        "enunciado": "Hay 3 platos con 3 fichas cada uno. ¿Cuántas fichas hay en total?",
+        "respuesta_correcta": "9",
+        "opciones": [
+          "9",
+          "10",
+          "8"
+        ],
+        "paso_resuelto": "Sumamos lo que tiene cada plato: 3 + 3 + 3 = 9.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Plato 1",
+              "cantidad": 3
+            },
+            {
+              "label": "Plato 2",
+              "cantidad": 3
+            },
+            {
+              "label": "Plato 3",
+              "cantidad": 3
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_grupos-v5",
+        "enunciado": "Hay 2 platos con 4 fichas cada uno. ¿Cuántas fichas hay en total?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "9",
+          "7",
+          "8"
+        ],
+        "paso_resuelto": "Sumamos lo que tiene cada plato: 4 + 4 = 8.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Plato 1",
+              "cantidad": 4
+            },
+            {
+              "label": "Plato 2",
+              "cantidad": 4
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_grupos-v6",
+        "enunciado": "Hay 3 platos con 1 fichas cada uno. ¿Cuántas fichas hay en total?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "2",
+          "3",
+          "4"
+        ],
+        "paso_resuelto": "Sumamos lo que tiene cada plato: 1 + 1 + 1 = 3.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Plato 1",
+              "cantidad": 1
+            },
+            {
+              "label": "Plato 2",
+              "cantidad": 1
+            },
+            {
+              "label": "Plato 3",
+              "cantidad": 1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "entrada_repartir",
+    "tema": "division_1_digito",
+    "antes_de": "mat_div_repartir",
+    "titulo": "Dar una ficha a cada plato",
+    "explicacion": "Repartir por igual significa que todos reciben la misma cantidad. Damos una ficha a cada plato y volvemos a empezar hasta terminar.",
+    "ejemplo": "Repartimos 6 fichas en 2 platos: cada plato recibe 3.",
+    "pasos": [
+      "Damos una ficha a cada plato.",
+      "Repetimos dos veces más. Contamos tres en cada plato."
+    ],
+    "pista": "Podés repartir una por una; no necesitás recordar una tabla.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Para repartir",
+          "cantidad": 6
+        },
+        {
+          "label": "Plato 1",
+          "cantidad": 0
+        },
+        {
+          "label": "Plato 2",
+          "cantidad": 0
+        }
+      ]
+    },
+    "actividades": [
+      {
+        "id": "entrada_repartir-v1",
+        "enunciado": "Repartimos 6 fichas por igual en 2 platos. ¿Cuántas recibe cada plato?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "3",
+          "4",
+          "2"
+        ],
+        "paso_resuelto": "Damos una ficha a cada plato en cada vuelta. Después de 3 vueltas se repartieron todas: 3 por plato.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Para repartir",
+              "cantidad": 6
+            },
+            {
+              "label": "Plato 1",
+              "cantidad": 0
+            },
+            {
+              "label": "Plato 2",
+              "cantidad": 0
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_repartir-v2",
+        "enunciado": "Repartimos 4 fichas por igual en 2 platos. ¿Cuántas recibe cada plato?",
+        "respuesta_correcta": "2",
+        "opciones": [
+          "3",
+          "1",
+          "2"
+        ],
+        "paso_resuelto": "Damos una ficha a cada plato en cada vuelta. Después de 2 vueltas se repartieron todas: 2 por plato.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Para repartir",
+              "cantidad": 4
+            },
+            {
+              "label": "Plato 1",
+              "cantidad": 0
+            },
+            {
+              "label": "Plato 2",
+              "cantidad": 0
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_repartir-v3",
+        "enunciado": "Repartimos 8 fichas por igual en 2 platos. ¿Cuántas recibe cada plato?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "3",
+          "4",
+          "5"
+        ],
+        "paso_resuelto": "Damos una ficha a cada plato en cada vuelta. Después de 4 vueltas se repartieron todas: 4 por plato.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Para repartir",
+              "cantidad": 8
+            },
+            {
+              "label": "Plato 1",
+              "cantidad": 0
+            },
+            {
+              "label": "Plato 2",
+              "cantidad": 0
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_repartir-v4",
+        "enunciado": "Repartimos 9 fichas por igual en 3 platos. ¿Cuántas recibe cada plato?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "3",
+          "4",
+          "2"
+        ],
+        "paso_resuelto": "Damos una ficha a cada plato en cada vuelta. Después de 3 vueltas se repartieron todas: 3 por plato.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Para repartir",
+              "cantidad": 9
+            },
+            {
+              "label": "Plato 1",
+              "cantidad": 0
+            },
+            {
+              "label": "Plato 2",
+              "cantidad": 0
+            },
+            {
+              "label": "Plato 3",
+              "cantidad": 0
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_repartir-v5",
+        "enunciado": "Repartimos 6 fichas por igual en 3 platos. ¿Cuántas recibe cada plato?",
+        "respuesta_correcta": "2",
+        "opciones": [
+          "3",
+          "1",
+          "2"
+        ],
+        "paso_resuelto": "Damos una ficha a cada plato en cada vuelta. Después de 2 vueltas se repartieron todas: 2 por plato.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Para repartir",
+              "cantidad": 6
+            },
+            {
+              "label": "Plato 1",
+              "cantidad": 0
+            },
+            {
+              "label": "Plato 2",
+              "cantidad": 0
+            },
+            {
+              "label": "Plato 3",
+              "cantidad": 0
+            }
+          ]
+        }
+      },
+      {
+        "id": "entrada_repartir-v6",
+        "enunciado": "Repartimos 12 fichas por igual en 3 platos. ¿Cuántas recibe cada plato?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "3",
+          "4",
+          "5"
+        ],
+        "paso_resuelto": "Damos una ficha a cada plato en cada vuelta. Después de 4 vueltas se repartieron todas: 4 por plato.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Para repartir",
+              "cantidad": 12
+            },
+            {
+              "label": "Plato 1",
+              "cantidad": 0
+            },
+            {
+              "label": "Plato 2",
+              "cantidad": 0
+            },
+            {
+              "label": "Plato 3",
+              "cantidad": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "entrada_denominador",
+    "tema": "fracciones_concepto",
+    "antes_de": "frac_con_2_num_den",
+    "titulo": "Contar todas las partes del entero",
+    "explicacion": "Primero miramos en cuántas partes iguales se dividió el entero. Ese número se escribe abajo en una fracción y se llama denominador.",
+    "ejemplo": "Esta barra está dividida en 4 partes iguales. Abajo se escribe 4.",
+    "pasos": [
+      "Recorremos todas las partes, pintadas o no.",
+      "Contamos cuatro partes iguales."
+    ],
+    "pista": "Contá todas las partes, no solo las pintadas.",
+    "visual": [
+      {
+        "label": "El mismo entero",
+        "partes": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 1
+      }
+    ],
+    "actividades": [
+      {
+        "id": "entrada_denominador-v1",
+        "enunciado": "La barra representa un entero. ¿En cuántas partes iguales está dividida?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "4",
+          "5",
+          "3"
+        ],
+        "paso_resuelto": "Contamos todas las partes: hay 4. Ese número va abajo.",
+        "visual": [
+          {
+            "label": "El mismo entero",
+            "partes": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 1
+          }
+        ]
+      },
+      {
+        "id": "entrada_denominador-v2",
+        "enunciado": "La barra representa un entero. ¿En cuántas partes iguales está dividida?",
+        "respuesta_correcta": "2",
+        "opciones": [
+          "3",
+          "1",
+          "2"
+        ],
+        "paso_resuelto": "Contamos todas las partes: hay 2. Ese número va abajo.",
+        "visual": [
+          {
+            "label": "El mismo entero",
+            "partes": [
+              1,
+              1
+            ],
+            "pintadas": 1
+          }
+        ]
+      },
+      {
+        "id": "entrada_denominador-v3",
+        "enunciado": "La barra representa un entero. ¿En cuántas partes iguales está dividida?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "2",
+          "3",
+          "4"
+        ],
+        "paso_resuelto": "Contamos todas las partes: hay 3. Ese número va abajo.",
+        "visual": [
+          {
+            "label": "El mismo entero",
+            "partes": [
+              1,
+              1,
+              1
+            ],
+            "pintadas": 1
+          }
+        ]
+      },
+      {
+        "id": "entrada_denominador-v4",
+        "enunciado": "La barra representa un entero. ¿En cuántas partes iguales está dividida?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "4",
+          "5",
+          "3"
+        ],
+        "paso_resuelto": "Contamos todas las partes: hay 4. Ese número va abajo.",
+        "visual": [
+          {
+            "label": "El mismo entero",
+            "partes": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 2
+          }
+        ]
+      },
+      {
+        "id": "entrada_denominador-v5",
+        "enunciado": "La barra representa un entero. ¿En cuántas partes iguales está dividida?",
+        "respuesta_correcta": "6",
+        "opciones": [
+          "7",
+          "5",
+          "6"
+        ],
+        "paso_resuelto": "Contamos todas las partes: hay 6. Ese número va abajo.",
+        "visual": [
+          {
+            "label": "El mismo entero",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 2
+          }
+        ]
+      },
+      {
+        "id": "entrada_denominador-v6",
+        "enunciado": "La barra representa un entero. ¿En cuántas partes iguales está dividida?",
+        "respuesta_correcta": "8",
+        "opciones": [
+          "7",
+          "8",
+          "9"
+        ],
+        "paso_resuelto": "Contamos todas las partes: hay 8. Ese número va abajo.",
+        "visual": [
+          {
+            "label": "El mismo entero",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "entrada_numerador",
+    "tema": "fracciones_concepto",
+    "antes_de": "frac_con_2_num_den",
+    "titulo": "Contar las partes pintadas",
+    "explicacion": "Ahora miramos solo las partes pintadas. Ese número se escribe arriba en una fracción y se llama numerador.",
+    "ejemplo": "Hay 2 partes pintadas de una barra. Arriba se escribe 2.",
+    "pasos": [
+      "Señalamos las partes pintadas.",
+      "Contamos dos. Las partes sin pintar no se cuentan en este paso."
+    ],
+    "pista": "En este paso contá solo las partes pintadas.",
+    "visual": [
+      {
+        "label": "Partes pintadas",
+        "partes": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 2
+      }
+    ],
+    "actividades": [
+      {
+        "id": "entrada_numerador-v1",
+        "enunciado": "¿Cuántas partes están pintadas?",
+        "respuesta_correcta": "2",
+        "opciones": [
+          "2",
+          "3",
+          "1"
+        ],
+        "paso_resuelto": "Hay 2 partes pintadas: ese número va arriba.",
+        "visual": [
+          {
+            "label": "Partes pintadas",
+            "partes": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 2
+          }
+        ]
+      },
+      {
+        "id": "entrada_numerador-v2",
+        "enunciado": "¿Cuántas partes están pintadas?",
+        "respuesta_correcta": "1",
+        "opciones": [
+          "2",
+          "0",
+          "1"
+        ],
+        "paso_resuelto": "Hay 1 partes pintadas: ese número va arriba.",
+        "visual": [
+          {
+            "label": "Partes pintadas",
+            "partes": [
+              1,
+              1,
+              1
+            ],
+            "pintadas": 1
+          }
+        ]
+      },
+      {
+        "id": "entrada_numerador-v3",
+        "enunciado": "¿Cuántas partes están pintadas?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "2",
+          "3",
+          "4"
+        ],
+        "paso_resuelto": "Hay 3 partes pintadas: ese número va arriba.",
+        "visual": [
+          {
+            "label": "Partes pintadas",
+            "partes": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 3
+          }
+        ]
+      },
+      {
+        "id": "entrada_numerador-v4",
+        "enunciado": "¿Cuántas partes están pintadas?",
+        "respuesta_correcta": "2",
+        "opciones": [
+          "2",
+          "3",
+          "1"
+        ],
+        "paso_resuelto": "Hay 2 partes pintadas: ese número va arriba.",
+        "visual": [
+          {
+            "label": "Partes pintadas",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 2
+          }
+        ]
+      },
+      {
+        "id": "entrada_numerador-v5",
+        "enunciado": "¿Cuántas partes están pintadas?",
+        "respuesta_correcta": "3",
+        "opciones": [
+          "4",
+          "2",
+          "3"
+        ],
+        "paso_resuelto": "Hay 3 partes pintadas: ese número va arriba.",
+        "visual": [
+          {
+            "label": "Partes pintadas",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 3
+          }
+        ]
+      },
+      {
+        "id": "entrada_numerador-v6",
+        "enunciado": "¿Cuántas partes están pintadas?",
+        "respuesta_correcta": "4",
+        "opciones": [
+          "3",
+          "4",
+          "5"
+        ],
+        "paso_resuelto": "Hay 4 partes pintadas: ese número va arriba.",
+        "visual": [
+          {
+            "label": "Partes pintadas",
+            "partes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "pintadas": 4
+          }
+        ]
+      }
+    ]
+  }
+];
+for(const unidad of ENTRADA_R22) {
+ const indice=UNIDADES_BASES.findIndex(u=>u.id===unidad.antes_de);
+ if(indice<0)throw Error('Falta el paso posterior de '+unidad.id);
+ UNIDADES_BASES.splice(indice,0,unidad);
+}
+// Cambia la explicación, conservando preguntas, claves e identificadores ya usados.
+const repartoR22=UNIDADES_BASES.find(u=>u.id==='mat_div_repartir');
+repartoR22.explicacion='Para repartir por igual damos una ficha a cada persona, y seguimos dando una a cada una hasta terminar. Contamos cuántas recibió cada persona.';
+repartoR22.pasos=['Damos una ficha a cada una de las tres personas.','Repetimos hasta repartir las doce: cada persona tiene cuatro. Así leemos 12 ÷ 3 = 4.'];
+repartoR22.pista='Repartí una por persona en cada vuelta. Al terminar, contá las de una persona.';
+repartoR22.visual={tipo:'colecciones',grupos:[{label:'Persona 1',cantidad:4},{label:'Persona 2',cantidad:4},{label:'Persona 3',cantidad:4}]};
+// FIN R22
+
 export const TEMAS_BASES = [...new Set(UNIDADES_BASES.map(u => u.tema))];
 export function getUnidadBase(id) { return UNIDADES_BASES.find(u => u.id === id) || null; }
 export function crearActividadBase(id, modo, sesiones = []) {
@@ -20537,7 +22472,8 @@ export function crearActividadBase(id, modo, sesiones = []) {
  const siguiente = variantes.find(a => !ultimaAparicion.has(a.id)) || variantes.reduce((a,b) => ultimaAparicion.get(a.id) <= ultimaAparicion.get(b.id) ? a : b);
  const actividad = modo === 'leccion' ? u.actividades[0] : siguiente;
  const tipoActividad=actividad.rubrica_escritura?'produccion':'multiple';
- const base = { escritura_guiada:Boolean(actividad.rubrica_escritura), contenido_version: VERSION_BASES, actividad_id: actividad.id, unidad_titulo: u.titulo, tiempo_estimado: 3 };
+ const habilidades={entrada_contar:'cantidad',entrada_conservar:'cantidad',entrada_juntar:'juntar',entrada_quitar:'quitar',entrada_diez:'cantidad',entrada_llevar:'juntar',entrada_desarmar:'quitar',entrada_grupos:'grupos',entrada_repartir:'repartir',entrada_denominador:'mitades',entrada_numerador:'cuartos',mat_num_suma:'juntar',mat_num_resta:'quitar',mat_tab_grupos:'grupos',mat_div_repartir:'repartir',frac_con_1_partes_iguales:'mitades',frac_con_2_num_den:'cuartos'};
+ const base = { habilidad_concreta:habilidades[id] || null, escritura_guiada:Boolean(actividad.rubrica_escritura), contenido_version: VERSION_BASES, actividad_id: actividad.id, unidad_titulo: u.titulo, tiempo_estimado: 3 };
  if (modo === 'leccion') return {...base, tipo:'leccion', saludo:'Miremos una idea juntos', explicacion_simple:u.explicacion, concepto_clave_repetir:u.pista, visual_apoyo:u.visual,
  ejemplos_resueltos:[{numero:1,enunciado:u.ejemplo,pasos:u.pasos,respuesta:u.ejemplo,visual:u.visual}],
  ejercicio_practica:{...actividad,tipo:tipoActividad}, opciones:actividad.opciones};
@@ -20569,7 +22505,7 @@ export function getFichaBase(tema) {
 export function getCierreBase(tema) {
  const unidades=UNIDADES_BASES.filter(u=>u.tema===tema);
  if(!unidades.length)return null;
- const ampliado=unidades.some(u=>u.id.startsWith('prof_') || u.id.startsWith('leng_prof_'));
+ const ampliado=unidades.some(u=>u.id.startsWith('prof_') || u.id.startsWith('leng_prof_') || u.id.startsWith('entrada_'));
  // La preparación cubre toda la secuencia; el cierre breve toma una muestra de tres ideas.
  const cerradas=unidades.filter(u=>!u.actividades[5].rubrica_escritura);
  const seleccion=ampliado ? [cerradas[0],cerradas[Math.floor(cerradas.length/2)],cerradas.at(-1)] : cerradas;

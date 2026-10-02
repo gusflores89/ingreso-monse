@@ -24,6 +24,54 @@ const UNIDADES = [
     ]
   },
   {
+    "id": "entrada_denominador",
+    "tema": "fracciones_concepto",
+    "titulo": "Contar todas las partes del entero",
+    "explicacion": "Primero miramos en cuántas partes iguales se dividió el entero. Ese número se escribe abajo en una fracción y se llama denominador.",
+    "ejemplo": "Esta barra está dividida en 4 partes iguales. Abajo se escribe 4.",
+    "pasos": [
+      "Recorremos todas las partes, pintadas o no.",
+      "Contamos cuatro partes iguales."
+    ],
+    "pista": "Contá todas las partes, no solo las pintadas.",
+    "visual": [
+      {
+        "label": "El mismo entero",
+        "partes": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 1
+      }
+    ]
+  },
+  {
+    "id": "entrada_numerador",
+    "tema": "fracciones_concepto",
+    "titulo": "Contar las partes pintadas",
+    "explicacion": "Ahora miramos solo las partes pintadas. Ese número se escribe arriba en una fracción y se llama numerador.",
+    "ejemplo": "Hay 2 partes pintadas de una barra. Arriba se escribe 2.",
+    "pasos": [
+      "Señalamos las partes pintadas.",
+      "Contamos dos. Las partes sin pintar no se cuentan en este paso."
+    ],
+    "pista": "En este paso contá solo las partes pintadas.",
+    "visual": [
+      {
+        "label": "Partes pintadas",
+        "partes": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "pintadas": 2
+      }
+    ]
+  },
+  {
     "id": "frac_con_2_num_den",
     "tema": "fracciones_concepto",
     "titulo": "Cómo se escribe una fracción",
@@ -1199,6 +1247,128 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "entrada_contar",
+    "tema": "numeros_naturales_sistema_decimal",
+    "titulo": "Contar una ficha por vez",
+    "explicacion": "Tocamos cada ficha una sola vez y decimos un número. El último número nos dice cuántas hay.",
+    "ejemplo": "Una, dos, tres: hay 3 fichas.",
+    "pasos": [
+      "Señalamos una ficha al decir cada número.",
+      "Al terminar, decimos cuántas hay en total."
+    ],
+    "pista": "Podés señalar cada ficha mientras contás.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Bandeja",
+          "cantidad": 3
+        }
+      ]
+    }
+  },
+  {
+    "id": "entrada_conservar",
+    "tema": "numeros_naturales_sistema_decimal",
+    "titulo": "Mover las fichas no cambia cuántas hay",
+    "explicacion": "Si solo movemos las fichas, sigue habiendo la misma cantidad. Cambia el lugar, pero no agregamos ni quitamos ninguna.",
+    "ejemplo": "Había 4 fichas. Las separamos y siguen siendo 4.",
+    "pasos": [
+      "Contamos antes de mover.",
+      "Volvemos a contar después: no apareció ni se fue ninguna ficha."
+    ],
+    "pista": "Compará una ficha de antes con una de después.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Antes",
+          "cantidad": 4
+        },
+        {
+          "label": "Después",
+          "cantidad": 4,
+          "separadas": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "entrada_juntar",
+    "tema": "numeros_naturales_sistema_decimal",
+    "titulo": "Sumar es juntar cantidades",
+    "explicacion": "Las fichas nuevas se juntan con las que ya estaban. Para saber cuántas hay ahora, contamos todas.",
+    "ejemplo": "Había 3 y llegaron 2. Ahora hay 5.",
+    "pasos": [
+      "Conservamos las tres fichas.",
+      "Agregamos dos y contamos todas: una, dos, tres, cuatro, cinco."
+    ],
+    "pista": "Las que estaban no se van: las nuevas se suman.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Había",
+          "cantidad": 3
+        },
+        {
+          "label": "Llegan",
+          "cantidad": 2
+        }
+      ]
+    }
+  },
+  {
+    "id": "entrada_quitar",
+    "tema": "numeros_naturales_sistema_decimal",
+    "titulo": "Restar es ver cuánto queda",
+    "explicacion": "Al guardar algunas fichas, quedan menos afuera. Contamos las que no guardamos.",
+    "ejemplo": "Había 5. Guardamos 2 y quedaron 3 afuera.",
+    "pasos": [
+      "Separamos las dos fichas que guardamos.",
+      "Contamos las que quedaron afuera: una, dos, tres."
+    ],
+    "pista": "Mirá solamente las que quedaron afuera.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Quedan afuera",
+          "cantidad": 3
+        },
+        {
+          "label": "Guardadas",
+          "cantidad": 2
+        }
+      ]
+    }
+  },
+  {
+    "id": "entrada_diez",
+    "tema": "numeros_naturales_sistema_decimal",
+    "titulo": "Diez fichas forman un paquete",
+    "explicacion": "Un paquete de diez guarda diez fichas. A ese paquete lo llamamos decena. Las fichas sueltas se llaman unidades.",
+    "ejemplo": "Un paquete de diez y 2 sueltas son 12 fichas.",
+    "pasos": [
+      "Contamos diez dentro del paquete.",
+      "Seguimos con las sueltas: once, doce."
+    ],
+    "pista": "El paquete contiene diez, no una sola ficha.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Paquete de diez",
+          "cantidad": 10
+        },
+        {
+          "label": "Sueltas",
+          "cantidad": 2
+        }
+      ]
+    }
+  },
+  {
     "id": "mat_num_decenas",
     "tema": "numeros_naturales_sistema_decimal",
     "titulo": "Diez unidades forman una decena",
@@ -1238,6 +1408,31 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "entrada_llevar",
+    "tema": "numeros_naturales_sistema_decimal",
+    "titulo": "Cambiar diez sueltas por un paquete",
+    "explicacion": "Al juntar diez fichas sueltas podemos guardarlas en un paquete. La cantidad de fichas no cambia: solo cambia cómo las agrupamos.",
+    "ejemplo": "8 fichas y 4 más son 12: un paquete de diez y 2 sueltas.",
+    "pasos": [
+      "Juntamos ocho y cuatro.",
+      "Apartamos diez para el paquete y quedan dos sueltas."
+    ],
+    "pista": "Podés contar todo antes de armar el paquete.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Primer grupo",
+          "cantidad": 8
+        },
+        {
+          "label": "Se agregan",
+          "cantidad": 4
+        }
+      ]
+    }
+  },
+  {
     "id": "mat_num_suma",
     "tema": "numeros_naturales_sistema_decimal",
     "titulo": "Sumar y reagrupar",
@@ -1251,6 +1446,31 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "entrada_desarmar",
+    "tema": "numeros_naturales_sistema_decimal",
+    "titulo": "Abrir un paquete para poder quitar",
+    "explicacion": "Podemos abrir un paquete de diez y usar sus fichas sueltas. No aparecen fichas nuevas: las diez ya estaban dentro.",
+    "ejemplo": "De 12 fichas quitamos 5. Quedan 7.",
+    "pasos": [
+      "Abrimos el paquete: tenemos doce fichas sueltas.",
+      "Guardamos cinco y contamos las siete que quedan."
+    ],
+    "pista": "Abrir el paquete cambia la forma de agrupar, no la cantidad.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Paquete de diez",
+          "cantidad": 10
+        },
+        {
+          "label": "Sueltas",
+          "cantidad": 2
+        }
+      ]
+    }
+  },
+  {
     "id": "mat_num_resta",
     "tema": "numeros_naturales_sistema_decimal",
     "titulo": "Restar y comprobar",
@@ -1262,6 +1482,31 @@ const UNIDADES = [
     ],
     "pista": "Podés cambiar una decena por diez unidades.",
     "visual": null
+  },
+  {
+    "id": "entrada_grupos",
+    "tema": "tablas_multiplicar_2_5",
+    "titulo": "Hacer grupos con la misma cantidad",
+    "explicacion": "Cada plato tiene la misma cantidad de fichas. Para contar todas podemos juntar lo que tiene cada plato.",
+    "ejemplo": "Dos platos con 2 fichas cada uno tienen 4 en total.",
+    "pasos": [
+      "Contamos dos en el primer plato.",
+      "Contamos dos en el segundo y juntamos: 2 + 2 = 4."
+    ],
+    "pista": "Contá cada plato; después reuní las cantidades.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Plato 1",
+          "cantidad": 2
+        },
+        {
+          "label": "Plato 2",
+          "cantidad": 2
+        }
+      ]
+    }
   },
   {
     "id": "mat_tab_grupos",
@@ -1355,17 +1600,62 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "entrada_repartir",
+    "tema": "division_1_digito",
+    "titulo": "Dar una ficha a cada plato",
+    "explicacion": "Repartir por igual significa que todos reciben la misma cantidad. Damos una ficha a cada plato y volvemos a empezar hasta terminar.",
+    "ejemplo": "Repartimos 6 fichas en 2 platos: cada plato recibe 3.",
+    "pasos": [
+      "Damos una ficha a cada plato.",
+      "Repetimos dos veces más. Contamos tres en cada plato."
+    ],
+    "pista": "Podés repartir una por una; no necesitás recordar una tabla.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Para repartir",
+          "cantidad": 6
+        },
+        {
+          "label": "Plato 1",
+          "cantidad": 0
+        },
+        {
+          "label": "Plato 2",
+          "cantidad": 0
+        }
+      ]
+    }
+  },
+  {
     "id": "mat_div_repartir",
     "tema": "division_1_digito",
     "titulo": "Repartir la misma cantidad",
-    "explicacion": "Dividir reparte un total en grupos iguales. El dividendo es el total; el divisor, la cantidad de grupos; el cociente, lo que recibe cada grupo. Nunca dividimos por cero.",
+    "explicacion": "Para repartir por igual damos una ficha a cada persona, y seguimos dando una a cada una hasta terminar. Contamos cuántas recibió cada persona.",
     "ejemplo": "12 fichas entre 3 personas: 4 para cada una.",
     "pasos": [
-      "Buscamos qué número multiplicado por 3 da 12.",
-      "3 × 4 = 12; entonces 12 ÷ 3 = 4."
+      "Damos una ficha a cada una de las tres personas.",
+      "Repetimos hasta repartir las doce: cada persona tiene cuatro. Así leemos 12 ÷ 3 = 4."
     ],
-    "pista": "Buscá una multiplicación que reconstruya el total.",
-    "visual": null
+    "pista": "Repartí una por persona en cada vuelta. Al terminar, contá las de una persona.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Persona 1",
+          "cantidad": 4
+        },
+        {
+          "label": "Persona 2",
+          "cantidad": 4
+        },
+        {
+          "label": "Persona 3",
+          "cantidad": 4
+        }
+      ]
+    }
   },
   {
     "id": "mat_div_resto",
