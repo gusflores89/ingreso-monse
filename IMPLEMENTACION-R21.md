@@ -38,3 +38,16 @@ Evidencia local: carpeta `implementacion-r21` dentro de `C:/Users/gusta/.codex/v
 ## Pendiente pedagógico
 
 Observar con Abril qué consignas entiende y qué construye sin pistas. Ajustar cantidades y pasos según esa evidencia. No concluir eficacia por compilar o pasar pruebas. Queda la reescritura progresiva del material formal, las tareas físicas/transferencia y el repaso espaciado específico de estas habilidades. No se afirma que las 140 unidades existentes sean ahora adecuadas para su trabajo autónomo.
+
+## Publicación y comprobación en producción
+
+- Implementación: `b6421cd`.
+- Vercel: `dpl_6VejZwJEt2UQxV4ceUfdiYDsNfAK`, READY, producción.
+- Dominio: https://www.ingresomonserrat.online
+- Versión: https://ingreso-monse-2027-lphdxjbr5-gustavos-projects-b8e409fb.vercel.app
+- Siete comprobaciones de interfaz repetidas sobre el sitio publicado con API simulada y cinco comprobaciones con API/Supabase reales: correctas, sin errores JavaScript en esos recorridos.
+- Pérdida deliberada de una respuesta HTTP después de guardar: un solo recibo, una actividad completada y dos estrellas tras recargar y reenviar.
+- Cuenta temporal y datos asociados eliminados; limpieza comprobada.
+- Evidencia: `implementacion-r21/produccion/browser-results.json`, `continuidad-real-r21.json`, `reparto-pc.png` y `reparto-movil.png`.
+
+Para acceder: abrir una actividad de Matemática y elegir «Probemos con objetos». No se sustituyó silenciosamente la misión que Abril tuviera abierta.

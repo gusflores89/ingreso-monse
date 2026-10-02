@@ -36,3 +36,5 @@ El alcance de este bloque es implementar las etapas 1 y 2. La etapa 3 requiere r
 Etapas 1 y 2 implementadas en R21: taller de siete habilidades/21 variantes, apoyo de lectura, ejemplos por pasos, continuidad visual, registro familiar y conservación de la actividad anterior. Ver `IMPLEMENTACION-R21.md` para pruebas y publicación.
 
 La etapa 3 permanece pendiente. Además faltan, dentro de la expansión del taller: tareas de conservación de cantidad, comparar cortes iguales/desiguales mediante construcción, transferencia a objetos físicos y recuperación espaciada específica de estas nuevas habilidades. Dos variantes correctas permiten sugerir otra idea; no demuestran dominio estable.
+
+El primer bloque quedó publicado y verificado en https://www.ingresomonserrat.online. La publicación no implica que la etapa 3 esté completada ni que se haya validado aún el aprendizaje con Abril.

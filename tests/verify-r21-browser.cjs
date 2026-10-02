@@ -1,6 +1,7 @@
 const fs=require('fs'),path=require('path'),assert=require('assert/strict');
 const {chromium}=require('C:/Users/gusta/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const {h,call,registry}=require('./verify-r21.cjs');
+const base=process.env.TEST_BASE_URL || 'http://127.0.0.1:3031';
 const out=process.env.TEST_OUTPUT_DIR || 'C:/Users/gusta/.codex/visualizations/2026/09/09/01a086d6-a934-77a3-9a28-75f27a213064/implementacion-r21';fs.mkdirSync(out,{recursive:true});
 (async()=>{const browser=await chromium.launch({channel:'msedge',headless:true});const errors=[],results=[];try{
  const context=await browser.newContext({viewport:{width:1366,height:900},locale:'es-AR'}),database=h.db({sesiones:[]});let remote=null,revision=0;
@@ -14,7 +15,7 @@ const out=process.env.TEST_OUTPUT_DIR || 'C:/Users/gusta/.codex/visualizations/2
   await route.fulfill({status,contentType:'application/json',body:JSON.stringify(output)});
  });
  const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
- await page.goto('http://127.0.0.1:3031/tutoria?user_id='+h.user.id+'&tema=fracciones_concepto',{waitUntil:'networkidle'});
+ await page.goto(base+'/tutoria?user_id='+h.user.id+'&tema=fracciones_concepto',{waitUntil:'networkidle'});
  await page.getByRole('button',{name:'Probemos con objetos',exact:true}).click();
  const workshop=page.getByRole('region',{name:'Taller con objetos'});
  await page.getByRole('heading',{name:'Explorar mitades',exact:true}).waitFor();
