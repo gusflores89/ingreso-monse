@@ -27,3 +27,15 @@ Evidencia: `C:/Users/gusta/.codex/visualizations/2026/09/09/01a086d6-a934-77a3-9
 ## Qué sigue
 
 Prioridad 2A: tablas mediante arreglos y dobles; múltiplos por saltos; divisores mediante agrupamientos. En paralelo, observar cómo Abril usa estos pasos iniciales para ajustar cantidades, apoyos y carga de lectura. Las pruebas técnicas no certifican comprensión ni ausencia de frustración.
+
+## Publicación y verificación final
+
+- Implementación: commit `04a77b3`.
+- Vercel: `dpl_996TRsGWCpWutJi5nPmXKHSuBbv2`, estado READY, producción.
+- Dominio: https://www.ingresomonserrat.online
+- Versión: https://ingreso-monse-2027-5nkkga2tj-gustavos-projects-b8e409fb.vercel.app
+- Sobre el dominio publicado: doce verificaciones del frontend (controladores locales y base simulada) sin errores de JavaScript; por separado, ocho comprobaciones de API/base reales y PDF: cuatro lecciones con corrección persistida y cuatro descargas con SHA-256 igual al archivo revisado.
+- La cuenta sintética y sus sesiones, continuidad, lecciones y progreso se eliminaron; limpieza comprobada. La cuenta de Abril no se modificó directamente.
+- Evidencia final en `implementacion-r22/produccion/browser-results.json` y `implementacion-r22/produccion/api-real-r22.json`.
+
+Durante la preparación de la prueba real se corrigieron dos problemas del propio script: faltaba un campo obligatorio en los datos sintéticos y la cookie Secure de `next start` no viajaba por HTTP local. La adaptación de cookies se limita al servidor loopback; la prueba de producción usa las cookies originales sobre HTTPS.
