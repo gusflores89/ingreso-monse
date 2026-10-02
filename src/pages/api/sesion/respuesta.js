@@ -52,6 +52,7 @@ export default async function handler(req, res) {
     );
 
     if (!requireOwnership(req, res, sesion.user_id)) return;
+    if(sesion.tipo_pregunta === 'exploracion') return res.status(400).json({error:'Enviá la construcción desde el taller con objetos.'});
 
     envio = await iniciarEnvio(supabase, sesion_id, req.body);
     if (envio.salida) return res.status(200).json(envio.salida);

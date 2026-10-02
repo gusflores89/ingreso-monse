@@ -15,15 +15,24 @@ function revisionPublica(r) {
   return {comentario:texto(r.comentario,2000),fecha:fecha(r.fecha),respuesta:texto(r.respuesta,2000),
     pregunta:texto(r.pregunta),texto_lectura:texto(r.texto_lectura)};
 }
+function construccionPublica(raw, reto) {
+ try {
+  const data=JSON.parse(raw);
+  if(!data || !Array.isArray(data.tablero))return '';
+  if(reto?.tipo_tablero==='fraccion')return 'Partes pintadas: '+(data.seleccion || []).map(n=>n+1).join(', ')+'.';
+  return 'Fichas por recipiente: '+data.tablero.join(', ')+'.'+(reto?.tipo_tablero==='cantidad'?'':' Cantidad construida al contar: '+data.cantidad+'.');
+ }catch{return '';}
+}
 export function resumirSesionFamiliar(s) {
   const p = s.ia_parametros_usados || {}, vistos = new Set();
+  const concreta=s.tipo_pregunta==='exploracion' && p.provider==='recorrido_concreto', reto=s.contexto_json?.reto_concreto;
   const eventos = (Array.isArray(p.eventos_pedagogicos) ? p.eventos_pedagogicos : []).filter(e => {
     if (!e || !e.id || vistos.has(e.id)) return false;
     vistos.add(e.id); return true;
   }).map(e => {
     const ayuda = e.tipo === "ayuda", noVisto = e.tipo === "no_visto";
-    const correcta = typeof e.es_correcta === "boolean" ? e.es_correcta : null;
-    const conAyuda = Boolean(e.con_ayuda || e.ayuda_solicitada);
+    const correcta = concreta && typeof e.salida?.es_correcta==='boolean' ? e.salida.es_correcta : typeof e.es_correcta === "boolean" ? e.es_correcta : null;
+    const conAyuda = Boolean(e.con_ayuda || e.ayuda_solicitada || (concreta && e.salida?.con_ayuda));
     let estado = "Sin evaluación registrada";
     if (ayuda) estado = e.retrospectiva ? "Consultó la explicación después de resolver" : "Pidió una explicación";
     else if (noVisto) estado = "Pidió aprenderlo antes de responder";
@@ -32,7 +41,7 @@ export function resumirSesionFamiliar(s) {
     else if (e.salida?.revision_pendiente) estado = "Entregado para revisión";
     else if (e.estado === "fallido") estado = "Envío interrumpido; sin calificación";
     return { id: texto(e.id,100), fecha: fecha(e.evaluado_el || e.completado_el || e.fecha), estado,
-      tipo: ayuda ? "ayuda" : noVisto ? "no_visto" : "respuesta", respuesta: ayuda || noVisto ? "" : respuesta(e.respuesta),
+      tipo: ayuda ? "ayuda" : noVisto ? "no_visto" : "respuesta", respuesta: ayuda || noVisto ? "" : concreta ? construccionPublica(e.respuesta,reto) : respuesta(e.respuesta),
       es_correcta: correcta, con_ayuda: conAyuda,
       devolucion: texto(e.salida?.retroalimentacion || e.evaluacion?.retroalimentacion,2000) };
   }).sort((a,b) => (Date.parse(a.fecha) || 0) - (Date.parse(b.fecha) || 0));
@@ -44,14 +53,16 @@ export function resumirSesionFamiliar(s) {
   const examen = s.contexto_json?.examen_final;
   const produccion = examen?.tipo_evaluacion === "produccion_manuscrita";
   let estado = "Sin respuesta registrada";
-  if (p.revision_pendiente) estado = "Pendiente de devolución familiar";
+  if (concreta) estado = p.concreto_resultado?.completado ? (p.concreto_resultado.independiente ? 'Construcción realizada sin pista matemática' : 'Construcción realizada con acompañamiento') : p.concreto_resultado ? 'Explorando con objetos' : 'Actividad de objetos abierta';
+  else if (p.revision_pendiente) estado = "Pendiente de devolución familiar";
   else if (revision && (!escritura || revision.version_respuesta === version)) estado = escritura ? "Con devolución familiar · conserva la evaluación del tutor" : "Con devolución familiar · sin nota automática";
   else if (s.es_correcta === true) estado = s.tipo_pregunta === "leccion" ? "Lección y práctica guiada completadas" : p.resuelto_con_ayuda || p.ayuda_utilizada ? "Resuelto con ayuda" : eventos.length ? "Resuelto sin ayuda registrada" : "Correcto · sin detalle de ayudas antiguo";
   else if (s.es_correcta === false) estado = "Para seguir aprendiendo";
   else if (eventos.some(e => e.tipo === "no_visto")) estado = "Pidió enseñanza previa";
   return { id:s.id, tema:texto(s.tema,160), tipo:texto(s.tipo_pregunta,80), fecha:fecha(s.created_at), estado,
-    pregunta:texto(escritura ? escritura.actividad.enunciado : s.pregunta_generada), respuesta:respuesta(s.respuesta_usuario), eventos,
-    escritura_guiada:Boolean(escritura), titulo:escritura ? texto(escritura.unidad.titulo,160) : "",
+    pregunta:texto(escritura ? escritura.actividad.enunciado : s.pregunta_generada), respuesta:concreta ? construccionPublica(s.respuesta_usuario,reto) : respuesta(s.respuesta_usuario), eventos,
+    escritura_guiada:Boolean(escritura), titulo:concreta ? texto(reto?.titulo,160) : escritura ? texto(escritura.unidad.titulo,160) : "",
+    exploracion_concreta:concreta, apoyo_acceso:concreta && Boolean(p.concreto_resultado?.lectura),
     texto_lectura:escritura ? texto(escritura.actividad.visual?.texto) : "",
     version_respuesta:version, puede_comentar:comentable,
     aspectos_escritura:escritura ? escritura.actividad.rubrica_escritura.map(c=>({id:c.id,detalle:texto(c.descripcion,500),

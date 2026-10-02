@@ -1,3 +1,6 @@
+import TallerConcreto from './TallerConcreto';
+import LeerConsigna from './LeerConsigna';
+import EjemploPorPasos from './EjemploPorPasos';
 import MensajesFamiliares from "./MensajesFamiliares";
 import { crearSincronizador } from "@/lib/sincronizacion-mision";
 import RepasoSugerido from "./RepasoSugerido";
@@ -36,6 +39,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
   const [showTopicModal, setShowTopicModal] = useState(false);
   const [error, setError] = useState("");
   const [pasoActual, setPasoActual] = useState(0);
+  const [pasoEjemplo, setPasoEjemplo] = useState(0);
   const [respuestasExamen, setRespuestasExamen] = useState({});
   const startTime = useRef(Date.now());
   const enviandoRef = useRef(false);
@@ -125,6 +129,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         evaluacion: baseValida.evaluacion !== undefined ? baseValida.evaluacion : evaluacion,
         intento: baseValida.intento !== undefined ? baseValida.intento : intento,
         pasoActual: baseValida.pasoActual !== undefined ? baseValida.pasoActual : pasoActual,
+        pasoEjemplo: baseValida.pasoEjemplo ?? pasoEjemplo,
         respuesta: baseValida.respuesta !== undefined ? baseValida.respuesta : respuesta,
         borrador: updates.borrador !== undefined ? updates.borrador : (baseValida.borrador !== undefined ? baseValida.borrador : respuesta),
         pistaActiva: baseValida.pistaActiva !== undefined ? baseValida.pistaActiva : pistaActiva,
@@ -253,6 +258,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
               if (saved.evaluacion) setEvaluacion(saved.evaluacion);
               if (typeof saved.intento === "number") setIntento(saved.intento);
               if (typeof saved.pasoActual === "number") setPasoActual(saved.pasoActual);
+              setPasoEjemplo(saved.pasoEjemplo || 0);
               if (saved.borrador || saved.respuesta) setRespuesta(saved.borrador || saved.respuesta);
               if (saved.respuestasExamen) setRespuestasExamen(saved.respuestasExamen);
               if(saved.envioPendiente)restaurarEnvioPendiente(localStorage,user_id,saved.envioPendiente);
@@ -302,6 +308,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                   respuestasExamen: {},
                   intento: 1,
                   pasoActual: 0,
+          pasoEjemplo: 0,
                   forzar_practica: false,
                 }));
               } catch {}
@@ -337,7 +344,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         if (!res.ok) throw new Error(data.error || "No se pudo iniciar la sesion.");
         setPregunta(data);
         setSesionId(data.sesion_id);
-        setPasoActual(0);
+        setPasoActual(0);setPasoEjemplo(0);
         setIntento(1);
         if (data && data.tipo === "leccion") {
           setHelpTab("slides");
@@ -355,6 +362,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
           evaluacion: null,
           intento: 1,
           pasoActual: 0,
+          pasoEjemplo: 0,
           pistaActiva: null,
           forzar_practica: activeForzar,
         });
@@ -393,6 +401,49 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         .finally(() => setModalLoading(false));
     }
   }, [showTopicModal, user_id]);
+
+  const iniciarConcreto = async (habilidad = null, resetMision = false, continuar = false) => {
+    if (loading || enviandoRef.current) return;
+    if (leerEnvioPendiente(localStorage,user_id,sesionId)) { setError('Primero reenviá la respuesta pendiente; tu construcción sigue guardada.'); return; }
+    setLoading(true);setError('');
+    try {
+      const anterior = pregunta?.tipo === 'concreta' ? null : {pregunta,sesionId,respuesta,evaluacion,pasoActual,pasoEjemplo,intento,pistaActiva,respuestasExamen};
+      const res = await fetch('/api/sesion/concreta',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({accion:'iniciar',user_id,tema:activeTema,habilidad,continuar})});
+      const data=await res.json();if(!res.ok)throw Error(data.error);
+      const nueva={avatar:pregunta?.avatar,avatar_imagen:pregunta?.avatar_imagen,nombre_tutor:pregunta?.nombre_tutor,color_tema:pregunta?.color_tema,...data,plan:pregunta?.plan};
+      const updates={pregunta:nueva,sesionId:data.sesion_id,respuesta:'',borrador:'',evaluacion:null,pasoActual:0,pasoEjemplo:0,intento:1,pistaActiva:null,...(anterior?{actividadAnterior:anterior}:{}),...(resetMision?{desafios:0,retosCompletadosIds:[],misionTerminada:false}:{})};
+      if(!saveMissionState(updates))throw Error('No pudimos guardar el cambio de actividad.');
+      setPregunta(nueva);setSesionId(data.sesion_id);setRespuesta('');setEvaluacion(null);setPasoActual(0);setPasoEjemplo(0);setIntento(1);setPistaActiva(null);
+      if(resetMision){setDesafiosCompletadosMision(0);setRetosCompletadosIds([]);setMisionTerminada(false);}
+    }catch(e){setError(e.message);}finally{setLoading(false);}
+  };
+  const volverDeConcreto = () => {
+    if(loading || leerEnvioPendiente(localStorage,user_id,sesionId)){setError('Primero confirmemos la respuesta pendiente.');return;}
+    const anterior=JSON.parse(localStorage.getItem(getStorageKey()) || '{}').actividadAnterior;
+    if(!anterior?.pregunta){handleSelectTema(activeTema);return;}
+    if(!saveMissionState({...anterior,borrador:anterior.respuesta || '',actividadAnterior:null}))return;
+    setPregunta(anterior.pregunta);setSesionId(anterior.sesionId);setRespuesta(anterior.respuesta || '');setEvaluacion(anterior.evaluacion);setPasoActual(anterior.pasoActual || 0);setPasoEjemplo(anterior.pasoEjemplo || 0);setIntento(anterior.intento || 1);setPistaActiva(anterior.pistaActiva);setRespuestasExamen(anterior.respuestasExamen || {});
+  };
+  const enviarConcreto = async (construccion) => {
+    if(enviandoRef.current)return;enviandoRef.current=true;setLoading(true);setError('');
+    try {
+      setRespuesta(construccion);saveMissionState({respuesta:construccion,borrador:construccion});
+      const res=await enviarRegistrado('/api/sesion/concreta',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({accion:'responder',user_id,sesion_id:sesionId,respuesta_usuario:construccion})});
+      const data=await res.json();if(!res.ok)throw Error(data.error);setEvaluacion(data);
+      if(data.completado)registrarDesafioCompletado(sesionId,2,{evaluacion:data,respuesta:construccion,borrador:''});
+      else {
+        const next=data.intentos>=2?JSON.stringify({...JSON.parse(construccion),fase:'modelo',modelo:0,modeloVisto:true}):construccion;
+        setRespuesta(next);saveMissionState({evaluacion:data,respuesta:next,borrador:next});
+      }
+    }catch(e){setError(e.message);}finally{enviandoRef.current=false;setLoading(false);}
+  };
+  const ayudaConcreta = async () => {
+    if(loading || enviandoRef.current)return false;enviandoRef.current=true;setLoading(true);setError('');
+    try {
+      const res=await enviarRegistrado('/api/sesion/ayuda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sesion_id:sesionId})});
+      if(!res.ok)throw Error('No pudimos guardar la ayuda. Volvé a intentar.');return true;
+    }catch(e){setError(e.message);return false;}finally{enviandoRef.current=false;setLoading(false);}
+  };
 
   const handleSubmit = async () => {
     if (!respuesta.trim() || !sesionId || enviandoRef.current) return;
@@ -529,6 +580,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
 
   const handleSiguiente = async (options = {}) => {
     const isReset = Boolean(options.resetMision);
+    if (pregunta?.tipo === "concreta") { await iniciarConcreto(pregunta.habilidad,isReset,true); return; }
     let yaTerminada = isReset ? false : misionTerminada;
     let retoJustCompleted = false;
 
@@ -604,7 +656,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       setPregunta(data);
       setSesionId(data.sesion_id);
       setEvaluacion(null);
-      setPasoActual(0);
+      setPasoActual(0);setPasoEjemplo(0);
       setIntento(1);
       setPistaActiva(null);
       if (data && data.tipo === "leccion") {
@@ -629,6 +681,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         pistaActiva: null,
         intento: 1,
         pasoActual: 0,
+        pasoEjemplo: 0,
         respuesta: "",
         respuestasExamen: {},
         forzar_practica: nextForzarPractica,
@@ -666,7 +719,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       setPregunta(data);
       setSesionId(data.sesion_id);
       setEvaluacion(null);
-      setPasoActual(0);
+      setPasoActual(0);setPasoEjemplo(0);
       setRespuestasExamen({});
       startTime.current = Date.now();
       saveMissionState({
@@ -677,6 +730,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         evaluacion: null,
         intento: 1,
         pasoActual: 0,
+        pasoEjemplo: 0,
         respuesta: "",
         forzar_practica: forzarPractica,
       });
@@ -712,7 +766,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       setPregunta(data);
       setSesionId(data.sesion_id);
       setEvaluacion(null);
-      setPasoActual(0);
+      setPasoActual(0);setPasoEjemplo(0);
       setIntento(1);
       setRespuestasExamen({});
       startTime.current = Date.now();
@@ -724,6 +778,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         evaluacion: null,
         intento: 1,
         pasoActual: 0,
+        pasoEjemplo: 0,
         respuesta: "",
         respuestasExamen: {},
       });
@@ -779,7 +834,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'No se pudo iniciar el repaso.');
       const nueva = {avatar:pregunta?.avatar,nombre_tutor:pregunta?.nombre_tutor,color_tema:pregunta?.color_tema,...data};
-      setPregunta(nueva);setSesionId(data.sesion_id);setRespuesta('');setEvaluacion(null);setPasoActual(0);setIntento(1);setPistaActiva(null);
+      setPregunta(nueva);setSesionId(data.sesion_id);setRespuesta('');setEvaluacion(null);setPasoActual(0);setPasoEjemplo(0);setIntento(1);setPistaActiva(null);
       setRespuestasExamen({});setDesafiosCompletadosMision(0);setRetosCompletadosIds([]);setMisionTerminada(false);startTime.current=Date.now();
       saveMissionState({pregunta:nueva,sesionId:data.sesion_id,tema:data.tema,solicitud_tema:tema || null,solicitud_modo:'NORMAL',
         desafios:0,retosCompletadosIds:[],misionTerminada:false,respuesta:'',borrador:'',evaluacion:null,pasoActual:0,intento:1,pistaActiva:null,respuestasExamen:{}});
@@ -815,7 +870,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       setPregunta(data);
       setSesionId(data.sesion_id);
       setEvaluacion(null);
-      setPasoActual(0);
+      setPasoActual(0);setPasoEjemplo(0);
       setIntento(1);
       setMisionTerminada(false);
       setDesafiosCompletadosMision(0);
@@ -839,6 +894,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         evaluacion: null,
         intento: 1,
         pasoActual: 0,
+        pasoEjemplo: 0,
         respuesta: "",
         forzar_practica: shouldForzar,
       });
@@ -958,7 +1014,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             </span>
           )}
 
-          <button
+          {pregunta?.tipo !== 'concreta' && <button
             type="button"
             onClick={abrirTeoria}
             style={{
@@ -977,7 +1033,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             onMouseLeave={(e) => e.currentTarget.style.transform = "none"}
           >
             💡 Explicación y PDFs
-          </button>
+          </button>}
           <button
             type="button"
             onClick={() => setShowTopicModal(true)}
@@ -1075,12 +1131,23 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       )}
 
       <MensajesFamiliares key={user_id} userId={user_id} />
+      {pregunta && pregunta.tipo !== 'concreta' && !misionTerminada && CURRICULUM_MATEMATICA.some(t=>t.tema===activeTema) && (
+        <section style={{padding:16,margin:'16px 0',border:'1px solid #7091c5',borderRadius:12,background:'#17243b'}}>
+          <strong>Podemos empezar con objetos y una idea por vez.</strong>
+          <p>Tu actividad queda guardada para volver cuando quieras.</p>
+          <button type="button" className="primary" disabled={loading} onClick={()=>iniciarConcreto()}>Probemos con objetos</button>
+        </section>
+      )}
+      {pregunta?.tipo === 'concreta' && !misionTerminada && <TallerConcreto key={sesionId} reto={pregunta} respuesta={respuesta} evaluacion={evaluacion} loading={loading}
+        onChange={value=>{setRespuesta(value);saveMissionState({respuesta:value,borrador:value});}} onEnviar={enviarConcreto} onAyuda={ayudaConcreta}
+        onSiguiente={()=>handleSiguiente()} onVolver={volverDeConcreto} onElegir={iniciarConcreto} />}
 
-      {pregunta && !loading && (misionTerminada || (!pregunta.repaso_espaciado && !desafiosCompletadosMision && !respuesta && !pasoActual && !evaluacion && intento === 1)) && (
+
+      {pregunta && pregunta.tipo !== "concreta" && !loading && (misionTerminada || (!pregunta.repaso_espaciado && !desafiosCompletadosMision && !respuesta && !pasoActual && !evaluacion && intento === 1)) && (
         <RepasoSugerido userId={user_id} loading={loading} refrescar={sesionId + ':' + misionTerminada} onStart={handleIniciarRepaso} />
       )}
 
-      {!misionTerminada && (!evaluacion || ["angulo", "mediatriz", "poligono", "segmentos", "circunferencia", "tramo", "datos", "lectura"].includes(pregunta?.visual_apoyo?.tipo)) && <ApoyoVisual permitirExplorar={pregunta?.tipo === 'leccion' && pasoActual < 2} datos={pregunta?.tipo === 'leccion' ? (pasoActual === 0 ? pregunta.visual_apoyo : pasoActualData?.contenido?.visual) : pregunta?.visual_apoyo} />}
+      {!misionTerminada && <ApoyoVisual permitirExplorar={pregunta?.tipo === 'leccion' && pasoActual < 2} datos={pregunta?.tipo === 'leccion' ? (pasoActual === 0 ? pregunta.visual_apoyo : pasoActualData?.contenido?.visual) : pregunta?.visual_apoyo} />}
       {loading && <p className="status">{tutor.nombre} esta pensando...</p>}
       {error && <p className="error" role="alert" style={{ color: "#fecaca" }}>{error}</p>}
 
@@ -1203,6 +1270,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
               <div className="lesson-step-content intro-step">
                 <h2>{parseInlineMarkdown(pasoActualData.contenido.saludo)}</h2>
                 <p>{parseInlineMarkdown(pasoActualData.contenido.explicacion)}</p>
+                <LeerConsigna texto={pasoActualData.contenido.explicacion} />
                 {pasoActualData.contenido.concepto && <div className="key-concept">{parseInlineMarkdown(pasoActualData.contenido.concepto)}</div>}
               </div>
             )}
@@ -1220,16 +1288,9 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                 <p className="example-question">{parseInlineMarkdown(pasoActualData.contenido.enunciado)}</p>
                 <MathExampleVisual tema={activeTema} ejemplo={pasoActualData.contenido} />
 
-                <div className="lesson-steps">
-                  {pasoActualData.contenido.pasos?.map((paso, index) => (
-                    <article className="lesson-step-row" key={`${paso}-${index}`}>
-                      <span aria-hidden="true">{index + 1}</span>
-                      <p>{parseInlineMarkdown(paso)}</p>
-                    </article>
-                  ))}
-                </div>
+                <EjemploPorPasos pasos={pasoActualData.contenido.pasos || []} indice={pasoEjemplo} onIndice={i=>{setPasoEjemplo(i);saveMissionState({pasoEjemplo:i});}} />
 
-                {pasoActualData.contenido.respuesta && (
+                {pasoActualData.contenido.respuesta && pasoEjemplo >= (pasoActualData.contenido.pasos?.length || 1)-1 && (
                   <div 
                     className="lesson-answer"
                     style={{
@@ -1277,6 +1338,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
               <div className="lesson-step-content exercise-step">
                 <h2>Ahora probá vos</h2>
                 <p className="question-text small" style={{whiteSpace:"pre-line"}}>{parseInlineMarkdown(pasoActualData.contenido.enunciado)}</p>
+                <LeerConsigna texto={pasoActualData.contenido.enunciado} />
                 {visualParaEjercicio && (
                   <div style={{ marginBottom: "20px" }}>
                     <VisualizacionMatematica tipo={visualParaEjercicio.tipo} datos={visualParaEjercicio.datos} mostrarResultado={false} />
@@ -1365,8 +1427,8 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
               type="button"
               onClick={() => {
                 const prevStep = Math.max(0, pasoActual - 1);
-                setPasoActual(prevStep);
-                saveMissionState({ pasoActual: prevStep });
+                setPasoActual(prevStep);setPasoEjemplo(0);
+                saveMissionState({ pasoActual: prevStep, pasoEjemplo:0 });
               }}
               disabled={pasoActual === 0}
             >
@@ -1381,8 +1443,8 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                 className="primary compact"
                 onClick={() => {
                   const nextStep = pasoActual + 1;
-                  setPasoActual(nextStep);
-                  saveMissionState({ pasoActual: nextStep });
+                  setPasoActual(nextStep);setPasoEjemplo(0);
+                  saveMissionState({ pasoActual: nextStep, pasoEjemplo:0 });
                 }}
               >
                 Siguiente →
@@ -1457,6 +1519,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                   evaluacion: null,
                   intento: 1,
                   pasoActual: 0,
+          pasoEjemplo: 0,
                   respuesta: "",
                 });
                 handleSiguiente({ resetMision: true });
@@ -1480,6 +1543,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
 
       {!misionTerminada &&
         !evaluacion &&
+        pregunta?.tipo !== "concreta" &&
         pregunta?.tipo !== "leccion" &&
         pregunta?.tipo !== "manuscrita" &&
         pregunta?.tipo !== "examen_final" &&
@@ -1487,6 +1551,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         pregunta && (
         <div className="question-area">
           <p className="question-text">{parseInlineMarkdown(pregunta.pregunta)}</p>
+          <LeerConsigna texto={pregunta.pregunta} />
 
           {pistaActiva && intento > 1 && (
             <div style={{
@@ -1614,7 +1679,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         </div>
       )}
 
-      {evaluacion && (!misionTerminada || evaluacion.no_visto || !evaluacion.es_correcta) && (
+      {pregunta?.tipo !== "concreta" && evaluacion && (!misionTerminada || evaluacion.no_visto || !evaluacion.es_correcta) && (
         <div className={`feedback ${evaluacion.no_visto ? "info" : evaluacion.revision_pendiente ? "info" : evaluacion.es_correcta ? "correct" : "review"}`}>
           <TutorMessage
             tutor={tutor}

@@ -46,6 +46,7 @@ function Actividad({sesion:s,alGuardar}) {
     {s.instrucciones && <p style={{whiteSpace:"pre-wrap"}}><strong>Consigna: </strong>{s.instrucciones}</p>}
     {s.criterios?.length > 0 && <><strong>Aspectos para conversar</strong><ul>{s.criterios.map(c=><li key={c.nombre}>{nombre(c.nombre)}: {c.detalle}</li>)}</ul></>}
     {s.aspectos_escritura?.length > 0 && <><strong>Ideas que practicamos</strong><ul>{s.aspectos_escritura.map(c=><li key={c.id}>{c.detalle} <small>({c.estado === "logrado" ? "el tutor la reconoció" : c.estado === "revisar" ? "el tutor sugirió revisarla" : "sin evaluación concluyente"})</small></li>)}</ul><p>La revisión del tutor puede equivocarse. Compará estas ideas con el texto de Abril antes de orientarla.</p></>}
+    {s.exploracion_concreta && <p>Observación inicial con objetos; no acredita un tema ni habilita exámenes.{s.apoyo_acceso ? ' Usó lectura de la consigna; eso no se cuenta como pista matemática.' : ''}</p>}
     {s.respuesta && <p style={{whiteSpace:"pre-wrap"}}><strong>Última respuesta guardada: </strong>{s.respuesta}</p>}
     {!s.detalle_disponible && <p>Este registro no conserva el detalle de intentos y ayudas. No permite inferir que respondió sin apoyo.</p>}
     {s.detalle_disponible && <><p>{s.intentos} intentos evaluados. Una solicitud de explicación no cuenta como error.</p><ol>

@@ -1,4 +1,4 @@
-const CAMPOS = ['fecha','user_id','tema','solicitud_tema','solicitud_modo','pregunta','sesionId','evaluacion','intento','pasoActual','respuesta','borrador','pistaActiva','desafios','retosCompletadosIds','misionTerminada','respuestasExamen','estrellas','forzar_practica','envioPendiente'];
+const CAMPOS = ['fecha','user_id','tema','solicitud_tema','solicitud_modo','pregunta','sesionId','evaluacion','intento','pasoActual','respuesta','borrador','pistaActiva','desafios','retosCompletadosIds','misionTerminada','respuestasExamen','estrellas','forzar_practica','envioPendiente','actividadAnterior','pasoEjemplo'];
 export function validarEstadoMision(input,usuario) {
   const fail=()=>{throw Object.assign(new Error('El estado de la misión no es válido.'),{status:400});};
   if(!input || typeof input !== 'object' || Array.isArray(input) || JSON.stringify(input).length>120000)fail();
