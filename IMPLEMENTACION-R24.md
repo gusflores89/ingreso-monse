@@ -30,3 +30,15 @@ Evidencia: C:/Users/gusta/.codex/visualizations/2026/09/09/01a086d6-a934-77a3-9a
 - API/base reales: tres lecciones corregidas y persistidas, tres descargas PDF con SHA-256 idéntico al archivo revisado. Cuenta sintética eliminada y ausencia de registros residuales comprobada.
 - Los tres PDF se renderizaron y revisaron visualmente; texto y límites de página correctos. El documento del resto se regeneró y revisó de nuevo tras simplificar la representación del nuevo total.
 - Compilación de producción correcta. La suite general y publicación se documentan al terminar.
+
+## Resultado final y publicación
+
+- `npm test`: suite completa R1–R24 y sincronización de apuntes, código 0. Una ejecución previa coincidió con la regeneración del archivo de contenido y leyó el archivo durante la escritura; se repitió la suite completa con las fuentes finales estables. No se omitieron verificaciones.
+- Implementación: commit `77a4c0a`.
+- Vercel: `dpl_9VdeYyqtAKPxxSfZA52HJWHWBzat`, READY, producción.
+- Dominio: https://www.ingresomonserrat.online
+- Versión: https://ingreso-monse-2027-mssf03gir-gustavos-projects-b8e409fb.vercel.app
+- Sobre el dominio publicado: 16 verificaciones del frontend con controladores locales/base simulada. Por separado, seis verificaciones con API/base reales: tres lecciones corregidas y guardadas y tres PDF idénticos a los revisados. Sin errores. La cuenta sintética y todos sus registros se eliminaron y la limpieza se verificó.
+- Evidencia final: `implementacion-r24/produccion/browser-results.json` y `implementacion-r24/produccion/api-real-r24.json`.
+
+Próximo bloque: 2C, décimos y centésimos, comparación y operaciones decimales con representaciones del entero.
