@@ -24126,6 +24126,3314 @@ const factorizacionR23=['prof_fact_primos','prof_fact_mcm','prof_fact_mcd'].map(
 UNIDADES_BASES.splice(UNIDADES_BASES.findIndex(u=>u.id==='div_primos_5_mcd')+1,0,...factorizacionR23);
 // FIN R23
 
+
+
+// INICIO R24
+const FRACCIONES_R24 = [
+  {
+    "id": "fr24_mitad",
+    "tema": "fracciones_concepto",
+    "antes_de": "frac_con_3_unidad_referencia",
+    "titulo": "La mitad: un grupo de dos iguales",
+    "explicacion": "Todas las fichas juntas son el total. Para hallar la mitad, hacemos dos grupos iguales y tomamos uno. No necesitamos recordar una tabla.",
+    "ejemplo": "Quedan 4 fichas en cada grupo. Una mitad tiene 4.",
+    "pasos": [
+      "El total son 8 fichas.",
+      "Hacemos dos grupos de 4. Tomamos uno: la mitad es 4."
+    ],
+    "pista": "Repartí una ficha a cada grupo por turno. Contá las de un solo grupo.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Grupo 1",
+          "cantidad": 4
+        },
+        {
+          "label": "Grupo 2",
+          "cantidad": 4
+        }
+      ]
+    },
+    "habilidad_concreta": "repartir",
+    "actividades": [
+      {
+        "enunciado": "Repartimos 8 fichas en dos grupos iguales. ¿Cuántas hay en una mitad?",
+        "respuesta_correcta": "4",
+        "paso_resuelto": "Quedan 4 fichas en cada grupo. Una mitad tiene 4.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Grupo 1",
+              "cantidad": 4
+            },
+            {
+              "label": "Grupo 2",
+              "cantidad": 4
+            }
+          ]
+        },
+        "opciones": [
+          "4",
+          "5",
+          "3"
+        ],
+        "id": "fr24_mitad-v1"
+      },
+      {
+        "enunciado": "Repartimos 6 fichas en dos grupos iguales. ¿Cuántas hay en una mitad?",
+        "respuesta_correcta": "3",
+        "paso_resuelto": "Quedan 3 fichas en cada grupo. Una mitad tiene 3.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Grupo 1",
+              "cantidad": 3
+            },
+            {
+              "label": "Grupo 2",
+              "cantidad": 3
+            }
+          ]
+        },
+        "opciones": [
+          "4",
+          "2",
+          "3"
+        ],
+        "id": "fr24_mitad-v2"
+      },
+      {
+        "enunciado": "Repartimos 4 fichas en dos grupos iguales. ¿Cuántas hay en una mitad?",
+        "respuesta_correcta": "2",
+        "paso_resuelto": "Quedan 2 fichas en cada grupo. Una mitad tiene 2.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Grupo 1",
+              "cantidad": 2
+            },
+            {
+              "label": "Grupo 2",
+              "cantidad": 2
+            }
+          ]
+        },
+        "opciones": [
+          "1",
+          "2",
+          "3"
+        ],
+        "id": "fr24_mitad-v3"
+      },
+      {
+        "enunciado": "Repartimos 10 fichas en dos grupos iguales. ¿Cuántas hay en una mitad?",
+        "respuesta_correcta": "5",
+        "paso_resuelto": "Quedan 5 fichas en cada grupo. Una mitad tiene 5.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Grupo 1",
+              "cantidad": 5
+            },
+            {
+              "label": "Grupo 2",
+              "cantidad": 5
+            }
+          ]
+        },
+        "opciones": [
+          "5",
+          "6",
+          "4"
+        ],
+        "id": "fr24_mitad-v4"
+      },
+      {
+        "enunciado": "Repartimos 12 fichas en dos grupos iguales. ¿Cuántas hay en una mitad?",
+        "respuesta_correcta": "6",
+        "paso_resuelto": "Quedan 6 fichas en cada grupo. Una mitad tiene 6.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Grupo 1",
+              "cantidad": 6
+            },
+            {
+              "label": "Grupo 2",
+              "cantidad": 6
+            }
+          ]
+        },
+        "opciones": [
+          "7",
+          "5",
+          "6"
+        ],
+        "id": "fr24_mitad-v5"
+      },
+      {
+        "enunciado": "Repartimos 14 fichas en dos grupos iguales. ¿Cuántas hay en una mitad?",
+        "respuesta_correcta": "7",
+        "paso_resuelto": "Quedan 7 fichas en cada grupo. Una mitad tiene 7.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Grupo 1",
+              "cantidad": 7
+            },
+            {
+              "label": "Grupo 2",
+              "cantidad": 7
+            }
+          ]
+        },
+        "opciones": [
+          "6",
+          "7",
+          "8"
+        ],
+        "id": "fr24_mitad-v6"
+      }
+    ]
+  },
+  {
+    "id": "fr24_equivalencia",
+    "tema": "fracciones_concepto",
+    "antes_de": "frac_con_4_equivalencias_visuales",
+    "titulo": "Cortar otra vez sin agregar",
+    "explicacion": "Las dos barras representan el mismo entero. Cortamos cada parte en dos, sin agregar ni quitar nada. La zona rayada ocupa lo mismo, aunque ahora tenga más partes.",
+    "ejemplo": "Había 1 de 2 partes. Ahora hay 2 de 4: 1/2 = 2/4. La cantidad no cambió.",
+    "pasos": [
+      "Antes había una mitad rayada.",
+      "Cada mitad se corta en dos. La misma zona ocupa dos cuartos."
+    ],
+    "pista": "Compará hasta dónde llega la zona rayada. Contá las partes con los nuevos cortes.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "El mismo entero en cada barra",
+      "barras": [
+        {
+          "label": "Antes",
+          "partes": [
+            "p",
+            "_"
+          ]
+        },
+        {
+          "label": "Más cortes",
+          "partes": [
+            "p",
+            "p",
+            "_",
+            "_"
+          ]
+        }
+      ]
+    },
+    "habilidad_concreta": "cuartos",
+    "actividades": [
+      {
+        "enunciado": "La barra tenía 1/2 rayado. Cortamos cada parte en dos. ¿Qué fracción queda rayada ahora?",
+        "respuesta_correcta": "2/4",
+        "paso_resuelto": "Había 1 de 2 partes. Ahora hay 2 de 4: 1/2 = 2/4. La cantidad no cambió.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Antes",
+              "partes": [
+                "p",
+                "_"
+              ]
+            },
+            {
+              "label": "Más cortes",
+              "partes": [
+                "p",
+                "p",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "2/4",
+          "3/4",
+          "1/4"
+        ],
+        "id": "fr24_equivalencia-v1"
+      },
+      {
+        "enunciado": "La barra tenía 1/3 rayado. Cortamos cada parte en dos. ¿Qué fracción queda rayada ahora?",
+        "respuesta_correcta": "2/6",
+        "paso_resuelto": "Había 1 de 3 partes. Ahora hay 2 de 6: 1/3 = 2/6. La cantidad no cambió.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Antes",
+              "partes": [
+                "p",
+                "_",
+                "_"
+              ]
+            },
+            {
+              "label": "Más cortes",
+              "partes": [
+                "p",
+                "p",
+                "_",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "3/6",
+          "1/6",
+          "2/6"
+        ],
+        "id": "fr24_equivalencia-v2"
+      },
+      {
+        "enunciado": "La barra tenía 2/3 rayado. Cortamos cada parte en dos. ¿Qué fracción queda rayada ahora?",
+        "respuesta_correcta": "4/6",
+        "paso_resuelto": "Había 2 de 3 partes. Ahora hay 4 de 6: 2/3 = 4/6. La cantidad no cambió.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Antes",
+              "partes": [
+                "p",
+                "p",
+                "_"
+              ]
+            },
+            {
+              "label": "Más cortes",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "3/6",
+          "4/6",
+          "5/6"
+        ],
+        "id": "fr24_equivalencia-v3"
+      },
+      {
+        "enunciado": "La barra tenía 1/4 rayado. Cortamos cada parte en dos. ¿Qué fracción queda rayada ahora?",
+        "respuesta_correcta": "2/8",
+        "paso_resuelto": "Había 1 de 4 partes. Ahora hay 2 de 8: 1/4 = 2/8. La cantidad no cambió.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Antes",
+              "partes": [
+                "p",
+                "_",
+                "_",
+                "_"
+              ]
+            },
+            {
+              "label": "Más cortes",
+              "partes": [
+                "p",
+                "p",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "2/8",
+          "3/8",
+          "1/8"
+        ],
+        "id": "fr24_equivalencia-v4"
+      },
+      {
+        "enunciado": "La barra tenía 3/4 rayado. Cortamos cada parte en dos. ¿Qué fracción queda rayada ahora?",
+        "respuesta_correcta": "6/8",
+        "paso_resuelto": "Había 3 de 4 partes. Ahora hay 6 de 8: 3/4 = 6/8. La cantidad no cambió.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Antes",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "_"
+              ]
+            },
+            {
+              "label": "Más cortes",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p",
+                "p",
+                "p",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "7/8",
+          "5/8",
+          "6/8"
+        ],
+        "id": "fr24_equivalencia-v5"
+      },
+      {
+        "enunciado": "La barra tenía 2/5 rayado. Cortamos cada parte en dos. ¿Qué fracción queda rayada ahora?",
+        "respuesta_correcta": "4/10",
+        "paso_resuelto": "Había 2 de 5 partes. Ahora hay 4 de 10: 2/5 = 4/10. La cantidad no cambió.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Antes",
+              "partes": [
+                "p",
+                "p",
+                "_",
+                "_",
+                "_"
+              ]
+            },
+            {
+              "label": "Más cortes",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "3/10",
+          "4/10",
+          "5/10"
+        ],
+        "id": "fr24_equivalencia-v6"
+      }
+    ]
+  },
+  {
+    "id": "fr24_reagrupar",
+    "tema": "fracciones_concepto",
+    "antes_de": "prof_frac_simplificar",
+    "titulo": "Juntar partes sin cambiar la cantidad",
+    "explicacion": "Podemos juntar de a dos las partes pequeñas. Cambia la forma de contar, pero la zona rayada sigue ocupando lo mismo.",
+    "ejemplo": "2 partes rayadas forman 1 grupos de dos. Las 4 partes forman 2 grupos. Queda 1/2.",
+    "pasos": [
+      "Dos cuartos rayados se juntan en una mitad.",
+      "El entero pasa de cuatro partes a dos: 2/4 = 1/2."
+    ],
+    "pista": "Mirá los nuevos grupos de dos partes. Contá cuántos quedan rayados.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "El mismo entero en cada barra",
+      "barras": [
+        {
+          "label": "Antes",
+          "partes": [
+            "p",
+            "p",
+            "_",
+            "_"
+          ]
+        },
+        {
+          "label": "Agrupamos",
+          "partes": [
+            "p",
+            "_"
+          ]
+        }
+      ]
+    },
+    "habilidad_concreta": "cuartos",
+    "actividades": [
+      {
+        "enunciado": "Juntamos de a dos las partes de 2/4. ¿Qué fracción muestra la barra de abajo?",
+        "respuesta_correcta": "1/2",
+        "paso_resuelto": "2 partes rayadas forman 1 grupos de dos. Las 4 partes forman 2 grupos. Queda 1/2.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Antes",
+              "partes": [
+                "p",
+                "p",
+                "_",
+                "_"
+              ]
+            },
+            {
+              "label": "Agrupamos",
+              "partes": [
+                "p",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "1/2",
+          "2/2",
+          "0/2"
+        ],
+        "id": "fr24_reagrupar-v1"
+      },
+      {
+        "enunciado": "Juntamos de a dos las partes de 2/6. ¿Qué fracción muestra la barra de abajo?",
+        "respuesta_correcta": "1/3",
+        "paso_resuelto": "2 partes rayadas forman 1 grupos de dos. Las 6 partes forman 3 grupos. Queda 1/3.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Antes",
+              "partes": [
+                "p",
+                "p",
+                "_",
+                "_",
+                "_",
+                "_"
+              ]
+            },
+            {
+              "label": "Agrupamos",
+              "partes": [
+                "p",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "2/3",
+          "0/3",
+          "1/3"
+        ],
+        "id": "fr24_reagrupar-v2"
+      },
+      {
+        "enunciado": "Juntamos de a dos las partes de 4/6. ¿Qué fracción muestra la barra de abajo?",
+        "respuesta_correcta": "2/3",
+        "paso_resuelto": "4 partes rayadas forman 2 grupos de dos. Las 6 partes forman 3 grupos. Queda 2/3.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Antes",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p",
+                "_",
+                "_"
+              ]
+            },
+            {
+              "label": "Agrupamos",
+              "partes": [
+                "p",
+                "p",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "1/3",
+          "2/3",
+          "3/3"
+        ],
+        "id": "fr24_reagrupar-v3"
+      },
+      {
+        "enunciado": "Juntamos de a dos las partes de 2/8. ¿Qué fracción muestra la barra de abajo?",
+        "respuesta_correcta": "1/4",
+        "paso_resuelto": "2 partes rayadas forman 1 grupos de dos. Las 8 partes forman 4 grupos. Queda 1/4.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Antes",
+              "partes": [
+                "p",
+                "p",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_"
+              ]
+            },
+            {
+              "label": "Agrupamos",
+              "partes": [
+                "p",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "1/4",
+          "2/4",
+          "0/4"
+        ],
+        "id": "fr24_reagrupar-v4"
+      },
+      {
+        "enunciado": "Juntamos de a dos las partes de 6/8. ¿Qué fracción muestra la barra de abajo?",
+        "respuesta_correcta": "3/4",
+        "paso_resuelto": "6 partes rayadas forman 3 grupos de dos. Las 8 partes forman 4 grupos. Queda 3/4.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Antes",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p",
+                "p",
+                "p",
+                "_",
+                "_"
+              ]
+            },
+            {
+              "label": "Agrupamos",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "4/4",
+          "2/4",
+          "3/4"
+        ],
+        "id": "fr24_reagrupar-v5"
+      },
+      {
+        "enunciado": "Juntamos de a dos las partes de 4/10. ¿Qué fracción muestra la barra de abajo?",
+        "respuesta_correcta": "2/5",
+        "paso_resuelto": "4 partes rayadas forman 2 grupos de dos. Las 10 partes forman 5 grupos. Queda 2/5.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Antes",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_"
+              ]
+            },
+            {
+              "label": "Agrupamos",
+              "partes": [
+                "p",
+                "p",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "1/5",
+          "2/5",
+          "3/5"
+        ],
+        "id": "fr24_reagrupar-v6"
+      }
+    ]
+  },
+  {
+    "id": "fr24_enteros",
+    "tema": "fracciones_concepto",
+    "antes_de": "prof_frac_clasificar",
+    "titulo": "Juntar partes para formar enteros",
+    "explicacion": "Cada barra completa es un entero. Si cada entero tiene cuatro cuartos, ocho cuartos llenan dos barras. Contamos grupos de cuatro, no multiplicamos ocho por cuatro.",
+    "ejemplo": "Formamos 2 grupos de 4 partes. Cada grupo es un entero: 8/4 = 2.",
+    "pasos": [
+      "Cuatro cuartos llenan una barra.",
+      "Otros cuatro cuartos llenan otra: ocho cuartos son dos enteros."
+    ],
+    "pista": "Contá cuántas barras completas se llenan. Cada barra representa un entero.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "Cada barra completa es un entero",
+      "barras": [
+        {
+          "label": "Entero 1",
+          "partes": [
+            "p",
+            "p",
+            "p",
+            "p"
+          ]
+        },
+        {
+          "label": "Entero 2",
+          "partes": [
+            "p",
+            "p",
+            "p",
+            "p"
+          ]
+        }
+      ]
+    },
+    "habilidad_concreta": "grupos",
+    "actividades": [
+      {
+        "enunciado": "Cada entero tiene 4 partes iguales. Tenemos 8/4. ¿Cuántos enteros completos se forman?",
+        "respuesta_correcta": "2",
+        "paso_resuelto": "Formamos 2 grupos de 4 partes. Cada grupo es un entero: 8/4 = 2.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "Cada barra completa es un entero",
+          "barras": [
+            {
+              "label": "Entero 1",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p"
+              ]
+            },
+            {
+              "label": "Entero 2",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "2",
+          "3",
+          "1"
+        ],
+        "id": "fr24_enteros-v1"
+      },
+      {
+        "enunciado": "Cada entero tiene 3 partes iguales. Tenemos 6/3. ¿Cuántos enteros completos se forman?",
+        "respuesta_correcta": "2",
+        "paso_resuelto": "Formamos 2 grupos de 3 partes. Cada grupo es un entero: 6/3 = 2.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "Cada barra completa es un entero",
+          "barras": [
+            {
+              "label": "Entero 1",
+              "partes": [
+                "p",
+                "p",
+                "p"
+              ]
+            },
+            {
+              "label": "Entero 2",
+              "partes": [
+                "p",
+                "p",
+                "p"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "3",
+          "1",
+          "2"
+        ],
+        "id": "fr24_enteros-v2"
+      },
+      {
+        "enunciado": "Cada entero tiene 2 partes iguales. Tenemos 4/2. ¿Cuántos enteros completos se forman?",
+        "respuesta_correcta": "2",
+        "paso_resuelto": "Formamos 2 grupos de 2 partes. Cada grupo es un entero: 4/2 = 2.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "Cada barra completa es un entero",
+          "barras": [
+            {
+              "label": "Entero 1",
+              "partes": [
+                "p",
+                "p"
+              ]
+            },
+            {
+              "label": "Entero 2",
+              "partes": [
+                "p",
+                "p"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "1",
+          "2",
+          "3"
+        ],
+        "id": "fr24_enteros-v3"
+      },
+      {
+        "enunciado": "Cada entero tiene 3 partes iguales. Tenemos 9/3. ¿Cuántos enteros completos se forman?",
+        "respuesta_correcta": "3",
+        "paso_resuelto": "Formamos 3 grupos de 3 partes. Cada grupo es un entero: 9/3 = 3.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "Cada barra completa es un entero",
+          "barras": [
+            {
+              "label": "Entero 1",
+              "partes": [
+                "p",
+                "p",
+                "p"
+              ]
+            },
+            {
+              "label": "Entero 2",
+              "partes": [
+                "p",
+                "p",
+                "p"
+              ]
+            },
+            {
+              "label": "Entero 3",
+              "partes": [
+                "p",
+                "p",
+                "p"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "3",
+          "4",
+          "2"
+        ],
+        "id": "fr24_enteros-v4"
+      },
+      {
+        "enunciado": "Cada entero tiene 4 partes iguales. Tenemos 12/4. ¿Cuántos enteros completos se forman?",
+        "respuesta_correcta": "3",
+        "paso_resuelto": "Formamos 3 grupos de 4 partes. Cada grupo es un entero: 12/4 = 3.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "Cada barra completa es un entero",
+          "barras": [
+            {
+              "label": "Entero 1",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p"
+              ]
+            },
+            {
+              "label": "Entero 2",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p"
+              ]
+            },
+            {
+              "label": "Entero 3",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "4",
+          "2",
+          "3"
+        ],
+        "id": "fr24_enteros-v5"
+      },
+      {
+        "enunciado": "Cada entero tiene 2 partes iguales. Tenemos 6/2. ¿Cuántos enteros completos se forman?",
+        "respuesta_correcta": "3",
+        "paso_resuelto": "Formamos 3 grupos de 2 partes. Cada grupo es un entero: 6/2 = 3.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "Cada barra completa es un entero",
+          "barras": [
+            {
+              "label": "Entero 1",
+              "partes": [
+                "p",
+                "p"
+              ]
+            },
+            {
+              "label": "Entero 2",
+              "partes": [
+                "p",
+                "p"
+              ]
+            },
+            {
+              "label": "Entero 3",
+              "partes": [
+                "p",
+                "p"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "2",
+          "3",
+          "4"
+        ],
+        "id": "fr24_enteros-v6"
+      }
+    ]
+  },
+  {
+    "id": "fr24_sumar",
+    "tema": "fracciones_operaciones",
+    "antes_de": "frac_op_1_igual_denominador",
+    "titulo": "Juntar partes del mismo entero",
+    "explicacion": "Juntamos partes que tienen el mismo tamaño y pertenecen al mismo entero. Contamos las rayadas. No cambia la cantidad de partes en que dividimos el entero.",
+    "ejemplo": "Juntamos 1 + 1 = 2 partes. El entero sigue dividido en 4: queda 2/4.",
+    "pasos": [
+      "Juntamos un cuarto y otro cuarto: dos partes.",
+      "El entero sigue teniendo cuatro partes: quedan 2/4."
+    ],
+    "pista": "Contá todas las partes rayadas. Abajo sigue el número de partes del entero.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "El mismo entero en cada barra",
+      "barras": [
+        {
+          "label": "Juntamos",
+          "partes": [
+            "p",
+            "s",
+            "_",
+            "_"
+          ]
+        }
+      ]
+    },
+    "habilidad_concreta": "cuartos",
+    "actividades": [
+      {
+        "enunciado": "Del mismo entero juntamos 1/4 y 1/4. ¿Qué fracción queda rayada?",
+        "respuesta_correcta": "2/4",
+        "paso_resuelto": "Juntamos 1 + 1 = 2 partes. El entero sigue dividido en 4: queda 2/4.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Juntamos",
+              "partes": [
+                "p",
+                "s",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "2/4",
+          "3/4",
+          "1/4"
+        ],
+        "id": "fr24_sumar-v1"
+      },
+      {
+        "enunciado": "Del mismo entero juntamos 1/5 y 2/5. ¿Qué fracción queda rayada?",
+        "respuesta_correcta": "3/5",
+        "paso_resuelto": "Juntamos 1 + 2 = 3 partes. El entero sigue dividido en 5: queda 3/5.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Juntamos",
+              "partes": [
+                "p",
+                "s",
+                "s",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "4/5",
+          "2/5",
+          "3/5"
+        ],
+        "id": "fr24_sumar-v2"
+      },
+      {
+        "enunciado": "Del mismo entero juntamos 2/6 y 1/6. ¿Qué fracción queda rayada?",
+        "respuesta_correcta": "3/6",
+        "paso_resuelto": "Juntamos 2 + 1 = 3 partes. El entero sigue dividido en 6: queda 3/6.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Juntamos",
+              "partes": [
+                "p",
+                "p",
+                "s",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "2/6",
+          "3/6",
+          "4/6"
+        ],
+        "id": "fr24_sumar-v3"
+      },
+      {
+        "enunciado": "Del mismo entero juntamos 2/6 y 2/6. ¿Qué fracción queda rayada?",
+        "respuesta_correcta": "4/6",
+        "paso_resuelto": "Juntamos 2 + 2 = 4 partes. El entero sigue dividido en 6: queda 4/6.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Juntamos",
+              "partes": [
+                "p",
+                "p",
+                "s",
+                "s",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "4/6",
+          "5/6",
+          "3/6"
+        ],
+        "id": "fr24_sumar-v4"
+      },
+      {
+        "enunciado": "Del mismo entero juntamos 1/8 y 3/8. ¿Qué fracción queda rayada?",
+        "respuesta_correcta": "4/8",
+        "paso_resuelto": "Juntamos 1 + 3 = 4 partes. El entero sigue dividido en 8: queda 4/8.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Juntamos",
+              "partes": [
+                "p",
+                "s",
+                "s",
+                "s",
+                "_",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "5/8",
+          "3/8",
+          "4/8"
+        ],
+        "id": "fr24_sumar-v5"
+      },
+      {
+        "enunciado": "Del mismo entero juntamos 2/8 y 3/8. ¿Qué fracción queda rayada?",
+        "respuesta_correcta": "5/8",
+        "paso_resuelto": "Juntamos 2 + 3 = 5 partes. El entero sigue dividido en 8: queda 5/8.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Juntamos",
+              "partes": [
+                "p",
+                "p",
+                "s",
+                "s",
+                "s",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "4/8",
+          "5/8",
+          "6/8"
+        ],
+        "id": "fr24_sumar-v6"
+      }
+    ]
+  },
+  {
+    "id": "fr24_restar",
+    "tema": "fracciones_operaciones",
+    "antes_de": "frac_op_1_igual_denominador",
+    "titulo": "Quitar partes del mismo tamaño",
+    "explicacion": "Las partes tachadas se quitaron. Contamos las rayadas que siguen sin tachar. El entero de referencia mantiene el mismo tamaño y los mismos cortes.",
+    "ejemplo": "De 3 partes quitamos 1: quedan 2. El entero tiene 4 partes, así que queda 2/4.",
+    "pasos": [
+      "Había tres cuartos y tachamos uno.",
+      "Quedan dos partes de cuatro: 2/4."
+    ],
+    "pista": "No cuentes las partes tachadas. Conservá abajo el número de partes del entero.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "El mismo entero en cada barra",
+      "barras": [
+        {
+          "label": "Quitamos",
+          "partes": [
+            "p",
+            "p",
+            "q",
+            "_"
+          ]
+        }
+      ]
+    },
+    "habilidad_concreta": "cuartos",
+    "actividades": [
+      {
+        "enunciado": "Había 3/4. Quitamos 1/4, que está tachado. ¿Qué fracción queda?",
+        "respuesta_correcta": "2/4",
+        "paso_resuelto": "De 3 partes quitamos 1: quedan 2. El entero tiene 4 partes, así que queda 2/4.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Quitamos",
+              "partes": [
+                "p",
+                "p",
+                "q",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "2/4",
+          "3/4",
+          "1/4"
+        ],
+        "id": "fr24_restar-v1"
+      },
+      {
+        "enunciado": "Había 4/5. Quitamos 1/5, que está tachado. ¿Qué fracción queda?",
+        "respuesta_correcta": "3/5",
+        "paso_resuelto": "De 4 partes quitamos 1: quedan 3. El entero tiene 5 partes, así que queda 3/5.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Quitamos",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "q",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "4/5",
+          "2/5",
+          "3/5"
+        ],
+        "id": "fr24_restar-v2"
+      },
+      {
+        "enunciado": "Había 4/6. Quitamos 2/6, que está tachado. ¿Qué fracción queda?",
+        "respuesta_correcta": "2/6",
+        "paso_resuelto": "De 4 partes quitamos 2: quedan 2. El entero tiene 6 partes, así que queda 2/6.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Quitamos",
+              "partes": [
+                "p",
+                "p",
+                "q",
+                "q",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "1/6",
+          "2/6",
+          "3/6"
+        ],
+        "id": "fr24_restar-v3"
+      },
+      {
+        "enunciado": "Había 5/6. Quitamos 2/6, que está tachado. ¿Qué fracción queda?",
+        "respuesta_correcta": "3/6",
+        "paso_resuelto": "De 5 partes quitamos 2: quedan 3. El entero tiene 6 partes, así que queda 3/6.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Quitamos",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "q",
+                "q",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "3/6",
+          "4/6",
+          "2/6"
+        ],
+        "id": "fr24_restar-v4"
+      },
+      {
+        "enunciado": "Había 6/8. Quitamos 3/8, que está tachado. ¿Qué fracción queda?",
+        "respuesta_correcta": "3/8",
+        "paso_resuelto": "De 6 partes quitamos 3: quedan 3. El entero tiene 8 partes, así que queda 3/8.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Quitamos",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "q",
+                "q",
+                "q",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "4/8",
+          "2/8",
+          "3/8"
+        ],
+        "id": "fr24_restar-v5"
+      },
+      {
+        "enunciado": "Había 7/8. Quitamos 2/8, que está tachado. ¿Qué fracción queda?",
+        "respuesta_correcta": "5/8",
+        "paso_resuelto": "De 7 partes quitamos 2: quedan 5. El entero tiene 8 partes, así que queda 5/8.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Quitamos",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p",
+                "p",
+                "q",
+                "q",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "4/8",
+          "5/8",
+          "6/8"
+        ],
+        "id": "fr24_restar-v6"
+      }
+    ]
+  },
+  {
+    "id": "fr24_comunes",
+    "tema": "fracciones_operaciones",
+    "antes_de": "prof_op_preparar",
+    "titulo": "Cambiar los cortes para poder juntar",
+    "explicacion": "Una mitad y un cuarto tienen tamaños distintos. Podemos cortar la mitad en dos cuartos. Así contamos partes del mismo tamaño sin cambiar la cantidad.",
+    "ejemplo": "Cada parte anterior se divide en 2. Las 1 partes ocupan 2 de las 4: 2/4.",
+    "pasos": [
+      "Una mitad ocupa dos de los cuatro cuartos.",
+      "Escribimos 1/2 como 2/4. La cantidad sigue siendo la misma."
+    ],
+    "pista": "La zona rayada no cambia. Contá cuántas partes nuevas ocupa.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "El mismo entero en cada barra",
+      "barras": [
+        {
+          "label": "Antes",
+          "partes": [
+            "p",
+            "_"
+          ]
+        },
+        {
+          "label": "Misma zona",
+          "partes": [
+            "p",
+            "p",
+            "_",
+            "_"
+          ]
+        }
+      ]
+    },
+    "habilidad_concreta": "cuartos",
+    "actividades": [
+      {
+        "enunciado": "Ahora usamos partes de tamaño 1/4. ¿Cómo escribimos 1/2 con esos cortes?",
+        "respuesta_correcta": "2/4",
+        "paso_resuelto": "Cada parte anterior se divide en 2. Las 1 partes ocupan 2 de las 4: 2/4.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Antes",
+              "partes": [
+                "p",
+                "_"
+              ]
+            },
+            {
+              "label": "Misma zona",
+              "partes": [
+                "p",
+                "p",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "2/4",
+          "3/4",
+          "1/4"
+        ],
+        "id": "fr24_comunes-v1"
+      },
+      {
+        "enunciado": "Ahora usamos partes de tamaño 1/6. ¿Cómo escribimos 1/3 con esos cortes?",
+        "respuesta_correcta": "2/6",
+        "paso_resuelto": "Cada parte anterior se divide en 2. Las 1 partes ocupan 2 de las 6: 2/6.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Antes",
+              "partes": [
+                "p",
+                "_",
+                "_"
+              ]
+            },
+            {
+              "label": "Misma zona",
+              "partes": [
+                "p",
+                "p",
+                "_",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "3/6",
+          "1/6",
+          "2/6"
+        ],
+        "id": "fr24_comunes-v2"
+      },
+      {
+        "enunciado": "Ahora usamos partes de tamaño 1/6. ¿Cómo escribimos 1/2 con esos cortes?",
+        "respuesta_correcta": "3/6",
+        "paso_resuelto": "Cada parte anterior se divide en 3. Las 1 partes ocupan 3 de las 6: 3/6.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Antes",
+              "partes": [
+                "p",
+                "_"
+              ]
+            },
+            {
+              "label": "Misma zona",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "2/6",
+          "3/6",
+          "4/6"
+        ],
+        "id": "fr24_comunes-v3"
+      },
+      {
+        "enunciado": "Ahora usamos partes de tamaño 1/8. ¿Cómo escribimos 3/4 con esos cortes?",
+        "respuesta_correcta": "6/8",
+        "paso_resuelto": "Cada parte anterior se divide en 2. Las 3 partes ocupan 6 de las 8: 6/8.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Antes",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "_"
+              ]
+            },
+            {
+              "label": "Misma zona",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p",
+                "p",
+                "p",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "6/8",
+          "7/8",
+          "5/8"
+        ],
+        "id": "fr24_comunes-v4"
+      },
+      {
+        "enunciado": "Ahora usamos partes de tamaño 1/12. ¿Cómo escribimos 2/3 con esos cortes?",
+        "respuesta_correcta": "8/12",
+        "paso_resuelto": "Cada parte anterior se divide en 4. Las 2 partes ocupan 8 de las 12: 8/12.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Antes",
+              "partes": [
+                "p",
+                "p",
+                "_"
+              ]
+            },
+            {
+              "label": "Misma zona",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p",
+                "p",
+                "p",
+                "p",
+                "p",
+                "_",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "9/12",
+          "7/12",
+          "8/12"
+        ],
+        "id": "fr24_comunes-v5"
+      },
+      {
+        "enunciado": "Ahora usamos partes de tamaño 1/12. ¿Cómo escribimos 1/4 con esos cortes?",
+        "respuesta_correcta": "3/12",
+        "paso_resuelto": "Cada parte anterior se divide en 3. Las 1 partes ocupan 3 de las 12: 3/12.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Antes",
+              "partes": [
+                "p",
+                "_",
+                "_",
+                "_"
+              ]
+            },
+            {
+              "label": "Misma zona",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "2/12",
+          "3/12",
+          "4/12"
+        ],
+        "id": "fr24_comunes-v6"
+      }
+    ]
+  },
+  {
+    "id": "fr24_sumadistinta",
+    "tema": "fracciones_operaciones",
+    "antes_de": "prof_op_preparar",
+    "titulo": "Primero igualar, después juntar",
+    "explicacion": "Primero hacemos cortes que sirvan para las dos fracciones. Después juntamos las partes. Las barras representan el mismo entero en todos los pasos.",
+    "ejemplo": "1/2 ocupa 2/4. Juntamos 2 partes y una más: 3/4.",
+    "pasos": [
+      "Una mitad se puede contar como dos cuartos.",
+      "Juntamos esos dos cuartos con otro: quedan tres cuartos."
+    ],
+    "pista": "Usá los cortes de la barra de abajo. Contá juntas sus partes rayadas.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "El mismo entero en cada barra",
+      "barras": [
+        {
+          "label": "Primera parte",
+          "partes": [
+            "p",
+            "_"
+          ]
+        },
+        {
+          "label": "Juntamos",
+          "partes": [
+            "p",
+            "p",
+            "s",
+            "_"
+          ]
+        }
+      ]
+    },
+    "habilidad_concreta": "cuartos",
+    "actividades": [
+      {
+        "enunciado": "Del mismo entero sumamos 1/2 y 1/4. El dibujo ya muestra partes iguales. ¿Qué fracción forman juntas?",
+        "respuesta_correcta": "3/4",
+        "paso_resuelto": "1/2 ocupa 2/4. Juntamos 2 partes y una más: 3/4.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Primera parte",
+              "partes": [
+                "p",
+                "_"
+              ]
+            },
+            {
+              "label": "Juntamos",
+              "partes": [
+                "p",
+                "p",
+                "s",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "3/4",
+          "4/4",
+          "2/4"
+        ],
+        "id": "fr24_sumadistinta-v1"
+      },
+      {
+        "enunciado": "Del mismo entero sumamos 1/3 y 1/6. El dibujo ya muestra partes iguales. ¿Qué fracción forman juntas?",
+        "respuesta_correcta": "3/6",
+        "paso_resuelto": "1/3 ocupa 2/6. Juntamos 2 partes y una más: 3/6.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Primera parte",
+              "partes": [
+                "p",
+                "_",
+                "_"
+              ]
+            },
+            {
+              "label": "Juntamos",
+              "partes": [
+                "p",
+                "p",
+                "s",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "4/6",
+          "2/6",
+          "3/6"
+        ],
+        "id": "fr24_sumadistinta-v2"
+      },
+      {
+        "enunciado": "Del mismo entero sumamos 2/3 y 1/6. El dibujo ya muestra partes iguales. ¿Qué fracción forman juntas?",
+        "respuesta_correcta": "5/6",
+        "paso_resuelto": "2/3 ocupa 4/6. Juntamos 4 partes y una más: 5/6.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Primera parte",
+              "partes": [
+                "p",
+                "p",
+                "_"
+              ]
+            },
+            {
+              "label": "Juntamos",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p",
+                "s",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "4/6",
+          "5/6",
+          "6/6"
+        ],
+        "id": "fr24_sumadistinta-v3"
+      },
+      {
+        "enunciado": "Del mismo entero sumamos 1/4 y 1/8. El dibujo ya muestra partes iguales. ¿Qué fracción forman juntas?",
+        "respuesta_correcta": "3/8",
+        "paso_resuelto": "1/4 ocupa 2/8. Juntamos 2 partes y una más: 3/8.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Primera parte",
+              "partes": [
+                "p",
+                "_",
+                "_",
+                "_"
+              ]
+            },
+            {
+              "label": "Juntamos",
+              "partes": [
+                "p",
+                "p",
+                "s",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "3/8",
+          "4/8",
+          "2/8"
+        ],
+        "id": "fr24_sumadistinta-v4"
+      },
+      {
+        "enunciado": "Del mismo entero sumamos 1/2 y 1/6. El dibujo ya muestra partes iguales. ¿Qué fracción forman juntas?",
+        "respuesta_correcta": "4/6",
+        "paso_resuelto": "1/2 ocupa 3/6. Juntamos 3 partes y una más: 4/6.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Primera parte",
+              "partes": [
+                "p",
+                "_"
+              ]
+            },
+            {
+              "label": "Juntamos",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "s",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "5/6",
+          "3/6",
+          "4/6"
+        ],
+        "id": "fr24_sumadistinta-v5"
+      },
+      {
+        "enunciado": "Del mismo entero sumamos 1/3 y 1/9. El dibujo ya muestra partes iguales. ¿Qué fracción forman juntas?",
+        "respuesta_correcta": "4/9",
+        "paso_resuelto": "1/3 ocupa 3/9. Juntamos 3 partes y una más: 4/9.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Primera parte",
+              "partes": [
+                "p",
+                "_",
+                "_"
+              ]
+            },
+            {
+              "label": "Juntamos",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "s",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "3/9",
+          "4/9",
+          "5/9"
+        ],
+        "id": "fr24_sumadistinta-v6"
+      }
+    ]
+  },
+  {
+    "id": "fr24_restadistinta",
+    "tema": "fracciones_operaciones",
+    "antes_de": "prof_op_restar",
+    "titulo": "Igualar los cortes antes de quitar",
+    "explicacion": "Para quitar partes, primero las contamos con el mismo tamaño. Después tachamos las que quitamos. El entero completo sigue siendo nuestra referencia.",
+    "ejemplo": "1/2 ocupa 2/4. Quitamos una parte: quedan 1/4.",
+    "pasos": [
+      "Una mitad son dos cuartos.",
+      "Tachamos un cuarto: queda un cuarto."
+    ],
+    "pista": "En la barra de abajo, contá las rayadas que no están tachadas.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "El mismo entero en cada barra",
+      "barras": [
+        {
+          "label": "Había",
+          "partes": [
+            "p",
+            "_"
+          ]
+        },
+        {
+          "label": "Quitamos",
+          "partes": [
+            "p",
+            "q",
+            "_",
+            "_"
+          ]
+        }
+      ]
+    },
+    "habilidad_concreta": "cuartos",
+    "actividades": [
+      {
+        "enunciado": "Tenemos 1/2 y quitamos 1/4. Usando los cortes del dibujo, ¿qué fracción queda?",
+        "respuesta_correcta": "1/4",
+        "paso_resuelto": "1/2 ocupa 2/4. Quitamos una parte: quedan 1/4.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Había",
+              "partes": [
+                "p",
+                "_"
+              ]
+            },
+            {
+              "label": "Quitamos",
+              "partes": [
+                "p",
+                "q",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "1/4",
+          "2/4",
+          "0/4"
+        ],
+        "id": "fr24_restadistinta-v1"
+      },
+      {
+        "enunciado": "Tenemos 2/3 y quitamos 1/6. Usando los cortes del dibujo, ¿qué fracción queda?",
+        "respuesta_correcta": "3/6",
+        "paso_resuelto": "2/3 ocupa 4/6. Quitamos una parte: quedan 3/6.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Había",
+              "partes": [
+                "p",
+                "p",
+                "_"
+              ]
+            },
+            {
+              "label": "Quitamos",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "q",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "4/6",
+          "2/6",
+          "3/6"
+        ],
+        "id": "fr24_restadistinta-v2"
+      },
+      {
+        "enunciado": "Tenemos 3/4 y quitamos 1/8. Usando los cortes del dibujo, ¿qué fracción queda?",
+        "respuesta_correcta": "5/8",
+        "paso_resuelto": "3/4 ocupa 6/8. Quitamos una parte: quedan 5/8.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Había",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "_"
+              ]
+            },
+            {
+              "label": "Quitamos",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p",
+                "p",
+                "q",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "4/8",
+          "5/8",
+          "6/8"
+        ],
+        "id": "fr24_restadistinta-v3"
+      },
+      {
+        "enunciado": "Tenemos 1/2 y quitamos 1/6. Usando los cortes del dibujo, ¿qué fracción queda?",
+        "respuesta_correcta": "2/6",
+        "paso_resuelto": "1/2 ocupa 3/6. Quitamos una parte: quedan 2/6.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Había",
+              "partes": [
+                "p",
+                "_"
+              ]
+            },
+            {
+              "label": "Quitamos",
+              "partes": [
+                "p",
+                "p",
+                "q",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "2/6",
+          "3/6",
+          "1/6"
+        ],
+        "id": "fr24_restadistinta-v4"
+      },
+      {
+        "enunciado": "Tenemos 2/3 y quitamos 1/9. Usando los cortes del dibujo, ¿qué fracción queda?",
+        "respuesta_correcta": "5/9",
+        "paso_resuelto": "2/3 ocupa 6/9. Quitamos una parte: quedan 5/9.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Había",
+              "partes": [
+                "p",
+                "p",
+                "_"
+              ]
+            },
+            {
+              "label": "Quitamos",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p",
+                "p",
+                "q",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "6/9",
+          "4/9",
+          "5/9"
+        ],
+        "id": "fr24_restadistinta-v5"
+      },
+      {
+        "enunciado": "Tenemos 3/4 y quitamos 1/12. Usando los cortes del dibujo, ¿qué fracción queda?",
+        "respuesta_correcta": "8/12",
+        "paso_resuelto": "3/4 ocupa 9/12. Quitamos una parte: quedan 8/12.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Había",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "_"
+              ]
+            },
+            {
+              "label": "Quitamos",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p",
+                "p",
+                "p",
+                "p",
+                "p",
+                "q",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "7/12",
+          "8/12",
+          "9/12"
+        ],
+        "id": "fr24_restadistinta-v6"
+      }
+    ]
+  },
+  {
+    "id": "fr24_cantidad",
+    "tema": "fracciones_operaciones",
+    "antes_de": "frac_op_3_fraccion_cantidad",
+    "titulo": "Tomar algunos grupos de fichas",
+    "explicacion": "El entero es toda la colección. La repartimos en grupos iguales. Una fracción nos dice cuántos de esos grupos tomamos.",
+    "ejemplo": "Cada grupo tiene 2 fichas. Tomamos 2 grupos: 2 + 2 = 4.",
+    "pasos": [
+      "Las seis fichas se reparten en tres grupos de dos.",
+      "Tomamos dos grupos: 2 + 2 = 4 fichas."
+    ],
+    "pista": "Cada fila es un grupo. Contá las fichas de las filas marcadas.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 3,
+      "columnas": 2,
+      "seleccionadas": 2
+    },
+    "habilidad_concreta": "repartir",
+    "actividades": [
+      {
+        "enunciado": "Repartimos 6 fichas en 3 grupos iguales. Tomamos 2 grupos: 2/3 del total. ¿Cuántas fichas tomamos?",
+        "respuesta_correcta": "4",
+        "paso_resuelto": "Cada grupo tiene 2 fichas. Tomamos 2 grupos: 2 + 2 = 4.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 3,
+          "columnas": 2,
+          "seleccionadas": 2
+        },
+        "opciones": [
+          "4",
+          "5",
+          "3"
+        ],
+        "id": "fr24_cantidad-v1"
+      },
+      {
+        "enunciado": "Repartimos 6 fichas en 2 grupos iguales. Tomamos 1 grupos: 1/2 del total. ¿Cuántas fichas tomamos?",
+        "respuesta_correcta": "3",
+        "paso_resuelto": "Cada grupo tiene 3 fichas. Tomamos 1 grupos: 3 = 3.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 2,
+          "columnas": 3,
+          "seleccionadas": 1
+        },
+        "opciones": [
+          "4",
+          "2",
+          "3"
+        ],
+        "id": "fr24_cantidad-v2"
+      },
+      {
+        "enunciado": "Repartimos 8 fichas en 4 grupos iguales. Tomamos 3 grupos: 3/4 del total. ¿Cuántas fichas tomamos?",
+        "respuesta_correcta": "6",
+        "paso_resuelto": "Cada grupo tiene 2 fichas. Tomamos 3 grupos: 2 + 2 + 2 = 6.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 4,
+          "columnas": 2,
+          "seleccionadas": 3
+        },
+        "opciones": [
+          "5",
+          "6",
+          "7"
+        ],
+        "id": "fr24_cantidad-v3"
+      },
+      {
+        "enunciado": "Repartimos 9 fichas en 3 grupos iguales. Tomamos 2 grupos: 2/3 del total. ¿Cuántas fichas tomamos?",
+        "respuesta_correcta": "6",
+        "paso_resuelto": "Cada grupo tiene 3 fichas. Tomamos 2 grupos: 3 + 3 = 6.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 3,
+          "columnas": 3,
+          "seleccionadas": 2
+        },
+        "opciones": [
+          "6",
+          "7",
+          "5"
+        ],
+        "id": "fr24_cantidad-v4"
+      },
+      {
+        "enunciado": "Repartimos 12 fichas en 4 grupos iguales. Tomamos 2 grupos: 2/4 del total. ¿Cuántas fichas tomamos?",
+        "respuesta_correcta": "6",
+        "paso_resuelto": "Cada grupo tiene 3 fichas. Tomamos 2 grupos: 3 + 3 = 6.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 4,
+          "columnas": 3,
+          "seleccionadas": 2
+        },
+        "opciones": [
+          "7",
+          "5",
+          "6"
+        ],
+        "id": "fr24_cantidad-v5"
+      },
+      {
+        "enunciado": "Repartimos 12 fichas en 4 grupos iguales. Tomamos 3 grupos: 3/4 del total. ¿Cuántas fichas tomamos?",
+        "respuesta_correcta": "9",
+        "paso_resuelto": "Cada grupo tiene 3 fichas. Tomamos 3 grupos: 3 + 3 + 3 = 9.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 4,
+          "columnas": 3,
+          "seleccionadas": 3
+        },
+        "opciones": [
+          "8",
+          "9",
+          "10"
+        ],
+        "id": "fr24_cantidad-v6"
+      }
+    ]
+  },
+  {
+    "id": "fr24_partedeparte",
+    "tema": "fracciones_operaciones",
+    "antes_de": "frac_op_4_multiplicacion",
+    "titulo": "Tomar la mitad de una parte",
+    "explicacion": "Primero marcamos una parte del entero. Después tomamos la mitad de esa zona. Para nombrar el resultado, volvemos a mirar la barra completa del comienzo.",
+    "ejemplo": "Cada una de las 2 partes se corta en dos: hay 4 partes iguales. La mitad de 1/2 ocupa una: 1/4.",
+    "pasos": [
+      "Marcamos una mitad de la barra.",
+      "Tomamos la mitad de esa zona: es una de cuatro partes del entero, 1/4."
+    ],
+    "pista": "Dividí la zona rayada en dos. Tomá una mitad y comparala con el entero completo.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "El mismo entero en cada barra",
+      "barras": [
+        {
+          "label": "Primero",
+          "partes": [
+            "p",
+            "_"
+          ]
+        },
+        {
+          "label": "Tomamos",
+          "partes": [
+            "p",
+            "_",
+            "_",
+            "_"
+          ]
+        }
+      ]
+    },
+    "habilidad_concreta": "cuartos",
+    "actividades": [
+      {
+        "enunciado": "Tomamos la mitad de 1/2 de una barra. ¿Qué fracción del entero original queda rayada abajo?",
+        "respuesta_correcta": "1/4",
+        "paso_resuelto": "Cada una de las 2 partes se corta en dos: hay 4 partes iguales. La mitad de 1/2 ocupa una: 1/4.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Primero",
+              "partes": [
+                "p",
+                "_"
+              ]
+            },
+            {
+              "label": "Tomamos",
+              "partes": [
+                "p",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "1/4",
+          "2/4",
+          "0/4"
+        ],
+        "id": "fr24_partedeparte-v1"
+      },
+      {
+        "enunciado": "Tomamos la mitad de 1/3 de una barra. ¿Qué fracción del entero original queda rayada abajo?",
+        "respuesta_correcta": "1/6",
+        "paso_resuelto": "Cada una de las 3 partes se corta en dos: hay 6 partes iguales. La mitad de 1/3 ocupa una: 1/6.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Primero",
+              "partes": [
+                "p",
+                "_",
+                "_"
+              ]
+            },
+            {
+              "label": "Tomamos",
+              "partes": [
+                "p",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "2/6",
+          "0/6",
+          "1/6"
+        ],
+        "id": "fr24_partedeparte-v2"
+      },
+      {
+        "enunciado": "Tomamos la mitad de 1/4 de una barra. ¿Qué fracción del entero original queda rayada abajo?",
+        "respuesta_correcta": "1/8",
+        "paso_resuelto": "Cada una de las 4 partes se corta en dos: hay 8 partes iguales. La mitad de 1/4 ocupa una: 1/8.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Primero",
+              "partes": [
+                "p",
+                "_",
+                "_",
+                "_"
+              ]
+            },
+            {
+              "label": "Tomamos",
+              "partes": [
+                "p",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "0/8",
+          "1/8",
+          "2/8"
+        ],
+        "id": "fr24_partedeparte-v3"
+      },
+      {
+        "enunciado": "Tomamos la mitad de 1/5 de una barra. ¿Qué fracción del entero original queda rayada abajo?",
+        "respuesta_correcta": "1/10",
+        "paso_resuelto": "Cada una de las 5 partes se corta en dos: hay 10 partes iguales. La mitad de 1/5 ocupa una: 1/10.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Primero",
+              "partes": [
+                "p",
+                "_",
+                "_",
+                "_",
+                "_"
+              ]
+            },
+            {
+              "label": "Tomamos",
+              "partes": [
+                "p",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "1/10",
+          "2/10",
+          "0/10"
+        ],
+        "id": "fr24_partedeparte-v4"
+      },
+      {
+        "enunciado": "Tomamos la mitad de 1/6 de una barra. ¿Qué fracción del entero original queda rayada abajo?",
+        "respuesta_correcta": "1/12",
+        "paso_resuelto": "Cada una de las 6 partes se corta en dos: hay 12 partes iguales. La mitad de 1/6 ocupa una: 1/12.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Primero",
+              "partes": [
+                "p",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_"
+              ]
+            },
+            {
+              "label": "Tomamos",
+              "partes": [
+                "p",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "2/12",
+          "0/12",
+          "1/12"
+        ],
+        "id": "fr24_partedeparte-v5"
+      },
+      {
+        "enunciado": "Tomamos la mitad de 1/8 de una barra. ¿Qué fracción del entero original queda rayada abajo?",
+        "respuesta_correcta": "1/16",
+        "paso_resuelto": "Cada una de las 8 partes se corta en dos: hay 16 partes iguales. La mitad de 1/8 ocupa una: 1/16.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Primero",
+              "partes": [
+                "p",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_"
+              ]
+            },
+            {
+              "label": "Tomamos",
+              "partes": [
+                "p",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "0/16",
+          "1/16",
+          "2/16"
+        ],
+        "id": "fr24_partedeparte-v6"
+      }
+    ]
+  },
+  {
+    "id": "fr24_caben",
+    "tema": "fracciones_operaciones",
+    "antes_de": "prof_op_dividir_medida",
+    "titulo": "Contar cuántas porciones caben",
+    "explicacion": "Dividir también puede preguntar cuántas porciones caben en lo que tenemos. Cada parte rayada es una porción. Primero las contamos en el dibujo.",
+    "ejemplo": "Hay 3 partes rayadas y cada una mide 1/4. Podemos dar 3 porciones: 3/4 ÷ 1/4 = 3.",
+    "pasos": [
+      "Tenemos tres cuartos de una barra.",
+      "Cada cuarto es una porción. Contamos tres porciones."
+    ],
+    "pista": "Cada parte rayada es una porción del tamaño pedido. Contá cuántas hay.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "El mismo entero en cada barra",
+      "barras": [
+        {
+          "label": "Disponible",
+          "partes": [
+            "p",
+            "p",
+            "p",
+            "_"
+          ]
+        }
+      ]
+    },
+    "habilidad_concreta": "grupos",
+    "actividades": [
+      {
+        "enunciado": "Tenemos 3/4 de barra. Cada porción mide 1/4 de barra. ¿Cuántas porciones completas podemos dar?",
+        "respuesta_correcta": "3",
+        "paso_resuelto": "Hay 3 partes rayadas y cada una mide 1/4. Podemos dar 3 porciones: 3/4 ÷ 1/4 = 3.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Disponible",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "3",
+          "4",
+          "2"
+        ],
+        "id": "fr24_caben-v1"
+      },
+      {
+        "enunciado": "Tenemos 2/3 de barra. Cada porción mide 1/3 de barra. ¿Cuántas porciones completas podemos dar?",
+        "respuesta_correcta": "2",
+        "paso_resuelto": "Hay 2 partes rayadas y cada una mide 1/3. Podemos dar 2 porciones: 2/3 ÷ 1/3 = 2.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Disponible",
+              "partes": [
+                "p",
+                "p",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "3",
+          "1",
+          "2"
+        ],
+        "id": "fr24_caben-v2"
+      },
+      {
+        "enunciado": "Tenemos 4/5 de barra. Cada porción mide 1/5 de barra. ¿Cuántas porciones completas podemos dar?",
+        "respuesta_correcta": "4",
+        "paso_resuelto": "Hay 4 partes rayadas y cada una mide 1/5. Podemos dar 4 porciones: 4/5 ÷ 1/5 = 4.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Disponible",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "3",
+          "4",
+          "5"
+        ],
+        "id": "fr24_caben-v3"
+      },
+      {
+        "enunciado": "Tenemos 3/6 de barra. Cada porción mide 1/6 de barra. ¿Cuántas porciones completas podemos dar?",
+        "respuesta_correcta": "3",
+        "paso_resuelto": "Hay 3 partes rayadas y cada una mide 1/6. Podemos dar 3 porciones: 3/6 ÷ 1/6 = 3.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Disponible",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "_",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "3",
+          "4",
+          "2"
+        ],
+        "id": "fr24_caben-v4"
+      },
+      {
+        "enunciado": "Tenemos 5/6 de barra. Cada porción mide 1/6 de barra. ¿Cuántas porciones completas podemos dar?",
+        "respuesta_correcta": "5",
+        "paso_resuelto": "Hay 5 partes rayadas y cada una mide 1/6. Podemos dar 5 porciones: 5/6 ÷ 1/6 = 5.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Disponible",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p",
+                "p",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "6",
+          "4",
+          "5"
+        ],
+        "id": "fr24_caben-v5"
+      },
+      {
+        "enunciado": "Tenemos 6/8 de barra. Cada porción mide 1/8 de barra. ¿Cuántas porciones completas podemos dar?",
+        "respuesta_correcta": "6",
+        "paso_resuelto": "Hay 6 partes rayadas y cada una mide 1/8. Podemos dar 6 porciones: 6/8 ÷ 1/8 = 6.",
+        "visual": {
+          "tipo": "fracciones",
+          "titulo": "El mismo entero en cada barra",
+          "barras": [
+            {
+              "label": "Disponible",
+              "partes": [
+                "p",
+                "p",
+                "p",
+                "p",
+                "p",
+                "p",
+                "_",
+                "_"
+              ]
+            }
+          ]
+        },
+        "opciones": [
+          "5",
+          "6",
+          "7"
+        ],
+        "id": "fr24_caben-v6"
+      }
+    ]
+  },
+  {
+    "id": "fr24_resto",
+    "tema": "fracciones_del_resto",
+    "antes_de": "mat_resto_entero",
+    "titulo": "Separar lo usado de lo que queda",
+    "explicacion": "El resto es lo que queda después de usar una parte. Las fichas usadas van aparte. Contamos las que todavía tenemos.",
+    "ejemplo": "Usamos 2. De las 8 quedan 8 − 2 = 6.",
+    "pasos": [
+      "De ocho fichas usamos dos.",
+      "Las otras seis quedan: ese es el resto."
+    ],
+    "pista": "Mirá el grupo que dice Quedan. No vuelvas a contar las usadas.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Usadas",
+          "cantidad": 2
+        },
+        {
+          "label": "Quedan",
+          "cantidad": 6
+        }
+      ]
+    },
+    "habilidad_concreta": "quitar",
+    "actividades": [
+      {
+        "enunciado": "Teníamos 8 fichas y usamos 1/4, que son 2. ¿Cuántas fichas quedan?",
+        "respuesta_correcta": "6",
+        "paso_resuelto": "Usamos 2. De las 8 quedan 8 − 2 = 6.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Usadas",
+              "cantidad": 2
+            },
+            {
+              "label": "Quedan",
+              "cantidad": 6
+            }
+          ]
+        },
+        "opciones": [
+          "6",
+          "7",
+          "5"
+        ],
+        "id": "fr24_resto-v1"
+      },
+      {
+        "enunciado": "Teníamos 6 fichas y usamos 1/3, que son 2. ¿Cuántas fichas quedan?",
+        "respuesta_correcta": "4",
+        "paso_resuelto": "Usamos 2. De las 6 quedan 6 − 2 = 4.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Usadas",
+              "cantidad": 2
+            },
+            {
+              "label": "Quedan",
+              "cantidad": 4
+            }
+          ]
+        },
+        "opciones": [
+          "5",
+          "3",
+          "4"
+        ],
+        "id": "fr24_resto-v2"
+      },
+      {
+        "enunciado": "Teníamos 8 fichas y usamos 1/2, que son 4. ¿Cuántas fichas quedan?",
+        "respuesta_correcta": "4",
+        "paso_resuelto": "Usamos 4. De las 8 quedan 8 − 4 = 4.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Usadas",
+              "cantidad": 4
+            },
+            {
+              "label": "Quedan",
+              "cantidad": 4
+            }
+          ]
+        },
+        "opciones": [
+          "3",
+          "4",
+          "5"
+        ],
+        "id": "fr24_resto-v3"
+      },
+      {
+        "enunciado": "Teníamos 12 fichas y usamos 1/3, que son 4. ¿Cuántas fichas quedan?",
+        "respuesta_correcta": "8",
+        "paso_resuelto": "Usamos 4. De las 12 quedan 12 − 4 = 8.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Usadas",
+              "cantidad": 4
+            },
+            {
+              "label": "Quedan",
+              "cantidad": 8
+            }
+          ]
+        },
+        "opciones": [
+          "8",
+          "9",
+          "7"
+        ],
+        "id": "fr24_resto-v4"
+      },
+      {
+        "enunciado": "Teníamos 12 fichas y usamos 1/4, que son 3. ¿Cuántas fichas quedan?",
+        "respuesta_correcta": "9",
+        "paso_resuelto": "Usamos 3. De las 12 quedan 12 − 3 = 9.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Usadas",
+              "cantidad": 3
+            },
+            {
+              "label": "Quedan",
+              "cantidad": 9
+            }
+          ]
+        },
+        "opciones": [
+          "10",
+          "8",
+          "9"
+        ],
+        "id": "fr24_resto-v5"
+      },
+      {
+        "enunciado": "Teníamos 10 fichas y usamos 1/5, que son 2. ¿Cuántas fichas quedan?",
+        "respuesta_correcta": "8",
+        "paso_resuelto": "Usamos 2. De las 10 quedan 10 − 2 = 8.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Usadas",
+              "cantidad": 2
+            },
+            {
+              "label": "Quedan",
+              "cantidad": 8
+            }
+          ]
+        },
+        "opciones": [
+          "7",
+          "8",
+          "9"
+        ],
+        "id": "fr24_resto-v6"
+      }
+    ]
+  },
+  {
+    "id": "fr24_referencia",
+    "tema": "fracciones_del_resto",
+    "antes_de": "mat_resto_nuevo_total",
+    "titulo": "Del resto: cambia la cantidad de referencia",
+    "explicacion": "Si dice «la mitad del resto», miramos solo lo que quedó. Las fichas usadas ya no están disponibles. El total inicial sirve para contar qué pasó antes.",
+    "ejemplo": "Quedan 6 fichas. La mitad del resto se calcula sobre esas 6, no sobre las 8 iniciales.",
+    "pasos": [
+      "Había ocho fichas y usamos dos: quedan seis.",
+      "Para buscar la mitad del resto, repartimos las seis que quedan."
+    ],
+    "pista": "Para la segunda etapa, buscá cuánto quedó después de usar la primera parte.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Ya usadas",
+          "cantidad": 2
+        },
+        {
+          "label": "Quedan",
+          "cantidad": 6
+        }
+      ]
+    },
+    "habilidad_concreta": "repartir",
+    "actividades": [
+      {
+        "enunciado": "Había 8 fichas. Ya usamos 2. Ahora piden la mitad del resto. ¿Qué cantidad debemos repartir en dos?",
+        "respuesta_correcta": "6",
+        "paso_resuelto": "Quedan 6 fichas. La mitad del resto se calcula sobre esas 6, no sobre las 8 iniciales.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Ya usadas",
+              "cantidad": 2
+            },
+            {
+              "label": "Quedan",
+              "cantidad": 6
+            }
+          ]
+        },
+        "opciones": [
+          "6",
+          "7",
+          "5"
+        ],
+        "id": "fr24_referencia-v1"
+      },
+      {
+        "enunciado": "Había 12 fichas. Ya usamos 4. Ahora piden la mitad del resto. ¿Qué cantidad debemos repartir en dos?",
+        "respuesta_correcta": "8",
+        "paso_resuelto": "Quedan 8 fichas. La mitad del resto se calcula sobre esas 8, no sobre las 12 iniciales.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Ya usadas",
+              "cantidad": 4
+            },
+            {
+              "label": "Quedan",
+              "cantidad": 8
+            }
+          ]
+        },
+        "opciones": [
+          "9",
+          "7",
+          "8"
+        ],
+        "id": "fr24_referencia-v2"
+      },
+      {
+        "enunciado": "Había 9 fichas. Ya usamos 3. Ahora piden la mitad del resto. ¿Qué cantidad debemos repartir en dos?",
+        "respuesta_correcta": "6",
+        "paso_resuelto": "Quedan 6 fichas. La mitad del resto se calcula sobre esas 6, no sobre las 9 iniciales.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Ya usadas",
+              "cantidad": 3
+            },
+            {
+              "label": "Quedan",
+              "cantidad": 6
+            }
+          ]
+        },
+        "opciones": [
+          "5",
+          "6",
+          "7"
+        ],
+        "id": "fr24_referencia-v3"
+      },
+      {
+        "enunciado": "Había 10 fichas. Ya usamos 2. Ahora piden la mitad del resto. ¿Qué cantidad debemos repartir en dos?",
+        "respuesta_correcta": "8",
+        "paso_resuelto": "Quedan 8 fichas. La mitad del resto se calcula sobre esas 8, no sobre las 10 iniciales.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Ya usadas",
+              "cantidad": 2
+            },
+            {
+              "label": "Quedan",
+              "cantidad": 8
+            }
+          ]
+        },
+        "opciones": [
+          "8",
+          "9",
+          "7"
+        ],
+        "id": "fr24_referencia-v4"
+      },
+      {
+        "enunciado": "Había 16 fichas. Ya usamos 4. Ahora piden la mitad del resto. ¿Qué cantidad debemos repartir en dos?",
+        "respuesta_correcta": "12",
+        "paso_resuelto": "Quedan 12 fichas. La mitad del resto se calcula sobre esas 12, no sobre las 16 iniciales.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Ya usadas",
+              "cantidad": 4
+            },
+            {
+              "label": "Quedan",
+              "cantidad": 12
+            }
+          ]
+        },
+        "opciones": [
+          "13",
+          "11",
+          "12"
+        ],
+        "id": "fr24_referencia-v5"
+      },
+      {
+        "enunciado": "Había 15 fichas. Ya usamos 5. Ahora piden la mitad del resto. ¿Qué cantidad debemos repartir en dos?",
+        "respuesta_correcta": "10",
+        "paso_resuelto": "Quedan 10 fichas. La mitad del resto se calcula sobre esas 10, no sobre las 15 iniciales.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Ya usadas",
+              "cantidad": 5
+            },
+            {
+              "label": "Quedan",
+              "cantidad": 10
+            }
+          ]
+        },
+        "opciones": [
+          "9",
+          "10",
+          "11"
+        ],
+        "id": "fr24_referencia-v6"
+      }
+    ]
+  },
+  {
+    "id": "fr24_mitaddelresto",
+    "tema": "fracciones_del_resto",
+    "antes_de": "mat_resto_nuevo_total",
+    "titulo": "La mitad de lo que quedó",
+    "explicacion": "Primero separamos lo usado. Después repartimos el resto en dos grupos iguales y tomamos uno. Esa es la mitad del resto.",
+    "ejemplo": "Quedan 6. Las repartimos en dos grupos de 3. En esta segunda etapa tomamos 3 fichas.",
+    "pasos": [
+      "De ocho fichas, dos ya se usaron. Quedan seis.",
+      "Repartimos las seis: tres y tres. La mitad del resto es tres."
+    ],
+    "pista": "Dejá las usadas aparte. Contá solo las fichas de una mitad del resto.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Ya usadas",
+          "cantidad": 2
+        },
+        {
+          "label": "Mitad 1",
+          "cantidad": 3
+        },
+        {
+          "label": "Mitad 2",
+          "cantidad": 3
+        }
+      ]
+    },
+    "habilidad_concreta": "repartir",
+    "actividades": [
+      {
+        "enunciado": "De 8 fichas ya usamos 2. El resto está repartido en dos grupos iguales. ¿Cuántas fichas tiene una mitad del resto?",
+        "respuesta_correcta": "3",
+        "paso_resuelto": "Quedan 6. Las repartimos en dos grupos de 3. En esta segunda etapa tomamos 3 fichas.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Ya usadas",
+              "cantidad": 2
+            },
+            {
+              "label": "Mitad 1",
+              "cantidad": 3
+            },
+            {
+              "label": "Mitad 2",
+              "cantidad": 3
+            }
+          ]
+        },
+        "opciones": [
+          "3",
+          "4",
+          "2"
+        ],
+        "id": "fr24_mitaddelresto-v1"
+      },
+      {
+        "enunciado": "De 12 fichas ya usamos 4. El resto está repartido en dos grupos iguales. ¿Cuántas fichas tiene una mitad del resto?",
+        "respuesta_correcta": "4",
+        "paso_resuelto": "Quedan 8. Las repartimos en dos grupos de 4. En esta segunda etapa tomamos 4 fichas.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Ya usadas",
+              "cantidad": 4
+            },
+            {
+              "label": "Mitad 1",
+              "cantidad": 4
+            },
+            {
+              "label": "Mitad 2",
+              "cantidad": 4
+            }
+          ]
+        },
+        "opciones": [
+          "5",
+          "3",
+          "4"
+        ],
+        "id": "fr24_mitaddelresto-v2"
+      },
+      {
+        "enunciado": "De 9 fichas ya usamos 3. El resto está repartido en dos grupos iguales. ¿Cuántas fichas tiene una mitad del resto?",
+        "respuesta_correcta": "3",
+        "paso_resuelto": "Quedan 6. Las repartimos en dos grupos de 3. En esta segunda etapa tomamos 3 fichas.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Ya usadas",
+              "cantidad": 3
+            },
+            {
+              "label": "Mitad 1",
+              "cantidad": 3
+            },
+            {
+              "label": "Mitad 2",
+              "cantidad": 3
+            }
+          ]
+        },
+        "opciones": [
+          "2",
+          "3",
+          "4"
+        ],
+        "id": "fr24_mitaddelresto-v3"
+      },
+      {
+        "enunciado": "De 10 fichas ya usamos 2. El resto está repartido en dos grupos iguales. ¿Cuántas fichas tiene una mitad del resto?",
+        "respuesta_correcta": "4",
+        "paso_resuelto": "Quedan 8. Las repartimos en dos grupos de 4. En esta segunda etapa tomamos 4 fichas.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Ya usadas",
+              "cantidad": 2
+            },
+            {
+              "label": "Mitad 1",
+              "cantidad": 4
+            },
+            {
+              "label": "Mitad 2",
+              "cantidad": 4
+            }
+          ]
+        },
+        "opciones": [
+          "4",
+          "5",
+          "3"
+        ],
+        "id": "fr24_mitaddelresto-v4"
+      },
+      {
+        "enunciado": "De 16 fichas ya usamos 4. El resto está repartido en dos grupos iguales. ¿Cuántas fichas tiene una mitad del resto?",
+        "respuesta_correcta": "6",
+        "paso_resuelto": "Quedan 12. Las repartimos en dos grupos de 6. En esta segunda etapa tomamos 6 fichas.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Ya usadas",
+              "cantidad": 4
+            },
+            {
+              "label": "Mitad 1",
+              "cantidad": 6
+            },
+            {
+              "label": "Mitad 2",
+              "cantidad": 6
+            }
+          ]
+        },
+        "opciones": [
+          "7",
+          "5",
+          "6"
+        ],
+        "id": "fr24_mitaddelresto-v5"
+      },
+      {
+        "enunciado": "De 15 fichas ya usamos 5. El resto está repartido en dos grupos iguales. ¿Cuántas fichas tiene una mitad del resto?",
+        "respuesta_correcta": "5",
+        "paso_resuelto": "Quedan 10. Las repartimos en dos grupos de 5. En esta segunda etapa tomamos 5 fichas.",
+        "visual": {
+          "tipo": "colecciones",
+          "grupos": [
+            {
+              "label": "Ya usadas",
+              "cantidad": 5
+            },
+            {
+              "label": "Mitad 1",
+              "cantidad": 5
+            },
+            {
+              "label": "Mitad 2",
+              "cantidad": 5
+            }
+          ]
+        },
+        "opciones": [
+          "4",
+          "5",
+          "6"
+        ],
+        "id": "fr24_mitaddelresto-v6"
+      }
+    ]
+  }
+];
+for(const unidad of FRACCIONES_R24){
+ const index=UNIDADES_BASES.findIndex(u=>u.id===unidad.antes_de);
+ if(index<0)throw Error('Falta el paso posterior de '+unidad.id);
+ UNIDADES_BASES.splice(index,0,unidad);
+}
+// FIN R24
+
 export const TEMAS_BASES = [...new Set(UNIDADES_BASES.map(u => u.tema))];
 export function getUnidadBase(id) { return UNIDADES_BASES.find(u => u.id === id) || null; }
 export function crearActividadBase(id, modo, sesiones = []) {
@@ -24171,7 +27479,7 @@ export function getFichaBase(tema) {
 export function getCierreBase(tema) {
  const unidades=UNIDADES_BASES.filter(u=>u.tema===tema);
  if(!unidades.length)return null;
- const ampliado=unidades.some(u=>u.id.startsWith('prof_') || u.id.startsWith('leng_prof_') || u.id.startsWith('entrada_') || u.id.startsWith('puente_'));
+ const ampliado=unidades.some(u=>u.id.startsWith('prof_') || u.id.startsWith('leng_prof_') || u.id.startsWith('entrada_') || u.id.startsWith('puente_') || u.id.startsWith('fr24_'));
  // La preparación cubre toda la secuencia; el cierre breve toma una muestra de tres ideas.
  const cerradas=unidades.filter(u=>!u.actividades[5].rubrica_escritura);
  const seleccion=ampliado ? [cerradas[0],cerradas[Math.floor(cerradas.length/2)],cerradas.at(-1)] : cerradas;

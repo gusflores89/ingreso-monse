@@ -7,12 +7,36 @@ export function crearDiagramaGeometria(d = {}) {
  const arc=(x,y,r,start,end,color='#64748b',dash=false,width=1)=>{
   const steps=Math.max(2,Math.ceil(Math.abs(end-start)/2));line(Array.from({length:steps+1},(_,i)=>point(x,y,r,start+(end-start)*i/steps)),color,dash,width);
  };
+ if(d.tipo==='fracciones'){
+  text(240,24,d.titulo || 'El mismo entero en cada barra','#172554',15);
+  let tachadas=false;
+  d.barras.forEach((b,r)=>{
+   const y=58+r*74,x0=125,w=330/b.partes.length,h=34;
+   text(62,y+21,b.label,'#172554',13);
+   b.partes.forEach((state,j)=>{
+    const x=x0+j*w;
+    line([[x,y],[x+w,y],[x+w,y+h],[x,y+h],[x,y]],'#475569',false,1);
+    if(state==='p'||state==='s'||state==='q'){
+     const color=state==='s'?'#15803d':'#2563eb';
+     for(let dy=6;dy<h;dy+=6)line([[x+3,y+dy],[x+w-3,y+dy]],color,false,2);
+    }
+    if(state==='q'){
+     tachadas=true;
+     line([[x+2,y+2],[x+w-2,y+h-2]],'#991b1b',false,3);
+     line([[x+w-2,y+2],[x+2,y+h-2]],'#991b1b',false,3);
+    }
+   });
+  });
+  text(240,296,tachadas?'Las partes tachadas ya no cuentan.':'Las rayas marcan la parte que miramos.','#334155',13);
+  return {trazos,textos,ancho:480,alto:310};
+ }
  if(d.tipo==='arreglo'){
   const cols=d.columnas,rows=d.filas,dx=28,dy=20,x0=(480-(cols-1)*dx)/2,y0=58;
-  text(240,25,'Cada fila es un grupo','#172554',16);
+  text(240,25,d.seleccionadas!==undefined?'Tomamos las filas con flecha':'Cada fila es un grupo','#172554',16);
   for(let r=0;r<rows;r++){
    const y=y0+r*dy,removed=d.quitar_ultima && r===rows-1;
    text(48,y+4,'Fila '+(r+1),'#475569',12);
+   if(d.seleccionadas!==undefined && r<d.seleccionadas){line([[84,y-8],[94,y],[84,y+8]],'#172554',false,2);}
    for(let c=0;c<cols;c++)arc(x0+c*dx,y,6,0,360,removed?'#b91c1c':'#2563eb',false,2);
    if(removed)line([[x0-12,y-8],[x0+(cols-1)*dx+12,y+8]],'#b91c1c',false,2);
    if(d.separar===r+1)line([[92,y+10],[425,y+10]],'#15803d',true,1);

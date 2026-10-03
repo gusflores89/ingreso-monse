@@ -48,5 +48,5 @@ const factorizacionR23=['prof_fact_primos','prof_fact_mcm','prof_fact_mcd'].map(
 });
 UNIDADES_BASES.splice(UNIDADES_BASES.findIndex(u=>u.id==='div_primos_5_mcd')+1,0,...factorizacionR23);
 '''+end+'\n\n'
-i=s.index('export const TEMAS_BASES');s=s[:i]+code+s[i:];s=s.replace('habilidad_concreta:habilidades[id] || null','habilidad_concreta:u.habilidad_concreta || habilidades[id] || null').replace("u.id.startsWith('entrada_'));","u.id.startsWith('entrada_') || u.id.startsWith('puente_'));")
+i=min(s.index(m) for m in ['// INICIO R24','export const TEMAS_BASES'] if m in s);s=s[:i]+code+s[i:];s=s.replace('habilidad_concreta:habilidades[id] || null','habilidad_concreta:u.habilidad_concreta || habilidades[id] || null').replace("u.id.startsWith('entrada_'));","u.id.startsWith('entrada_') || u.id.startsWith('puente_'));")
 p.write_text(s,encoding='utf-8');print(len(U),'unidades;',len(U)*6,'actividades')

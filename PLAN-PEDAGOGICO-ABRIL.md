@@ -46,3 +46,7 @@ El orden para los 26 temas está detallado en `PLAN-PRIORIDADES-MATEMATICA.md`. 
 ## R23 — Tablas, múltiplos y divisores
 
 Se incorporan doce microlecciones previas con 72 actividades en cuatro temas. Los procedimientos con factores primos quedan después de MCM y MCD por listas. La transición hacia operaciones con fracciones comprueba el objetivo MCM por ID, sin suponer un número fijo de lecciones. Detalle y comprobaciones en IMPLEMENTACION-R23.md.
+
+## R24 — Fracciones con referencia visible
+
+Quince microlecciones y 90 actividades previas para equivalencias, operaciones y fracciones del resto. Incluye formar dos enteros con ocho cuartos, conservar la cantidad al cambiar cortes y separar el total inicial del resto. Se mantienen los identificadores anteriores y se actualizan los tres apuntes. Detalle y comprobaciones en IMPLEMENTACION-R24.md.

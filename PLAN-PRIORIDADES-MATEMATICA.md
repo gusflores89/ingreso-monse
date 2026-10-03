@@ -5,7 +5,7 @@
 | Prioridad | Temas que cubre | Trabajo | Estado |
 |---|---|---|---|
 | 1. Cantidades, acciones y primeras fracciones | Números naturales/sistema decimal; tablas 2 a 5; división por una cifra; concepto de fracción | Contar, conservar cantidad, juntar/quitar, formar diez, reagrupar/desarmar con fichas, grupos iguales, reparto; enseñar los nombres de las partes por separado. Conectar cada lección con el taller correspondiente y actualizar teoría/PDF. | Bloque inicial R22 implementado y publicado; pendiente observarlo con Abril. |
-| 2. Construir los procedimientos | Tablas 6 a 8; tablas 9 y 10; divisibilidad/primos/MCM/MCD; operaciones con fracciones; fracciones del resto; decimales/conversiones | Dobles y descomposición con dibujos; significado de múltiplos/divisores antes de reglas; equivalencias de partes antes de MCM; mantener visible el entero y luego cambiar el referente; décimos antes de algoritmos. | Bloque 2A implementado y publicado en R23; 2B y 2C pendientes. |
+| 2. Construir los procedimientos | Tablas 6 a 8; tablas 9 y 10; divisibilidad/primos/MCM/MCD; operaciones con fracciones; fracciones del resto; decimales/conversiones | Dobles y descomposición con dibujos; significado de múltiplos/divisores antes de reglas; equivalencias de partes antes de MCM; mantener visible el entero y luego cambiar el referente; décimos antes de algoritmos. | Bloque 2A publicado en R23; 2B implementado en R24; 2C pendiente. |
 | 3. Explorar y representar | Números romanos; longitud; masa/capacidad/tiempo; ángulos; triángulos; cuadriláteros/circunferencia; perímetros simples; perímetros compuestos; gráficos; secuencias aritméticas; secuencias alfanuméricas/figuras | Una propiedad, magnitud o patrón por vez. Manipular/medir/recorrer antes de nombres y fórmulas. Separar las exploraciones de los cálculos de varias operaciones. | Pendiente; puede explorarse en paralelo a prioridad 1, sin esperar todo el bloque 2. |
 | 4. Combinar conocimientos | Potenciación/raíz; jerarquía; proporcionalidad/regla de tres; secuencias geométricas/Fibonacci; ecuaciones con imágenes/dos incógnitas | Cuadrados de fichas, secuencias visibles, relaciones entre cantidades e igualdad. Después procedimientos y problemas de ingreso en varios pasos. | Pendiente. |
 
@@ -18,7 +18,7 @@ El botón de objetos lleva a la habilidad de la lección que está abierta. Un e
 ## Siguientes bloques concretos
 
 1. Prioridad 2A: implementada en R23. Doce microlecciones y 72 actividades; arreglos de fichas, dobles, saltos, sobrantes y primeros MCM/MCD. Verificación y publicación documentadas en IMPLEMENTACION-R23.md.
-2. Prioridad 2B: equivalencias y operaciones con fracciones; un entero constante y luego fracciones del resto.
+2. Prioridad 2B: implementada en R24. Quince microlecciones y 90 actividades; equivalencias y operaciones con el entero visible, y fracciones del resto por etapas. Detalle en IMPLEMENTACION-R24.md.
 3. Prioridad 2C: décimos/centésimos, comparación y operaciones decimales.
 4. Prioridad 3A: figuras/ángulos/perímetros; 3B: medidas; 3C: gráficos, patrones y romanos.
 5. Prioridad 4: problemas que combinen habilidades ya observadas y simulación progresiva de ingreso.

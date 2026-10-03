@@ -96,6 +96,31 @@ const UNIDADES = [
     ]
   },
   {
+    "id": "fr24_mitad",
+    "tema": "fracciones_concepto",
+    "titulo": "La mitad: un grupo de dos iguales",
+    "explicacion": "Todas las fichas juntas son el total. Para hallar la mitad, hacemos dos grupos iguales y tomamos uno. No necesitamos recordar una tabla.",
+    "ejemplo": "Quedan 4 fichas en cada grupo. Una mitad tiene 4.",
+    "pasos": [
+      "El total son 8 fichas.",
+      "Hacemos dos grupos de 4. Tomamos uno: la mitad es 4."
+    ],
+    "pista": "Repartí una ficha a cada grupo por turno. Contá las de un solo grupo.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Grupo 1",
+          "cantidad": 4
+        },
+        {
+          "label": "Grupo 2",
+          "cantidad": 4
+        }
+      ]
+    }
+  },
+  {
     "id": "frac_con_3_unidad_referencia",
     "tema": "fracciones_concepto",
     "titulo": "La mitad de una colección",
@@ -122,6 +147,40 @@ const UNIDADES = [
         "pintadas": 4
       }
     ]
+  },
+  {
+    "id": "fr24_equivalencia",
+    "tema": "fracciones_concepto",
+    "titulo": "Cortar otra vez sin agregar",
+    "explicacion": "Las dos barras representan el mismo entero. Cortamos cada parte en dos, sin agregar ni quitar nada. La zona rayada ocupa lo mismo, aunque ahora tenga más partes.",
+    "ejemplo": "Había 1 de 2 partes. Ahora hay 2 de 4: 1/2 = 2/4. La cantidad no cambió.",
+    "pasos": [
+      "Antes había una mitad rayada.",
+      "Cada mitad se corta en dos. La misma zona ocupa dos cuartos."
+    ],
+    "pista": "Compará hasta dónde llega la zona rayada. Contá las partes con los nuevos cortes.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "El mismo entero en cada barra",
+      "barras": [
+        {
+          "label": "Antes",
+          "partes": [
+            "p",
+            "_"
+          ]
+        },
+        {
+          "label": "Más cortes",
+          "partes": [
+            "p",
+            "p",
+            "_",
+            "_"
+          ]
+        }
+      ]
+    }
   },
   {
     "id": "frac_con_4_equivalencias_visuales",
@@ -189,6 +248,40 @@ const UNIDADES = [
         "pintadas": 4
       }
     ]
+  },
+  {
+    "id": "fr24_reagrupar",
+    "tema": "fracciones_concepto",
+    "titulo": "Juntar partes sin cambiar la cantidad",
+    "explicacion": "Podemos juntar de a dos las partes pequeñas. Cambia la forma de contar, pero la zona rayada sigue ocupando lo mismo.",
+    "ejemplo": "2 partes rayadas forman 1 grupos de dos. Las 4 partes forman 2 grupos. Queda 1/2.",
+    "pasos": [
+      "Dos cuartos rayados se juntan en una mitad.",
+      "El entero pasa de cuatro partes a dos: 2/4 = 1/2."
+    ],
+    "pista": "Mirá los nuevos grupos de dos partes. Contá cuántos quedan rayados.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "El mismo entero en cada barra",
+      "barras": [
+        {
+          "label": "Antes",
+          "partes": [
+            "p",
+            "p",
+            "_",
+            "_"
+          ]
+        },
+        {
+          "label": "Agrupamos",
+          "partes": [
+            "p",
+            "_"
+          ]
+        }
+      ]
+    }
   },
   {
     "id": "prof_frac_simplificar",
@@ -297,6 +390,42 @@ const UNIDADES = [
         "pintadas": 2
       }
     ]
+  },
+  {
+    "id": "fr24_enteros",
+    "tema": "fracciones_concepto",
+    "titulo": "Juntar partes para formar enteros",
+    "explicacion": "Cada barra completa es un entero. Si cada entero tiene cuatro cuartos, ocho cuartos llenan dos barras. Contamos grupos de cuatro, no multiplicamos ocho por cuatro.",
+    "ejemplo": "Formamos 2 grupos de 4 partes. Cada grupo es un entero: 8/4 = 2.",
+    "pasos": [
+      "Cuatro cuartos llenan una barra.",
+      "Otros cuatro cuartos llenan otra: ocho cuartos son dos enteros."
+    ],
+    "pista": "Contá cuántas barras completas se llenan. Cada barra representa un entero.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "Cada barra completa es un entero",
+      "barras": [
+        {
+          "label": "Entero 1",
+          "partes": [
+            "p",
+            "p",
+            "p",
+            "p"
+          ]
+        },
+        {
+          "label": "Entero 2",
+          "partes": [
+            "p",
+            "p",
+            "p",
+            "p"
+          ]
+        }
+      ]
+    }
   },
   {
     "id": "prof_frac_clasificar",
@@ -432,6 +561,60 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "fr24_sumar",
+    "tema": "fracciones_operaciones",
+    "titulo": "Juntar partes del mismo entero",
+    "explicacion": "Juntamos partes que tienen el mismo tamaño y pertenecen al mismo entero. Contamos las rayadas. No cambia la cantidad de partes en que dividimos el entero.",
+    "ejemplo": "Juntamos 1 + 1 = 2 partes. El entero sigue dividido en 4: queda 2/4.",
+    "pasos": [
+      "Juntamos un cuarto y otro cuarto: dos partes.",
+      "El entero sigue teniendo cuatro partes: quedan 2/4."
+    ],
+    "pista": "Contá todas las partes rayadas. Abajo sigue el número de partes del entero.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "El mismo entero en cada barra",
+      "barras": [
+        {
+          "label": "Juntamos",
+          "partes": [
+            "p",
+            "s",
+            "_",
+            "_"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "fr24_restar",
+    "tema": "fracciones_operaciones",
+    "titulo": "Quitar partes del mismo tamaño",
+    "explicacion": "Las partes tachadas se quitaron. Contamos las rayadas que siguen sin tachar. El entero de referencia mantiene el mismo tamaño y los mismos cortes.",
+    "ejemplo": "De 3 partes quitamos 1: quedan 2. El entero tiene 4 partes, así que queda 2/4.",
+    "pasos": [
+      "Había tres cuartos y tachamos uno.",
+      "Quedan dos partes de cuatro: 2/4."
+    ],
+    "pista": "No cuentes las partes tachadas. Conservá abajo el número de partes del entero.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "El mismo entero en cada barra",
+      "barras": [
+        {
+          "label": "Quitamos",
+          "partes": [
+            "p",
+            "p",
+            "q",
+            "_"
+          ]
+        }
+      ]
+    }
+  },
+  {
     "id": "frac_op_1_igual_denominador",
     "tema": "fracciones_operaciones",
     "titulo": "Sumar partes del mismo tamaño",
@@ -455,6 +638,74 @@ const UNIDADES = [
         "pintadas": 3
       }
     ]
+  },
+  {
+    "id": "fr24_comunes",
+    "tema": "fracciones_operaciones",
+    "titulo": "Cambiar los cortes para poder juntar",
+    "explicacion": "Una mitad y un cuarto tienen tamaños distintos. Podemos cortar la mitad en dos cuartos. Así contamos partes del mismo tamaño sin cambiar la cantidad.",
+    "ejemplo": "Cada parte anterior se divide en 2. Las 1 partes ocupan 2 de las 4: 2/4.",
+    "pasos": [
+      "Una mitad ocupa dos de los cuatro cuartos.",
+      "Escribimos 1/2 como 2/4. La cantidad sigue siendo la misma."
+    ],
+    "pista": "La zona rayada no cambia. Contá cuántas partes nuevas ocupa.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "El mismo entero en cada barra",
+      "barras": [
+        {
+          "label": "Antes",
+          "partes": [
+            "p",
+            "_"
+          ]
+        },
+        {
+          "label": "Misma zona",
+          "partes": [
+            "p",
+            "p",
+            "_",
+            "_"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "fr24_sumadistinta",
+    "tema": "fracciones_operaciones",
+    "titulo": "Primero igualar, después juntar",
+    "explicacion": "Primero hacemos cortes que sirvan para las dos fracciones. Después juntamos las partes. Las barras representan el mismo entero en todos los pasos.",
+    "ejemplo": "1/2 ocupa 2/4. Juntamos 2 partes y una más: 3/4.",
+    "pasos": [
+      "Una mitad se puede contar como dos cuartos.",
+      "Juntamos esos dos cuartos con otro: quedan tres cuartos."
+    ],
+    "pista": "Usá los cortes de la barra de abajo. Contá juntas sus partes rayadas.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "El mismo entero en cada barra",
+      "barras": [
+        {
+          "label": "Primera parte",
+          "partes": [
+            "p",
+            "_"
+          ]
+        },
+        {
+          "label": "Juntamos",
+          "partes": [
+            "p",
+            "p",
+            "s",
+            "_"
+          ]
+        }
+      ]
+    }
   },
   {
     "id": "prof_op_preparar",
@@ -535,6 +786,40 @@ const UNIDADES = [
     ]
   },
   {
+    "id": "fr24_restadistinta",
+    "tema": "fracciones_operaciones",
+    "titulo": "Igualar los cortes antes de quitar",
+    "explicacion": "Para quitar partes, primero las contamos con el mismo tamaño. Después tachamos las que quitamos. El entero completo sigue siendo nuestra referencia.",
+    "ejemplo": "1/2 ocupa 2/4. Quitamos una parte: quedan 1/4.",
+    "pasos": [
+      "Una mitad son dos cuartos.",
+      "Tachamos un cuarto: queda un cuarto."
+    ],
+    "pista": "En la barra de abajo, contá las rayadas que no están tachadas.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "El mismo entero en cada barra",
+      "barras": [
+        {
+          "label": "Había",
+          "partes": [
+            "p",
+            "_"
+          ]
+        },
+        {
+          "label": "Quitamos",
+          "partes": [
+            "p",
+            "q",
+            "_",
+            "_"
+          ]
+        }
+      ]
+    }
+  },
+  {
     "id": "prof_op_restar",
     "tema": "fracciones_operaciones",
     "titulo": "Restar fracciones de distinto denominador",
@@ -548,6 +833,24 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "fr24_cantidad",
+    "tema": "fracciones_operaciones",
+    "titulo": "Tomar algunos grupos de fichas",
+    "explicacion": "El entero es toda la colección. La repartimos en grupos iguales. Una fracción nos dice cuántos de esos grupos tomamos.",
+    "ejemplo": "Cada grupo tiene 2 fichas. Tomamos 2 grupos: 2 + 2 = 4.",
+    "pasos": [
+      "Las seis fichas se reparten en tres grupos de dos.",
+      "Tomamos dos grupos: 2 + 2 = 4 fichas."
+    ],
+    "pista": "Cada fila es un grupo. Contá las fichas de las filas marcadas.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 3,
+      "columnas": 2,
+      "seleccionadas": 2
+    }
+  },
+  {
     "id": "frac_op_3_fraccion_cantidad",
     "tema": "fracciones_operaciones",
     "titulo": "Una fracción de una colección",
@@ -559,6 +862,40 @@ const UNIDADES = [
     ],
     "pista": "Primero encontrá cuánto vale un grupo; después elegí cuántos grupos tomar.",
     "visual": null
+  },
+  {
+    "id": "fr24_partedeparte",
+    "tema": "fracciones_operaciones",
+    "titulo": "Tomar la mitad de una parte",
+    "explicacion": "Primero marcamos una parte del entero. Después tomamos la mitad de esa zona. Para nombrar el resultado, volvemos a mirar la barra completa del comienzo.",
+    "ejemplo": "Cada una de las 2 partes se corta en dos: hay 4 partes iguales. La mitad de 1/2 ocupa una: 1/4.",
+    "pasos": [
+      "Marcamos una mitad de la barra.",
+      "Tomamos la mitad de esa zona: es una de cuatro partes del entero, 1/4."
+    ],
+    "pista": "Dividí la zona rayada en dos. Tomá una mitad y comparala con el entero completo.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "El mismo entero en cada barra",
+      "barras": [
+        {
+          "label": "Primero",
+          "partes": [
+            "p",
+            "_"
+          ]
+        },
+        {
+          "label": "Tomamos",
+          "partes": [
+            "p",
+            "_",
+            "_",
+            "_"
+          ]
+        }
+      ]
+    }
   },
   {
     "id": "frac_op_4_multiplicacion",
@@ -585,6 +922,33 @@ const UNIDADES = [
         "pintadas": 1
       }
     ]
+  },
+  {
+    "id": "fr24_caben",
+    "tema": "fracciones_operaciones",
+    "titulo": "Contar cuántas porciones caben",
+    "explicacion": "Dividir también puede preguntar cuántas porciones caben en lo que tenemos. Cada parte rayada es una porción. Primero las contamos en el dibujo.",
+    "ejemplo": "Hay 3 partes rayadas y cada una mide 1/4. Podemos dar 3 porciones: 3/4 ÷ 1/4 = 3.",
+    "pasos": [
+      "Tenemos tres cuartos de una barra.",
+      "Cada cuarto es una porción. Contamos tres porciones."
+    ],
+    "pista": "Cada parte rayada es una porción del tamaño pedido. Contá cuántas hay.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "El mismo entero en cada barra",
+      "barras": [
+        {
+          "label": "Disponible",
+          "partes": [
+            "p",
+            "p",
+            "p",
+            "_"
+          ]
+        }
+      ]
+    }
   },
   {
     "id": "prof_op_dividir_medida",
@@ -1949,6 +2313,31 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "fr24_resto",
+    "tema": "fracciones_del_resto",
+    "titulo": "Separar lo usado de lo que queda",
+    "explicacion": "El resto es lo que queda después de usar una parte. Las fichas usadas van aparte. Contamos las que todavía tenemos.",
+    "ejemplo": "Usamos 2. De las 8 quedan 8 − 2 = 6.",
+    "pasos": [
+      "De ocho fichas usamos dos.",
+      "Las otras seis quedan: ese es el resto."
+    ],
+    "pista": "Mirá el grupo que dice Quedan. No vuelvas a contar las usadas.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Usadas",
+          "cantidad": 2
+        },
+        {
+          "label": "Quedan",
+          "cantidad": 6
+        }
+      ]
+    }
+  },
+  {
     "id": "mat_resto_entero",
     "tema": "fracciones_del_resto",
     "titulo": "Primero averiguamos cuánto queda",
@@ -1960,6 +2349,60 @@ const UNIDADES = [
     ],
     "pista": "Calculá lo usado antes de restarlo del total.",
     "visual": null
+  },
+  {
+    "id": "fr24_referencia",
+    "tema": "fracciones_del_resto",
+    "titulo": "Del resto: cambia la cantidad de referencia",
+    "explicacion": "Si dice «la mitad del resto», miramos solo lo que quedó. Las fichas usadas ya no están disponibles. El total inicial sirve para contar qué pasó antes.",
+    "ejemplo": "Quedan 6 fichas. La mitad del resto se calcula sobre esas 6, no sobre las 8 iniciales.",
+    "pasos": [
+      "Había ocho fichas y usamos dos: quedan seis.",
+      "Para buscar la mitad del resto, repartimos las seis que quedan."
+    ],
+    "pista": "Para la segunda etapa, buscá cuánto quedó después de usar la primera parte.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Ya usadas",
+          "cantidad": 2
+        },
+        {
+          "label": "Quedan",
+          "cantidad": 6
+        }
+      ]
+    }
+  },
+  {
+    "id": "fr24_mitaddelresto",
+    "tema": "fracciones_del_resto",
+    "titulo": "La mitad de lo que quedó",
+    "explicacion": "Primero separamos lo usado. Después repartimos el resto en dos grupos iguales y tomamos uno. Esa es la mitad del resto.",
+    "ejemplo": "Quedan 6. Las repartimos en dos grupos de 3. En esta segunda etapa tomamos 3 fichas.",
+    "pasos": [
+      "De ocho fichas, dos ya se usaron. Quedan seis.",
+      "Repartimos las seis: tres y tres. La mitad del resto es tres."
+    ],
+    "pista": "Dejá las usadas aparte. Contá solo las fichas de una mitad del resto.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Ya usadas",
+          "cantidad": 2
+        },
+        {
+          "label": "Mitad 1",
+          "cantidad": 3
+        },
+        {
+          "label": "Mitad 2",
+          "cantidad": 3
+        }
+      ]
+    }
   },
   {
     "id": "mat_resto_nuevo_total",
