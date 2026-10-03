@@ -22460,6 +22460,1672 @@ repartoR22.pista='Repartí una por persona en cada vuelta. Al terminar, contá l
 repartoR22.visual={tipo:'colecciones',grupos:[{label:'Persona 1',cantidad:4},{label:'Persona 2',cantidad:4},{label:'Persona 3',cantidad:4}]};
 // FIN R22
 
+
+
+
+
+
+
+// INICIO R23
+const PUENTES_R23 = [
+  {
+    "id": "puente_filas",
+    "tema": "tablas_multiplicar_2_5",
+    "antes_de": "mat_tab_dobles",
+    "titulo": "Contar por filas",
+    "explicacion": "Cada fila tiene la misma cantidad de fichas. Sumamos una fila por vez. La multiplicación escribe esa suma de forma corta.",
+    "ejemplo": "Sumamos 3 + 3 = 6. Escribimos 2 × 3 = 6.",
+    "pasos": [
+      "Contamos 3 fichas en cada fila.",
+      "Juntamos las dos filas: 3 + 3 = 6."
+    ],
+    "pista": "Señalá una fila. Contá sus fichas y sumá esa cantidad por cada fila.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 2,
+      "columnas": 3,
+      "separar": 0,
+      "quitar_ultima": false
+    },
+    "habilidad_concreta": "grupos",
+    "actividades": [
+      {
+        "enunciado": "Hay 2 filas de 3 fichas. ¿Cuántas fichas hay en total?",
+        "respuesta_correcta": "6",
+        "paso_resuelto": "Sumamos 3 + 3 = 6. Escribimos 2 × 3 = 6.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 2,
+          "columnas": 3,
+          "separar": 0,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "6",
+          "7",
+          "5"
+        ],
+        "id": "puente_filas-v1"
+      },
+      {
+        "enunciado": "Hay 3 filas de 2 fichas. ¿Cuántas fichas hay en total?",
+        "respuesta_correcta": "6",
+        "paso_resuelto": "Sumamos 2 + 2 + 2 = 6. Escribimos 3 × 2 = 6.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 3,
+          "columnas": 2,
+          "separar": 0,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "7",
+          "5",
+          "6"
+        ],
+        "id": "puente_filas-v2"
+      },
+      {
+        "enunciado": "Hay 3 filas de 4 fichas. ¿Cuántas fichas hay en total?",
+        "respuesta_correcta": "12",
+        "paso_resuelto": "Sumamos 4 + 4 + 4 = 12. Escribimos 3 × 4 = 12.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 3,
+          "columnas": 4,
+          "separar": 0,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "11",
+          "12",
+          "13"
+        ],
+        "id": "puente_filas-v3"
+      },
+      {
+        "enunciado": "Hay 4 filas de 2 fichas. ¿Cuántas fichas hay en total?",
+        "respuesta_correcta": "8",
+        "paso_resuelto": "Sumamos 2 + 2 + 2 + 2 = 8. Escribimos 4 × 2 = 8.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 4,
+          "columnas": 2,
+          "separar": 0,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "8",
+          "9",
+          "7"
+        ],
+        "id": "puente_filas-v4"
+      },
+      {
+        "enunciado": "Hay 2 filas de 5 fichas. ¿Cuántas fichas hay en total?",
+        "respuesta_correcta": "10",
+        "paso_resuelto": "Sumamos 5 + 5 = 10. Escribimos 2 × 5 = 10.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 2,
+          "columnas": 5,
+          "separar": 0,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "11",
+          "9",
+          "10"
+        ],
+        "id": "puente_filas-v5"
+      },
+      {
+        "enunciado": "Hay 4 filas de 3 fichas. ¿Cuántas fichas hay en total?",
+        "respuesta_correcta": "12",
+        "paso_resuelto": "Sumamos 3 + 3 + 3 + 3 = 12. Escribimos 4 × 3 = 12.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 4,
+          "columnas": 3,
+          "separar": 0,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "11",
+          "12",
+          "13"
+        ],
+        "id": "puente_filas-v6"
+      }
+    ]
+  },
+  {
+    "id": "puente_doble",
+    "tema": "tablas_multiplicar_2_5",
+    "antes_de": "mat_tab_dobles",
+    "titulo": "Hacer el doble",
+    "explicacion": "El doble es tener dos veces la misma cantidad. Dibujamos una fila y otra igual. Después juntamos las dos.",
+    "ejemplo": "3 + 3 = 6. Dos filas iguales tienen 6 fichas.",
+    "pasos": [
+      "Una fila tiene 3 fichas. Hacemos otra igual.",
+      "Juntamos 3 y 3: el doble es 6."
+    ],
+    "pista": "El doble de una cantidad es esa cantidad más otra igual.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 2,
+      "columnas": 3,
+      "separar": 0,
+      "quitar_ultima": false
+    },
+    "habilidad_concreta": "grupos",
+    "actividades": [
+      {
+        "enunciado": "Una fila tiene 3 fichas y la otra también. ¿Cuánto es el doble de 3?",
+        "respuesta_correcta": "6",
+        "paso_resuelto": "3 + 3 = 6. Dos filas iguales tienen 6 fichas.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 2,
+          "columnas": 3,
+          "separar": 0,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "6",
+          "7",
+          "5"
+        ],
+        "id": "puente_doble-v1"
+      },
+      {
+        "enunciado": "Una fila tiene 2 fichas y la otra también. ¿Cuánto es el doble de 2?",
+        "respuesta_correcta": "4",
+        "paso_resuelto": "2 + 2 = 4. Dos filas iguales tienen 4 fichas.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 2,
+          "columnas": 2,
+          "separar": 0,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "5",
+          "3",
+          "4"
+        ],
+        "id": "puente_doble-v2"
+      },
+      {
+        "enunciado": "Una fila tiene 4 fichas y la otra también. ¿Cuánto es el doble de 4?",
+        "respuesta_correcta": "8",
+        "paso_resuelto": "4 + 4 = 8. Dos filas iguales tienen 8 fichas.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 2,
+          "columnas": 4,
+          "separar": 0,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "7",
+          "8",
+          "9"
+        ],
+        "id": "puente_doble-v3"
+      },
+      {
+        "enunciado": "Una fila tiene 5 fichas y la otra también. ¿Cuánto es el doble de 5?",
+        "respuesta_correcta": "10",
+        "paso_resuelto": "5 + 5 = 10. Dos filas iguales tienen 10 fichas.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 2,
+          "columnas": 5,
+          "separar": 0,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "10",
+          "11",
+          "9"
+        ],
+        "id": "puente_doble-v4"
+      },
+      {
+        "enunciado": "Una fila tiene 6 fichas y la otra también. ¿Cuánto es el doble de 6?",
+        "respuesta_correcta": "12",
+        "paso_resuelto": "6 + 6 = 12. Dos filas iguales tienen 12 fichas.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 2,
+          "columnas": 6,
+          "separar": 0,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "13",
+          "11",
+          "12"
+        ],
+        "id": "puente_doble-v5"
+      },
+      {
+        "enunciado": "Una fila tiene 7 fichas y la otra también. ¿Cuánto es el doble de 7?",
+        "respuesta_correcta": "14",
+        "paso_resuelto": "7 + 7 = 14. Dos filas iguales tienen 14 fichas.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 2,
+          "columnas": 7,
+          "separar": 0,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "13",
+          "14",
+          "15"
+        ],
+        "id": "puente_doble-v6"
+      }
+    ]
+  },
+  {
+    "id": "puente_seis",
+    "tema": "tablas_multiplicar_6_8",
+    "antes_de": "mat_tab_seis_ocho",
+    "titulo": "Seis filas: tres y otras tres",
+    "explicacion": "Podemos separar seis filas en tres y otras tres. Contamos una mitad y sumamos otra igual.",
+    "ejemplo": "Las primeras 3 filas tienen 6. Las otras 3 tienen 6. Sumamos 6 + 6 = 12.",
+    "pasos": [
+      "Primero contamos las 3 filas de arriba: 6 fichas.",
+      "Abajo hay 6. Sumamos: 6 + 6 = 12."
+    ],
+    "pista": "Contá las fichas de un lado de la línea. Después las del otro. Juntá las dos cantidades.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 6,
+      "columnas": 2,
+      "separar": 3,
+      "quitar_ultima": false
+    },
+    "habilidad_concreta": "grupos",
+    "actividades": [
+      {
+        "enunciado": "Hay 6 filas de 2 fichas. ¿Cuántas hay en total?",
+        "respuesta_correcta": "12",
+        "paso_resuelto": "Las primeras 3 filas tienen 6. Las otras 3 tienen 6. Sumamos 6 + 6 = 12.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 6,
+          "columnas": 2,
+          "separar": 3,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "12",
+          "13",
+          "11"
+        ],
+        "id": "puente_seis-v1"
+      },
+      {
+        "enunciado": "Hay 6 filas de 3 fichas. ¿Cuántas hay en total?",
+        "respuesta_correcta": "18",
+        "paso_resuelto": "Las primeras 3 filas tienen 9. Las otras 3 tienen 9. Sumamos 9 + 9 = 18.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 6,
+          "columnas": 3,
+          "separar": 3,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "19",
+          "17",
+          "18"
+        ],
+        "id": "puente_seis-v2"
+      },
+      {
+        "enunciado": "Hay 6 filas de 4 fichas. ¿Cuántas hay en total?",
+        "respuesta_correcta": "24",
+        "paso_resuelto": "Las primeras 3 filas tienen 12. Las otras 3 tienen 12. Sumamos 12 + 12 = 24.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 6,
+          "columnas": 4,
+          "separar": 3,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "23",
+          "24",
+          "25"
+        ],
+        "id": "puente_seis-v3"
+      },
+      {
+        "enunciado": "Hay 6 filas de 5 fichas. ¿Cuántas hay en total?",
+        "respuesta_correcta": "30",
+        "paso_resuelto": "Las primeras 3 filas tienen 15. Las otras 3 tienen 15. Sumamos 15 + 15 = 30.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 6,
+          "columnas": 5,
+          "separar": 3,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "30",
+          "31",
+          "29"
+        ],
+        "id": "puente_seis-v4"
+      },
+      {
+        "enunciado": "Hay 6 filas de 6 fichas. ¿Cuántas hay en total?",
+        "respuesta_correcta": "36",
+        "paso_resuelto": "Las primeras 3 filas tienen 18. Las otras 3 tienen 18. Sumamos 18 + 18 = 36.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 6,
+          "columnas": 6,
+          "separar": 3,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "37",
+          "35",
+          "36"
+        ],
+        "id": "puente_seis-v5"
+      },
+      {
+        "enunciado": "Hay 6 filas de 7 fichas. ¿Cuántas hay en total?",
+        "respuesta_correcta": "42",
+        "paso_resuelto": "Las primeras 3 filas tienen 21. Las otras 3 tienen 21. Sumamos 21 + 21 = 42.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 6,
+          "columnas": 7,
+          "separar": 3,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "41",
+          "42",
+          "43"
+        ],
+        "id": "puente_seis-v6"
+      }
+    ]
+  },
+  {
+    "id": "puente_ocho",
+    "tema": "tablas_multiplicar_6_8",
+    "antes_de": "mat_tab_seis_ocho",
+    "titulo": "Ocho filas: cuatro y otras cuatro",
+    "explicacion": "Podemos separar ocho filas en cuatro y otras cuatro. Las dos mitades tienen la misma cantidad de fichas.",
+    "ejemplo": "Las primeras 4 filas tienen 8. Las otras 4 tienen 8. Sumamos 8 + 8 = 16.",
+    "pasos": [
+      "Primero contamos las 4 filas de arriba: 8 fichas.",
+      "Abajo hay 8. Sumamos: 8 + 8 = 16."
+    ],
+    "pista": "Contá las fichas de un lado de la línea. Después las del otro. Juntá las dos cantidades.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 8,
+      "columnas": 2,
+      "separar": 4,
+      "quitar_ultima": false
+    },
+    "habilidad_concreta": "grupos",
+    "actividades": [
+      {
+        "enunciado": "Hay 8 filas de 2 fichas. ¿Cuántas hay en total?",
+        "respuesta_correcta": "16",
+        "paso_resuelto": "Las primeras 4 filas tienen 8. Las otras 4 tienen 8. Sumamos 8 + 8 = 16.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 8,
+          "columnas": 2,
+          "separar": 4,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "16",
+          "17",
+          "15"
+        ],
+        "id": "puente_ocho-v1"
+      },
+      {
+        "enunciado": "Hay 8 filas de 3 fichas. ¿Cuántas hay en total?",
+        "respuesta_correcta": "24",
+        "paso_resuelto": "Las primeras 4 filas tienen 12. Las otras 4 tienen 12. Sumamos 12 + 12 = 24.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 8,
+          "columnas": 3,
+          "separar": 4,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "25",
+          "23",
+          "24"
+        ],
+        "id": "puente_ocho-v2"
+      },
+      {
+        "enunciado": "Hay 8 filas de 4 fichas. ¿Cuántas hay en total?",
+        "respuesta_correcta": "32",
+        "paso_resuelto": "Las primeras 4 filas tienen 16. Las otras 4 tienen 16. Sumamos 16 + 16 = 32.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 8,
+          "columnas": 4,
+          "separar": 4,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "31",
+          "32",
+          "33"
+        ],
+        "id": "puente_ocho-v3"
+      },
+      {
+        "enunciado": "Hay 8 filas de 5 fichas. ¿Cuántas hay en total?",
+        "respuesta_correcta": "40",
+        "paso_resuelto": "Las primeras 4 filas tienen 20. Las otras 4 tienen 20. Sumamos 20 + 20 = 40.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 8,
+          "columnas": 5,
+          "separar": 4,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "40",
+          "41",
+          "39"
+        ],
+        "id": "puente_ocho-v4"
+      },
+      {
+        "enunciado": "Hay 8 filas de 6 fichas. ¿Cuántas hay en total?",
+        "respuesta_correcta": "48",
+        "paso_resuelto": "Las primeras 4 filas tienen 24. Las otras 4 tienen 24. Sumamos 24 + 24 = 48.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 8,
+          "columnas": 6,
+          "separar": 4,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "49",
+          "47",
+          "48"
+        ],
+        "id": "puente_ocho-v5"
+      },
+      {
+        "enunciado": "Hay 8 filas de 7 fichas. ¿Cuántas hay en total?",
+        "respuesta_correcta": "56",
+        "paso_resuelto": "Las primeras 4 filas tienen 28. Las otras 4 tienen 28. Sumamos 28 + 28 = 56.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 8,
+          "columnas": 7,
+          "separar": 4,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "55",
+          "56",
+          "57"
+        ],
+        "id": "puente_ocho-v6"
+      }
+    ]
+  },
+  {
+    "id": "puente_siete",
+    "tema": "tablas_multiplicar_6_8",
+    "antes_de": "mat_tab_siete",
+    "titulo": "Siete filas: cinco y otras dos",
+    "explicacion": "Para contar siete filas, primero contamos cinco. Después contamos las otras dos y juntamos ambas cantidades.",
+    "ejemplo": "Las primeras 5 filas tienen 10. Las otras 2 tienen 4. Sumamos 10 + 4 = 14.",
+    "pasos": [
+      "Primero contamos las 5 filas de arriba: 10 fichas.",
+      "Abajo hay 4. Sumamos: 10 + 4 = 14."
+    ],
+    "pista": "Contá las fichas de un lado de la línea. Después las del otro. Juntá las dos cantidades.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 7,
+      "columnas": 2,
+      "separar": 5,
+      "quitar_ultima": false
+    },
+    "habilidad_concreta": "grupos",
+    "actividades": [
+      {
+        "enunciado": "Hay 7 filas de 2 fichas. ¿Cuántas hay en total?",
+        "respuesta_correcta": "14",
+        "paso_resuelto": "Las primeras 5 filas tienen 10. Las otras 2 tienen 4. Sumamos 10 + 4 = 14.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 7,
+          "columnas": 2,
+          "separar": 5,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "14",
+          "15",
+          "13"
+        ],
+        "id": "puente_siete-v1"
+      },
+      {
+        "enunciado": "Hay 7 filas de 3 fichas. ¿Cuántas hay en total?",
+        "respuesta_correcta": "21",
+        "paso_resuelto": "Las primeras 5 filas tienen 15. Las otras 2 tienen 6. Sumamos 15 + 6 = 21.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 7,
+          "columnas": 3,
+          "separar": 5,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "22",
+          "20",
+          "21"
+        ],
+        "id": "puente_siete-v2"
+      },
+      {
+        "enunciado": "Hay 7 filas de 4 fichas. ¿Cuántas hay en total?",
+        "respuesta_correcta": "28",
+        "paso_resuelto": "Las primeras 5 filas tienen 20. Las otras 2 tienen 8. Sumamos 20 + 8 = 28.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 7,
+          "columnas": 4,
+          "separar": 5,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "27",
+          "28",
+          "29"
+        ],
+        "id": "puente_siete-v3"
+      },
+      {
+        "enunciado": "Hay 7 filas de 5 fichas. ¿Cuántas hay en total?",
+        "respuesta_correcta": "35",
+        "paso_resuelto": "Las primeras 5 filas tienen 25. Las otras 2 tienen 10. Sumamos 25 + 10 = 35.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 7,
+          "columnas": 5,
+          "separar": 5,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "35",
+          "36",
+          "34"
+        ],
+        "id": "puente_siete-v4"
+      },
+      {
+        "enunciado": "Hay 7 filas de 6 fichas. ¿Cuántas hay en total?",
+        "respuesta_correcta": "42",
+        "paso_resuelto": "Las primeras 5 filas tienen 30. Las otras 2 tienen 12. Sumamos 30 + 12 = 42.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 7,
+          "columnas": 6,
+          "separar": 5,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "43",
+          "41",
+          "42"
+        ],
+        "id": "puente_siete-v5"
+      },
+      {
+        "enunciado": "Hay 7 filas de 7 fichas. ¿Cuántas hay en total?",
+        "respuesta_correcta": "49",
+        "paso_resuelto": "Las primeras 5 filas tienen 35. Las otras 2 tienen 14. Sumamos 35 + 14 = 49.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 7,
+          "columnas": 7,
+          "separar": 5,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "48",
+          "49",
+          "50"
+        ],
+        "id": "puente_siete-v6"
+      }
+    ]
+  },
+  {
+    "id": "puente_diez",
+    "tema": "tablas_multiplicar_9_10",
+    "antes_de": "mat_tab_diez",
+    "titulo": "Paquetes de diez",
+    "explicacion": "Cada fila es un paquete con diez fichas. Un paquete tiene diez; dos tienen veinte. Cada paquete nuevo agrega diez.",
+    "ejemplo": "Contamos 10, 20. Son 20 fichas.",
+    "pasos": [
+      "Cada paquete tiene 10 fichas.",
+      "Dos paquetes: 10 + 10 = 20."
+    ],
+    "pista": "Contá los paquetes avanzando de diez en diez.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 2,
+      "columnas": 10,
+      "separar": 0,
+      "quitar_ultima": false
+    },
+    "habilidad_concreta": "grupos",
+    "actividades": [
+      {
+        "enunciado": "Hay 2 paquetes de 10 fichas. ¿Cuántas fichas hay?",
+        "respuesta_correcta": "20",
+        "paso_resuelto": "Contamos 10, 20. Son 20 fichas.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 2,
+          "columnas": 10,
+          "separar": 0,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "20",
+          "21",
+          "19"
+        ],
+        "id": "puente_diez-v1"
+      },
+      {
+        "enunciado": "Hay 3 paquetes de 10 fichas. ¿Cuántas fichas hay?",
+        "respuesta_correcta": "30",
+        "paso_resuelto": "Contamos 10, 20, 30. Son 30 fichas.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 3,
+          "columnas": 10,
+          "separar": 0,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "31",
+          "29",
+          "30"
+        ],
+        "id": "puente_diez-v2"
+      },
+      {
+        "enunciado": "Hay 4 paquetes de 10 fichas. ¿Cuántas fichas hay?",
+        "respuesta_correcta": "40",
+        "paso_resuelto": "Contamos 10, 20, 30, 40. Son 40 fichas.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 4,
+          "columnas": 10,
+          "separar": 0,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "39",
+          "40",
+          "41"
+        ],
+        "id": "puente_diez-v3"
+      },
+      {
+        "enunciado": "Hay 5 paquetes de 10 fichas. ¿Cuántas fichas hay?",
+        "respuesta_correcta": "50",
+        "paso_resuelto": "Contamos 10, 20, 30, 40, 50. Son 50 fichas.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 5,
+          "columnas": 10,
+          "separar": 0,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "50",
+          "51",
+          "49"
+        ],
+        "id": "puente_diez-v4"
+      },
+      {
+        "enunciado": "Hay 6 paquetes de 10 fichas. ¿Cuántas fichas hay?",
+        "respuesta_correcta": "60",
+        "paso_resuelto": "Contamos 10, 20, 30, 40, 50, 60. Son 60 fichas.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 6,
+          "columnas": 10,
+          "separar": 0,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "61",
+          "59",
+          "60"
+        ],
+        "id": "puente_diez-v5"
+      },
+      {
+        "enunciado": "Hay 7 paquetes de 10 fichas. ¿Cuántas fichas hay?",
+        "respuesta_correcta": "70",
+        "paso_resuelto": "Contamos 10, 20, 30, 40, 50, 60, 70. Son 70 fichas.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 7,
+          "columnas": 10,
+          "separar": 0,
+          "quitar_ultima": false
+        },
+        "opciones": [
+          "69",
+          "70",
+          "71"
+        ],
+        "id": "puente_diez-v6"
+      }
+    ]
+  },
+  {
+    "id": "puente_nueve",
+    "tema": "tablas_multiplicar_9_10",
+    "antes_de": "mat_tab_nueve",
+    "titulo": "De diez filas a nueve",
+    "explicacion": "Armamos diez filas iguales. Tachamos una fila completa. Contamos las nueve que quedan: quitamos una fila, no una sola ficha.",
+    "ejemplo": "Había 20 fichas. Quitamos una fila de 2: 20 − 2 = 18.",
+    "pasos": [
+      "Diez filas de 2 tienen 20 fichas.",
+      "Quitamos una fila de 2: quedan 18."
+    ],
+    "pista": "La fila tachada ya no cuenta. Quitá todas sus fichas.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 10,
+      "columnas": 2,
+      "separar": 0,
+      "quitar_ultima": true
+    },
+    "habilidad_concreta": "quitar",
+    "actividades": [
+      {
+        "enunciado": "De 10 filas de 2 fichas tachamos una fila. ¿Cuántas fichas quedan?",
+        "respuesta_correcta": "18",
+        "paso_resuelto": "Había 20 fichas. Quitamos una fila de 2: 20 − 2 = 18.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 10,
+          "columnas": 2,
+          "separar": 0,
+          "quitar_ultima": true
+        },
+        "opciones": [
+          "18",
+          "19",
+          "17"
+        ],
+        "id": "puente_nueve-v1"
+      },
+      {
+        "enunciado": "De 10 filas de 3 fichas tachamos una fila. ¿Cuántas fichas quedan?",
+        "respuesta_correcta": "27",
+        "paso_resuelto": "Había 30 fichas. Quitamos una fila de 3: 30 − 3 = 27.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 10,
+          "columnas": 3,
+          "separar": 0,
+          "quitar_ultima": true
+        },
+        "opciones": [
+          "28",
+          "26",
+          "27"
+        ],
+        "id": "puente_nueve-v2"
+      },
+      {
+        "enunciado": "De 10 filas de 4 fichas tachamos una fila. ¿Cuántas fichas quedan?",
+        "respuesta_correcta": "36",
+        "paso_resuelto": "Había 40 fichas. Quitamos una fila de 4: 40 − 4 = 36.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 10,
+          "columnas": 4,
+          "separar": 0,
+          "quitar_ultima": true
+        },
+        "opciones": [
+          "35",
+          "36",
+          "37"
+        ],
+        "id": "puente_nueve-v3"
+      },
+      {
+        "enunciado": "De 10 filas de 5 fichas tachamos una fila. ¿Cuántas fichas quedan?",
+        "respuesta_correcta": "45",
+        "paso_resuelto": "Había 50 fichas. Quitamos una fila de 5: 50 − 5 = 45.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 10,
+          "columnas": 5,
+          "separar": 0,
+          "quitar_ultima": true
+        },
+        "opciones": [
+          "45",
+          "46",
+          "44"
+        ],
+        "id": "puente_nueve-v4"
+      },
+      {
+        "enunciado": "De 10 filas de 6 fichas tachamos una fila. ¿Cuántas fichas quedan?",
+        "respuesta_correcta": "54",
+        "paso_resuelto": "Había 60 fichas. Quitamos una fila de 6: 60 − 6 = 54.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 10,
+          "columnas": 6,
+          "separar": 0,
+          "quitar_ultima": true
+        },
+        "opciones": [
+          "55",
+          "53",
+          "54"
+        ],
+        "id": "puente_nueve-v5"
+      },
+      {
+        "enunciado": "De 10 filas de 7 fichas tachamos una fila. ¿Cuántas fichas quedan?",
+        "respuesta_correcta": "63",
+        "paso_resuelto": "Había 70 fichas. Quitamos una fila de 7: 70 − 7 = 63.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 10,
+          "columnas": 7,
+          "separar": 0,
+          "quitar_ultima": true
+        },
+        "opciones": [
+          "62",
+          "63",
+          "64"
+        ],
+        "id": "puente_nueve-v6"
+      }
+    ]
+  },
+  {
+    "id": "puente_saltos",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "antes_de": "bases_multiplos_saltos",
+    "titulo": "Avanzar con saltos iguales",
+    "explicacion": "Empezamos en cero. Cada salto suma la misma cantidad. Podemos seguir contando para encontrar dónde termina el próximo salto.",
+    "ejemplo": "4 + 2 = 6. El salto conserva su tamaño.",
+    "pasos": [
+      "Empezamos en cero y saltamos 2: llegamos al 2.",
+      "Otro salto llega al 4; uno más, al 6."
+    ],
+    "pista": "Mirá cuánto suma cada salto. Sumá esa misma cantidad otra vez.",
+    "visual": {
+      "tipo": "saltos",
+      "series": [
+        {
+          "paso": 2,
+          "cantidad": 3
+        }
+      ],
+      "ocultar_final": true
+    },
+    "habilidad_concreta": "juntar",
+    "actividades": [
+      {
+        "enunciado": "Saltamos de 2 en 2. Estamos en 4. ¿A qué número llegamos con otro salto?",
+        "respuesta_correcta": "6",
+        "paso_resuelto": "4 + 2 = 6. El salto conserva su tamaño.",
+        "visual": {
+          "tipo": "saltos",
+          "series": [
+            {
+              "paso": 2,
+              "cantidad": 3
+            }
+          ],
+          "ocultar_final": true
+        },
+        "opciones": [
+          "6",
+          "7",
+          "5"
+        ],
+        "id": "puente_saltos-v1"
+      },
+      {
+        "enunciado": "Saltamos de 3 en 3. Estamos en 6. ¿A qué número llegamos con otro salto?",
+        "respuesta_correcta": "9",
+        "paso_resuelto": "6 + 3 = 9. El salto conserva su tamaño.",
+        "visual": {
+          "tipo": "saltos",
+          "series": [
+            {
+              "paso": 3,
+              "cantidad": 3
+            }
+          ],
+          "ocultar_final": true
+        },
+        "opciones": [
+          "10",
+          "8",
+          "9"
+        ],
+        "id": "puente_saltos-v2"
+      },
+      {
+        "enunciado": "Saltamos de 2 en 2. Estamos en 6. ¿A qué número llegamos con otro salto?",
+        "respuesta_correcta": "8",
+        "paso_resuelto": "6 + 2 = 8. El salto conserva su tamaño.",
+        "visual": {
+          "tipo": "saltos",
+          "series": [
+            {
+              "paso": 2,
+              "cantidad": 4
+            }
+          ],
+          "ocultar_final": true
+        },
+        "opciones": [
+          "7",
+          "8",
+          "9"
+        ],
+        "id": "puente_saltos-v3"
+      },
+      {
+        "enunciado": "Saltamos de 4 en 4. Estamos en 8. ¿A qué número llegamos con otro salto?",
+        "respuesta_correcta": "12",
+        "paso_resuelto": "8 + 4 = 12. El salto conserva su tamaño.",
+        "visual": {
+          "tipo": "saltos",
+          "series": [
+            {
+              "paso": 4,
+              "cantidad": 3
+            }
+          ],
+          "ocultar_final": true
+        },
+        "opciones": [
+          "12",
+          "13",
+          "11"
+        ],
+        "id": "puente_saltos-v4"
+      },
+      {
+        "enunciado": "Saltamos de 3 en 3. Estamos en 9. ¿A qué número llegamos con otro salto?",
+        "respuesta_correcta": "12",
+        "paso_resuelto": "9 + 3 = 12. El salto conserva su tamaño.",
+        "visual": {
+          "tipo": "saltos",
+          "series": [
+            {
+              "paso": 3,
+              "cantidad": 4
+            }
+          ],
+          "ocultar_final": true
+        },
+        "opciones": [
+          "13",
+          "11",
+          "12"
+        ],
+        "id": "puente_saltos-v5"
+      },
+      {
+        "enunciado": "Saltamos de 5 en 5. Estamos en 10. ¿A qué número llegamos con otro salto?",
+        "respuesta_correcta": "15",
+        "paso_resuelto": "10 + 5 = 15. El salto conserva su tamaño.",
+        "visual": {
+          "tipo": "saltos",
+          "series": [
+            {
+              "paso": 5,
+              "cantidad": 3
+            }
+          ],
+          "ocultar_final": true
+        },
+        "opciones": [
+          "14",
+          "15",
+          "16"
+        ],
+        "id": "puente_saltos-v6"
+      }
+    ]
+  },
+  {
+    "id": "puente_agrupamientos",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "antes_de": "div_primos_1_multiplos_divisores",
+    "titulo": "Armar grupos y mirar qué sobra",
+    "explicacion": "Separamos fichas en grupos del mismo tamaño. Una fila es un grupo completo. Las fichas que no alcanzan para otra fila quedan aparte.",
+    "ejemplo": "Armamos 2 grupos de 3. Quedan 1 aparte: no alcanzan para otro grupo de 3.",
+    "pasos": [
+      "Con 7 fichas armamos dos filas de 3.",
+      "Una ficha queda aparte. Sobra 1."
+    ],
+    "pista": "Contá solo las fichas que quedaron aparte. Los grupos completos no son sobrantes.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 2,
+      "columnas": 3,
+      "separar": 0,
+      "quitar_ultima": false,
+      "sobrantes": 1
+    },
+    "habilidad_concreta": "repartir",
+    "actividades": [
+      {
+        "enunciado": "Agrupamos 7 fichas de a 3. ¿Cuántas fichas sobran?",
+        "respuesta_correcta": "1",
+        "paso_resuelto": "Armamos 2 grupos de 3. Quedan 1 aparte: no alcanzan para otro grupo de 3.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 2,
+          "columnas": 3,
+          "separar": 0,
+          "quitar_ultima": false,
+          "sobrantes": 1
+        },
+        "opciones": [
+          "1",
+          "2",
+          "0"
+        ],
+        "id": "puente_agrupamientos-v1"
+      },
+      {
+        "enunciado": "Agrupamos 6 fichas de a 3. ¿Cuántas fichas sobran?",
+        "respuesta_correcta": "0",
+        "paso_resuelto": "Armamos 2 grupos de 3. No queda ninguna ficha aparte: sobran 0.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 2,
+          "columnas": 3,
+          "separar": 0,
+          "quitar_ultima": false,
+          "sobrantes": 0
+        },
+        "opciones": [
+          "1",
+          "2",
+          "0"
+        ],
+        "id": "puente_agrupamientos-v2"
+      },
+      {
+        "enunciado": "Agrupamos 9 fichas de a 2. ¿Cuántas fichas sobran?",
+        "respuesta_correcta": "1",
+        "paso_resuelto": "Armamos 4 grupos de 2. Quedan 1 aparte: no alcanzan para otro grupo de 2.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 4,
+          "columnas": 2,
+          "separar": 0,
+          "quitar_ultima": false,
+          "sobrantes": 1
+        },
+        "opciones": [
+          "0",
+          "1",
+          "2"
+        ],
+        "id": "puente_agrupamientos-v3"
+      },
+      {
+        "enunciado": "Agrupamos 8 fichas de a 2. ¿Cuántas fichas sobran?",
+        "respuesta_correcta": "0",
+        "paso_resuelto": "Armamos 4 grupos de 2. No queda ninguna ficha aparte: sobran 0.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 4,
+          "columnas": 2,
+          "separar": 0,
+          "quitar_ultima": false,
+          "sobrantes": 0
+        },
+        "opciones": [
+          "0",
+          "1",
+          "2"
+        ],
+        "id": "puente_agrupamientos-v4"
+      },
+      {
+        "enunciado": "Agrupamos 10 fichas de a 3. ¿Cuántas fichas sobran?",
+        "respuesta_correcta": "1",
+        "paso_resuelto": "Armamos 3 grupos de 3. Quedan 1 aparte: no alcanzan para otro grupo de 3.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 3,
+          "columnas": 3,
+          "separar": 0,
+          "quitar_ultima": false,
+          "sobrantes": 1
+        },
+        "opciones": [
+          "2",
+          "0",
+          "1"
+        ],
+        "id": "puente_agrupamientos-v5"
+      },
+      {
+        "enunciado": "Agrupamos 11 fichas de a 3. ¿Cuántas fichas sobran?",
+        "respuesta_correcta": "2",
+        "paso_resuelto": "Armamos 3 grupos de 3. Quedan 2 aparte: no alcanzan para otro grupo de 3.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 3,
+          "columnas": 3,
+          "separar": 0,
+          "quitar_ultima": false,
+          "sobrantes": 2
+        },
+        "opciones": [
+          "1",
+          "2",
+          "3"
+        ],
+        "id": "puente_agrupamientos-v6"
+      }
+    ]
+  },
+  {
+    "id": "puente_divisor",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "antes_de": "div_primos_1_multiplos_divisores",
+    "titulo": "Divisor: un tamaño que encaja",
+    "explicacion": "Si podemos armar grupos iguales sin que sobre ninguna ficha, el tamaño del grupo es un divisor del total. Si sobra alguna, ese tamaño no es divisor.",
+    "ejemplo": "Armamos 3 grupos de 2. No sobra ninguna: 2 sí es divisor de 6.",
+    "pasos": [
+      "Las 6 fichas forman tres grupos de 2.",
+      "No sobra ninguna: 2 es divisor de 6."
+    ],
+    "pista": "Mirá si quedaron fichas aparte. Para ser divisor no debe sobrar ninguna.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 3,
+      "columnas": 2,
+      "separar": 0,
+      "quitar_ultima": false,
+      "sobrantes": 0
+    },
+    "habilidad_concreta": "repartir",
+    "actividades": [
+      {
+        "enunciado": "Agrupamos 6 fichas de a 2. ¿2 es divisor de 6?",
+        "respuesta_correcta": "Sí",
+        "paso_resuelto": "Armamos 3 grupos de 2. No sobra ninguna: 2 sí es divisor de 6.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 3,
+          "columnas": 2,
+          "separar": 0,
+          "quitar_ultima": false,
+          "sobrantes": 0
+        },
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "id": "puente_divisor-v1"
+      },
+      {
+        "enunciado": "Agrupamos 7 fichas de a 2. ¿2 es divisor de 7?",
+        "respuesta_correcta": "No",
+        "paso_resuelto": "Armamos 3 grupos de 2. Sobran 1: 2 no es divisor de 7.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 3,
+          "columnas": 2,
+          "separar": 0,
+          "quitar_ultima": false,
+          "sobrantes": 1
+        },
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "id": "puente_divisor-v2"
+      },
+      {
+        "enunciado": "Agrupamos 9 fichas de a 3. ¿3 es divisor de 9?",
+        "respuesta_correcta": "Sí",
+        "paso_resuelto": "Armamos 3 grupos de 3. No sobra ninguna: 3 sí es divisor de 9.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 3,
+          "columnas": 3,
+          "separar": 0,
+          "quitar_ultima": false,
+          "sobrantes": 0
+        },
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "id": "puente_divisor-v3"
+      },
+      {
+        "enunciado": "Agrupamos 10 fichas de a 3. ¿3 es divisor de 10?",
+        "respuesta_correcta": "No",
+        "paso_resuelto": "Armamos 3 grupos de 3. Sobran 1: 3 no es divisor de 10.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 3,
+          "columnas": 3,
+          "separar": 0,
+          "quitar_ultima": false,
+          "sobrantes": 1
+        },
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "id": "puente_divisor-v4"
+      },
+      {
+        "enunciado": "Agrupamos 12 fichas de a 3. ¿3 es divisor de 12?",
+        "respuesta_correcta": "Sí",
+        "paso_resuelto": "Armamos 4 grupos de 3. No sobra ninguna: 3 sí es divisor de 12.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 4,
+          "columnas": 3,
+          "separar": 0,
+          "quitar_ultima": false,
+          "sobrantes": 0
+        },
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "id": "puente_divisor-v5"
+      },
+      {
+        "enunciado": "Agrupamos 11 fichas de a 2. ¿2 es divisor de 11?",
+        "respuesta_correcta": "No",
+        "paso_resuelto": "Armamos 5 grupos de 2. Sobran 1: 2 no es divisor de 11.",
+        "visual": {
+          "tipo": "arreglo",
+          "filas": 5,
+          "columnas": 2,
+          "separar": 0,
+          "quitar_ultima": false,
+          "sobrantes": 1
+        },
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "id": "puente_divisor-v6"
+      }
+    ]
+  },
+  {
+    "id": "puente_encuentro",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "antes_de": "div_primos_4_mcm",
+    "titulo": "Encontrar el primer encuentro",
+    "explicacion": "Dos recorridos pueden usar saltos distintos. Miramos qué llegada comparten primero después del cero. Ese primer encuentro positivo se llama MCM.",
+    "ejemplo": "Las dos filas llegan a 6. Ninguna llegada positiva anterior está en las dos: su MCM es 6.",
+    "pasos": [
+      "La primera fila llega a 2, 4 y 6. La segunda, a 3 y 6.",
+      "El primer encuentro después de cero es 6. No necesitamos factores primos."
+    ],
+    "pista": "Buscá una llegada que aparezca en las dos filas. Elegí la menor después de cero.",
+    "visual": {
+      "tipo": "saltos",
+      "series": [
+        {
+          "paso": 2,
+          "cantidad": 4
+        },
+        {
+          "paso": 3,
+          "cantidad": 3
+        }
+      ]
+    },
+    "habilidad_concreta": "juntar",
+    "actividades": [
+      {
+        "enunciado": "Una fila salta de 2 en 2; la otra, de 3 en 3. ¿Cuál es su primera llegada compartida después del 0?",
+        "respuesta_correcta": "6",
+        "paso_resuelto": "Las dos filas llegan a 6. Ninguna llegada positiva anterior está en las dos: su MCM es 6.",
+        "visual": {
+          "tipo": "saltos",
+          "series": [
+            {
+              "paso": 2,
+              "cantidad": 4
+            },
+            {
+              "paso": 3,
+              "cantidad": 3
+            }
+          ]
+        },
+        "opciones": [
+          "6",
+          "7",
+          "5"
+        ],
+        "id": "puente_encuentro-v1"
+      },
+      {
+        "enunciado": "Una fila salta de 2 en 2; la otra, de 4 en 4. ¿Cuál es su primera llegada compartida después del 0?",
+        "respuesta_correcta": "4",
+        "paso_resuelto": "Las dos filas llegan a 4. Ninguna llegada positiva anterior está en las dos: su MCM es 4.",
+        "visual": {
+          "tipo": "saltos",
+          "series": [
+            {
+              "paso": 2,
+              "cantidad": 3
+            },
+            {
+              "paso": 4,
+              "cantidad": 2
+            }
+          ]
+        },
+        "opciones": [
+          "5",
+          "3",
+          "4"
+        ],
+        "id": "puente_encuentro-v2"
+      },
+      {
+        "enunciado": "Una fila salta de 3 en 3; la otra, de 4 en 4. ¿Cuál es su primera llegada compartida después del 0?",
+        "respuesta_correcta": "12",
+        "paso_resuelto": "Las dos filas llegan a 12. Ninguna llegada positiva anterior está en las dos: su MCM es 12.",
+        "visual": {
+          "tipo": "saltos",
+          "series": [
+            {
+              "paso": 3,
+              "cantidad": 5
+            },
+            {
+              "paso": 4,
+              "cantidad": 4
+            }
+          ]
+        },
+        "opciones": [
+          "11",
+          "12",
+          "13"
+        ],
+        "id": "puente_encuentro-v3"
+      },
+      {
+        "enunciado": "Una fila salta de 3 en 3; la otra, de 6 en 6. ¿Cuál es su primera llegada compartida después del 0?",
+        "respuesta_correcta": "6",
+        "paso_resuelto": "Las dos filas llegan a 6. Ninguna llegada positiva anterior está en las dos: su MCM es 6.",
+        "visual": {
+          "tipo": "saltos",
+          "series": [
+            {
+              "paso": 3,
+              "cantidad": 3
+            },
+            {
+              "paso": 6,
+              "cantidad": 2
+            }
+          ]
+        },
+        "opciones": [
+          "6",
+          "7",
+          "5"
+        ],
+        "id": "puente_encuentro-v4"
+      },
+      {
+        "enunciado": "Una fila salta de 4 en 4; la otra, de 6 en 6. ¿Cuál es su primera llegada compartida después del 0?",
+        "respuesta_correcta": "12",
+        "paso_resuelto": "Las dos filas llegan a 12. Ninguna llegada positiva anterior está en las dos: su MCM es 12.",
+        "visual": {
+          "tipo": "saltos",
+          "series": [
+            {
+              "paso": 4,
+              "cantidad": 4
+            },
+            {
+              "paso": 6,
+              "cantidad": 3
+            }
+          ]
+        },
+        "opciones": [
+          "13",
+          "11",
+          "12"
+        ],
+        "id": "puente_encuentro-v5"
+      },
+      {
+        "enunciado": "Una fila salta de 2 en 2; la otra, de 5 en 5. ¿Cuál es su primera llegada compartida después del 0?",
+        "respuesta_correcta": "10",
+        "paso_resuelto": "Las dos filas llegan a 10. Ninguna llegada positiva anterior está en las dos: su MCM es 10.",
+        "visual": {
+          "tipo": "saltos",
+          "series": [
+            {
+              "paso": 2,
+              "cantidad": 6
+            },
+            {
+              "paso": 5,
+              "cantidad": 3
+            }
+          ]
+        },
+        "opciones": [
+          "9",
+          "10",
+          "11"
+        ],
+        "id": "puente_encuentro-v6"
+      }
+    ]
+  },
+  {
+    "id": "puente_comunes",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "antes_de": "div_primos_5_mcd",
+    "titulo": "El mayor grupo que sirve para ambos",
+    "explicacion": "Buscamos tamaños de grupo que no dejen sobrantes en ninguna de las dos cantidades. Después elegimos el mayor tamaño que sirve para ambas. Ese número se llama MCD.",
+    "ejemplo": "Los tamaños compartidos son 1, 2. El mayor es 2: ese es el MCD.",
+    "pasos": [
+      "Para 4 fichas sirven grupos de 1, 2 o 4. Para 6, de 1, 2, 3 o 6.",
+      "Los tamaños compartidos son 1 y 2. El mayor es 2."
+    ],
+    "pista": "Compará las dos listas. De los tamaños que aparecen en ambas, elegí el mayor.",
+    "visual": {
+      "tipo": "datos",
+      "lineas": [
+        "4 fichas: grupos de 1, 2, 4",
+        "6 fichas: grupos de 1, 2, 3, 6"
+      ]
+    },
+    "habilidad_concreta": "repartir",
+    "actividades": [
+      {
+        "enunciado": "Estos tamaños no dejan sobrantes. ¿Cuál es el mayor tamaño de grupo que sirve para 4 y para 6?",
+        "respuesta_correcta": "2",
+        "paso_resuelto": "Los tamaños compartidos son 1, 2. El mayor es 2: ese es el MCD.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "4 fichas: grupos de 1, 2, 4",
+            "6 fichas: grupos de 1, 2, 3, 6"
+          ]
+        },
+        "opciones": [
+          "2",
+          "3",
+          "1"
+        ],
+        "id": "puente_comunes-v1"
+      },
+      {
+        "enunciado": "Estos tamaños no dejan sobrantes. ¿Cuál es el mayor tamaño de grupo que sirve para 6 y para 9?",
+        "respuesta_correcta": "3",
+        "paso_resuelto": "Los tamaños compartidos son 1, 3. El mayor es 3: ese es el MCD.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "6 fichas: grupos de 1, 2, 3, 6",
+            "9 fichas: grupos de 1, 3, 9"
+          ]
+        },
+        "opciones": [
+          "4",
+          "2",
+          "3"
+        ],
+        "id": "puente_comunes-v2"
+      },
+      {
+        "enunciado": "Estos tamaños no dejan sobrantes. ¿Cuál es el mayor tamaño de grupo que sirve para 8 y para 12?",
+        "respuesta_correcta": "4",
+        "paso_resuelto": "Los tamaños compartidos son 1, 2, 4. El mayor es 4: ese es el MCD.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "8 fichas: grupos de 1, 2, 4, 8",
+            "12 fichas: grupos de 1, 2, 3, 4, 6, 12"
+          ]
+        },
+        "opciones": [
+          "3",
+          "4",
+          "5"
+        ],
+        "id": "puente_comunes-v3"
+      },
+      {
+        "enunciado": "Estos tamaños no dejan sobrantes. ¿Cuál es el mayor tamaño de grupo que sirve para 6 y para 8?",
+        "respuesta_correcta": "2",
+        "paso_resuelto": "Los tamaños compartidos son 1, 2. El mayor es 2: ese es el MCD.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "6 fichas: grupos de 1, 2, 3, 6",
+            "8 fichas: grupos de 1, 2, 4, 8"
+          ]
+        },
+        "opciones": [
+          "2",
+          "3",
+          "1"
+        ],
+        "id": "puente_comunes-v4"
+      },
+      {
+        "enunciado": "Estos tamaños no dejan sobrantes. ¿Cuál es el mayor tamaño de grupo que sirve para 5 y para 10?",
+        "respuesta_correcta": "5",
+        "paso_resuelto": "Los tamaños compartidos son 1, 5. El mayor es 5: ese es el MCD.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "5 fichas: grupos de 1, 5",
+            "10 fichas: grupos de 1, 2, 5, 10"
+          ]
+        },
+        "opciones": [
+          "6",
+          "4",
+          "5"
+        ],
+        "id": "puente_comunes-v5"
+      },
+      {
+        "enunciado": "Estos tamaños no dejan sobrantes. ¿Cuál es el mayor tamaño de grupo que sirve para 9 y para 12?",
+        "respuesta_correcta": "3",
+        "paso_resuelto": "Los tamaños compartidos son 1, 3. El mayor es 3: ese es el MCD.",
+        "visual": {
+          "tipo": "datos",
+          "lineas": [
+            "9 fichas: grupos de 1, 3, 9",
+            "12 fichas: grupos de 1, 2, 3, 4, 6, 12"
+          ]
+        },
+        "opciones": [
+          "2",
+          "3",
+          "4"
+        ],
+        "id": "puente_comunes-v6"
+      }
+    ]
+  }
+];
+for (const unidad of PUENTES_R23) {
+ const indice=UNIDADES_BASES.findIndex(u=>u.id===unidad.antes_de);
+ if(indice<0)throw Error('Falta el paso posterior de '+unidad.id);
+ UNIDADES_BASES.splice(indice,0,unidad);
+}
+// Los procedimientos con factores primos van después de comprender MCM y MCD con listas.
+const factorizacionR23=['prof_fact_primos','prof_fact_mcm','prof_fact_mcd'].map(id=>{
+ const index=UNIDADES_BASES.findIndex(u=>u.id===id);
+ if(index<0)throw Error('Falta '+id);
+ return UNIDADES_BASES.splice(index,1)[0];
+});
+UNIDADES_BASES.splice(UNIDADES_BASES.findIndex(u=>u.id==='div_primos_5_mcd')+1,0,...factorizacionR23);
+// FIN R23
+
 export const TEMAS_BASES = [...new Set(UNIDADES_BASES.map(u => u.tema))];
 export function getUnidadBase(id) { return UNIDADES_BASES.find(u => u.id === id) || null; }
 export function crearActividadBase(id, modo, sesiones = []) {
@@ -22473,7 +24139,7 @@ export function crearActividadBase(id, modo, sesiones = []) {
  const actividad = modo === 'leccion' ? u.actividades[0] : siguiente;
  const tipoActividad=actividad.rubrica_escritura?'produccion':'multiple';
  const habilidades={entrada_contar:'cantidad',entrada_conservar:'cantidad',entrada_juntar:'juntar',entrada_quitar:'quitar',entrada_diez:'cantidad',entrada_llevar:'juntar',entrada_desarmar:'quitar',entrada_grupos:'grupos',entrada_repartir:'repartir',entrada_denominador:'mitades',entrada_numerador:'cuartos',mat_num_suma:'juntar',mat_num_resta:'quitar',mat_tab_grupos:'grupos',mat_div_repartir:'repartir',frac_con_1_partes_iguales:'mitades',frac_con_2_num_den:'cuartos'};
- const base = { habilidad_concreta:habilidades[id] || null, escritura_guiada:Boolean(actividad.rubrica_escritura), contenido_version: VERSION_BASES, actividad_id: actividad.id, unidad_titulo: u.titulo, tiempo_estimado: 3 };
+ const base = { habilidad_concreta:u.habilidad_concreta || habilidades[id] || null, escritura_guiada:Boolean(actividad.rubrica_escritura), contenido_version: VERSION_BASES, actividad_id: actividad.id, unidad_titulo: u.titulo, tiempo_estimado: 3 };
  if (modo === 'leccion') return {...base, tipo:'leccion', saludo:'Miremos una idea juntos', explicacion_simple:u.explicacion, concepto_clave_repetir:u.pista, visual_apoyo:u.visual,
  ejemplos_resueltos:[{numero:1,enunciado:u.ejemplo,pasos:u.pasos,respuesta:u.ejemplo,visual:u.visual}],
  ejercicio_practica:{...actividad,tipo:tipoActividad}, opciones:actividad.opciones};
@@ -22505,7 +24171,7 @@ export function getFichaBase(tema) {
 export function getCierreBase(tema) {
  const unidades=UNIDADES_BASES.filter(u=>u.tema===tema);
  if(!unidades.length)return null;
- const ampliado=unidades.some(u=>u.id.startsWith('prof_') || u.id.startsWith('leng_prof_') || u.id.startsWith('entrada_'));
+ const ampliado=unidades.some(u=>u.id.startsWith('prof_') || u.id.startsWith('leng_prof_') || u.id.startsWith('entrada_') || u.id.startsWith('puente_'));
  // La preparación cubre toda la secuencia; el cierre breve toma una muestra de tres ideas.
  const cerradas=unidades.filter(u=>!u.actividades[5].rubrica_escritura);
  const seleccion=ampliado ? [cerradas[0],cerradas[Math.floor(cerradas.length/2)],cerradas.at(-1)] : cerradas;

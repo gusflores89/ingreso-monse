@@ -42,3 +42,7 @@ El primer bloque quedó publicado y verificado en https://www.ingresomonserrat.o
 ## Continuación R22
 
 El orden para los 26 temas está detallado en `PLAN-PRIORIDADES-MATEMATICA.md`. Se implementó su prioridad 1 con once lecciones y 66 actividades dentro del curso habitual, cuatro PDF actualizados y conexión con el taller. Las prioridades 2–4 siguen pendientes.
+
+## R23 — Tablas, múltiplos y divisores
+
+Se incorporan doce microlecciones previas con 72 actividades en cuatro temas. Los procedimientos con factores primos quedan después de MCM y MCD por listas. La transición hacia operaciones con fracciones comprueba el objetivo MCM por ID, sin suponer un número fijo de lecciones. Detalle y comprobaciones en IMPLEMENTACION-R23.md.

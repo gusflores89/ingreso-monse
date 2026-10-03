@@ -7,6 +7,38 @@ export function crearDiagramaGeometria(d = {}) {
  const arc=(x,y,r,start,end,color='#64748b',dash=false,width=1)=>{
   const steps=Math.max(2,Math.ceil(Math.abs(end-start)/2));line(Array.from({length:steps+1},(_,i)=>point(x,y,r,start+(end-start)*i/steps)),color,dash,width);
  };
+ if(d.tipo==='arreglo'){
+  const cols=d.columnas,rows=d.filas,dx=28,dy=20,x0=(480-(cols-1)*dx)/2,y0=58;
+  text(240,25,'Cada fila es un grupo','#172554',16);
+  for(let r=0;r<rows;r++){
+   const y=y0+r*dy,removed=d.quitar_ultima && r===rows-1;
+   text(48,y+4,'Fila '+(r+1),'#475569',12);
+   for(let c=0;c<cols;c++)arc(x0+c*dx,y,6,0,360,removed?'#b91c1c':'#2563eb',false,2);
+   if(removed)line([[x0-12,y-8],[x0+(cols-1)*dx+12,y+8]],'#b91c1c',false,2);
+   if(d.separar===r+1)line([[92,y+10],[425,y+10]],'#15803d',true,1);
+  }
+  if(d.sobrantes!==undefined){
+   text(90,285,'Aparte:','#172554',14);
+   for(let n=0;n<d.sobrantes;n++)arc(160+n*28,281,6,0,360,'#9a3412',false,2);
+   if(d.sobrantes===0)text(240,285,'No quedó ninguna','#172554',14);
+  }
+  return {trazos,textos,ancho:480,alto:310};
+ }
+ if(d.tipo==='saltos'){
+  const max=Math.max(...d.series.map(s=>s.paso*s.cantidad)),x=n=>42+n*396/max;
+  d.series.forEach((s,i)=>{
+   const y=d.series.length===1?150:100+i*130;
+   text(240,y-43,'Saltos de '+s.paso,'#172554',16);
+   line([[42,y],[438,y]],'#64748b',false,1);
+   for(let n=0;n<=max;n++)line([[x(n),y-3],[x(n),y+3]],'#94a3b8',false,1);
+   for(let k=0;k<=s.cantidad;k++){
+    const px=x(k*s.paso);arc(px,y,3,0,360,'#2563eb',false,2);
+    text(px,y+23,d.ocultar_final && k===s.cantidad?'?':k*s.paso,'#172554',14);
+    if(k){const start=x((k-1)*s.paso),end=px;line(Array.from({length:17},(_,j)=>{const t=j/16;return [start+(end-start)*t,y-80*t*(1-t)];}),'#2563eb',false,2);line([[px-5,y-8],[px,y],[px+1,y-9]],'#2563eb',false,2);}
+   }
+  });
+  return {trazos,textos,ancho:480,alto:310};
+ }
  if(d.tipo==='colecciones'){
   const grupos=d.grupos || [];
   grupos.forEach((g,i)=>{

@@ -359,6 +359,28 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "puente_saltos",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "titulo": "Avanzar con saltos iguales",
+    "explicacion": "Empezamos en cero. Cada salto suma la misma cantidad. Podemos seguir contando para encontrar dónde termina el próximo salto.",
+    "ejemplo": "4 + 2 = 6. El salto conserva su tamaño.",
+    "pasos": [
+      "Empezamos en cero y saltamos 2: llegamos al 2.",
+      "Otro salto llega al 4; uno más, al 6."
+    ],
+    "pista": "Mirá cuánto suma cada salto. Sumá esa misma cantidad otra vez.",
+    "visual": {
+      "tipo": "saltos",
+      "series": [
+        {
+          "paso": 2,
+          "cantidad": 3
+        }
+      ],
+      "ocultar_final": true
+    }
+  },
+  {
     "id": "bases_multiplos_saltos",
     "tema": "divisibilidad_primos_mcm_mcd",
     "titulo": "Múltiplos: avanzar con saltos iguales",
@@ -370,6 +392,31 @@ const UNIDADES = [
     ],
     "pista": "Sumá el tamaño del salto para encontrar el siguiente múltiplo.",
     "visual": null
+  },
+  {
+    "id": "puente_encuentro",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "titulo": "Encontrar el primer encuentro",
+    "explicacion": "Dos recorridos pueden usar saltos distintos. Miramos qué llegada comparten primero después del cero. Ese primer encuentro positivo se llama MCM.",
+    "ejemplo": "Las dos filas llegan a 6. Ninguna llegada positiva anterior está en las dos: su MCM es 6.",
+    "pasos": [
+      "La primera fila llega a 2, 4 y 6. La segunda, a 3 y 6.",
+      "El primer encuentro después de cero es 6. No necesitamos factores primos."
+    ],
+    "pista": "Buscá una llegada que aparezca en las dos filas. Elegí la menor después de cero.",
+    "visual": {
+      "tipo": "saltos",
+      "series": [
+        {
+          "paso": 2,
+          "cantidad": 4
+        },
+        {
+          "paso": 3,
+          "cantidad": 3
+        }
+      ]
+    }
   },
   {
     "id": "div_primos_4_mcm",
@@ -587,6 +634,46 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "puente_agrupamientos",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "titulo": "Armar grupos y mirar qué sobra",
+    "explicacion": "Separamos fichas en grupos del mismo tamaño. Una fila es un grupo completo. Las fichas que no alcanzan para otra fila quedan aparte.",
+    "ejemplo": "Armamos 2 grupos de 3. Quedan 1 aparte: no alcanzan para otro grupo de 3.",
+    "pasos": [
+      "Con 7 fichas armamos dos filas de 3.",
+      "Una ficha queda aparte. Sobra 1."
+    ],
+    "pista": "Contá solo las fichas que quedaron aparte. Los grupos completos no son sobrantes.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 2,
+      "columnas": 3,
+      "separar": 0,
+      "quitar_ultima": false,
+      "sobrantes": 1
+    }
+  },
+  {
+    "id": "puente_divisor",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "titulo": "Divisor: un tamaño que encaja",
+    "explicacion": "Si podemos armar grupos iguales sin que sobre ninguna ficha, el tamaño del grupo es un divisor del total. Si sobra alguna, ese tamaño no es divisor.",
+    "ejemplo": "Armamos 3 grupos de 2. No sobra ninguna: 2 sí es divisor de 6.",
+    "pasos": [
+      "Las 6 fichas forman tres grupos de 2.",
+      "No sobra ninguna: 2 es divisor de 6."
+    ],
+    "pista": "Mirá si quedaron fichas aparte. Para ser divisor no debe sobrar ninguna.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 3,
+      "columnas": 2,
+      "separar": 0,
+      "quitar_ultima": false,
+      "sobrantes": 0
+    }
+  },
+  {
     "id": "div_primos_1_multiplos_divisores",
     "tema": "divisibilidad_primos_mcm_mcd",
     "titulo": "Divisores: repartir sin que sobre",
@@ -665,6 +752,38 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "puente_comunes",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "titulo": "El mayor grupo que sirve para ambos",
+    "explicacion": "Buscamos tamaños de grupo que no dejen sobrantes en ninguna de las dos cantidades. Después elegimos el mayor tamaño que sirve para ambas. Ese número se llama MCD.",
+    "ejemplo": "Los tamaños compartidos son 1, 2. El mayor es 2: ese es el MCD.",
+    "pasos": [
+      "Para 4 fichas sirven grupos de 1, 2 o 4. Para 6, de 1, 2, 3 o 6.",
+      "Los tamaños compartidos son 1 y 2. El mayor es 2."
+    ],
+    "pista": "Compará las dos listas. De los tamaños que aparecen en ambas, elegí el mayor.",
+    "visual": {
+      "tipo": "datos",
+      "lineas": [
+        "4 fichas: grupos de 1, 2, 4",
+        "6 fichas: grupos de 1, 2, 3, 6"
+      ]
+    }
+  },
+  {
+    "id": "div_primos_5_mcd",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "titulo": "MCD: el mayor divisor compartido",
+    "explicacion": "El máximo común divisor, o MCD, es el mayor número que divide exactamente a los dos números. Lo buscamos en sus listas de divisores. Para repartir en grupos iguales, indica el mayor tamaño de grupo que sirve para ambos totales.",
+    "ejemplo": "MCD de 8 y 12 = 4.",
+    "pasos": [
+      "Divisores de 8: 1, 2, 4, 8. De 12: 1, 2, 3, 4, 6, 12.",
+      "Comparten 1, 2 y 4. Elegimos el mayor: 4."
+    ],
+    "pista": "Buscá divisores, no múltiplos. De los que comparten, elegí el mayor.",
+    "visual": null
+  },
+  {
     "id": "prof_fact_primos",
     "tema": "divisibilidad_primos_mcm_mcd",
     "titulo": "Desarmar un número en factores primos",
@@ -688,19 +807,6 @@ const UNIDADES = [
       "2 × 2 × 3 × 3 = 36. Tanto 12 como 18 dividen exactamente a 36."
     ],
     "pista": "Para el MCM conservá cada primo con la mayor cantidad de repeticiones.",
-    "visual": null
-  },
-  {
-    "id": "div_primos_5_mcd",
-    "tema": "divisibilidad_primos_mcm_mcd",
-    "titulo": "MCD: el mayor divisor compartido",
-    "explicacion": "El máximo común divisor, o MCD, es el mayor número que divide exactamente a los dos números. Lo buscamos en sus listas de divisores. Para repartir en grupos iguales, indica el mayor tamaño de grupo que sirve para ambos totales.",
-    "ejemplo": "MCD de 8 y 12 = 4.",
-    "pasos": [
-      "Divisores de 8: 1, 2, 4, 8. De 12: 1, 2, 3, 4, 6, 12.",
-      "Comparten 1, 2 y 4. Elegimos el mayor: 4."
-    ],
-    "pista": "Buscá divisores, no múltiplos. De los que comparten, elegí el mayor.",
     "visual": null
   },
   {
@@ -1522,6 +1628,44 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "puente_filas",
+    "tema": "tablas_multiplicar_2_5",
+    "titulo": "Contar por filas",
+    "explicacion": "Cada fila tiene la misma cantidad de fichas. Sumamos una fila por vez. La multiplicación escribe esa suma de forma corta.",
+    "ejemplo": "Sumamos 3 + 3 = 6. Escribimos 2 × 3 = 6.",
+    "pasos": [
+      "Contamos 3 fichas en cada fila.",
+      "Juntamos las dos filas: 3 + 3 = 6."
+    ],
+    "pista": "Señalá una fila. Contá sus fichas y sumá esa cantidad por cada fila.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 2,
+      "columnas": 3,
+      "separar": 0,
+      "quitar_ultima": false
+    }
+  },
+  {
+    "id": "puente_doble",
+    "tema": "tablas_multiplicar_2_5",
+    "titulo": "Hacer el doble",
+    "explicacion": "El doble es tener dos veces la misma cantidad. Dibujamos una fila y otra igual. Después juntamos las dos.",
+    "ejemplo": "3 + 3 = 6. Dos filas iguales tienen 6 fichas.",
+    "pasos": [
+      "Una fila tiene 3 fichas. Hacemos otra igual.",
+      "Juntamos 3 y 3: el doble es 6."
+    ],
+    "pista": "El doble de una cantidad es esa cantidad más otra igual.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 2,
+      "columnas": 3,
+      "separar": 0,
+      "quitar_ultima": false
+    }
+  },
+  {
     "id": "mat_tab_dobles",
     "tema": "tablas_multiplicar_2_5",
     "titulo": "Dobles y el orden de los factores",
@@ -1548,6 +1692,44 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "puente_seis",
+    "tema": "tablas_multiplicar_6_8",
+    "titulo": "Seis filas: tres y otras tres",
+    "explicacion": "Podemos separar seis filas en tres y otras tres. Contamos una mitad y sumamos otra igual.",
+    "ejemplo": "Las primeras 3 filas tienen 6. Las otras 3 tienen 6. Sumamos 6 + 6 = 12.",
+    "pasos": [
+      "Primero contamos las 3 filas de arriba: 6 fichas.",
+      "Abajo hay 6. Sumamos: 6 + 6 = 12."
+    ],
+    "pista": "Contá las fichas de un lado de la línea. Después las del otro. Juntá las dos cantidades.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 6,
+      "columnas": 2,
+      "separar": 3,
+      "quitar_ultima": false
+    }
+  },
+  {
+    "id": "puente_ocho",
+    "tema": "tablas_multiplicar_6_8",
+    "titulo": "Ocho filas: cuatro y otras cuatro",
+    "explicacion": "Podemos separar ocho filas en cuatro y otras cuatro. Las dos mitades tienen la misma cantidad de fichas.",
+    "ejemplo": "Las primeras 4 filas tienen 8. Las otras 4 tienen 8. Sumamos 8 + 8 = 16.",
+    "pasos": [
+      "Primero contamos las 4 filas de arriba: 8 fichas.",
+      "Abajo hay 8. Sumamos: 8 + 8 = 16."
+    ],
+    "pista": "Contá las fichas de un lado de la línea. Después las del otro. Juntá las dos cantidades.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 8,
+      "columnas": 2,
+      "separar": 4,
+      "quitar_ultima": false
+    }
+  },
+  {
     "id": "mat_tab_seis_ocho",
     "tema": "tablas_multiplicar_6_8",
     "titulo": "Construir las tablas del seis y del ocho",
@@ -1559,6 +1741,25 @@ const UNIDADES = [
     ],
     "pista": "Buscá primero la tabla de la mitad del factor.",
     "visual": null
+  },
+  {
+    "id": "puente_siete",
+    "tema": "tablas_multiplicar_6_8",
+    "titulo": "Siete filas: cinco y otras dos",
+    "explicacion": "Para contar siete filas, primero contamos cinco. Después contamos las otras dos y juntamos ambas cantidades.",
+    "ejemplo": "Las primeras 5 filas tienen 10. Las otras 2 tienen 4. Sumamos 10 + 4 = 14.",
+    "pasos": [
+      "Primero contamos las 5 filas de arriba: 10 fichas.",
+      "Abajo hay 4. Sumamos: 10 + 4 = 14."
+    ],
+    "pista": "Contá las fichas de un lado de la línea. Después las del otro. Juntá las dos cantidades.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 7,
+      "columnas": 2,
+      "separar": 5,
+      "quitar_ultima": false
+    }
   },
   {
     "id": "mat_tab_siete",
@@ -1574,6 +1775,25 @@ const UNIDADES = [
     "visual": null
   },
   {
+    "id": "puente_diez",
+    "tema": "tablas_multiplicar_9_10",
+    "titulo": "Paquetes de diez",
+    "explicacion": "Cada fila es un paquete con diez fichas. Un paquete tiene diez; dos tienen veinte. Cada paquete nuevo agrega diez.",
+    "ejemplo": "Contamos 10, 20. Son 20 fichas.",
+    "pasos": [
+      "Cada paquete tiene 10 fichas.",
+      "Dos paquetes: 10 + 10 = 20."
+    ],
+    "pista": "Contá los paquetes avanzando de diez en diez.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 2,
+      "columnas": 10,
+      "separar": 0,
+      "quitar_ultima": false
+    }
+  },
+  {
     "id": "mat_tab_diez",
     "tema": "tablas_multiplicar_9_10",
     "titulo": "Multiplicar por diez cambia el valor",
@@ -1585,6 +1805,25 @@ const UNIDADES = [
     ],
     "pista": "Pensá en decenas para × 10 y centenas para × 100.",
     "visual": null
+  },
+  {
+    "id": "puente_nueve",
+    "tema": "tablas_multiplicar_9_10",
+    "titulo": "De diez filas a nueve",
+    "explicacion": "Armamos diez filas iguales. Tachamos una fila completa. Contamos las nueve que quedan: quitamos una fila, no una sola ficha.",
+    "ejemplo": "Había 20 fichas. Quitamos una fila de 2: 20 − 2 = 18.",
+    "pasos": [
+      "Diez filas de 2 tienen 20 fichas.",
+      "Quitamos una fila de 2: quedan 18."
+    ],
+    "pista": "La fila tachada ya no cuenta. Quitá todas sus fichas.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 10,
+      "columnas": 2,
+      "separar": 0,
+      "quitar_ultima": true
+    }
   },
   {
     "id": "mat_tab_nueve",

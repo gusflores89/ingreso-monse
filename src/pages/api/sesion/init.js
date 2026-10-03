@@ -163,8 +163,11 @@ export default async function handler(req, res) {
       const historia = assertSupabaseOk(await supabase.from('sesiones').select('id, tema, tipo_pregunta, es_correcta, created_at, ia_parametros_usados').eq('user_id', user_id), 'No se pudo leer el recorrido');
       const fracciones = determinarProximoObjetivo('fracciones_concepto', historia);
       const multiplos = determinarProximoObjetivo('divisibilidad_primos_mcm_mcd', historia);
+      // El puente hacia operaciones incluye todos los pasos hasta MCM, aunque se agreguen lecciones.
+      const indiceMcm = getObjetivosParaTema('divisibilidad_primos_mcm_mcd').findIndex(o => o.id === 'div_primos_4_mcm');
+      const faltaMcm = !multiplos.temaCompletado && (indiceMcm < 0 || multiplos.indiceObjetivo <= indiceMcm);
       if (!fracciones.temaCompletado) temaActual = 'fracciones_concepto';
-      else if (multiplos.indiceObjetivo < 2) temaActual = 'divisibilidad_primos_mcm_mcd';
+      else if (faltaMcm) temaActual = 'divisibilidad_primos_mcm_mcd';
       else if (!determinarProximoObjetivo('fracciones_operaciones', historia).temaCompletado) temaActual = 'fracciones_operaciones';
       else if (!multiplos.temaCompletado) temaActual = 'divisibilidad_primos_mcm_mcd';
       capaActual = 1;
