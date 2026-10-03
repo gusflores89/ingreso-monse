@@ -28,3 +28,14 @@ Quedan pendientes prioridad 2B (equivalencias y operaciones con fracciones), 2C 
 - La suite general detectó y permitió corregir el salto prematuro al salir de múltiplos, una opción duplicada al responder cero y una posición predecible en las respuestas sí/no. Resultado final de la suite y publicación se registran a continuación. Evidencia en C:/Users/gusta/.codex/visualizations/2026/09/09/01a086d6-a934-77a3-9a28-75f27a213064/implementacion-r23.
 
 La suite completa `npm test` (R1–R23 y sincronización de apuntes) terminó con código 0.
+
+## Publicación
+
+- Implementación: `687b939`.
+- Vercel: `dpl_9LqdN2SWjscgkyNQwvVRrGfNyvPZ`, READY, producción.
+- Dominio: https://www.ingresomonserrat.online
+- Versión: https://ingreso-monse-2027-axpnpk4yn-gustavos-projects-b8e409fb.vercel.app
+- Verificación sobre el dominio: 13 comprobaciones del frontend publicado con controladores locales/base simulada y, por separado, ocho comprobaciones con API/base reales (cuatro lecciones y cuatro PDF). Sin errores. La cuenta sintética y todos sus registros se eliminaron y se comprobó la limpieza.
+- Evidencia: `implementacion-r23/produccion/browser-results.json` y `implementacion-r23/produccion/api-real-r23.json`.
+
+Las sesiones ya abiertas se conservan. Las nuevas microlecciones se seleccionan al iniciar una nueva actividad según el tema y el recorrido, o al entrar en repaso; no se reemplaza a la fuerza el ejercicio en curso.
