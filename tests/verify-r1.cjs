@@ -8,6 +8,7 @@ const read = p => fs.readFileSync(path.join(root,p),'utf8');
 const hashes = {};
 function source(p) { const s=read(p); hashes[p]=crypto.createHash('sha256').update(s).digest('hex'); return s; }
 function load(p, names, deps={}) {
+ if(p.startsWith('src/pages/api/sesion/'))deps={exigirLectura:async()=>false,verificarLecturaRespuesta:async()=>true,...deps};
  if(p==='src/pages/api/sesion/respuesta.js')deps={...load('src/lib/evaluacion-escritura.js',['evaluarEscritura']),...deps};
  if(p==='src/lib/acceso-temas.js')deps={...load('src/lib/curriculum.js',['CURRICULUM_MATEMATICA','CURRICULUM_LENGUA','PRERREQUISITOS']),...load('src/lib/metadatos-bases.js',['TEMAS_BASES']),...load('src/lib/planes.js',['TRIAL_TOPICS']),...deps};
  if(['src/pages/api/sesion/init.js','src/pages/api/progreso.js'].includes(p))deps={...load('src/lib/acceso-temas.js',['accesoTema','temasHabilitados']),...load('src/lib/metadatos-bases.js',['TEMAS_BASES_MATEMATICA']),...deps};

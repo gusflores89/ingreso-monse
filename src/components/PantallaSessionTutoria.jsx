@@ -1,4 +1,5 @@
 import TallerConcreto from './TallerConcreto';
+import LecturaModulo from './LecturaModulo';
 import LeerConsigna from './LeerConsigna';
 import EjemploPorPasos from './EjemploPorPasos';
 import MensajesFamiliares from "./MensajesFamiliares";
@@ -967,7 +968,22 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
 
   if(estadoSync === "conflicto")return <section className="tutoria-panel" role="alert" style={{background:"#171427",padding:24,color:"#f8fafc"}}><h2 style={{color:"#f8fafc"}}>Hay otro avance guardado</h2><p style={{color:"#e2e8f0",lineHeight:1.6}}>Esta misión se abrió en otro navegador o pestaña. Conservamos tu copia local y frenamos la sincronización para no sobrescribir el avance más reciente.</p><button type="button" onClick={async()=>{if(await sincronizador.current.cargarRemoto())window.location.reload();}}>Cargar el avance más reciente</button></section>;
 
-  return (
+  const continuarTrasLectura = async () => {
+    if (pregunta.lectura_destino?.tipo === 'repaso') return handleIniciarRepaso(pregunta.lectura_destino.objetivo_id);
+    if (pregunta.lectura_destino?.tipo === 'concreta') return iniciarConcreto(pregunta.lectura_destino.habilidad);
+    const res = await fetch('/api/sesion/init', {method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({user_id,tema:activeTema,capa,modo,tutor_preference,forzar_practica:forzarPractica})});
+    const data = await res.json(); if (!res.ok) throw Error(data.error || 'No pudimos abrir la actividad.');
+    const updates={pregunta:data,sesionId:data.sesion_id,tema:data.tema,borrador:'',respuesta:'',evaluacion:null,pasoActual:0,pasoEjemplo:0,intento:1,pistaActiva:null};
+    if(!saveMissionState(updates))throw Error('No pudimos guardar la actividad. Tu lectura ya está guardada.');
+    setPregunta(data);setSesionId(data.sesion_id);setRespuesta('');setEvaluacion(null);setPasoActual(0);setPasoEjemplo(0);setIntento(1);setPistaActiva(null);
+  };
+  if (pregunta?.tipo === 'lectura_modulo') return <>
+    {error && <p role="alert" className="error">{error}</p>}
+    <LecturaModulo key={`${user_id}:${activeTema}`} userId={user_id} tema={activeTema} onContinuar={continuarTrasLectura} />
+  </>;
+
+  const pantalla = (
     <section
       className={`tutoria-panel background-decorative theme-${theme} ${pregunta?.contenido_version === VERSION_BASES ? "bases-panel" : ""}`}
       aria-live="polite"
@@ -987,6 +1003,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       </div>
       <header className="session-header student-session-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
         <TutorHeader tutor={tutor} />
+        <a href={`/biblioteca?user_id=${encodeURIComponent(user_id)}`} style={{color:'#c4e4ff',padding:'10px'}}>Mis fichas y PDF</a>
         <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
           {/* Indicador pedagógico de Micro-Misión */}
           <div style={{
@@ -2326,6 +2343,9 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       )}
     </section>
   );
+  return activeTema && !misionTerminada
+    ? <LecturaModulo key={`${user_id}:${activeTema}`} userId={user_id} tema={activeTema}>{pantalla}</LecturaModulo>
+    : pantalla;
 }
 
 function cleanMathExpressions(mathContent) {

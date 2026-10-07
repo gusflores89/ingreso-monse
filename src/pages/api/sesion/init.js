@@ -1,4 +1,5 @@
 import { temasHabilitados } from "@/lib/acceso-temas";
+import { exigirLectura } from '@/lib/fichas-lectura';
 import { TEMAS_BASES_MATEMATICA } from "@/lib/metadatos-bases";
 import { VERSION_BASES, getUnidadBase, crearActividadBase, getCierreBase, esCierreActual } from "@/lib/contenido-bases";
 import { quitarClaves } from "@/lib/contrato-actividad";
@@ -172,6 +173,8 @@ export default async function handler(req, res) {
       else if (!multiplos.temaCompletado) temaActual = 'divisibilidad_primos_mcm_mcd';
       capaActual = 1;
     }
+
+    if (await exigirLectura(supabase, user_id, temaActual, res, { ...tutor, ...planPayload, capa: capaActual })) return;
 
     const progresoResult = await supabase
       .from("progreso")

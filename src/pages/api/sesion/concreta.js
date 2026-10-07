@@ -1,4 +1,5 @@
 import { requireMethod } from '@/lib/http';
+import { exigirLectura, verificarLecturaRespuesta } from '@/lib/fichas-lectura';
 import { requireAccess, requireOwnership } from '@/lib/access';
 import { assertSupabaseOk, getSupabaseAdmin } from '@/lib/supabaseAdmin';
 import { loadUser } from '@/lib/usuarios';
@@ -18,6 +19,7 @@ export default async function handler(req,res) {
   if(body.accion==='iniciar') {
    const usuario=assertSupabaseOk(await loadUser(db,body.user_id),'No se pudo leer la cuenta');
    if(!CURRICULUM_MATEMATICA.some(t=>t.tema===body.tema) || !canAccessTopicByPlan(usuario,body.tema))throw Object.assign(Error('Tema no disponible.'),{status:403});
+   if(await exigirLectura(db,body.user_id,body.tema,res,{lectura_destino:{tipo:'concreta',habilidad:body.habilidad || null}}))return;
    const historia=assertSupabaseOk(await db.from('sesiones').select('id,created_at,ia_parametros_usados').eq('user_id',body.user_id).eq('tipo_pregunta','exploracion').order('created_at',{ascending:true}),'No se pudo leer el recorrido');
    let seleccion=body.habilidad || null;
    if(body.continuar && seleccion) {
@@ -32,6 +34,7 @@ export default async function handler(req,res) {
   if(typeof body.sesion_id!=='string' || typeof body.respuesta_usuario!=='string' || body.respuesta_usuario.length>2000)throw Object.assign(Error('Respuesta inválida.'),{status:400});
   const sesion=assertSupabaseOk(await db.from('sesiones').select('*').eq('id',body.sesion_id).single(),'No se pudo leer la actividad');
   if(sesion.user_id!==body.user_id)throw Object.assign(Error('La actividad no pertenece a esta cuenta.'),{status:403});
+  if(!await verificarLecturaRespuesta(db,body.user_id,sesion.tema,res))return;
   if(sesion.tipo_pregunta!=='exploracion' || sesion.ia_parametros_usados?.concreto_version!==VERSION_CONCRETA)throw Object.assign(Error('Esta actividad no pertenece al taller.'),{status:400});
   const reto=sesion.contexto_json.reto_concreto;
   const resultado=evaluarConstruccion(reto,body.respuesta_usuario);

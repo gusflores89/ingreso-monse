@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="499" height="150" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 150" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="499" height="150"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-150)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="8" y="132" style="font-family: Ficha; font-size: 14px;fill: rgb(9%,17%,24%); stroke:none;" transform="translate(0,264) scale(1,-1)">8 al principio: 4 usadas y 4 que quedan</text>
+			<circle cx="32" cy="86" r="10" style="stroke: rgb(9%,17%,24%); stroke-linecap: butt; stroke-width: 1; fill: rgb(79%,83%,88%); fill-rule: evenodd;"/>
+			<path d="M 21,73 L 43,99 Z" style="stroke: rgb(9%,29%,39%); stroke-linecap: butt; stroke-width: 2;"/>
+			<circle cx="90" cy="86" r="10" style="stroke: rgb(9%,17%,24%); stroke-linecap: butt; stroke-width: 1; fill: rgb(79%,83%,88%); fill-rule: evenodd;"/>
+			<path d="M 79,73 L 101,99 Z" style="stroke: rgb(9%,29%,39%); stroke-linecap: butt; stroke-width: 2;"/>
+			<circle cx="148" cy="86" r="10" style="stroke: rgb(9%,17%,24%); stroke-linecap: butt; stroke-width: 1; fill: rgb(79%,83%,88%); fill-rule: evenodd;"/>
+			<path d="M 137,73 L 159,99 Z" style="stroke: rgb(9%,29%,39%); stroke-linecap: butt; stroke-width: 2;"/>
+			<circle cx="206" cy="86" r="10" style="stroke: rgb(9%,17%,24%); stroke-linecap: butt; stroke-width: 1; fill: rgb(79%,83%,88%); fill-rule: evenodd;"/>
+			<path d="M 195,73 L 217,99 Z" style="stroke: rgb(9%,29%,39%); stroke-linecap: butt; stroke-width: 2;"/>
+			<circle cx="264" cy="86" r="10" style="stroke: rgb(9%,17%,24%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,29%,39%); fill-rule: evenodd;"/>
+			<circle cx="322" cy="86" r="10" style="stroke: rgb(9%,17%,24%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,29%,39%); fill-rule: evenodd;"/>
+			<circle cx="380" cy="86" r="10" style="stroke: rgb(9%,17%,24%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,29%,39%); fill-rule: evenodd;"/>
+			<circle cx="438" cy="86" r="10" style="stroke: rgb(9%,17%,24%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,29%,39%); fill-rule: evenodd;"/>
+			<rect x="250" y="30" width="227" height="79" style="stroke: rgb(9%,29%,39%); stroke-linecap: butt; stroke-width: 2; fill: none; fill-rule: evenodd;"/>
+			<rect x="253" y="59" width="107" height="50" style="stroke: rgb(65%,35%,7%); stroke-linecap: butt; stroke-width: 3; fill: none; fill-rule: evenodd;"/>
+			<text x="30" y="42" style="font-family: Ficha; font-size: 12px;fill: rgb(9%,17%,24%); stroke:none;" transform="translate(0,84) scale(1,-1)">4 usadas</text>
+			<text x="260" y="42" style="font-family: Ficha; font-size: 12px;fill: rgb(9%,17%,24%); stroke:none;" transform="translate(0,84) scale(1,-1)">Nuevo total: 4 restantes</text>
+			<text x="250" y="8" style="font-family: Ficha; font-size: 12px;fill: rgb(9%,17%,24%); stroke:none;" transform="translate(0,16) scale(1,-1)">Guardamos 2 de estas 4: la mitad</text>
+		</g>
+	</g>
+</svg>

@@ -1,4 +1,5 @@
 import { requireAccess, requireOwnership } from "@/lib/access";
+import { exigirLectura } from '@/lib/fichas-lectura';
 import { getSupabaseAdmin, assertSupabaseOk } from "@/lib/supabaseAdmin";
 import { loadUser } from "@/lib/usuarios";
 import { getUserPlan } from "@/lib/planes";
@@ -24,6 +25,7 @@ export default async function handler(req,res) {
   if(typeof objetivo!=='string' || !getUnidadBase(objetivo))return res.status(400).json({error:'Ese repaso no está disponible.'});
   const repaso=repasos.find(r=>r.objetivo_id===objetivo && r.disponible);
   if(!repaso)return res.status(409).json({error:'Este repaso ya está al día o todavía necesita enseñanza previa.'});
+  if(await exigirLectura(db,userId,repaso.tema,res,{plan,lectura_destino:{tipo:'repaso',objetivo_id:objetivo}}))return;
   // Una recarga o un reenvío retoma la misma actividad abierta.
   const abierta=historial.findLast(s=>s.es_correcta===null && s.ia_parametros_usados?.objetivo_id===objetivo && s.ia_parametros_usados?.repaso_espaciado && s.ia_parametros_usados?.contenido_version===VERSION_BASES);
   if(abierta){

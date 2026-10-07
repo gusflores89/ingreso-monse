@@ -8,6 +8,10 @@ const read = p => fs.readFileSync(path.join(root,p),'utf8');
 const hashes = {};
 function source(p) { const s=read(p); hashes[p]=crypto.createHash('sha256').update(s).digest('hex'); return s; }
 function load(p, names, deps={}) {
+ // Las pruebas anteriores aíslan sus controladores del requisito de lectura nuevo.
+ // verify-r25 ejercita el requisito real y aporta estas dependencias explícitamente.
+ if(p.startsWith('src/pages/api/sesion/'))deps={exigirLectura:async()=>false,verificarLecturaRespuesta:async()=>true,...deps};
+ if(p==='src/lib/fichas-lectura.js')deps={fichas:JSON.parse(read('src/lib/fichas-modulos.json')),diagramas:JSON.parse(read('src/lib/fichas-diagramas.json')),...deps};
  if(p==='src/lib/recorrido-familiar.js')deps={createHash:crypto.createHash,...load('src/lib/contenido-bases.js',['getEscrituraBase']),...deps};
  if(p==='src/pages/api/familia/recorrido.js')deps={...load('src/lib/contenido-bases.js',['UNIDADES_BASES']),...deps};
  if(p==='src/pages/api/sesion/respuesta.js')deps={...load('src/lib/evaluacion-escritura.js',['evaluarEscritura']),...deps};
@@ -86,7 +90,7 @@ async function answer(database,sessionId,extra={},evaluation={es_correcta:false,
  assert.equal(status,200);return output;
 }
 const extraCurr=load('src/lib/curriculum.js',['isCurriculumTopic','DEFAULT_TOPIC']);
-async function start(database,body={},aiType="practica") {
+async function start(database,body={},aiType="practica",extraDeps={}) {
  const calls=[];
  const full=load('src/pages/api/sesion/init.js',['handler'],{
   ...curriculum,...extraCurr,...exams,...prompts,...alumno,...objectives,
@@ -94,7 +98,7 @@ async function start(database,body={},aiType="practica") {
   getSupabaseAdmin:()=>database,assertSupabaseOk:ok,loadUser:async()=>({data:user,error:null}),
   checkDailyRateLimit:async()=>({ok:true}),daysUntilExam:()=>100,getUserPlan:()=> 'full',getDefaultTopicForPlan:(_,t)=>t,
   getTareaManuscrita:()=>null,getCasoResuelto:()=>null,MODEL_TUTOR:'mock',parseJsonFromModel:JSON.parse,
-  callOpenRouter:async(model,system,instruction)=>{calls.push(instruction);return JSON.stringify({pregunta:'Pregunta sintética',tipo:"practica",tipo_pregunta:aiType,ejercicio_practica:{enunciado:'Ejercicio guiado sintético'},explicacion:'Explicación sintética'});}
+  callOpenRouter:async(model,system,instruction)=>{calls.push(instruction);return JSON.stringify({pregunta:'Pregunta sintética',tipo:"practica",tipo_pregunta:aiType,ejercicio_practica:{enunciado:'Ejercicio guiado sintético'},explicacion:'Explicación sintética'});},...extraDeps
  });
  let status,output;
  await full.handler({body:{user_id:user.id,tema:'fracciones_concepto',capa:1,omitir_caso_resuelto:true,forzar_practica:true,...body}}, {status(v){status=v;return this},json(v){output=v}});

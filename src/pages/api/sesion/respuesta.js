@@ -1,4 +1,5 @@
 import { evaluarEscritura } from "@/lib/evaluacion-escritura";
+import { verificarLecturaRespuesta } from '@/lib/fichas-lectura';
 import { iniciarEnvio, guardarPasoEnvio, completarEnvio, liberarEnvio } from "@/lib/registro-envios";
 import { evaluarActividadBase, getEscrituraBase, getCierreBase, esCierreActual } from "@/lib/contenido-bases";
 import { validarEvaluacion, huboAyuda } from "@/lib/validacion-pedagogica";
@@ -52,6 +53,7 @@ export default async function handler(req, res) {
     );
 
     if (!requireOwnership(req, res, sesion.user_id)) return;
+    if (!await verificarLecturaRespuesta(supabase, sesion.user_id, sesion.tema, res)) return;
     if(sesion.tipo_pregunta === 'exploracion') return res.status(400).json({error:'Enviá la construcción desde el taller con objetos.'});
 
     envio = await iniciarEnvio(supabase, sesion_id, req.body);

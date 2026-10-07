@@ -348,6 +348,12 @@ export default function DashboardPapas({ userId }) {
         </button>
       </header>
 
+      {data?.usuario?.id && <section className="dashboard-panel" style={{ margin: "20px 0" }}>
+        <h3>Fichas antes de practicar</h3>
+        <p>40 lecturas breves con ejemplos y relaciones entre ideas. Cada tema comienza por su ficha; el avance queda guardado.</p>
+        <a className="btn" href={`/biblioteca?user_id=${encodeURIComponent(data.usuario.id)}`}>Ver las fichas y los PDF</a>
+      </section>}
+
       {loading && <p className="status">Analizando progreso...</p>}
       {error && <p className="error">{error}</p>}
 

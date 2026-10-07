@@ -1,0 +1,3051 @@
+[
+  {
+    "tema": "numeros_naturales_sistema_decimal",
+    "title": "Contar y armar paquetes",
+    "proposito": "Organizar una cantidad para contarla sin empezar de nuevo.",
+    "prerrequisito": "Empezamos contando objetos, uno por uno.",
+    "situacion": "Tenemos 12 lápices. Guardamos 10 en una caja y dejamos 2 afuera.",
+    "relaciones": [
+      {
+        "desde": "12 lápices",
+        "enlace": "se organizan en",
+        "hasta": "10 juntos y 2 sueltos"
+      },
+      {
+        "desde": "10 unidades",
+        "enlace": "forman",
+        "hasta": "una decena"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Contamos los 12 lápices.",
+        "Ponemos 10 en una caja: esa caja reúne una decena.",
+        "Quedan 2 sueltos. Sigue habiendo 12."
+      ]
+    },
+    "otroContexto": {
+      "texto": "También podemos organizar 12 figuritas en un paquete de 10 y 2 sueltas.",
+      "conexion": "Cambian los objetos; se conserva la cantidad."
+    },
+    "contraste": {
+      "texto": "Mover los lápices no agrega lápices.",
+      "explicacion": "La distribución puede cambiar sin que cambie el total."
+    },
+    "comprobacion": {
+      "pregunta": "¿Qué cambió al guardar 10 lápices en la caja?",
+      "opciones": [
+        "La cantidad total",
+        "La forma de organizarlos",
+        "El tamaño de cada lápiz"
+      ],
+      "correcta": 1,
+      "pista": "Pensá si agregamos o quitamos alguno.",
+      "explicacion": "Solo cambió la organización: siguen siendo 12."
+    },
+    "fuentes": [
+      "nap-m4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Organización",
+        "Cantidad"
+      ],
+      "filas": [
+        [
+          "En la caja",
+          "10"
+        ],
+        [
+          "Afuera",
+          "2"
+        ],
+        [
+          "En total",
+          "12"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "tablas_multiplicar_2_5",
+    "title": "Grupos con la misma cantidad",
+    "proposito": "Contar varios grupos iguales sin perder de vista qué representa cada número.",
+    "prerrequisito": "Empezamos con grupos pequeños que podemos contar.",
+    "situacion": "Armamos 3 bolsitas con 2 galletitas en cada una.",
+    "relaciones": [
+      {
+        "desde": "3 bolsitas",
+        "enlace": "contienen cada una",
+        "hasta": "2 galletitas"
+      },
+      {
+        "desde": "2 + 2 + 2",
+        "enlace": "reúne",
+        "hasta": "6 galletitas"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Hay 3 bolsitas.",
+        "Cada una tiene 2 galletitas: 2 + 2 + 2.",
+        "En total hay 6. Podemos escribir 3 × 2 = 6."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Tres pares de medias también reúnen 6 medias.",
+      "conexion": "En ambos casos hay 3 grupos de 2."
+    },
+    "contraste": {
+      "texto": "Una bolsita con 2 y otra con 3 no son grupos iguales.",
+      "explicacion": "No podemos describirlas como dos grupos de 2."
+    },
+    "comprobacion": {
+      "pregunta": "En 3 bolsitas de 2, ¿qué cuenta el 3?",
+      "opciones": [
+        "Las galletitas de cada bolsita",
+        "Las galletitas sobrantes",
+        "Las bolsitas"
+      ],
+      "correcta": 2,
+      "pista": "Señalá los grupos que armamos.",
+      "explicacion": "El 3 cuenta las bolsitas; el 2, las galletitas de cada una."
+    },
+    "fuentes": [
+      "nap-m4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Bolsita",
+        "Galletitas"
+      ],
+      "filas": [
+        [
+          "Primera",
+          "2"
+        ],
+        [
+          "Segunda",
+          "2"
+        ],
+        [
+          "Tercera",
+          "2"
+        ],
+        [
+          "Total",
+          "6"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "tablas_multiplicar_6_8",
+    "title": "Usar un grupo que ya conocemos",
+    "proposito": "Construir una cuenta nueva separando un grupo grande en otros pequeños.",
+    "prerrequisito": "Podés contar de a uno; no hace falta recordar la tabla.",
+    "situacion": "Hay 6 filas con 2 sillas por fila. Podemos mirar primero 5 filas.",
+    "relaciones": [
+      {
+        "desde": "6 filas",
+        "enlace": "se separan en",
+        "hasta": "5 filas y 1 fila"
+      },
+      {
+        "desde": "10 sillas y 2 sillas",
+        "enlace": "reúnen",
+        "hasta": "12 sillas"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "En las primeras 5 filas contamos 10 sillas.",
+        "En la última fila hay 2 más.",
+        "Juntamos 10 + 2: hay 12. Por eso 6 × 2 = 12."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Seis pares de guantes pueden separarse en cinco pares y un par.",
+      "conexion": "Separar los grupos ayuda a contar sin cambiar el total."
+    },
+    "contraste": {
+      "texto": "Separar las filas no elimina ninguna silla.",
+      "explicacion": "Tenemos que contar las dos partes, no quedarnos solo con las primeras cinco."
+    },
+    "comprobacion": {
+      "pregunta": "¿Qué falta sumar después de contar las primeras 5 filas?",
+      "opciones": [
+        "Las 2 sillas de la última fila",
+        "Otras 6 filas",
+        "Nada"
+      ],
+      "correcta": 0,
+      "pista": "Todavía queda una fila sin contar.",
+      "explicacion": "Faltan las 2 sillas de la sexta fila."
+    },
+    "fuentes": [
+      "nap-m4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Filas",
+        "Sillas"
+      ],
+      "filas": [
+        [
+          "Primeras 5",
+          "10"
+        ],
+        [
+          "Última 1",
+          "2"
+        ],
+        [
+          "Las 6 juntas",
+          "12"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "tablas_multiplicar_9_10",
+    "title": "Diez grupos ayudan a contar nueve",
+    "proposito": "Encontrar un total usando un grupo de referencia.",
+    "prerrequisito": "Empezamos con grupos de dos que podemos contar.",
+    "situacion": "Diez pares de medias tienen 20 medias. Guardamos un par aparte.",
+    "relaciones": [
+      {
+        "desde": "10 pares",
+        "enlace": "al quitar 1 par dejan",
+        "hasta": "9 pares"
+      },
+      {
+        "desde": "20 medias",
+        "enlace": "al quitar 2 dejan",
+        "hasta": "18 medias"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Contamos 20 medias en los 10 pares.",
+        "Apartamos un par completo: son 2 medias.",
+        "Quedan 18 medias en 9 pares: 9 × 2 = 18."
+      ]
+    },
+    "otroContexto": {
+      "texto": "De diez bicicletas, apartamos una. Quedan nueve, con dos ruedas cada una.",
+      "conexion": "Quitamos un grupo completo, no una sola rueda."
+    },
+    "contraste": {
+      "texto": "Quitar una media no es quitar un par.",
+      "explicacion": "Cada grupo de este ejemplo contiene dos elementos."
+    },
+    "comprobacion": {
+      "pregunta": "Para pasar de 10 pares a 9 pares, ¿qué apartamos?",
+      "opciones": [
+        "Una media",
+        "Un par completo",
+        "Nueve pares"
+      ],
+      "correcta": 1,
+      "pista": "Cada par tiene dos medias.",
+      "explicacion": "Apartamos un par: quitamos 2 medias del total."
+    },
+    "fuentes": [
+      "nap-m4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Pares",
+        "Medias"
+      ],
+      "filas": [
+        [
+          "10",
+          "20"
+        ],
+        [
+          "Quitamos 1",
+          "Quitamos 2"
+        ],
+        [
+          "Quedan 9",
+          "Quedan 18"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "numeros_romanos",
+    "title": "Leer números en capítulos",
+    "proposito": "Reconocer otra forma de escribir cantidades y posiciones.",
+    "prerrequisito": "Empezamos con I, II y III: uno, dos y tres.",
+    "situacion": "Un libro tiene capítulos I, II y III. Queremos abrir el tercero.",
+    "relaciones": [
+      {
+        "desde": "I",
+        "enlace": "representa",
+        "hasta": "1"
+      },
+      {
+        "desde": "II",
+        "enlace": "representa",
+        "hasta": "2"
+      },
+      {
+        "desde": "III",
+        "enlace": "representa",
+        "hasta": "3"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Buscamos el título del capítulo.",
+        "III tiene tres signos I: representa 3.",
+        "Abrimos el capítulo III, el tercero."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Un reloj puede usar III para indicar las tres.",
+      "conexion": "El mismo número puede aparecer en un libro o en un reloj."
+    },
+    "contraste": {
+      "texto": "No todas las escrituras romanas se leen sumando signos.",
+      "explicacion": "Más adelante aprenderemos otras combinaciones; aquí usamos solo I, II y III."
+    },
+    "comprobacion": {
+      "pregunta": "¿Qué capítulo es el tercero?",
+      "opciones": [
+        "III",
+        "II",
+        "I"
+      ],
+      "correcta": 0,
+      "pista": "Buscá tres signos I.",
+      "explicacion": "III representa el número 3."
+    },
+    "fuentes": [
+      "nap-m4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Romano",
+        "Número"
+      ],
+      "filas": [
+        [
+          "I",
+          "1"
+        ],
+        [
+          "II",
+          "2"
+        ],
+        [
+          "III",
+          "3"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "division_1_digito",
+    "title": "Repartir sin dejar a nadie con más",
+    "proposito": "Entender una división como un reparto en grupos iguales.",
+    "prerrequisito": "Podés repartir objetos uno por uno.",
+    "situacion": "Tenemos 8 fichas para 4 personas. Damos una a cada persona por turno.",
+    "relaciones": [
+      {
+        "desde": "8 fichas",
+        "enlace": "se reparten entre",
+        "hasta": "4 personas"
+      },
+      {
+        "desde": "Cada persona",
+        "enlace": "recibe",
+        "hasta": "2 fichas"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "En la primera vuelta damos una ficha a cada persona. Usamos 4.",
+        "En la segunda vuelta repartimos las otras 4.",
+        "Cada persona tiene 2. Escribimos 8 ÷ 4 = 2."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Ocho cartas repartidas entre cuatro jugadores dan dos cartas a cada uno.",
+      "conexion": "Cambia el objeto; el reparto sigue siendo igual."
+    },
+    "contraste": {
+      "texto": "Dar cuatro fichas a una persona y ninguna a otra no es este reparto.",
+      "explicacion": "La división pide que todos reciban la misma cantidad."
+    },
+    "comprobacion": {
+      "pregunta": "En 8 ÷ 4 = 2, ¿qué representa el 2 en este reparto?",
+      "opciones": [
+        "Las personas",
+        "Todas las fichas",
+        "Las fichas de cada persona"
+      ],
+      "correcta": 2,
+      "pista": "Mirá cuánto recibió una sola persona.",
+      "explicacion": "Cada persona recibió 2 fichas."
+    },
+    "fuentes": [
+      "nap-m4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Persona",
+        "Fichas"
+      ],
+      "filas": [
+        [
+          "Ana",
+          "2"
+        ],
+        [
+          "Luz",
+          "2"
+        ],
+        [
+          "Leo",
+          "2"
+        ],
+        [
+          "Teo",
+          "2"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "title": "Formar grupos sin sobrante",
+    "proposito": "Empezamos por repartir exactamente; después veremos divisores, múltiplos y encuentros.",
+    "prerrequisito": "Podés armar grupos pequeños y contar lo que sobra.",
+    "situacion": "Queremos guardar 6 lápices en bolsitas de 2.",
+    "relaciones": [
+      {
+        "desde": "6 lápices",
+        "enlace": "llenan",
+        "hasta": "3 bolsitas de 2"
+      },
+      {
+        "desde": "Este reparto",
+        "enlace": "deja",
+        "hasta": "0 lápices sueltos"
+      },
+      {
+        "desde": "2",
+        "enlace": "es divisor de",
+        "hasta": "6"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Ponemos 2 lápices en la primera bolsita.",
+        "Llenamos dos bolsitas más con 2 en cada una.",
+        "Usamos los 6 y no sobra ninguno: el reparto es exacto."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Seis personas pueden formar parejas sin que nadie quede solo.",
+      "conexion": "Otra vez armamos grupos de 2 y no sobra ningún elemento."
+    },
+    "contraste": {
+      "texto": "Con 7 lápices, tres bolsitas de 2 dejan 1 suelto.",
+      "explicacion": "En ese caso el reparto en bolsitas de 2 no es exacto."
+    },
+    "comprobacion": {
+      "pregunta": "¿Qué muestra que las bolsitas de 2 sirven para repartir exactamente 6?",
+      "opciones": [
+        "Sobra un lápiz",
+        "Todas tienen 2 y no sobra ninguno",
+        "Hay más bolsitas que lápices"
+      ],
+      "correcta": 1,
+      "pista": "Mirá los grupos y también lo que quedó afuera.",
+      "explicacion": "Cada grupo tiene 2 y el sobrante es cero."
+    },
+    "fuentes": [
+      "nap-m4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Total",
+        "Grupos de 2",
+        "Sobrante"
+      ],
+      "filas": [
+        [
+          "6 lápices",
+          "3 bolsitas",
+          "0"
+        ],
+        [
+          "7 lápices",
+          "3 bolsitas",
+          "1"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "fracciones_concepto",
+    "title": "Tres partes de un mismo total",
+    "proposito": "Reconocer una fracción en algo que usamos, repartimos o medimos.",
+    "prerrequisito": "Empezamos reconociendo un total y partes iguales.",
+    "situacion": "Repartimos una jarra llena en 4 vasos con igual cantidad. Usamos 3 vasos.",
+    "relaciones": [
+      {
+        "desde": "La jarra llena",
+        "enlace": "es",
+        "hasta": "el total"
+      },
+      {
+        "desde": "Cada vaso",
+        "enlace": "contiene",
+        "hasta": "1 de 4 partes iguales"
+      },
+      {
+        "desde": "3 vasos",
+        "enlace": "contienen",
+        "hasta": "3/4 de esa jarra"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Todo lo que había en la jarra es nuestro total.",
+        "Cada vaso recibe la misma cantidad: un cuarto.",
+        "Tres vasos reúnen tres cuartos. Escribimos 3/4."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Una cinta cortada en 4 tramos iguales: usar 3 tramos es usar 3/4 de la cinta.",
+      "conexion": "Cambian bebida y cinta; tomamos 3 de 4 partes iguales."
+    },
+    "contraste": {
+      "texto": "Cuatro vasos con cantidades distintas no son cuatro cuartos.",
+      "explicacion": "Las partes deben representar cantidades iguales del mismo total."
+    },
+    "comprobacion": {
+      "pregunta": "¿Qué tenemos que comprobar para llamar cuartos a las partes?",
+      "opciones": [
+        "Que estén pintadas",
+        "Que haya cuatro partes iguales del total",
+        "Que todos los vasos sean de colores"
+      ],
+      "correcta": 1,
+      "pista": "No alcanza con contar cuatro recipientes.",
+      "explicacion": "Cada parte debe tener la misma cantidad del total."
+    },
+    "fuentes": [
+      "ies-fracciones",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Referencia",
+        "Significado"
+      ],
+      "filas": [
+        [
+          "Jarra completa",
+          "El total"
+        ],
+        [
+          "1 vaso de 4 iguales",
+          "1/4 del total"
+        ],
+        [
+          "3 vasos de 4 iguales",
+          "3/4 del total"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "fracciones_operaciones",
+    "title": "Juntar partes del mismo tamaño",
+    "proposito": "Empezamos sumando cantidades que usan la misma parte y el mismo total de referencia.",
+    "prerrequisito": "Primero reconocemos un cuarto: una de cuatro partes iguales.",
+    "situacion": "Una cinta está dividida en 4 tramos iguales. Usamos un tramo y después otro.",
+    "relaciones": [
+      {
+        "desde": "Primer tramo",
+        "enlace": "mide",
+        "hasta": "1/4 de la cinta"
+      },
+      {
+        "desde": "Otro tramo igual",
+        "enlace": "mide",
+        "hasta": "1/4 de la cinta"
+      },
+      {
+        "desde": "Los dos juntos",
+        "enlace": "miden",
+        "hasta": "2/4 de la cinta"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "El primer tramo ocupa una de las cuatro partes.",
+        "Agregamos otro tramo del mismo tamaño.",
+        "Ahora usamos dos cuartos: 1/4 + 1/4 = 2/4."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Un vaso de un cuarto de litro y otro igual reúnen dos cuartos de litro.",
+      "conexion": "Sumamos partes de igual tamaño y con la misma unidad."
+    },
+    "contraste": {
+      "texto": "Un cuarto de una cinta larga puede medir más que un cuarto de una corta.",
+      "explicacion": "Para juntar estas partes debemos atender a la cantidad que representan."
+    },
+    "comprobacion": {
+      "pregunta": "¿Por qué el resultado sigue contando cuartos?",
+      "opciones": [
+        "Porque ahora hay ocho partes",
+        "Porque cambia el tamaño de la cinta",
+        "Porque las partes siguen teniendo el mismo tamaño"
+      ],
+      "correcta": 2,
+      "pista": "Agregar un tramo no cambia los cortes originales.",
+      "explicacion": "Juntamos dos partes, pero cada una sigue siendo un cuarto."
+    },
+    "fuentes": [
+      "ies-fracciones",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Paso",
+        "Cantidad usada"
+      ],
+      "filas": [
+        [
+          "Primero",
+          "1/4 de la cinta"
+        ],
+        [
+          "Agregamos",
+          "1/4 de la cinta"
+        ],
+        [
+          "En total",
+          "2/4 de la cinta"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "fracciones_del_resto",
+    "title": "Mirar qué cantidad queda",
+    "proposito": "Entender de qué total hablamos cuando tomamos una parte de lo que quedó.",
+    "prerrequisito": "Empezamos con mitades que podemos repartir en dos grupos iguales.",
+    "situacion": "Hay 8 galletitas. Usamos 4. Después guardamos la mitad de las que quedan.",
+    "relaciones": [
+      {
+        "desde": "8 galletitas",
+        "enlace": "menos 4 dejan",
+        "hasta": "4 galletitas"
+      },
+      {
+        "desde": "Las 4 que quedan",
+        "enlace": "son",
+        "hasta": "el nuevo total"
+      },
+      {
+        "desde": "La mitad de 4",
+        "enlace": "es",
+        "hasta": "2"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Al principio hay 8; usamos 4 y quedan 4.",
+        "Repartimos esas 4 en dos grupos de 2.",
+        "Guardamos un grupo: 2 galletitas. Es la mitad del resto."
+      ]
+    },
+    "otroContexto": {
+      "texto": "De 8 lápices prestamos 4; guardamos la mitad de los 4 que quedaron.",
+      "conexion": "La segunda acción mira lo que queda, no el total inicial."
+    },
+    "contraste": {
+      "texto": "La mitad del inicio sería 4; la mitad del resto es 2.",
+      "explicacion": "Son mitades de cantidades diferentes."
+    },
+    "comprobacion": {
+      "pregunta": "Para hallar la mitad del resto, ¿qué cantidad repartimos?",
+      "opciones": [
+        "Las 4 que quedaron",
+        "Las 8 del principio",
+        "Las 4 que ya usamos"
+      ],
+      "correcta": 0,
+      "pista": "Buscá lo que todavía tenemos.",
+      "explicacion": "Repartimos las 4 que quedaron en dos grupos iguales."
+    },
+    "fuentes": [
+      "ies-fracciones",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Momento",
+        "Galletitas"
+      ],
+      "filas": [
+        [
+          "Al principio",
+          "8"
+        ],
+        [
+          "Usamos",
+          "4"
+        ],
+        [
+          "Quedan",
+          "4"
+        ],
+        [
+          "Mitad de las que quedan",
+          "2"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "decimales_conversion",
+    "title": "Escribir cantidades entre enteros",
+    "proposito": "Empezamos por la mitad: una misma cantidad puede tener dos escrituras.",
+    "prerrequisito": "Primero distinguimos un entero y su mitad.",
+    "situacion": "Una jarra graduada señala 0 L, 0,5 L y 1 L. La marca del medio indica medio litro.",
+    "relaciones": [
+      {
+        "desde": "1 litro",
+        "enlace": "en dos partes iguales da",
+        "hasta": "dos medios litros"
+      },
+      {
+        "desde": "Medio litro",
+        "enlace": "se escribe",
+        "hasta": "0,5 L"
+      },
+      {
+        "desde": "Medio litro",
+        "enlace": "es menor que",
+        "hasta": "un litro"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "La marca 1 L señala un litro completo.",
+        "La mitad de esa cantidad es medio litro.",
+        "Podemos escribir 1/2 L o 0,5 L: indican la misma cantidad."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Medio metro de cinta también se escribe 0,5 m.",
+      "conexion": "La escritura 0,5 indica la mitad de la unidad que estamos usando."
+    },
+    "contraste": {
+      "texto": "0,5 L no son 5 litros.",
+      "explicacion": "La coma importa: medio litro es menor que un litro."
+    },
+    "comprobacion": {
+      "pregunta": "¿Qué etiqueta corresponde a medio litro?",
+      "opciones": [
+        "5 L",
+        "0,5 L",
+        "2 L"
+      ],
+      "correcta": 1,
+      "pista": "Buscá la escritura de la marca del medio.",
+      "explicacion": "0,5 L representa la mitad de un litro."
+    },
+    "fuentes": [
+      "nap-m5",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Cantidad",
+        "Escritura"
+      ],
+      "filas": [
+        [
+          "Nada",
+          "0 L"
+        ],
+        [
+          "Medio litro",
+          "0,5 L"
+        ],
+        [
+          "Un litro",
+          "1 L"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "potenciacion_y_raiz_cuadrada",
+    "title": "Armar un cuadrado de fichas",
+    "proposito": "Empezamos relacionando el lado de un cuadrado con todas sus fichas.",
+    "prerrequisito": "Podés contar filas y fichas en cada fila.",
+    "situacion": "Armamos un cuadrado con 3 filas de 3 fichas.",
+    "relaciones": [
+      {
+        "desde": "3 filas de 3",
+        "enlace": "reúnen",
+        "hasta": "9 fichas"
+      },
+      {
+        "desde": "3 × 3",
+        "enlace": "se puede escribir",
+        "hasta": "3²"
+      },
+      {
+        "desde": "9 fichas en cuadrado",
+        "enlace": "tienen",
+        "hasta": "3 por lado"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Ponemos 3 fichas en una fila.",
+        "Hacemos otras dos filas iguales: 3 + 3 + 3 = 9.",
+        "3² se lee tres al cuadrado. La raíz cuadrada de 9 es 3: recuperamos el lado."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Un mosaico de tres filas por tres baldosas necesita nueve baldosas.",
+      "conexion": "Buscamos el total o recuperamos cuántas hay en cada lado."
+    },
+    "contraste": {
+      "texto": "3² no significa 3 × 2.",
+      "explicacion": "El 2 pequeño indica dos factores iguales: 3 × 3."
+    },
+    "comprobacion": {
+      "pregunta": "¿Qué cuenta el 3 de cada lado de nuestro cuadrado?",
+      "opciones": [
+        "Todas las fichas",
+        "Las esquinas solamente",
+        "Las fichas de una fila o columna"
+      ],
+      "correcta": 2,
+      "pista": "Contá una sola fila.",
+      "explicacion": "Cada fila y cada columna tienen 3 fichas."
+    },
+    "fuentes": [
+      "nap-m5",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Dato",
+        "Cantidad"
+      ],
+      "filas": [
+        [
+          "Filas",
+          "3"
+        ],
+        [
+          "Fichas por fila",
+          "3"
+        ],
+        [
+          "Total",
+          "9"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "jerarquia_operaciones",
+    "title": "Escribir primero lo que ocurre",
+    "proposito": "Empezamos distinguiendo grupos y elementos sueltos dentro de una cuenta.",
+    "prerrequisito": "Primero reconocemos grupos iguales y una suma.",
+    "situacion": "Compramos 2 bolsas con 3 panes cada una y agregamos 1 pan suelto.",
+    "relaciones": [
+      {
+        "desde": "2 bolsas de 3",
+        "enlace": "contienen",
+        "hasta": "6 panes"
+      },
+      {
+        "desde": "6 panes y 1 suelto",
+        "enlace": "reúnen",
+        "hasta": "7 panes"
+      },
+      {
+        "desde": "2 × 3 + 1",
+        "enlace": "representa",
+        "hasta": "esta compra"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Cada bolsa tiene 3 panes; las dos contienen 6.",
+        "Agregamos el pan suelto: 6 + 1 = 7.",
+        "En 2 × 3 + 1 resolvemos la multiplicación antes de sumar."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Dos cajas de tres lápices y uno suelto reúnen siete lápices.",
+      "conexion": "La cuenta conserva la organización de la situación."
+    },
+    "contraste": {
+      "texto": "2 × (3 + 1) describe dos grupos de cuatro.",
+      "explicacion": "No es nuestra compra: allí el pan extra estaría en cada bolsa."
+    },
+    "comprobacion": {
+      "pregunta": "¿Qué cuenta 2 × 3 en nuestra compra?",
+      "opciones": [
+        "Los panes de las dos bolsas",
+        "El pan suelto",
+        "Las bolsas y el pan suelto juntos"
+      ],
+      "correcta": 0,
+      "pista": "Mirá solo las bolsas completas.",
+      "explicacion": "Cuenta los 6 panes que vienen dentro de las bolsas."
+    },
+    "fuentes": [
+      "nap-m5",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Parte de la compra",
+        "Panes"
+      ],
+      "filas": [
+        [
+          "Bolsa 1",
+          "3"
+        ],
+        [
+          "Bolsa 2",
+          "3"
+        ],
+        [
+          "Suelto",
+          "1"
+        ],
+        [
+          "Total",
+          "7"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "si_me_la_longitud",
+    "title": "Medir sin huecos ni superposiciones",
+    "proposito": "Entender una medida como la repetición de una misma unidad.",
+    "prerrequisito": "Podés comparar dos largos y señalar dónde empieza cada uno.",
+    "situacion": "Medimos una cinta con piezas iguales de 1 centímetro. Entran 6 piezas seguidas.",
+    "relaciones": [
+      {
+        "desde": "Cada pieza",
+        "enlace": "mide",
+        "hasta": "1 cm"
+      },
+      {
+        "desde": "6 piezas seguidas",
+        "enlace": "miden",
+        "hasta": "6 cm"
+      },
+      {
+        "desde": "La medida",
+        "enlace": "depende de",
+        "hasta": "la unidad elegida"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Alineamos la primera pieza con el comienzo de la cinta.",
+        "Colocamos las demás seguidas, sin huecos ni superposiciones.",
+        "Seis unidades de un centímetro cubren el largo: mide 6 cm."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Una regla reúne centímetros consecutivos: medimos desde el cero.",
+      "conexion": "La regla ya tiene organizada la repetición de la unidad."
+    },
+    "contraste": {
+      "texto": "Seis piezas separadas por huecos no miden seis centímetros de cinta.",
+      "explicacion": "Los espacios vacíos agregarían un largo que no estamos contando."
+    },
+    "comprobacion": {
+      "pregunta": "¿Cómo deben colocarse las piezas para medir?",
+      "opciones": [
+        "Separadas por huecos",
+        "Todas una encima de otra",
+        "Seguidas, sin huecos ni superposiciones"
+      ],
+      "correcta": 2,
+      "pista": "Queremos cubrir todo el largo una sola vez.",
+      "explicacion": "La unidad se repite sin dejar espacios ni contar el mismo tramo dos veces."
+    },
+    "fuentes": [
+      "nap-m4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Referencia",
+        "Largo"
+      ],
+      "filas": [
+        [
+          "1 pieza",
+          "1 cm"
+        ],
+        [
+          "6 piezas seguidas",
+          "6 cm"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "title": "Elegir qué estamos midiendo",
+    "proposito": "Empezamos distinguiendo masa, capacidad y duración antes de convertir unidades.",
+    "prerrequisito": "Podés reconocer una balanza, un recipiente y un reloj.",
+    "situacion": "Queremos saber cuánta harina hay, cuánto contiene una jarra y cuánto dura un recreo.",
+    "relaciones": [
+      {
+        "desde": "Masa",
+        "enlace": "se mide con",
+        "hasta": "balanza"
+      },
+      {
+        "desde": "Capacidad",
+        "enlace": "puede expresarse en",
+        "hasta": "litros"
+      },
+      {
+        "desde": "Duración",
+        "enlace": "puede expresarse en",
+        "hasta": "minutos"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "La balanza nos permite medir la masa de la harina: por ejemplo, en gramos.",
+        "Para la capacidad de una jarra podemos usar litros.",
+        "Para la duración del recreo usamos minutos: medimos tiempo."
+      ]
+    },
+    "otroContexto": {
+      "texto": "La masa de una mochila, la capacidad de una botella y el tiempo de un viaje también son medidas distintas.",
+      "conexion": "Primero elegimos qué queremos saber; después, la unidad."
+    },
+    "contraste": {
+      "texto": "Un litro y un minuto no miden lo mismo.",
+      "explicacion": "No podemos intercambiar sus unidades."
+    },
+    "comprobacion": {
+      "pregunta": "¿Qué unidad sirve para contar cuánto dura un recreo?",
+      "opciones": [
+        "Litros",
+        "Minutos",
+        "Gramos"
+      ],
+      "correcta": 1,
+      "pista": "Pensá qué miramos para saber cuándo termina.",
+      "explicacion": "Los minutos expresan duración."
+    },
+    "fuentes": [
+      "nap-m4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Queremos saber",
+        "Podemos usar"
+      ],
+      "filas": [
+        [
+          "Masa de harina",
+          "Gramos"
+        ],
+        [
+          "Capacidad de una jarra",
+          "Litros"
+        ],
+        [
+          "Duración del recreo",
+          "Minutos"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "geometria_angulos",
+    "title": "Pensar un ángulo como un giro",
+    "proposito": "Empezamos reconociendo cuánto cambiamos de dirección.",
+    "prerrequisito": "Podés señalar hacia dónde mirás antes y después de girar.",
+    "situacion": "Miramos hacia delante. Giramos para mirar a la derecha: hicimos un cuarto de vuelta.",
+    "relaciones": [
+      {
+        "desde": "Una vuelta completa",
+        "enlace": "se reparte en",
+        "hasta": "4 cuartos de vuelta"
+      },
+      {
+        "desde": "Un cuarto de vuelta",
+        "enlace": "forma",
+        "hasta": "un ángulo recto"
+      },
+      {
+        "desde": "El ángulo",
+        "enlace": "describe",
+        "hasta": "la abertura o el giro"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Señalamos la dirección inicial: hacia delante.",
+        "Giramos hasta mirar hacia la derecha.",
+        "Ese cambio es un cuarto de vuelta; forma un ángulo recto."
+      ]
+    },
+    "otroContexto": {
+      "texto": "La esquina de una hoja rectangular muestra la misma abertura.",
+      "conexion": "Podemos reconocer el ángulo en un giro o en dos bordes que se encuentran."
+    },
+    "contraste": {
+      "texto": "Alargar las dos líneas no abre más el ángulo.",
+      "explicacion": "La abertura depende de sus direcciones, no del largo de las líneas."
+    },
+    "comprobacion": {
+      "pregunta": "¿Qué queremos comparar al mirar dos ángulos?",
+      "opciones": [
+        "El color de sus líneas",
+        "Cuánto mide cada línea",
+        "La abertura entre sus direcciones"
+      ],
+      "correcta": 2,
+      "pista": "Pensá cuánto tendrías que girar.",
+      "explicacion": "Comparamos la abertura, aunque las líneas tengan distinto largo."
+    },
+    "fuentes": [
+      "nap-m4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Giro",
+        "Referencia"
+      ],
+      "filas": [
+        [
+          "Cuarto de vuelta",
+          "Ángulo recto"
+        ],
+        [
+          "Media vuelta",
+          "Dos cuartos de vuelta"
+        ],
+        [
+          "Vuelta completa",
+          "Cuatro cuartos de vuelta"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "geometria_triangulos",
+    "title": "Reconocer un triángulo aunque gire",
+    "proposito": "Reconocer una figura por sus propiedades, no por cómo está apoyada.",
+    "prerrequisito": "Podés seguir el borde de una figura y contar sus lados.",
+    "situacion": "Formamos una figura cerrada con tres varillas rectas.",
+    "relaciones": [
+      {
+        "desde": "Triángulo",
+        "enlace": "tiene",
+        "hasta": "3 lados rectos"
+      },
+      {
+        "desde": "Sus lados",
+        "enlace": "forman",
+        "hasta": "una figura cerrada"
+      },
+      {
+        "desde": "Girar la figura",
+        "enlace": "conserva",
+        "hasta": "sus propiedades"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Seguimos el borde y contamos tres lados.",
+        "Comprobamos que se encuentran y cierran la figura.",
+        "Aunque la giremos, sigue teniendo tres lados: es un triángulo."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Una señal triangular puede apuntar hacia arriba o hacia abajo.",
+      "conexion": "Su orientación cambia; su número de lados no."
+    },
+    "contraste": {
+      "texto": "Tres varillas separadas no forman un triángulo.",
+      "explicacion": "Además de tener tres lados, la figura debe estar cerrada."
+    },
+    "comprobacion": {
+      "pregunta": "¿Qué cambia si giramos un triángulo sin deformarlo?",
+      "opciones": [
+        "Su orientación",
+        "Su cantidad de lados",
+        "Deja de estar cerrado"
+      ],
+      "correcta": 0,
+      "pista": "Pensá si agregamos o quitamos una varilla.",
+      "explicacion": "Solo cambia la orientación; mantiene sus tres lados y sigue cerrado."
+    },
+    "fuentes": [
+      "nap-m4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Para reconocerlo",
+        "Comprobamos"
+      ],
+      "filas": [
+        [
+          "Lados",
+          "Tres"
+        ],
+        [
+          "Forma de los lados",
+          "Rectos"
+        ],
+        [
+          "Recorrido del borde",
+          "Cerrado"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "geometria_cuadrilateros_circunferencia",
+    "title": "Comparar bordes y lados",
+    "proposito": "Empezamos distinguiendo un contorno de cuatro lados de uno circular.",
+    "prerrequisito": "Podés recorrer un borde y reconocer esquinas.",
+    "situacion": "Comparamos el borde de una hoja rectangular con el de una moneda redonda.",
+    "relaciones": [
+      {
+        "desde": "Rectángulo",
+        "enlace": "tiene",
+        "hasta": "4 lados rectos"
+      },
+      {
+        "desde": "Circunferencia",
+        "enlace": "es",
+        "hasta": "un borde circular"
+      },
+      {
+        "desde": "Círculo",
+        "enlace": "incluye",
+        "hasta": "el interior y su borde"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "La hoja tiene cuatro lados rectos y cuatro esquinas.",
+        "El borde redondo de la moneda no tiene esquinas: es una circunferencia.",
+        "Si miramos toda su cara, incluido el interior, pensamos en un círculo."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Un marco rectangular y un aro circular también tienen bordes diferentes.",
+      "conexion": "Podemos distinguirlos recorriendo su contorno."
+    },
+    "contraste": {
+      "texto": "Circunferencia y círculo no nombran exactamente lo mismo.",
+      "explicacion": "Una señala el borde; el otro incluye la región interior."
+    },
+    "comprobacion": {
+      "pregunta": "Si recorrés solo el borde circular de una moneda, ¿qué recorrés?",
+      "opciones": [
+        "Un rectángulo",
+        "Una circunferencia",
+        "Toda su superficie"
+      ],
+      "correcta": 1,
+      "pista": "La pregunta habla solo del contorno.",
+      "explicacion": "La circunferencia es el borde circular."
+    },
+    "fuentes": [
+      "nap-m4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Figura",
+        "Qué observamos"
+      ],
+      "filas": [
+        [
+          "Rectángulo",
+          "Cuatro lados rectos"
+        ],
+        [
+          "Circunferencia",
+          "Solo el borde circular"
+        ],
+        [
+          "Círculo",
+          "Interior y borde"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "perimetros_simples",
+    "title": "Medir el borde que rodea",
+    "proposito": "Entender para qué sirve sumar los lados de una figura.",
+    "prerrequisito": "Podés medir un lado y sumar cantidades pequeñas.",
+    "situacion": "Un marco rectangular mide 3 cm de largo y 2 cm de ancho. Queremos rodearlo con cinta.",
+    "relaciones": [
+      {
+        "desde": "Perímetro",
+        "enlace": "mide",
+        "hasta": "todo el borde"
+      },
+      {
+        "desde": "Los cuatro lados",
+        "enlace": "miden",
+        "hasta": "3, 2, 3 y 2 cm"
+      },
+      {
+        "desde": "3 + 2 + 3 + 2",
+        "enlace": "da",
+        "hasta": "10 cm"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Marcamos un punto de inicio en una esquina.",
+        "Recorremos los cuatro lados hasta volver al inicio.",
+        "Sumamos 3 + 2 + 3 + 2: necesitamos 10 cm de cinta, sin superponerla."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Para bordear una huerta también necesitamos la longitud de su contorno.",
+      "conexion": "En ambos casos recorremos el borde completo."
+    },
+    "contraste": {
+      "texto": "Cubrir el interior del marco no es medir su perímetro.",
+      "explicacion": "El perímetro cuenta longitud alrededor, no superficie."
+    },
+    "comprobacion": {
+      "pregunta": "¿Qué parte medimos para calcular el perímetro?",
+      "opciones": [
+        "Todo el borde",
+        "Solo el lado más largo",
+        "La superficie interior"
+      ],
+      "correcta": 0,
+      "pista": "Imaginá por dónde pasaría la cinta.",
+      "explicacion": "La cinta debe recorrer todo el borde."
+    },
+    "fuentes": [
+      "nap-m4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Lado",
+        "Longitud"
+      ],
+      "filas": [
+        [
+          "Arriba",
+          "3 cm"
+        ],
+        [
+          "Derecha",
+          "2 cm"
+        ],
+        [
+          "Abajo",
+          "3 cm"
+        ],
+        [
+          "Izquierda",
+          "2 cm"
+        ],
+        [
+          "Total",
+          "10 cm"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "perimetros_compuestos",
+    "title": "Seguir solo el contorno exterior",
+    "proposito": "Entender qué bordes quedan adentro al unir dos figuras.",
+    "prerrequisito": "Primero distinguimos el borde de una figura y su interior.",
+    "situacion": "Unimos dos cuadrados de 1 cm de lado, compartiendo un lado completo.",
+    "relaciones": [
+      {
+        "desde": "Dos cuadrados unidos",
+        "enlace": "forman",
+        "hasta": "un rectángulo"
+      },
+      {
+        "desde": "La unión",
+        "enlace": "queda",
+        "hasta": "en el interior"
+      },
+      {
+        "desde": "El contorno exterior",
+        "enlace": "mide",
+        "hasta": "6 cm"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Antes de unirlos, cada cuadrado tiene cuatro lados.",
+        "Al unirlos, los dos lados que se tocan quedan adentro.",
+        "Por fuera quedan seis tramos de 1 cm: el perímetro es 6 cm."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Dos parcelas pegadas pueden compartir una cerca interior.",
+      "conexion": "Para rodear las dos juntas seguimos solo el límite exterior."
+    },
+    "contraste": {
+      "texto": "Sumar 4 + 4 cuenta también los lados de la unión.",
+      "explicacion": "Esos dos tramos no pertenecen al contorno exterior."
+    },
+    "comprobacion": {
+      "pregunta": "Al rodear las dos figuras juntas, ¿contamos la línea de unión interior?",
+      "opciones": [
+        "Sí, siempre dos veces",
+        "Solo si es más oscura",
+        "No, seguimos el contorno exterior"
+      ],
+      "correcta": 2,
+      "pista": "Imaginá caminar alrededor sin entrar.",
+      "explicacion": "La unión queda adentro y no forma parte del borde exterior."
+    },
+    "fuentes": [
+      "nap-m4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Tramos de 1 cm",
+        "Cantidad"
+      ],
+      "filas": [
+        [
+          "Antes de unir",
+          "8"
+        ],
+        [
+          "Quedan en la unión",
+          "2"
+        ],
+        [
+          "Quedan por fuera",
+          "6"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "graficos_estadisticos",
+    "title": "Unir cada dato con lo que cuenta",
+    "proposito": "Leer una tabla o gráfico sin perder de vista qué se preguntó.",
+    "prerrequisito": "Podés comparar cantidades pequeñas.",
+    "situacion": "Seis personas eligen una fruta: 3 eligen manzana, 2 banana y 1 pera.",
+    "relaciones": [
+      {
+        "desde": "Cada fila",
+        "enlace": "relaciona",
+        "hasta": "una fruta y una cantidad"
+      },
+      {
+        "desde": "El número",
+        "enlace": "cuenta",
+        "hasta": "personas"
+      },
+      {
+        "desde": "El valor más alto",
+        "enlace": "indica",
+        "hasta": "la fruta más elegida"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Leemos qué se contó: personas que eligieron cada fruta.",
+        "Comparamos 3, 2 y 1.",
+        "Manzana tiene 3: fue la más elegida en este grupo."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Podemos mostrar esos mismos datos con barras: una unidad de altura representa una persona.",
+      "conexion": "Cambiar la representación no cambia los datos."
+    },
+    "contraste": {
+      "texto": "Esta encuesta no cuenta cuántas frutas hay en la frutera.",
+      "explicacion": "Los números representan elecciones de personas."
+    },
+    "comprobacion": {
+      "pregunta": "¿Qué significa el 2 de la fila banana?",
+      "opciones": [
+        "Hay dos bananas en casa",
+        "Dos personas eligieron banana",
+        "Banana tiene dos letras"
+      ],
+      "correcta": 1,
+      "pista": "Volvé a mirar qué se preguntó.",
+      "explicacion": "Dos personas de este grupo eligieron banana."
+    },
+    "fuentes": [
+      "nap-m4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Fruta elegida",
+        "Personas"
+      ],
+      "filas": [
+        [
+          "Manzana",
+          "3"
+        ],
+        [
+          "Banana",
+          "2"
+        ],
+        [
+          "Pera",
+          "1"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "proporcionalidad_regla_3",
+    "title": "Cambiar la cantidad de grupos",
+    "proposito": "Empezamos con cantidades que crecen manteniendo lo mismo en cada grupo.",
+    "prerrequisito": "Podés contar grupos iguales y su total.",
+    "situacion": "Cada bolsita lleva 2 galletitas. Queremos preparar una, dos o tres bolsitas.",
+    "relaciones": [
+      {
+        "desde": "Cada bolsita",
+        "enlace": "lleva",
+        "hasta": "2 galletitas"
+      },
+      {
+        "desde": "El doble de bolsitas",
+        "enlace": "necesita",
+        "hasta": "el doble de galletitas"
+      },
+      {
+        "desde": "Lo que se mantiene",
+        "enlace": "es",
+        "hasta": "2 por bolsita"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Una bolsita necesita 2 galletitas.",
+        "Dos bolsitas necesitan 4; tres necesitan 6.",
+        "La cantidad cambia, pero cada bolsita sigue llevando 2."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Cada bicicleta necesita 2 ruedas: dos bicicletas, 4; tres, 6.",
+      "conexion": "Se conserva la cantidad por grupo."
+    },
+    "contraste": {
+      "texto": "La edad y la altura de una persona no siguen esta regla.",
+      "explicacion": "Cumplir el doble de años no significa medir el doble."
+    },
+    "comprobacion": {
+      "pregunta": "¿Qué debe mantenerse en nuestro ejemplo?",
+      "opciones": [
+        "El número de bolsitas",
+        "Siempre 2 galletitas por bolsita",
+        "Siempre 2 galletitas en total"
+      ],
+      "correcta": 1,
+      "pista": "Mirá una sola bolsita en cada caso.",
+      "explicacion": "La cantidad por bolsita se mantiene; cambia cuántas preparamos."
+    },
+    "fuentes": [
+      "nap-m5",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Bolsitas",
+        "Galletitas"
+      ],
+      "filas": [
+        [
+          "1",
+          "2"
+        ],
+        [
+          "2",
+          "4"
+        ],
+        [
+          "3",
+          "6"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "secuencias_aritmeticas",
+    "title": "Reconocer cuánto se agrega",
+    "proposito": "Seguir una regla que suma la misma cantidad en cada paso.",
+    "prerrequisito": "Podés sumar dos objetos a una colección pequeña.",
+    "situacion": "Un juego empieza con 2 fichas. En cada turno agregamos otras 2.",
+    "relaciones": [
+      {
+        "desde": "Cada turno",
+        "enlace": "agrega",
+        "hasta": "2 fichas"
+      },
+      {
+        "desde": "2, 4, 6",
+        "enlace": "siguen",
+        "hasta": "la regla sumar 2"
+      },
+      {
+        "desde": "Después de 6",
+        "enlace": "obtenemos",
+        "hasta": "8"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Empezamos con 2 fichas.",
+        "Agregamos 2: tenemos 4. Agregamos otras 2: tenemos 6.",
+        "Si seguimos la misma regla, después tendremos 8."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Una tira marcada cada 2 centímetros muestra 0, 2, 4, 6, 8.",
+      "conexion": "Los puntos avanzan con el mismo salto."
+    },
+    "contraste": {
+      "texto": "La regla dice cuánto cambia, no solo qué números aparecen.",
+      "explicacion": "Si empezamos en 3 y sumamos 2, aparecen 3, 5, 7: es otra lista con el mismo cambio."
+    },
+    "comprobacion": {
+      "pregunta": "Con la regla sumar 2, ¿cómo pasamos de 6 al siguiente número?",
+      "opciones": [
+        "Sumamos 6",
+        "Restamos 2",
+        "Sumamos 2"
+      ],
+      "correcta": 2,
+      "pista": "Releé la regla del juego.",
+      "explicacion": "Agregamos 2 otra vez: llegamos a 8."
+    },
+    "fuentes": [
+      "nap-m4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Turno",
+        "Fichas"
+      ],
+      "filas": [
+        [
+          "Inicio",
+          "2"
+        ],
+        [
+          "Uno",
+          "4"
+        ],
+        [
+          "Dos",
+          "6"
+        ],
+        [
+          "Tres",
+          "8"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "secuencias_geometricas_fibonacci",
+    "title": "Distinguir sumar y duplicar",
+    "proposito": "Empezamos siguiendo una regla de duplicación; después conoceremos otras secuencias.",
+    "prerrequisito": "Podés hacer una copia de un grupo y juntar ambos.",
+    "situacion": "Un juego empieza con 1 ficha. En cada paso ponemos una copia del grupo que tenemos.",
+    "relaciones": [
+      {
+        "desde": "Duplicar",
+        "enlace": "significa",
+        "hasta": "tener dos grupos iguales"
+      },
+      {
+        "desde": "1 ficha duplicada",
+        "enlace": "da",
+        "hasta": "2 fichas"
+      },
+      {
+        "desde": "2 fichas duplicadas",
+        "enlace": "dan",
+        "hasta": "4 fichas"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Empezamos con 1; agregamos una copia: tenemos 2.",
+        "Ahora copiamos el grupo de 2: tenemos 4.",
+        "Copiar el grupo de 4 da 8. La regla es duplicar."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Un diseño de ramas puede duplicar su cantidad en cada etapa.",
+      "conexion": "Seguimos una regla del diseño; no afirmamos que toda planta crezca así."
+    },
+    "contraste": {
+      "texto": "Duplicar no es sumar 2 siempre.",
+      "explicacion": "Desde 4, duplicar da 8; sumar 2 da 6."
+    },
+    "comprobacion": {
+      "pregunta": "Si duplicamos un grupo de 4 fichas, ¿qué hacemos?",
+      "opciones": [
+        "Agregamos otro grupo de 4",
+        "Agregamos una sola ficha",
+        "Quitamos 2"
+      ],
+      "correcta": 0,
+      "pista": "Hacemos una copia igual al grupo completo.",
+      "explicacion": "Juntamos 4 con otras 4: quedan 8."
+    },
+    "fuentes": [
+      "nap-m5",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Etapa",
+        "Fichas"
+      ],
+      "filas": [
+        [
+          "Inicio",
+          "1"
+        ],
+        [
+          "Copia del grupo",
+          "2"
+        ],
+        [
+          "Nueva copia",
+          "4"
+        ],
+        [
+          "Nueva copia",
+          "8"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "secuencias_alfanumericas_y_figuras",
+    "title": "Encontrar lo que se repite",
+    "proposito": "Leer y crear un patrón a partir de una regla explícita.",
+    "prerrequisito": "Podés comparar símbolos y reconocer los que son iguales.",
+    "situacion": "Una pulsera repite siempre el bloque A, B, B.",
+    "relaciones": [
+      {
+        "desde": "El bloque",
+        "enlace": "es",
+        "hasta": "A, B, B"
+      },
+      {
+        "desde": "La regla",
+        "enlace": "pide",
+        "hasta": "repetir el bloque"
+      },
+      {
+        "desde": "Dos bloques",
+        "enlace": "forman",
+        "hasta": "A, B, B, A, B, B"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Marcamos el primer bloque: A, B, B.",
+        "Copiamos el bloque completo, en el mismo orden.",
+        "Después del segundo bloque comienza otro A."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Podemos usar rojo, azul, azul en vez de A, B, B.",
+      "conexion": "Cambian los símbolos; se conserva la organización."
+    },
+    "contraste": {
+      "texto": "A, B, A, B repite otro bloque.",
+      "explicacion": "No alcanza con usar los mismos símbolos: también importa su orden."
+    },
+    "comprobacion": {
+      "pregunta": "Después de A, B, B, A, B, B, ¿qué sigue con esta regla?",
+      "opciones": [
+        "B",
+        "C",
+        "A"
+      ],
+      "correcta": 2,
+      "pista": "Ya terminamos dos bloques completos.",
+      "explicacion": "Comienza un nuevo bloque, y cada bloque empieza con A."
+    },
+    "fuentes": [
+      "nap-m4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Bloque",
+        "Símbolos"
+      ],
+      "filas": [
+        [
+          "Primero",
+          "A · B · B"
+        ],
+        [
+          "Segundo",
+          "A · B · B"
+        ],
+        [
+          "Tercero",
+          "A · B · B"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "ecuaciones_con_imagenes_2_incognitas",
+    "title": "Usar una pista para descubrir otra",
+    "proposito": "Encontrar cantidades desconocidas y comprobarlas en las pistas.",
+    "prerrequisito": "Podés juntar grupos y reconocer cantidades iguales.",
+    "situacion": "Dos bolsas rojas iguales tienen 6 fichas en total. Una roja y una azul tienen 5.",
+    "relaciones": [
+      {
+        "desde": "Dos rojas iguales",
+        "enlace": "contienen",
+        "hasta": "6 fichas"
+      },
+      {
+        "desde": "Una roja",
+        "enlace": "contiene",
+        "hasta": "3 fichas"
+      },
+      {
+        "desde": "Roja y azul",
+        "enlace": "juntas contienen",
+        "hasta": "5 fichas"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Repartimos 6 entre las dos bolsas rojas iguales: hay 3 en cada una.",
+        "En la segunda pista, la roja ya aporta 3. Para llegar a 5 faltan 2: están en la azul.",
+        "Comprobamos: 3 + 3 = 6 y 3 + 2 = 5."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Las bolsas podrían ser cajas iguales de figuritas.",
+      "conexion": "Cada símbolo debe conservar el mismo valor en todas las pistas."
+    },
+    "contraste": {
+      "texto": "No podemos cambiar el valor de la roja entre una pista y otra.",
+      "explicacion": "Buscamos valores que sirvan en las dos relaciones a la vez."
+    },
+    "comprobacion": {
+      "pregunta": "Si la roja tiene 3 y roja más azul suman 5, ¿cuántas tiene la azul?",
+      "opciones": [
+        "2",
+        "3",
+        "5"
+      ],
+      "correcta": 0,
+      "pista": "Partí de 3 y contá hasta llegar a 5.",
+      "explicacion": "Faltan 2; así ambas pistas quedan satisfechas."
+    },
+    "fuentes": [
+      "nap-m5",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Pista",
+        "Total"
+      ],
+      "filas": [
+        [
+          "Roja + roja",
+          "6"
+        ],
+        [
+          "Roja + azul",
+          "5"
+        ],
+        [
+          "Roja = 3; azul = 2",
+          "Cumplen las dos pistas"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "comprension_lectora_literal_inferida",
+    "title": "Volver al texto para encontrar pistas",
+    "proposito": "Distinguir lo que está escrito de lo que podemos deducir.",
+    "prerrequisito": "Podés releer una frase todas las veces que necesites.",
+    "situacion": "El texto dice: «Luz abrió el paraguas antes de salir. Afuera caía una lluvia fuerte».",
+    "relaciones": [
+      {
+        "desde": "El texto",
+        "enlace": "dice",
+        "hasta": "Luz abrió el paraguas"
+      },
+      {
+        "desde": "La lluvia",
+        "enlace": "da una pista sobre",
+        "hasta": "para qué lo abrió"
+      },
+      {
+        "desde": "Una inferencia",
+        "enlace": "debe apoyarse en",
+        "hasta": "pistas del texto"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Buscamos qué hizo Luz: abrió el paraguas. Eso está escrito.",
+        "Relacionamos la lluvia con el paraguas: probablemente quiere evitar mojarse.",
+        "No sabemos de qué color es: el texto no lo dice ni lo permite deducir."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Una nota puede decir dónde está un objeto; volvemos a esa frase para encontrarlo.",
+      "conexion": "Buscamos pruebas en el texto, no respondemos solo por una palabra conocida."
+    },
+    "contraste": {
+      "texto": "Inventar que el paraguas es rojo no es una inferencia apoyada.",
+      "explicacion": "No hay una pista sobre su color."
+    },
+    "comprobacion": {
+      "pregunta": "¿Qué dato está escrito en el texto?",
+      "opciones": [
+        "El paraguas es rojo",
+        "Luz abrió el paraguas",
+        "Luz salió con su hermano"
+      ],
+      "correcta": 1,
+      "pista": "Buscá una frase que lo diga.",
+      "explicacion": "La primera frase dice que Luz abrió el paraguas."
+    },
+    "fuentes": [
+      "nap-l4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Idea",
+        "Apoyo"
+      ],
+      "filas": [
+        [
+          "Abrió el paraguas",
+          "Está escrito"
+        ],
+        [
+          "Quiere evitar mojarse",
+          "La lluvia da una pista"
+        ],
+        [
+          "El paraguas es rojo",
+          "No hay información"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "ortografia_b_v",
+    "title": "Recordar una palabra en su familia",
+    "proposito": "Empezamos relacionando palabras conocidas para escribirlas en un mensaje.",
+    "prerrequisito": "Podés mirar la palabra modelo mientras escribís.",
+    "situacion": "Queremos escribir: «La biblioteca presta libros». Miramos libro y librería.",
+    "relaciones": [
+      {
+        "desde": "Libro",
+        "enlace": "se relaciona con",
+        "hasta": "librería"
+      },
+      {
+        "desde": "Libro y librería",
+        "enlace": "conservan",
+        "hasta": "la b de libr-"
+      },
+      {
+        "desde": "Una palabra modelo",
+        "enlace": "ayuda a",
+        "hasta": "revisar la escritura"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Leemos libro dentro de una frase: «Busco un libro».",
+        "La librería es un lugar donde se venden libros. Ambas palabras tienen b.",
+        "Miramos el modelo y revisamos que escribimos libro con b."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Vivir y vivienda se relacionan y se escriben con v.",
+      "conexion": "Podemos construir otra familia, sin mezclar sus letras con la anterior."
+    },
+    "contraste": {
+      "texto": "El sonido solo no siempre distingue b y v al hablar.",
+      "explicacion": "Si dudamos, miramos una palabra conocida o consultamos el diccionario."
+    },
+    "comprobacion": {
+      "pregunta": "¿Qué escritura coincide con la familia libro, librería?",
+      "opciones": [
+        "livro",
+        "libro",
+        "libvro"
+      ],
+      "correcta": 1,
+      "pista": "Podés volver a mirar libro en el ejemplo.",
+      "explicacion": "Libro se escribe con b, como librería."
+    },
+    "fuentes": [
+      "nap-l4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Palabra",
+        "Relación"
+      ],
+      "filas": [
+        [
+          "libro",
+          "Lo que leemos"
+        ],
+        [
+          "librería",
+          "Lugar donde se venden libros"
+        ],
+        [
+          "vivir / vivienda",
+          "Otra familia, con v"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "ortografia_g_j_gu_gu",
+    "title": "Ver qué cambia delante de e",
+    "proposito": "Empezamos comparando una escritura que conserva el sonido de gato.",
+    "prerrequisito": "Podés leer las palabras conocidas con apoyo.",
+    "situacion": "Gato y guerra empiezan con el mismo sonido de g. Para conservarlo delante de e, escribimos gue.",
+    "relaciones": [
+      {
+        "desde": "Gato",
+        "enlace": "empieza con",
+        "hasta": "el sonido de g que buscamos"
+      },
+      {
+        "desde": "Gue",
+        "enlace": "conserva ese sonido",
+        "hasta": "delante de e"
+      },
+      {
+        "desde": "La u de gue",
+        "enlace": "no se pronuncia en",
+        "hasta": "guerra"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Leemos gato y atendemos al sonido inicial.",
+        "En guerra, la e necesita la escritura gue para conservar ese sonido.",
+        "La u está escrita, pero no se pronuncia en guerra."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Guitarra usa gui para conservar ese sonido delante de i.",
+      "conexion": "Gue y gui resuelven la misma necesidad con vocales distintas."
+    },
+    "contraste": {
+      "texto": "Gente no empieza con el mismo sonido que gato.",
+      "explicacion": "En ge, sin u, la g tiene otro sonido. Después veremos j y gü."
+    },
+    "comprobacion": {
+      "pregunta": "¿En cuál de estas palabras la u ayuda a conservar el sonido de gato?",
+      "opciones": [
+        "gente",
+        "jirafa",
+        "guerra"
+      ],
+      "correcta": 2,
+      "pista": "Buscá la combinación gue que acabamos de explicar.",
+      "explicacion": "Guerra usa gue; la u no se pronuncia."
+    },
+    "fuentes": [
+      "nap-l4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Palabra",
+        "Qué observamos"
+      ],
+      "filas": [
+        [
+          "gato",
+          "Sonido inicial de referencia"
+        ],
+        [
+          "guerra",
+          "gue; la u no suena"
+        ],
+        [
+          "guitarra",
+          "gui; la u no suena"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "ortografia_h",
+    "title": "Reconocer palabras con h en un mensaje",
+    "proposito": "Recordar escrituras de uso frecuente sin inventar una regla para cada palabra.",
+    "prerrequisito": "Podés mirar la palabra y volver a ella cuando lo necesites.",
+    "situacion": "Escribimos una observación: «Una hormiga entra en el hormiguero».",
+    "relaciones": [
+      {
+        "desde": "Hormiga",
+        "enlace": "se relaciona con",
+        "hasta": "hormiguero"
+      },
+      {
+        "desde": "Las dos palabras",
+        "enlace": "se escriben con",
+        "hasta": "h inicial"
+      },
+      {
+        "desde": "La h de estas palabras",
+        "enlace": "no tiene",
+        "hasta": "sonido propio"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Leemos hormiga en la frase: nombra al insecto.",
+        "Hormiguero nombra el lugar donde vive la colonia.",
+        "Ambas empiezan con h. La miramos y la conservamos al escribir."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Hoja y hojita también se escriben con h.",
+      "conexion": "Relacionar palabras conocidas ayuda a recordar su escritura."
+    },
+    "contraste": {
+      "texto": "No escuchar la h no significa que podamos quitarla.",
+      "explicacion": "La pronunciación no nos da toda la información de la escritura."
+    },
+    "comprobacion": {
+      "pregunta": "¿Qué letra conservamos al inicio de hormiga y hormiguero?",
+      "opciones": [
+        "h",
+        "b",
+        "v"
+      ],
+      "correcta": 0,
+      "pista": "Mirá la primera letra de las dos palabras del ejemplo.",
+      "explicacion": "Hormiga y hormiguero empiezan con h. Conservamos esa letra aunque no tenga sonido propio."
+    },
+    "fuentes": [
+      "nap-l4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Palabra",
+        "En la frase"
+      ],
+      "filas": [
+        [
+          "hormiga",
+          "El insecto"
+        ],
+        [
+          "hormiguero",
+          "El lugar de la colonia"
+        ],
+        [
+          "hoja / hojita",
+          "Otra familia con h"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "ortografia_c_s_z",
+    "title": "Mirar cómo cambia una palabra",
+    "proposito": "Empezamos con una transformación útil: de una palabra terminada en z a su plural.",
+    "prerrequisito": "Primero distinguimos uno y varios.",
+    "situacion": "Escribimos una lista: un lápiz y dos lápices.",
+    "relaciones": [
+      {
+        "desde": "Un lápiz",
+        "enlace": "en plural se escribe",
+        "hasta": "lápices"
+      },
+      {
+        "desde": "La z final",
+        "enlace": "cambia por",
+        "hasta": "c ante es"
+      },
+      {
+        "desde": "La regla",
+        "enlace": "sirve para",
+        "hasta": "palabras terminadas en z"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Lápiz termina en z.",
+        "Para nombrar varios escribimos lápices: cambiamos z por c y agregamos es.",
+        "También ocurre en pez: varios peces."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Una luz y varias luces muestran el mismo cambio.",
+      "conexion": "Podemos usar la relación singular-plural para revisar la escritura."
+    },
+    "contraste": {
+      "texto": "Esto no significa que todas las palabras en plural lleven c.",
+      "explicacion": "Casa forma casas. La regla que vimos empieza con una z final."
+    },
+    "comprobacion": {
+      "pregunta": "Si hay un pez y luego varios, ¿cómo escribimos el plural?",
+      "opciones": [
+        "pezes",
+        "peces",
+        "peses"
+      ],
+      "correcta": 1,
+      "pista": "La z final cambia por c antes de es.",
+      "explicacion": "Pez forma peces, como lápiz forma lápices."
+    },
+    "fuentes": [
+      "nap-l4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Uno",
+        "Varios"
+      ],
+      "filas": [
+        [
+          "lápiz",
+          "lápices"
+        ],
+        [
+          "pez",
+          "peces"
+        ],
+        [
+          "luz",
+          "luces"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "tildes_generales_agudas_graves_esdrujulas",
+    "title": "Escuchar qué parte suena más fuerte",
+    "proposito": "Empezamos ubicando la sílaba tónica antes de aplicar reglas de tilde.",
+    "prerrequisito": "Podés decir una palabra conocida en voz alta o seguir su separación.",
+    "situacion": "Comparamos casa y café. Una parte de cada palabra se destaca al decirla.",
+    "relaciones": [
+      {
+        "desde": "CA-sa",
+        "enlace": "destaca",
+        "hasta": "la penúltima sílaba"
+      },
+      {
+        "desde": "ca-FÉ",
+        "enlace": "destaca",
+        "hasta": "la última sílaba"
+      },
+      {
+        "desde": "La sílaba tónica",
+        "enlace": "es",
+        "hasta": "la que suena más fuerte"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Decimos CA-sa: se destaca ca, la penúltima sílaba. Es una palabra grave.",
+        "Decimos ca-FÉ: se destaca fé, la última. Es aguda.",
+        "La tilde es la rayita escrita; no todas las sílabas tónicas la llevan."
+      ]
+    },
+    "otroContexto": {
+      "texto": "MÚ-si-ca destaca la antepenúltima sílaba: es una palabra esdrújula.",
+      "conexion": "El lugar de la sílaba tónica permite reconocer tres grupos."
+    },
+    "contraste": {
+      "texto": "Tónica y tilde no significan lo mismo.",
+      "explicacion": "Casa tiene sílaba tónica, aunque no lleve tilde escrita."
+    },
+    "comprobacion": {
+      "pregunta": "En ca-FÉ, ¿qué sílaba se destaca?",
+      "opciones": [
+        "ca",
+        "Las dos igual",
+        "fé"
+      ],
+      "correcta": 2,
+      "pista": "Las mayúsculas muestran la sílaba que destacamos.",
+      "explicacion": "Se destaca fé, la última sílaba."
+    },
+    "fuentes": [
+      "nap-l4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Palabra",
+        "Sílaba destacada",
+        "Grupo"
+      ],
+      "filas": [
+        [
+          "CA-sa",
+          "Penúltima",
+          "Grave"
+        ],
+        [
+          "ca-FÉ",
+          "Última",
+          "Aguda"
+        ],
+        [
+          "MÚ-si-ca",
+          "Antepenúltima",
+          "Esdrújula"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "diptongo_hiato",
+    "title": "Ver si dos vocales van juntas",
+    "proposito": "Empezamos observando cómo se reparten las vocales en sílabas.",
+    "prerrequisito": "Podés seguir una palabra separada en sílabas con apoyo.",
+    "situacion": "Comparamos aire y país: tienen las vocales a e i seguidas en la escritura, pero se separan de modo distinto.",
+    "relaciones": [
+      {
+        "desde": "AI-re",
+        "enlace": "tiene ai en",
+        "hasta": "una misma sílaba"
+      },
+      {
+        "desde": "pa-ÍS",
+        "enlace": "reparte a e í en",
+        "hasta": "sílabas distintas"
+      },
+      {
+        "desde": "La í tónica de país",
+        "enlace": "forma",
+        "hasta": "hiato con a"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Aire se separa ai-re: a e i quedan juntas. Es un diptongo.",
+        "País se separa pa-ís: a e í quedan separadas. Es un hiato.",
+        "En país, la í lleva tilde y suena fuerte; no la unimos con la a."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Baúl se separa ba-úl: la ú tónica también queda en otra sílaba que la a.",
+      "conexion": "Podemos reconocer una separación semejante en otra palabra."
+    },
+    "contraste": {
+      "texto": "Ver dos vocales seguidas no alcanza para llamarlas diptongo.",
+      "explicacion": "Tenemos que observar si pertenecen a la misma sílaba."
+    },
+    "comprobacion": {
+      "pregunta": "¿En qué palabra las vocales señaladas quedan en sílabas distintas?",
+      "opciones": [
+        "pa-ís",
+        "ai-re",
+        "En ninguna"
+      ],
+      "correcta": 0,
+      "pista": "Buscá dónde aparece la separación entre las vocales.",
+      "explicacion": "En pa-ís, a e í están en sílabas diferentes."
+    },
+    "fuentes": [
+      "nap-l4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Palabra",
+        "Separación",
+        "Relación"
+      ],
+      "filas": [
+        [
+          "aire",
+          "ai-re",
+          "ai juntas: diptongo"
+        ],
+        [
+          "país",
+          "pa-ís",
+          "a / í: hiato"
+        ],
+        [
+          "baúl",
+          "ba-úl",
+          "a / ú: hiato"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "tilde_diacritica_monosilabos",
+    "title": "Una tilde puede distinguir usos",
+    "proposito": "Empezamos con tú y tu dentro de mensajes.",
+    "prerrequisito": "Podés buscar a quién se refiere una frase.",
+    "situacion": "Leemos: «Tú trajiste tu cuaderno». Las dos formas suenan igual, pero cumplen funciones distintas.",
+    "relaciones": [
+      {
+        "desde": "Tú",
+        "enlace": "nombra",
+        "hasta": "a la persona a quien hablamos"
+      },
+      {
+        "desde": "Tu cuaderno",
+        "enlace": "señala",
+        "hasta": "de quién es el cuaderno"
+      },
+      {
+        "desde": "La tilde",
+        "enlace": "distingue",
+        "hasta": "estos dos usos"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Tú trajiste habla de la persona: tú lleva tilde.",
+        "Tu cuaderno señala pertenencia: ese tu no lleva tilde.",
+        "Miramos la función dentro de la frase, no solo el sonido."
+      ]
+    },
+    "otroContexto": {
+      "texto": "En Argentina también decimos: «Vos trajiste tu cuaderno».",
+      "conexion": "Tú se usa en otras variedades del español; tu cuaderno mantiene la misma función."
+    },
+    "contraste": {
+      "texto": "No agregamos tilde a todos los tu de una frase.",
+      "explicacion": "Solo corresponde a tú cuando representa a la persona."
+    },
+    "comprobacion": {
+      "pregunta": "¿Cuál completa «Guardá ___ cuaderno»?",
+      "opciones": [
+        "tú",
+        "tu",
+        "tù"
+      ],
+      "correcta": 1,
+      "pista": "Aquí hablamos del cuaderno que te pertenece.",
+      "explicacion": "Tu cuaderno expresa pertenencia y se escribe sin tilde."
+    },
+    "fuentes": [
+      "nap-l4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Expresión",
+        "Qué hace"
+      ],
+      "filas": [
+        [
+          "Tú trajiste",
+          "Se refiere a la persona"
+        ],
+        [
+          "Tu cuaderno",
+          "Indica pertenencia"
+        ],
+        [
+          "Vos trajiste tu cuaderno",
+          "La misma idea en uso rioplatense"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "sustantivos_genero_numero_tipo",
+    "title": "Nombrar para que se entienda",
+    "proposito": "Empezamos identificando palabras que nombran y distinguiendo uno de varios.",
+    "prerrequisito": "Podés señalar personas, animales, lugares u objetos conocidos.",
+    "situacion": "Queremos pedir un material: «Necesito un lápiz». La palabra lápiz nombra lo que buscamos.",
+    "relaciones": [
+      {
+        "desde": "Lápiz",
+        "enlace": "nombra",
+        "hasta": "un objeto"
+      },
+      {
+        "desde": "Lápiz",
+        "enlace": "es un",
+        "hasta": "sustantivo"
+      },
+      {
+        "desde": "Lápices",
+        "enlace": "nombra",
+        "hasta": "varios de esos objetos"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Buscamos qué necesitamos: un lápiz.",
+        "Lápiz es un sustantivo; en este ejemplo nombra un objeto.",
+        "Si necesitamos varios, decimos lápices: cambiamos el número."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Plaza nombra un lugar y alegría nombra una emoción.",
+      "conexion": "Los sustantivos no nombran solo cosas que podemos tocar."
+    },
+    "contraste": {
+      "texto": "Rojo puede decir cómo es el lápiz en «el lápiz rojo».",
+      "explicacion": "En esa frase, lápiz nombra el objeto y rojo lo describe."
+    },
+    "comprobacion": {
+      "pregunta": "En «Necesito dos lápices», ¿qué palabra nombra los objetos?",
+      "opciones": [
+        "dos",
+        "Necesito",
+        "lápices"
+      ],
+      "correcta": 2,
+      "pista": "Buscá qué queremos encontrar o pedir.",
+      "explicacion": "Lápices nombra los objetos; dos indica cuántos."
+    },
+    "fuentes": [
+      "nap-l4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Sustantivo",
+        "Qué nombra"
+      ],
+      "filas": [
+        [
+          "lápiz",
+          "Un objeto"
+        ],
+        [
+          "plaza",
+          "Un lugar"
+        ],
+        [
+          "alegría",
+          "Una emoción"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "verbos_modo_indicativo_tiempos",
+    "title": "Contar cuándo ocurre algo",
+    "proposito": "Empezamos relacionando una acción con pasado, presente y futuro.",
+    "prerrequisito": "Podés ordenar ayer, hoy y mañana.",
+    "situacion": "Lola cuenta sus juegos: «Ayer jugué. Hoy juego. Mañana jugaré».",
+    "relaciones": [
+      {
+        "desde": "Jugué",
+        "enlace": "sitúa la acción en",
+        "hasta": "el pasado"
+      },
+      {
+        "desde": "Juego",
+        "enlace": "en esta frase indica",
+        "hasta": "el presente"
+      },
+      {
+        "desde": "Jugaré",
+        "enlace": "sitúa la acción en",
+        "hasta": "el futuro"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Ayer jugué cuenta algo que ya ocurrió.",
+        "Hoy juego cuenta lo que ocurre hoy.",
+        "Mañana jugaré anuncia algo para después. Cambia la forma del verbo jugar."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Ayer caminé, hoy camino y mañana caminaré muestran el mismo cambio de tiempo.",
+      "conexion": "Podemos hablar de otra acción conservando el orden temporal."
+    },
+    "contraste": {
+      "texto": "Cambiar jugué por jugaré cambia cuándo situamos la acción.",
+      "explicacion": "No son escrituras intercambiables en cualquier frase."
+    },
+    "comprobacion": {
+      "pregunta": "¿Cuál de estas frases sitúa el juego en el pasado?",
+      "opciones": [
+        "Ayer jugué",
+        "Hoy juego",
+        "Mañana jugaré"
+      ],
+      "correcta": 0,
+      "pista": "Buscá lo que ya ocurrió.",
+      "explicacion": "Ayer jugué se refiere a un hecho anterior."
+    },
+    "fuentes": [
+      "nap-l4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Cuándo",
+        "Forma verbal"
+      ],
+      "filas": [
+        [
+          "Ayer",
+          "jugué"
+        ],
+        [
+          "Hoy",
+          "juego"
+        ],
+        [
+          "Mañana",
+          "jugaré"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "sujeto_predicado_nucleo",
+    "title": "Encontrar de quién se dice algo",
+    "proposito": "Empezamos separando dos partes de una oración sencilla.",
+    "prerrequisito": "Podés leer una frase breve y buscar su verbo.",
+    "situacion": "Leemos: «La gata duerme». Hablamos de la gata y decimos que duerme.",
+    "relaciones": [
+      {
+        "desde": "La gata",
+        "enlace": "es",
+        "hasta": "el sujeto"
+      },
+      {
+        "desde": "Duerme",
+        "enlace": "es",
+        "hasta": "el predicado"
+      },
+      {
+        "desde": "Los núcleos",
+        "enlace": "son",
+        "hasta": "gata y duerme"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Buscamos el verbo: duerme.",
+        "En esta oración, la gata es el sujeto: de ella decimos que duerme.",
+        "Gata es la palabra central del sujeto; duerme, la del predicado. Son sus núcleos."
+      ]
+    },
+    "otroContexto": {
+      "texto": "En «Las plantas crecen», hablamos de las plantas y decimos que crecen.",
+      "conexion": "Podemos localizar las dos partes en otra oración sencilla."
+    },
+    "contraste": {
+      "texto": "El sujeto no siempre realiza una acción voluntaria.",
+      "explicacion": "Dormir o crecer también pueden ser lo que decimos de él."
+    },
+    "comprobacion": {
+      "pregunta": "¿De quién se dice que duerme en «La gata duerme»?",
+      "opciones": [
+        "De la casa",
+        "De la gata",
+        "De la noche"
+      ],
+      "correcta": 1,
+      "pista": "Volvé al comienzo de esta oración.",
+      "explicacion": "La gata es el sujeto de la oración."
+    },
+    "fuentes": [
+      "nap-l4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Parte",
+        "Texto",
+        "Núcleo"
+      ],
+      "filas": [
+        [
+          "Sujeto",
+          "La gata",
+          "gata"
+        ],
+        [
+          "Predicado",
+          "duerme",
+          "duerme"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "concordancia_sujeto_verbo",
+    "title": "Cambiar juntos sujeto y verbo",
+    "proposito": "Hacer que el verbo corresponda con quien aparece como sujeto.",
+    "prerrequisito": "Empezamos distinguiendo uno y varios en una oración sencilla.",
+    "situacion": "Escribimos «La gata duerme». Ahora queremos hablar de dos gatas.",
+    "relaciones": [
+      {
+        "desde": "La gata",
+        "enlace": "combina con",
+        "hasta": "duerme"
+      },
+      {
+        "desde": "Las gatas",
+        "enlace": "combina con",
+        "hasta": "duermen"
+      },
+      {
+        "desde": "Pasar a varias",
+        "enlace": "requiere revisar",
+        "hasta": "el sujeto y el verbo"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "La gata nombra una; usamos duerme.",
+        "Las gatas nombra varias; cambiamos el verbo a duermen.",
+        "Leemos la oración completa: «Las gatas duermen»."
+      ]
+    },
+    "otroContexto": {
+      "texto": "El perro corre cambia a los perros corren.",
+      "conexion": "El verbo acompaña el cambio de número del sujeto."
+    },
+    "contraste": {
+      "texto": "«Las gatas duerme» mezcla un sujeto plural con un verbo singular.",
+      "explicacion": "En este caso revisamos el verbo para que concuerde."
+    },
+    "comprobacion": {
+      "pregunta": "¿Cuál completa «Las plantas ___»?",
+      "opciones": [
+        "crece",
+        "crecen",
+        "crecer"
+      ],
+      "correcta": 1,
+      "pista": "Plantas nombra varias; buscá la forma que corresponde.",
+      "explicacion": "Las plantas crecen: sujeto y verbo están en plural."
+    },
+    "fuentes": [
+      "nap-l4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Una",
+        "Varias"
+      ],
+      "filas": [
+        [
+          "La gata duerme",
+          "Las gatas duermen"
+        ],
+        [
+          "El perro corre",
+          "Los perros corren"
+        ],
+        [
+          "La planta crece",
+          "Las plantas crecen"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "discurso_conectores_sinonimos",
+    "title": "Mostrar cómo se relacionan las ideas",
+    "proposito": "Empezamos con conectores que aclaran por qué ocurre algo.",
+    "prerrequisito": "Podés reconocer dos hechos en frases breves.",
+    "situacion": "Queremos contar dos hechos: llovió y se suspendió el partido.",
+    "relaciones": [
+      {
+        "desde": "Llovió",
+        "enlace": "es la causa de",
+        "hasta": "la suspensión"
+      },
+      {
+        "desde": "Por eso",
+        "enlace": "introduce",
+        "hasta": "la consecuencia"
+      },
+      {
+        "desde": "Porque",
+        "enlace": "introduce",
+        "hasta": "la causa"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Ordenamos la relación: la lluvia provocó la suspensión.",
+        "Podemos escribir: «Llovió. Por eso se suspendió el partido».",
+        "También: «Se suspendió el partido porque llovió». Conservamos la relación."
+      ]
+    },
+    "otroContexto": {
+      "texto": "«Se cortó la luz; por eso encendimos una linterna» conecta otra causa con su consecuencia.",
+      "conexion": "El conector muestra cómo se unen las ideas."
+    },
+    "contraste": {
+      "texto": "Después indica orden temporal, pero no asegura una causa.",
+      "explicacion": "Que un hecho venga antes no significa que haya provocado el otro."
+    },
+    "comprobacion": {
+      "pregunta": "En «Encendimos una linterna porque se cortó la luz», ¿cuál es la causa?",
+      "opciones": [
+        "Encender la linterna",
+        "La palabra linterna",
+        "El corte de luz"
+      ],
+      "correcta": 2,
+      "pista": "Porque presenta la razón de lo que hicimos.",
+      "explicacion": "El corte de luz es la causa; encender la linterna es la respuesta."
+    },
+    "fuentes": [
+      "nap-l4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Relación",
+        "Ejemplo"
+      ],
+      "filas": [
+        [
+          "Causa",
+          "Se cortó la luz"
+        ],
+        [
+          "Consecuencia",
+          "Encendimos una linterna"
+        ],
+        [
+          "Enlace",
+          "porque / por eso"
+        ]
+      ]
+    }
+  },
+  {
+    "tema": "produccion_escrita_narracion",
+    "title": "Contar una pequeña historia con orden",
+    "proposito": "Preparar una narración que otra persona pueda seguir.",
+    "prerrequisito": "Podés ordenar tres hechos y contarlos con tus palabras.",
+    "situacion": "Teo perdió una llave, la buscó y la encontró bajo un libro.",
+    "relaciones": [
+      {
+        "desde": "Inicio",
+        "enlace": "presenta",
+        "hasta": "quién y qué ocurre"
+      },
+      {
+        "desde": "Desarrollo",
+        "enlace": "cuenta",
+        "hasta": "la búsqueda"
+      },
+      {
+        "desde": "Final",
+        "enlace": "muestra",
+        "hasta": "cómo termina"
+      }
+    ],
+    "ejemplo": {
+      "titulo": "Lo vemos paso a paso",
+      "pasos": [
+        "Presentamos el problema: «Teo no encontraba su llave».",
+        "Contamos qué hizo: «Revisó la mesa y levantó un libro».",
+        "Cerramos: «La llave estaba debajo. Teo la guardó»."
+      ]
+    },
+    "otroContexto": {
+      "texto": "Podés contar cómo buscaste un objeto tuyo, aunque lo encuentres en otro lugar.",
+      "conexion": "Organizamos situación, acciones y final para ayudar a quien lee."
+    },
+    "contraste": {
+      "texto": "Una lista de palabras sueltas no muestra cómo se conectan los hechos.",
+      "explicacion": "Usamos frases que permitan seguir a la persona y lo que le sucede."
+    },
+    "comprobacion": {
+      "pregunta": "¿Qué frase cierra la historia que acabamos de contar?",
+      "opciones": [
+        "La llave estaba debajo y Teo la guardó",
+        "Teo no encontraba su llave",
+        "Un libro y una mesa"
+      ],
+      "correcta": 0,
+      "pista": "Buscá qué resolvió el problema.",
+      "explicacion": "Encontrar y guardar la llave muestra cómo termina esta historia."
+    },
+    "fuentes": [
+      "nap-l4",
+      "novak"
+    ],
+    "visual": {
+      "tipo": "tabla",
+      "cabeceras": [
+        "Momento",
+        "Qué contamos"
+      ],
+      "filas": [
+        [
+          "Inicio",
+          "Teo no encuentra la llave"
+        ],
+        [
+          "Desarrollo",
+          "Busca y levanta un libro"
+        ],
+        [
+          "Final",
+          "Encuentra la llave y la guarda"
+        ]
+      ]
+    }
+  }
+]

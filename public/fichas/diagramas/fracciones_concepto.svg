@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="499" height="150" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 150" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="499" height="150"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-150)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="8" y="132" style="font-family: Ficha; font-size: 13px;fill: rgb(9%,17%,24%); stroke:none;" transform="translate(0,264) scale(1,-1)">Todo lo que había en la jarra está en estos 4 vasos.</text>
+			<rect x="28" y="48" width="61" height="58" style="stroke: rgb(9%,29%,39%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="31" y="49" width="55" height="34" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(57%,79%,84%); fill-rule: evenodd;"/>
+			<text x="44" y="29" style="font-family: Ficha; font-size: 12px;fill: rgb(9%,17%,24%); stroke:none;" transform="translate(0,58) scale(1,-1)">1/4</text>
+			<rect x="21" y="20" width="75" height="93" style="stroke: rgb(65%,35%,7%); stroke-linecap: butt; stroke-width: 2; fill: none; fill-rule: evenodd;"/>
+			<rect x="148" y="48" width="61" height="58" style="stroke: rgb(9%,29%,39%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="151" y="49" width="55" height="34" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(57%,79%,84%); fill-rule: evenodd;"/>
+			<text x="164" y="29" style="font-family: Ficha; font-size: 12px;fill: rgb(9%,17%,24%); stroke:none;" transform="translate(0,58) scale(1,-1)">1/4</text>
+			<rect x="141" y="20" width="75" height="93" style="stroke: rgb(65%,35%,7%); stroke-linecap: butt; stroke-width: 2; fill: none; fill-rule: evenodd;"/>
+			<rect x="268" y="48" width="61" height="58" style="stroke: rgb(9%,29%,39%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="271" y="49" width="55" height="34" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(57%,79%,84%); fill-rule: evenodd;"/>
+			<text x="284" y="29" style="font-family: Ficha; font-size: 12px;fill: rgb(9%,17%,24%); stroke:none;" transform="translate(0,58) scale(1,-1)">1/4</text>
+			<rect x="261" y="20" width="75" height="93" style="stroke: rgb(65%,35%,7%); stroke-linecap: butt; stroke-width: 2; fill: none; fill-rule: evenodd;"/>
+			<rect x="388" y="48" width="61" height="58" style="stroke: rgb(9%,29%,39%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="391" y="49" width="55" height="34" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(57%,79%,84%); fill-rule: evenodd;"/>
+			<text x="404" y="29" style="font-family: Ficha; font-size: 12px;fill: rgb(9%,17%,24%); stroke:none;" transform="translate(0,58) scale(1,-1)">1/4</text>
+			<text x="38" y="3" style="font-family: Ficha; font-size: 13px;fill: rgb(9%,17%,24%); stroke:none;" transform="translate(0,6) scale(1,-1)">Usamos estos 3: 3/4 del total</text>
+			<text x="389" y="3" style="font-family: Ficha; font-size: 12px;fill: rgb(9%,17%,24%); stroke:none;" transform="translate(0,6) scale(1,-1)">Queda 1/4</text>
+		</g>
+	</g>
+</svg>
