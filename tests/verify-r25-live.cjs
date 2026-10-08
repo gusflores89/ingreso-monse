@@ -28,14 +28,14 @@ const report={base,realDatabase:true,realAPI:true,realAI:false,checks:[],errors:
  report.checks.push('API real: no permite saltar pasos ni crear práctica/taller antes de la lectura');
  const page=await ctx.newPage();page.on('pageerror',e=>report.errors.push(e.message));
  const url=base+`/tutoria?user_id=${userId}&tema=${topic}&modo=REPASO`;
- await page.goto(url,{waitUntil:'networkidle'});await page.getByRole('heading',{name:'¿Para qué nos sirve?',exact:true}).waitFor();
+ await page.goto(url,{waitUntil:'domcontentloaded'});await page.getByRole('heading',{name:'¿Para qué nos sirve?',exact:true}).waitFor();
  assert.equal(await page.getByRole('button',{name:'Enviar respuesta',exact:true}).count(),0);
  await page.screenshot({path:path.join(out,'lectura-pc.png'),fullPage:true});
  // Un fallo transitorio no completa un paso ni pierde el contenido.
  await page.route('**/api/fichas',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'No pudimos guardar este paso. Volvé a intentar.'})}),{times:1});
  await page.getByRole('button',{name:'Leí este paso; seguir',exact:true}).click();await page.getByRole('region',{name:'Lectura previa del módulo'}).getByRole('alert').waitFor();assert.equal((await read()).lectura.paso,0);
  await page.getByRole('button',{name:'Leí este paso; seguir',exact:true}).click();await page.getByRole('heading',{name:f.ejemplo.titulo,exact:true}).waitFor();
- await page.reload({waitUntil:'networkidle'});await page.getByRole('heading',{name:f.ejemplo.titulo,exact:true}).waitFor();
+ await page.reload({waitUntil:'domcontentloaded'});await page.getByRole('heading',{name:f.ejemplo.titulo,exact:true}).waitFor();
  assert.equal((await read()).lectura.paso,1);await page.getByRole('img',{name:/jarra/i}).waitFor();
  await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
  await page.screenshot({path:path.join(out,'lectura-movil.png'),fullPage:true});await page.setViewportSize({width:1366,height:900});
@@ -52,25 +52,25 @@ const report={base,realDatabase:true,realAPI:true,realAI:false,checks:[],errors:
  // Sesión anterior conservada, aunque falte la lectura de la versión actual.
  await page.waitForTimeout(1000);
  ok(await db.from('lecciones_completadas').delete().eq('user_id',userId).eq('tema',topic).gte('leccion_numero',helpers.BASE_LECTURA));
- await page.reload({waitUntil:'networkidle'});await page.getByRole('heading',{name:'¿Para qué nos sirve?',exact:true}).waitFor();assert.equal(await page.getByRole('button',{name:'Siguiente →',exact:true}).count(),0);
+ await page.reload({waitUntil:'domcontentloaded'});await page.getByRole('heading',{name:'¿Para qué nos sirve?',exact:true}).waitFor();assert.equal(await page.getByRole('button',{name:'Siguiente →',exact:true}).count(),0);
  const blocked=await post('/api/sesion/respuesta',{sesion_id:sessions[0].id,respuesta_usuario:'2',envio_id:crypto.randomUUID()});assert.equal(blocked.status(),409);
  for(let paso=0;paso<4;paso++){const r=await post('/api/fichas',{tema:topic,version:1,paso,respuesta:f.comprobacion.correcta});assert.equal(r.status(),200);}
- await page.reload({waitUntil:'networkidle'});await page.getByRole('button',{name:'Siguiente →',exact:true}).waitFor();
+ await page.reload({waitUntil:'domcontentloaded'});await page.getByRole('button',{name:'Siguiente →',exact:true}).waitFor();
  assert.equal(ok(await db.from('sesiones').select('id').eq('user_id',userId)).length,1);
  report.checks.push('Sesión restaurada protegida y conservada; respuesta directa bloqueada con 409');
  // Nuevo navegador: no depende de localStorage.
  const ctx2=await browser.newContext({storageState:await ctx.storageState()});if(/^http:/.test(base))await ctx2.setExtraHTTPHeaders({Cookie:cookie});
  const remote=await ctx2.request.get(base+`/api/fichas?user_id=${userId}&tema=${topic}`);assert.equal((await remote.json()).lectura.completada,true);await ctx2.close();
- await page.goto(base+`/biblioteca?user_id=${userId}`,{waitUntil:'networkidle'});assert.equal(await page.locator('article').count(),40);
+ await page.goto(base+`/biblioteca?user_id=${userId}`,{waitUntil:'domcontentloaded'});await page.locator('article').first().waitFor();assert.equal(await page.locator('article').count(),40);
  await page.getByRole('button',{name:'Matemática',exact:true}).click();assert.equal(await page.locator('article').count(),26);
  await page.getByRole('button',{name:'Lengua',exact:true}).click();assert.equal(await page.locator('article').count(),14);
  await page.screenshot({path:path.join(out,'biblioteca-pc.png'),fullPage:true});
- await page.goto(base+`/biblioteca?user_id=${userId}&tema=${topic}`,{waitUntil:'networkidle'});await page.getByRole('heading',{name:'¿Para qué nos sirve?',exact:true}).waitFor();
+ await page.goto(base+`/biblioteca?user_id=${userId}&tema=${topic}`,{waitUntil:'domcontentloaded'});await page.getByRole('heading',{name:'¿Para qué nos sirve?',exact:true}).waitFor();
  report.checks.push('Biblioteca: 40 fichas, filtros 26/14, relectura; avance persistente en otro navegador');
  await page.route('**/api/fichas?**',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'No pudimos consultar la lectura guardada.'})}),{times:1});
- await page.goto(base+`/biblioteca?user_id=${userId}&tema=ortografia_h`,{waitUntil:'networkidle'});
+ await page.goto(base+`/biblioteca?user_id=${userId}&tema=ortografia_h`,{waitUntil:'domcontentloaded'});
  await page.getByRole('button',{name:'Volver a intentar',exact:true}).click();await page.getByRole('heading',{name:'¿Para qué nos sirve?',exact:true}).waitFor();
- await page.goto(base+`/papas?user_id=${userId}`,{waitUntil:'networkidle'});
+ await page.goto(base+`/papas?user_id=${userId}`,{waitUntil:'domcontentloaded'});
  const libraryLink=page.getByRole('link',{name:'Ver las fichas y los PDF',exact:true});await libraryLink.waitFor();assert((await libraryLink.getAttribute('href')).endsWith(userId));
  await libraryLink.click();await page.getByRole('heading',{name:'Mi biblioteca para entender',exact:true}).waitFor();
  report.checks.push('Dashboard familiar enlaza la biblioteca; lectura inaccesible muestra error y permite reintentar');

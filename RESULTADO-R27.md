@@ -43,7 +43,15 @@ Evidencia local: `C:/Users/gusta/.codex/visualizations/2026/09/09/01a086d6-a934-
 
 ## Publicación
 
-Pendiente de registrar el despliegue validado y las comprobaciones del dominio público.
+- Dominio comprobado: https://www.ingresomonserrat.online.
+- Destino: producción. Estado: **READY**, promovido el 8 de octubre de 2026.
+- Código de producto: commit `5e008f0` (precedido por `fb4ca12`). Framework: Next.js 16.1.6. Construcción Vercel: 9 segundos.
+- Despliegue: `dpl_JDxAMygG8Pxr1bZt6ab7q24RBkAS`, https://ingreso-monse-2027-mocz2scqz-gustavos-projects-b8e409fb.vercel.app.
+- Antes de promover: manifiesto idéntico al local y nueva API protegida con 401 sin sesión.
+- Después de promover: recorrido real con cuenta sintética aprobado en el dominio público; lectura, pausa/restauración, permisos, biblioteca y SHA-256 de los 80 PDF. Cuenta de prueba y registros relacionados eliminados y ausencia verificada. La cuenta de Abril no se usó para probar.
+- Un primer intento del test público agotó la espera de `networkidle` al navegar. El test ahora espera el documento y la interfaz concreta; la repetición completa pasó. No se cambió el producto para ocultar el fallo.
+- Revisión de logs de error del despliegue: consulta de los últimos 15 minutos sin entradas. Es una observación acotada; no se configuró monitoreo continuo ni se auditó la configuración de drains.
+- Evidencia de producción: `implementacion-r27/live-publico/api-real-r25.json` en la carpeta de evidencia indicada arriba; `errors: []`, `cleanup: true`.
 
 ## Alcance pedagógico pendiente de demostrar
 
