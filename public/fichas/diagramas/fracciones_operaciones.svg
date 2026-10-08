@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="499" height="250" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 250" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="499" height="250"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-250)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="14" y="225" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,450) scale(1,-1)">Una misma cinta, cortada en 4 partes iguales.</text>
+			<rect x="38" y="108" width="105" height="54" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<text x="72" y="126" style="font-family: Arial, sans-serif; font-size: 20px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,252) scale(1,-1)">1/4</text>
+			<rect x="143" y="108" width="105" height="54" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<text x="177" y="126" style="font-family: Arial, sans-serif; font-size: 20px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,252) scale(1,-1)">1/4</text>
+			<rect x="248" y="108" width="105" height="54" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="282" y="126" style="font-family: Arial, sans-serif; font-size: 20px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,252) scale(1,-1)">1/4</text>
+			<rect x="353" y="108" width="105" height="54" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="387" y="126" style="font-family: Arial, sans-serif; font-size: 20px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,252) scale(1,-1)">1/4</text>
+			<text x="47" y="181" style="font-family: Arial, sans-serif; font-size: 16px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,362) scale(1,-1)">primero</text>
+			<text x="153" y="181" style="font-family: Arial, sans-serif; font-size: 16px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,362) scale(1,-1)">después</text>
+			<path d="M 40,91 L 248,91 Z" style="stroke: rgb(93%,67%,20%); stroke-linecap: butt; stroke-width: 5;"/>
+			<text x="118" y="61" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 21px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,122) scale(1,-1)">2/4 usados</text>
+			<text x="109" y="17" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 23px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,34) scale(1,-1)">1/4 + 1/4 = 2/4</text>
+		</g>
+	</g>
+</svg>

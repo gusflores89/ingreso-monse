@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="499" height="250" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 250" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="499" height="250"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-250)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="10" y="223" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 19px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,446) scale(1,-1)">Seguí los bordes con el dedo.</text>
+			<rect x="29" y="76" width="132" height="105" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<path d="M 39,163 L 150,163 Z" style="stroke: rgb(72%,80%,83%); stroke-linecap: butt; stroke-width: 2;"/>
+			<text x="38" y="42" style="font-family: Arial, sans-serif; font-size: 16px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,84) scale(1,-1)">hoja: 4 lados</text>
+			<circle cx="262" cy="127" r="53" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,83%,46%); fill-rule: evenodd;"/>
+			<circle cx="262" cy="127" r="44" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,83%,46%); fill-rule: evenodd;"/>
+			<text x="228" y="42" style="font-family: Arial, sans-serif; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,84) scale(1,-1)">moneda</text>
+			<circle cx="423" cy="128" r="48" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="362" y="62" style="font-family: Arial, sans-serif; font-size: 14px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,124) scale(1,-1)">solo el borde:</text>
+			<text x="358" y="39" style="font-family: Arial, sans-serif; font-size: 16px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,78) scale(1,-1)">circunferencia</text>
+			<text x="178" y="10" style="font-family: Arial, sans-serif; font-size: 16px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,20) scale(1,-1)">El círculo incluye también el interior.</text>
+		</g>
+	</g>
+</svg>

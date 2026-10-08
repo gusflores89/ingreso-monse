@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="499" height="250" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 250" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="499" height="250"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-250)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="16" y="221" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 18px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,442) scale(1,-1)">6 lápices en grupos de 2</text>
+			<polygon points="44 68, 132 68, 124 138, 111 150, 66 150, 53 138" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<path d="M 68,141 L 108,141 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="74" y="85" width="9" height="45" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="74 85, 83 85, 78.5 75" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 78.5,78 L 78.5,75 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="74" y="130" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<rect x="96" y="85" width="9" height="45" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="96 85, 105 85, 100.5 75" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 100.5,78 L 100.5,75 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="96" y="130" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<text x="69" y="40" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 20px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,80) scale(1,-1)">2</text>
+			<polygon points="194 68, 282 68, 274 138, 261 150, 216 150, 203 138" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<path d="M 218,141 L 258,141 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="224" y="85" width="9" height="45" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="224 85, 233 85, 228.5 75" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 228.5,78 L 228.5,75 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="224" y="130" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<rect x="246" y="85" width="9" height="45" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="246 85, 255 85, 250.5 75" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 250.5,78 L 250.5,75 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="246" y="130" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<text x="219" y="40" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 20px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,80) scale(1,-1)">2</text>
+			<polygon points="344 68, 432 68, 424 138, 411 150, 366 150, 353 138" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<path d="M 368,141 L 408,141 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="374" y="85" width="9" height="45" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="374 85, 383 85, 378.5 75" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 378.5,78 L 378.5,75 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="374" y="130" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<rect x="396" y="85" width="9" height="45" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="396 85, 405 85, 400.5 75" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 400.5,78 L 400.5,75 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="396" y="130" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<text x="369" y="40" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 20px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,80) scale(1,-1)">2</text>
+			<text x="115" y="10" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 22px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,20) scale(1,-1)">2 + 2 + 2 = 6</text>
+			<text x="65" y="185" style="font-family: Arial, sans-serif; font-size: 16px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,370) scale(1,-1)">No queda ningún lápiz suelto.</text>
+		</g>
+	</g>
+</svg>

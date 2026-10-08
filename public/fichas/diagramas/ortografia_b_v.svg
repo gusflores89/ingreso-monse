@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="499" height="250" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 250" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="499" height="250"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-250)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="76" y="125" width="95" height="77" rx="4" ry="4" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<path d="M 88,125 L 88,202 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2;"/>
+			<text x="100" y="167" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 21px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,334) scale(1,-1)"></text>
+			<path d="M 100,160 L 156,160 Z" style="stroke: rgb(65%,78%,82%); stroke-linecap: butt; stroke-width: 2;"/>
+			<path d="M 100,173 L 156,173 Z" style="stroke: rgb(65%,78%,82%); stroke-linecap: butt; stroke-width: 2;"/>
+			<path d="M 100,186 L 156,186 Z" style="stroke: rgb(65%,78%,82%); stroke-linecap: butt; stroke-width: 2;"/>
+			<text x="28" y="82" style="font-family: Arial, sans-serif; font-size: 27px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,164) scale(1,-1)">li</text>
+			<text x="39.9970703125" y="82" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 27px;fill: rgb(70%,26%,25%); stroke:none;" transform="translate(0,164) scale(1,-1)">b</text>
+			<text x="56.48974609375" y="82" style="font-family: Arial, sans-serif; font-size: 27px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,164) scale(1,-1)">ro</text>
+			<rect x="312" y="127" width="133" height="78" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="303" y="183" width="151" height="28" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<text x="317" y="191" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,382) scale(1,-1)">LIBRERÍA</text>
+			<rect x="323" y="138" width="12" height="30" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<rect x="341" y="138" width="12" height="30" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<rect x="359" y="138" width="12" height="30" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<rect x="377" y="138" width="12" height="30" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<rect x="395" y="138" width="12" height="30" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<text x="278" y="82" style="font-family: Arial, sans-serif; font-size: 27px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,164) scale(1,-1)">li</text>
+			<text x="289.9970703125" y="82" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 27px;fill: rgb(70%,26%,25%); stroke:none;" transform="translate(0,164) scale(1,-1)">b</text>
+			<text x="306.48974609375" y="82" style="font-family: Arial, sans-serif; font-size: 27px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,164) scale(1,-1)">rería</text>
+			<path d="M 214,155 L 270,155 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2;"/>
+			<polygon points="270 155, 260.9955 159.3497, 260.9955 150.6503" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(12%,47%,63%); fill-rule: evenodd;"/>
+			<text x="15" y="23" style="font-family: Arial, sans-serif; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,46) scale(1,-1)">En esta familia de palabras conservamos la b.</text>
+		</g>
+	</g>
+</svg>

@@ -49,25 +49,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Organización",
-        "Cantidad"
-      ],
-      "filas": [
-        [
-          "En la caja",
-          "10"
-        ],
-        [
-          "Afuera",
-          "2"
-        ],
-        [
-          "En total",
-          "12"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "numeros_naturales_sistema_decimal.svg"
     }
   },
   {
@@ -120,29 +103,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Bolsita",
-        "Galletitas"
-      ],
-      "filas": [
-        [
-          "Primera",
-          "2"
-        ],
-        [
-          "Segunda",
-          "2"
-        ],
-        [
-          "Tercera",
-          "2"
-        ],
-        [
-          "Total",
-          "6"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "tablas_multiplicar_2_5.svg"
     }
   },
   {
@@ -195,25 +157,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Filas",
-        "Sillas"
-      ],
-      "filas": [
-        [
-          "Primeras 5",
-          "10"
-        ],
-        [
-          "Última 1",
-          "2"
-        ],
-        [
-          "Las 6 juntas",
-          "12"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "tablas_multiplicar_6_8.svg"
     }
   },
   {
@@ -266,25 +211,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Pares",
-        "Medias"
-      ],
-      "filas": [
-        [
-          "10",
-          "20"
-        ],
-        [
-          "Quitamos 1",
-          "Quitamos 2"
-        ],
-        [
-          "Quedan 9",
-          "Quedan 18"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "tablas_multiplicar_9_10.svg"
     }
   },
   {
@@ -292,7 +220,7 @@
     "title": "Leer números en capítulos",
     "proposito": "Reconocer otra forma de escribir cantidades y posiciones.",
     "prerrequisito": "Empezamos con I, II y III: uno, dos y tres.",
-    "situacion": "Un libro tiene capítulos I, II y III. Queremos abrir el tercero.",
+    "situacion": "Un capítulo es una parte de un libro. Estos tres capítulos se llaman I, II y III: primero, segundo y tercero.",
     "relaciones": [
       {
         "desde": "I",
@@ -342,25 +270,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Romano",
-        "Número"
-      ],
-      "filas": [
-        [
-          "I",
-          "1"
-        ],
-        [
-          "II",
-          "2"
-        ],
-        [
-          "III",
-          "3"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "numeros_romanos.svg"
     }
   },
   {
@@ -413,29 +324,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Persona",
-        "Fichas"
-      ],
-      "filas": [
-        [
-          "Ana",
-          "2"
-        ],
-        [
-          "Luz",
-          "2"
-        ],
-        [
-          "Leo",
-          "2"
-        ],
-        [
-          "Teo",
-          "2"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "division_1_digito.svg"
     }
   },
   {
@@ -493,24 +383,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Total",
-        "Grupos de 2",
-        "Sobrante"
-      ],
-      "filas": [
-        [
-          "6 lápices",
-          "3 bolsitas",
-          "0"
-        ],
-        [
-          "7 lápices",
-          "3 bolsitas",
-          "1"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "divisibilidad_primos_mcm_mcd.svg"
     }
   },
   {
@@ -518,7 +392,7 @@
     "title": "Tres partes de un mismo total",
     "proposito": "Reconocer una fracción en algo que usamos, repartimos o medimos.",
     "prerrequisito": "Empezamos reconociendo un total y partes iguales.",
-    "situacion": "Repartimos una jarra llena en 4 vasos con igual cantidad. Usamos 3 vasos.",
+    "situacion": "Repartimos todo el jugo de esta jarra en cuatro vasos iguales, con la misma cantidad en cada uno. Elegimos tres vasos: son tres de las cuatro partes del jugo inicial.",
     "relaciones": [
       {
         "desde": "La jarra llena",
@@ -539,9 +413,9 @@
     "ejemplo": {
       "titulo": "Lo vemos paso a paso",
       "pasos": [
-        "Todo lo que había en la jarra es nuestro total.",
-        "Cada vaso recibe la misma cantidad: un cuarto.",
-        "Tres vasos reúnen tres cuartos. Escribimos 3/4."
+        "Todo el jugo de la jarra es el total: lo repartimos sin dejar jugo dentro.",
+        "Los cuatro vasos tienen la misma cantidad. Cada vaso tiene una de cuatro partes: un cuarto, 1/4.",
+        "Los tres vasos marcados reúnen tres partes de las cuatro: tres cuartos, 3/4."
       ]
     },
     "otroContexto": {
@@ -568,25 +442,12 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Referencia",
-        "Significado"
-      ],
-      "filas": [
-        [
-          "Jarra completa",
-          "El total"
-        ],
-        [
-          "1 vaso de 4 iguales",
-          "1/4 del total"
-        ],
-        [
-          "3 vasos de 4 iguales",
-          "3/4 del total"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "fracciones_concepto.svg"
+    },
+    "exploracion": {
+      "tipo": "jarra",
+      "inicial": 750
     }
   },
   {
@@ -644,25 +505,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Paso",
-        "Cantidad usada"
-      ],
-      "filas": [
-        [
-          "Primero",
-          "1/4 de la cinta"
-        ],
-        [
-          "Agregamos",
-          "1/4 de la cinta"
-        ],
-        [
-          "En total",
-          "2/4 de la cinta"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "fracciones_operaciones.svg"
     }
   },
   {
@@ -720,65 +564,39 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Momento",
-        "Galletitas"
-      ],
-      "filas": [
-        [
-          "Al principio",
-          "8"
-        ],
-        [
-          "Usamos",
-          "4"
-        ],
-        [
-          "Quedan",
-          "4"
-        ],
-        [
-          "Mitad de las que quedan",
-          "2"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "fracciones_del_resto.svg"
     }
   },
   {
     "tema": "decimales_conversion",
-    "title": "Escribir cantidades entre enteros",
-    "proposito": "Empezamos por la mitad: una misma cantidad puede tener dos escrituras.",
-    "prerrequisito": "Primero distinguimos un entero y su mitad.",
-    "situacion": "Una jarra graduada señala 0 L, 0,5 L y 1 L. La marca del medio indica medio litro.",
+    "title": "La mitad de una jarra de jugo",
+    "proposito": "Miramos el jugo antes de leer los números.",
+    "prerrequisito": "Primero mirá el nivel del jugo; después, su rayita.",
+    "situacion": "Esta jarra sirve para servir jugo. Tiene rayitas que muestran cuánto líquido hay. El jugo llega a la mitad: hay medio litro.",
     "relaciones": [
       {
-        "desde": "1 litro",
-        "enlace": "en dos partes iguales da",
-        "hasta": "dos medios litros"
+        "desde": "Jugo hasta arriba",
+        "enlace": "en esta jarra es",
+        "hasta": "1 litro: 1 L"
       },
       {
-        "desde": "Medio litro",
-        "enlace": "se escribe",
-        "hasta": "0,5 L"
-      },
-      {
-        "desde": "Medio litro",
-        "enlace": "es menor que",
-        "hasta": "un litro"
+        "desde": "Jugo hasta la mitad",
+        "enlace": "se puede escribir",
+        "hasta": "medio litro: 0,5 L"
       }
     ],
     "ejemplo": {
-      "titulo": "Lo vemos paso a paso",
+      "titulo": "Seguimos el nivel del jugo",
       "pasos": [
-        "La marca 1 L señala un litro completo.",
-        "La mitad de esa cantidad es medio litro.",
-        "Podemos escribir 1/2 L o 0,5 L: indican la misma cantidad."
+        "La marca 1 L indica un litro. L es la forma corta de escribir litro.",
+        "Buscá dónde termina el jugo: llega a la rayita del medio. Hay medio litro.",
+        "Medio litro se escribe 0,5 L. La coma ayuda a escribir una cantidad menor que un litro."
       ]
     },
     "otroContexto": {
-      "texto": "Medio metro de cinta también se escribe 0,5 m.",
-      "conexion": "La escritura 0,5 indica la mitad de la unidad que estamos usando."
+      "texto": "Dos vasos de medio litro llenan esta jarra de un litro.",
+      "conexion": "Juntamos dos mitades: 0,5 L + 0,5 L = 1 L."
     },
     "contraste": {
       "texto": "0,5 L no son 5 litros.",
@@ -800,25 +618,12 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Cantidad",
-        "Escritura"
-      ],
-      "filas": [
-        [
-          "Nada",
-          "0 L"
-        ],
-        [
-          "Medio litro",
-          "0,5 L"
-        ],
-        [
-          "Un litro",
-          "1 L"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "decimales_conversion.svg"
+    },
+    "exploracion": {
+      "tipo": "jarra",
+      "inicial": 500
     }
   },
   {
@@ -876,25 +681,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Dato",
-        "Cantidad"
-      ],
-      "filas": [
-        [
-          "Filas",
-          "3"
-        ],
-        [
-          "Fichas por fila",
-          "3"
-        ],
-        [
-          "Total",
-          "9"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "potenciacion_y_raiz_cuadrada.svg"
     }
   },
   {
@@ -952,29 +740,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Parte de la compra",
-        "Panes"
-      ],
-      "filas": [
-        [
-          "Bolsa 1",
-          "3"
-        ],
-        [
-          "Bolsa 2",
-          "3"
-        ],
-        [
-          "Suelto",
-          "1"
-        ],
-        [
-          "Total",
-          "7"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "jerarquia_operaciones.svg"
     }
   },
   {
@@ -982,30 +749,25 @@
     "title": "Medir sin huecos ni superposiciones",
     "proposito": "Entender una medida como la repetición de una misma unidad.",
     "prerrequisito": "Podés comparar dos largos y señalar dónde empieza cada uno.",
-    "situacion": "Medimos una cinta con piezas iguales de 1 centímetro. Entran 6 piezas seguidas.",
+    "situacion": "Ponemos el inicio de la cinta en el 0 de la regla. Entre 0 y 1 hay un centímetro, escrito 1 cm. El otro extremo llega al 6: la cinta mide 6 cm.",
     "relaciones": [
       {
-        "desde": "Cada pieza",
-        "enlace": "mide",
-        "hasta": "1 cm"
+        "desde": "Entre 0 y 1",
+        "enlace": "hay",
+        "hasta": "1 centímetro: 1 cm"
       },
       {
-        "desde": "6 piezas seguidas",
-        "enlace": "miden",
-        "hasta": "6 cm"
-      },
-      {
-        "desde": "La medida",
-        "enlace": "depende de",
-        "hasta": "la unidad elegida"
+        "desde": "De 0 hasta 6",
+        "enlace": "contamos",
+        "hasta": "6 espacios de 1 cm"
       }
     ],
     "ejemplo": {
-      "titulo": "Lo vemos paso a paso",
+      "titulo": "Miramos la cinta sobre la regla",
       "pasos": [
-        "Alineamos la primera pieza con el comienzo de la cinta.",
-        "Colocamos las demás seguidas, sin huecos ni superposiciones.",
-        "Seis unidades de un centímetro cubren el largo: mide 6 cm."
+        "Ponemos un extremo de la cinta justo en el 0.",
+        "Seguimos la cinta: entre dos números seguidos hay un espacio de 1 cm.",
+        "El otro extremo llega al 6. Contamos seis espacios: la cinta mide 6 cm."
       ]
     },
     "otroContexto": {
@@ -1013,48 +775,35 @@
       "conexion": "La regla ya tiene organizada la repetición de la unidad."
     },
     "contraste": {
-      "texto": "Seis piezas separadas por huecos no miden seis centímetros de cinta.",
-      "explicacion": "Los espacios vacíos agregarían un largo que no estamos contando."
+      "texto": "Si la cinta empieza en el 1, el número del final no indica por sí solo cuánto mide.",
+      "explicacion": "Para esta primera medición, hacemos coincidir el inicio de la cinta con el 0."
     },
     "comprobacion": {
-      "pregunta": "¿Cómo deben colocarse las piezas para medir?",
+      "pregunta": "¿Dónde ponemos el inicio de la cinta para leer directamente su largo?",
       "opciones": [
-        "Separadas por huecos",
-        "Todas una encima de otra",
-        "Seguidas, sin huecos ni superposiciones"
+        "En cualquier número",
+        "En el 1",
+        "En el 0"
       ],
       "correcta": 2,
-      "pista": "Queremos cubrir todo el largo una sola vez.",
-      "explicacion": "La unidad se repite sin dejar espacios ni contar el mismo tramo dos veces."
+      "pista": "Mirá el extremo izquierdo de la cinta en el dibujo.",
+      "explicacion": "Empezamos en el 0 y miramos hasta dónde llega el otro extremo."
     },
     "fuentes": [
       "nap-m4",
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Referencia",
-        "Largo"
-      ],
-      "filas": [
-        [
-          "1 pieza",
-          "1 cm"
-        ],
-        [
-          "6 piezas seguidas",
-          "6 cm"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "si_me_la_longitud.svg"
     }
   },
   {
     "tema": "si_me_la_masa_capacidad_tiempo",
     "title": "Elegir qué estamos midiendo",
     "proposito": "Empezamos distinguiendo masa, capacidad y duración antes de convertir unidades.",
-    "prerrequisito": "Podés reconocer una balanza, un recipiente y un reloj.",
-    "situacion": "Queremos saber cuánta harina hay, cuánto contiene una jarra y cuánto dura un recreo.",
+    "prerrequisito": "Mirá cada objeto y la cantidad que señala, uno por vez.",
+    "situacion": "La balanza muestra cuánto pesa la harina: 500 gramos. En la jarra cabe hasta 1 litro, aunque ahora tenga medio litro. Con un reloj podemos medir cuánto dura una actividad.",
     "relaciones": [
       {
         "desde": "Masa",
@@ -1075,14 +824,14 @@
     "ejemplo": {
       "titulo": "Lo vemos paso a paso",
       "pasos": [
-        "La balanza nos permite medir la masa de la harina: por ejemplo, en gramos.",
-        "Para la capacidad de una jarra podemos usar litros.",
-        "Para la duración del recreo usamos minutos: medimos tiempo."
+        "La harina está sobre una balanza: un aparato para medir su masa. La pantalla dice 500 g; g significa gramos.",
+        "La capacidad es lo máximo que cabe. En esta jarra cabe 1 litro; el jugo de ahora ocupa solo la mitad.",
+        "Para un recreo miramos cuánto tiempo pasa desde el inicio hasta el final. Podemos contarlo en minutos."
       ]
     },
     "otroContexto": {
-      "texto": "La masa de una mochila, la capacidad de una botella y el tiempo de un viaje también son medidas distintas.",
-      "conexion": "Primero elegimos qué queremos saber; después, la unidad."
+      "texto": "Una botella vacía de un litro conserva su capacidad: puede contener hasta un litro, aunque ahora no tenga agua.",
+      "conexion": "Lo que cabe y lo que hay ahora pueden ser cantidades distintas."
     },
     "contraste": {
       "texto": "Un litro y un minuto no miden lo mismo.",
@@ -1104,25 +853,11 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Queremos saber",
-        "Podemos usar"
-      ],
-      "filas": [
-        [
-          "Masa de harina",
-          "Gramos"
-        ],
-        [
-          "Capacidad de una jarra",
-          "Litros"
-        ],
-        [
-          "Duración del recreo",
-          "Minutos"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "si_me_la_masa_capacidad_tiempo.svg"
+    },
+    "exploracion": {
+      "tipo": "instrumentos"
     }
   },
   {
@@ -1180,25 +915,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Giro",
-        "Referencia"
-      ],
-      "filas": [
-        [
-          "Cuarto de vuelta",
-          "Ángulo recto"
-        ],
-        [
-          "Media vuelta",
-          "Dos cuartos de vuelta"
-        ],
-        [
-          "Vuelta completa",
-          "Cuatro cuartos de vuelta"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "geometria_angulos.svg"
     }
   },
   {
@@ -1206,7 +924,7 @@
     "title": "Reconocer un triángulo aunque gire",
     "proposito": "Reconocer una figura por sus propiedades, no por cómo está apoyada.",
     "prerrequisito": "Podés seguir el borde de una figura y contar sus lados.",
-    "situacion": "Formamos una figura cerrada con tres varillas rectas.",
+    "situacion": "Juntamos tres palitos rectos por sus puntas. Queda una figura cerrada, sin aberturas: un triángulo.",
     "relaciones": [
       {
         "desde": "Triángulo",
@@ -1256,25 +974,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Para reconocerlo",
-        "Comprobamos"
-      ],
-      "filas": [
-        [
-          "Lados",
-          "Tres"
-        ],
-        [
-          "Forma de los lados",
-          "Rectos"
-        ],
-        [
-          "Recorrido del borde",
-          "Cerrado"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "geometria_triangulos.svg"
     }
   },
   {
@@ -1332,25 +1033,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Figura",
-        "Qué observamos"
-      ],
-      "filas": [
-        [
-          "Rectángulo",
-          "Cuatro lados rectos"
-        ],
-        [
-          "Circunferencia",
-          "Solo el borde circular"
-        ],
-        [
-          "Círculo",
-          "Interior y borde"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "geometria_cuadrilateros_circunferencia.svg"
     }
   },
   {
@@ -1408,33 +1092,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Lado",
-        "Longitud"
-      ],
-      "filas": [
-        [
-          "Arriba",
-          "3 cm"
-        ],
-        [
-          "Derecha",
-          "2 cm"
-        ],
-        [
-          "Abajo",
-          "3 cm"
-        ],
-        [
-          "Izquierda",
-          "2 cm"
-        ],
-        [
-          "Total",
-          "10 cm"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "perimetros_simples.svg"
     }
   },
   {
@@ -1492,25 +1151,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Tramos de 1 cm",
-        "Cantidad"
-      ],
-      "filas": [
-        [
-          "Antes de unir",
-          "8"
-        ],
-        [
-          "Quedan en la unión",
-          "2"
-        ],
-        [
-          "Quedan por fuera",
-          "6"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "perimetros_compuestos.svg"
     }
   },
   {
@@ -1568,25 +1210,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Fruta elegida",
-        "Personas"
-      ],
-      "filas": [
-        [
-          "Manzana",
-          "3"
-        ],
-        [
-          "Banana",
-          "2"
-        ],
-        [
-          "Pera",
-          "1"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "graficos_estadisticos.svg"
     }
   },
   {
@@ -1644,25 +1269,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Bolsitas",
-        "Galletitas"
-      ],
-      "filas": [
-        [
-          "1",
-          "2"
-        ],
-        [
-          "2",
-          "4"
-        ],
-        [
-          "3",
-          "6"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "proporcionalidad_regla_3.svg"
     }
   },
   {
@@ -1720,29 +1328,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Turno",
-        "Fichas"
-      ],
-      "filas": [
-        [
-          "Inicio",
-          "2"
-        ],
-        [
-          "Uno",
-          "4"
-        ],
-        [
-          "Dos",
-          "6"
-        ],
-        [
-          "Tres",
-          "8"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "secuencias_aritmeticas.svg"
     }
   },
   {
@@ -1800,29 +1387,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Etapa",
-        "Fichas"
-      ],
-      "filas": [
-        [
-          "Inicio",
-          "1"
-        ],
-        [
-          "Copia del grupo",
-          "2"
-        ],
-        [
-          "Nueva copia",
-          "4"
-        ],
-        [
-          "Nueva copia",
-          "8"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "secuencias_geometricas_fibonacci.svg"
     }
   },
   {
@@ -1880,25 +1446,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Bloque",
-        "Símbolos"
-      ],
-      "filas": [
-        [
-          "Primero",
-          "A · B · B"
-        ],
-        [
-          "Segundo",
-          "A · B · B"
-        ],
-        [
-          "Tercero",
-          "A · B · B"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "secuencias_alfanumericas_y_figuras.svg"
     }
   },
   {
@@ -1956,25 +1505,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Pista",
-        "Total"
-      ],
-      "filas": [
-        [
-          "Roja + roja",
-          "6"
-        ],
-        [
-          "Roja + azul",
-          "5"
-        ],
-        [
-          "Roja = 3; azul = 2",
-          "Cumplen las dos pistas"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "ecuaciones_con_imagenes_2_incognitas.svg"
     }
   },
   {
@@ -2032,25 +1564,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Idea",
-        "Apoyo"
-      ],
-      "filas": [
-        [
-          "Abrió el paraguas",
-          "Está escrito"
-        ],
-        [
-          "Quiere evitar mojarse",
-          "La lluvia da una pista"
-        ],
-        [
-          "El paraguas es rojo",
-          "No hay información"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "comprension_lectora_literal_inferida.svg"
     }
   },
   {
@@ -2108,25 +1623,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Palabra",
-        "Relación"
-      ],
-      "filas": [
-        [
-          "libro",
-          "Lo que leemos"
-        ],
-        [
-          "librería",
-          "Lugar donde se venden libros"
-        ],
-        [
-          "vivir / vivienda",
-          "Otra familia, con v"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "ortografia_b_v.svg"
     }
   },
   {
@@ -2184,25 +1682,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Palabra",
-        "Qué observamos"
-      ],
-      "filas": [
-        [
-          "gato",
-          "Sonido inicial de referencia"
-        ],
-        [
-          "guerra",
-          "gue; la u no suena"
-        ],
-        [
-          "guitarra",
-          "gui; la u no suena"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "ortografia_g_j_gu_gu.svg"
     }
   },
   {
@@ -2232,7 +1713,7 @@
       "titulo": "Lo vemos paso a paso",
       "pasos": [
         "Leemos hormiga en la frase: nombra al insecto.",
-        "Hormiguero nombra el lugar donde vive la colonia.",
+        "Hormiguero es el lugar donde vive un grupo de hormigas.",
         "Ambas empiezan con h. La miramos y la conservamos al escribir."
       ]
     },
@@ -2260,25 +1741,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Palabra",
-        "En la frase"
-      ],
-      "filas": [
-        [
-          "hormiga",
-          "El insecto"
-        ],
-        [
-          "hormiguero",
-          "El lugar de la colonia"
-        ],
-        [
-          "hoja / hojita",
-          "Otra familia con h"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "ortografia_h.svg"
     }
   },
   {
@@ -2336,25 +1800,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Uno",
-        "Varios"
-      ],
-      "filas": [
-        [
-          "lápiz",
-          "lápices"
-        ],
-        [
-          "pez",
-          "peces"
-        ],
-        [
-          "luz",
-          "luces"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "ortografia_c_s_z.svg"
     }
   },
   {
@@ -2412,29 +1859,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Palabra",
-        "Sílaba destacada",
-        "Grupo"
-      ],
-      "filas": [
-        [
-          "CA-sa",
-          "Penúltima",
-          "Grave"
-        ],
-        [
-          "ca-FÉ",
-          "Última",
-          "Aguda"
-        ],
-        [
-          "MÚ-si-ca",
-          "Antepenúltima",
-          "Esdrújula"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "tildes_generales_agudas_graves_esdrujulas.svg"
     }
   },
   {
@@ -2492,29 +1918,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Palabra",
-        "Separación",
-        "Relación"
-      ],
-      "filas": [
-        [
-          "aire",
-          "ai-re",
-          "ai juntas: diptongo"
-        ],
-        [
-          "país",
-          "pa-ís",
-          "a / í: hiato"
-        ],
-        [
-          "baúl",
-          "ba-úl",
-          "a / ú: hiato"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "diptongo_hiato.svg"
     }
   },
   {
@@ -2572,25 +1977,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Expresión",
-        "Qué hace"
-      ],
-      "filas": [
-        [
-          "Tú trajiste",
-          "Se refiere a la persona"
-        ],
-        [
-          "Tu cuaderno",
-          "Indica pertenencia"
-        ],
-        [
-          "Vos trajiste tu cuaderno",
-          "La misma idea en uso rioplatense"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "tilde_diacritica_monosilabos.svg"
     }
   },
   {
@@ -2648,25 +2036,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Sustantivo",
-        "Qué nombra"
-      ],
-      "filas": [
-        [
-          "lápiz",
-          "Un objeto"
-        ],
-        [
-          "plaza",
-          "Un lugar"
-        ],
-        [
-          "alegría",
-          "Una emoción"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "sustantivos_genero_numero_tipo.svg"
     }
   },
   {
@@ -2724,25 +2095,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Cuándo",
-        "Forma verbal"
-      ],
-      "filas": [
-        [
-          "Ayer",
-          "jugué"
-        ],
-        [
-          "Hoy",
-          "juego"
-        ],
-        [
-          "Mañana",
-          "jugaré"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "verbos_modo_indicativo_tiempos.svg"
     }
   },
   {
@@ -2800,24 +2154,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Parte",
-        "Texto",
-        "Núcleo"
-      ],
-      "filas": [
-        [
-          "Sujeto",
-          "La gata",
-          "gata"
-        ],
-        [
-          "Predicado",
-          "duerme",
-          "duerme"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "sujeto_predicado_nucleo.svg"
     }
   },
   {
@@ -2875,25 +2213,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Una",
-        "Varias"
-      ],
-      "filas": [
-        [
-          "La gata duerme",
-          "Las gatas duermen"
-        ],
-        [
-          "El perro corre",
-          "Los perros corren"
-        ],
-        [
-          "La planta crece",
-          "Las plantas crecen"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "concordancia_sujeto_verbo.svg"
     }
   },
   {
@@ -2951,25 +2272,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Relación",
-        "Ejemplo"
-      ],
-      "filas": [
-        [
-          "Causa",
-          "Se cortó la luz"
-        ],
-        [
-          "Consecuencia",
-          "Encendimos una linterna"
-        ],
-        [
-          "Enlace",
-          "porque / por eso"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "discurso_conectores_sinonimos.svg"
     }
   },
   {
@@ -3027,25 +2331,8 @@
       "novak"
     ],
     "visual": {
-      "tipo": "tabla",
-      "cabeceras": [
-        "Momento",
-        "Qué contamos"
-      ],
-      "filas": [
-        [
-          "Inicio",
-          "Teo no encuentra la llave"
-        ],
-        [
-          "Desarrollo",
-          "Busca y levanta un libro"
-        ],
-        [
-          "Final",
-          "Encuentra la llave y la guarda"
-        ]
-      ]
+      "tipo": "escena",
+      "recurso": "produccion_escrita_narracion.svg"
     }
   }
 ]

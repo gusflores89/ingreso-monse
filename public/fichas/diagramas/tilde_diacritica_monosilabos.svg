@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="499" height="250" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 250" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="499" height="250"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-250)" style="clip-path: url(#clip)">
+		<g transform="">
+			<circle cx="108" cy="168" r="22" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<path d="M 108,143 L 108,87 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 5;"/>
+			<path d="M 108,130 L 70,102 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 5;"/>
+			<path d="M 108,130 L 145,102 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 5;"/>
+			<rect x="320" y="84" width="94" height="108" rx="4" ry="4" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<path d="M 332,84 L 332,192 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2;"/>
+			<text x="344" y="157" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 21px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,314) scale(1,-1)"></text>
+			<path d="M 344,119 L 399,119 Z" style="stroke: rgb(65%,78%,82%); stroke-linecap: butt; stroke-width: 2;"/>
+			<path d="M 344,132 L 399,132 Z" style="stroke: rgb(65%,78%,82%); stroke-linecap: butt; stroke-width: 2;"/>
+			<path d="M 344,145 L 399,145 Z" style="stroke: rgb(65%,78%,82%); stroke-linecap: butt; stroke-width: 2;"/>
+			<text x="83" y="39" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 31px;fill: rgb(70%,26%,25%); stroke:none;" transform="translate(0,78) scale(1,-1)">Tú</text>
+			<text x="288" y="39" style="font-family: Arial, sans-serif; font-size: 27px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,78) scale(1,-1)">tu cuaderno</text>
+			<text x="28" y="13" style="font-family: Arial, sans-serif; font-size: 16px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,26) scale(1,-1)">la persona</text>
+			<text x="293" y="13" style="font-family: Arial, sans-serif; font-size: 15px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,26) scale(1,-1)">lo que le pertenece</text>
+		</g>
+	</g>
+</svg>

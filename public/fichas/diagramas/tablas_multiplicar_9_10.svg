@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="499" height="250" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 250" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="499" height="250"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-250)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="14" y="226" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 18px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,452) scale(1,-1)">Cada par tiene 2 medias.</text>
+			<polygon points="28 189, 44 189, 44 153, 52 148, 52 141, 28 141" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<polygon points="55 189, 71 189, 71 153, 79 148, 79 141, 55 141" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<polygon points="122 189, 138 189, 138 153, 146 148, 146 141, 122 141" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<polygon points="149 189, 165 189, 165 153, 173 148, 173 141, 149 141" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<polygon points="216 189, 232 189, 232 153, 240 148, 240 141, 216 141" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<polygon points="243 189, 259 189, 259 153, 267 148, 267 141, 243 141" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<polygon points="310 189, 326 189, 326 153, 334 148, 334 141, 310 141" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<polygon points="337 189, 353 189, 353 153, 361 148, 361 141, 337 141" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<polygon points="404 189, 420 189, 420 153, 428 148, 428 141, 404 141" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<polygon points="431 189, 447 189, 447 153, 455 148, 455 141, 431 141" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<polygon points="28 101, 44 101, 44 65, 52 60, 52 53, 28 53" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<polygon points="55 101, 71 101, 71 65, 79 60, 79 53, 55 53" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<polygon points="122 101, 138 101, 138 65, 146 60, 146 53, 122 53" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<polygon points="149 101, 165 101, 165 65, 173 60, 173 53, 149 53" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<polygon points="216 101, 232 101, 232 65, 240 60, 240 53, 216 53" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<polygon points="243 101, 259 101, 259 65, 267 60, 267 53, 243 53" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<polygon points="310 101, 326 101, 326 65, 334 60, 334 53, 310 53" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<polygon points="337 101, 353 101, 353 65, 361 60, 361 53, 337 53" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<polygon points="404 101, 420 101, 420 65, 428 60, 428 53, 404 53" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<polygon points="431 101, 447 101, 447 65, 455 60, 455 53, 431 53" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<rect x="396" y="47" width="70" height="64" style="stroke: rgb(70%,26%,25%); stroke-linecap: butt; stroke-width: 2; fill: none; fill-rule: evenodd;"/>
+			<path d="M 398,49 L 464,108 Z" style="stroke: rgb(70%,26%,25%); stroke-linecap: butt; stroke-width: 3;"/>
+			<text x="70" y="9" style="font-family: Arial, sans-serif; font-size: 16px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,18) scale(1,-1)">Apartamos 1 par. Quedan 9 pares: 18 medias.</text>
+		</g>
+	</g>
+</svg>

@@ -2,6 +2,8 @@ import fichas from './fichas-modulos.json';
 import diagramas from './fichas-diagramas.json';
 
 export const VERSION_FICHAS = 1;
+// Cambió la representación, no el requisito curricular. Conservamos lecturas ya hechas.
+const REVISION_VISUAL = 2;
 // Espacio reservado: 250100..250103. La enseñanza curricular utiliza la lección 1.
 export const BASE_LECTURA = 250000 + VERSION_FICHAS * 100;
 export function getFichaModulo(tema) { return fichas.find(f => f.tema === tema) || null; }
@@ -9,8 +11,8 @@ export function fichaPublica(tema) {
   const ficha = getFichaModulo(tema);
   if (!ficha) return null;
   const { comprobacion, ...contenido } = ficha;
-  return { ...contenido, version: VERSION_FICHAS, pdf_url: `/fichas/${tema}.pdf?v=${VERSION_FICHAS}`,
-    diagrama: diagramas[tema] ? {url:`/fichas/diagramas/${tema}.svg?v=${VERSION_FICHAS}`,alt:diagramas[tema]} : null,
+  return { ...contenido, version: VERSION_FICHAS, pdf_url: `/fichas/${tema}.pdf?v=${VERSION_FICHAS}&visual=${REVISION_VISUAL}`,
+    diagrama: diagramas[tema] ? {url:`/fichas/diagramas/${tema}.svg?v=${VERSION_FICHAS}&visual=${REVISION_VISUAL}`,alt:diagramas[tema]} : null,
     comprobacion: { pregunta: comprobacion.pregunta, opciones: comprobacion.opciones } };
 }
 export function estadoLectura(filas = []) {

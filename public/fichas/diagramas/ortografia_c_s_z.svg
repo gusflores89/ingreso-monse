@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="499" height="250" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 250" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="499" height="250"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-250)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="88" y="139" width="9" height="48" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="88 139, 97 139, 92.5 129" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 92.5,132 L 92.5,129 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="88" y="187" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<text x="28" y="82" style="font-family: Arial, sans-serif; font-size: 27px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,164) scale(1,-1)">lápi</text>
+			<text x="70.029296875" y="82" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 27px;fill: rgb(70%,26%,25%); stroke:none;" transform="translate(0,164) scale(1,-1)">z</text>
+			<text x="83.529296875" y="82" style="font-family: Arial, sans-serif; font-size: 27px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,164) scale(1,-1)"></text>
+			<rect x="338" y="139" width="9" height="48" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="338 139, 347 139, 342.5 129" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 342.5,132 L 342.5,129 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="338" y="187" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<rect x="370" y="139" width="9" height="48" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="370 139, 379 139, 374.5 129" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 374.5,132 L 374.5,129 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="370" y="187" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<text x="278" y="82" style="font-family: Arial, sans-serif; font-size: 27px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,164) scale(1,-1)">lápi</text>
+			<text x="320.029296875" y="82" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 27px;fill: rgb(70%,26%,25%); stroke:none;" transform="translate(0,164) scale(1,-1)">c</text>
+			<text x="335.04541015625" y="82" style="font-family: Arial, sans-serif; font-size: 27px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,164) scale(1,-1)">es</text>
+			<path d="M 214,155 L 270,155 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2;"/>
+			<polygon points="270 155, 260.9955 159.3497, 260.9955 150.6503" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(12%,47%,63%); fill-rule: evenodd;"/>
+			<text x="15" y="23" style="font-family: Arial, sans-serif; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,46) scale(1,-1)">Uno: lápiz. Varios: lápices.</text>
+		</g>
+	</g>
+</svg>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="499" height="250" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 250" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="499" height="250"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-250)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="12" y="221" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 18px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,442) scale(1,-1)">Cada recuadro es una sílaba.</text>
+			<rect x="60" y="139" width="155" height="55" rx="8" ry="8" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,88%,62%); fill-rule: evenodd;"/>
+			<text x="109" y="154" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 27px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,308) scale(1,-1)">CA</text>
+			<rect x="271" y="139" width="155" height="55" rx="8" ry="8" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<text x="320" y="154" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 27px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,308) scale(1,-1)">sa</text>
+			<rect x="60" y="56" width="155" height="55" rx="8" ry="8" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<text x="109" y="71" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 27px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,142) scale(1,-1)">ca</text>
+			<rect x="271" y="56" width="155" height="55" rx="8" ry="8" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,88%,62%); fill-rule: evenodd;"/>
+			<text x="320" y="71" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 27px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,142) scale(1,-1)">FÉ</text>
+			<text x="30" y="13" style="font-family: Arial, sans-serif; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,26) scale(1,-1)">La parte destacada suena más fuerte.</text>
+		</g>
+	</g>
+</svg>

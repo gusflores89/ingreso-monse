@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="499" height="250" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 250" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="499" height="250"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-250)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="10" y="223" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 19px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,446) scale(1,-1)">Cada paso agrega 2 fichas.</text>
+			<circle cx="36" cy="151" r="9" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<circle cx="63" cy="151" r="9" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<text x="48" y="31" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 23px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,62) scale(1,-1)">2</text>
+			<path d="M 81,171 L 128,171 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2;"/>
+			<polygon points="128 171, 118.9955 175.3497, 118.9955 166.6503" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(12%,47%,63%); fill-rule: evenodd;"/>
+			<text x="84" y="189" style="font-family: Arial, sans-serif; font-size: 15px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,378) scale(1,-1)">+ 2</text>
+			<circle cx="163" cy="151" r="9" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<circle cx="190" cy="151" r="9" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<circle cx="163" cy="125" r="9" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<circle cx="163" cy="125" r="12" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: none; fill-rule: evenodd;"/>
+			<circle cx="190" cy="125" r="9" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<circle cx="190" cy="125" r="12" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: none; fill-rule: evenodd;"/>
+			<text x="175" y="31" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 23px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,62) scale(1,-1)">4</text>
+			<path d="M 208,171 L 255,171 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2;"/>
+			<polygon points="255 171, 245.9955 175.3497, 245.9955 166.6503" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(12%,47%,63%); fill-rule: evenodd;"/>
+			<text x="211" y="189" style="font-family: Arial, sans-serif; font-size: 15px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,378) scale(1,-1)">+ 2</text>
+			<circle cx="290" cy="151" r="9" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<circle cx="317" cy="151" r="9" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<circle cx="290" cy="125" r="9" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<circle cx="317" cy="125" r="9" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<circle cx="290" cy="99" r="9" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<circle cx="290" cy="99" r="12" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: none; fill-rule: evenodd;"/>
+			<circle cx="317" cy="99" r="9" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<circle cx="317" cy="99" r="12" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: none; fill-rule: evenodd;"/>
+			<text x="302" y="31" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 23px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,62) scale(1,-1)">6</text>
+			<path d="M 335,171 L 382,171 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2;"/>
+			<polygon points="382 171, 372.9955 175.3497, 372.9955 166.6503" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(12%,47%,63%); fill-rule: evenodd;"/>
+			<text x="338" y="189" style="font-family: Arial, sans-serif; font-size: 15px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,378) scale(1,-1)">+ 2</text>
+			<circle cx="417" cy="151" r="9" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<circle cx="444" cy="151" r="9" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<circle cx="417" cy="125" r="9" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<circle cx="444" cy="125" r="9" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<circle cx="417" cy="99" r="9" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<circle cx="444" cy="99" r="9" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<circle cx="417" cy="73" r="9" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<circle cx="417" cy="73" r="12" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: none; fill-rule: evenodd;"/>
+			<circle cx="444" cy="73" r="9" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<circle cx="444" cy="73" r="12" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: none; fill-rule: evenodd;"/>
+			<text x="429" y="31" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 23px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,62) scale(1,-1)">8</text>
+		</g>
+	</g>
+</svg>

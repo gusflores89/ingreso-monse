@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="499" height="250" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 250" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="499" height="250"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-250)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="30" y="30" width="195" height="164" rx="5" ry="5" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="225" y="30" width="241" height="164" rx="5" ry="5" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="64" y="166" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 21px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,332) scale(1,-1)">Capítulos</text>
+			<text x="65" y="127" style="font-family: Arial, sans-serif; font-size: 19px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,254) scale(1,-1)">I   primero</text>
+			<text x="65" y="94" style="font-family: Arial, sans-serif; font-size: 19px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,188) scale(1,-1)">II   segundo</text>
+			<text x="65" y="61" style="font-family: Arial, sans-serif; font-size: 19px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,122) scale(1,-1)">III   tercero</text>
+			<rect x="47" y="49" width="160" height="29" style="stroke: rgb(93%,67%,20%); stroke-linecap: butt; stroke-width: 2; fill: none; fill-rule: evenodd;"/>
+			<path d="M 203,64 L 256,64 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2;"/>
+			<polygon points="256 64, 246.9955 68.34966, 246.9955 59.65034" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(12%,47%,63%); fill-rule: evenodd;"/>
+			<text x="269" y="157" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 24px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,314) scale(1,-1)">Capítulo III</text>
+			<text x="272" y="114" style="font-family: Arial, sans-serif; font-size: 21px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,228) scale(1,-1)">El tercero</text>
+			<text x="35" y="220" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 19px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,440) scale(1,-1)">Abrimos la tercera parte del libro.</text>
+		</g>
+	</g>
+</svg>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="499" height="250" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 250" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="499" height="250"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-250)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="92" y="118" width="9" height="75" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="92 118, 101 118, 96.5 108" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 96.5,111 L 96.5,108 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="92" y="193" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<text x="34" y="64" style="font-family: Arial, sans-serif; font-size: 27px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,128) scale(1,-1)">un lápiz</text>
+			<rect x="322" y="118" width="9" height="75" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="322 118, 331 118, 326.5 108" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 326.5,111 L 326.5,108 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="322" y="193" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<rect x="353" y="118" width="9" height="75" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="353 118, 362 118, 357.5 108" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 357.5,111 L 357.5,108 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="353" y="193" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<text x="284" y="64" style="font-family: Arial, sans-serif; font-size: 27px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,128) scale(1,-1)">dos lápices</text>
+			<text x="60" y="19" style="font-family: Arial, sans-serif; font-size: 16px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,38) scale(1,-1)">Las palabras lápiz y lápices nombran objetos.</text>
+		</g>
+	</g>
+</svg>

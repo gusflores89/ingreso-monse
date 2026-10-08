@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="499" height="250" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 250" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="499" height="250"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-250)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="12" y="226" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 18px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,452) scale(1,-1)">Cada pregunta necesita su medida.</text>
+			<rect x="15" y="65" width="132" height="37" rx="7" ry="7" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<rect x="37" y="78" width="90" height="19" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="50" y="81" style="font-family: Arial, sans-serif; font-size: 15px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,162) scale(1,-1)">500 g</text>
+			<rect x="46" y="116" width="71" height="63" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,94%,82%); fill-rule: evenodd;"/>
+			<text x="53" y="147" style="font-family: Arial, sans-serif; font-size: 15px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,294) scale(1,-1)">harina</text>
+			<path d="M 32,111 L 130,111 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 4;"/>
+			<text x="15" y="40" style="font-family: Arial, sans-serif; font-size: 15px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,80) scale(1,-1)">masa: gramos</text>
+			<rect x="262" y="95.43" width="35" height="55.59" rx="16" ry="16" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: none; fill-rule: evenodd;"/>
+			<rect x="266" y="104.15" width="20" height="37.06" rx="8" ry="8" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="190" y="66" width="75" height="109" rx="8" ry="8" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="193" y="69" width="69" height="51.5" style="stroke: none; stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<path d="M 193,120.5 L 262,120.5 Z" style="stroke: rgb(72%,44%,3%); stroke-linecap: butt; stroke-width: 3;"/>
+			<polygon points="190 170, 172 187, 212 187" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<path d="M 200,78 L 200,155 Z" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 3;"/>
+			<path d="M 240,69 L 262,69 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<path d="M 240,120.5 L 262,120.5 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<path d="M 240,172 L 262,172 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<text x="198" y="188" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 18px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,376) scale(1,-1)">1 L</text>
+			<text x="167" y="40" style="font-family: Arial, sans-serif; font-size: 14px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,80) scale(1,-1)">cabe hasta 1 litro</text>
+			<text x="171" y="17" style="font-family: Arial, sans-serif; font-size: 14px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,34) scale(1,-1)">hay medio litro</text>
+			<rect x="347" y="87" width="140" height="92" rx="9" ry="9" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<text x="358" y="148" style="font-family: Arial, sans-serif; font-size: 16px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,296) scale(1,-1)">0 min → 5 min</text>
+			<text x="361" y="113" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 21px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,226) scale(1,-1)">pasaron 5</text>
+			<text x="350" y="40" style="font-family: Arial, sans-serif; font-size: 15px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,80) scale(1,-1)">tiempo: minutos</text>
+		</g>
+	</g>
+</svg>

@@ -2,25 +2,32 @@
 <!DOCTYPE svg
   PUBLIC '-//W3C//DTD SVG 1.0//EN'
   'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
-<svg width="499" height="150" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 150" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="499" height="250" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 250" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
 	<title>...</title>
 	<desc>...</desc>
 	<clipPath id="clip">
-		<rect x="0" y="0" width="499" height="150"/>
+		<rect x="0" y="0" width="499" height="250"/>
 	</clipPath>
-	<g id="group" transform="scale(1,-1) translate(0,-150)" style="clip-path: url(#clip)">
+	<g id="group" transform="scale(1,-1) translate(0,-250)" style="clip-path: url(#clip)">
 		<g transform="">
-			<rect x="75" y="34" width="160" height="80" style="stroke: rgb(9%,29%,39%); stroke-linecap: butt; stroke-width: 3; fill: rgb(90%,94%,96%); fill-rule: evenodd;"/>
-			<path d="M 155,34 L 155,114 Z" style="stroke: rgb(65%,35%,7%); stroke-linecap: butt; stroke-width: 2; stroke-dasharray: 5, 4;"/>
-			<text x="99" y="122" style="font-family: Ficha; font-size: 12px;fill: rgb(9%,17%,24%); stroke:none;" transform="translate(0,244) scale(1,-1)">1 cm</text>
-			<text x="99" y="14" style="font-family: Ficha; font-size: 12px;fill: rgb(9%,17%,24%); stroke:none;" transform="translate(0,28) scale(1,-1)">1 cm</text>
-			<text x="179" y="122" style="font-family: Ficha; font-size: 12px;fill: rgb(9%,17%,24%); stroke:none;" transform="translate(0,244) scale(1,-1)">1 cm</text>
-			<text x="179" y="14" style="font-family: Ficha; font-size: 12px;fill: rgb(9%,17%,24%); stroke:none;" transform="translate(0,28) scale(1,-1)">1 cm</text>
-			<text x="27" y="73" style="font-family: Ficha; font-size: 12px;fill: rgb(9%,17%,24%); stroke:none;" transform="translate(0,146) scale(1,-1)">1 cm</text>
-			<text x="243" y="73" style="font-family: Ficha; font-size: 12px;fill: rgb(9%,17%,24%); stroke:none;" transform="translate(0,146) scale(1,-1)">1 cm</text>
-			<text x="322" y="102" style="font-family: Ficha; font-size: 14px;fill: rgb(9%,17%,24%); stroke:none;" transform="translate(0,204) scale(1,-1)">Por fuera: 6 cm</text>
-			<text x="322" y="72" style="font-family: Ficha; font-size: 12px;fill: rgb(9%,17%,24%); stroke:none;" transform="translate(0,144) scale(1,-1)">La unión queda</text>
-			<text x="322" y="54" style="font-family: Ficha; font-size: 12px;fill: rgb(9%,17%,24%); stroke:none;" transform="translate(0,108) scale(1,-1)">en el interior.</text>
+			<rect x="112" y="65" width="240" height="120" style="stroke: rgb(93%,67%,20%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<path d="M 232,65 L 232,185 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; stroke-dasharray: 5, 4;"/>
+			<text x="116" y="230" style="font-family: Arial, sans-serif; font-size: 16px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,460) scale(1,-1)">La línea de adentro no se rodea.</text>
+			<text x="151" y="198" style="font-family: Arial, sans-serif; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,396) scale(1,-1)">1 cm</text>
+			<text x="151" y="37" style="font-family: Arial, sans-serif; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,74) scale(1,-1)">1 cm</text>
+			<text x="271" y="198" style="font-family: Arial, sans-serif; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,396) scale(1,-1)">1 cm</text>
+			<text x="271" y="37" style="font-family: Arial, sans-serif; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,74) scale(1,-1)">1 cm</text>
+			<text x="49" y="103" style="font-family: Arial, sans-serif; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,206) scale(1,-1)">1 cm</text>
+			<text x="376" y="103" style="font-family: Arial, sans-serif; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,206) scale(1,-1)">1 cm</text>
+			<text x="140" y="8" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 23px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,16) scale(1,-1)">Por fuera: 6 cm</text>
+			<path d="M 127,185 L 187,185 Z" style="stroke: rgb(70%,26%,25%); stroke-linecap: butt; stroke-width: 2;"/>
+			<polygon points="187 185, 177.9955 189.3497, 177.9955 180.6503" style="stroke: rgb(70%,26%,25%); stroke-linecap: butt; stroke-width: 2; fill: rgb(70%,26%,25%); fill-rule: evenodd;"/>
+			<path d="M 352,173 L 352,80 Z" style="stroke: rgb(70%,26%,25%); stroke-linecap: butt; stroke-width: 2;"/>
+			<polygon points="352 80, 356.3497 89.00447, 347.6503 89.00447" style="stroke: rgb(70%,26%,25%); stroke-linecap: butt; stroke-width: 2; fill: rgb(70%,26%,25%); fill-rule: evenodd;"/>
+			<path d="M 337,65 L 277,65 Z" style="stroke: rgb(70%,26%,25%); stroke-linecap: butt; stroke-width: 2;"/>
+			<polygon points="277 65, 286.0045 60.65034, 286.0045 69.34966" style="stroke: rgb(70%,26%,25%); stroke-linecap: butt; stroke-width: 2; fill: rgb(70%,26%,25%); fill-rule: evenodd;"/>
+			<path d="M 112,77 L 112,170 Z" style="stroke: rgb(70%,26%,25%); stroke-linecap: butt; stroke-width: 2;"/>
+			<polygon points="112 170, 107.6503 160.9955, 116.3497 160.9955" style="stroke: rgb(70%,26%,25%); stroke-linecap: butt; stroke-width: 2; fill: rgb(70%,26%,25%); fill-rule: evenodd;"/>
 		</g>
 	</g>
 </svg>

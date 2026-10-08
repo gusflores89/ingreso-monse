@@ -36,7 +36,7 @@ const report={base,realDatabase:true,realAPI:true,realAI:false,checks:[],errors:
  await page.getByRole('button',{name:'Leí este paso; seguir',exact:true}).click();await page.getByRole('region',{name:'Lectura previa del módulo'}).getByRole('alert').waitFor();assert.equal((await read()).lectura.paso,0);
  await page.getByRole('button',{name:'Leí este paso; seguir',exact:true}).click();await page.getByRole('heading',{name:f.ejemplo.titulo,exact:true}).waitFor();
  await page.reload({waitUntil:'networkidle'});await page.getByRole('heading',{name:f.ejemplo.titulo,exact:true}).waitFor();
- assert.equal((await read()).lectura.paso,1);await page.getByRole('img',{name:/jarra/}).waitFor();
+ assert.equal((await read()).lectura.paso,1);await page.getByRole('img',{name:/jarra/i}).waitFor();
  await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
  await page.screenshot({path:path.join(out,'lectura-movil.png'),fullPage:true});await page.setViewportSize({width:1366,height:900});
  await page.getByRole('button',{name:'Leí este paso; seguir',exact:true}).click();await page.getByRole('heading',{name:'La misma idea en otro lugar',exact:true}).waitFor();

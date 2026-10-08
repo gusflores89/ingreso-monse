@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './LecturaModulo.module.css';
+import EscenaFicha from './EscenaFicha';
 
 export default function LecturaModulo({ userId, tema, children, onContinuar, releer = false }) {
   const [datos, setDatos] = useState(null);
@@ -54,7 +55,7 @@ export default function LecturaModulo({ userId, tema, children, onContinuar, rel
     {error && <div role="alert" className={styles.error}><p>{error}</p>
       {!datos && <button type="button" onClick={() => setRecarga(n => n + 1)}>Volver a intentar</button>}</div>}
     {f && <>
-      <p className={styles.eyebrow}>Primero leemos y conectamos las ideas</p>
+      <p className={styles.eyebrow}>Primero miramos y descubrimos</p>
       <h1>{f.title}</h1>
       <p className={styles.purpose}>{f.proposito}</p>
       {completa ? <div className={styles.done}>
@@ -67,14 +68,17 @@ export default function LecturaModulo({ userId, tema, children, onContinuar, rel
         </ol>
         <h2 ref={titulo} tabIndex={-1}>{['¿Para qué nos sirve?', f.ejemplo.titulo, 'La misma idea en otro lugar', 'Miremos un caso'][paso]}</h2>
         {paso === 0 && <>
-          <p className={styles.scene}>{f.situacion}</p>
+          <EscenaFicha ficha={f} paso={paso} />
+          <p className={styles.scene}>{f.exploracion && <><strong>Así empieza el ejemplo:</strong><br /></>}{f.situacion}</p>
+          <details className={styles.mapaOpcional}><summary>Conectamos lo que vimos</summary>
           <div className={styles.map} aria-label="Relaciones entre las ideas">
             {f.relaciones.map((r, i) => <div className={styles.relation} key={i}><strong>{r.desde}</strong><span>{r.enlace}<b aria-hidden="true"> →</b></span><strong>{r.hasta}</strong></div>)}
           </div>
+          </details>
           <p className={styles.reminder}>{f.prerrequisito}</p>
         </>}
         {paso === 1 && <>
-          {f.diagrama && <figure style={{margin:0}}><img src={f.diagrama.url} alt={f.diagrama.alt} style={{width:'100%',height:'auto'}} /><figcaption className={styles.note}>{f.diagrama.alt}</figcaption></figure>}
+          <EscenaFicha ficha={f} paso={paso} />
           {!f.diagrama && f.visual?.tipo === 'tabla' && <div className={styles.tableWrap}><table><caption>Relacionamos el ejemplo</caption><thead><tr>{f.visual.cabeceras.map(c => <th scope="col" key={c}>{c}</th>)}</tr></thead><tbody>{f.visual.filas.map((r,i) => <tr key={i}>{r.map((c,j) => <td key={j}>{c}</td>)}</tr>)}</tbody></table></div>}
           <ol className={styles.example}>{f.ejemplo.pasos.map(p => <li key={p}>{p}</li>)}</ol>
         </>}

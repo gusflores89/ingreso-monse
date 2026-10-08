@@ -16,6 +16,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from pypdf import PdfReader
 from reportlab.graphics.shapes import Drawing, Rect, Circle, Line, String, Polygon, Path as DrawPath
 from reportlab.graphics import renderSVG
+from escenas_fichas import scene_for
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'public' / 'fichas'
@@ -126,16 +127,16 @@ def diagram(tema):
 manifest=[]
 for f in json.loads((ROOT/'src/lib/fichas-modulos.json').read_text(encoding='utf-8')):
     file=OUT/(f['tema']+'.pdf')
-    flow=[p('LEER · RELACIONAR · PROBAR','small'),p(f['title'],'title'),p(f['proposito']),p('Para empezar: '+f['prerrequisito'],'small'),
-          p('Una situación para empezar','h'),box(f['situacion']),Spacer(1,12),
-          p('Cómo se conectan las ideas','h'),concept_map(f['relaciones']),Spacer(1,12),
-          p(f['ejemplo']['titulo'],'h')]
-    drawing=diagram(f['tema'])
-    if drawing:
-        folder=OUT/'diagramas';folder.mkdir(exist_ok=True)
-        renderSVG.drawToFile(drawing,str(folder/(f['tema']+'.svg')))
-        flow += [drawing,Spacer(1,8)]
-    elif f['visual']['tipo']=='tabla':flow+=[example_table(f['visual']),Spacer(1,8)]
+    flow=[p('MIRAR · ENTENDER · PROBAR','small'),p(f['title'],'title')]
+    drawing=scene_for(f['tema'])
+    assert drawing is not None, f"{f['tema']}: falta la escena visual"
+    folder=OUT/'diagramas';folder.mkdir(exist_ok=True)
+    renderSVG.drawToFile(drawing,str(folder/(f['tema']+'.svg')))
+    svg_file=folder/(f['tema']+'.svg')
+    svg=svg_file.read_text(encoding='utf8').replace('font-family: FichaBold;', 'font-family: Arial, sans-serif; font-weight: 700;').replace('font-family: Ficha;', 'font-family: Arial, sans-serif;')
+    svg_file.write_text(svg,encoding='utf8')
+    flow += [drawing,Spacer(1,8),box(f['situacion']),
+             p('Conectamos lo que vimos','h'),concept_map(f['relaciones'])]
     flow += [PageBreak(),p('Miremos el ejemplo paso a paso','title')]
     flow += [p(f'{i+1}. {s}') for i,s in enumerate(f['ejemplo']['pasos'])]
     flow += [p('La misma idea en otro lugar','h'),box(f['otroContexto']['texto']),Spacer(1,6),p(f['otroContexto']['conexion']),
@@ -152,5 +153,5 @@ for f in json.loads((ROOT/'src/lib/fichas-modulos.json').read_text(encoding='utf
     assert len(reader.pages)==2, f"{f['tema']}: {len(reader.pages)} páginas; revisar maquetación"
     for page in reader.pages:assert len(page.extract_text() or '')>80
     manifest.append({'tema':f['tema'],'archivo':file.name,'paginas':2,'sha256':hashlib.sha256(file.read_bytes()).hexdigest()})
-(OUT/'manifest.json').write_text(json.dumps({'version':1,'fichas':manifest},ensure_ascii=False,indent=2),encoding='utf-8')
+(OUT/'manifest.json').write_text(json.dumps({'version':1,'revision_visual':2,'fichas':manifest},ensure_ascii=False,indent=2),encoding='utf-8')
 print(f'{len(manifest)} fichas, {len(manifest)*2} páginas, generadas y comprobadas.')

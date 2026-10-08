@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="499" height="250" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 250" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="499" height="250"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-250)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="18" y="222" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 18px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,444) scale(1,-1)">12 lápices: los mismos, organizados.</text>
+			<rect x="26" y="50" width="289" height="132" rx="8" ry="8" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<rect x="44" y="83" width="9" height="57" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="44 83, 53 83, 48.5 73" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 48.5,76 L 48.5,73 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="44" y="140" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<rect x="70" y="83" width="9" height="57" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="70 83, 79 83, 74.5 73" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 74.5,76 L 74.5,73 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="70" y="140" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<rect x="96" y="83" width="9" height="57" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="96 83, 105 83, 100.5 73" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 100.5,76 L 100.5,73 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="96" y="140" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<rect x="122" y="83" width="9" height="57" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="122 83, 131 83, 126.5 73" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 126.5,76 L 126.5,73 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="122" y="140" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<rect x="148" y="83" width="9" height="57" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="148 83, 157 83, 152.5 73" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 152.5,76 L 152.5,73 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="148" y="140" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<rect x="174" y="83" width="9" height="57" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="174 83, 183 83, 178.5 73" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 178.5,76 L 178.5,73 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="174" y="140" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<rect x="200" y="83" width="9" height="57" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="200 83, 209 83, 204.5 73" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 204.5,76 L 204.5,73 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="200" y="140" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<rect x="226" y="83" width="9" height="57" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="226 83, 235 83, 230.5 73" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 230.5,76 L 230.5,73 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="226" y="140" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<rect x="252" y="83" width="9" height="57" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="252 83, 261 83, 256.5 73" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 256.5,76 L 256.5,73 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="252" y="140" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<rect x="278" y="83" width="9" height="57" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="278 83, 287 83, 282.5 73" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 282.5,76 L 282.5,73 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="278" y="140" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<rect x="365" y="83" width="9" height="57" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="365 83, 374 83, 369.5 73" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 369.5,76 L 369.5,73 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="365" y="140" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<rect x="408" y="83" width="9" height="57" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<polygon points="408 83, 417 83, 412.5 73" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,82%,71%); fill-rule: evenodd;"/>
+			<path d="M 412.5,76 L 412.5,73 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<rect x="408" y="140" width="9" height="6" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,63%,63%); fill-rule: evenodd;"/>
+			<text x="63" y="24" style="font-family: Arial, sans-serif; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,48) scale(1,-1)">10 juntos: una decena</text>
+			<text x="344" y="24" style="font-family: Arial, sans-serif; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,48) scale(1,-1)">2 sueltos</text>
+		</g>
+	</g>
+</svg>

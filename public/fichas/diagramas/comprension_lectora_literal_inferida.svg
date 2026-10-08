@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="499" height="250" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 250" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="499" height="250"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-250)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="12" y="107" width="476" height="98" rx="8" ry="8" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="28" y="172" style="font-family: Arial, sans-serif; font-size: 20px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,344) scale(1,-1)">Luz abrió el paraguas antes de salir.</text>
+			<text x="28" y="135" style="font-family: Arial, sans-serif; font-size: 20px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,270) scale(1,-1)">Afuera caía una lluvia fuerte.</text>
+			<path d="M 136.955078,164 L 220.353516,164 Z" style="stroke: rgb(93%,67%,20%); stroke-linecap: butt; stroke-width: 4;"/>
+			<path d="M 174.767578,127 L 277.042969,127 Z" style="stroke: rgb(93%,67%,20%); stroke-linecap: butt; stroke-width: 4;"/>
+			<path d="M 241,99 L 241,64 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2;"/>
+			<polygon points="241 64, 245.3497 73.00447, 236.6503 73.00447" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(12%,47%,63%); fill-rule: evenodd;"/>
+			<text x="46" y="32" style="font-family: Arial, sans-serif; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,64) scale(1,-1)">La lluvia es una pista: quiere evitar mojarse.</text>
+		</g>
+	</g>
+</svg>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="499" height="250" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 250" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="499" height="250"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-250)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="197" y="78.2" width="35" height="81.60000000000001" rx="16" ry="16" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: none; fill-rule: evenodd;"/>
+			<rect x="201" y="91.0" width="20" height="54.400000000000006" rx="8" ry="8" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="65" y="35" width="135" height="160" rx="8" ry="8" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="68" y="38" width="129" height="77.0" style="stroke: none; stroke-linecap: butt; stroke-width: 2; fill: rgb(93%,67%,20%); fill-rule: evenodd;"/>
+			<path d="M 68,115 L 197,115 Z" style="stroke: rgb(72%,44%,3%); stroke-linecap: butt; stroke-width: 3;"/>
+			<polygon points="65 190, 47 207, 87 207" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<path d="M 75,47 L 75,175 Z" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 3;"/>
+			<path d="M 175,38 L 197,38 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<text x="248" y="34" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,68) scale(1,-1)">0 L</text>
+			<path d="M 175,115 L 197,115 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<text x="248" y="111.0" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,222) scale(1,-1)">0,5 L</text>
+			<path d="M 175,192 L 197,192 Z" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 2;"/>
+			<text x="248" y="188" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,376) scale(1,-1)">1 L</text>
+			<text x="290" y="217" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,434) scale(1,-1)">¿Hasta dónde hay jugo?</text>
+			<path d="M 324,137 L 207,115 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2;"/>
+			<polygon points="207 115, 216.6532 112.3892, 215.0456 120.9387" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(12%,47%,63%); fill-rule: evenodd;"/>
+			<text x="300" y="155.0" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,310) scale(1,-1)">Hasta la mitad</text>
+			<text x="298" y="67" style="font-family: Arial, sans-serif; font-size: 16px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,134) scale(1,-1)">medio litro = 0,5 L</text>
+			<text x="298" y="39" style="font-family: Arial, sans-serif; font-size: 14px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,78) scale(1,-1)">L significa litro</text>
+			<text x="50" y="12" style="font-family: Arial, sans-serif; font-size: 15px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,24) scale(1,-1)">Las rayitas permiten leer cuánto líquido hay.</text>
+		</g>
+	</g>
+</svg>

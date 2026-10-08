@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="499" height="250" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 250" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="499" height="250"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-250)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="20" y="153" width="209" height="50" rx="6" ry="6" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<rect x="269" y="153" width="209" height="50" rx="6" ry="6" style="stroke: rgb(93%,67%,20%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,94%,79%); fill-rule: evenodd;"/>
+			<text x="39" y="168" style="font-family: Arial, sans-serif; font-size: 26px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,336) scale(1,-1)">La gata</text>
+			<text x="289" y="168" style="font-family: Arial, sans-serif; font-size: 26px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,336) scale(1,-1)">duerme</text>
+			<text x="33" y="112" style="font-family: Arial, sans-serif; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,224) scale(1,-1)">de quién hablamos</text>
+			<text x="281" y="112" style="font-family: Arial, sans-serif; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,224) scale(1,-1)">qué decimos de ella</text>
+			<text x="40" y="25" style="font-family: Arial, sans-serif; font-size: 17px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,50) scale(1,-1)">Sujeto                         Predicado</text>
+		</g>
+	</g>
+</svg>

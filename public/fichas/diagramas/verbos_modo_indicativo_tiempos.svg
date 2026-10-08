@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="499" height="250" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 250" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="499" height="250"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-250)" style="clip-path: url(#clip)">
+		<g transform="">
+			<path d="M 19,115 L 480,115 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2;"/>
+			<polygon points="480 115, 470.9955 119.3497, 470.9955 110.6503" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(12%,47%,63%); fill-rule: evenodd;"/>
+			<text x="27" y="183" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 20px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,366) scale(1,-1)">AYER</text>
+			<text x="27" y="141" style="font-family: Arial, sans-serif; font-size: 24px;fill: rgb(70%,26%,25%); stroke:none;" transform="translate(0,282) scale(1,-1)">jugué</text>
+			<circle cx="66" cy="115" r="7" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,47%,63%); fill-rule: evenodd;"/>
+			<text x="197" y="183" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 20px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,366) scale(1,-1)">HOY</text>
+			<text x="197" y="141" style="font-family: Arial, sans-serif; font-size: 24px;fill: rgb(70%,26%,25%); stroke:none;" transform="translate(0,282) scale(1,-1)">juego</text>
+			<circle cx="236" cy="115" r="7" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,47%,63%); fill-rule: evenodd;"/>
+			<text x="359" y="183" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 20px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,366) scale(1,-1)">MAÑANA</text>
+			<text x="359" y="141" style="font-family: Arial, sans-serif; font-size: 24px;fill: rgb(70%,26%,25%); stroke:none;" transform="translate(0,282) scale(1,-1)">jugaré</text>
+			<circle cx="398" cy="115" r="7" style="stroke: rgb(9%,23%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,47%,63%); fill-rule: evenodd;"/>
+			<text x="80" y="40" style="font-family: Arial, sans-serif; font-size: 22px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,80) scale(1,-1)">Ya pasó → ahora → después</text>
+		</g>
+	</g>
+</svg>

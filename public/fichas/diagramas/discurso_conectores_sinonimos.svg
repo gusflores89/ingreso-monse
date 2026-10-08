@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="499" height="250" preserveAspectRatio="xMinYMin meet" viewBox="0 0 499 250" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="499" height="250"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-250)" style="clip-path: url(#clip)">
+		<g transform="">
+			<path d="M 56,178 L 47,152 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 3;"/>
+			<path d="M 78,178 L 69,152 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 3;"/>
+			<path d="M 99,178 L 90,152 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 3;"/>
+			<path d="M 121,178 L 112,152 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 3;"/>
+			<text x="26" y="119" style="font-family: Arial, sans-serif; font-size: 24px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,238) scale(1,-1)">Llueve</text>
+			<path d="M 166,138 L 306,138 Z" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2;"/>
+			<polygon points="306 138, 296.9955 142.3497, 296.9955 133.6503" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(12%,47%,63%); fill-rule: evenodd;"/>
+			<text x="189" y="163" style="font-family: Arial, sans-serif; font-weight: 700; font-size: 19px;fill: rgb(70%,26%,25%); stroke:none;" transform="translate(0,326) scale(1,-1)">por eso</text>
+			<rect x="331" y="96" width="148" height="91" style="stroke: rgb(12%,47%,63%); stroke-linecap: butt; stroke-width: 2; fill: rgb(91%,95%,96%); fill-rule: evenodd;"/>
+			<path d="M 336,101 L 474,182 Z" style="stroke: rgb(70%,26%,25%); stroke-linecap: butt; stroke-width: 4;"/>
+			<text x="345" y="143" style="font-family: Arial, sans-serif; font-size: 19px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,286) scale(1,-1)">PARTIDO</text>
+			<text x="339" y="119" style="font-family: Arial, sans-serif; font-size: 16px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,238) scale(1,-1)">suspendido</text>
+			<text x="60" y="47" style="font-family: Arial, sans-serif; font-size: 20px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,94) scale(1,-1)">causa</text>
+			<text x="336" y="47" style="font-family: Arial, sans-serif; font-size: 18px;fill: rgb(9%,23%,31%); stroke:none;" transform="translate(0,94) scale(1,-1)">consecuencia</text>
+		</g>
+	</g>
+</svg>

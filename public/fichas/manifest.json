@@ -1,245 +1,246 @@
 {
   "version": 1,
+  "revision_visual": 2,
   "fichas": [
     {
       "tema": "numeros_naturales_sistema_decimal",
       "archivo": "numeros_naturales_sistema_decimal.pdf",
       "paginas": 2,
-      "sha256": "6ccef03ef615859e058319f8420e87218f19ecd6b1e4dd3e376a3a2c840078b3"
+      "sha256": "b9d56fd066c17171ab203314895494d7c0f20db9157811920493d548898495aa"
     },
     {
       "tema": "tablas_multiplicar_2_5",
       "archivo": "tablas_multiplicar_2_5.pdf",
       "paginas": 2,
-      "sha256": "460c2c902d40f9fd7d59e39ddaeeeef2ef3b32a852e684f290f9c3fc87607666"
+      "sha256": "4ee949f9b08102b41c97a14f595990ea077e39798a8c3f3da87ae91fe2bebe07"
     },
     {
       "tema": "tablas_multiplicar_6_8",
       "archivo": "tablas_multiplicar_6_8.pdf",
       "paginas": 2,
-      "sha256": "8c14749729d338ef25394347cc9139d2fbb826dfeb36b69a107b7b08e8f2d42e"
+      "sha256": "2d6c36c7160e8952909b8c21daa9153643c25717ee70772ab0518afa545ca5e2"
     },
     {
       "tema": "tablas_multiplicar_9_10",
       "archivo": "tablas_multiplicar_9_10.pdf",
       "paginas": 2,
-      "sha256": "76d0b892c4069a41b23dd08384a4eb12bd008561b02441babfd923f14f4a94ad"
+      "sha256": "2a9a023314580b63ece4a235924a6c06324f6d0ea027d029c6b3e54e58856e6c"
     },
     {
       "tema": "numeros_romanos",
       "archivo": "numeros_romanos.pdf",
       "paginas": 2,
-      "sha256": "0a737da80ef74d141900d2eb7e8716da49358148e6b6c48e924b843b631cbca1"
+      "sha256": "75824499e4a138892cce0085d34cca50b8503f5f9d37decf9dfac7e18adcfaf8"
     },
     {
       "tema": "division_1_digito",
       "archivo": "division_1_digito.pdf",
       "paginas": 2,
-      "sha256": "65e469703d23dbd1cba166c0e7ef1e29f68605dec6e85e14d7e17277e48770ad"
+      "sha256": "2a01025b16a0273c7e3ed25f1e3019095d426262779f6a5f5408d5087ea9a4d4"
     },
     {
       "tema": "divisibilidad_primos_mcm_mcd",
       "archivo": "divisibilidad_primos_mcm_mcd.pdf",
       "paginas": 2,
-      "sha256": "9659a693ca4f64575315202c736cf355c5af300502763689fab00b544afc00d8"
+      "sha256": "7b51089fb859bbc1c5c157c18f2d67820b9f150ad00c52149f32becc830c4531"
     },
     {
       "tema": "fracciones_concepto",
       "archivo": "fracciones_concepto.pdf",
       "paginas": 2,
-      "sha256": "b2cfa7972c3220de0fe970bae6932f085e8c8a1ca99fc059d044e92fb753a13f"
+      "sha256": "e02eb78f7db29ddf4b39cfc094070e907afb9ca14ade0eeb6e1af202197bf6ff"
     },
     {
       "tema": "fracciones_operaciones",
       "archivo": "fracciones_operaciones.pdf",
       "paginas": 2,
-      "sha256": "3287c69698461fe364d37761302ab12c2dd02a94a54843086606703f3401636c"
+      "sha256": "f3208cb3f977d3a60cfe9c2c8bd2d6f70f26e319d17f8e5c53bf3bc13a8fbad9"
     },
     {
       "tema": "fracciones_del_resto",
       "archivo": "fracciones_del_resto.pdf",
       "paginas": 2,
-      "sha256": "e88900a9b5a2b53e8c163b6c7c5fd067df1412dbbc8b3f71419f998ecdde26ff"
+      "sha256": "56108170e6be65c0c581640e80021c11688b22b7de634f7205b8dc945dded4d1"
     },
     {
       "tema": "decimales_conversion",
       "archivo": "decimales_conversion.pdf",
       "paginas": 2,
-      "sha256": "a638944d8c2889960350deec1ae0a4070e3d34828a035a7a100bfde2c051c870"
+      "sha256": "3435ee878b2374a92d8031b2f93869eddf2b841675a5d9e34b936b07034d51ed"
     },
     {
       "tema": "potenciacion_y_raiz_cuadrada",
       "archivo": "potenciacion_y_raiz_cuadrada.pdf",
       "paginas": 2,
-      "sha256": "8d108b11c17f62c5faeb9da441a3622a5efa4fb658272d1ca7633adbb3174011"
+      "sha256": "cd62217895b148d66198190156f020b138cd141312d902621d9408b4f81497db"
     },
     {
       "tema": "jerarquia_operaciones",
       "archivo": "jerarquia_operaciones.pdf",
       "paginas": 2,
-      "sha256": "c7676584d9d8267f32b84f34897ab4ca0f84816b65586b26e792dd82832c5174"
+      "sha256": "5d4c00e119797d391824d03bafef22e78d9105e5fd32ca8a91fa8a9e777479fb"
     },
     {
       "tema": "si_me_la_longitud",
       "archivo": "si_me_la_longitud.pdf",
       "paginas": 2,
-      "sha256": "395f8d91f8e1deb1618ccf9c755d1375d04ade605843d75f74f8aab143d6a57f"
+      "sha256": "864c7ae8703b2f05fac26129e00778e27851d685ca77e834934eafee526bb45e"
     },
     {
       "tema": "si_me_la_masa_capacidad_tiempo",
       "archivo": "si_me_la_masa_capacidad_tiempo.pdf",
       "paginas": 2,
-      "sha256": "f7fd4cdc1a1b809f010656dc8671f96f25dfe0702a339a8f297ee9920fbb5079"
+      "sha256": "215a695f43d7ad51a36f6342629bcae3b534312cfb0badcc3605b4466f6a61e2"
     },
     {
       "tema": "geometria_angulos",
       "archivo": "geometria_angulos.pdf",
       "paginas": 2,
-      "sha256": "2b8927531e88b7fce88c454be1afe444782a9a5b96dc8195b879fa49d03db14b"
+      "sha256": "bffa1a2bc64ff62d4b6bfec88f27b562bde8d06df47c5a22458c97d3d21f63a7"
     },
     {
       "tema": "geometria_triangulos",
       "archivo": "geometria_triangulos.pdf",
       "paginas": 2,
-      "sha256": "4553b390df916fb8f63d568c99834ceaea2c38aa3a8561fcc417f061f78621fe"
+      "sha256": "26ca8547668517a8a79fe0d989cc5586fac16b6b27067736dfd0cc0f0077f03e"
     },
     {
       "tema": "geometria_cuadrilateros_circunferencia",
       "archivo": "geometria_cuadrilateros_circunferencia.pdf",
       "paginas": 2,
-      "sha256": "01b34aae066e00850df14ff7f5b3abe52ee60ec4d97aa5b28546f9eecae55a3e"
+      "sha256": "a97ac53962ee4de1d4a7bc56b5b9290f5c0e289800fc22be071868792fc3e335"
     },
     {
       "tema": "perimetros_simples",
       "archivo": "perimetros_simples.pdf",
       "paginas": 2,
-      "sha256": "31b7f1ae966420b0a354c8675e96912f9b9932b00d17f4c654a19237466d1fd5"
+      "sha256": "855868378abf04fb5a8353e86a0ebc69561527ead5788a183078b4297c6aafe4"
     },
     {
       "tema": "perimetros_compuestos",
       "archivo": "perimetros_compuestos.pdf",
       "paginas": 2,
-      "sha256": "2dc5282fc3a83b43e80abb4a5dfe37d581a5c8575ddb4fe6936abf83005b7bf3"
+      "sha256": "eaa42eb50ae0885202dfd752186dc07cea3188a12d3eed05021b2a757f7059fe"
     },
     {
       "tema": "graficos_estadisticos",
       "archivo": "graficos_estadisticos.pdf",
       "paginas": 2,
-      "sha256": "2ecd9b9b89d4576ccc5e44ff153d040ea9ca905ba8a89b88ece99d87d1c165b8"
+      "sha256": "545cd020034fb9ae59680fd59fb0b1c7210199a5c5cebe7e81b66a3440dfea59"
     },
     {
       "tema": "proporcionalidad_regla_3",
       "archivo": "proporcionalidad_regla_3.pdf",
       "paginas": 2,
-      "sha256": "fd8eb69f59050267ed0aa30174bd369e1ab609d946588b0b285973acbb6488e2"
+      "sha256": "ed1af2e94743282c906529a73c9401b3e8e62f9139d1dab6fb7626e566b14cd1"
     },
     {
       "tema": "secuencias_aritmeticas",
       "archivo": "secuencias_aritmeticas.pdf",
       "paginas": 2,
-      "sha256": "e025fdecd361b72351cef905a40076575bbb8133f9c1a421164d71c102ceccf3"
+      "sha256": "2f7eb4f827b325f56b72eceb6af7262297dd199beab093dfe913ee523928043e"
     },
     {
       "tema": "secuencias_geometricas_fibonacci",
       "archivo": "secuencias_geometricas_fibonacci.pdf",
       "paginas": 2,
-      "sha256": "2c80d8bc48932eaf671b4fe8cf284dc402f7c897e0b89cb30a55600c871a0657"
+      "sha256": "f4b69a79135a87e13bb3c980c893d1979eb9d322729d0085e9b45f743b9113f4"
     },
     {
       "tema": "secuencias_alfanumericas_y_figuras",
       "archivo": "secuencias_alfanumericas_y_figuras.pdf",
       "paginas": 2,
-      "sha256": "c4081571814ea65888ae55bc929ef2612f5063e04bbb9992594205bdf60934fc"
+      "sha256": "26403dbfb86c1f7ef7e1ac8363c8015ea61bbd0b3ca7ef27a08c5f1f15e501dd"
     },
     {
       "tema": "ecuaciones_con_imagenes_2_incognitas",
       "archivo": "ecuaciones_con_imagenes_2_incognitas.pdf",
       "paginas": 2,
-      "sha256": "6d5fbf4b5d8a6f80e72148d8fc9bda37e6142883907c69de5a905a61f0b8e152"
+      "sha256": "fafb980dcf7946b6711d80faeeaa73b45b95460cd5f0ab55d8452793e2fe1b47"
     },
     {
       "tema": "comprension_lectora_literal_inferida",
       "archivo": "comprension_lectora_literal_inferida.pdf",
       "paginas": 2,
-      "sha256": "ea9a6db414ce5127396ced13798499bda87930fc717f00b46cc768cdc1696bc8"
+      "sha256": "5bafae8c027feb2ab05c0d01ba34917854394488f664c74c63699444ea63c751"
     },
     {
       "tema": "ortografia_b_v",
       "archivo": "ortografia_b_v.pdf",
       "paginas": 2,
-      "sha256": "a9a452bb9c39ad206f63492cf9a43a151cedc9771860bec8a1b003582ccc1571"
+      "sha256": "1202e2d0877d38c9d167b67369f447b00830e6c438bb12474996f1779b966c93"
     },
     {
       "tema": "ortografia_g_j_gu_gu",
       "archivo": "ortografia_g_j_gu_gu.pdf",
       "paginas": 2,
-      "sha256": "129db7d105961fa2af9a325cf575c266eb9d3d377ee3e57a6d485b3d04268473"
+      "sha256": "e54e0242f5d543c97d14ad57c62fb14f4faac09efe00df68140abe27afc92bca"
     },
     {
       "tema": "ortografia_h",
       "archivo": "ortografia_h.pdf",
       "paginas": 2,
-      "sha256": "a05d5b71594092864306d2baaa1692705a35c51d74372d5a20c07851a7dec1d7"
+      "sha256": "d0b22512aaa2bf894d1683d5b5b30db99df382e46731b5511a0294de9be71f80"
     },
     {
       "tema": "ortografia_c_s_z",
       "archivo": "ortografia_c_s_z.pdf",
       "paginas": 2,
-      "sha256": "aff366b3d106a0e496e7c15f37a24642c49f50134a49821a5143e6d13b372370"
+      "sha256": "94024e8840043e0f8165e121d77c30a8cc0ef4f6a434383f594dee53189972a0"
     },
     {
       "tema": "tildes_generales_agudas_graves_esdrujulas",
       "archivo": "tildes_generales_agudas_graves_esdrujulas.pdf",
       "paginas": 2,
-      "sha256": "0c4e565bc3e261db50d3c65ce158056b77987ff11c5a14e0569092abeeb05ddb"
+      "sha256": "8db9b1ea4c6ab6e9dc698855b964fd1ede5680083d683212c9cfe2edb2f86c9c"
     },
     {
       "tema": "diptongo_hiato",
       "archivo": "diptongo_hiato.pdf",
       "paginas": 2,
-      "sha256": "80265ca39923c0cab6ffebe474ca386fee43e94d33169b2b82ddab7223a77374"
+      "sha256": "784dd794feb8cf086af53b3989975735dd613907c6eb8ffb4f879016979bd1bb"
     },
     {
       "tema": "tilde_diacritica_monosilabos",
       "archivo": "tilde_diacritica_monosilabos.pdf",
       "paginas": 2,
-      "sha256": "757db006108ec2219df54812e0e5c4c00fda49c65fa38dc9fe3949819e826736"
+      "sha256": "4c0f3e783bf1fc667b78b804eacdcccbbd18b6dee48d670d347a1b2bc2f24b6e"
     },
     {
       "tema": "sustantivos_genero_numero_tipo",
       "archivo": "sustantivos_genero_numero_tipo.pdf",
       "paginas": 2,
-      "sha256": "30985a044b4b047e7ce44dee7fb8751e3675adccffcc4fd2c044e81654428dc1"
+      "sha256": "9b3954e959cc5a144336c7c8b7761b6fad9237eeecbca730aceee46ff35b2853"
     },
     {
       "tema": "verbos_modo_indicativo_tiempos",
       "archivo": "verbos_modo_indicativo_tiempos.pdf",
       "paginas": 2,
-      "sha256": "49285d43f6d0da95a26d69542afe8d9dbe4078dd69f15959d29bfbbab0144926"
+      "sha256": "90c0888bf982aa1e2e691bfd023c64ab8948a92f55173caca78049f96d72aede"
     },
     {
       "tema": "sujeto_predicado_nucleo",
       "archivo": "sujeto_predicado_nucleo.pdf",
       "paginas": 2,
-      "sha256": "36e392f7b98b7149eb1029fe57cf702a4e34eb17dd002d58754989133ba08a5d"
+      "sha256": "512dbb2de9c0838d5c84a7a06ba6b696ded06cdee0f4e0e93a4695420fc40297"
     },
     {
       "tema": "concordancia_sujeto_verbo",
       "archivo": "concordancia_sujeto_verbo.pdf",
       "paginas": 2,
-      "sha256": "0b7980468cf7d33040c92912d462c879e5f71a2883e7e65d7aab2f36e70ee01a"
+      "sha256": "b88a0338970479c81f2e35d1dec5426f678f259a15c7bc89e5ada65879a4b4ad"
     },
     {
       "tema": "discurso_conectores_sinonimos",
       "archivo": "discurso_conectores_sinonimos.pdf",
       "paginas": 2,
-      "sha256": "5880279bf7140916998d434478280212488a19e3ba92cea66d3fc9d9aeeef2f6"
+      "sha256": "b5a7da5a9d7abf47cbebdb71b326342a17b33bfcbfe3a2c03612ab99d5c725ee"
     },
     {
       "tema": "produccion_escrita_narracion",
       "archivo": "produccion_escrita_narracion.pdf",
       "paginas": 2,
-      "sha256": "87be8ead9ab86a26895b69511c56c88a27f20871ebf1d251099593c6e1354f81"
+      "sha256": "e0c2b9739b3e6c6d8353c2ca0902fdafc432d753027e0bd1a7e4ada811c49d86"
     }
   ]
 }
