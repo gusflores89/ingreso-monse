@@ -48,11 +48,11 @@ export const EJERCICIOS_MANUSCRITOS = {
   produccion_escrita_narracion: {
     tipo: "narracion",
     instruccion:
-      "Escribi una narracion de 15 renglones sobre el siguiente inicio de historia. Debe tener complicacion y resolucion.",
+      "Escribi una narracion de 12 a 15 renglones sobre el siguiente inicio de historia. Debe tener complicacion y resolucion.",
     tiempo_estimado: 25,
     inicio: "Un dia, encontraste una llave misteriosa en el patio de tu escuela...",
     requisitos: [
-      "15 renglones minimo",
+      "12 a 15 renglones, según esta consigna de preparación",
       "Inicio, complicacion y desenlace claros",
       "Usar al menos UNA comparacion (ej: brillaba como una estrella)",
       "Sin dialogos",

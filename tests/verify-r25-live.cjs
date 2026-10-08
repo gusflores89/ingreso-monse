@@ -72,7 +72,7 @@ const report={base,realDatabase:true,realAPI:true,realAI:false,checks:[],errors:
  await page.getByRole('button',{name:'Volver a intentar',exact:true}).click();await page.getByRole('heading',{name:'¿Para qué nos sirve?',exact:true}).waitFor();
  await page.goto(base+`/papas?user_id=${userId}`,{waitUntil:'networkidle'});
  const libraryLink=page.getByRole('link',{name:'Ver las fichas y los PDF',exact:true});await libraryLink.waitFor();assert((await libraryLink.getAttribute('href')).endsWith(userId));
- await libraryLink.click();await page.getByRole('heading',{name:'Mis fichas para entender',exact:true}).waitFor();
+ await libraryLink.click();await page.getByRole('heading',{name:'Mi biblioteca para entender',exact:true}).waitFor();
  report.checks.push('Dashboard familiar enlaza la biblioteca; lectura inaccesible muestra error y permite reintentar');
  const foreign=await ctx.request.get(base+`/api/fichas?user_id=${crypto.randomUUID()}`);assert.equal(foreign.status(),403);
  const anonymous=await browser.newContext();assert.equal((await anonymous.request.get(base+`/api/fichas?user_id=${userId}`)).status(),401);await anonymous.close();
@@ -90,6 +90,17 @@ const report={base,realDatabase:true,realAPI:true,realAI:false,checks:[],errors:
  // Publicación íntegra: cada PDF coincide byte a byte con el renderizado local.
  for(const item of fichas){const r=await ctx.request.get(base+`/fichas/${item.tema}.pdf`);assert.equal(r.status(),200);assert(r.headers()['content-type'].includes('application/pdf'));assert.equal(crypto.createHash('sha256').update(await r.body()).digest('hex'),crypto.createHash('sha256').update(fs.readFileSync(path.join(__dirname,'../public/fichas',item.tema+'.pdf'))).digest('hex'));}
  report.checks.push('Los 40 PDF publicados coinciden con los archivos revisados');
+ const beforeLibrary=ok(await db.from('sesiones').select('id').eq('user_id',userId)).length;
+ const progress=await ctx.request.get(base+`/api/biblioteca?user_id=${userId}&tema=${topic}`);
+ assert.equal(progress.status(),200);const libraryData=await progress.json();assert(libraryData.unidades.length>0);
+ assert.equal(ok(await db.from('sesiones').select('id').eq('user_id',userId)).length,beforeLibrary);
+ assert.equal((await ctx.request.get(base+`/api/biblioteca?user_id=${crypto.randomUUID()}&tema=${topic}`)).status(),403);
+ const anonLibrary=await browser.newContext();assert.equal((await anonLibrary.request.get(base+`/api/biblioteca?user_id=${userId}&tema=${topic}`)).status(),401);await anonLibrary.close();
+ report.checks.push('Biblioteca nueva: progreso real de solo lectura; cuenta ajena 403 y sin sesión 401');
+ const manifest=JSON.parse(fs.readFileSync(path.join(__dirname,'../public/apuntes/manifest-r27.json'),'utf8'));
+ const publicManifest=await ctx.request.get(base+'/apuntes/manifest-r27.json');assert.equal(publicManifest.status(),200);assert.deepEqual(await publicManifest.json(),manifest);
+ for(const item of manifest.documentos){const r=await ctx.request.get(base+item.url);assert.equal(r.status(),200);assert(r.headers()['content-type'].includes('application/pdf'));assert.equal(crypto.createHash('sha256').update(await r.body()).digest('hex'),item.sha256);}
+ report.checks.push(`Los ${manifest.documentos.length} apuntes completos (${manifest.total_paginas} páginas) coinciden con los PDF revisados`);
  assert.deepEqual(report.errors,[]);
 }catch(e){report.errors.push(e.message);throw e;}finally{
  if(browser)await browser.close();

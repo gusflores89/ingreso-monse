@@ -1,3 +1,7 @@
+import { UNIDADES_MATEMATICA_R27 } from './ampliaciones-matematica-r27.js';
+import { UNIDADES_LENGUA_R27 } from './ampliaciones-lengua-r27.js';
+import { aplicarVisualesR27 } from './visuales-r27.js';
+import { transferenciasParaTema } from './transferencias-r27.js';
 export const VERSION_BASES = "bases-2026-09-12-v1";
 export const UNIDADES_BASES = [
   {
@@ -27434,6 +27438,16 @@ for(const unidad of FRACCIONES_R24){
 }
 // FIN R24
 
+// Conservamos IDs y evidencias previas. Las unidades nuevas tienen IDs propios.
+for(const unidad of UNIDADES_MATEMATICA_R27){
+ const ancla=unidad.antes_de || unidad.despues_de;
+ const index=UNIDADES_BASES.findIndex(u=>u.id===ancla);
+ if(index<0)throw Error('Falta el paso de referencia de '+unidad.id);
+ UNIDADES_BASES.splice(index+(unidad.antes_de?0:1),0,unidad);
+}
+UNIDADES_BASES.push(...UNIDADES_LENGUA_R27);
+aplicarVisualesR27(UNIDADES_BASES);
+
 export const TEMAS_BASES = [...new Set(UNIDADES_BASES.map(u => u.tema))];
 export function getUnidadBase(id) { return UNIDADES_BASES.find(u => u.id === id) || null; }
 export function crearActividadBase(id, modo, sesiones = []) {
@@ -27466,7 +27480,7 @@ export function evaluarActividadBase(sesion, respuesta, noVisto=false) {
  if(!a) throw new Error('No se encuentra la actividad de esta versión.');
  if(a.rubrica_escritura && !noVisto)return null;
  const correcta=String(respuesta).normalize('NFC').trim().toLowerCase()===a.respuesta_correcta.toLowerCase();
- return {es_correcta:noVisto?null:correcta, retroalimentacion:noVisto?u.explicacion:correcta?'¡Lo resolviste! Podés seguir cuando quieras.':'Miremos una pista y probemos otra vez.',pista_concreta:u.pista,paso_resuelto:a.paso_resuelto,razon_error:(noVisto || correcta)?null:'Revisemos este paso.'};
+ return {es_correcta:noVisto?null:correcta, retroalimentacion:noVisto?u.explicacion:correcta?'¡Lo resolviste! Podés seguir cuando quieras.':'Miremos una pista y probemos otra vez.',pista_concreta:a.pista_concreta || u.pista,paso_resuelto:a.paso_resuelto,razon_error:(noVisto || correcta)?null:'Revisemos este paso.'};
 }
 export function getFichaBase(tema) {
  const unidades=UNIDADES_BASES.filter(u=>u.tema===tema);if(!unidades.length)return null;
@@ -27481,12 +27495,14 @@ export function getCierreBase(tema) {
  if(!unidades.length)return null;
  const ampliado=unidades.some(u=>u.id.startsWith('prof_') || u.id.startsWith('leng_prof_') || u.id.startsWith('entrada_') || u.id.startsWith('puente_') || u.id.startsWith('fr24_'));
  // La preparación cubre toda la secuencia; el cierre breve toma una muestra de tres ideas.
- const cerradas=unidades.filter(u=>!u.actividades[5].rubrica_escritura);
- const seleccion=ampliado ? [cerradas[0],cerradas[Math.floor(cerradas.length/2)],cerradas.at(-1)] : cerradas;
- const preguntas=seleccion.map((u,i)=>{const a=u.actividades[5];return {id:String(i+1),objetivo_id:u.id,texto:a.enunciado,visual:a.visual,opciones:a.opciones,respuesta_correcta:a.respuesta_correcta};});
+ const reservadas=transferenciasParaTema(tema,unidades);
+ if(reservadas.length<3)throw Error('El tema necesita tres comprobaciones reservadas: '+tema);
+ const seleccion=[reservadas[0],reservadas[Math.floor(reservadas.length/2)],reservadas.at(-1)];
+ const preguntas=seleccion.map((a,i)=>({id:String(i+1),actividad_id:a.id,objetivo_id:a.objetivo_id,texto:a.enunciado,visual:a.visual,opciones:a.opciones,respuesta_correcta:a.respuesta_correcta}));
  const min_correctas=Math.ceil(preguntas.length*2/3);
  return {tipo:'examen_final',dificultad:'basico',contenido_version:VERSION_BASES,
- ...(ampliado ? {revision_cierre:'secuencia:'+unidades.map(u=>u.id).join('|')} : {}),
+ revision_cierre:'secuencia:'+unidades.map(u=>u.id).join('|')+';transferencia-r27-v1',
+ alcance:'cierre_de_bases',
  tiempo_estimado:Math.max(3,preguntas.length),min_correctas,
  instrucciones:`Cierre de primeros pasos. Necesitás ${min_correctas} de ${preguntas.length} respuestas correctas. Podés releer los textos.`,
  enunciado:ampliado ? 'Este cierre breve repasa tres ideas de la secuencia que ya practicaste. No es un examen oficial de ingreso.' : 'Revisamos las ideas que ya practicaste. Este cierre trabaja las bases; no es un examen oficial de ingreso.',preguntas};

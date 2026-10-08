@@ -475,7 +475,7 @@ export default function DashboardPapas({ userId }) {
           </section>
 
           <section className="dashboard-panel dashboard-section">
-            <PanelHeader title="Progreso por tema" subtitle="Estado de dominio y proxima accion sugerida" />
+            <PanelHeader title="Progreso por tema" subtitle="Práctica registrada y próximo paso. Completar las bases no certifica preparación para el examen de ingreso." />
             <div className="topic-card-grid rich-topic-grid" aria-label="Progreso por tema">
               {progresoTemas.length === 0 && <p className="empty-state">Todavia no hay temas con progreso.</p>}
               {progresoTemas.map((item) => (

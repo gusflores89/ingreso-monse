@@ -9,3 +9,5 @@ supabase
 *.log
 *.md
 tests
+
+auditorias

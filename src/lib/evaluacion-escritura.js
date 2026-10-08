@@ -42,7 +42,8 @@ export function validarEscritura(value, unidad, actividad, respuesta) {
 export async function evaluarEscritura(unidad, actividad, respuesta, generar, parsear) {
  try {
   const data={texto:actividad.visual.texto,consigna:actividad.enunciado,criterios:actividad.rubrica_escritura,respuesta};
-  const raw=await generar(promptEscritura(),JSON.stringify(data));
+  const orientacion=actividad.creacion_libre ? '\nEsta actividad es un taller de narración, no un resumen. El texto es una situación de partida. Se permite inventar acciones, detalles y finales compatibles con ella. No exijas fidelidad a un final modelo. Fidelidad solo revisa que no se cambie el problema dado de modo que desaparezca sin una resolución. Evaluá los criterios de esta consigna; no exijas extensión ni recursos no pedidos.' : '';
+  const raw=await generar(promptEscritura()+orientacion,JSON.stringify(data));
   return validarEscritura(parsear(raw),unidad,actividad,respuesta);
  } catch { return escrituraSinCalificar(unidad,actividad); }
 }

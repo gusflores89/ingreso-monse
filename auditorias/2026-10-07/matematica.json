@@ -1,0 +1,210 @@
+[
+  {
+    "tema": "numeros_naturales_sistema_decimal",
+    "nombre": "Naturales y sistema decimal",
+    "prioridad": "P1",
+    "hay": "Entrada: Lápices, paquete de diez y sueltos. Después: Conteo, conservación, juntar/quitar, decenas, posición hasta centenas, ceros, comparación, suma y resta con canje. Hay colecciones visuales en pasos previos.",
+    "falta": "El paso a centenas, ceros y algoritmo en columnas vuelve al texto. La recta numérica declarada no tiene unidad efectiva; comparación ejercita elegir el mayor de dos números de tres cifras. Faltan recta/escala y canjes visibles sostenidos.",
+    "ejemplo": "Contar 23 objetos, armar dos paquetes de diez y tres sueltos; ubicar 23 en una recta y mostrar un canje al sumar."
+  },
+  {
+    "tema": "tablas_multiplicar_2_5",
+    "nombre": "Tablas 2–5",
+    "prioridad": "P1",
+    "hay": "Entrada: Bolsitas con dos galletitas. Después: Grupos iguales, filas, doble, doble del doble y tabla del cinco; puente visual de grupos y arreglos.",
+    "falta": "Conmutatividad se afirma dentro de dobles, pero no se enseña girando el mismo arreglo. Consolidar elección multiplicar/sumar y problemas que no vienen ya organizados en grupos.",
+    "ejemplo": "Girar una bandeja de 3 filas de 2 y reconocer las mismas 6 piezas; elegir qué cuenta representa cada organización."
+  },
+  {
+    "tema": "tablas_multiplicar_6_8",
+    "nombre": "Tablas 6–8",
+    "prioridad": "P2",
+    "hay": "Entrada: Seis filas separadas en cinco y una. Después: Puentes 6=3+3, 8=4+4 y 7=5+2 con arreglos; después productos mediante dobles y suma de resultados.",
+    "falta": "Aumentar las cantidades manteniendo el arreglo visible y retirar apoyo gradualmente; hoy el paso a 8×5 o 7×6 se explica sin visual propio de unidad.",
+    "ejemplo": "Mantener visibles 7 filas al separar cinco filas y dos; pasar luego al mismo producto sin el dibujo."
+  },
+  {
+    "tema": "tablas_multiplicar_9_10",
+    "nombre": "Tablas 9–10",
+    "prioridad": "P2",
+    "hay": "Entrada: Pares de medias; apartar un par. Después: Paquetes de diez, multiplicar naturales por 10/100 y estrategia 9×n=10×n−n; arreglos en los puentes.",
+    "falta": "Mostrar con posiciones/paquetes por qué 23×10=230. Separar diez filas de dos de dos paquetes de diez: misma cantidad con organizaciones diferentes.",
+    "ejemplo": "Cambiar cada unidad de 23 por un paquete de diez y registrar 2 centenas y 3 decenas."
+  },
+  {
+    "tema": "numeros_romanos",
+    "nombre": "Números romanos",
+    "prioridad": "P2",
+    "hay": "Entrada: Capítulos I–III. Después: Valores I,V,X,L,C,D,M, lectura aditiva y seis pares sustractivos válidos, con ejemplos y práctica.",
+    "falta": "Práctica efectiva solo romano→arábigo; falta construir/escribir números romanos y continuar secuencias en romano. Escalonar de I–III a las siete letras y pares.",
+    "ejemplo": "Pasar del capítulo 14 a XIV explicando X más IV; después construir el capítulo siguiente."
+  },
+  {
+    "tema": "division_1_digito",
+    "nombre": "División de una cifra",
+    "prioridad": "P1",
+    "hay": "Entrada: Ocho fichas para cuatro personas. Después: Reparto uno a uno, 12 entre 3, resto de 17 entre 3 y descomponer 84 entre 4.",
+    "falta": "Resto y división de dos cifras pierden apoyo visual propio. Enseñar explícitamente contar cuántos grupos caben, reagrupar al dividir y relacionar cociente/resto con el objeto; no solo recuperar una multiplicación.",
+    "ejemplo": "Repartir 17 fichas entre 3 personas, señalar las 2 que sobran y reconstruir 3 × 5 + 2."
+  },
+  {
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "nombre": "Divisibilidad, primos, MCM y MCD",
+    "prioridad": "P1",
+    "hay": "Entrada: Agrupar lápices sin sobrante. Después: Saltos, primer encuentro/MCM, agrupamientos, divisor, criterios 2/3/5/10, primos, MCD por listas y factorización para MCM/MCD. Hay apoyos de saltos y arreglos.",
+    "falta": "No falta MCM/MCD. Falta enseñar a decidir entre coincidencia y mayor agrupamiento en situaciones nuevas; MCD usa listas ya dadas y factorización vuelve al texto. Añadir construcción de grupos comunes y árbol de factores con significado.",
+    "ejemplo": "Comparar dos situaciones: cuándo coinciden saltos de 2 y 3, y cómo armar bolsas iguales con dos cantidades sin sobrantes."
+  },
+  {
+    "tema": "fracciones_concepto",
+    "nombre": "Concepto de fracción",
+    "prioridad": "P1",
+    "hay": "Entrada: Jugo repartido en cuatro vasos; tres seleccionados y jarra explorable. Después: Partes iguales, numerador/denominador separados, mitad de colecciones, equivalencia, ampliar/simplificar, comparación de igual numerador o denominador, enteros como 8/4, clasificación y mixtos.",
+    "falta": "No faltan equivalencias ni 8/4. Mantener la unidad real en prácticas posteriores; muchas variantes siguen siendo barras. Faltan reconstruir el entero a partir de una parte dada y ubicar fracciones como números en recta. Comparar dos fracciones distintas sí aparece después en operaciones.",
+    "ejemplo": "Tomar una cantidad conocida como unidad, ubicar medios y cuartos en una recta y reconstruir un entero cuando se muestra solo una parte."
+  },
+  {
+    "tema": "fracciones_operaciones",
+    "nombre": "Operaciones con fracciones",
+    "prioridad": "P1",
+    "hay": "Entrada: Juntar dos cuartos de una cinta. Después: Suma/resta igual y distinto denominador, MCM/denominador común, comparación 2/3 y3/4, fracción de colección, parte de parte, división como porciones e inversa. Puentes R24 visuales presentes.",
+    "falta": "La inversa y operaciones con partes no unitarias necesitan un puente visual que explique la regla más allá de ejemplos de un cuarto. Falta practicar elegir la operación en un contexto nuevo y completar una cantidad desconocida.",
+    "ejemplo": "Mostrar cuántas porciones de 2/3 caben en 4/3 mediante partes iguales antes de escribir la división."
+  },
+  {
+    "tema": "fracciones_del_resto",
+    "nombre": "Fracciones del resto",
+    "prioridad": "P1",
+    "hay": "Entrada: Galletitas usadas, restantes y mitad del resto. Después: Resto, nuevo total de referencia y cálculo hacia adelante de una segunda fracción; visual en tres puentes.",
+    "falta": "Falta el recorrido inverso: conocer el remanente final y reconstruir el total inicial. También expresar la segunda parte como fracción del total original requiere una etapa propia.",
+    "ejemplo": "Mostrar una barra con una mitad tapada: si la mitad restante son 6 fichas, reconstruir 12; luego avanzar a dos consumos sucesivos."
+  },
+  {
+    "tema": "decimales_conversion",
+    "nombre": "Decimales y conversiones",
+    "prioridad": "P1",
+    "hay": "Entrada: Jarra con medio litro; exploración de niveles y equivalencias opcionales. Después: Décimos/centésimos/milésimos, ceros, comparación, conversiones en ambos sentidos, suma/resta, escalado, productos y divisiones, problema de dos pasos.",
+    "falta": "La entrada visual no se prolonga: las 17 unidades posteriores tienen visual=null. Falta construir un entero con diez partes y un décimo con diez centésimos, mostrar canjes/columnas y operaciones. Decimales periódicos solo se aluden como no terminantes, sin unidad de reconocimiento/período.",
+    "ejemplo": "Dividir una unidad en diez y luego cada décimo en diez; mostrar que 0,3 y 0,30 ocupan la misma cantidad antes de operar."
+  },
+  {
+    "tema": "potenciacion_y_raiz_cuadrada",
+    "nombre": "Potencias y raíz cuadrada",
+    "prioridad": "P2",
+    "hay": "Entrada: Cuadrado de nueve fichas. Después: Dos unidades efectivas: potencia como factores repetidos y raíz exacta como lado del cuadrado.",
+    "falta": "Faltan exponente 1, exponente 0 con base ≠ 0 y potenciasde 10 que sí desarrolla el material oficial. El cubo y raíz de 25 requieren modelo visible posterior; hoy unidades sin visual.",
+    "ejemplo": "Comparar 3 × 3 con 3 + 3; construir cuadrados y avanzar a exponentes 1 y 0 con base no nula."
+  },
+  {
+    "tema": "jerarquia_operaciones",
+    "nombre": "Jerarquía de operaciones",
+    "prioridad": "P2",
+    "hay": "Entrada: Dos bolsas de panes y uno suelto. Después: Regla de precedencia y dos familias prácticas: a+b×c y(a+b)×c.",
+    "falta": "No practica combinados con división/potencias/raíces o misma prioridad de izquierda a derecha, aunque se mencionan. Falta elegir dónde colocar paréntesis para producir un resultado y separar términos de forma visible.",
+    "ejemplo": "Resolver una expresión con tarjetas de operaciones y luego mover un par de paréntesis para obtener otro resultado."
+  },
+  {
+    "tema": "si_me_la_longitud",
+    "nombre": "Longitud",
+    "prioridad": "P1",
+    "hay": "Entrada: Cinta alineada con el cero de la regla. Después: Metro/centímetro, escala completa, conversiones en ambos sentidos y con decimales, medidas combinadas, cortes y planificación en varios pasos.",
+    "falta": "Escala y conversiones posteriores carecen de regla/cinta proporcionada; apoyos tipo datos solo repiten cifras. Conectar1 m con 100 cm visibles y misma longitud con unidades distintas antes de enseñar saltos.",
+    "ejemplo": "Medir una cinta con regla, marcar los cortes y mantener visibles las unidades al expresar una misma longitud en m y cm."
+  },
+  {
+    "tema": "si_me_la_masa_capacidad_tiempo",
+    "nombre": "Masa, capacidad y tiempo",
+    "prioridad": "P1",
+    "hay": "Entrada: Balanza, jarra y duración; objetos de entrada separados. Después: kg/g, L/mL, escalas, decimales, porciones y resto, vasos completos/sobrante,60min/h, agrupación de minutos y duración entre horas.",
+    "falta": "Continuar instrumentos en los problemas: vasos de 250mL llenados desde 1,4 L, balanza antes/después y línea temporal para 14:40→15:15. Hoy la mayoría de unidades no tiene gráfico; tipo datos no representa lo que pasa.",
+    "ejemplo": "Mostrar un recipiente con líquido y marcas legibles; verterlo en vasos y señalar cantidad usada y sobrante."
+  },
+  {
+    "tema": "geometria_angulos",
+    "nombre": "Ángulos y construcciones",
+    "prioridad": "P2",
+    "hay": "Entrada: Giro de un cuarto de vuelta y esquina. Después: Elementos, clasificación, transportador de doble escala, trazado, perpendicularidad, complementos/suplementos, opuestos, bisectriz con compás y mediatriz. Hay diagramas específicos e interacción angular.",
+    "falta": "No faltan transportador/mediatriz. Faltan apoyos previos claros de recta/semirrecta/segmento/plano/semiplano y posiciones paralelas; problemas de ángulos en figuras compuestas. Elegir60enunaopción no demuestra trazar 60 con instrumento.",
+    "ejemplo": "Identificar punto, segmento y dos rectas paralelas en un dibujo; después construir y comprobar un ángulo con transportador."
+  },
+  {
+    "tema": "geometria_triangulos",
+    "nombre": "Triángulos",
+    "prioridad": "P2",
+    "hay": "Entrada: Tres lados cerrados y figura girada. Después: Vértices/opuesto, clasificación por lados y ángulos, suma180°, condición de existencia. Todas estas unidades tienen diagramas.",
+    "falta": "Falta construir un triángulo desde medidas con regla/compás y elegir la altura correspondiente a distintas bases. No confundir reconocer cierre con realizar una construcción.",
+    "ejemplo": "Construir un triángulo con tres tiras de longitudes dadas y probar otro que no puede cerrarse."
+  },
+  {
+    "tema": "geometria_cuadrilateros_circunferencia",
+    "nombre": "Cuadriláteros y circunferencia",
+    "prioridad": "P2",
+    "hay": "Entrada: Hoja, moneda, borde e interior. Después: Polígonos, diagonales desde un vértice, inclusión del cuadrado en rectángulos/rombos, definición breve de trapecio, radio y diámetro.",
+    "falta": "Falta secuencia visual de familias, paralelismo, bases, trapecios y trapezoides; no falta radio. Alinear romboide con la convención del cuadernillo, que lo usa para un trapezoide con pares de lados consecutivos iguales.",
+    "ejemplo": "Comparar figuras lado a lado, colorear pares paralelos y usar las definiciones del cuadernillo para clasificarlas."
+  },
+  {
+    "tema": "perimetros_simples",
+    "nombre": "Perímetros simples",
+    "prioridad": "P2",
+    "hay": "Entrada: Cinta recorriendo marco rectangular. Después: Rectángulo, triángulo, polígonos regulares, circunferencia(πD), varias vueltas, unidades, compra de rollos y costo. Hay diagramas en todas estas unidades.",
+    "falta": "Falta construir la relación entre diámetro y vuelta circular con hilo/medición, y pasar a semicircunferencia más tramo recto. También reconstruir un lado desde perímetro y relación entre lados.",
+    "ejemplo": "Seguir con el dedo un recorrido con medio círculo y un tramo recto, separando las longitudes que sí se recorren."
+  },
+  {
+    "tema": "perimetros_compuestos",
+    "nombre": "Perímetros compuestos y área",
+    "prioridad": "P2",
+    "hay": "Entrada: Dos cuadrados unidos, contorno exterior y unión interna. Después: Lados compartidos, tramo faltante, L con lados dados; además área por cuadrículas, rectángulo, triángulo rectángulo y L. Diagramas reales, no solo texto.",
+    "falta": "Falta deducir varios lados de una composición usando perímetros parciales y proporciones antes de sumar el borde; hoy tramo faltante es una resta aislada. Separar área añadida de la preparación prioritaria de perímetro.",
+    "ejemplo": "Marcar el borde exterior de una figura unida y deducir un segmento faltante a partir de lados alineados."
+  },
+  {
+    "tema": "graficos_estadisticos",
+    "nombre": "Gráficos estadísticos",
+    "prioridad": "P2",
+    "hay": "Entrada: Votos representados por fichas. Después: Comparar datos dados como texto y multiplicar símbolos por el valor de la clave; dos unidades con visual=null.",
+    "falta": "No hay enseñanza/práctica efectiva de leer ejes y escalas de un gráfico de barras real. Falta totalizar y expresar una categoría como fracción irreducible del total.",
+    "ejemplo": "Leer un gráfico con ejes y escala, reunir el total y representar una categoría como parte de ese total."
+  },
+  {
+    "tema": "proporcionalidad_regla_3",
+    "nombre": "Proporcionalidad",
+    "prioridad": "P2",
+    "hay": "Entrada: Bolsitas con igual cantidad de galletitas. Después: Valor unitario y calcular otra cantidad; todas las variantes efectivas tratan precios de cuadernos.",
+    "falta": "Falta tabla visual de magnitudes, reducción de recetas, razones no enteras y combinar proporción con conversiones/restantes. Retirar gradualmente el enunciado que ya dice el procedimiento.",
+    "ejemplo": "Preparar una receta sencilla para 2 personas y adaptarla a 4; luego reducir a 1 conservando la relación entre ingredientes."
+  },
+  {
+    "tema": "secuencias_aritmeticas",
+    "nombre": "Secuencias aritméticas",
+    "prioridad": "P2",
+    "hay": "Entrada: Colecciones que aumentan de a dos. Después: Diferencia constante positiva/negativa y siguiente término; consigna ya indica sumar/restar siempre lo mismo.",
+    "falta": "Faltan término interior desconocido, descubrir y contrastar reglas, diferencias variables y secuencias expresadas en romano. No enseñar esos saltos directamente sin pasos previos.",
+    "ejemplo": "Construir grupos que crecen primero de a 1, luego de a 2 y de a 3; registrar las diferencias antes de escribir la regla."
+  },
+  {
+    "tema": "secuencias_geometricas_fibonacci",
+    "nombre": "Secuencias geométricas y Fibonacci",
+    "prioridad": "P2",
+    "hay": "Entrada: Copiar grupos1,2,4,8. Después: Factor constante y sumar dos anteriores; explicación de Fibonacci sí está presente, sin visual propio.",
+    "falta": "Falta mostrar cuáles dos grupos se combinan en Fibonacci y distinguirlo de duplicar; progresar a reglas compuestas como multiplicar y luego restar.",
+    "ejemplo": "Representar una sucesión donde se triplica y se quitan 2 objetos, contrastándola con triplicar solamente."
+  },
+  {
+    "tema": "secuencias_alfanumericas_y_figuras",
+    "nombre": "Secuencias alfanuméricas y figuras",
+    "prioridad": "P2",
+    "hay": "Entrada: Pulsera con bloque repetido, enlazado conA/B. Después: Bloques repetidos y letras/números en dos reglas explícitas; prácticas posteriores no llevan visual.",
+    "falta": "Faltan giros90/180°, posición lejana por período/resto y contar movimientos sobre recta. El objetivo histórico menciona rotaciones, pero no hay unidad base para ellas.",
+    "ejemplo": "Girar una flecha por pasos de 90 grados y anticipar la siguiente posición; luego justificar una posición lejana de un ciclo."
+  },
+  {
+    "tema": "ecuaciones_con_imagenes_2_incognitas",
+    "nombre": "Igualdades con dos incógnitas",
+    "prioridad": "P2",
+    "hay": "Entrada: Dos bolsas iguales y otra relación entre bolsas. Después: Mismo símbolo/mismo valor y sustitución de uno conocido para hallar otro. Después de la entrada, las actividades escriben sol/luna en texto.",
+    "falta": "Mantener objetos/igualdad en pantalla, variar disposiciones y comprobar las dos relaciones; unirlo más adelante con reconstruir una cantidad real desconocida.",
+    "ejemplo": "Mostrar dos bolsas iguales equilibradas con 6 fichas, abrir una bolsa y comprobar el valor reemplazándolo en ambos lados."
+  }
+]

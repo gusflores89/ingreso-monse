@@ -1,13 +1,12 @@
 // Public teaching material is generated with an explicit allowlist; never copy activities or keys.
 const fs = require('fs');
 const path = require('path');
-const vm = require('vm');
+const { pathToFileURL } = require('url');
 const root = path.resolve(__dirname, '..');
-const source = fs.readFileSync(path.join(root, 'src/lib/contenido-bases.js'), 'utf8').replace(/export /g, '');
-const context = vm.createContext({});
-vm.runInContext(source + ';globalThis.units = UNIDADES_BASES;', context);
-const fields = ['id', 'tema', 'titulo', 'explicacion', 'ejemplo', 'pasos', 'pista', 'visual'];
-const units = context.units.map(u => Object.fromEntries(fields.map(k => [k, u[k]])));
+(async()=>{
+const { UNIDADES_BASES } = await import(pathToFileURL(path.join(root, 'src/lib/contenido-bases.js')).href);
+const fields = ['id', 'tema', 'titulo', 'explicacion', 'ejemplo', 'pasos', 'pista', 'visual', 'actividad_en_papel', 'alcance_evidencia'];
+const units = UNIDADES_BASES.map(u => Object.fromEntries(fields.map(k => [k, u[k]])));
 const target = path.join(root, 'src/lib/apuntes-bases.js');
 const previous = fs.readFileSync(target, 'utf8').replace(/\r\n/g, '\n');
 const helpers = previous.slice(previous.indexOf('export function getFichaBase'));
@@ -20,3 +19,4 @@ if (process.argv.includes('--check')) {
   fs.writeFileSync(target, output);
 }
 console.log('Apuntes sincronizados: ' + units.length + ' unidades, sin claves de práctica.');
+})().catch(e=>{console.error(e);process.exitCode=1;});

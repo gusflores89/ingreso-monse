@@ -6,8 +6,16 @@ const crypto = require('crypto');
 const root = path.resolve(__dirname, '..');
 const read = p => fs.readFileSync(path.join(root,p),'utf8');
 const hashes = {};
+// Immutable teaching modules have no database or per-request state. Reuse only dependency-free loads.
+const teachingCache = new Map();
 function source(p) { const s=read(p); hashes[p]=crypto.createHash('sha256').update(s).digest('hex'); return s; }
 function load(p, names, deps={}) {
+ const cacheable = Object.keys(deps).length===0 && ['src/lib/contenido-bases.js','src/lib/ampliaciones-matematica-r27.js','src/lib/ampliaciones-lengua-r27.js','src/lib/visuales-r27.js','src/lib/transferencias-r27.js','src/lib/metadatos-bases.js'].includes(p);
+ const cacheKey=p+'::'+names.join(',');
+ if(cacheable && teachingCache.has(cacheKey))return teachingCache.get(cacheKey);
+ if(p==='src/lib/contenido-bases.js')deps={...load('src/lib/ampliaciones-matematica-r27.js',['UNIDADES_MATEMATICA_R27']),...load('src/lib/ampliaciones-lengua-r27.js',['UNIDADES_LENGUA_R27']),...load('src/lib/visuales-r27.js',['aplicarVisualesR27']),...load('src/lib/transferencias-r27.js',['transferenciasParaTema']),...deps};
+ if(p==='src/lib/ampliaciones-lengua-r27.js')deps={...load('src/lib/contenido-h.js',['UNIDADES_H']),...deps};
+
  if(p.startsWith('src/pages/api/sesion/'))deps={exigirLectura:async()=>false,verificarLecturaRespuesta:async()=>true,...deps};
  if(p==='src/pages/api/sesion/respuesta.js')deps={...load('src/lib/evaluacion-escritura.js',['evaluarEscritura']),...deps};
  if(p==='src/lib/acceso-temas.js')deps={...load('src/lib/curriculum.js',['CURRICULUM_MATEMATICA','CURRICULUM_LENGUA','PRERREQUISITOS']),...load('src/lib/metadatos-bases.js',['TEMAS_BASES']),...load('src/lib/planes.js',['TRIAL_TOPICS']),...deps};
@@ -23,6 +31,7 @@ function load(p, names, deps={}) {
   const s=source(p).replace(/^import[\s\S]*?from\s+["'][^"']+["'];\s*/gm,'').replace(/export default /g,'').replace(/export /g,'');
   const ctx=vm.createContext({process:{env:{NODE_ENV:'production'}},console, Buffer, ...deps});
   vm.runInContext(s+'\n;globalThis.exposed={'+names.join(',')+'};',ctx,{filename:p});
+  if(cacheable)teachingCache.set(cacheKey,ctx.exposed);
   return ctx.exposed;
 }
 function db(initial={}) {

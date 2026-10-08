@@ -6,8 +6,16 @@ const crypto = require('crypto');
 const root = path.resolve(__dirname, '..');
 const read = p => fs.readFileSync(path.join(root,p),'utf8');
 const hashes = {};
+// Immutable teaching modules have no database or per-request state. Reuse only dependency-free loads.
+const teachingCache = new Map();
 function source(p) { const s=read(p); hashes[p]=crypto.createHash('sha256').update(s).digest('hex'); return s; }
 function load(p, names, deps={}) {
+ const cacheable = Object.keys(deps).length===0 && ['src/lib/contenido-bases.js','src/lib/ampliaciones-matematica-r27.js','src/lib/ampliaciones-lengua-r27.js','src/lib/visuales-r27.js','src/lib/transferencias-r27.js','src/lib/metadatos-bases.js'].includes(p);
+ const cacheKey=p+'::'+names.join(',');
+ if(cacheable && teachingCache.has(cacheKey))return teachingCache.get(cacheKey);
+ if(p==='src/lib/contenido-bases.js')deps={...load('src/lib/ampliaciones-matematica-r27.js',['UNIDADES_MATEMATICA_R27']),...load('src/lib/ampliaciones-lengua-r27.js',['UNIDADES_LENGUA_R27']),...load('src/lib/visuales-r27.js',['aplicarVisualesR27']),...load('src/lib/transferencias-r27.js',['transferenciasParaTema']),...deps};
+ if(p==='src/lib/ampliaciones-lengua-r27.js')deps={...load('src/lib/contenido-h.js',['UNIDADES_H']),...deps};
+
  if(p.startsWith('src/pages/api/sesion/'))deps={exigirLectura:async()=>false,verificarLecturaRespuesta:async()=>true,...deps};
  if(p==='src/pages/api/sesion/respuesta.js')deps={...load('src/lib/evaluacion-escritura.js',['evaluarEscritura']),...deps};
  if(p==='src/lib/acceso-temas.js')deps={...load('src/lib/curriculum.js',['CURRICULUM_MATEMATICA','CURRICULUM_LENGUA','PRERREQUISITOS']),...load('src/lib/metadatos-bases.js',['TEMAS_BASES']),...load('src/lib/planes.js',['TRIAL_TOPICS']),...deps};
@@ -25,6 +33,7 @@ function load(p, names, deps={}) {
   const s=source(p).replace(/^import[\s\S]*?from\s+["'][^"']+["'];\s*/gm,'').replace(/export default /g,'').replace(/export /g,'');
   const ctx=vm.createContext({process:{env:{NODE_ENV:'production'}},console, ...deps});
   vm.runInContext(s+'\n;globalThis.exposed={'+names.join(',')+'};',ctx,{filename:p});
+  if(cacheable)teachingCache.set(cacheKey,ctx.exposed);
   return ctx.exposed;
 }
 function db(initial={}) {
@@ -116,10 +125,10 @@ async function start(database,body={},aiType="practica") {
  const repaso=await start(database,{tema,modo:'REPASO'});assert.equal(repaso.output.tipo,'leccion');assert(repaso.output.ejemplos_resueltos[0].pasos.length);
  record('REPASO conserva explicación y ejemplo resuelto',{tipo:repaso.output.tipo,pasos:repaso.output.ejemplos_resueltos[0].pasos.length});
  const firstId=h.UNIDADES_H[0].id;
- for(let i=0;i<2;i++)database.tables.sesiones.push(row(i+100,{tema,es_correcta:true,tipo_pregunta:'multiple',ia_parametros_usados:{objetivo_id:firstId,modo_sesion:'practica'}}));
+ for(let i=0;i<2;i++)database.tables.sesiones.push(row(i+100,{tema,es_correcta:true,tipo_pregunta:'multiple',ia_parametros_usados:{objetivo_id:firstId,modo_sesion:'practica',contenido_version:'bases-2026-09-12-v1',actividad_id:firstId+'-r27-'+(i+1)}}));
  const second=await start(database,{tema});assert.equal(second.output.tipo,'leccion');assert(second.output.explicacion_simple.includes('Hielo'));
  record('Nueva habilidad de H recibe su propia explicación',{tipo:second.output.tipo,explicacion:second.output.explicacion_simple});
- const deck=slides.getDiapositivasParaTema(tema);assert.equal(deck.slides.length,h.UNIDADES_H.length);assert(deck.apunte_completo.includes('Soluciones'));assert(deck.apunte_completo.includes('cohete'));assert.equal(deck.pdf_url,'/apuntes/ortografia_h.pdf');
+ const deck=slides.getDiapositivasParaTema(tema);assert.equal(deck.slides.length,h.UNIDADES_H.length);assert(!deck.apunte_completo.includes('respuesta_correcta'));assert(deck.apunte_completo.includes('cohete'));assert.equal(deck.pdf_url,'/apuntes/bases-ortografia_h.pdf');
  for(const u of h.UNIDADES_H){assert(deck.apunte_completo.includes(u.explicacion));assert.equal(h.getLeccionH(u.id).explicacion_simple,u.explicacion)}
  record('Lecciones, diapositivas y ficha comparten contenido',{unidades:deck.slides.length,pdf:deck.pdf_url});
  const missing=slides.getDiapositivasParaTema('ortografia_g_j');assert.equal(missing.disponible,false);assert.equal(missing.pdf_url,null);assert.equal(missing.slides.length,0);

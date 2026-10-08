@@ -1385,6 +1385,7 @@ export function determinarProximoObjetivo(tema = "", sesiones = []) {
         necesitaRepaso: stats.necesitaRepaso,
         aciertosIndependientes: stats.aciertosIndependientes,
         temaCompletado: false,
+        estadosObjetivos: statsPorObjetivo,
       };
     }
   }
@@ -1397,6 +1398,7 @@ export function determinarProximoObjetivo(tema = "", sesiones = []) {
     requiereExplicacion: false,
     aciertosIndependientes: 2,
     temaCompletado: true,
+    estadosObjetivos: statsPorObjetivo,
   };
 }
 

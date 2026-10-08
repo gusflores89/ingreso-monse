@@ -7,6 +7,94 @@ export function crearDiagramaGeometria(d = {}) {
  const arc=(x,y,r,start,end,color='#64748b',dash=false,width=1)=>{
   const steps=Math.max(2,Math.ceil(Math.abs(end-start)/2));line(Array.from({length:steps+1},(_,i)=>point(x,y,r,start+(end-start)*i/steps)),color,dash,width);
  };
+ if(d.tipo==='liquidos'){
+  text(240,22,d.titulo || 'La misma cantidad en otra forma','#172554',16);
+  text(28,38,'mL','#475569',10);
+  const rs=d.recipientes||[],cols=Math.min(rs.length,3),cw=450/cols;
+  rs.forEach((r,i)=>{const x=15+(i%cols)*cw+cw/2-32,y=(rs.length<=3?58:42)+Math.floor(i/cols)*132,cap=r.capacidad||1000,h=rs.length<=3?145:80;
+   line([[x,y],[x,y+h],[x+64,y+h],[x+64,y],[x,y]],'#475569',false,2);
+   line([[x+64,y+14],[x+77,y+14],[x+77,y+h-18],[x+64,y+h-18]],'#475569',false,2);
+   for(let yy=y+h-2;yy>=y+h-h*r.ml/cap;yy-=3)line([[x+2,yy],[x+62,yy]],'#f59e0b',false,3);
+   [0,.5,1].forEach(v=>{line([[x,y+h-v*h],[x+10,y+h-v*h]],'#172554',false,1);text(x-18,y+h-v*h+3,cap*v,'#172554',10);});
+   text(x+32,y+h+20,r.label || r.ml+' mL','#172554',13);
+   text(x+32,y+h+37,r.detalle || (r.ml/1000).toLocaleString('es-AR')+' L','#9a3412',13);
+   if(d.operadores?.[i])text(15+(i+1)*cw,y+h/2,d.operadores[i],'#172554',22);
+  });return {trazos,textos,ancho:480,alto:310};
+ }
+ if(d.tipo==='posicional'){
+  if(d.despues){
+   text(240,24,d.titulo||'Cada cifra cambia de posición','#172554',15);
+   const w=130;
+   d.columnas.forEach((c,i)=>text(105+i*w,52,c.nombre,'#172554',14));
+   [d.columnas,d.despues].forEach((fila,j)=>fila.forEach((c,i)=>{const x=40+i*w,y=65+j*140;
+    line([[x,y],[x+w,y],[x+w,y+72],[x,y+72],[x,y]],'#64748b',false,1);
+    for(let k=0;k<c.cantidad;k++)arc(x+28+(k%3)*30,y+20+Math.floor(k/3)*24,5,0,360,'#2563eb',false,2);
+    text(x+w/2,y+91,c.cantidad+' × '+c.valor,'#172554',13);
+   }));
+   text(240,184,d.operacion||'× 10: cada posición pasa a valer diez veces','#9a3412',14);
+   return {trazos,textos,ancho:480,alto:310};
+  }
+  text(240,28,d.titulo||'Cada posición vale diez veces la siguiente','#172554',15);
+  (d.columnas||[]).forEach((c,i)=>{const w=420/d.columnas.length,x=30+i*w;
+   text(x+w/2,63,c.nombre,'#172554',14);line([[x,76],[x+w,76],[x+w,238],[x,238],[x,76]],'#64748b',false,1);
+   for(let n=0;n<c.cantidad;n++){const xx=x+15+(n%3)*24,yy=92+Math.floor(n/3)*42;line([[xx,yy],[xx+15,yy],[xx+15,yy+25],[xx,yy+25],[xx,yy]],'#2563eb',false,2);}
+   text(x+w/2,267,c.cantidad+' × '+c.valor,'#172554',14);
+  });return {trazos,textos,ancho:480,alto:310};
+ }
+ if(d.tipo==='fracciones_grupos'){
+  text(240,24,'Cada barra completa es un entero','#172554',16);
+  (d.casos||[]).forEach((c,i)=>{const y=62+i*80; text(68,y+22,c.label,'#172554',13);
+   for(let b=0;b<Math.ceil(c.pintadas/c.partes);b++){
+    const x0=145+b*145,w=130/c.partes;
+    for(let k=0;k<c.partes;k++){const x=x0+k*w;line([[x,y],[x+w,y],[x+w,y+36],[x,y+36],[x,y]],'#475569',false,1);
+     if(b*c.partes+k<c.pintadas)for(let z=x+3;z<x+w;z+=5)line([[z,y+3],[z,y+33]],'#38bdf8',false,2);
+    }
+   }
+  });return {trazos,textos,ancho:480,alto:310};
+ }
+ if(d.tipo==='mapa'){
+  text(240,28,d.titulo || 'Una idea paso a paso','#172554',17);
+  const wrap=(s,max=43)=>{const rows=[''];for(const word of String(s).split(/\s+/)){if((rows.at(-1)+' '+word).trim().length>max)rows.push(word);else rows[rows.length-1]=(rows.at(-1)+' '+word).trim();}return rows;};
+  (d.nodos||[]).slice(0,3).forEach((n,i)=>{const y=48+i*86;
+   line([[24,y],[456,y],[456,y+70],[24,y+70],[24,y]],'#4b7991',false,2);
+   text(240,y+21,n.titulo,'#174a64',15);
+   wrap(n.texto).slice(0,2).forEach((s,j)=>text(240,y+43+j*17,s,'#172554',13));
+   if(i<Math.min(d.nodos.length,3)-1)line([[240,y+72],[240,y+83],[236,y+79],[240,y+83],[244,y+79]],'#b45309',false,2);
+  });return {trazos,textos,ancho:480,alto:310};
+ }
+ if(d.tipo==='recta'){
+  const min=d.min??0,max=d.max??1,paso=d.paso??(max-min)/4,x=v=>48+(v-min)*384/(max-min);
+  text(240,34,d.titulo || 'Ubicamos cantidades','#172554',17);line([[48,150],[432,150]],'#475569',false,2);
+  for(let i=0;i<=Math.round((max-min)/paso);i++){const v=min+i*paso;line([[x(v),143],[x(v),157]],'#64748b',false,1);text(x(v),183,Number(v.toFixed(4)).toLocaleString('es-AR'),'#172554',13);}
+  (d.marcas||[]).forEach((m,i)=>{const px=x(m.valor);arc(px,150,6,0,360,'#b45309',false,3);text(px,110-(i%2)*25,m.label ?? m.valor,'#9a3412',14);line([[px,119-(i%2)*25],[px,141]],'#b45309',true,1);});
+  return {trazos,textos,ancho:480,alto:310};
+ }
+ if(d.tipo==='barras'){
+  const paso=d.paso||1,max=Math.ceil(Math.max(...d.valores)/paso)*paso,x0=60,y0=240,h=170,w=365;
+  text(240,25,d.titulo || 'Leemos un gráfico','#172554',17);
+  for(let v=0;v<=max;v+=paso){const y=y0-v/max*h;line([[x0,y],[440,y]],'#cbd5e1',false,1);text(35,y+4,v,'#172554',12);}
+  line([[x0,60],[x0,y0],[440,y0]],'#475569',false,2);
+  d.valores.forEach((v,i)=>{const x=x0+(i+.2)*w/d.valores.length,bw=.6*w/d.valores.length,y=y0-v/max*h;line([[x,y0],[x,y],[x+bw,y],[x+bw,y0]],'#2563eb',false,3);for(let z=x+5;z<x+bw;z+=8)line([[z,y0],[z,y]],'#93c5fd',false,3);text(x+bw/2,264,d.etiquetas[i],'#172554',12);});
+  text(240,294,d.unidad || 'Cada marca de la escala tiene el mismo valor.','#475569',12);return {trazos,textos,ancho:480,alto:310};
+ }
+ if(d.tipo==='semiplano'){
+  text(240,28,'Una parte del plano: la recta continúa','#172554',16);
+  const py=v=>160-(v-(d.recta_y||0))*55;
+  for(let yy=60;yy<160;yy+=13)line([[30,yy],[450,yy]],'#dbeafe',false,8);
+  for(let yy=177;yy<275;yy+=13)line([[30,yy],[450,yy]],'#fef3c7',false,8);
+  line([[30,160],[450,160]],'#475569',false,2);line([[39,154],[30,160],[39,166]],'#475569',false,2);line([[441,154],[450,160],[441,166]],'#475569',false,2);text(455,149,'r');
+  (d.puntos||[]).forEach(p=>{const x=240+p.x*65,y=py(p.y);arc(x,y,4,0,360,'#9a3412',false,3);text(x+14,y-9,p.label,'#172554',15);});
+  return {trazos,textos,ancho:480,alto:310};
+ }
+ if(d.tipo==='rectas'){
+  const arrow=(x,y,dir)=>line([[x-dir*9,y-6],[x,y],[x-dir*9,y+6]],'#2563eb',false,2);
+  text(240,40,d.titulo || ({recta:'Sigue en ambos sentidos',semirrecta:'Empieza y sigue',segmento:'Tiene dos extremos',paralelas:'No se cruzan',secantes:'Se cruzan'})[d.clase],'#172554',17);
+  line([[70,145],[410,145]]);
+  if(d.clase==='recta'||d.clase==='paralelas'||d.clase==='secantes'){arrow(70,145,-1);arrow(410,145,1);}else{arc(70,145,4,0,360,'#9a3412',false,3);text(70,174,'A');if(d.clase==='semirrecta')arrow(410,145,1);else{arc(410,145,4,0,360,'#9a3412',false,3);text(410,174,'B');}}
+  if(d.clase==='paralelas'){line([[70,220],[410,220]]);arrow(70,220,-1);arrow(410,220,1);}
+  if(d.clase==='secantes')line([[125,75],[350,235]]);
+  return {trazos,textos,ancho:480,alto:310};
+ }
  if(d.tipo==='fracciones'){
   text(240,24,d.titulo || 'El mismo entero en cada barra','#172554',15);
   let tachadas=false;
@@ -83,11 +171,11 @@ export function crearDiagramaGeometria(d = {}) {
   return {trazos,textos,ancho:480,alto:310};
  }
  if(d.tipo==='circunferencia'){
-  arc(240,145,95,0,360,'#2563eb',false,3);
-  line([[145,145],[335,145]],'#15803d',false,2);
+  arc(240,145,95,0,d.semicirculo?180:360,'#2563eb',false,3);
+  if(!d.semicirculo || d.incluir_diametro)line([[145,145],[335,145]],'#15803d',false,2);
   text(240,138,'O');
-  if(d.radio){line([[240,145],[335,145]],'#c2410c',false,3);text(290,171,'r = '+d.radio+' cm','#9a3412');text(240,268,'Diámetro = '+(2*d.radio)+' cm');}
-  else text(240,171,'d = '+d.diametro+' cm');
+  if(d.radio){line([[240,145],[335,145]],'#c2410c',false,3);text(290,171,'r = '+d.radio+' '+(d.unidad||'cm'),'#9a3412');text(240,268,'Diámetro = '+(2*d.radio)+' '+(d.unidad||'cm'));}
+  else text(240,171,'d = '+d.diametro+' '+(d.unidad||'cm'));
   return {trazos,textos,ancho:480,alto:310};
  }
  if(d.tipo==='tramo'){
@@ -137,7 +225,7 @@ export function crearDiagramaGeometria(d = {}) {
   return {trazos,textos,ancho:480,alto:310};
  }
  if(d.tipo!=='angulo')return null;
- const angle=Math.max(5,Math.min(175,Number(d.angulo)||60)),cx=240,cy=d.rectas?155:245,r=d.rectas?120:(d.transportador?198:160);
+ const angle=Math.max(5,Math.min(180,Number(d.angulo)||60)),cx=240,cy=d.rectas?155:245,r=d.rectas?120:(d.transportador?198:160);
  const start=d.izquierda?180:0,end=d.izquierda?180-angle:angle;
  if(d.transportador){
   arc(cx,cy,190,0,180);arc(cx,cy,153,0,180,'#cbd5e1');
@@ -146,7 +234,14 @@ export function crearDiagramaGeometria(d = {}) {
  line([[cx,cy],point(cx,cy,r,start)]);line([[cx,cy],point(cx,cy,r,end)],'#c2410c');
  arc(cx,cy,45,Math.min(start,end),Math.max(start,end),'#c2410c',false,2);
  if(d.rectas){line([[cx,cy],point(cx,cy,r,start+180)]);line([[cx,cy],point(cx,cy,r,end+180)],'#c2410c');if(d.opuesto)arc(cx,cy,45,Math.min(start,end)+180,Math.max(start,end)+180,'#15803d',false,4);}
- if(d.medida){const p=point(cx,cy,72,start+(end-start)*(d.bisectriz?.72:.5));text(p[0],p[1],angle+'°','#9a3412');}
+ if(d.medida && !d.divisiones){const p=point(cx,cy,72,start+(end-start)*(d.bisectriz?.72:.5));text(p[0],p[1],angle+'°','#9a3412');}
+ if(d.divisiones){
+  if(d.medida)text(240,30,'Abertura total: '+angle+'°','#172554',17);
+  const divisiones=d.divisiones.filter(n=>n>0&&n<angle).sort((a,b)=>a-b);
+  for(const n of divisiones)line([[cx,cy],point(cx,cy,r,d.izquierda?180-n:n)],'#15803d',false,2);
+  const limites=[0,...divisiones,angle];
+  limites.slice(1).forEach((n,i)=>{const deg=(limites[i]+n)/2,p=point(cx,cy,102,d.izquierda?180-deg:deg);text(p[0],p[1],d.etiquetas_sectores?.[i]||'?', '#9a3412',16);});
+ }
  if(d.bisectriz)line([[cx,cy],point(cx,cy,175,(start+end)/2)],'#15803d',false,3);
  if(d.compas){
   const A=point(cx,cy,90,0),B=point(cx,cy,90,angle),P=[A[0]+B[0]-cx,A[1]+B[1]-cy];

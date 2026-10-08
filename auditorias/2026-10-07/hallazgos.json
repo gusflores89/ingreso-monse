@@ -1,0 +1,113 @@
+[
+  {
+    "id": "H1",
+    "prioridad": "P1",
+    "titulo": "La biblioteca no muestra el recorrido completo",
+    "evidencia": "biblioteca.jsx muestra el título de una sola ficha por módulo. /api/fichas publica 40 fichas iniciales; Explicación y PDFs usa otro catálogo, con 30 apuntes de repaso. No hay índice común por microlección.",
+    "efecto": "La familia no encuentra radio, sumas de fracciones o perímetro aunque varias de esas lecciones sí existen. La ficha introductoria parece representar todo el tema.",
+    "correccion": "Unificar la biblioteca: nombre curricular, subtemas, explicación visual, ejemplo, actividad y estado por habilidad. Vincular las fichas iniciales con las lecciones ya existentes antes de generar duplicados.",
+    "fuentes": [
+      "src/pages/biblioteca.jsx:30",
+      "src/pages/api/fichas.js:22",
+      "src/lib/diapositivas.js:731",
+      "src/components/PantallaSessionTutoria.jsx:967"
+    ]
+  },
+  {
+    "id": "H2",
+    "prioridad": "P1",
+    "titulo": "Los dibujos de entrada no llegan a todas las lecciones",
+    "evidencia": "En el banco efectivo hay 178 microlecciones matemáticas; 87 tienen visual=null. Las 17 de decimales no tienen apoyo visual estructurado. Otras siete usan datos presentados como tabla. La escena inicial nueva vive en un componente y una fuente distintos. Algunos ejemplos pueden recibir dibujos automáticos inferidos por MathExampleVisual; este conteo mide el apoyo propio y revisado de cada unidad, no prueba ausencia absoluta de cualquier imagen en pantalla.",
+    "efecto": "Abril ve una jarra en la entrada y después vuelve a explicaciones de décimos, centésimos o cuentas escritas sin un objeto que pueda seguir. Esto reproduce el problema comunicado.",
+    "correccion": "Conectar representación concreta, dibujo y símbolo en cada subtema. Priorizar decimales y procedimientos de cálculo; mostrar transformaciones del ejemplo, no solo un dibujo decorativo de portada.",
+    "fuentes": [
+      "src/lib/contenido-bases.js:27439",
+      "src/lib/apuntes-bases.js:4238",
+      "src/components/EscenaFicha.jsx:94",
+      "scripts/generar-apuntes-bases.py:27",
+      "src/components/PantallaSessionTutoria.jsx:2597"
+    ]
+  },
+  {
+    "id": "H3",
+    "prioridad": "P1",
+    "titulo": "Diez módulos de Lengua no tienen repaso fijo completo",
+    "evidencia": "getDiapositivasParaTema devuelve slides=[] y pdf_url=null en G/J, C/S/Z, diptongo/hiato, diacrítica, sustantivos, verbos, sujeto/predicado, concordancia, conectores/sinónimos y narración. Sus 26 objetivos dependen de lecciones generadas. H tiene seis explicaciones revisadas, aunque su práctica también se genera.",
+    "efecto": "La entrada de dos páginas existe, pero después falta una explicación estable que la alumna pueda releer. La pantalla de ayuda reconoce que la ficha no está disponible.",
+    "correccion": "Crear una secuencia revisada y consultable por objetivo; usar IA para adaptar ejemplos dentro de ese alcance. Priorizar lectura, vocabulario gramatical y escritura progresiva.",
+    "fuentes": [
+      "src/lib/diapositivas.js:731",
+      "src/pages/api/sesion/init.js:374",
+      "src/components/PantallaSessionTutoria.jsx:2172",
+      "src/lib/objetivos-pedagogicos.js:1267"
+    ]
+  },
+  {
+    "id": "H4",
+    "prioridad": "P1",
+    "titulo": "El currículo efectivo no equivale al programa completo",
+    "evidencia": "Si existen unidades revisadas, getObjetivosParaTema devuelve exclusivamente esas unidades. Los objetivos históricos y los casos resueltos no amplían automáticamente la secuencia: init responde con contenido base antes del bloque de casos. El programa aportado incluye contenidos sin objetivo efectivo específico, detallados en la matriz y en las omisiones adicionales.",
+    "efecto": "Puede completarse la secuencia implementada sin haber recorrido todos los contenidos que el colegio enumera o combina en sus exámenes.",
+    "correccion": "Trazar cada contenido del programa aportado hasta una microlección, ejemplo, práctica y evidencia de transferencia. Separar primeros pasos, consolidación y preparación de examen.",
+    "fuentes": [
+      "src/lib/objetivos-pedagogicos.js:1267",
+      "src/pages/api/sesion/init.js:237",
+      "src/pages/api/sesion/init.js:256",
+      "src/lib/curriculum.js:1"
+    ]
+  },
+  {
+    "id": "H5",
+    "prioridad": "P1",
+    "titulo": "Los cierres repiten el banco de práctica",
+    "evidencia": "Los 29 cierres fijos contienen 84 preguntas; las 84 se toman de actividades[5], incluida en actividades.slice(1), el banco de práctica. El requisito de dos actividades independientes por objetivo excluye ayuda, pero no exige una situación desconocida ni un procedimiento explicado.",
+    "efecto": "Resolver un cierre sirve como repaso de lo enseñado. Por sí solo no demuestra transferencia a un problema nuevo, y menos a una prueba completa de ingreso.",
+    "correccion": "Mantener el cierre amable y agregar una comprobación breve con otros datos, contexto y representación. Mostrar por separado práctica realizada, habilidad comprobada y preparación para formato de ingreso.",
+    "fuentes": [
+      "src/lib/contenido-bases.js:27439",
+      "src/lib/contenido-bases.js:27479",
+      "src/lib/objetivos-pedagogicos.js:1345",
+      "src/pages/api/progreso.js:81"
+    ]
+  },
+  {
+    "id": "H6",
+    "prioridad": "P1",
+    "titulo": "La generación IA no verifica semánticamente qué se enseñó",
+    "evidencia": "La ruta generativa envía el título, evidencia propuesta y pista del objetivo. Solicita una lección y comprueba que exista una pregunta, pero no valida que cada conocimiento exigido esté explicado en esa lección. El modo lección sí se solicita cuando el objetivo es nuevo; no se encontró un salto universal que lo omita.",
+    "efecto": "En los módulos generativos permanece el riesgo de introducir términos o reglas desconocidas. Una directiva en el prompt reduce el riesgo, pero no garantiza el contenido mostrado.",
+    "correccion": "Definir prerrequisitos y ejemplos revisados por objetivo; validar el alcance de la pregunta antes de enviarla. Probar con respuestas reales de generación en una fase posterior, sin usar la cuenta de Abril para experimentar.",
+    "fuentes": [
+      "src/pages/api/sesion/init.js:253",
+      "src/pages/api/sesion/init.js:351",
+      "src/pages/api/sesion/init.js:376",
+      "src/lib/prompts.js:30"
+    ]
+  },
+  {
+    "id": "H7",
+    "prioridad": "P1",
+    "titulo": "La escritura necesita una progresión y consignas coherentes",
+    "evidencia": "El objetivo prod_3 incluye diálogo. La tarea manuscrita lo prohíbe y exige 15 renglones mínimo. Los exámenes aportados 2022 y 2025 piden 12–15 renglones y sin diálogo; el de 2025 asigna 40 puntos a producción. Hay rúbricas y revisión familiar, pero no un taller fijo de narración completo.",
+    "efecto": "Se pide una producción exigente con técnicas parcialmente enseñadas y se mezclan condiciones de práctica con condiciones del examen.",
+    "correccion": "Enseñar planificación, párrafos, narrador, puntuación y recursos expresivos paso a paso. Identificar claramente práctica libre y simulación, con un único contrato de consigna en cada actividad.",
+    "fuentes": [
+      "src/lib/objetivos-pedagogicos.js:1251",
+      "src/lib/ejercicios-manuscritos.js:48",
+      "src/lib/examenes-monserrat.js:357"
+    ]
+  },
+  {
+    "id": "H8",
+    "prioridad": "P2",
+    "titulo": "Leer la introducción no demuestra entender cada subtema",
+    "evidencia": "El lector tiene cuatro pasos por módulo y una sola pregunta final con ayuda. Esa lectura no concede maestría, lo cual es correcto. Tampoco registra comprensión de todas las microlecciones ni tiempo real necesario para Abril.",
+    "efecto": "Los cuatro pasos pueden convertirse en un trámite antes de una secuencia larga. Contar 40 fichas terminadas no debe comunicarse como 40 temas dominados.",
+    "correccion": "Usar comprobaciones breves de acción o explicación vinculadas al objetivo; conservar ayuda sin castigo, pausa y avance guardado. Mostrar el subtema actual y su próximo paso para que el esfuerzo tenga un final cercano.",
+    "fuentes": [
+      "src/components/LecturaModulo.jsx:65",
+      "src/pages/api/fichas.js:33",
+      "src/lib/fichas-lectura.js:17"
+    ]
+  }
+]

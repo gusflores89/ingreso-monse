@@ -1,0 +1,246 @@
+{
+  "revision": "r27",
+  "documentos": [
+    {
+      "tema": "fracciones_concepto",
+      "url": "/apuntes/bases-fracciones_concepto.pdf",
+      "paginas": 20,
+      "sha256": "c8c19e58ac55635648633ed315d8ac3e623aa5054cb92f63dbcc14356023c0a0"
+    },
+    {
+      "tema": "divisibilidad_primos_mcm_mcd",
+      "url": "/apuntes/bases-divisibilidad_primos_mcm_mcd.pdf",
+      "paginas": 18,
+      "sha256": "650422ae6899cea8c281e2ac3f54bf7feb4bc7972b1e95565b92513fd33893d2"
+    },
+    {
+      "tema": "fracciones_operaciones",
+      "url": "/apuntes/bases-fracciones_operaciones.pdf",
+      "paginas": 17,
+      "sha256": "5667efbfb73c7c7e5b16d0a047fc0068e0885edf074bf8e63a2795971b614c41"
+    },
+    {
+      "tema": "comprension_lectora_literal_inferida",
+      "url": "/apuntes/bases-comprension_lectora_literal_inferida.pdf",
+      "paginas": 22,
+      "sha256": "a36da54916b72887e6b6d7948cc413dbf4212ad34a4b9c58ecee2582c2cc525e"
+    },
+    {
+      "tema": "ortografia_b_v",
+      "url": "/apuntes/bases-ortografia_b_v.pdf",
+      "paginas": 10,
+      "sha256": "86b9aa80e65dbb60e4a165a0614f45182fe5d188e80bca41ac1426825b8512bf"
+    },
+    {
+      "tema": "tildes_generales_agudas_graves_esdrujulas",
+      "url": "/apuntes/bases-tildes_generales_agudas_graves_esdrujulas.pdf",
+      "paginas": 8,
+      "sha256": "32e0c1e39c3b3af5c0486c5f97337d2110920ffbfe6b4c72900d1a1b29e01f75"
+    },
+    {
+      "tema": "numeros_naturales_sistema_decimal",
+      "url": "/apuntes/bases-numeros_naturales_sistema_decimal.pdf",
+      "paginas": 13,
+      "sha256": "99bbba3492de05046149ccbda1478527a227ff75289b11e608b1623c5f5000f1"
+    },
+    {
+      "tema": "tablas_multiplicar_2_5",
+      "url": "/apuntes/bases-tablas_multiplicar_2_5.pdf",
+      "paginas": 6,
+      "sha256": "1cabd3134cdcddf27b3cceffbc2995ca0634e0136072413b275876d445255b7a"
+    },
+    {
+      "tema": "tablas_multiplicar_6_8",
+      "url": "/apuntes/bases-tablas_multiplicar_6_8.pdf",
+      "paginas": 5,
+      "sha256": "2d5d7e910d10e03766b5c461650bcf3cd7707603d33ec7777fb20733e2d401c6"
+    },
+    {
+      "tema": "tablas_multiplicar_9_10",
+      "url": "/apuntes/bases-tablas_multiplicar_9_10.pdf",
+      "paginas": 4,
+      "sha256": "844d19baa254d79eff450b9e110123515761ab72d9ef95f6cdf203ddccd1f3ea"
+    },
+    {
+      "tema": "division_1_digito",
+      "url": "/apuntes/bases-division_1_digito.pdf",
+      "paginas": 4,
+      "sha256": "d877f926951998c9ada17e22353dd6161b96cde96033074aef9c475e1f20ff81"
+    },
+    {
+      "tema": "numeros_romanos",
+      "url": "/apuntes/bases-numeros_romanos.pdf",
+      "paginas": 3,
+      "sha256": "4e7fd8ccc832707e0efe086d4a9a15a904f9d643cf9cc8a17df169e2776fbe25"
+    },
+    {
+      "tema": "fracciones_del_resto",
+      "url": "/apuntes/bases-fracciones_del_resto.pdf",
+      "paginas": 7,
+      "sha256": "789b559ffcd9a05f51a953d09864b3ae61275ece695d3a3245315f5923a02f84"
+    },
+    {
+      "tema": "decimales_conversion",
+      "url": "/apuntes/bases-decimales_conversion.pdf",
+      "paginas": 19,
+      "sha256": "43f16e07679a57135fb4a4d88353ccf0fd78160c968d573fa5581424b01df439"
+    },
+    {
+      "tema": "potenciacion_y_raiz_cuadrada",
+      "url": "/apuntes/bases-potenciacion_y_raiz_cuadrada.pdf",
+      "paginas": 4,
+      "sha256": "e11675bedf5647f5d9e923507619f508eb6298ec548e3c13d25341cec56ac5c1"
+    },
+    {
+      "tema": "jerarquia_operaciones",
+      "url": "/apuntes/bases-jerarquia_operaciones.pdf",
+      "paginas": 4,
+      "sha256": "2990573b2f19fccc2b4ad1b4d3cfb84b309d58ab4a168fc4f91f4b70ac6361e0"
+    },
+    {
+      "tema": "si_me_la_longitud",
+      "url": "/apuntes/bases-si_me_la_longitud.pdf",
+      "paginas": 10,
+      "sha256": "bd013326c568f8eb7a0d77f98bb6af8987120e786b00933321753d8ca55e351d"
+    },
+    {
+      "tema": "si_me_la_masa_capacidad_tiempo",
+      "url": "/apuntes/bases-si_me_la_masa_capacidad_tiempo.pdf",
+      "paginas": 12,
+      "sha256": "e9a940643823218c5843b11795f8f02642de17247e7d6323b411317cf7280670"
+    },
+    {
+      "tema": "geometria_angulos",
+      "url": "/apuntes/bases-geometria_angulos.pdf",
+      "paginas": 14,
+      "sha256": "1c9779f9d113e9b89ba9d4cae54fa66bc7e4d7a7f3d6c61262720c53e6fe6668"
+    },
+    {
+      "tema": "geometria_triangulos",
+      "url": "/apuntes/bases-geometria_triangulos.pdf",
+      "paginas": 6,
+      "sha256": "64bb3bbd652403d3746ab1ab687932cfd9dd9afe1c498e31ff727347dec8961d"
+    },
+    {
+      "tema": "geometria_cuadrilateros_circunferencia",
+      "url": "/apuntes/bases-geometria_cuadrilateros_circunferencia.pdf",
+      "paginas": 6,
+      "sha256": "8b7cc836becc7755294d156fd854dc0eecbeaefebaa4f305335defdf9085e36e"
+    },
+    {
+      "tema": "perimetros_simples",
+      "url": "/apuntes/bases-perimetros_simples.pdf",
+      "paginas": 9,
+      "sha256": "ae2bf86d082ba91d743223aac3596ac652e406fe063b5101cf78c8e316d2b994"
+    },
+    {
+      "tema": "perimetros_compuestos",
+      "url": "/apuntes/bases-perimetros_compuestos.pdf",
+      "paginas": 10,
+      "sha256": "0afb2f7b86e9b132d6a1b278839a4c753851842d18a6c5066592492eaeffe455"
+    },
+    {
+      "tema": "graficos_estadisticos",
+      "url": "/apuntes/bases-graficos_estadisticos.pdf",
+      "paginas": 4,
+      "sha256": "86003285793a2b4317f0696a92a97f412e3422f55bde3620ee9dc2e3d73c33ba"
+    },
+    {
+      "tema": "proporcionalidad_regla_3",
+      "url": "/apuntes/bases-proporcionalidad_regla_3.pdf",
+      "paginas": 3,
+      "sha256": "13bb38883e32a02ced42c85dbc056deb1b07a17ebe3fc948f38fb3cf32b41151"
+    },
+    {
+      "tema": "secuencias_aritmeticas",
+      "url": "/apuntes/bases-secuencias_aritmeticas.pdf",
+      "paginas": 3,
+      "sha256": "c462413d7eca7328073deb4233ad7a7463496bea2fe393e6d28946c35714f0bd"
+    },
+    {
+      "tema": "secuencias_geometricas_fibonacci",
+      "url": "/apuntes/bases-secuencias_geometricas_fibonacci.pdf",
+      "paginas": 3,
+      "sha256": "0cad1cd94c2acfd639442a3d0797a288cc3864efe22c8038141a0c7c45e13b8a"
+    },
+    {
+      "tema": "secuencias_alfanumericas_y_figuras",
+      "url": "/apuntes/bases-secuencias_alfanumericas_y_figuras.pdf",
+      "paginas": 4,
+      "sha256": "b8fc2131b58debf9985efe97547fec75a613e53ed5895544e015a976c490de96"
+    },
+    {
+      "tema": "ecuaciones_con_imagenes_2_incognitas",
+      "url": "/apuntes/bases-ecuaciones_con_imagenes_2_incognitas.pdf",
+      "paginas": 2,
+      "sha256": "03005ec9ce5630322a601f5f64a9e312eb30b786e57040eec96533e60e3e6c91"
+    },
+    {
+      "tema": "ortografia_g_j_gu_gu",
+      "url": "/apuntes/bases-ortografia_g_j_gu_gu.pdf",
+      "paginas": 4,
+      "sha256": "28f2091ce71a767fae8550e8d35336ab423b274aeca359979298f25c30a29d50"
+    },
+    {
+      "tema": "ortografia_c_s_z",
+      "url": "/apuntes/bases-ortografia_c_s_z.pdf",
+      "paginas": 5,
+      "sha256": "4995a2e97049f7d9622049fcd3b7cd63f005ac371e65abb4680a0258cac793b7"
+    },
+    {
+      "tema": "diptongo_hiato",
+      "url": "/apuntes/bases-diptongo_hiato.pdf",
+      "paginas": 2,
+      "sha256": "13a0c9639673fbe4c5b5921fa5c1ccb8539fe7caf1c26f99e58e4c5ad3517952"
+    },
+    {
+      "tema": "tilde_diacritica_monosilabos",
+      "url": "/apuntes/bases-tilde_diacritica_monosilabos.pdf",
+      "paginas": 6,
+      "sha256": "406fdce1281ab5d0324ee0e32cef0e1c26e30a71ecfd93e642a0d620d5da51f5"
+    },
+    {
+      "tema": "sustantivos_genero_numero_tipo",
+      "url": "/apuntes/bases-sustantivos_genero_numero_tipo.pdf",
+      "paginas": 7,
+      "sha256": "ceb32553fcf99c4f4953dac281a89d6f959e9d1430bf43b7a950b6c05e194b1b"
+    },
+    {
+      "tema": "verbos_modo_indicativo_tiempos",
+      "url": "/apuntes/bases-verbos_modo_indicativo_tiempos.pdf",
+      "paginas": 13,
+      "sha256": "73cdd17ce103b61c24a65a26a632afd99d9806bf6f9b8dfea8fba4e4fc57cef1"
+    },
+    {
+      "tema": "sujeto_predicado_nucleo",
+      "url": "/apuntes/bases-sujeto_predicado_nucleo.pdf",
+      "paginas": 4,
+      "sha256": "9c35677a537b93d43f81039ce2c9c610dcf8e7a7da3f4bbbce23c7ef8e4f5ea3"
+    },
+    {
+      "tema": "concordancia_sujeto_verbo",
+      "url": "/apuntes/bases-concordancia_sujeto_verbo.pdf",
+      "paginas": 2,
+      "sha256": "c0d8b187eff27ef1ae24918471ced0c150d6cc59b8583aff635f1330910ee60e"
+    },
+    {
+      "tema": "discurso_conectores_sinonimos",
+      "url": "/apuntes/bases-discurso_conectores_sinonimos.pdf",
+      "paginas": 6,
+      "sha256": "eb59d3fdbd88aef7ae2b122bda6984b05a9ece9d36222cca203d6d2825914a05"
+    },
+    {
+      "tema": "produccion_escrita_narracion",
+      "url": "/apuntes/bases-produccion_escrita_narracion.pdf",
+      "paginas": 7,
+      "sha256": "2e6ad35814065193ece05ed8bf3448b8b84c2dd1b5201992200fbe73c623d930"
+    },
+    {
+      "tema": "ortografia_h",
+      "url": "/apuntes/bases-ortografia_h.pdf",
+      "paginas": 6,
+      "sha256": "42693e72b1b1bf62e640c7315eafc35335de2fe2e0e1a11eb9aa535062238d67"
+    }
+  ],
+  "total_paginas": 312
+}

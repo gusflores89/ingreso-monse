@@ -121,6 +121,59 @@ const UNIDADES = [
     }
   },
   {
+    "id": "prof_r27_entero_desde_una_parte",
+    "tema": "fracciones_concepto",
+    "titulo": "Si conozco una mitad, puedo armar las dos",
+    "explicacion": "Una mitad es una de dos partes iguales. Si sabemos cuántos objetos hay en una mitad, repetimos esa cantidad para completar la otra. Con tercios necesitamos tres partes iguales; con cuartos, cuatro.",
+    "ejemplo": "La mitad de una caja son 4 fichas. La caja completa tiene dos mitades de 4: 8 fichas.",
+    "pasos": [
+      "La parte conocida tiene cuatro fichas.",
+      "La otra mitad debe tener otras cuatro, porque las mitades son iguales.",
+      "Reunimos 4 + 4 = 8 fichas."
+    ],
+    "pista": "Repetí la misma cantidad tantas veces como partes iguales tenga el entero.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Una mitad",
+          "cantidad": 4
+        },
+        {
+          "label": "Otra mitad",
+          "cantidad": 4
+        }
+      ]
+    }
+  },
+  {
+    "id": "prof_r27_entero_desde_parte",
+    "tema": "fracciones_concepto",
+    "titulo": "Una parte permite reconstruir el entero",
+    "explicacion": "Si conocemos una de varias partes iguales, podemos repetirla hasta completar el entero. Si conocemos varias partes juntas, primero averiguamos cuánto tiene una sola.",
+    "ejemplo": "Dos tercios de una bolsa son 8 fichas. La bolsa completa tenía 12 fichas.",
+    "pasos": [
+      "Los 8 corresponden a dos partes iguales: 8 ÷ 2 = 4 en cada parte.",
+      "El entero tiene tres partes de 4.",
+      "3 × 4 = 12. Revisamos: dos partes de 4 son 8."
+    ],
+    "pista": "Primero encontrá una parte; después reuní todas las partes del entero.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "Dos partes juntas contienen 8 fichas",
+      "barras": [
+        {
+          "label": "2/3",
+          "partes": [
+            "p",
+            "p",
+            "v"
+          ]
+        }
+      ]
+    }
+  },
+  {
     "id": "frac_con_3_unidad_referencia",
     "tema": "fracciones_concepto",
     "titulo": "La mitad de una colección",
@@ -428,6 +481,35 @@ const UNIDADES = [
     }
   },
   {
+    "id": "prof_r27_fracciones_recta",
+    "tema": "fracciones_concepto",
+    "titulo": "Las fracciones también son números",
+    "explicacion": "En la recta, el tramo de 0 a 1 representa un entero. Lo dividimos en partes iguales para ubicar fracciones. Podemos seguir después del 1: las fracciones no terminan en un entero.",
+    "ejemplo": "Cuatro saltos de un cuarto llevan de 0 a 1. Seis saltos llegan a 6/4, entre 1 y 2.",
+    "pasos": [
+      "Partimos el tramo de 0 a 1 en cuatro intervalos iguales.",
+      "Cada intervalo vale 1/4; cuatro intervalos forman 4/4 = 1.",
+      "Dos intervalos más llegan a 6/4 = 1 y 2/4."
+    ],
+    "pista": "Contá intervalos iguales desde cero, no la cantidad de marcas.",
+    "visual": {
+      "tipo": "recta",
+      "min": 0,
+      "max": 2,
+      "paso": 0.25,
+      "marcas": [
+        {
+          "valor": 0.25,
+          "label": "1/4"
+        },
+        {
+          "valor": 1.5,
+          "label": "6/4"
+        }
+      ]
+    }
+  },
+  {
     "id": "prof_frac_clasificar",
     "tema": "fracciones_concepto",
     "titulo": "Fracciones menores, mayores o iguales a enteros",
@@ -438,7 +520,26 @@ const UNIDADES = [
       "Si no, comparamos arriba y abajo: 3 < 4 y 5 > 4."
     ],
     "pista": "Primero fijate si la división es exacta; después compará arriba y abajo.",
-    "visual": null
+    "visual": {
+      "tipo": "fracciones_grupos",
+      "casos": [
+        {
+          "label": "3/4 · propia",
+          "partes": 4,
+          "pintadas": 3
+        },
+        {
+          "label": "5/4 · impropia",
+          "partes": 4,
+          "pintadas": 5
+        },
+        {
+          "label": "8/4 · aparente",
+          "partes": 4,
+          "pintadas": 8
+        }
+      ]
+    }
   },
   {
     "id": "prof_frac_a_mixto",
@@ -485,7 +586,36 @@ const UNIDADES = [
       "Sumamos el tercio que sobra: 6 + 1 = 7 tercios."
     ],
     "pista": "Multiplicá los enteros por el denominador y sumá el numerador.",
-    "visual": null
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "Dos enteros y un tercio: siete tercios",
+      "barras": [
+        {
+          "label": "Entero 1",
+          "partes": [
+            "p",
+            "p",
+            "p"
+          ]
+        },
+        {
+          "label": "Entero 2",
+          "partes": [
+            "p",
+            "p",
+            "p"
+          ]
+        },
+        {
+          "label": "1/3 más",
+          "partes": [
+            "p",
+            "v",
+            "v"
+          ]
+        }
+      ]
+    }
   },
   {
     "id": "puente_saltos",
@@ -520,7 +650,15 @@ const UNIDADES = [
       "Sumamos 4 otra vez: 8. Repetimos: 12, 16."
     ],
     "pista": "Sumá el tamaño del salto para encontrar el siguiente múltiplo.",
-    "visual": null
+    "visual": {
+      "tipo": "saltos",
+      "series": [
+        {
+          "paso": 4,
+          "cantidad": 4
+        }
+      ]
+    }
   },
   {
     "id": "puente_encuentro",
@@ -558,7 +696,19 @@ const UNIDADES = [
       "Buscá el primero que comparten. Para 2 y 3 es 6."
     ],
     "pista": "Armá las dos listas y buscá la coincidencia positiva más pequeña.",
-    "visual": null
+    "visual": {
+      "tipo": "saltos",
+      "series": [
+        {
+          "paso": 2,
+          "cantidad": 3
+        },
+        {
+          "paso": 3,
+          "cantidad": 2
+        }
+      ]
+    }
   },
   {
     "id": "fr24_sumar",
@@ -718,7 +868,37 @@ const UNIDADES = [
       "Multiplicamos también arriba: 2 × 4 = 8. Queda 8/12."
     ],
     "pista": "Dividí el denominador nuevo por el anterior para encontrar el factor.",
-    "visual": null
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "El mismo entero, ahora en doceavos",
+      "barras": [
+        {
+          "label": "2/3",
+          "partes": [
+            "p",
+            "p",
+            "v"
+          ]
+        },
+        {
+          "label": "8/12",
+          "partes": [
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "v",
+            "v",
+            "v",
+            "v"
+          ]
+        }
+      ]
+    }
   },
   {
     "id": "prof_op_comparar",
@@ -830,7 +1010,63 @@ const UNIDADES = [
       "Restamos: (10 − 3)/12 = 7/12."
     ],
     "pista": "No restes los denominadores: primero igualá el tamaño de las partes.",
-    "visual": null
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "Restamos partes del mismo tamaño",
+      "barras": [
+        {
+          "label": "5/6 = 10/12",
+          "partes": [
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "v",
+            "v"
+          ]
+        },
+        {
+          "label": "Quitamos 3/12",
+          "partes": [
+            "q",
+            "q",
+            "q",
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "v",
+            "v"
+          ]
+        },
+        {
+          "label": "Quedan 7/12",
+          "partes": [
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "v",
+            "v",
+            "v",
+            "v",
+            "v"
+          ]
+        }
+      ]
+    }
   },
   {
     "id": "fr24_cantidad",
@@ -861,7 +1097,12 @@ const UNIDADES = [
       "Tomamos 2 grupos: 4 × 2 = 8."
     ],
     "pista": "Primero encontrá cuánto vale un grupo; después elegí cuántos grupos tomar.",
-    "visual": null
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 3,
+      "columnas": 4,
+      "seleccionadas": 2
+    }
   },
   {
     "id": "fr24_partedeparte",
@@ -995,7 +1236,30 @@ const UNIDADES = [
       "3/4 × 4/1 = 12/4 = 3. Comprobamos: 3 × 1/4 = 3/4."
     ],
     "pista": "Conservá la primera fracción e invertí solo la segunda. Después multiplicá.",
-    "visual": null
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "En 3/4 caben tres porciones de 1/4",
+      "barras": [
+        {
+          "label": "Tenemos 3/4",
+          "partes": [
+            "p",
+            "p",
+            "p",
+            "v"
+          ]
+        },
+        {
+          "label": "Cada porción",
+          "partes": [
+            "p",
+            "v",
+            "v",
+            "v"
+          ]
+        }
+      ]
+    }
   },
   {
     "id": "puente_agrupamientos",
@@ -1048,7 +1312,11 @@ const UNIDADES = [
       "Con 4 grupos sobran 2: 4 no es divisor de 6."
     ],
     "pista": "Probá la división o buscá una multiplicación que dé exactamente el total.",
-    "visual": null
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 2,
+      "columnas": 3
+    }
   },
   {
     "id": "bases_criterio_2",
@@ -1061,7 +1329,11 @@ const UNIDADES = [
       "Comprobá con una multiplicación o una división exacta."
     ],
     "pista": "Mirá solo la última cifra.",
-    "visual": null
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 2,
+      "columnas": 9
+    }
   },
   {
     "id": "bases_criterio_3",
@@ -1074,7 +1346,24 @@ const UNIDADES = [
       "Comprobá con una multiplicación o una división exacta."
     ],
     "pista": "Sumá todas las cifras y fijate si esa suma está en la tabla del 3.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Miramos las cifras de 123",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "1 + 2 + 3 = 6"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "6 = 3 × 2"
+        },
+        {
+          "titulo": "Comprobamos",
+          "texto": "123 = 3 × 41"
+        }
+      ]
+    }
   },
   {
     "id": "bases_criterio_5",
@@ -1087,7 +1376,11 @@ const UNIDADES = [
       "Comprobá con una multiplicación o una división exacta."
     ],
     "pista": "Mirá si termina en 0 o en 5.",
-    "visual": null
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 7,
+      "columnas": 5
+    }
   },
   {
     "id": "bases_criterio_10",
@@ -1100,7 +1393,24 @@ const UNIDADES = [
       "Comprobá con una multiplicación o una división exacta."
     ],
     "pista": "Para dividir exactamente por 10, la última cifra debe ser 0.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Agrupamos cuarenta en decenas",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "10 + 10 + 10 + 10"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "40 ÷ 10 = 4 grupos"
+        },
+        {
+          "titulo": "Comprobamos",
+          "texto": "El último dígito es 0"
+        }
+      ]
+    }
   },
   {
     "id": "div_primos_3_primos_compuestos",
@@ -1113,7 +1423,11 @@ const UNIDADES = [
       "El 1 solo tiene al 1 como divisor. Va en una categoría aparte."
     ],
     "pista": "Buscá los divisores. Dos: primo. Más de dos: compuesto. El 1 es un caso aparte.",
-    "visual": null
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 1,
+      "columnas": 7
+    }
   },
   {
     "id": "puente_comunes",
@@ -1145,7 +1459,24 @@ const UNIDADES = [
       "Comparten 1, 2 y 4. Elegimos el mayor: 4."
     ],
     "pista": "Buscá divisores, no múltiplos. De los que comparten, elegí el mayor.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Paquetes iguales sin sobrar",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "8 = 4 + 4"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "12 = 4 + 4 + 4"
+        },
+        {
+          "titulo": "Comprobamos",
+          "texto": "El mayor tamaño común es 4"
+        }
+      ]
+    }
   },
   {
     "id": "prof_fact_primos",
@@ -1158,7 +1489,24 @@ const UNIDADES = [
       "Los divisores usados son 2, 2 y 3. Su producto vuelve a dar 12."
     ],
     "pista": "Todos los factores deben ser primos y su producto debe dar el número original.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Desarmamos doce en factores primos",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "12 = 2 × 6"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "6 = 2 × 3"
+        },
+        {
+          "titulo": "Comprobamos",
+          "texto": "12 = 2 × 2 × 3"
+        }
+      ]
+    }
   },
   {
     "id": "prof_fact_mcm",
@@ -1171,7 +1519,24 @@ const UNIDADES = [
       "2 × 2 × 3 × 3 = 36. Tanto 12 como 18 dividen exactamente a 36."
     ],
     "pista": "Para el MCM conservá cada primo con la mayor cantidad de repeticiones.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Tomamos los factores necesarios",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "12 = 2 × 2 × 3"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "18 = 2 × 3 × 3"
+        },
+        {
+          "titulo": "Comprobamos",
+          "texto": "MCM: 2 × 2 × 3 × 3 = 36"
+        }
+      ]
+    }
   },
   {
     "id": "prof_fact_mcd",
@@ -1184,7 +1549,51 @@ const UNIDADES = [
       "Conservamos uno de cada: 2 × 3 = 6."
     ],
     "pista": "Para el MCD buscá lo común, con la menor cantidad de repeticiones.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Tomamos solamente los factores comunes",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "12 = 2 × 2 × 3"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "18 = 2 × 3 × 3"
+        },
+        {
+          "titulo": "Comprobamos",
+          "texto": "MCD: 2 × 3 = 6"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prof_r27_elegir_mcm_mcd",
+    "tema": "divisibilidad_primos_mcm_mcd",
+    "titulo": "¿Buscamos coincidir o repartir sin sobrantes?",
+    "explicacion": "Para saber cuándo dos repeticiones vuelven a coincidir por primera vez, buscamos el primer múltiplo común: MCM. Para armar la mayor cantidad de paquetes iguales usando todo, buscamos un número que divida ambas cantidades: MCD. Primero entendemos qué queremos encontrar.",
+    "ejemplo": "Dos luces se encienden cada 2 y cada 3 minutos: vuelven a coincidir a los 6. Con 8 fichas rojas y 12 azules podemos hacer como máximo 4 paquetes idénticos: cada uno con 2 rojas y 3 azules.",
+    "pasos": [
+      "Luces: 2, 4, 6… y 3, 6… El primer encuentro después del inicio es 6: usamos MCM.",
+      "Paquetes: 4 divide tanto 8 como 12. Cada paquete recibe 2 rojas y 3 azules.",
+      "No se puede hacer una cantidad mayor de paquetes idénticos sin que sobren fichas: usamos MCD."
+    ],
+    "pista": "Coincidir otra vez: múltiplos. Repartir todo en paquetes idénticos: divisores.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "La pregunta decide la herramienta",
+      "nodos": [
+        {
+          "titulo": "Volver a coincidir",
+          "texto": "Buscamos el primer múltiplo común después del inicio: MCM."
+        },
+        {
+          "titulo": "Más paquetes iguales",
+          "texto": "Buscamos el mayor divisor común de las cantidades: MCD."
+        }
+      ]
+    }
   },
   {
     "id": "leng_lect_1_literal",
@@ -1571,7 +1980,20 @@ const UNIDADES = [
       "Después de M escribimos B; después de N, V en estos grupos."
     ],
     "pista": "Mirá el grupo de dos letras: MB o NV.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Mirá la parte que cambia",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "tambor → M + B"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "enviar → N + V"
+        }
+      ]
+    }
   },
   {
     "id": "leng_bv_2_bu_bur_bus",
@@ -1584,7 +2006,20 @@ const UNIDADES = [
       "Reconocemos el comienzo y fijamos cómo se escribe."
     ],
     "pista": "Buscá el comienzo BU, BUR o BUS de las palabras que practicamos.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Mirá la parte que cambia",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "burbuja → BUR"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "buscar → BUS"
+        }
+      ]
+    }
   },
   {
     "id": "leng_bv_3_aba",
@@ -1597,7 +2032,20 @@ const UNIDADES = [
       "Al contar una costumbre pasada usamos saltaba, con B."
     ],
     "pista": "Buscá la acción terminada en -ar y la terminación -aba.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Mirá la parte que cambia",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "saltar → saltaba"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "-aba se escribe con B"
+        }
+      ]
+    }
   },
   {
     "id": "leng_bv_4_iba",
@@ -1610,7 +2058,20 @@ const UNIDADES = [
       "Recordamos la familia de formas: iba, ibas, íbamos, iban."
     ],
     "pista": "Las formas IBA, IBAS, ÍBAMOS e IBAN se escriben con B.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Mirá la parte que cambia",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "ir → iba"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "La familia de iba lleva B"
+        }
+      ]
+    }
   },
   {
     "id": "leng_bv_5_adjetivos",
@@ -1623,7 +2084,20 @@ const UNIDADES = [
       "Reconocemos -ivo o -iva y escribimos V."
     ],
     "pista": "¿La palabra describe cómo es algo y termina en -ivo o -iva? Mirá la V.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Mirá la parte que cambia",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "activo → -ivo"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "creativa → -iva"
+        }
+      ]
+    }
   },
   {
     "id": "leng_bv_6_tuve",
@@ -1636,7 +2110,20 @@ const UNIDADES = [
       "Volvemos a leer las tres formas y observamos la V."
     ],
     "pista": "Relacioná la acción con su forma: tener → tuve, estar → estuve, andar → anduve.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Mirá la parte que cambia",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "tener → tuve"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "estar → estuve; andar → anduve"
+        }
+      ]
+    }
   },
   {
     "id": "leng_til_0_silabas",
@@ -1649,7 +2136,20 @@ const UNIDADES = [
       "Damos una palmada por cada grupo: pe / lo / ta."
     ],
     "pista": "Decí la palabra en voz alta y marcá un golpe por sílaba.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Mirá la parte que cambia",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "pe · lo · ta"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "Tres sílabas"
+        }
+      ]
+    }
   },
   {
     "id": "leng_til_1_tonica",
@@ -1662,7 +2162,20 @@ const UNIDADES = [
       "Escuchamos dónde apoyamos la voz: MI."
     ],
     "pista": "Decí la palabra completa; escuchá qué sílaba suena más fuerte.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Mirá la parte que cambia",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "ca · MI · sa"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "MI lleva la fuerza; no tiene tilde"
+        }
+      ]
+    }
   },
   {
     "id": "leng_til_2_agudas",
@@ -1675,7 +2188,20 @@ const UNIDADES = [
       "Miramos la última letra: vocal, N o S pide tilde en estos casos."
     ],
     "pista": "Primero ubicá la fuerza; después mirá la última letra.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Mirá la parte que cambia",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "ca · FÉ"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "Última sílaba; termina en vocal"
+        }
+      ]
+    }
   },
   {
     "id": "leng_til_3_graves",
@@ -1688,7 +2214,20 @@ const UNIDADES = [
       "Termina en L, así que esta palabra grave lleva tilde."
     ],
     "pista": "¿La fuerza está en la penúltima? Si termina en vocal, N o S, estos ejemplos no llevan tilde.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Mirá la parte que cambia",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "ÁR · bol"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "Penúltima; termina en L"
+        }
+      ]
+    }
   },
   {
     "id": "leng_til_4_esdrujulas",
@@ -1701,7 +2240,20 @@ const UNIDADES = [
       "Si la tónica es la antepenúltima, escribimos tilde en su vocal."
     ],
     "pista": "Contá desde el final: última, penúltima, antepenúltima.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Mirá la parte que cambia",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "MÚ · si · ca"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "Antepenúltima; siempre lleva tilde"
+        }
+      ]
+    }
   },
   {
     "id": "leng_til_5_sobresdrujulas",
@@ -1714,7 +2266,20 @@ const UNIDADES = [
       "La fuerza quedó antes de la antepenúltima: escribimos dígaselo."
     ],
     "pista": "Contá desde el final. Si la fuerza está antes de la tercera sílaba, estas formas llevan tilde.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Mirá la parte que cambia",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "DÍ · ga · se · lo"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "Antes de la antepenúltima"
+        }
+      ]
+    }
   },
   {
     "id": "entrada_contar",
@@ -1849,7 +2414,23 @@ const UNIDADES = [
       "Quedan 3 fichas sueltas: 20 + 3 = 23."
     ],
     "pista": "Separá los paquetes completos de las unidades sueltas.",
-    "visual": null
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Decena 1",
+          "cantidad": 10
+        },
+        {
+          "label": "Decena 2",
+          "cantidad": 10
+        },
+        {
+          "label": "Unidades",
+          "cantidad": 3
+        }
+      ]
+    }
   },
   {
     "id": "mat_num_posicion",
@@ -1862,7 +2443,27 @@ const UNIDADES = [
       "Descomponemos: 300 + 50 + 2 = 352."
     ],
     "pista": "Contá las posiciones desde la derecha.",
-    "visual": null
+    "visual": {
+      "tipo": "posicional",
+      "titulo": "352: cada cifra ocupa su lugar",
+      "columnas": [
+        {
+          "nombre": "Centenas",
+          "cantidad": 3,
+          "valor": 100
+        },
+        {
+          "nombre": "Decenas",
+          "cantidad": 5,
+          "valor": 10
+        },
+        {
+          "nombre": "Unidades",
+          "cantidad": 2,
+          "valor": 1
+        }
+      ]
+    }
   },
   {
     "id": "mat_num_orden",
@@ -1875,7 +2476,42 @@ const UNIDADES = [
       "418 tiene 4 centenas y 391 tiene 3: elegimos 418."
     ],
     "pista": "Compará centenas antes que decenas y unidades.",
-    "visual": null
+    "visual": {
+      "tipo": "recta",
+      "min": 380,
+      "max": 430,
+      "paso": 10,
+      "marcas": [
+        {
+          "valor": 391,
+          "label": "391"
+        },
+        {
+          "valor": 418,
+          "label": "418"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prof_r27_naturales_recta",
+    "tema": "numeros_naturales_sistema_decimal",
+    "titulo": "Cada marca conserva la misma distancia",
+    "explicacion": "En una regla, los números crecen al avanzar hacia la derecha. En una recta numérica, marcas igualmente separadas representan saltos iguales. Primero miramos de cuánto es cada salto.",
+    "ejemplo": "La recta muestra 0, 10, 20, 30 y 40. Entre 20 y 40 está 30.",
+    "pasos": [
+      "De 0 a 10 aumentamos 10.",
+      "Cada intervalo vuelve a aumentar 10.",
+      "Después de 20 viene 30; después, 40."
+    ],
+    "pista": "Leé dos marcas seguidas para encontrar el tamaño del salto.",
+    "visual": {
+      "tipo": "recta",
+      "min": 0,
+      "max": 40,
+      "paso": 10,
+      "marcas": []
+    }
   },
   {
     "id": "entrada_llevar",
@@ -1913,7 +2549,24 @@ const UNIDADES = [
       "2 + 1 + 1 decenas = 4 decenas; quedan 42."
     ],
     "pista": "Si las unidades llegan a diez, llevá una decena.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Juntamos 27 y 15",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "20 + 10 = 30"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "7 + 5 = 12 = 10 + 2"
+        },
+        {
+          "titulo": "Comprobamos",
+          "texto": "30 + 10 + 2 = 42"
+        }
+      ]
+    }
   },
   {
     "id": "entrada_desarmar",
@@ -1951,7 +2604,24 @@ const UNIDADES = [
       "12 − 7 = 5 y 3 − 1 = 2 decenas. Comprobamos: 25 + 17 = 42."
     ],
     "pista": "Podés cambiar una decena por diez unidades.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Cambiamos una decena por diez unidades",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "42 = 30 + 12"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "Quitamos 10 y 7"
+        },
+        {
+          "titulo": "Comprobamos",
+          "texto": "20 + 5 = 25"
+        }
+      ]
+    }
   },
   {
     "id": "entrada_grupos",
@@ -1989,7 +2659,23 @@ const UNIDADES = [
       "Escribimos 3 × 4 = 12."
     ],
     "pista": "Contá los grupos y cuánto hay en cada uno.",
-    "visual": null
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Plato 1",
+          "cantidad": 4
+        },
+        {
+          "label": "Plato 2",
+          "cantidad": 4
+        },
+        {
+          "label": "Plato 3",
+          "cantidad": 4
+        }
+      ]
+    }
   },
   {
     "id": "puente_filas",
@@ -2040,7 +2726,11 @@ const UNIDADES = [
       "El doble de 6 es 12: cuatro veces 3."
     ],
     "pista": "Calculá un doble y después otro doble.",
-    "visual": null
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 4,
+      "columnas": 3
+    }
   },
   {
     "id": "mat_tab_cinco",
@@ -2053,7 +2743,11 @@ const UNIDADES = [
       "Son cuatro grupos de cinco: 20."
     ],
     "pista": "Contá los saltos, además de mirar la última cifra.",
-    "visual": null
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 5,
+      "columnas": 4
+    }
   },
   {
     "id": "puente_seis",
@@ -2104,7 +2798,11 @@ const UNIDADES = [
       "Duplicamos: 20 + 20 = 40."
     ],
     "pista": "Buscá primero la tabla de la mitad del factor.",
-    "visual": null
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 8,
+      "columnas": 5
+    }
   },
   {
     "id": "puente_siete",
@@ -2136,7 +2834,11 @@ const UNIDADES = [
       "Sumamos 30 + 12 = 42."
     ],
     "pista": "Separá 7 en 5 + 2 sin cambiar el otro factor.",
-    "visual": null
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 7,
+      "columnas": 6
+    }
   },
   {
     "id": "puente_diez",
@@ -2168,7 +2870,24 @@ const UNIDADES = [
       "23 decenas equivalen a 230 unidades."
     ],
     "pista": "Pensá en decenas para × 10 y centenas para × 100.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Diez veces cada parte de 23",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "20 × 10 = 200"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "3 × 10 = 30"
+        },
+        {
+          "titulo": "Comprobamos",
+          "texto": "200 + 30 = 230"
+        }
+      ]
+    }
   },
   {
     "id": "puente_nueve",
@@ -2200,7 +2919,12 @@ const UNIDADES = [
       "Quitamos un grupo de 6: 60 − 6 = 54."
     ],
     "pista": "Restá el tamaño de un grupo, no el número uno.",
-    "visual": null
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 10,
+      "columnas": 6,
+      "quitar_ultima": true
+    }
   },
   {
     "id": "entrada_repartir",
@@ -2271,7 +2995,12 @@ const UNIDADES = [
       "17 − 15 = 2. El resto 2 es menor que 3."
     ],
     "pista": "Buscá el mayor múltiplo del divisor que no supere el total.",
-    "visual": null
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 3,
+      "columnas": 5,
+      "sobrantes": 2
+    }
   },
   {
     "id": "mat_div_descomponer",
@@ -2284,7 +3013,24 @@ const UNIDADES = [
       "20 + 1 = 21; comprobamos 21 × 4 = 84."
     ],
     "pista": "Separá una parte grande que puedas dividir y repartí lo que queda.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Repartimos 84 en cuatro partes iguales",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "80 ÷ 4 = 20 para cada parte"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "4 ÷ 4 = 1 para cada parte"
+        },
+        {
+          "titulo": "Comprobamos",
+          "texto": "20 + 1 = 21 en cada una"
+        }
+      ]
+    }
   },
   {
     "id": "mat_rom_sumar",
@@ -2297,7 +3043,24 @@ const UNIDADES = [
       "10 + 5 + 1 = 16."
     ],
     "pista": "Sumá cuando los símbolos van de mayor a menor.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Leemos XVI",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "X = 10; V = 5; I = 1"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "Van de mayor a menor: sumamos"
+        },
+        {
+          "titulo": "Comprobamos",
+          "texto": "10 + 5 + 1 = 16"
+        }
+      ]
+    }
   },
   {
     "id": "mat_rom_restar",
@@ -2310,7 +3073,54 @@ const UNIDADES = [
       "X vale 10; IV vale 5 − 1 = 4. Total: 14."
     ],
     "pista": "Buscá primero uno de los seis pares permitidos.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Leemos XIV",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "X = 10; IV = 5 − 1"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "IV es cuatro"
+        },
+        {
+          "titulo": "Comprobamos",
+          "texto": "10 + 4 = 14"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prof_r27_romanos_escribir",
+    "tema": "numeros_romanos",
+    "titulo": "Armar el número romano por partes",
+    "explicacion": "Para escribir un número romano, separamos decenas y unidades y usamos sus símbolos. I vale 1, V vale 5, X vale 10 y L vale 50. IV es 4, IX es 9 y XL es 40. No se inventa cualquier resta entre letras.",
+    "ejemplo": "24 = 20 + 4. Veinte se escribe XX y cuatro IV: reunimos XXIV.",
+    "pasos": [
+      "Separamos 24 en 20 y 4.",
+      "20 = XX; 4 = IV, porque I antes de V resta uno.",
+      "Juntamos las partes: XXIV. Al leerlo recuperamos 20 + 4 = 24."
+    ],
+    "pista": "Armá decenas y unidades por separado y volvé a leer para comprobar.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "X = 10",
+          "cantidad": 10
+        },
+        {
+          "label": "X = 10",
+          "cantidad": 10
+        },
+        {
+          "label": "IV = 4",
+          "cantidad": 4
+        }
+      ]
+    }
   },
   {
     "id": "fr24_resto",
@@ -2348,7 +3158,12 @@ const UNIDADES = [
       "24 − 8 = 16: ese es el resto."
     ],
     "pista": "Calculá lo usado antes de restarlo del total.",
-    "visual": null
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 3,
+      "columnas": 8,
+      "quitar_ultima": true
+    }
   },
   {
     "id": "fr24_referencia",
@@ -2415,7 +3230,96 @@ const UNIDADES = [
       "La mitad del resto es 16 ÷ 2 = 8."
     ],
     "pista": "Encerrá el resto: ese es el nuevo total para el segundo cálculo.",
-    "visual": null
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Primero usamos",
+          "cantidad": 8
+        },
+        {
+          "label": "Mitad del resto",
+          "cantidad": 8
+        },
+        {
+          "label": "Quedan",
+          "cantidad": 8
+        }
+      ]
+    }
+  },
+  {
+    "id": "prof_r27_resto_inverso",
+    "tema": "fracciones_del_resto",
+    "titulo": "Lo que queda también es una parte del inicio",
+    "explicacion": "Si se usa una parte, el resto completa lo que había al principio. Para volver al inicio, identificamos qué fracción quedó y reconstruimos las partes iguales.",
+    "ejemplo": "Se usó 1/3 de una bolsa y quedaron 8 fichas. Al principio había 12.",
+    "pasos": [
+      "El entero tiene tres tercios; si usamos uno, quedan dos.",
+      "Los 8 son esos dos tercios: 8 ÷ 2 = 4 en cada tercio.",
+      "Tres tercios tienen 3 × 4 = 12 fichas."
+    ],
+    "pista": "Primero nombrá la fracción que queda; no confundas resto con cantidad inicial.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "Quedaron dos tercios: 8 fichas",
+      "barras": [
+        {
+          "label": "2/3",
+          "partes": [
+            "p",
+            "p",
+            "v"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "prof_r27_dos_restos_inversos",
+    "tema": "fracciones_del_resto",
+    "titulo": "Volver hacia atrás, un consumo por vez",
+    "explicacion": "Cuando se usa una parte y luego una parte de lo que quedó, cada paso tiene su propio entero. Para recuperar el inicio, deshacemos primero el último consumo y después el anterior.",
+    "ejemplo": "Se usó la mitad de unas fichas y luego la mitad del resto. Quedaron 3: al principio había 12.",
+    "pasos": [
+      "El último 3 es la mitad del resto anterior: antes del segundo uso había 6.",
+      "Esas 6 eran la mitad del inicio: al principio había 12.",
+      "Revisamos hacia adelante: 12 → 6 → 3."
+    ],
+    "pista": "Empezá por el final y reconstruí el paso anterior antes de seguir.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "Cada fila muestra el mismo total inicial",
+      "barras": [
+        {
+          "label": "Inicio",
+          "partes": [
+            "p",
+            "p",
+            "p",
+            "p"
+          ]
+        },
+        {
+          "label": "Primer resto",
+          "partes": [
+            "p",
+            "p",
+            "v",
+            "v"
+          ]
+        },
+        {
+          "label": "Final: 3",
+          "partes": [
+            "p",
+            "v",
+            "v",
+            "v"
+          ]
+        }
+      ]
+    }
   },
   {
     "id": "mat_dec_fraccion",
@@ -2428,7 +3332,42 @@ const UNIDADES = [
       "Ponemos 7 en el lugar de los décimos: 0,7."
     ],
     "pista": "Contá cuántas posiciones necesitás después de la coma.",
-    "visual": null
+    "visual": {
+      "tipo": "liquidos",
+      "titulo": "Un litro repartido en diez partes",
+      "recipientes": [
+        {
+          "ml": 700,
+          "label": "7 de 10 partes",
+          "capacidad": 1000
+        }
+      ]
+    }
+  },
+  {
+    "id": "prof_r27_decimal_posicion",
+    "tema": "decimales_conversion",
+    "titulo": "La coma ayuda a contar partes pequeñas",
+    "explicacion": "Dividí un entero en diez partes iguales: cada una es un décimo. Si dividís cada décimo otra vez en diez, cada parte nueva es un centésimo. Diez centésimos ocupan lo mismo que un décimo.",
+    "ejemplo": "0,3 y 0,30 nombran la misma cantidad: tres décimos o treinta centésimos.",
+    "pasos": [
+      "El tramo de 0 a 1 es nuestro entero.",
+      "Tres de sus diez intervalos llegan a 0,3.",
+      "Cada décimo contiene diez centésimos: tres décimos contienen treinta. Por eso 0,3 = 0,30."
+    ],
+    "pista": "Decí qué cuenta cada lugar: décimos primero, centésimos después.",
+    "visual": {
+      "tipo": "recta",
+      "min": 0,
+      "max": 1,
+      "paso": 0.1,
+      "marcas": [
+        {
+          "valor": 0.3,
+          "label": "0,3 = 0,30"
+        }
+      ]
+    }
   },
   {
     "id": "prof_dec_milesimos",
@@ -2441,7 +3380,17 @@ const UNIDADES = [
       "La tercera cifra es 5; cuenta milésimos."
     ],
     "pista": "Contá los lugares desde la coma, también cuando aparece un cero.",
-    "visual": null
+    "visual": {
+      "tipo": "liquidos",
+      "titulo": "375 mL de un litro",
+      "recipientes": [
+        {
+          "ml": 375,
+          "label": "375 mL",
+          "capacidad": 1000
+        }
+      ]
+    }
   },
   {
     "id": "prof_dec_ceros",
@@ -2454,7 +3403,27 @@ const UNIDADES = [
       "Quitamos solo ceros finales: 0,300 vuelve a ser 0,3."
     ],
     "pista": "Quitá solo ceros al final de la parte decimal.",
-    "visual": null
+    "visual": {
+      "tipo": "liquidos",
+      "titulo": "Tres formas de nombrar la misma cantidad",
+      "recipientes": [
+        {
+          "ml": 300,
+          "label": "0,3 L",
+          "capacidad": 1000
+        },
+        {
+          "ml": 300,
+          "label": "0,30 L",
+          "capacidad": 1000
+        },
+        {
+          "ml": 300,
+          "label": "0,300 L",
+          "capacidad": 1000
+        }
+      ]
+    }
   },
   {
     "id": "prof_dec_comparar",
@@ -2467,7 +3436,22 @@ const UNIDADES = [
       "80 centésimos son más que 75 centésimos."
     ],
     "pista": "Igualá las posiciones con ceros finales y compará desde la izquierda.",
-    "visual": null
+    "visual": {
+      "tipo": "liquidos",
+      "titulo": "Comparamos con el mismo recipiente",
+      "recipientes": [
+        {
+          "ml": 800,
+          "label": "0,80 L",
+          "capacidad": 1000
+        },
+        {
+          "ml": 750,
+          "label": "0,75 L",
+          "capacidad": 1000
+        }
+      ]
+    }
   },
   {
     "id": "prof_dec_a_fraccion",
@@ -2480,7 +3464,22 @@ const UNIDADES = [
       "Sin la coma queda 125; escribimos 125/100."
     ],
     "pista": "El denominador tiene tantos ceros como cifras decimales.",
-    "visual": null
+    "visual": {
+      "tipo": "liquidos",
+      "titulo": "Un litro y un cuarto de otro",
+      "recipientes": [
+        {
+          "ml": 1000,
+          "label": "100/100 L",
+          "capacidad": 1000
+        },
+        {
+          "ml": 250,
+          "label": "25/100 L",
+          "capacidad": 1000
+        }
+      ]
+    }
   },
   {
     "id": "prof_dec_desde_fraccion",
@@ -2493,7 +3492,42 @@ const UNIDADES = [
       "Esos 2 décimos son 20 centésimos: entre 4 dan 5 centésimos. Queda 0,75 y resto cero."
     ],
     "pista": "Dividí el numerador por el denominador; si hay resto, seguí con partes diez veces menores.",
-    "visual": null
+    "visual": {
+      "tipo": "liquidos",
+      "titulo": "Tres cuartos de un litro",
+      "recipientes": [
+        {
+          "ml": 750,
+          "label": "3/4 de 1 L",
+          "capacidad": 1000
+        }
+      ]
+    }
+  },
+  {
+    "id": "prof_r27_decimales_periodicos",
+    "tema": "decimales_conversion",
+    "titulo": "Cuando una división sigue repitiendo",
+    "explicacion": "Algunas divisiones terminan; otras siguen sin terminar. Si una cifra o un grupo se repite siempre, el decimal es periódico. Los puntos suspensivos indican que continúa. El período es el bloque que se repite.",
+    "ejemplo": "1 ÷ 3 = 0,333… El 3 se repite y es el período.",
+    "pasos": [
+      "Un entero no alcanza para dar uno entero a cada persona: escribimos 0 y la coma.",
+      "Con diez décimos damos 3 a cada una; sobra 1 décimo. Al cambiarlo por centésimos vuelve a pasar lo mismo.",
+      "Seguimos obteniendo 3: 0,333… No es exactamente 0,3; la división continúa."
+    ],
+    "pista": "Buscá el bloque que se repite y distinguí una escritura exacta de una aproximación.",
+    "visual": {
+      "tipo": "recta",
+      "min": 0,
+      "max": 1,
+      "paso": 0.1,
+      "marcas": [
+        {
+          "valor": 0.3333333333333333,
+          "label": "1/3 = 0,333…"
+        }
+      ]
+    }
   },
   {
     "id": "mat_dec_sumar",
@@ -2506,7 +3540,31 @@ const UNIDADES = [
       "17 décimos equivalen a 1,7."
     ],
     "pista": "Alineá las comas antes de sumar.",
-    "visual": null
+    "visual": {
+      "tipo": "liquidos",
+      "titulo": "Juntamos cantidades de jugo",
+      "recipientes": [
+        {
+          "ml": 1200,
+          "label": "1,2 L",
+          "capacidad": 2000
+        },
+        {
+          "ml": 500,
+          "label": "0,5 L",
+          "capacidad": 2000
+        },
+        {
+          "ml": 1700,
+          "label": "1,7 L",
+          "capacidad": 2000
+        }
+      ],
+      "operadores": [
+        "+",
+        "="
+      ]
+    }
   },
   {
     "id": "prof_dec_sumar_distintas",
@@ -2519,7 +3577,31 @@ const UNIDADES = [
       "300 centésimos forman 3 unidades y quedan 15 centésimos: 3,15."
     ],
     "pista": "Sumá partes del mismo tamaño; diez centésimos forman un décimo.",
-    "visual": null
+    "visual": {
+      "tipo": "liquidos",
+      "titulo": "La misma unidad para sumar",
+      "recipientes": [
+        {
+          "ml": 2350,
+          "label": "2,35 L",
+          "capacidad": 4000
+        },
+        {
+          "ml": 800,
+          "label": "0,80 L",
+          "capacidad": 4000
+        },
+        {
+          "ml": 3150,
+          "label": "3,15 L",
+          "capacidad": 4000
+        }
+      ],
+      "operadores": [
+        "+",
+        "="
+      ]
+    }
   },
   {
     "id": "mat_dec_restar",
@@ -2532,7 +3614,31 @@ const UNIDADES = [
       "17 décimos equivalen a 1,7."
     ],
     "pista": "Alineá las comas y comprobá sumando.",
-    "visual": null
+    "visual": {
+      "tipo": "liquidos",
+      "titulo": "Servimos una parte del jugo",
+      "recipientes": [
+        {
+          "ml": 2400,
+          "label": "Había 2,4 L",
+          "capacidad": 3000
+        },
+        {
+          "ml": 700,
+          "label": "Servimos 0,7 L",
+          "capacidad": 3000
+        },
+        {
+          "ml": 1700,
+          "label": "Quedan 1,7 L",
+          "capacidad": 3000
+        }
+      ],
+      "operadores": [
+        "−",
+        "="
+      ]
+    }
   },
   {
     "id": "prof_dec_restar_reagrupar",
@@ -2545,7 +3651,31 @@ const UNIDADES = [
       "Quitamos 1 unidad y 75 centésimos: quedan 3 unidades y 25 centésimos."
     ],
     "pista": "Podés cambiar una unidad por cien centésimos y conservar el total.",
-    "visual": null
+    "visual": {
+      "tipo": "liquidos",
+      "titulo": "Cinco litros menos lo que usamos",
+      "recipientes": [
+        {
+          "ml": 5000,
+          "label": "Había 5 L",
+          "capacidad": 5000
+        },
+        {
+          "ml": 1750,
+          "label": "Usamos 1,75 L",
+          "capacidad": 5000
+        },
+        {
+          "ml": 3250,
+          "label": "Quedan 3,25 L",
+          "capacidad": 5000
+        }
+      ],
+      "operadores": [
+        "−",
+        "="
+      ]
+    }
   },
   {
     "id": "prof_dec_escalar",
@@ -2558,7 +3688,42 @@ const UNIDADES = [
       "Al dividir por 10 hacemos el cambio inverso: 45 décimos pasan a ser 45 centésimos."
     ],
     "pista": "Pensá primero si el resultado debe ser mayor o menor; después contá los cambios de posición.",
-    "visual": null
+    "visual": {
+      "tipo": "posicional",
+      "titulo": "De 0,45 a 4,5: multiplicamos por diez",
+      "columnas": [
+        {
+          "nombre": "Unidades",
+          "cantidad": 0,
+          "valor": 1
+        },
+        {
+          "nombre": "Décimos",
+          "cantidad": 4,
+          "valor": "0,1"
+        },
+        {
+          "nombre": "Centésimos",
+          "cantidad": 5,
+          "valor": "0,01"
+        }
+      ],
+      "despues": [
+        {
+          "cantidad": 4,
+          "valor": 1
+        },
+        {
+          "cantidad": 5,
+          "valor": "0,1"
+        },
+        {
+          "cantidad": 0,
+          "valor": "0,01"
+        }
+      ],
+      "operacion": "× 10 hacia abajo · ÷ 10 para volver arriba"
+    }
   },
   {
     "id": "mat_dec_producto",
@@ -2571,7 +3736,27 @@ const UNIDADES = [
       "15 décimos son 1,5."
     ],
     "pista": "Contá los décimos de todos los grupos.",
-    "visual": null
+    "visual": {
+      "tipo": "liquidos",
+      "titulo": "Tres porciones de medio litro",
+      "recipientes": [
+        {
+          "ml": 500,
+          "label": "Porción 1",
+          "capacidad": 1000
+        },
+        {
+          "ml": 500,
+          "label": "Porción 2",
+          "capacidad": 1000
+        },
+        {
+          "ml": 500,
+          "label": "Porción 3",
+          "capacidad": 1000
+        }
+      ]
+    }
   },
   {
     "id": "prof_dec_producto",
@@ -2584,7 +3769,22 @@ const UNIDADES = [
       "36 centésimos se escriben 0,36. Tomar tres décimos de 1,2 da menos que 1,2."
     ],
     "pista": "Sumá las posiciones decimales de los dos factores.",
-    "visual": null
+    "visual": {
+      "tipo": "liquidos",
+      "titulo": "Tomamos tres décimos de 1,2 litros",
+      "recipientes": [
+        {
+          "ml": 1200,
+          "label": "Cantidad inicial",
+          "capacidad": 2000
+        },
+        {
+          "ml": 360,
+          "label": "3/10 del total",
+          "capacidad": 2000
+        }
+      ]
+    }
   },
   {
     "id": "mat_dec_dividir",
@@ -2597,7 +3797,27 @@ const UNIDADES = [
       "18 ÷ 3 = 6 décimos; cada botella recibe 0,6 litros."
     ],
     "pista": "Repartí los décimos y conservá la unidad.",
-    "visual": null
+    "visual": {
+      "tipo": "liquidos",
+      "titulo": "Repartimos 1,8 L en tres botellas iguales",
+      "recipientes": [
+        {
+          "ml": 600,
+          "label": "Botella 1",
+          "capacidad": 1000
+        },
+        {
+          "ml": 600,
+          "label": "Botella 2",
+          "capacidad": 1000
+        },
+        {
+          "ml": 600,
+          "label": "Botella 3",
+          "capacidad": 1000
+        }
+      ]
+    }
   },
   {
     "id": "prof_dec_dividir_natural",
@@ -2610,7 +3830,42 @@ const UNIDADES = [
       "450 ÷ 6 = 75 centésimos por botella: 0,75 litros."
     ],
     "pista": "Convertí a partes pequeñas del mismo tamaño antes de repartir.",
-    "visual": null
+    "visual": {
+      "tipo": "liquidos",
+      "titulo": "Repartimos 4,5 L en seis botellas",
+      "recipientes": [
+        {
+          "ml": 750,
+          "label": "Botella 1",
+          "capacidad": 1000
+        },
+        {
+          "ml": 750,
+          "label": "Botella 2",
+          "capacidad": 1000
+        },
+        {
+          "ml": 750,
+          "label": "Botella 3",
+          "capacidad": 1000
+        },
+        {
+          "ml": 750,
+          "label": "Botella 4",
+          "capacidad": 1000
+        },
+        {
+          "ml": 750,
+          "label": "Botella 5",
+          "capacidad": 1000
+        },
+        {
+          "ml": 750,
+          "label": "Botella 6",
+          "capacidad": 1000
+        }
+      ]
+    }
   },
   {
     "id": "prof_dec_dividir_decimal",
@@ -2623,7 +3878,37 @@ const UNIDADES = [
       "15 ÷ 3 = 5. Comprobamos: 5 × 0,3 = 1,5."
     ],
     "pista": "Multiplicá los dos números por el mismo factor hasta que el divisor sea entero.",
-    "visual": null
+    "visual": {
+      "tipo": "liquidos",
+      "titulo": "¿Cuántas porciones de 0,3 L entran en 1,5 L?",
+      "recipientes": [
+        {
+          "ml": 300,
+          "label": "Porción 1",
+          "capacidad": 1000
+        },
+        {
+          "ml": 300,
+          "label": "Porción 2",
+          "capacidad": 1000
+        },
+        {
+          "ml": 300,
+          "label": "Porción 3",
+          "capacidad": 1000
+        },
+        {
+          "ml": 300,
+          "label": "Porción 4",
+          "capacidad": 1000
+        },
+        {
+          "ml": 300,
+          "label": "Porción 5",
+          "capacidad": 1000
+        }
+      ]
+    }
   },
   {
     "id": "prof_dec_dos_pasos",
@@ -2636,7 +3921,24 @@ const UNIDADES = [
       "Restamos el gasto al dinero inicial: 10 − 4,70 = 5,30 pesos."
     ],
     "pista": "Primero calculá el gasto total; después restalo del dinero inicial.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Dinero de juego: comprar y calcular el vuelto",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "10,00 pesos al empezar"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "2 × 2,35 = 4,70 pesos gastados"
+        },
+        {
+          "titulo": "Comprobamos",
+          "texto": "10,00 − 4,70 = 5,30 pesos de vuelto"
+        }
+      ]
+    }
   },
   {
     "id": "mat_pot_repetir",
@@ -2649,7 +3951,80 @@ const UNIDADES = [
       "2 × 2 = 4; 4 × 2 = 8."
     ],
     "pista": "El exponente cuenta factores.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Multiplicamos tres factores iguales",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "2³ tiene tres factores 2"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "2 × 2 = 4"
+        },
+        {
+          "titulo": "Comprobamos",
+          "texto": "4 × 2 = 8"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prof_r27_exponentes_uno_cero",
+    "tema": "potenciacion_y_raiz_cuadrada",
+    "titulo": "Una potencia también puede tener exponente uno",
+    "explicacion": "El exponente indica cuántos factores iguales usamos: 3² = 3 × 3. Con un solo factor queda 3¹ = 3. Al bajar otro paso en las potencias de una base distinta de cero, dividimos por esa base y llegamos a 3⁰ = 1. Aquí no trabajamos 0⁰.",
+    "ejemplo": "Con base 3: 3³ = 27, 3² = 9, 3¹ = 3 y 3⁰ = 1.",
+    "pasos": [
+      "Tres factores: 3 × 3 × 3 = 27.",
+      "Al quitar un factor dividimos por 3: 27 → 9 → 3.",
+      "Un paso más: 3 ÷ 3 = 1. Por eso 3⁰ = 1."
+    ],
+    "pista": "No multipliques base por exponente. Para exponente cero, comprobá que la base no sea cero.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "3⁰ = 1",
+          "cantidad": 1
+        },
+        {
+          "label": "3¹ = 3",
+          "cantidad": 3
+        },
+        {
+          "label": "3² = 9",
+          "cantidad": 9
+        }
+      ]
+    }
+  },
+  {
+    "id": "prof_r27_cubo_capas",
+    "tema": "potenciacion_y_raiz_cuadrada",
+    "titulo": "Un cubo tiene filas, columnas y capas",
+    "explicacion": "Un cuadrado puede tener filas de casilleros. Para armar un cubo con cubitos, ponemos varias capas iguales una sobre otra. En un cubo de lado 2 hay dos filas de dos cubitos en cada una de sus dos capas.",
+    "ejemplo": "Cada capa tiene 2 × 2 = 4 cubitos. Dos capas tienen 2 × 2 × 2 = 8: se escribe 2³.",
+    "pasos": [
+      "Contamos una capa: dos filas de dos, en total cuatro.",
+      "Armamos otra capa igual: otros cuatro.",
+      "Las dos capas reúnen ocho cubitos. El 3 indica tres factores, no multiplicar por tres."
+    ],
+    "pista": "Primero contá una capa; después multiplicá por la cantidad de capas.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Capa 1",
+          "cantidad": 4
+        },
+        {
+          "label": "Capa 2",
+          "cantidad": 4
+        }
+      ]
+    }
   },
   {
     "id": "mat_raiz_cuadrado",
@@ -2662,7 +4037,11 @@ const UNIDADES = [
       "Como 5 × 5 = 25, la raíz cuadrada de 25 es 5."
     ],
     "pista": "Buscá dos factores iguales cuyo producto sea el total.",
-    "visual": null
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 5,
+      "columnas": 5
+    }
   },
   {
     "id": "mat_jer_producto",
@@ -2675,7 +4054,19 @@ const UNIDADES = [
       "Después 2 + 12 = 14."
     ],
     "pista": "Marcá el producto antes de sumar.",
-    "visual": null
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Primero: 3 × 4",
+          "cantidad": 12
+        },
+        {
+          "label": "Luego agrego",
+          "cantidad": 2
+        }
+      ]
+    }
   },
   {
     "id": "mat_jer_parentesis",
@@ -2688,7 +4079,56 @@ const UNIDADES = [
       "Ahora 5 × 4 = 20."
     ],
     "pista": "Resolvé el grupo entre paréntesis antes de seguir.",
-    "visual": null
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 5,
+      "columnas": 4
+    }
+  },
+  {
+    "id": "prof_r27_jerarquia_igual",
+    "tema": "jerarquia_operaciones",
+    "titulo": "Multiplicar y dividir tienen el mismo turno",
+    "explicacion": "Primero resolvemos los paréntesis y las potencias. Después multiplicaciones y divisiones, de izquierda a derecha. Por último sumas y restas, también de izquierda a derecha. Dividir no espera a que terminen todas las multiplicaciones.",
+    "ejemplo": "12 ÷ 3 × 2 = 8: primero 12 ÷ 3 = 4; después 4 × 2 = 8.",
+    "pasos": [
+      "No hay paréntesis ni potencias.",
+      "La primera operación, leyendo desde la izquierda, es 12 ÷ 3.",
+      "Reemplazamos por 4 y seguimos con 4 × 2."
+    ],
+    "pista": "Entre operaciones del mismo turno, empezá por la que aparece a la izquierda.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "12 ÷ 3",
+          "cantidad": 4
+        },
+        {
+          "label": "4 × 2",
+          "cantidad": 8
+        }
+      ]
+    }
+  },
+  {
+    "id": "prof_r27_colocar_parentesis",
+    "tema": "jerarquia_operaciones",
+    "titulo": "Los paréntesis pueden cambiar el resultado",
+    "explicacion": "Un paréntesis señala qué resolver primero. Para colocarlo no alcanza con adivinar: calculamos qué ocurre al agrupar cada parte. Conservamos los números y operaciones en el mismo orden.",
+    "ejemplo": "2 + 3 × 4 da 14. Si queremos 20, escribimos (2 + 3) × 4.",
+    "pasos": [
+      "Sin paréntesis, 3 × 4 = 12 y 2 + 12 = 14.",
+      "Si agrupamos 2 + 3, primero obtenemos 5.",
+      "Después 5 × 4 = 20. No cambiamos números ni operaciones."
+    ],
+    "pista": "Calculá primero lo que quedó dentro; comprobá después toda la expresión.",
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 5,
+      "columnas": 4,
+      "separar": 2
+    }
   },
   {
     "id": "mat_long_metros",
@@ -2701,7 +4141,23 @@ const UNIDADES = [
       "2 × 100 = 200 centímetros."
     ],
     "pista": "La longitud no cambia; cambia la unidad.",
-    "visual": null
+    "visual": {
+      "tipo": "recta",
+      "min": 0,
+      "max": 200,
+      "paso": 50,
+      "marcas": [
+        {
+          "valor": 100,
+          "label": "1 m"
+        },
+        {
+          "valor": 200,
+          "label": "2 m"
+        }
+      ],
+      "titulo": "Una cinta medida en centímetros"
+    }
   },
   {
     "id": "prof_med_long_escala",
@@ -2714,7 +4170,23 @@ const UNIDADES = [
       "Tres metros contienen 3 × 10 = 30 decímetros."
     ],
     "pista": "La medida no cambia: cambia cuántas partes de esa unidad contamos.",
-    "visual": null
+    "visual": {
+      "tipo": "recta",
+      "min": 0,
+      "max": 30,
+      "paso": 5,
+      "marcas": [
+        {
+          "valor": 10,
+          "label": "1 m"
+        },
+        {
+          "valor": 30,
+          "label": "3 m"
+        }
+      ],
+      "titulo": "La misma longitud en decímetros"
+    }
   },
   {
     "id": "prof_med_long_menor",
@@ -2727,7 +4199,23 @@ const UNIDADES = [
       "2 × 10 × 10 × 10 = 2000 mm."
     ],
     "pista": "Marcá la unidad inicial y la final; contá los saltos.",
-    "visual": null
+    "visual": {
+      "tipo": "recta",
+      "min": 0,
+      "max": 2000,
+      "paso": 500,
+      "marcas": [
+        {
+          "valor": 1000,
+          "label": "1 m"
+        },
+        {
+          "valor": 2000,
+          "label": "2 m"
+        }
+      ],
+      "titulo": "La misma cinta, marcas en milímetros"
+    }
   },
   {
     "id": "prof_med_long_mayor",
@@ -2740,7 +4228,19 @@ const UNIDADES = [
       "300 ÷ 100 = 3 grupos: son 3 metros."
     ],
     "pista": "Hacia una unidad mayor, dividí por diez en cada salto.",
-    "visual": null
+    "visual": {
+      "tipo": "recta",
+      "min": 0,
+      "max": 300,
+      "paso": 100,
+      "marcas": [
+        {
+          "valor": 300,
+          "label": "3 m"
+        }
+      ],
+      "titulo": "Marcas cada cien centímetros"
+    }
   },
   {
     "id": "prof_med_long_decimal",
@@ -2753,7 +4253,23 @@ const UNIDADES = [
       "75 cm son 75 de las 100 partes de un metro: 75 ÷ 100 = 0,75 m."
     ],
     "pista": "Pensá cuánto vale un entero en la unidad de destino.",
-    "visual": null
+    "visual": {
+      "tipo": "recta",
+      "min": 0,
+      "max": 150,
+      "paso": 25,
+      "marcas": [
+        {
+          "valor": 75,
+          "label": "0,75 m"
+        },
+        {
+          "valor": 125,
+          "label": "1,25 m"
+        }
+      ],
+      "titulo": "Cinta con marcas en centímetros"
+    }
   },
   {
     "id": "mat_long_combinar",
@@ -2766,7 +4282,23 @@ const UNIDADES = [
       "100 cm + 25 cm = 125 cm."
     ],
     "pista": "Convertí las medidas a la unidad que pide la pregunta.",
-    "visual": null
+    "visual": {
+      "tipo": "recta",
+      "min": 0,
+      "max": 150,
+      "paso": 25,
+      "marcas": [
+        {
+          "valor": 100,
+          "label": "1 m"
+        },
+        {
+          "valor": 125,
+          "label": "1 m y 25 cm"
+        }
+      ],
+      "titulo": "Medimos la cinta en centímetros"
+    }
   },
   {
     "id": "prof_med_long_problema",
@@ -2779,7 +4311,11 @@ const UNIDADES = [
       "Restamos el corte: 200 − 35 = 165 cm."
     ],
     "pista": "Primero igualá las unidades; después restá el corte.",
-    "visual": null
+    "visual": {
+      "tipo": "tramo",
+      "total": 200,
+      "parte": 35
+    }
   },
   {
     "id": "prof_prob_datos",
@@ -2852,7 +4388,24 @@ const UNIDADES = [
       "Multiplicamos por 1000 para pasar a gramos o mililitros."
     ],
     "pista": "Conservá la magnitud y escribí la unidad pedida.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Cada unidad conserva su cantidad",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "1 kg = 1000 g; 2 kg = 2000 g"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "1 L = 1000 mL; 3 L = 3000 mL"
+        },
+        {
+          "titulo": "Comprobamos",
+          "texto": "Masa y capacidad son medidas distintas"
+        }
+      ]
+    }
   },
   {
     "id": "prof_med_masa_escala",
@@ -2865,7 +4418,24 @@ const UNIDADES = [
       "2 × 100 = 200 dag; seguimos midiendo la misma masa."
     ],
     "pista": "Usá solo unidades de masa y contá los saltos de su escala.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Dos kilos de arroz",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "2 kg = 2000 g"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "1 dag = 10 g"
+        },
+        {
+          "titulo": "Comprobamos",
+          "texto": "2000 ÷ 10 = 200 dag"
+        }
+      ]
+    }
   },
   {
     "id": "prof_med_cap_escala",
@@ -2878,7 +4448,27 @@ const UNIDADES = [
       "3 × 100 = 300 cL. Es la misma capacidad."
     ],
     "pista": "Conservá la magnitud: una capacidad se convierte a otra unidad de capacidad.",
-    "visual": null
+    "visual": {
+      "tipo": "liquidos",
+      "titulo": "Tres litros de agua",
+      "recipientes": [
+        {
+          "ml": 1000,
+          "label": "100 cL",
+          "capacidad": 1000
+        },
+        {
+          "ml": 1000,
+          "label": "100 cL",
+          "capacidad": 1000
+        },
+        {
+          "ml": 1000,
+          "label": "100 cL",
+          "capacidad": 1000
+        }
+      ]
+    }
   },
   {
     "id": "prof_med_masa_decimal",
@@ -2891,7 +4481,24 @@ const UNIDADES = [
       "750 g son 750 de las 1000 partes de un kg: 750 ÷ 1000 = 0,75 kg."
     ],
     "pista": "Un kilogramo contiene mil gramos; usá esa equivalencia en ambos sentidos.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Comparamos partes de un kilogramo",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "1 kg + 250 g = 1250 g"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "1250 g = 1,25 kg"
+        },
+        {
+          "titulo": "Comprobamos",
+          "texto": "750 g = 0,75 kg"
+        }
+      ]
+    }
   },
   {
     "id": "prof_med_masa_problema",
@@ -2904,7 +4511,24 @@ const UNIDADES = [
       "1500 − 250 = 1250 g."
     ],
     "pista": "Convertí la masa inicial a gramos antes de quitar lo usado.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Harina: usar y conservar el resto",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "1,5 kg = 1500 g"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "Quitamos 250 g"
+        },
+        {
+          "titulo": "Comprobamos",
+          "texto": "1500 − 250 = 1250 g"
+        }
+      ]
+    }
   },
   {
     "id": "prof_prob_porciones",
@@ -2937,7 +4561,42 @@ const UNIDADES = [
       "1500 ÷ 250 = 6. Comprobamos: 6 × 250 = 1500 mL."
     ],
     "pista": "Primero pasá todo a mL; después buscá cuántas veces entra un vaso.",
-    "visual": null
+    "visual": {
+      "tipo": "liquidos",
+      "titulo": "Seis vasos reúnen un litro y medio",
+      "recipientes": [
+        {
+          "ml": 250,
+          "label": "Vaso 1",
+          "capacidad": 250
+        },
+        {
+          "ml": 250,
+          "label": "Vaso 2",
+          "capacidad": 250
+        },
+        {
+          "ml": 250,
+          "label": "Vaso 3",
+          "capacidad": 250
+        },
+        {
+          "ml": 250,
+          "label": "Vaso 4",
+          "capacidad": 250
+        },
+        {
+          "ml": 250,
+          "label": "Vaso 5",
+          "capacidad": 250
+        },
+        {
+          "ml": 250,
+          "label": "Vaso 6",
+          "capacidad": 250
+        }
+      ]
+    }
   },
   {
     "id": "prof_prob_vasos",
@@ -2990,7 +4649,23 @@ const UNIDADES = [
       "60 + 20 = 80 min."
     ],
     "pista": "Para las horas usá 60, no 100.",
-    "visual": null
+    "visual": {
+      "tipo": "recta",
+      "min": 0,
+      "max": 80,
+      "paso": 20,
+      "marcas": [
+        {
+          "valor": 60,
+          "label": "1 hora"
+        },
+        {
+          "valor": 80,
+          "label": "1 h y 20 min"
+        }
+      ],
+      "titulo": "Contamos minutos desde el comienzo"
+    }
   },
   {
     "id": "prof_med_tiempo_resto",
@@ -3003,7 +4678,23 @@ const UNIDADES = [
       "Comprobamos: 1 × 60 + 35 = 95 minutos."
     ],
     "pista": "Cada hora completa reúne 60 minutos; conservá lo que sobra.",
-    "visual": null
+    "visual": {
+      "tipo": "recta",
+      "min": 0,
+      "max": 100,
+      "paso": 20,
+      "marcas": [
+        {
+          "valor": 60,
+          "label": "1 hora"
+        },
+        {
+          "valor": 95,
+          "label": "95 min"
+        }
+      ],
+      "titulo": "Después de la hora, quedan 35 minutos"
+    }
   },
   {
     "id": "prof_med_tiempo_duracion",
@@ -3016,7 +4707,83 @@ const UNIDADES = [
       "De 15:00 a 15:15 pasan 15 minutos: 20 + 15 = 35 minutos."
     ],
     "pista": "Partí el recorrido en la hora en punto y sumá los minutos.",
-    "visual": null
+    "visual": {
+      "tipo": "recta",
+      "min": 0,
+      "max": 40,
+      "paso": 10,
+      "marcas": [
+        {
+          "valor": 0,
+          "label": "14:40"
+        },
+        {
+          "valor": 20,
+          "label": "15:00"
+        },
+        {
+          "valor": 35,
+          "label": "15:15"
+        }
+      ],
+      "titulo": "Minutos transcurridos desde las 14:40"
+    }
+  },
+  {
+    "id": "prof_r27_recta_segmento",
+    "tema": "geometria_angulos",
+    "titulo": "¿Tiene principio o final?",
+    "explicacion": "Un trazo entre dos puntos tiene dos extremos: es un segmento. Una semirrecta empieza en un punto y sigue sin terminar en un sentido. Una recta continúa en ambos sentidos. En el dibujo las flechas indican que continúa, aunque el papel se termine.",
+    "ejemplo": "El tramo entre A y B es un segmento: podemos medirlo porque tiene dos extremos.",
+    "pasos": [
+      "Ubicamos A y B: son los extremos.",
+      "El trazo llega de A a B y termina en ellos.",
+      "Una flecha cambiaría el significado: indicaría que el trazo sigue."
+    ],
+    "pista": "Contá extremos y mirá las flechas, no solo cuánto ocupa el dibujo.",
+    "visual": {
+      "tipo": "rectas",
+      "clase": "segmento"
+    }
+  },
+  {
+    "id": "prof_r27_plano_semiplano",
+    "tema": "geometria_angulos",
+    "titulo": "Una recta separa el plano en dos lados",
+    "explicacion": "Imaginamos una superficie plana que continúa sin borde: un plano. La hoja solo muestra una parte. Una recta lo separa en dos semiplanos. Un punto puede quedar de un lado, del otro o sobre la recta; para decir de qué lado está miramos esa recta, no el borde de la hoja.",
+    "ejemplo": "A y B están del mismo lado de la recta r. C está del otro lado. O está sobre r.",
+    "pasos": [
+      "Mirá la recta r, que continúa en ambos sentidos.",
+      "A y B quedan arriba; C queda abajo: hay dos lados distintos.",
+      "O está en la recta que separa esos lados."
+    ],
+    "pista": "Usá la recta como referencia; distinguí estar de un lado de estar sobre ella.",
+    "visual": {
+      "tipo": "semiplano",
+      "recta_y": 0,
+      "puntos": [
+        {
+          "x": -2,
+          "y": 1,
+          "label": "A"
+        },
+        {
+          "x": 1,
+          "y": 1.5,
+          "label": "B"
+        },
+        {
+          "x": 2,
+          "y": -1,
+          "label": "C"
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "label": "O"
+        }
+      ]
+    }
   },
   {
     "id": "prof_geo_elementos",
@@ -3050,7 +4817,11 @@ const UNIDADES = [
       "Como 0 < 60 < 90, es agudo."
     ],
     "pista": "Compará la medida con 90° y 180°.",
-    "visual": null
+    "visual": {
+      "tipo": "angulo",
+      "angulo": 60,
+      "transportador": true
+    }
   },
   {
     "id": "prof_geo_transportador",
@@ -3106,6 +4877,23 @@ const UNIDADES = [
     }
   },
   {
+    "id": "prof_r27_paralelas_secantes",
+    "tema": "geometria_angulos",
+    "titulo": "Rectas que se cruzan y rectas que no",
+    "explicacion": "En un mismo plano, dos rectas distintas son paralelas si no se cruzan, por más que las prolonguemos. Son secantes si se cruzan. Si forman cuatro ángulos rectos de 90°, además son perpendiculares.",
+    "ejemplo": "Los dos renglones rectos de un cuaderno son paralelos: mantienen la separación.",
+    "pasos": [
+      "Imaginamos que los renglones siguen más allá de la hoja.",
+      "No se encuentran: son paralelos.",
+      "Dos rectas que se cruzan son secantes; solo si forman ángulos de 90° son perpendiculares."
+    ],
+    "pista": "Imaginá las rectas prolongadas; un dibujo corto puede ocultar el cruce.",
+    "visual": {
+      "tipo": "rectas",
+      "clase": "paralelas"
+    }
+  },
+  {
     "id": "mat_ang_complemento",
     "tema": "geometria_angulos",
     "titulo": "Dos ángulos que completan una abertura",
@@ -3116,7 +4904,18 @@ const UNIDADES = [
       "90° − 30° = 60°."
     ],
     "pista": "Identificá si deben sumar 90° o 180°.",
-    "visual": null
+    "visual": {
+      "tipo": "angulo",
+      "angulo": 90,
+      "divisiones": [
+        30
+      ],
+      "etiquetas_sectores": [
+        "30°",
+        "60°"
+      ],
+      "medida": true
+    }
   },
   {
     "id": "prof_geo_opuestos",
@@ -3134,6 +4933,31 @@ const UNIDADES = [
       "angulo": 60,
       "rectas": true,
       "opuesto": true,
+      "medida": true
+    }
+  },
+  {
+    "id": "prof_r27_angulos_compuestos",
+    "tema": "geometria_angulos",
+    "titulo": "Juntar aberturas sin superponerlas",
+    "explicacion": "Dos ángulos que comparten vértice y un lado, sin superponerse, pueden formar una abertura mayor. Sus medidas se suman. Si conocemos el total y una parte, restamos para encontrar la otra. El dibujo orienta; las medidas escritas son las que usamos.",
+    "ejemplo": "Una abertura total de 90° está dividida en 35° y otra parte. La parte que falta mide 55°.",
+    "pasos": [
+      "El ángulo completo mide 90°.",
+      "Una parte ocupa 35°; buscamos lo que falta para completar 90°.",
+      "90 − 35 = 55. Comprobamos: 35 + 55 = 90°."
+    ],
+    "pista": "Identificá la abertura total antes de sumar o restar las partes.",
+    "visual": {
+      "tipo": "angulo",
+      "angulo": 90,
+      "divisiones": [
+        35
+      ],
+      "etiquetas_sectores": [
+        "35°",
+        "?"
+      ],
       "medida": true
     }
   },
@@ -3346,6 +5170,255 @@ const UNIDADES = [
     }
   },
   {
+    "id": "prof_r27_plan_triangulo_tres_lados",
+    "tema": "geometria_triangulos",
+    "titulo": "Planear un triángulo y comprobarlo en papel",
+    "explicacion": "Para construir un triángulo con tres lados, usamos regla y compás. El compás conserva una distancia desde su centro. Dibujamos primero un lado; desde sus extremos trazamos arcos con las otras dos medidas. Su cruce da el tercer vértice. Después medimos para comprobar. Elegir una respuesta aquí solo revisa el plan.",
+    "ejemplo": "Queremos AB = 4 cm, AC = 3 cm y BC = 5 cm. Dibujamos AB; trazamos un arco de radio 3 desde A y otro de radio 5 desde B. Uno de sus cruces será C.",
+    "pasos": [
+      "Antes de construir, comprobamos que cada lado es menor que la suma de los otros: con 3, 4 y 5 se cumple.",
+      "Trazamos AB de 4 cm. Abrimos el compás a 3 cm para el arco desde A; después lo abrimos a 5 cm para el arco desde B.",
+      "Elegimos un cruce C, unimos AC y BC y medimos los tres lados. En papel pueden aparecer dos cruces, uno a cada lado de AB: elegimos uno."
+    ],
+    "pista": "Cada arco conserva la distancia al extremo que le sirve de centro. Al terminar, medí los tres lados.",
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "vertices": [
+        "A",
+        "B",
+        "C"
+      ],
+      "lados": [
+        "4 cm",
+        "5 cm",
+        "3 cm"
+      ],
+      "auxiliares": [
+        [
+          [
+            1.2678547852220983,
+            2.7189233611099497
+          ],
+          [
+            1.1681756869375657,
+            2.76321652507507
+          ],
+          [
+            1.0669522854446294,
+            2.8038567760469655
+          ],
+          [
+            0.9643183959094844,
+            2.840790388485317
+          ],
+          [
+            0.860409698133271,
+            2.8739685369464665
+          ],
+          [
+            0.7553635571862858,
+            2.9033473606296027
+          ],
+          [
+            0.6493188418143088,
+            2.9288880213598
+          ],
+          [
+            0.5424157408570964,
+            2.9505567549312532
+          ],
+          [
+            0.43479557792174006,
+            2.9683249157428335
+          ],
+          [
+            0.3266006245558942,
+            2.982169014666959
+          ],
+          [
+            0.2179739121678322,
+            2.9920707501017167
+          ],
+          [
+            0.10905904294199857,
+            2.99801703216519
+          ],
+          [
+            1.8369701987210297e-16,
+            3
+          ],
+          [
+            -0.10905904294199886,
+            2.99801703216519
+          ],
+          [
+            -0.21797391216783252,
+            2.9920707501017167
+          ],
+          [
+            -0.32660062455589384,
+            2.982169014666959
+          ],
+          [
+            -0.4347955779217404,
+            2.9683249157428335
+          ],
+          [
+            -0.5424157408570949,
+            2.9505567549312532
+          ],
+          [
+            -0.6493188418143083,
+            2.9288880213598
+          ],
+          [
+            -0.7553635571862862,
+            2.9033473606296027
+          ],
+          [
+            -0.86040969813327,
+            2.8739685369464665
+          ],
+          [
+            -0.9643183959094848,
+            2.840790388485317
+          ],
+          [
+            -1.06695228544463,
+            2.803856776046965
+          ],
+          [
+            -1.1681756869375648,
+            2.763216525075071
+          ],
+          [
+            -1.267854785222098,
+            2.71892336110995
+          ]
+        ],
+        [
+          [
+            0.9127538301512899,
+            3.933053659277288
+          ],
+          [
+            0.8276893977254742,
+            3.8647697787444772
+          ],
+          [
+            0.7441348133345755,
+            3.794646477112212
+          ],
+          [
+            0.662129844435464,
+            3.722717129274205
+          ],
+          [
+            0.5817135209519595,
+            3.649015969704346
+          ],
+          [
+            0.5029241166987068,
+            3.5735780761629483
+          ],
+          [
+            0.4257991311649141,
+            3.4964393530016387
+          ],
+          [
+            0.350375271666616,
+            3.417636514074818
+          ],
+          [
+            0.27668843587599223,
+            3.3372070652658694
+          ],
+          [
+            0.2047736947360148,
+            3.2551892866363823
+          ],
+          [
+            0.13466527576857645,
+            3.1716222142069173
+          ],
+          [
+            0.06639654678404705,
+            3.086545621377972
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            -0.06449276342331967,
+            2.9120265411014827
+          ],
+          [
+            -0.12705104842343928,
+            2.8226671152842298
+          ],
+          [
+            -0.18764508064484264,
+            2.7319642527952386
+          ],
+          [
+            -0.2462460206099557,
+            2.6399611232846043
+          ],
+          [
+            -0.30282597744517226,
+            2.546701515259101
+          ],
+          [
+            -0.35735802215539625,
+            2.4522298152412256
+          ],
+          [
+            -0.40981620044079214,
+            2.356590986643616
+          ],
+          [
+            -0.46017554504962366,
+            2.259830548368902
+          ],
+          [
+            -0.5084120876613056,
+            2.1619945531451794
+          ],
+          [
+            -0.5545028702940415,
+            2.06312956560739
+          ],
+          [
+            -0.5984259562315657,
+            1.9632826401350911
+          ],
+          [
+            -0.6401604404638359,
+            1.8625012984571212
+          ]
+        ]
+      ],
+      "nota": "Los arcos se cruzan en C. Verificá en papel."
+    },
+    "actividad_en_papel": "Con regla y compás, construí un triángulo de lados 3, 4 y 5 cm. Medí los tres lados al terminar y mostrale el dibujo a una persona que te acompañe. Podés rehacer los trazos.",
+    "alcance_evidencia": "Estas actividades verifican la comprensión del plan y de la comprobación. La ejecución de una construcción requiere hacer y revisar el dibujo en papel; no queda certificada por opción múltiple."
+  },
+  {
     "id": "prof_fig_poligonos",
     "tema": "geometria_cuadrilateros_circunferencia",
     "titulo": "Contar el borde de un polígono",
@@ -3479,6 +5552,97 @@ const UNIDADES = [
         "3 cm",
         "3 cm"
       ]
+    }
+  },
+  {
+    "id": "prof_r27_familias_cuadrilateros",
+    "tema": "geometria_cuadrilateros_circunferencia",
+    "titulo": "Mirar pares de lados antes de nombrar",
+    "explicacion": "Un cuadrilátero tiene cuatro lados. En el cuadernillo se agrupan por sus lados paralelos: dos pares, paralelogramo; un solo par, trapecio; ningún par, trapezoide. Un rectángulo tiene cuatro ángulos rectos; un rombo, cuatro lados iguales. El cuadrado cumple ambas condiciones. Empezamos por reconocer los pares paralelos.",
+    "ejemplo": "En un rectángulo, arriba y abajo son paralelos. También izquierda y derecha: hay dos pares.",
+    "pasos": [
+      "Buscamos lados opuestos, que no comparten una esquina.",
+      "El primer par conserva la separación; el segundo también.",
+      "Tiene dos pares paralelos: pertenece a los paralelogramos."
+    ],
+    "pista": "Un par tiene dos lados. No cuentes cada lado como un par distinto.",
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "vertices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  },
+  {
+    "id": "prof_r27_romboide_diagonales",
+    "tema": "geometria_cuadrilateros_circunferencia",
+    "titulo": "Unir esquinas que no son vecinas",
+    "explicacion": "Una diagonal une vértices que no están uno al lado del otro. Un cuadrilátero tiene dos diagonales. El cuadernillo llama romboide a un trapezoide con dos pares de lados consecutivos iguales: una forma de cometa. Usamos aquí esa convención del colegio.",
+    "ejemplo": "En el romboide ABCD, AB = AD y BC = CD. AC y BD son sus diagonales.",
+    "pasos": [
+      "AB y AD se encuentran en A; BC y CD se encuentran en C: son pares de lados consecutivos.",
+      "A y C no son vecinos: AC es una diagonal.",
+      "B y D tampoco son vecinos: BD es la otra. Un lado como AB no es diagonal."
+    ],
+    "pista": "Una diagonal va entre esquinas no vecinas. Consecutivos significa que comparten una esquina.",
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          3
+        ],
+        [
+          -2,
+          0
+        ],
+        [
+          0,
+          -1
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "vertices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "diagonales": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "nota": "Romboide: convención del cuadernillo"
     }
   },
   {
@@ -3628,6 +5792,26 @@ const UNIDADES = [
     "visual": {
       "tipo": "circunferencia",
       "diametro": 10
+    }
+  },
+  {
+    "id": "prof_r27_semicircunferencia",
+    "tema": "perimetros_simples",
+    "titulo": "Medio arco y el camino de vuelta",
+    "explicacion": "La circunferencia es el borde redondo completo. Su mitad es una semicircunferencia. Si vamos por ese medio arco y volvemos por el segmento que une sus extremos, también recorremos el diámetro. No son el mismo tramo.",
+    "ejemplo": "Un recorrido tiene un medio arco de diámetro 10 m y vuelve por ese diámetro. Usando π = 3,14, mide 25,7 m.",
+    "pasos": [
+      "El borde redondo completo mediría 3,14 × 10 = 31,4 m.",
+      "El medio arco mide 31,4 ÷ 2 = 15,7 m.",
+      "La vuelta recta mide 10 m. Total: 15,7 + 10 = 25,7 m."
+    ],
+    "pista": "Marcá qué tramos se recorren: medio arco, diámetro o ambos.",
+    "visual": {
+      "tipo": "circunferencia",
+      "diametro": 10,
+      "semicirculo": true,
+      "incluir_diametro": true,
+      "unidad": "m"
     }
   },
   {
@@ -3860,6 +6044,88 @@ const UNIDADES = [
     }
   },
   {
+    "id": "prof_r27_lado_desde_perimetro",
+    "tema": "perimetros_compuestos",
+    "titulo": "El perímetro ayuda a encontrar un lado",
+    "explicacion": "El perímetro suma todo el borde. Si falta un lado, podemos sumar los conocidos y quitar esa suma del total. En un rectángulo hay dos lados de cada medida: el lado faltante aparece dos veces.",
+    "ejemplo": "Un rectángulo tiene perímetro 18 cm y dos lados de 5 cm. Los otros dos miden 4 cm cada uno.",
+    "pasos": [
+      "Los dos lados conocidos suman 5 + 5 = 10 cm.",
+      "Quedan 18 − 10 = 8 cm para los otros dos lados.",
+      "Como esos dos lados son iguales, cada uno mide 8 ÷ 2 = 4 cm."
+    ],
+    "pista": "Preguntate si lo que falta corresponde a un lado o a dos lados iguales.",
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "lados": [
+        "5 cm",
+        "?",
+        "5 cm",
+        "?"
+      ],
+      "nota": "Perímetro: 18 cm"
+    }
+  },
+  {
+    "id": "prof_r27_perimetro_lado_doble",
+    "tema": "perimetros_compuestos",
+    "titulo": "Si un lado es el doble, contá partes iguales",
+    "explicacion": "En un rectángulo con lado largo doble del corto, cada corto vale una parte y cada largo vale dos. El borde reúne seis partes iguales: una, dos, una y dos. Al dividir el perímetro por seis obtenemos el lado corto.",
+    "ejemplo": "Un rectángulo tiene perímetro 24 cm y cada lado largo mide el doble del corto. El corto mide 4 cm y el largo 8 cm.",
+    "pasos": [
+      "Contamos partes alrededor del borde: 1 + 2 + 1 + 2 = 6.",
+      "Una parte mide 24 ÷ 6 = 4 cm: es el lado corto.",
+      "El largo tiene dos partes: 2 × 4 = 8 cm. Comprobamos 4 + 8 + 4 + 8 = 24."
+    ],
+    "pista": "Convertí la relación entre lados en partes iguales antes de dividir.",
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "lados": [
+        "2 partes",
+        "1 parte",
+        "2 partes",
+        "1 parte"
+      ],
+      "nota": "Todo el borde: 6 partes iguales"
+    }
+  },
+  {
     "id": "prof_fig_borde_l",
     "tema": "perimetros_compuestos",
     "titulo": "Recorrer un contorno con entrante",
@@ -3905,6 +6171,56 @@ const UNIDADES = [
         "2 cm",
         "3 cm",
         "4 cm"
+      ]
+    }
+  },
+  {
+    "id": "prof_r27_perimetro_varios_tramos",
+    "tema": "perimetros_compuestos",
+    "titulo": "Completar medidas antes de recorrer el borde",
+    "explicacion": "En un borde con forma de L, los tramos horizontales se relacionan con el ancho total y los verticales con el alto total. Restamos para encontrar las medidas ocultas. Después recorremos todo el borde una sola vez. Si hay una abertura que no se cubre, la descontamos al final.",
+    "ejemplo": "Una L tiene ancho total 8 cm y alto 6 cm. Arriba mide 3 cm y el lado derecho bajo 2 cm. Los tramos interiores miden 5 cm y 4 cm; todo el borde, 28 cm.",
+    "pasos": [
+      "Horizontal que falta: 8 − 3 = 5 cm. Vertical que falta: 6 − 2 = 4 cm.",
+      "Recorremos el borde: 8, 2, 5, 4, 3 y 6 cm.",
+      "Sumamos los seis tramos: 8 + 2 + 5 + 4 + 3 + 6 = 28 cm."
+    ],
+    "pista": "Buscá primero qué tramos completan el mismo ancho o alto; luego seguí el borde.",
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          8,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "lados": [
+        "8 cm",
+        "2 cm",
+        "?",
+        "?",
+        "3 cm",
+        "6 cm"
       ]
     }
   },
@@ -4089,7 +6405,22 @@ const UNIDADES = [
       "5 es la mayor cantidad; corresponde a Bruno."
     ],
     "pista": "Leé los nombres y sus cantidades antes de comparar.",
-    "visual": null
+    "visual": {
+      "tipo": "barras",
+      "titulo": "Libros leídos",
+      "etiquetas": [
+        "Ana",
+        "Bruno",
+        "Cami"
+      ],
+      "valores": [
+        3,
+        5,
+        2
+      ],
+      "paso": 1,
+      "unidad": "libros"
+    }
   },
   {
     "id": "mat_graf_escala",
@@ -4102,7 +6433,67 @@ const UNIDADES = [
       "4 × 2 = 8 libros."
     ],
     "pista": "Buscá cuánto vale cada símbolo en la clave.",
-    "visual": null
+    "visual": {
+      "tipo": "arreglo",
+      "filas": 4,
+      "columnas": 2
+    }
+  },
+  {
+    "id": "prof_r27_grafico_barras",
+    "tema": "graficos_estadisticos",
+    "titulo": "Leer barras con una escala",
+    "explicacion": "En un gráfico de barras, cada barra corresponde a una categoría. Su altura muestra una cantidad. Antes de contar, miramos los números del eje vertical: un intervalo puede valer uno, dos o más.",
+    "ejemplo": "En el gráfico de préstamos, cada intervalo vale 2 libros. La barra de Luna llega a 6: son 6 libros, no 3.",
+    "pasos": [
+      "Buscamos la categoría Luna debajo de su barra.",
+      "Seguimos su altura hasta el eje: llega a 6.",
+      "Los tres intervalos de 2 representan 3 × 2 = 6 libros."
+    ],
+    "pista": "Leé el valor del eje, no solo cuántos intervalos ocupa la barra.",
+    "visual": {
+      "tipo": "barras",
+      "etiquetas": [
+        "Luna",
+        "Sol",
+        "Mar"
+      ],
+      "valores": [
+        6,
+        4,
+        8
+      ],
+      "paso": 2,
+      "titulo": "Libros prestados",
+      "unidad": "cantidad"
+    }
+  },
+  {
+    "id": "prof_r27_grafico_fraccion",
+    "tema": "graficos_estadisticos",
+    "titulo": "Del gráfico a una parte del total",
+    "explicacion": "Para expresar una categoría como fracción, primero contamos el total de todas las categorías. La cantidad elegida va arriba y el total abajo. Después podemos buscar una fracción equivalente más simple.",
+    "ejemplo": "Hay 4 perros y 8 gatos: 12 animales. Los perros son 4/12 del total, lo mismo que 1/3.",
+    "pasos": [
+      "Leemos las dos barras: 4 y 8.",
+      "Total: 4 + 8 = 12. Perros: 4 de 12.",
+      "Dividimos arriba y abajo por 4: 4/12 = 1/3."
+    ],
+    "pista": "El denominador cuenta todo el grupo, no solamente la otra categoría.",
+    "visual": {
+      "tipo": "barras",
+      "etiquetas": [
+        "Perros",
+        "Gatos"
+      ],
+      "valores": [
+        4,
+        8
+      ],
+      "paso": 2,
+      "titulo": "Animales contados",
+      "unidad": "cantidad"
+    }
   },
   {
     "id": "mat_prop_unidad",
@@ -4115,7 +6506,20 @@ const UNIDADES = [
       "600 ÷ 3 = 200 pesos por cuaderno."
     ],
     "pista": "Buscá el valor de una unidad.",
-    "visual": null
+    "visual": {
+      "tipo": "barras",
+      "titulo": "Cuadernos del mismo precio",
+      "etiquetas": [
+        "1 cuaderno",
+        "3 cuadernos"
+      ],
+      "valores": [
+        200,
+        600
+      ],
+      "paso": 200,
+      "unidad": "pesos"
+    }
   },
   {
     "id": "mat_prop_otro_total",
@@ -4128,7 +6532,56 @@ const UNIDADES = [
       "Cinco cuestan 5 × 200 = 1000."
     ],
     "pista": "Primero dividí para llegar a uno; después multiplicá.",
-    "visual": null
+    "visual": {
+      "tipo": "barras",
+      "titulo": "Cuadernos del mismo precio",
+      "etiquetas": [
+        "1",
+        "3",
+        "5"
+      ],
+      "valores": [
+        200,
+        600,
+        1000
+      ],
+      "paso": 200,
+      "unidad": "pesos según cantidad de cuadernos"
+    }
+  },
+  {
+    "id": "prof_r27_proporcion_reducir",
+    "tema": "proporcionalidad_regla_3",
+    "titulo": "Una receta más pequeña conserva las proporciones",
+    "explicacion": "Si cada porción lleva lo mismo, podemos aumentar o reducir una receta. Primero calculamos lo necesario para una porción y después para la cantidad que queremos. Cambiar solo un ingrediente no conserva la receta.",
+    "ejemplo": "Para 4 porciones hacen falta 8 cucharadas de harina. Para 2 porciones hacen falta 4 cucharadas.",
+    "pasos": [
+      "Una porción usa 8 ÷ 4 = 2 cucharadas.",
+      "Dos porciones usan 2 × 2 = 4 cucharadas.",
+      "Es la mitad de porciones y también la mitad de harina."
+    ],
+    "pista": "Encontrá cuánto corresponde a una porción y mantené esa relación.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Porción 1",
+          "cantidad": 2
+        },
+        {
+          "label": "Porción 2",
+          "cantidad": 2
+        },
+        {
+          "label": "Porción 3",
+          "cantidad": 2
+        },
+        {
+          "label": "Porción 4",
+          "cantidad": 2
+        }
+      ]
+    }
   },
   {
     "id": "mat_sec_salto",
@@ -4141,7 +6594,13 @@ const UNIDADES = [
       "Sumamos el mismo salto: 13 + 3 = 16."
     ],
     "pista": "Comprobá que el salto se repite antes de continuar.",
-    "visual": null
+    "visual": {
+      "tipo": "recta",
+      "min": 4,
+      "max": 16,
+      "paso": 3,
+      "marcas": []
+    }
   },
   {
     "id": "mat_sec_restar",
@@ -4154,7 +6613,63 @@ const UNIDADES = [
       "13 − 4 = 9."
     ],
     "pista": "Observá si la secuencia sube o baja.",
-    "visual": null
+    "visual": {
+      "tipo": "recta",
+      "min": 9,
+      "max": 25,
+      "paso": 4,
+      "marcas": [
+        {
+          "valor": 25,
+          "label": "Inicio"
+        },
+        {
+          "valor": 9,
+          "label": "Llegada"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prof_r27_sucesion_descubrir",
+    "tema": "secuencias_aritmeticas",
+    "titulo": "Mirar qué cambia entre vecinos",
+    "explicacion": "Para buscar una regla comparamos cada término con el siguiente. A veces sumamos siempre lo mismo; otras veces los saltos cambian siguiendo una regla. Una lista corta puede admitir muchas reglas: aquí comprobamos la regla indicada en todos los pasos.",
+    "ejemplo": "En 1, 2, 4, 7 los saltos son +1, +2 y +3. Si cada salto aumenta uno, sigue +4 y llegamos a 11.",
+    "pasos": [
+      "2 − 1 = 1; 4 − 2 = 2; 7 − 4 = 3.",
+      "Los saltos aumentan de uno en uno: el próximo es 4.",
+      "Sumamos ese salto al último término: 7 + 4 = 11."
+    ],
+    "pista": "Separá la fila de números de la fila de saltos entre ellos.",
+    "visual": {
+      "tipo": "recta",
+      "min": 0,
+      "max": 11,
+      "paso": 1,
+      "marcas": [
+        {
+          "valor": 1,
+          "label": "1"
+        },
+        {
+          "valor": 2,
+          "label": "2"
+        },
+        {
+          "valor": 4,
+          "label": "4"
+        },
+        {
+          "valor": 7,
+          "label": "7"
+        },
+        {
+          "valor": 11,
+          "label": "11"
+        }
+      ]
+    }
   },
   {
     "id": "mat_sec_factor",
@@ -4167,7 +6682,26 @@ const UNIDADES = [
       "16 × 2 = 32."
     ],
     "pista": "Probá el mismo factor en todos los pasos.",
-    "visual": null
+    "visual": {
+      "tipo": "barras",
+      "titulo": "Duplicamos cada cantidad",
+      "etiquetas": [
+        "1ª",
+        "2ª",
+        "3ª",
+        "4ª",
+        "5ª"
+      ],
+      "valores": [
+        2,
+        4,
+        8,
+        16,
+        32
+      ],
+      "paso": 8,
+      "unidad": "cantidad"
+    }
   },
   {
     "id": "mat_sec_fibonacci",
@@ -4180,7 +6714,53 @@ const UNIDADES = [
       "Para seguir usamos 3 + 5 = 8."
     ],
     "pista": "Marcá los últimos dos términos y sumalos.",
-    "visual": null
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Anterior",
+          "cantidad": 3
+        },
+        {
+          "label": "Última",
+          "cantidad": 5
+        },
+        {
+          "label": "Las reunimos",
+          "cantidad": 8
+        }
+      ]
+    }
+  },
+  {
+    "id": "prof_r27_sucesion_dos_pasos",
+    "tema": "secuencias_geometricas_fibonacci",
+    "titulo": "Una regla puede tener dos acciones",
+    "explicacion": "Una sucesión puede repetir una combinación de acciones. Para pasar al término siguiente, hacemos las dos en el mismo orden. Comprobamos la regla en más de un par de términos.",
+    "ejemplo": "La regla es multiplicar por 3 y después quitar 2: desde 2 obtenemos 4; desde 4, 10.",
+    "pasos": [
+      "Desde 2: 2 × 3 = 6; 6 − 2 = 4.",
+      "Desde 4: 4 × 3 = 12; 12 − 2 = 10.",
+      "Desde 10: 10 × 3 − 2 = 28. Restar antes daría otra regla."
+    ],
+    "pista": "Usá el último término y respetá el orden de las dos acciones.",
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "3 × 2: hay 6",
+          "cantidad": 6
+        },
+        {
+          "label": "Quitamos 2",
+          "cantidad": 2
+        },
+        {
+          "label": "Quedan 4",
+          "cantidad": 4
+        }
+      ]
+    }
   },
   {
     "id": "mat_sec_ciclo",
@@ -4193,7 +6773,24 @@ const UNIDADES = [
       "Después de azul viene verde."
     ],
     "pista": "Separá el patrón en bloques iguales.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Reconocemos un bloque que se repite",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "rojo · azul · verde"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "rojo · azul · ¿qué falta?"
+        },
+        {
+          "titulo": "Comprobamos",
+          "texto": "Completamos con verde"
+        }
+      ]
+    }
   },
   {
     "id": "mat_sec_dos_reglas",
@@ -4206,7 +6803,138 @@ const UNIDADES = [
       "1, 3, 5 continúa con 7. Juntamos D7."
     ],
     "pista": "Seguí cada regla por separado y después unilas.",
-    "visual": null
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Dos recorridos a la vez",
+      "nodos": [
+        {
+          "titulo": "Miramos",
+          "texto": "A → B → C → D"
+        },
+        {
+          "titulo": "Relacionamos",
+          "texto": "1 → 3 → 5 → 7"
+        },
+        {
+          "titulo": "Comprobamos",
+          "texto": "Juntamos: D7"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prof_r27_giros",
+    "tema": "secuencias_alfanumericas_y_figuras",
+    "titulo": "Girar conserva la figura y cambia hacia dónde apunta",
+    "explicacion": "Girar es dar una vuelta alrededor de un punto, sin estirar la figura. En sentido horario seguimos las agujas del reloj: arriba, derecha, abajo, izquierda. Un cuarto de vuelta son 90°; media vuelta, 180°; tres cuartos, 270°; la vuelta completa, 360°.",
+    "ejemplo": "Una flecha que apunta arriba gira 90° en sentido horario y termina apuntando a la derecha.",
+    "pasos": [
+      "Marcamos la orientación inicial: arriba.",
+      "Avanzamos un cuarto de vuelta siguiendo el reloj: llegamos a la derecha.",
+      "La flecha conserva su forma y tamaño; cambió su orientación."
+    ],
+    "pista": "Elegí primero el sentido del giro y contá cuartos de vuelta.",
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          -0.5,
+          -2
+        ],
+        [
+          0.5,
+          -2
+        ],
+        [
+          0.5,
+          0
+        ],
+        [
+          1.5,
+          0
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          -1.5,
+          0
+        ],
+        [
+          -0.5,
+          0
+        ]
+      ],
+      "auxiliares": [
+        [
+          [
+            -2,
+            0.4999999999999999
+          ],
+          [
+            -2,
+            -0.5000000000000001
+          ],
+          [
+            3.061616997868383e-17,
+            -0.5
+          ],
+          [
+            9.184850993605148e-17,
+            -1.5
+          ],
+          [
+            2,
+            1.2246467991473532e-16
+          ],
+          [
+            -9.184850993605148e-17,
+            1.5
+          ],
+          [
+            -3.061616997868383e-17,
+            0.5
+          ],
+          [
+            -2,
+            0.4999999999999999
+          ]
+        ]
+      ],
+      "nota": "Azul: arriba. Punteada: después del giro."
+    }
+  },
+  {
+    "id": "prof_r27_ciclo_lejano",
+    "tema": "secuencias_alfanumericas_y_figuras",
+    "titulo": "Saltar ciclos completos para llegar lejos",
+    "explicacion": "Si un bloque se repite, no hace falta dibujar todas las posiciones. Contamos cuántos elementos tiene el bloque, dividimos la posición por esa cantidad y miramos el resto. Si sobra 1, es el primero; si sobra 2, el segundo. Si no sobra nada, corresponde al último del bloque.",
+    "ejemplo": "Se repite círculo, cuadrado, triángulo desde la posición 1. En la posición 14 hay cuadrado.",
+    "pasos": [
+      "El bloque tiene 3 figuras. Cuatro bloques ocupan 12 posiciones.",
+      "Para llegar a 14 faltan 2 posiciones: círculo en 13, cuadrado en 14.",
+      "14 ÷ 3 deja resto 2: elegimos el segundo elemento del bloque."
+    ],
+    "pista": "La numeración empieza en 1. Con resto cero elegí el último elemento, no el primero.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Este bloque vuelve a empezar",
+      "nodos": [
+        {
+          "titulo": "Posición 1",
+          "texto": "Círculo ○"
+        },
+        {
+          "titulo": "Posición 2",
+          "texto": "Cuadrado □"
+        },
+        {
+          "titulo": "Posición 3",
+          "texto": "Triángulo △"
+        }
+      ]
+    }
   },
   {
     "id": "mat_igual_simbolo",
@@ -4219,7 +6947,19 @@ const UNIDADES = [
       "12 ÷ 2 = 6; comprobamos 6 + 6 = 12."
     ],
     "pista": "Contá cuántas veces aparece el mismo símbolo.",
-    "visual": null
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Un sol",
+          "cantidad": 6
+        },
+        {
+          "label": "Otro sol",
+          "cantidad": 6
+        }
+      ]
+    }
   },
   {
     "id": "mat_igual_dos",
@@ -4232,7 +6972,2070 @@ const UNIDADES = [
       "6 + luna = 10; entonces luna = 10 − 6 = 4."
     ],
     "pista": "Primero resolvé el símbolo repetido; después reemplazalo.",
-    "visual": null
+    "visual": {
+      "tipo": "colecciones",
+      "grupos": [
+        {
+          "label": "Sol",
+          "cantidad": 6
+        },
+        {
+          "label": "Luna",
+          "cantidad": 4
+        },
+        {
+          "label": "Juntos",
+          "cantidad": 10
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_gue",
+    "tema": "ortografia_g_j_gu_gu",
+    "titulo": "GUE y GUI: una U que no suena",
+    "explicacion": "En gato o gorro, la G tiene un sonido suave. Delante de E o I escribimos GU para conservarlo: guerra, guitarra. Esa U no se pronuncia.",
+    "ejemplo": "En guitarra leemos gui, sin hacer sonar la U.",
+    "pasos": [
+      "Mirá la vocal que viene después de G.",
+      "Delante de E o I, GU conserva el sonido de gato."
+    ],
+    "pista": "Mirá la vocal que viene después de G.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "gato → sonido suave"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "guerra · guitarra"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "GUE / GUI: la U no suena"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_dieresis",
+    "tema": "ortografia_g_j_gu_gu",
+    "titulo": "GÜE y GÜI: los puntitos hacen sonar la U",
+    "explicacion": "En pingüino y cigüeña sí pronunciamos la U. Los dos puntos sobre ella se llaman diéresis. Sirven para distinguir güi/güe de gui/gue.",
+    "ejemplo": "guitarra: U silenciosa; pingüino: U que suena.",
+    "pasos": [
+      "Buscá si la U tiene dos puntos.",
+      "En güe y güi la U se pronuncia."
+    ],
+    "pista": "Buscá si la U tiene dos puntos.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "guitarra → gui"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "pingüino → güi"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Los dos puntos se llaman diéresis"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_ger_gir",
+    "tema": "ortografia_g_j_gu_gu",
+    "titulo": "Recoger y dirigir; tejer y crujir",
+    "explicacion": "Los verbos terminados en -ger y -gir se escriben generalmente con G. Tejer y crujir son excepciones: se escriben con J. Aprendemos estas dos palabras junto a la regla.",
+    "ejemplo": "recoger → G; tejer → J.",
+    "pasos": [
+      "Mirá la terminación del verbo.",
+      "Recordá las excepciones tejer y crujir."
+    ],
+    "pista": "Mirá la terminación del verbo.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "-ger / -gir → generalmente G"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "recoger · dirigir"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Excepciones: tejer · crujir"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_aje",
+    "tema": "ortografia_g_j_gu_gu",
+    "titulo": "Terminaciones -aje y -jería",
+    "explicacion": "Viaje, traje y paisaje terminan en -aje y llevan J. También llevan J palabras terminadas en -jería, como relojería. Miramos el final, no cualquier sonido parecido.",
+    "ejemplo": "El paisaje se ve desde la relojería.",
+    "pasos": [
+      "Buscá el final -aje o -jería.",
+      "Escribí J en estas terminaciones."
+    ],
+    "pista": "Buscá el final -aje o -jería.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "viaje · paisaje"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "relojería · cerrajería"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Miramos la terminación"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_plural_z",
+    "tema": "ortografia_c_s_z",
+    "titulo": "De una Z a muchas C: pez y peces",
+    "explicacion": "Al pasar una palabra terminada en Z al plural, cambiamos Z por C y agregamos -es. No cambiamos todas las zetas de cualquier palabra.",
+    "ejemplo": "pez → peces; luz → luces.",
+    "pasos": [
+      "Buscá la Z al final del singular.",
+      "Cambiá esa Z por C y agregá -es."
+    ],
+    "pista": "Buscá la Z al final del singular.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "pez → final Z"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "pec + es"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "peces → plural con C"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_diminutivos",
+    "tema": "ortografia_c_s_z",
+    "titulo": "Nubecita y casita: miramos de dónde viene cada una",
+    "explicacion": "Un diminutivo puede nombrar algo pequeño o mostrar cariño. En nubecita y solcito agregamos -cita o -cito, con C. Pero no todos los diminutivos llevan C: casa forma casita y mesa forma mesita, conservando su S. También miramos estos modelos: pan → panecillo y oso → osito.",
+    "ejemplo": "nube → nubecita; casa → casita. No elegimos por el sonido solamente: miramos la palabra de origen.",
+    "pasos": [
+      "Buscá de qué palabra viene el diminutivo.",
+      "En estos modelos, -cito/-cita/-cillo se escriben con C; casa, mesa y oso conservan su S."
+    ],
+    "pista": "Buscá de qué palabra viene el diminutivo.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "nube → nubecita"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "casa → casita"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "La palabra de origen ayuda a decidir"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_oso_eza",
+    "tema": "ortografia_c_s_z",
+    "titulo": "Nombrar una cualidad y describirla",
+    "explicacion": "Hermoso describe cómo es algo; hermosura nombra su cualidad. Las terminaciones -oso/-osa llevan S. Las palabras como belleza, tristeza y limpieza terminan en -eza, con Z.",
+    "ejemplo": "Una habitación limpia tiene limpieza.",
+    "pasos": [
+      "Decidí si la terminación es -oso/-osa o -eza.",
+      "-oso/-osa lleva S; -eza lleva Z."
+    ],
+    "pista": "Decidí si la terminación es -oso/-osa o -eza.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "ruido → ruidoso"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "bello → belleza"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "-oso: S / -eza: Z"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_anza_ez",
+    "tema": "ortografia_c_s_z",
+    "titulo": "Confianza y rapidez: palabras que nombran una idea",
+    "explicacion": "Confiar se relaciona con confianza; rápido, con rapidez. Estas palabras nombran ideas o cualidades. Las terminaciones -anza y -ez de estos modelos se escriben con Z. Leemos antes las palabras: esperanza es esperar algo bueno; tardanza es llegar tarde; vejez se relaciona con viejo; pequeñez, con pequeño.",
+    "ejemplo": "confiar → confianza; rápido → rapidez. Miramos el final de la palabra que se forma.",
+    "pasos": [
+      "Relacioná cada palabra con su origen o su significado.",
+      "En estos modelos, escribimos Z en -anza y -ez."
+    ],
+    "pista": "Relacioná cada palabra con su origen o su significado.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "confiar → confianza"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "rápido → rapidez"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "En estos modelos: -anza / -ez con Z"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_rr",
+    "tema": "ortografia_c_s_z",
+    "titulo": "R y RR: escuchar y mirar la posición",
+    "explicacion": "Rana lleva una R al principio y tiene sonido fuerte. Entre vocales, el sonido fuerte se escribe RR: perro. Una R entre vocales suena suave: pero.",
+    "ejemplo": "caro no es carro: cambian el sonido y el significado.",
+    "pasos": [
+      "Buscá si la letra está entre dos vocales.",
+      "Entre vocales, el sonido fuerte necesita RR. Al inicio basta R."
+    ],
+    "pista": "Buscá si la letra está entre dos vocales.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "rana → R inicial"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "pero → R suave"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "perro → RR entre vocales"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_vocales",
+    "tema": "diptongo_hiato",
+    "titulo": "Vocales que comparten o separan sílaba",
+    "explicacion": "Primero separamos al decir la palabra. A, E y O son vocales abiertas. I y U son cerradas. En ai-re, A e I van juntas; en te-a-tro, E y A se separan.",
+    "ejemplo": "ai-re: juntas; te-a-tro: separadas.",
+    "pasos": [
+      "Leé la separación que muestra la tarjeta.",
+      "Dos vocales en una sílaba: diptongo. En sílabas distintas: hiato."
+    ],
+    "pista": "Leé la separación que muestra la tarjeta.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "A · E · O: abiertas"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "ai-re: juntas"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "te-a-tro: separadas"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_hiato_tilde",
+    "tema": "diptongo_hiato",
+    "titulo": "La I o U fuerte puede separar las vocales",
+    "explicacion": "En país, la fuerza cae en la I. Escribimos pa-ís y la I lleva tilde. Una I o U tónica junto a una vocal abierta forma hiato y lleva tilde: ba-úl, rí-o. Una H intercalada no lo impide: bú-ho.",
+    "ejemplo": "río: rí-o; ruido: rui-do.",
+    "pasos": [
+      "Decí la palabra y mirá dónde está la fuerza.",
+      "La I o U fuerte junto a A, E u O lleva tilde y se separa."
+    ],
+    "pista": "Decí la palabra y mirá dónde está la fuerza.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "país → fuerza en Í"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "pa-ís → dos sílabas"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Í / Ú fuerte: hiato con vocal abierta"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_tu_mi",
+    "tema": "tilde_diacritica_monosilabos",
+    "titulo": "Tu mochila y tú: cambia lo que queremos decir",
+    "explicacion": "Tu acompaña algo que te pertenece: tu mochila. Tú nombra a la persona: tú vienes. Mi acompaña algo mío; mí aparece, por ejemplo, en para mí. Primero miramos el sentido de la frase.",
+    "ejemplo": "Tu libro es para mí. Tú puedes leer mi cuaderno.",
+    "pasos": [
+      "Buscá si la palabra acompaña una cosa o nombra a una persona.",
+      "tu/mi acompañan; tú/mí nombran a la persona."
+    ],
+    "pista": "Buscá si la palabra acompaña una cosa o nombra a una persona.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "tu mochila → acompaña"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "tú vienes → persona"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "mi libro / para mí"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_el_te",
+    "tema": "tilde_diacritica_monosilabos",
+    "titulo": "El libro, él y el té",
+    "explicacion": "El acompaña un nombre: el libro. Él reemplaza a una persona: él lee. Te nombra a quien recibe algo: te llamo. Té es la bebida. La tilde ayuda a distinguir usos.",
+    "ejemplo": "Él te ofrece el té.",
+    "pasos": [
+      "Probá qué significa la palabra dentro de la oración.",
+      "Persona: él. Bebida: té. Acompañante: el. Destinatario: te."
+    ],
+    "pista": "Probá qué significa la palabra dentro de la oración.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "el libro / él lee"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "te llamo / té para beber"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "El significado decide la tilde"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_si_se",
+    "tema": "tilde_diacritica_monosilabos",
+    "titulo": "Sí acepta; si pone una condición. Sé no es se",
+    "explicacion": "Sí con tilde puede afirmar: sí, voy. Si sin tilde puede poner una condición: si llueve, llevo paraguas. Sé con tilde es una forma de saber, como yo sé, o de ser, como sé amable. Se sin tilde acompaña al verbo: Ana se peina. En esta entrada miramos esos usos, no todos los posibles.",
+    "ejemplo": "Sí, sé nadar. Si Ana viene, se cambia antes de entrar al agua.",
+    "pasos": [
+      "Para sí/si, mirá si afirma o si pone una condición.",
+      "Para sé/se, probá el sentido: saber o ser llevan sé; en se peina escribimos se."
+    ],
+    "pista": "Para sí/si, mirá si afirma o si pone una condición.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "sí: afirmo / si: condición"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "sé: saber o ser"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Ana se peina: se acompaña al verbo"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_de_mas",
+    "tema": "tilde_diacritica_monosilabos",
+    "titulo": "Dé viene de dar; más agrega cantidad",
+    "explicacion": "Dé con tilde es una forma de dar: pedile que te dé agua. De sin tilde une palabras: vaso de agua. Más con tilde indica cantidad: más agua. Mas sin tilde significa pero: quería ir, mas no pudo. Este último uso aparece más en textos que en la conversación.",
+    "ejemplo": "Pedile que te dé un vaso de agua. Quería más, mas no quedaba: quería más, pero no quedaba.",
+    "pasos": [
+      "Para dé/de, preguntate si es una forma de dar o si une palabras.",
+      "Para más/mas, probá si habla de cantidad o si se puede reemplazar por pero."
+    ],
+    "pista": "Para dé/de, preguntate si es una forma de dar o si une palabras.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "dé: dar / vaso de agua"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "más: cantidad"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "mas equivale a pero"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_nombres",
+    "tema": "sustantivos_genero_numero_tipo",
+    "titulo": "Palabras para nombrar: comunes y propios",
+    "explicacion": "Gata nombra una clase de animal; Luna puede ser el nombre de una gata. Los nombres comunes se escriben con minúscula salvo al empezar oración. Los nombres propios distinguen a alguien o un lugar y llevan mayúscula.",
+    "ejemplo": "La gata Luna vive en Córdoba.",
+    "pasos": [
+      "Preguntate si nombra una clase o un nombre particular.",
+      "Gata es común; Luna es propio."
+    ],
+    "pista": "Preguntate si nombra una clase o un nombre particular.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "gata → una clase"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "Luna → una en particular"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "común / propio"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_numero",
+    "tema": "sustantivos_genero_numero_tipo",
+    "titulo": "Una y varias: singular y plural",
+    "explicacion": "Gato nombra uno; gatos nombra varios. Llamamos singular al primero y plural al segundo. Muchos nombres agregan -s o -es; pez cambia a peces.",
+    "ejemplo": "Un árbol → dos árboles.",
+    "pasos": [
+      "Mirá si se habla de uno o de varios.",
+      "Singular: uno. Plural: varios."
+    ],
+    "pista": "Mirá si se habla de uno o de varios.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "un árbol → singular"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "dos árboles → plural"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Miramos la cantidad nombrada"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_colectivos",
+    "tema": "sustantivos_genero_numero_tipo",
+    "titulo": "Una abeja y un enjambre",
+    "explicacion": "Abeja es un nombre individual. Enjambre nombra un conjunto de abejas aunque esté en singular: es un nombre colectivo. No confundimos colectivo con plural.",
+    "ejemplo": "Una oveja; un rebaño de ovejas.",
+    "pasos": [
+      "Preguntate si la palabra en singular nombra un conjunto.",
+      "Enjambre y rebaño son colectivos; abejas es plural de un individual."
+    ],
+    "pista": "Preguntate si la palabra en singular nombra un conjunto.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "abeja → individual"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "enjambre → colectivo"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Colectivo no es lo mismo que plural"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_abstractos",
+    "tema": "sustantivos_genero_numero_tipo",
+    "titulo": "Objetos y sentimientos: concreto y abstracto",
+    "explicacion": "Una mesa es un objeto que podemos percibir; alegría nombra un sentimiento. Llamamos concretos a nombres como mesa y perfume; abstractos a nombres como alegría o paciencia. No significa que los sentimientos no existan.",
+    "ejemplo": "El regalo produjo alegría.",
+    "pasos": [
+      "Decidí si nombra un objeto perceptible o una cualidad/sentimiento.",
+      "Perfume es concreto aunque lo percibamos por el olor."
+    ],
+    "pista": "Decidí si nombra un objeto perceptible o una cualidad/sentimiento.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "mesa · perfume → concretos"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "alegría · paciencia → abstractos"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Abstracto no significa inexistente"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_genero",
+    "tema": "sustantivos_genero_numero_tipo",
+    "titulo": "El mapa y la mano: el género no depende solo del final",
+    "explicacion": "Los sustantivos tienen género masculino o femenino. Decimos el libro y la mesa: el y la nos ayudan a reconocerlo. No alcanza con mirar la última letra: mapa tiene género masculino y mano, femenino. Una mesa no tiene sexo; género es una característica de la palabra.",
+    "ejemplo": "Mapa es un sustantivo masculino, aunque termine en A. Mano es un sustantivo femenino, aunque termine en O.",
+    "pasos": [
+      "Mirá cómo acompañamos la palabra: en estos ejemplos, el indica masculino y la, femenino.",
+      "No decidas solo por la última letra ni por si nombra una persona."
+    ],
+    "pista": "Mirá cómo acompañamos la palabra: en estos ejemplos, el indica masculino y la, femenino.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "el libro / la mesa"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "el mapa / la mano"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "La última letra no decide por sí sola"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_articulos",
+    "tema": "sustantivos_genero_numero_tipo",
+    "titulo": "Palabras que acompañan: el, la, un, una",
+    "explicacion": "El, la, los y las acompañan nombres y presentan algo identificado. Un, una, unos y unas pueden presentar algo sin identificarlo. Se llaman artículos. Cambian para acompañar al nombre.",
+    "ejemplo": "La gata mira unas flores.",
+    "pasos": [
+      "Buscá la palabra corta que acompaña al nombre.",
+      "El artículo y el nombre deben concordar."
+    ],
+    "pista": "Buscá la palabra corta que acompaña al nombre.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "la + gata"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "unas + flores"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Artículo y nombre se acompañan"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_adjetivos",
+    "tema": "sustantivos_genero_numero_tipo",
+    "titulo": "Describir con adjetivos",
+    "explicacion": "En gata negra, negra cuenta cómo es la gata. Es un adjetivo. Puede cambiar para acompañar al nombre: gato negro, gatas negras. El nombre dice qué; el adjetivo agrega cómo es.",
+    "ejemplo": "Las flores rojas perfuman el patio.",
+    "pasos": [
+      "Buscá el nombre de la cosa o persona.",
+      "Después buscá la palabra que cuenta cómo es."
+    ],
+    "pista": "Buscá el nombre de la cosa o persona.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "gata → qué animal"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "negra → cómo es"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "gata negra / gatas negras"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_infinitivo",
+    "tema": "verbos_modo_indicativo_tiempos",
+    "titulo": "El nombre de una acción: infinitivo",
+    "explicacion": "Canto, cantás y cantamos cambian con la persona. Para nombrar la acción sin elegir persona decimos cantar: es el infinitivo. Termina en -ar, -er o -ir.",
+    "ejemplo": "comemos → comer; vivimos → vivir.",
+    "pasos": [
+      "Buscá la acción y su nombre sin persona.",
+      "Los infinitivos terminan en -ar, -er o -ir."
+    ],
+    "pista": "Buscá la acción y su nombre sin persona.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "canto · cantás · cantamos"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "cantar → nombre de la acción"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Infinitivo: -ar / -er / -ir"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_personas",
+    "tema": "verbos_modo_indicativo_tiempos",
+    "titulo": "Quién habla: yo, vos, ella, nosotros",
+    "explicacion": "Yo es quien habla: primera persona. Vos/tú es a quien se habla: segunda. Ella/él es de quien se habla: tercera. Nosotros es primera plural; ellos, tercera plural. Usted y ustedes nombran a quienes escuchan: son segunda persona del trato, aunque usan formas verbales de tercera persona.",
+    "ejemplo": "Yo canto; nosotros cantamos.",
+    "pasos": [
+      "Buscá quién realiza la acción.",
+      "Yo/nosotros: primera; vos/tú: segunda; él/ella/ellos: tercera."
+    ],
+    "pista": "Buscá quién realiza la acción.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "yo / nosotros → primera"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "vos / tú → segunda"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "él / ella / ellos → tercera"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_raiz_desinencia",
+    "tema": "verbos_modo_indicativo_tiempos",
+    "titulo": "Una parte se conserva y otra cambia",
+    "explicacion": "En cantar, canto y cantamos reconocemos cant-. Esa parte expresa la acción y se llama raíz. Lo que agregamos al final se llama desinencia o terminación. En verbos regulares, obtenemos la raíz quitando -ar, -er o -ir al infinitivo. La terminación cambia según quién actúa y cuándo.",
+    "ejemplo": "cant-ar → cant-o → cant-amos. La raíz cant- se mantiene; las terminaciones cambian.",
+    "pasos": [
+      "Buscá el infinitivo y quitá su final -ar, -er o -ir.",
+      "Compará las formas: la raíz conserva el significado y la terminación aporta información."
+    ],
+    "pista": "Buscá el infinitivo y quitá su final -ar, -er o -ir.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "cantar → quitamos -ar"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "cant-: raíz que se conserva"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "canto / cantamos: cambia el final"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_presente",
+    "tema": "verbos_modo_indicativo_tiempos",
+    "titulo": "Ahora o habitualmente: presente",
+    "explicacion": "El presente puede contar lo que pasa ahora o algo habitual. No necesitamos que ocurra solo en este segundo.",
+    "ejemplo": "Hoy leo; todos los días camino.",
+    "pasos": [
+      "Ubicá cuándo o en qué condición pasa la acción.",
+      "Compará con el ejemplo antes de nombrar el tiempo."
+    ],
+    "pista": "Ubicá cuándo o en qué condición pasa la acción.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "Hoy leo; todos los días camino."
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "Presente"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Primero el sentido, después el nombre"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_pasados",
+    "tema": "verbos_modo_indicativo_tiempos",
+    "titulo": "Dos formas de mirar el pasado: canté y cantaba",
+    "explicacion": "Canté presenta un hecho como terminado. Cantaba puede mostrar una costumbre del pasado o lo que estaba ocurriendo. Se llaman pretérito perfecto simple e imperfecto.",
+    "ejemplo": "Ayer canté una canción. Cuando era chica, cantaba cada tarde.",
+    "pasos": [
+      "Ubicá cuándo o en qué condición pasa la acción.",
+      "Compará con el ejemplo antes de nombrar el tiempo."
+    ],
+    "pista": "Ubicá cuándo o en qué condición pasa la acción.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "Ayer canté una canción. Cuando era chica, cantaba cada tarde."
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "Pasado"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Primero el sentido, después el nombre"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_futuro",
+    "tema": "verbos_modo_indicativo_tiempos",
+    "titulo": "Lo que vendrá: futuro simple",
+    "explicacion": "Leeré, viajaré y comeré sitúan acciones después del momento de hablar. Son formas del futuro simple. Primero ubicamos cuándo sucede la acción.",
+    "ejemplo": "Mañana visitaré a mi abuela.",
+    "pasos": [
+      "Ubicá cuándo o en qué condición pasa la acción.",
+      "Compará con el ejemplo antes de nombrar el tiempo."
+    ],
+    "pista": "Ubicá cuándo o en qué condición pasa la acción.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "Mañana visitaré a mi abuela."
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "Futuro"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Primero el sentido, después el nombre"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_condicional",
+    "tema": "verbos_modo_indicativo_tiempos",
+    "titulo": "Lo que haría: condicional simple",
+    "explicacion": "Leería y viajaría pueden expresar algo que haríamos si se cumpliera una condición. La terminación -ría ayuda a reconocer el condicional simple.",
+    "ejemplo": "Si tuviera tiempo, leería ese libro.",
+    "pasos": [
+      "Ubicá cuándo o en qué condición pasa la acción.",
+      "Compará con el ejemplo antes de nombrar el tiempo."
+    ],
+    "pista": "Ubicá cuándo o en qué condición pasa la acción.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "Si tuviera tiempo, leería ese libro."
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "Condicional"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Primero el sentido, después el nombre"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_participio",
+    "tema": "verbos_modo_indicativo_tiempos",
+    "titulo": "Dos piezas para un tiempo compuesto",
+    "explicacion": "He cantado combina haber y cantado. Cantado es un participio: muchos terminan en -ado o -ido. Algunos cambian: hacer → hecho, ver → visto. Las dos piezas forman el tiempo compuesto.",
+    "ejemplo": "He comido: he + comido.",
+    "pasos": [
+      "Buscá una forma de haber junto a un participio.",
+      "He comido tiene dos piezas; comí tiene una."
+    ],
+    "pista": "Buscá una forma de haber junto a un participio.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "haber: he / había / habré"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "participio: cantado / comido"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "he + comido → tiempo compuesto"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_perfecto_compuesto",
+    "tema": "verbos_modo_indicativo_tiempos",
+    "titulo": "He terminado: mirar desde ahora algo ya ocurrido",
+    "explicacion": "He terminado cuenta algo que ya ocurrió y lo relaciona con el presente. Se llama pretérito perfecto compuesto. Se forma con haber en presente y un participio: he, has, ha, hemos o han + terminado. El participio no cambia con la persona: he cantado, hemos cantado. En distintas regiones también se usa terminé en estas situaciones.",
+    "ejemplo": "Ya he preparado la mochila: la preparé antes de hablar y ahora está lista.",
+    "pasos": [
+      "Ubicá el momento de hablar: preparar la mochila ya ocurrió.",
+      "Buscá las dos piezas: he + preparado. El participio no cambia.",
+      "Podés consultar este modelo: yo he; tú/vos has; él/ella ha; nosotros/nosotras hemos; ellos/ellas/ustedes han."
+    ],
+    "pista": "Ubicá el momento de hablar: preparar la mochila ya ocurrió.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "Antes: preparé la mochila"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "Ahora: está lista"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "He + preparado: perfecto compuesto"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_pluscuamperfecto",
+    "tema": "verbos_modo_indicativo_tiempos",
+    "titulo": "Antes de otro momento pasado: había salido",
+    "explicacion": "Había salido cuenta algo anterior a otro momento pasado. Se llama pretérito pluscuamperfecto. Dibujamos el orden: primero salió; después llegué yo.",
+    "ejemplo": "Cuando llegué, Ana ya había salido.",
+    "pasos": [
+      "Buscá los dos momentos del pasado.",
+      "Había + participio indica lo que ya había ocurrido."
+    ],
+    "pista": "Buscá los dos momentos del pasado.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "1. Ana salió"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "2. Yo llegué"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Ya había salido cuando llegué"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_futuro_perfecto",
+    "tema": "verbos_modo_indicativo_tiempos",
+    "titulo": "Para ese momento ya habré terminado",
+    "explicacion": "Habré terminado presenta algo que estará completado antes de un momento futuro. Se llama futuro perfecto. Se forma con haber en futuro y un participio: habré, habrás, habrá, habremos o habrán + terminado. Primero buscamos el momento futuro con el que se compara.",
+    "ejemplo": "Para mañana a las seis, ya habré terminado la maqueta. Terminarla quedará antes de ese momento.",
+    "pasos": [
+      "Ubicá el momento futuro: mañana a las seis.",
+      "La acción se presenta como completada antes de ese momento: habré + terminado.",
+      "Podés consultar: yo habré; tú/vos habrás; él/ella habrá; nosotros/nosotras habremos; ellos/ellas/ustedes habrán."
+    ],
+    "pista": "Ubicá el momento futuro: mañana a las seis.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "Ahora: lo anunciamos"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "Antes de la fiesta: terminamos"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Habré + terminado: futuro perfecto"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_condicional_compuesto",
+    "tema": "verbos_modo_indicativo_tiempos",
+    "titulo": "Habría participado: imaginar otro pasado",
+    "explicacion": "Habría participado puede contar algo que no ocurrió en el pasado, pero habría sido posible con otra condición. Se llama condicional compuesto. Se forma con haber en condicional y un participio: habría, habrías, habríamos o habrían + participado. Aquí trabajamos ese uso, sin suponer que es el único.",
+    "ejemplo": "No tuve la entrada, así que no fui. Con una entrada, habría asistido a la función.",
+    "pasos": [
+      "Separá lo que pasó de lo que imaginamos: no fui; imaginamos otra posibilidad.",
+      "Buscá habría + asistido. La condición que faltó era tener una entrada.",
+      "Podés consultar: yo/él/ella habría; tú/vos habrías; nosotros/nosotras habríamos; ellos/ellas/ustedes habrían."
+    ],
+    "pista": "Separá lo que pasó de lo que imaginamos: no fui; imaginamos otra posibilidad.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "Lo que pasó: no tuve entrada"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "Otra condición: tener entrada"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Habría + asistido: otra posibilidad"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_preterito_anterior",
+    "tema": "verbos_modo_indicativo_tiempos",
+    "titulo": "Apenas hubo terminado, salió: dos hechos pasados",
+    "explicacion": "En algunos relatos aparece hubo terminado para señalar una acción acabada inmediatamente antes de otra acción pasada. Se llama pretérito anterior. Se forma con haber en pretérito perfecto simple y un participio: hube, hubiste, hubo, hubimos o hubieron + terminado. Hoy es poco habitual al conversar; aprendemos a reconocerlo en textos.",
+    "ejemplo": "Apenas Ana hubo terminado la carta, salió. Primero terminó la carta; enseguida salió.",
+    "pasos": [
+      "Buscá las dos acciones pasadas y la expresión apenas o en cuanto.",
+      "Hubo + terminado presenta la acción que acabó inmediatamente antes.",
+      "Podés consultar: yo hube; tú/vos hubiste; él/ella hubo; nosotros/nosotras hubimos; ellos/ellas/ustedes hubieron."
+    ],
+    "pista": "Buscá las dos acciones pasadas y la expresión apenas o en cuanto.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "Primero: terminó la carta"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "Enseguida: salió"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Hubo + terminado: pretérito anterior"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_sujeto",
+    "tema": "sujeto_predicado_nucleo",
+    "titulo": "De quién hablamos y qué contamos",
+    "explicacion": "En la gata duerme hablamos de la gata: es el sujeto. Duerme es lo que contamos: es el predicado. El verbo cambia si decimos las gatas duermen; eso ayuda a localizar el sujeto.",
+    "ejemplo": "La gata duerme → Las gatas duermen.",
+    "pasos": [
+      "Buscá el verbo y probá cambiar uno por varios.",
+      "La parte que concuerda con el verbo es el sujeto."
+    ],
+    "pista": "Buscá el verbo y probá cambiar uno por varios.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "La gata → de quién hablamos"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "duerme → qué contamos"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "sujeto / predicado"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_nucleos",
+    "tema": "sujeto_predicado_nucleo",
+    "titulo": "Uno o dos núcleos del sujeto",
+    "explicacion": "El núcleo es la palabra central del sujeto. En la gata negra, es gata. En Ana y Luis cantan hay dos núcleos: Ana y Luis. Un núcleo: sujeto simple; dos o más: compuesto.",
+    "ejemplo": "La gata negra duerme: núcleo gata.",
+    "pasos": [
+      "Buscá los nombres centrales, no los adjetivos ni artículos.",
+      "Contá los núcleos: uno es simple; varios, compuesto."
+    ],
+    "pista": "Buscá los nombres centrales, no los adjetivos ni artículos.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "la gata negra → gata"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "Ana y Luis → dos núcleos"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Simple no significa singular"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_predicado",
+    "tema": "sujeto_predicado_nucleo",
+    "titulo": "Uno o dos verbos: predicado simple y compuesto",
+    "explicacion": "En Ana canta, el predicado tiene un verbo: canta. En Ana canta y baila, tiene dos: canta y baila. Es predicado verbal compuesto aunque el sujeto tenga un solo nombre.",
+    "ejemplo": "Ana canta y baila: dos verbos para el mismo sujeto.",
+    "pasos": [
+      "Buscá las acciones conjugadas del predicado.",
+      "Un verbo: simple. Dos o más: compuesto."
+    ],
+    "pista": "Buscá las acciones conjugadas del predicado.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "Ana canta → un verbo"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "Ana canta y baila → dos"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Contamos verbos, no personas"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_tacito",
+    "tema": "sujeto_predicado_nucleo",
+    "titulo": "Cuando el sujeto no está escrito",
+    "explicacion": "En nosotros leemos, el sujeto está escrito: es expreso. En leemos, la forma del verbo permite recuperar nosotros: es tácito. No agregamos un sujeto a expresiones impersonales como llueve.",
+    "ejemplo": "Guardamos los libros → nosotros/nosotras.",
+    "pasos": [
+      "Mirá la terminación del verbo y el contexto.",
+      "Un sujeto tácito se puede recuperar aunque no esté escrito."
+    ],
+    "pista": "Mirá la terminación del verbo y el contexto.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "nosotros leemos → escrito"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "leemos → se recupera"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "expreso / tácito"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_concordancia",
+    "tema": "concordancia_sujeto_verbo",
+    "titulo": "El verbo acompaña al núcleo del sujeto",
+    "explicacion": "El grupo de chicos llega: el núcleo es grupo, en singular. Los chicos llegan: chicos está en plural. La palabra más cercana al verbo no siempre es el núcleo.",
+    "ejemplo": "El grupo de chicos llega al club.",
+    "pasos": [
+      "Buscá el núcleo del sujeto, aunque haya otras palabras en medio.",
+      "Hacé concordar el verbo con ese núcleo."
+    ],
+    "pista": "Buscá el núcleo del sujeto, aunque haya otras palabras en medio.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "el grupo [de chicos]"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "núcleo: grupo → singular"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "el grupo llega / los chicos llegan"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_concordancia_nombre",
+    "tema": "concordancia_sujeto_verbo",
+    "titulo": "Nombre, artículo y adjetivo se acompañan",
+    "explicacion": "La gata negra pasa a las gatas negras. Artículo y adjetivo acompañan al nombre en género y número. Esta concordancia es distinta de elegir la persona del verbo.",
+    "ejemplo": "El perro pequeño → los perros pequeños.",
+    "pasos": [
+      "Buscá el nombre y mirá si es uno o varios.",
+      "Ajustá las palabras que lo acompañan."
+    ],
+    "pista": "Buscá el nombre y mirá si es uno o varios.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "la gata negra"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "las gatas negras"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Cambiamos juntas las palabras"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_conectores",
+    "tema": "discurso_conectores_sinonimos",
+    "titulo": "Porque, por eso y pero conectan ideas distintas",
+    "explicacion": "Porque introduce la causa. Por eso presenta la consecuencia. Pero muestra un contraste. Miramos la relación entre las ideas antes de elegir.",
+    "ejemplo": "Llovió; por eso se mojó el patio.",
+    "pasos": [
+      "Buscá si la segunda idea da una razón, un resultado o un contraste.",
+      "Causa: porque. Resultado: por eso. Contraste: pero."
+    ],
+    "pista": "Buscá si la segunda idea da una razón, un resultado o un contraste.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "Se mojó porque llovió"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "Llovió; por eso se mojó"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Quería salir, pero se quedó"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_conectores_temporales",
+    "tema": "discurso_conectores_sinonimos",
+    "titulo": "Antes, después y mientras ordenan lo que pasa",
+    "explicacion": "Antes y después nos ayudan a ordenar acciones. Mientras puede indicar que dos acciones ocurren al mismo tiempo. Finalmente señala el último paso. No alcanza con elegir una palabra porque suena bien: comprobamos el orden que cuenta la historia.",
+    "ejemplo": "Primero preparo la mochila; después salgo. Mientras camino, converso: caminar y conversar ocurren al mismo tiempo.",
+    "pasos": [
+      "Buscá si las acciones van una después de otra o suceden al mismo tiempo.",
+      "Antes/después ordenan; mientras relaciona acciones simultáneas; finalmente cierra una serie."
+    ],
+    "pista": "Buscá si las acciones van una después de otra o suceden al mismo tiempo.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "antes → después: orden"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "mientras: al mismo tiempo"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "finalmente: último paso"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_sinonimos",
+    "tema": "discurso_conectores_sinonimos",
+    "titulo": "La palabra adecuada depende de la frase",
+    "explicacion": "Grande puede significar enorme al hablar de una casa. Pero una gran amiga puede ser una excelente amiga, no una amiga enorme. Para cambiar una palabra, conservamos el sentido de la frase.",
+    "ejemplo": "Una gran amiga → una excelente amiga.",
+    "pasos": [
+      "Leé la frase completa, no solo la palabra.",
+      "Elegí un reemplazo que conserve su sentido."
+    ],
+    "pista": "Leé la frase completa, no solo la palabra.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "gran amiga → excelente"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "casa grande → enorme"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "La frase decide el significado"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_antonimos_contexto",
+    "tema": "discurso_conectores_sinonimos",
+    "titulo": "Buscar un contrario que sirva en esa frase",
+    "explicacion": "Los antónimos expresan significados opuestos, pero elegimos según la frase. Ropa clara se opone a ropa oscura. Una explicación clara, que se entiende, se opone a una explicación confusa. No siempre sirve el mismo contrario para todos los usos de una palabra.",
+    "ejemplo": "ropa clara → ropa oscura; explicación clara → explicación confusa.",
+    "pasos": [
+      "Leé la frase completa y buscá qué significa la palabra allí.",
+      "Elegí el contrario que mantiene ese tema: color, comprensión, peso u otra cualidad."
+    ],
+    "pista": "Leé la frase completa y buscá qué significa la palabra allí.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "ropa clara → oscura"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "explicación clara → confusa"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "El contexto decide el contrario"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_funciones",
+    "tema": "discurso_conectores_sinonimos",
+    "titulo": "Para qué se dice: informar, pedir o expresar",
+    "explicacion": "La biblioteca abre a las nueve informa un dato. Cerrá la puerta busca que alguien actúe. Estoy contenta expresa una emoción. Son distintas intenciones del lenguaje.",
+    "ejemplo": "Llueve informa; traé paraguas pide; ¡qué alegría! expresa.",
+    "pasos": [
+      "Preguntate qué busca quien habla.",
+      "Información, pedido y emoción son intenciones diferentes."
+    ],
+    "pista": "Preguntate qué busca quien habla.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "Un dato → informar"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "Un pedido → actuar"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Un sentimiento → expresar"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_cohesion",
+    "tema": "discurso_conectores_sinonimos",
+    "titulo": "Que el texto siga un hilo: coherencia y cohesión",
+    "explicacion": "Un texto coherente mantiene un sentido que podemos seguir. Para unir sus partes usamos conectores y palabras que recuperan otras: Ana encontró una llave. La guardó. La se refiere a la llave.",
+    "ejemplo": "Ana encontró una llave. La guardó en su bolso.",
+    "pasos": [
+      "Buscá qué palabra anterior recupera la expresión señalada.",
+      "Estas relaciones unen las frases: eso ayuda a la cohesión."
+    ],
+    "pista": "Buscá qué palabra anterior recupera la expresión señalada.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "Ana encontró una llave"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "La guardó → la llave"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Conectar frases: cohesión"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_momentos",
+    "tema": "produccion_escrita_narracion",
+    "titulo": "Una historia en tres momentos",
+    "explicacion": "Primero conocemos a alguien y su situación. Después aparece un problema. Al final vemos cómo se resuelve o qué cambia. No hace falta escribir mucho de entrada: empezamos con tres oraciones.",
+    "ejemplo": "Lila llevaba una torta. Se rompió la caja. La sostuvo con una bandeja y llegó a tiempo.",
+    "pasos": [
+      "Buscá qué cambia la situación inicial.",
+      "Después comprobá que el final responde al problema."
+    ],
+    "pista": "Buscá qué cambia la situación inicial.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "Inicio → alguien en un lugar"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "Problema → algo cambia"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Resolución → qué hizo y qué pasó"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_narrador",
+    "tema": "produccion_escrita_narracion",
+    "titulo": "Quién cuenta la historia: el narrador",
+    "explicacion": "Encontré una llave cuenta desde un yo que participa. Ana encontró una llave cuenta desde fuera, en tercera persona. El narrador es la voz que cuenta; no siempre coincide con quien escribió el cuento.",
+    "ejemplo": "Yo abrí la puerta / Ana abrió la puerta.",
+    "pasos": [
+      "Mirá si la voz dice yo o habla de él/ella.",
+      "Separá la voz del relato de la persona que lo escribió."
+    ],
+    "pista": "Mirá si la voz dice yo o habla de él/ella.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "yo encontré → participo"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "Ana encontró → cuento de ella"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Narrador: la voz del relato"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_recursos",
+    "tema": "produccion_escrita_narracion",
+    "titulo": "Comparar, dar vida y escribir sonidos",
+    "explicacion": "Brilla como el sol compara dos cosas. El viento susurró da una acción humana al viento: personificación. ¡Toc, toc! imita un sonido: onomatopeya. Probamos un recurso por vez.",
+    "ejemplo": "La puerta hizo ¡crac!; el viento la saludó.",
+    "pasos": [
+      "Buscá si compara, atribuye una acción humana o imita un sonido.",
+      "Usá el recurso para ayudar a imaginar la escena."
+    ],
+    "pista": "Buscá si compara, atribuye una acción humana o imita un sonido.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "como el sol → compara"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "el viento susurra → da vida"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "¡toc, toc! → imita un sonido"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_puntuacion",
+    "tema": "produccion_escrita_narracion",
+    "titulo": "Puntos y comas ayudan a leer",
+    "explicacion": "El punto cierra una oración. La coma puede separar elementos de una lista. No ponemos coma entre el sujeto y el verbo solo porque el sujeto sea largo. Leemos por unidades de sentido.",
+    "ejemplo": "Traje pan, queso y fruta. Después preparé la mesa.",
+    "pasos": [
+      "Buscá dónde termina una idea completa.",
+      "En una lista separá elementos con comas; antes de la última y normalmente no hace falta."
+    ],
+    "pista": "Buscá dónde termina una idea completa.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "Una idea completa → punto"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "pan, queso y fruta → lista"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Sujeto + verbo: sin coma entre ellos"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ort_h_0_observar_palabras",
+    "tema": "ortografia_h",
+    "titulo": "La H que vemos aunque no suene",
+    "explicacion": "En hormiga y cohete, la H se escribe aunque no suene. Algunas palabras se aprenden mirando su escritura: no hace falta inventar una regla para explicarlas.",
+    "ejemplo": "Una hormiga mira un cohete de juguete.",
+    "pasos": [
+      "Mirá la H al principio de hormiga: h + ormiga.",
+      "Mirá la H dentro de cohete: co + h + ete."
+    ],
+    "pista": "Volvé a mirar cohete: entre la o y la e aparece una H.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Palabras para mirar",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "cohete"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "cohete tiene H en el medio"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Miramos la palabra; no inventamos reglas"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ort_h_1_diptongos_iniciales_hie_hue",
+    "tema": "ortografia_h",
+    "titulo": "Hielo y huevo: comienzos que se parecen",
+    "explicacion": "Hielo empieza con hie- y huevo con hue-. Conservamos la H al escribir estas palabras. También la vemos en hierba, hueso y huella.",
+    "ejemplo": "Guardé un huevo junto a la cubetera de hielo.",
+    "pasos": [
+      "Buscá el comienzo hue- en huevo.",
+      "Buscá el comienzo hie- en hielo."
+    ],
+    "pista": "Mirá el modelo hielo: empieza con hie-.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Palabras para mirar",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "hielo"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "huevo y hielo"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Miramos la palabra; no inventamos reglas"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ort_h_2_verbos_haber_hacer_hablar",
+    "tema": "ortografia_h",
+    "titulo": "Palabras que van juntas: hacer e hizo",
+    "explicacion": "Hago e hizo son formas de hacer y conservan la H. Hay viene de haber; hablo viene de hablar. Podemos mirar esas palabras como familias.",
+    "ejemplo": "Hoy hago un dibujo. Ayer mi amiga hizo uno.",
+    "pasos": [
+      "Hago e hizo se relacionan con hacer.",
+      "Escribimos H en las tres: hacer, hago, hizo."
+    ],
+    "pista": "Relacioná hizo con hacer. Las dos se escriben con H.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Palabras para mirar",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "hizo"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "hacer, hago, hizo"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Miramos la palabra; no inventamos reglas"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ort_h_3_hum_seguido_vocal",
+    "tema": "ortografia_h",
+    "titulo": "Humo, humedad y humilde",
+    "explicacion": "Las palabras que empiezan por hum- seguido de una vocal llevan H. Mirá humo, humedad y humilde: después de hum aparece o, e o i.",
+    "ejemplo": "Después de la lluvia hay humedad.",
+    "pasos": [
+      "Separá el comienzo: hum + edad.",
+      "Después de hum está la vocal e: escribimos humedad con H."
+    ],
+    "pista": "El comienzo hum- seguido de vocal se escribe con H.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Palabras para mirar",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "humedad"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "humedad"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Miramos la palabra; no inventamos reglas"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ort_h_4_comienzos_con_significado",
+    "tema": "ortografia_h",
+    "titulo": "Hidro-: un comienzo relacionado con agua",
+    "explicacion": "Algunos comienzos de palabras tienen significado. Hidro- se relaciona con agua y se escribe con H. Hiper- puede indicar algo grande o excesivo, como en hipermercado.",
+    "ejemplo": "Un hidromasaje utiliza agua.",
+    "pasos": [
+      "Buscá hidro- al principio de hidromasaje.",
+      "Relacioná ese comienzo con agua para recordar la H."
+    ],
+    "pista": "El comienzo hidro- se escribe con H y se relaciona con agua.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Palabras para mirar",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "hidromasaje"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "hidromasaje"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Miramos la palabra; no inventamos reglas"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ort_h_5_familias_sin_generalizar",
+    "tema": "ortografia_h",
+    "titulo": "Mirar la palabra completa",
+    "explicacion": "Muchas palabras de una familia conservan la H: hormiga y hormiguero. Pero no todas las familias funcionan igual: hueso lleva H y óseo no. Observamos cada modelo antes de escribir.",
+    "ejemplo": "La hormiga entra al hormiguero.",
+    "pasos": [
+      "Encontrá la H al principio de hormiga y hormiguero.",
+      "Compará otro caso: hueso tiene H; óseo, que se relaciona con los huesos, no."
+    ],
+    "pista": "En esta familia, hormiga y hormiguero empiezan con H.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Palabras para mirar",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "hormiguero"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "hormiga, hormiguero; hueso, óseo"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Miramos la palabra; no inventamos reglas"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_br_bl",
+    "tema": "ortografia_b_v",
+    "titulo": "B delante de R y L",
+    "explicacion": "Brazo y blanco empiezan con B. Escribimos B delante de R y L en estos grupos: br y bl. Miramos las letras vecinas.",
+    "ejemplo": "brazo → br; blanco → bl.",
+    "pasos": [
+      "Buscá la R o L que sigue al hueco.",
+      "Antes de R o L, escribimos B."
+    ],
+    "pista": "Buscá la R o L que sigue al hueco.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "brazo → BR"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "blanco → BL"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "B delante de R y L"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_bir_buir",
+    "tema": "ortografia_b_v",
+    "titulo": "Escribir y contribuir; vivir, servir y hervir",
+    "explicacion": "Los verbos terminados en -bir y -buir llevan B, con las excepciones vivir, servir y hervir. Aprendemos la regla junto a esas tres excepciones.",
+    "ejemplo": "escribir → B; vivir → V.",
+    "pasos": [
+      "Mirá el final -bir o -buir.",
+      "Revisá si es vivir, servir o hervir: llevan V."
+    ],
+    "pista": "Mirá el final -bir o -buir.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "-bir / -buir → B"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "escribir · contribuir"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Excepciones: vivir, servir, hervir"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_verbos_con_b",
+    "tema": "ortografia_b_v",
+    "titulo": "Seis familias que miramos con B",
+    "explicacion": "Estos infinitivos se escriben con B: haber, deber, beber, caber, saber y sorber. Antes de practicar miramos formas de esas familias: había, debo, bebo, cabe, sabe y sorbo. Sorber significa tomar un líquido aspirándolo, por ejemplo al dar un sorbo. No adivinamos una palabra nueva sin observar su modelo.",
+    "ejemplo": "haber → había; deber → debo; beber → bebo; caber → cabe; saber → sabe; sorber → sorbo.",
+    "pasos": [
+      "Relacioná la palabra de la frase con uno de los seis modelos.",
+      "Cuando aparezca el lugar de esa B, conservá la escritura del modelo. No todas las formas muestran la B: he también pertenece a haber."
+    ],
+    "pista": "Relacioná la palabra de la frase con uno de los seis modelos.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "haber → había / deber → debo"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "beber → bebo / caber → cabe"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "saber → sabe / sorber → sorbo"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_bi_bis_biz_bio",
+    "tema": "ortografia_b_v",
+    "titulo": "Bicicleta y biografía: comienzos con significado",
+    "explicacion": "Bi- se relaciona con dos: bicicleta tiene dos ruedas; bicolor, dos colores. Bio se relaciona con vida: una biografía cuenta la vida de alguien y un microbio es un ser muy pequeño. Estos elementos se escriben con B. También observamos los modelos bisnieto, hijo de un nieto, y bizcocho, un alimento horneado, para los comienzos bis- y biz-.",
+    "ejemplo": "bi-: bicicleta, bicolor; bio: biografía, microbio; modelos con bis- y biz-: bisnieto y bizcocho.",
+    "pasos": [
+      "Relacioná bi- con dos y bio con vida.",
+      "Para bisnieto y bizcocho, mirá los modelos escritos antes de elegir la letra. No deduzcas toda la palabra por cómo suena."
+    ],
+    "pista": "Relacioná bi- con dos y bio con vida.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "bi-: dos / bio: vida"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "bicicleta · bicolor · biografía"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Modelos: bisnieto / bizcocho"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_mente",
+    "tema": "tildes_generales_agudas_graves_esdrujulas",
+    "titulo": "Al agregar -mente, miramos la palabra inicial",
+    "explicacion": "Rápida tiene tilde; rápidamente la conserva. Lenta no tiene tilde; lentamente tampoco. No aplicamos a estas palabras la regla general mirando solo el final.",
+    "ejemplo": "fácil → fácilmente; suave → suavemente.",
+    "pasos": [
+      "Separá la terminación -mente y mirá el adjetivo de origen.",
+      "Si ese adjetivo tiene tilde, la conserva."
+    ],
+    "pista": "Separá la terminación -mente y mirá el adjetivo de origen.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "rápida → rápidamente"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "lenta → lentamente"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Se conserva la tilde del adjetivo"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_compuestas_tilde",
+    "tema": "tildes_generales_agudas_graves_esdrujulas",
+    "titulo": "Unidas o con guion: no se acentúan igual",
+    "explicacion": "Cuando dos palabras se unen sin guion, miramos cómo se pronuncia y acentúa la palabra completa. No conservamos automáticamente todas las tildes originales: décimo + séptimo forma decimoséptimo. Si dos adjetivos se unen con guion, cada parte conserva su acentuación: teórico-práctico. Las terminaciones -mente tienen su regla propia, ya estudiada.",
+    "ejemplo": "decimoséptimo lleva una sola tilde; teórico-práctico conserva la tilde de teórico y la de práctico.",
+    "pasos": [
+      "Mirá si el compuesto aparece unido o separado por guion.",
+      "Unido: aplicamos las reglas a toda la palabra. Con guion entre adjetivos: cada parte conserva su tilde."
+    ],
+    "pista": "Mirá si el compuesto aparece unido o separado por guion.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "décimo + séptimo → decimoséptimo"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "teórico + práctico → teórico-práctico"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "El guion cambia qué palabra acentuamos"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_preguntas",
+    "tema": "tilde_diacritica_monosilabos",
+    "titulo": "Qué y cómo al preguntar, aun sin signos",
+    "explicacion": "Qué, quién, cómo y cuándo llevan tilde cuando preguntan o exclaman. Una pregunta puede estar dentro de otra frase: no sé cuándo llega. En te aviso cuando llegue, cuando no pregunta.",
+    "ejemplo": "¿Qué pasó? / No sé qué pasó.",
+    "pasos": [
+      "Buscá si la palabra introduce algo que se pregunta.",
+      "Una pregunta indirecta también puede llevar tilde."
+    ],
+    "pista": "Buscá si la palabra introduce algo que se pregunta.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "¿Qué pasó? → pregunta"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "No sé qué pasó → pregunta indirecta"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Me dijo que vino → no pregunta"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_aun",
+    "tema": "tilde_diacritica_monosilabos",
+    "titulo": "Aún es todavía; aun puede ser incluso",
+    "explicacion": "Aún lleva tilde cuando significa todavía. Aun no lleva tilde cuando significa incluso. Probamos reemplazar la palabra sin cambiar la frase.",
+    "ejemplo": "Aún no llegó = todavía no llegó. Aun Ana vino = incluso Ana vino.",
+    "pasos": [
+      "Reemplazá mentalmente por todavía o por incluso.",
+      "Todavía: aún. Incluso: aun."
+    ],
+    "pista": "Reemplazá mentalmente por todavía o por incluso.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "todavía → aún"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "incluso → aun"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "El reemplazo ayuda a decidir"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_taller_1",
+    "tema": "produccion_escrita_narracion",
+    "titulo": "Planificar: pensar una solución antes de escribir",
+    "explicacion": "Podés escribir poco y volver sobre tu borrador. Primero decidimos qué sucede; después revisamos si otra persona puede entenderlo. Un ejemplo muestra una posibilidad, pero podés imaginar otra.",
+    "ejemplo": "Lila llevaba una torta. La caja se rompió. Sostuvo la torta con una bandeja y llegó a la fiesta.",
+    "pasos": [
+      "Leé el problema del personaje.",
+      "Elegí qué puede hacer para resolverlo.",
+      "Releé: ¿se entiende qué pasó al final?"
+    ],
+    "pista": "Contá una acción del personaje que responda al problema.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Escribir en pasos cortos",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "Pensar una solución"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "Escribir un borrador"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Releer y mejorar una parte"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_taller_2",
+    "tema": "produccion_escrita_narracion",
+    "titulo": "Del plan al borrador: una historia breve",
+    "explicacion": "Podés escribir poco y volver sobre tu borrador. Primero decidimos qué sucede; después revisamos si otra persona puede entenderlo. Un ejemplo muestra una posibilidad, pero podés imaginar otra.",
+    "ejemplo": "Lila llevaba una torta. La caja se rompió. Sostuvo la torta con una bandeja y llegó a la fiesta.",
+    "pasos": [
+      "Leé el problema del personaje.",
+      "Elegí qué puede hacer para resolverlo.",
+      "Releé: ¿se entiende qué pasó al final?"
+    ],
+    "pista": "Contá una acción del personaje que responda al problema.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Escribir en pasos cortos",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "Pensar una solución"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "Escribir un borrador"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Releer y mejorar una parte"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_taller_3",
+    "tema": "produccion_escrita_narracion",
+    "titulo": "Revisar y reescribir un final",
+    "explicacion": "Podés escribir poco y volver sobre tu borrador. Primero decidimos qué sucede; después revisamos si otra persona puede entenderlo. Un ejemplo muestra una posibilidad, pero podés imaginar otra.",
+    "ejemplo": "Lila llevaba una torta. La caja se rompió. Sostuvo la torta con una bandeja y llegó a la fiesta.",
+    "pasos": [
+      "Leé el problema del personaje.",
+      "Elegí qué puede hacer para resolverlo.",
+      "Releé: ¿se entiende qué pasó al final?"
+    ],
+    "pista": "Contá una acción del personaje que responda al problema.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Escribir en pasos cortos",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "Pensar una solución"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "Escribir un borrador"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Releer y mejorar una parte"
+        }
+      ]
+    }
   }
 ];
 export function getFichaBase(tema) {
@@ -4241,3 +9044,5 @@ export function getFichaBase(tema) {
  slides:us.map(u=>({titulo:u.titulo,contenido:u.explicacion+'\n\n'+u.ejemplo+'\n'+u.pasos.join('\n'),concepto_clave:u.pista,visual_apoyo:u.visual})),
  apunte_completo:us.map(u=>'## '+u.titulo+'\n\n'+(u.visual?.tipo==='lectura'?'Texto: '+u.visual.texto+'\n\n':'')+u.explicacion+'\n\n'+u.ejemplo+'\n\n'+u.pasos.join('\n')).join('\n\n')};
 }
+
+export function getUnidadesPublicas(tema) { return UNIDADES.filter(u => u.tema === tema); }

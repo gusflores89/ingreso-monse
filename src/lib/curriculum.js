@@ -126,14 +126,14 @@ export const PRERREQUISITOS = {
   perimetros_compuestos: ["perimetros_simples"],
   si_me_la_longitud: ["numeros_naturales_sistema_decimal"],
   si_me_la_masa_capacidad_tiempo: ["si_me_la_longitud"],
-  graficos_estadisticos: ["numeros_naturales_sistema_decimal"],
+  graficos_estadisticos: ["numeros_naturales_sistema_decimal", "fracciones_concepto"],
   proporcionalidad_regla_3: ["division_1_digito", "fracciones_operaciones"],
   secuencias_aritmeticas: ["numeros_naturales_sistema_decimal"],
   secuencias_geometricas_fibonacci: ["secuencias_aritmeticas"],
   ecuaciones_con_imagenes_2_incognitas: ["numeros_naturales_sistema_decimal"],
   potenciacion_y_raiz_cuadrada: ["tablas_multiplicar_2_5"],
   jerarquia_operaciones: ["potenciacion_y_raiz_cuadrada"],
-  secuencias_alfanumericas_y_figuras: ["secuencias_aritmeticas"],
+  secuencias_alfanumericas_y_figuras: ["secuencias_aritmeticas", "geometria_angulos", "division_1_digito"],
 
   // Lengua (comprensión lectora y ortografías iniciales se habilitan sin prerrequisitos)
   diptongo_hiato: ["tildes_generales_agudas_graves_esdrujulas"],

@@ -1186,10 +1186,14 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             <span style={{ fontSize: "1.6rem" }}>📝</span>
             <div style={{ textAlign: "left" }}>
               <strong style={{ color: "#fef3c7", fontSize: "0.92rem", display: "block" }}>
-                {pregunta?.examen_pendiente ? "Examen pendiente" : "Ya podés probar el examen"}
+                {pregunta?.contenido_version === VERSION_BASES
+                  ? (pregunta.examen_pendiente ? "Tu cierre de repaso está guardado" : "Podés probar lo aprendido")
+                  : (pregunta?.examen_pendiente ? "Examen pendiente" : "Ya podés probar el examen")}
               </strong>
               <span style={{ color: "#fde68a", fontSize: "0.82rem" }}>
-                Podés seguir practicando o elegir el examen cuando tengas ganas.
+                {pregunta?.contenido_version === VERSION_BASES
+                  ? "Son tres ideas para repasar. Podés hacerlo ahora o seguir practicando."
+                  : "Podés seguir practicando o elegir el examen cuando tengas ganas."}
               </span>
             </div>
           </div>
@@ -1208,7 +1212,9 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
               cursor: "pointer",
             }}
           >
-            {pregunta?.examen_pendiente ? "Retomar examen" : "Elegir examen"} →
+            {pregunta?.contenido_version === VERSION_BASES
+              ? (pregunta.examen_pendiente ? "Retomar cierre" : "Probar lo aprendido")
+              : (pregunta?.examen_pendiente ? "Retomar examen" : "Elegir examen")} →
           </button>
         </div>
       )}

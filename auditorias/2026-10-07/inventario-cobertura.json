@@ -1,0 +1,1768 @@
+{
+  "resumen": {
+    "fecha": "2026-10-07",
+    "alcance": "Inventario del currículo efectivo y del material fijo. Los conteos no certifican cobertura del programa oficial ni aprendizaje de la alumna.",
+    "temas": 40,
+    "matematica": 26,
+    "lengua": 14,
+    "fichasIniciales": 40,
+    "microleccionesFijas": 212,
+    "objetivosEfectivos": 244,
+    "sinRepasoFijo": [
+      "ortografia_g_j_gu_gu",
+      "ortografia_c_s_z",
+      "diptongo_hiato",
+      "tilde_diacritica_monosilabos",
+      "sustantivos_genero_numero_tipo",
+      "verbos_modo_indicativo_tiempos",
+      "sujeto_predicado_nucleo",
+      "concordancia_sujeto_verbo",
+      "discurso_conectores_sinonimos",
+      "produccion_escrita_narracion"
+    ],
+    "matematicaSinVisual": 87,
+    "matematicaUnidades": 178,
+    "cierresFijos": 29,
+    "preguntasCierre": 84,
+    "preguntasCierreReutilizadas": 84,
+    "diferencias": []
+  },
+  "temas": [
+    {
+      "semanas": "1",
+      "tema": "numeros_naturales_sistema_decimal",
+      "orden": 1,
+      "materia": "matematica",
+      "fase": 1,
+      "fichaInicial": "Contar y armar paquetes",
+      "objetivosEfectivos": [
+        {
+          "id": "entrada_contar",
+          "titulo": "Contar una ficha por vez"
+        },
+        {
+          "id": "entrada_conservar",
+          "titulo": "Mover las fichas no cambia cuántas hay"
+        },
+        {
+          "id": "entrada_juntar",
+          "titulo": "Sumar es juntar cantidades"
+        },
+        {
+          "id": "entrada_quitar",
+          "titulo": "Restar es ver cuánto queda"
+        },
+        {
+          "id": "entrada_diez",
+          "titulo": "Diez fichas forman un paquete"
+        },
+        {
+          "id": "mat_num_decenas",
+          "titulo": "Diez unidades forman una decena"
+        },
+        {
+          "id": "mat_num_posicion",
+          "titulo": "El lugar de cada cifra"
+        },
+        {
+          "id": "mat_num_orden",
+          "titulo": "Comparar desde el lugar más grande"
+        },
+        {
+          "id": "entrada_llevar",
+          "titulo": "Cambiar diez sueltas por un paquete"
+        },
+        {
+          "id": "mat_num_suma",
+          "titulo": "Sumar y reagrupar"
+        },
+        {
+          "id": "entrada_desarmar",
+          "titulo": "Abrir un paquete para poder quitar"
+        },
+        {
+          "id": "mat_num_resta",
+          "titulo": "Restar y comprobar"
+        }
+      ],
+      "unidadesRevisadas": 12,
+      "explicacionesSinVisual": 5,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-numeros_naturales_sistema_decimal.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 12,
+      "preguntasCierre": 3,
+      "preguntasCierreReutilizadas": 3
+    },
+    {
+      "semanas": "2-3",
+      "tema": "tablas_multiplicar_2_5",
+      "orden": 2,
+      "materia": "matematica",
+      "fase": 1,
+      "fichaInicial": "Grupos con la misma cantidad",
+      "objetivosEfectivos": [
+        {
+          "id": "entrada_grupos",
+          "titulo": "Hacer grupos con la misma cantidad"
+        },
+        {
+          "id": "mat_tab_grupos",
+          "titulo": "Multiplicar cuenta grupos iguales"
+        },
+        {
+          "id": "puente_filas",
+          "titulo": "Contar por filas"
+        },
+        {
+          "id": "puente_doble",
+          "titulo": "Hacer el doble"
+        },
+        {
+          "id": "mat_tab_dobles",
+          "titulo": "Dobles y el orden de los factores"
+        },
+        {
+          "id": "mat_tab_cinco",
+          "titulo": "Contar de cinco en cinco"
+        }
+      ],
+      "unidadesRevisadas": 6,
+      "explicacionesSinVisual": 3,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-tablas_multiplicar_2_5.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 6,
+      "preguntasCierre": 3,
+      "preguntasCierreReutilizadas": 3
+    },
+    {
+      "semanas": "4-5",
+      "tema": "tablas_multiplicar_6_8",
+      "orden": 3,
+      "materia": "matematica",
+      "fase": 1,
+      "fichaInicial": "Usar un grupo que ya conocemos",
+      "objetivosEfectivos": [
+        {
+          "id": "puente_seis",
+          "titulo": "Seis filas: tres y otras tres"
+        },
+        {
+          "id": "puente_ocho",
+          "titulo": "Ocho filas: cuatro y otras cuatro"
+        },
+        {
+          "id": "mat_tab_seis_ocho",
+          "titulo": "Construir las tablas del seis y del ocho"
+        },
+        {
+          "id": "puente_siete",
+          "titulo": "Siete filas: cinco y otras dos"
+        },
+        {
+          "id": "mat_tab_siete",
+          "titulo": "Siete grupos: cinco más dos"
+        }
+      ],
+      "unidadesRevisadas": 5,
+      "explicacionesSinVisual": 2,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-tablas_multiplicar_6_8.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 5,
+      "preguntasCierre": 3,
+      "preguntasCierreReutilizadas": 3
+    },
+    {
+      "semanas": "6",
+      "tema": "tablas_multiplicar_9_10",
+      "orden": 4,
+      "materia": "matematica",
+      "fase": 1,
+      "fichaInicial": "Diez grupos ayudan a contar nueve",
+      "objetivosEfectivos": [
+        {
+          "id": "puente_diez",
+          "titulo": "Paquetes de diez"
+        },
+        {
+          "id": "mat_tab_diez",
+          "titulo": "Multiplicar por diez cambia el valor"
+        },
+        {
+          "id": "puente_nueve",
+          "titulo": "De diez filas a nueve"
+        },
+        {
+          "id": "mat_tab_nueve",
+          "titulo": "Nueve veces: diez veces menos una"
+        }
+      ],
+      "unidadesRevisadas": 4,
+      "explicacionesSinVisual": 2,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-tablas_multiplicar_9_10.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 4,
+      "preguntasCierre": 3,
+      "preguntasCierreReutilizadas": 3
+    },
+    {
+      "semanas": "7",
+      "tema": "numeros_romanos",
+      "orden": 5,
+      "materia": "matematica",
+      "fase": 1,
+      "fichaInicial": "Leer números en capítulos",
+      "objetivosEfectivos": [
+        {
+          "id": "mat_rom_sumar",
+          "titulo": "Leer símbolos romanos que suman"
+        },
+        {
+          "id": "mat_rom_restar",
+          "titulo": "Los seis pares que restan"
+        }
+      ],
+      "unidadesRevisadas": 2,
+      "explicacionesSinVisual": 2,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-numeros_romanos.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 2,
+      "preguntasCierre": 2,
+      "preguntasCierreReutilizadas": 2
+    },
+    {
+      "semanas": "8-9",
+      "tema": "division_1_digito",
+      "orden": 6,
+      "materia": "matematica",
+      "fase": 1,
+      "fichaInicial": "Repartir sin dejar a nadie con más",
+      "objetivosEfectivos": [
+        {
+          "id": "entrada_repartir",
+          "titulo": "Dar una ficha a cada plato"
+        },
+        {
+          "id": "mat_div_repartir",
+          "titulo": "Repartir la misma cantidad"
+        },
+        {
+          "id": "mat_div_resto",
+          "titulo": "Lo que sobra es el resto"
+        },
+        {
+          "id": "mat_div_descomponer",
+          "titulo": "Dividir en partes conocidas"
+        }
+      ],
+      "unidadesRevisadas": 4,
+      "explicacionesSinVisual": 2,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-division_1_digito.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 4,
+      "preguntasCierre": 3,
+      "preguntasCierreReutilizadas": 3
+    },
+    {
+      "semanas": "10-11",
+      "tema": "divisibilidad_primos_mcm_mcd",
+      "orden": 7,
+      "materia": "matematica",
+      "fase": 2,
+      "fichaInicial": "Formar grupos sin sobrante",
+      "objetivosEfectivos": [
+        {
+          "id": "puente_saltos",
+          "titulo": "Avanzar con saltos iguales"
+        },
+        {
+          "id": "bases_multiplos_saltos",
+          "titulo": "Múltiplos: avanzar con saltos iguales"
+        },
+        {
+          "id": "puente_encuentro",
+          "titulo": "Encontrar el primer encuentro"
+        },
+        {
+          "id": "div_primos_4_mcm",
+          "titulo": "MCM: el primer encuentro"
+        },
+        {
+          "id": "puente_agrupamientos",
+          "titulo": "Armar grupos y mirar qué sobra"
+        },
+        {
+          "id": "puente_divisor",
+          "titulo": "Divisor: un tamaño que encaja"
+        },
+        {
+          "id": "div_primos_1_multiplos_divisores",
+          "titulo": "Divisores: repartir sin que sobre"
+        },
+        {
+          "id": "bases_criterio_2",
+          "titulo": "Divisible por 2"
+        },
+        {
+          "id": "bases_criterio_3",
+          "titulo": "Divisible por 3"
+        },
+        {
+          "id": "bases_criterio_5",
+          "titulo": "Divisible por 5"
+        },
+        {
+          "id": "bases_criterio_10",
+          "titulo": "Divisible por 10"
+        },
+        {
+          "id": "div_primos_3_primos_compuestos",
+          "titulo": "Primos y compuestos"
+        },
+        {
+          "id": "puente_comunes",
+          "titulo": "El mayor grupo que sirve para ambos"
+        },
+        {
+          "id": "div_primos_5_mcd",
+          "titulo": "MCD: el mayor divisor compartido"
+        },
+        {
+          "id": "prof_fact_primos",
+          "titulo": "Desarmar un número en factores primos"
+        },
+        {
+          "id": "prof_fact_mcm",
+          "titulo": "MCM: reunir los factores necesarios"
+        },
+        {
+          "id": "prof_fact_mcd",
+          "titulo": "MCD: conservar solo lo que comparten"
+        }
+      ],
+      "unidadesRevisadas": 17,
+      "explicacionesSinVisual": 12,
+      "visualesQueSonTablas": 1,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-divisibilidad_primos_mcm_mcd.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 17,
+      "preguntasCierre": 3,
+      "preguntasCierreReutilizadas": 3
+    },
+    {
+      "semanas": "12-13",
+      "tema": "fracciones_concepto",
+      "orden": 8,
+      "materia": "matematica",
+      "fase": 2,
+      "fichaInicial": "Tres partes de un mismo total",
+      "objetivosEfectivos": [
+        {
+          "id": "frac_con_1_partes_iguales",
+          "titulo": "Primero, partes del mismo tamaño"
+        },
+        {
+          "id": "entrada_denominador",
+          "titulo": "Contar todas las partes del entero"
+        },
+        {
+          "id": "entrada_numerador",
+          "titulo": "Contar las partes pintadas"
+        },
+        {
+          "id": "frac_con_2_num_den",
+          "titulo": "Cómo se escribe una fracción"
+        },
+        {
+          "id": "fr24_mitad",
+          "titulo": "La mitad: un grupo de dos iguales"
+        },
+        {
+          "id": "frac_con_3_unidad_referencia",
+          "titulo": "La mitad de una colección"
+        },
+        {
+          "id": "fr24_equivalencia",
+          "titulo": "Cortar otra vez sin agregar"
+        },
+        {
+          "id": "frac_con_4_equivalencias_visuales",
+          "titulo": "La misma cantidad, otros cortes"
+        },
+        {
+          "id": "prof_frac_amplificar",
+          "titulo": "Más cortes, la misma cantidad"
+        },
+        {
+          "id": "fr24_reagrupar",
+          "titulo": "Juntar partes sin cambiar la cantidad"
+        },
+        {
+          "id": "prof_frac_simplificar",
+          "titulo": "Menos cortes, la misma cantidad"
+        },
+        {
+          "id": "prof_frac_comparar_denominador",
+          "titulo": "Comparar partes del mismo tamaño"
+        },
+        {
+          "id": "prof_frac_comparar_numerador",
+          "titulo": "Igual cantidad de partes, distinto tamaño"
+        },
+        {
+          "id": "fr24_enteros",
+          "titulo": "Juntar partes para formar enteros"
+        },
+        {
+          "id": "prof_frac_clasificar",
+          "titulo": "Fracciones menores, mayores o iguales a enteros"
+        },
+        {
+          "id": "prof_frac_a_mixto",
+          "titulo": "Agrupar partes para formar enteros"
+        },
+        {
+          "id": "prof_frac_desde_mixto",
+          "titulo": "Contar todas las partes de un mixto"
+        }
+      ],
+      "unidadesRevisadas": 17,
+      "explicacionesSinVisual": 2,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-fracciones_concepto.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 17,
+      "preguntasCierre": 3,
+      "preguntasCierreReutilizadas": 3
+    },
+    {
+      "semanas": "14-16",
+      "tema": "fracciones_operaciones",
+      "orden": 9,
+      "materia": "matematica",
+      "fase": 2,
+      "fichaInicial": "Juntar partes del mismo tamaño",
+      "objetivosEfectivos": [
+        {
+          "id": "fr24_sumar",
+          "titulo": "Juntar partes del mismo entero"
+        },
+        {
+          "id": "fr24_restar",
+          "titulo": "Quitar partes del mismo tamaño"
+        },
+        {
+          "id": "frac_op_1_igual_denominador",
+          "titulo": "Sumar partes del mismo tamaño"
+        },
+        {
+          "id": "fr24_comunes",
+          "titulo": "Cambiar los cortes para poder juntar"
+        },
+        {
+          "id": "fr24_sumadistinta",
+          "titulo": "Primero igualar, después juntar"
+        },
+        {
+          "id": "prof_op_preparar",
+          "titulo": "Preparar partes del mismo tamaño"
+        },
+        {
+          "id": "prof_op_comparar",
+          "titulo": "Comparar con un denominador común"
+        },
+        {
+          "id": "frac_op_2_distinto_denominador",
+          "titulo": "Buscar partes del mismo tamaño"
+        },
+        {
+          "id": "fr24_restadistinta",
+          "titulo": "Igualar los cortes antes de quitar"
+        },
+        {
+          "id": "prof_op_restar",
+          "titulo": "Restar fracciones de distinto denominador"
+        },
+        {
+          "id": "fr24_cantidad",
+          "titulo": "Tomar algunos grupos de fichas"
+        },
+        {
+          "id": "frac_op_3_fraccion_cantidad",
+          "titulo": "Una fracción de una colección"
+        },
+        {
+          "id": "fr24_partedeparte",
+          "titulo": "Tomar la mitad de una parte"
+        },
+        {
+          "id": "frac_op_4_multiplicacion",
+          "titulo": "Una parte de otra parte"
+        },
+        {
+          "id": "fr24_caben",
+          "titulo": "Contar cuántas porciones caben"
+        },
+        {
+          "id": "prof_op_dividir_medida",
+          "titulo": "Dividir también pregunta cuántas partes caben"
+        },
+        {
+          "id": "frac_op_5_division",
+          "titulo": "Cuántas porciones entran"
+        }
+      ],
+      "unidadesRevisadas": 17,
+      "explicacionesSinVisual": 4,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-fracciones_operaciones.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 17,
+      "preguntasCierre": 3,
+      "preguntasCierreReutilizadas": 3
+    },
+    {
+      "semanas": "17-18",
+      "tema": "fracciones_del_resto",
+      "orden": 10,
+      "materia": "matematica",
+      "fase": 3,
+      "fichaInicial": "Mirar qué cantidad queda",
+      "objetivosEfectivos": [
+        {
+          "id": "fr24_resto",
+          "titulo": "Separar lo usado de lo que queda"
+        },
+        {
+          "id": "mat_resto_entero",
+          "titulo": "Primero averiguamos cuánto queda"
+        },
+        {
+          "id": "fr24_referencia",
+          "titulo": "Del resto: cambia la cantidad de referencia"
+        },
+        {
+          "id": "fr24_mitaddelresto",
+          "titulo": "La mitad de lo que quedó"
+        },
+        {
+          "id": "mat_resto_nuevo_total",
+          "titulo": "Una fracción de lo que quedó"
+        }
+      ],
+      "unidadesRevisadas": 5,
+      "explicacionesSinVisual": 2,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-fracciones_del_resto.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 5,
+      "preguntasCierre": 3,
+      "preguntasCierreReutilizadas": 3
+    },
+    {
+      "semanas": "19-20",
+      "tema": "decimales_conversion",
+      "orden": 11,
+      "materia": "matematica",
+      "fase": 3,
+      "fichaInicial": "La mitad de una jarra de jugo",
+      "objetivosEfectivos": [
+        {
+          "id": "mat_dec_fraccion",
+          "titulo": "Décimos y centésimos"
+        },
+        {
+          "id": "prof_dec_milesimos",
+          "titulo": "Un lugar para cada parte"
+        },
+        {
+          "id": "prof_dec_ceros",
+          "titulo": "Ceros que conservan el valor"
+        },
+        {
+          "id": "prof_dec_comparar",
+          "titulo": "Comparar decimales lugar por lugar"
+        },
+        {
+          "id": "prof_dec_a_fraccion",
+          "titulo": "Escribir el decimal como fracción"
+        },
+        {
+          "id": "prof_dec_desde_fraccion",
+          "titulo": "Dividir para pasar a decimal"
+        },
+        {
+          "id": "mat_dec_sumar",
+          "titulo": "Sumar decimales alineando la coma"
+        },
+        {
+          "id": "prof_dec_sumar_distintas",
+          "titulo": "Sumar décimos y centésimos"
+        },
+        {
+          "id": "mat_dec_restar",
+          "titulo": "Restar decimales"
+        },
+        {
+          "id": "prof_dec_restar_reagrupar",
+          "titulo": "Restar cuando necesitamos cambiar una unidad"
+        },
+        {
+          "id": "prof_dec_escalar",
+          "titulo": "Diez veces más, diez veces menos"
+        },
+        {
+          "id": "mat_dec_producto",
+          "titulo": "Multiplicar decimales por un natural"
+        },
+        {
+          "id": "prof_dec_producto",
+          "titulo": "Multiplicar dos cantidades decimales"
+        },
+        {
+          "id": "mat_dec_dividir",
+          "titulo": "Repartir una cantidad decimal"
+        },
+        {
+          "id": "prof_dec_dividir_natural",
+          "titulo": "Repartir también los centésimos"
+        },
+        {
+          "id": "prof_dec_dividir_decimal",
+          "titulo": "Dividir por una cantidad decimal"
+        },
+        {
+          "id": "prof_dec_dos_pasos",
+          "titulo": "Un problema, dos cuentas pequeñas"
+        }
+      ],
+      "unidadesRevisadas": 17,
+      "explicacionesSinVisual": 17,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-decimales_conversion.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 17,
+      "preguntasCierre": 3,
+      "preguntasCierreReutilizadas": 3
+    },
+    {
+      "semanas": "21",
+      "tema": "potenciacion_y_raiz_cuadrada",
+      "orden": 12,
+      "materia": "matematica",
+      "fase": 3,
+      "fichaInicial": "Armar un cuadrado de fichas",
+      "objetivosEfectivos": [
+        {
+          "id": "mat_pot_repetir",
+          "titulo": "Una potencia repite factores"
+        },
+        {
+          "id": "mat_raiz_cuadrado",
+          "titulo": "La raíz busca el lado del cuadrado"
+        }
+      ],
+      "unidadesRevisadas": 2,
+      "explicacionesSinVisual": 2,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-potenciacion_y_raiz_cuadrada.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 2,
+      "preguntasCierre": 2,
+      "preguntasCierreReutilizadas": 2
+    },
+    {
+      "semanas": "22",
+      "tema": "jerarquia_operaciones",
+      "orden": 13,
+      "materia": "matematica",
+      "fase": 3,
+      "fichaInicial": "Escribir primero lo que ocurre",
+      "objetivosEfectivos": [
+        {
+          "id": "mat_jer_producto",
+          "titulo": "Antes de sumar, resolvemos los productos"
+        },
+        {
+          "id": "mat_jer_parentesis",
+          "titulo": "Los paréntesis indican por dónde empezar"
+        }
+      ],
+      "unidadesRevisadas": 2,
+      "explicacionesSinVisual": 2,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-jerarquia_operaciones.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 2,
+      "preguntasCierre": 2,
+      "preguntasCierreReutilizadas": 2
+    },
+    {
+      "semanas": "23",
+      "tema": "si_me_la_longitud",
+      "orden": 14,
+      "materia": "matematica",
+      "fase": 3,
+      "fichaInicial": "Medir sin huecos ni superposiciones",
+      "objetivosEfectivos": [
+        {
+          "id": "mat_long_metros",
+          "titulo": "El metro y el centímetro"
+        },
+        {
+          "id": "prof_med_long_escala",
+          "titulo": "Una escala para medir longitudes"
+        },
+        {
+          "id": "prof_med_long_menor",
+          "titulo": "Contar varios pasos hacia unidades menores"
+        },
+        {
+          "id": "prof_med_long_mayor",
+          "titulo": "Agrupar en unidades mayores"
+        },
+        {
+          "id": "prof_med_long_decimal",
+          "titulo": "Cuando la medida incluye parte de una unidad"
+        },
+        {
+          "id": "mat_long_combinar",
+          "titulo": "Sumar longitudes con la misma unidad"
+        },
+        {
+          "id": "prof_med_long_problema",
+          "titulo": "Convertir primero, cortar después"
+        },
+        {
+          "id": "prof_prob_datos",
+          "titulo": "Leer qué nos piden y elegir los datos"
+        },
+        {
+          "id": "prof_prob_plan_cortes",
+          "titulo": "Ordenar el plan antes de hacer las cuentas"
+        },
+        {
+          "id": "prof_prob_cortes",
+          "titulo": "Resolver y comprobar varios cortes"
+        }
+      ],
+      "unidadesRevisadas": 10,
+      "explicacionesSinVisual": 7,
+      "visualesQueSonTablas": 3,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-si_me_la_longitud.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 10,
+      "preguntasCierre": 3,
+      "preguntasCierreReutilizadas": 3
+    },
+    {
+      "semanas": "24-25",
+      "tema": "si_me_la_masa_capacidad_tiempo",
+      "orden": 15,
+      "materia": "matematica",
+      "fase": 4,
+      "fichaInicial": "Elegir qué estamos midiendo",
+      "objetivosEfectivos": [
+        {
+          "id": "mat_med_masa_capacidad",
+          "titulo": "Mil partes: gramos y mililitros"
+        },
+        {
+          "id": "prof_med_masa_escala",
+          "titulo": "La escala de la masa"
+        },
+        {
+          "id": "prof_med_cap_escala",
+          "titulo": "La escala de la capacidad"
+        },
+        {
+          "id": "prof_med_masa_decimal",
+          "titulo": "Partes de un kilogramo"
+        },
+        {
+          "id": "prof_med_masa_problema",
+          "titulo": "Cuánto queda en la bolsa"
+        },
+        {
+          "id": "prof_prob_porciones",
+          "titulo": "Preparar varias porciones y guardar el resto"
+        },
+        {
+          "id": "prof_med_cap_problema",
+          "titulo": "Repartir una bebida en vasos"
+        },
+        {
+          "id": "prof_prob_vasos",
+          "titulo": "Llenar solo los vasos que alcanzan"
+        },
+        {
+          "id": "prof_prob_sobra",
+          "titulo": "Conservar el líquido que sobra"
+        },
+        {
+          "id": "mat_med_tiempo",
+          "titulo": "Una hora tiene sesenta minutos"
+        },
+        {
+          "id": "prof_med_tiempo_resto",
+          "titulo": "Agrupar minutos en horas"
+        },
+        {
+          "id": "prof_med_tiempo_duracion",
+          "titulo": "Cuánto dura una actividad"
+        }
+      ],
+      "unidadesRevisadas": 12,
+      "explicacionesSinVisual": 9,
+      "visualesQueSonTablas": 3,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-si_me_la_masa_capacidad_tiempo.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 12,
+      "preguntasCierre": 3,
+      "preguntasCierreReutilizadas": 3
+    },
+    {
+      "semanas": "26-27",
+      "tema": "geometria_angulos",
+      "orden": 16,
+      "materia": "matematica",
+      "fase": 4,
+      "fichaInicial": "Pensar un ángulo como un giro",
+      "objetivosEfectivos": [
+        {
+          "id": "prof_geo_elementos",
+          "titulo": "Dos lados que nacen del mismo punto"
+        },
+        {
+          "id": "mat_ang_clases",
+          "titulo": "Comparar una abertura con un ángulo recto"
+        },
+        {
+          "id": "prof_geo_transportador",
+          "titulo": "Empezar por el cero correcto"
+        },
+        {
+          "id": "prof_geo_trazado",
+          "titulo": "Construir un ángulo con transportador"
+        },
+        {
+          "id": "prof_geo_perpendiculares",
+          "titulo": "Rectas que forman cuatro ángulos rectos"
+        },
+        {
+          "id": "mat_ang_complemento",
+          "titulo": "Dos ángulos que completan una abertura"
+        },
+        {
+          "id": "prof_geo_opuestos",
+          "titulo": "Ángulos enfrentados en un cruce"
+        },
+        {
+          "id": "prof_geo_bisectriz",
+          "titulo": "Partir una abertura en dos iguales"
+        },
+        {
+          "id": "prof_geo_compas",
+          "titulo": "Trazar la bisectriz con regla y compás"
+        },
+        {
+          "id": "prof_geo_mediatriz",
+          "titulo": "Encontrar la mitad y trazar una perpendicular"
+        }
+      ],
+      "unidadesRevisadas": 10,
+      "explicacionesSinVisual": 2,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-geometria_angulos.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 10,
+      "preguntasCierre": 3,
+      "preguntasCierreReutilizadas": 3
+    },
+    {
+      "semanas": "28",
+      "tema": "geometria_triangulos",
+      "orden": 17,
+      "materia": "matematica",
+      "fase": 4,
+      "fichaInicial": "Reconocer un triángulo aunque gire",
+      "objetivosEfectivos": [
+        {
+          "id": "prof_fig_vertices",
+          "titulo": "Reconocer lados y vértices de un triángulo"
+        },
+        {
+          "id": "mat_tri_lados",
+          "titulo": "Clasificar triángulos por sus lados"
+        },
+        {
+          "id": "mat_tri_angulos",
+          "titulo": "Los tres ángulos suman 180 grados"
+        },
+        {
+          "id": "prof_fig_angulos",
+          "titulo": "Clasificar mirando los tres ángulos"
+        },
+        {
+          "id": "prof_fig_existencia",
+          "titulo": "Comprobar si tres lados pueden cerrar"
+        }
+      ],
+      "unidadesRevisadas": 5,
+      "explicacionesSinVisual": 0,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-geometria_triangulos.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 5,
+      "preguntasCierre": 3,
+      "preguntasCierreReutilizadas": 3
+    },
+    {
+      "semanas": "29-30",
+      "tema": "geometria_cuadrilateros_circunferencia",
+      "orden": 18,
+      "materia": "matematica",
+      "fase": 4,
+      "fichaInicial": "Comparar bordes y lados",
+      "objetivosEfectivos": [
+        {
+          "id": "prof_fig_poligonos",
+          "titulo": "Contar el borde de un polígono"
+        },
+        {
+          "id": "prof_fig_diagonales",
+          "titulo": "Unir vértices que no son vecinos"
+        },
+        {
+          "id": "mat_cuad_lados",
+          "titulo": "Cuatro lados y líneas paralelas"
+        },
+        {
+          "id": "mat_circ_radio",
+          "titulo": "Radio y diámetro"
+        }
+      ],
+      "unidadesRevisadas": 4,
+      "explicacionesSinVisual": 0,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-geometria_cuadrilateros_circunferencia.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 4,
+      "preguntasCierre": 3,
+      "preguntasCierreReutilizadas": 3
+    },
+    {
+      "semanas": "31",
+      "tema": "perimetros_simples",
+      "orden": 19,
+      "materia": "matematica",
+      "fase": 4,
+      "fichaInicial": "Medir el borde que rodea",
+      "objetivosEfectivos": [
+        {
+          "id": "mat_per_rectangulo",
+          "titulo": "Recorrer todo el borde"
+        },
+        {
+          "id": "prof_fig_per_tri",
+          "titulo": "Rodear un triángulo con cinta"
+        },
+        {
+          "id": "prof_fig_per_regular",
+          "titulo": "Sumar lados iguales sin perder ninguno"
+        },
+        {
+          "id": "mat_per_circunferencia",
+          "titulo": "Medir el borde de una circunferencia"
+        },
+        {
+          "id": "prof_prob_plan_per",
+          "titulo": "Preparar un plan para rodear varias veces"
+        },
+        {
+          "id": "prof_prob_vueltas",
+          "titulo": "Calcular la cinta para varias vueltas"
+        },
+        {
+          "id": "prof_prob_rollos",
+          "titulo": "Comprar rollos completos que alcancen"
+        },
+        {
+          "id": "prof_prob_costo",
+          "titulo": "Calcular cuánto cuesta la cinta"
+        }
+      ],
+      "unidadesRevisadas": 8,
+      "explicacionesSinVisual": 0,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-perimetros_simples.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 8,
+      "preguntasCierre": 3,
+      "preguntasCierreReutilizadas": 3
+    },
+    {
+      "semanas": "32-33",
+      "tema": "perimetros_compuestos",
+      "orden": 20,
+      "materia": "matematica",
+      "fase": 4,
+      "fichaInicial": "Seguir solo el contorno exterior",
+      "objetivosEfectivos": [
+        {
+          "id": "mat_per_union",
+          "titulo": "Los lados compartidos quedan adentro"
+        },
+        {
+          "id": "mat_per_faltante",
+          "titulo": "Encontrar un tramo que falta"
+        },
+        {
+          "id": "prof_fig_borde_l",
+          "titulo": "Recorrer un contorno con entrante"
+        },
+        {
+          "id": "prof_fig_area_unidad",
+          "titulo": "Cubrir con cuadrados de un centímetro"
+        },
+        {
+          "id": "prof_fig_area_rect",
+          "titulo": "Pasar de filas a una multiplicación"
+        },
+        {
+          "id": "prof_fig_area_tri",
+          "titulo": "Un triángulo que ocupa medio rectángulo"
+        },
+        {
+          "id": "prof_fig_area_l",
+          "titulo": "Cubrir una figura por partes"
+        }
+      ],
+      "unidadesRevisadas": 7,
+      "explicacionesSinVisual": 0,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-perimetros_compuestos.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 7,
+      "preguntasCierre": 3,
+      "preguntasCierreReutilizadas": 3
+    },
+    {
+      "semanas": "34",
+      "tema": "graficos_estadisticos",
+      "orden": 21,
+      "materia": "matematica",
+      "fase": 3,
+      "fichaInicial": "Unir cada dato con lo que cuenta",
+      "objetivosEfectivos": [
+        {
+          "id": "mat_graf_leer",
+          "titulo": "Leer qué cuenta cada dato"
+        },
+        {
+          "id": "mat_graf_escala",
+          "titulo": "Una marca puede valer más de uno"
+        }
+      ],
+      "unidadesRevisadas": 2,
+      "explicacionesSinVisual": 2,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-graficos_estadisticos.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 2,
+      "preguntasCierre": 2,
+      "preguntasCierreReutilizadas": 2
+    },
+    {
+      "semanas": "35",
+      "tema": "proporcionalidad_regla_3",
+      "orden": 22,
+      "materia": "matematica",
+      "fase": 4,
+      "fichaInicial": "Cambiar la cantidad de grupos",
+      "objetivosEfectivos": [
+        {
+          "id": "mat_prop_unidad",
+          "titulo": "Primero averiguamos cuánto vale uno"
+        },
+        {
+          "id": "mat_prop_otro_total",
+          "titulo": "Del valor de uno a otra cantidad"
+        }
+      ],
+      "unidadesRevisadas": 2,
+      "explicacionesSinVisual": 2,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-proporcionalidad_regla_3.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 2,
+      "preguntasCierre": 2,
+      "preguntasCierreReutilizadas": 2
+    },
+    {
+      "semanas": "36",
+      "tema": "secuencias_aritmeticas",
+      "orden": 23,
+      "materia": "matematica",
+      "fase": 4,
+      "fichaInicial": "Reconocer cuánto se agrega",
+      "objetivosEfectivos": [
+        {
+          "id": "mat_sec_salto",
+          "titulo": "Repetir siempre el mismo salto"
+        },
+        {
+          "id": "mat_sec_restar",
+          "titulo": "Secuencias que bajan"
+        }
+      ],
+      "unidadesRevisadas": 2,
+      "explicacionesSinVisual": 2,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-secuencias_aritmeticas.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 2,
+      "preguntasCierre": 2,
+      "preguntasCierreReutilizadas": 2
+    },
+    {
+      "semanas": "37",
+      "tema": "secuencias_geometricas_fibonacci",
+      "orden": 24,
+      "materia": "matematica",
+      "fase": 4,
+      "fichaInicial": "Distinguir sumar y duplicar",
+      "objetivosEfectivos": [
+        {
+          "id": "mat_sec_factor",
+          "titulo": "Repetir una multiplicación"
+        },
+        {
+          "id": "mat_sec_fibonacci",
+          "titulo": "Sumar los dos anteriores"
+        }
+      ],
+      "unidadesRevisadas": 2,
+      "explicacionesSinVisual": 2,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-secuencias_geometricas_fibonacci.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 2,
+      "preguntasCierre": 2,
+      "preguntasCierreReutilizadas": 2
+    },
+    {
+      "semanas": "38",
+      "tema": "secuencias_alfanumericas_y_figuras",
+      "orden": 25,
+      "materia": "matematica",
+      "fase": 4,
+      "fichaInicial": "Encontrar lo que se repite",
+      "objetivosEfectivos": [
+        {
+          "id": "mat_sec_ciclo",
+          "titulo": "Un bloque que se repite"
+        },
+        {
+          "id": "mat_sec_dos_reglas",
+          "titulo": "Separar letras y números"
+        }
+      ],
+      "unidadesRevisadas": 2,
+      "explicacionesSinVisual": 2,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-secuencias_alfanumericas_y_figuras.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 2,
+      "preguntasCierre": 2,
+      "preguntasCierreReutilizadas": 2
+    },
+    {
+      "semanas": "39-40",
+      "tema": "ecuaciones_con_imagenes_2_incognitas",
+      "orden": 26,
+      "materia": "matematica",
+      "fase": 4,
+      "fichaInicial": "Usar una pista para descubrir otra",
+      "objetivosEfectivos": [
+        {
+          "id": "mat_igual_simbolo",
+          "titulo": "El mismo símbolo conserva su valor"
+        },
+        {
+          "id": "mat_igual_dos",
+          "titulo": "Reemplazar lo conocido para hallar lo que falta"
+        }
+      ],
+      "unidadesRevisadas": 2,
+      "explicacionesSinVisual": 2,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-ecuaciones_con_imagenes_2_incognitas.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 2,
+      "preguntasCierre": 2,
+      "preguntasCierreReutilizadas": 2
+    },
+    {
+      "semanas": "1-2",
+      "tema": "comprension_lectora_literal_inferida",
+      "orden": 1,
+      "materia": "lengua",
+      "fase": 1,
+      "fichaInicial": "Volver al texto para encontrar pistas",
+      "objetivosEfectivos": [
+        {
+          "id": "leng_lect_1_literal",
+          "titulo": "Encontrar lo que el texto dice"
+        },
+        {
+          "id": "leng_prof_precision",
+          "titulo": "Elegir el dato que responde a la pregunta"
+        },
+        {
+          "id": "leng_prof_orden",
+          "titulo": "Reconstruir el orden de los hechos"
+        },
+        {
+          "id": "leng_prof_referencias",
+          "titulo": "Reconocer de quién o de qué se habla"
+        },
+        {
+          "id": "leng_prof_contexto",
+          "titulo": "Entender una palabra por lo que la rodea"
+        },
+        {
+          "id": "leng_prof_causa",
+          "titulo": "Entender causas, finalidades y consecuencias"
+        },
+        {
+          "id": "leng_lect_2_inferencia",
+          "titulo": "Usar una pista del texto"
+        },
+        {
+          "id": "leng_prof_evidencia",
+          "titulo": "Justificar una inferencia con una pista"
+        },
+        {
+          "id": "leng_prof_limites",
+          "titulo": "Reconocer lo que todavía no sabemos"
+        },
+        {
+          "id": "leng_res_tema",
+          "titulo": "Reconocer de qué trata todo el texto"
+        },
+        {
+          "id": "leng_res_detalles",
+          "titulo": "Separar lo esencial de un detalle"
+        },
+        {
+          "id": "leng_lect_3_idea_central",
+          "titulo": "Contar la idea más importante"
+        },
+        {
+          "id": "leng_res_titulo",
+          "titulo": "Elegir un título que abarque el texto"
+        },
+        {
+          "id": "leng_res_reformular",
+          "titulo": "Decir una idea con otras palabras"
+        },
+        {
+          "id": "leng_res_unir",
+          "titulo": "Unir las ideas de dos párrafos"
+        },
+        {
+          "id": "leng_res_revisar",
+          "titulo": "Revisar que el resumen sea fiel"
+        },
+        {
+          "id": "leng_esc_frase",
+          "titulo": "Escribir una idea con tus palabras"
+        },
+        {
+          "id": "leng_esc_causa",
+          "titulo": "Escribir el problema y su solución"
+        },
+        {
+          "id": "leng_esc_resumen",
+          "titulo": "Escribir un resumen breve de dos párrafos"
+        },
+        {
+          "id": "leng_evi_dato",
+          "titulo": "Encontrar la frase que responde"
+        },
+        {
+          "id": "leng_evi_causa",
+          "titulo": "Buscar la frase que explica por qué"
+        },
+        {
+          "id": "leng_evi_inferencia",
+          "titulo": "Elegir una pista para una conclusión"
+        }
+      ],
+      "unidadesRevisadas": 22,
+      "explicacionesSinVisual": 0,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 22,
+      "pdfRepaso": "/apuntes/bases-comprension_lectora_literal_inferida.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 22,
+      "preguntasCierre": 3,
+      "preguntasCierreReutilizadas": 3
+    },
+    {
+      "semanas": "1",
+      "tema": "ortografia_b_v",
+      "orden": 2,
+      "materia": "lengua",
+      "fase": 1,
+      "fichaInicial": "Recordar una palabra en su familia",
+      "objetivosEfectivos": [
+        {
+          "id": "leng_bv_1_mb_nv",
+          "titulo": "Mirar la letra anterior: mb y nv"
+        },
+        {
+          "id": "leng_bv_2_bu_bur_bus",
+          "titulo": "Reconocer comienzos: bu-, bur-, bus-"
+        },
+        {
+          "id": "leng_bv_3_aba",
+          "titulo": "Contar lo que hacíamos: -aba"
+        },
+        {
+          "id": "leng_bv_4_iba",
+          "titulo": "Recordar iba, ibas e íbamos"
+        },
+        {
+          "id": "leng_bv_5_adjetivos",
+          "titulo": "Palabras que describen: -ivo e -iva"
+        },
+        {
+          "id": "leng_bv_6_tuve",
+          "titulo": "Tres formas del pasado con V"
+        }
+      ],
+      "unidadesRevisadas": 6,
+      "explicacionesSinVisual": 6,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-ortografia_b_v.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 6,
+      "preguntasCierre": 6,
+      "preguntasCierreReutilizadas": 6
+    },
+    {
+      "semanas": "2",
+      "tema": "ortografia_g_j_gu_gu",
+      "orden": 3,
+      "materia": "lengua",
+      "fase": 1,
+      "fichaInicial": "Ver qué cambia delante de e",
+      "objetivosEfectivos": [
+        {
+          "id": "ort_gj_1_ga_go_gu_gue_gui",
+          "titulo": "Sonidos suaves y uso de la U muda (gue, gui)"
+        },
+        {
+          "id": "ort_gj_2_dieresis_gue_gui",
+          "titulo": "Uso de la diéresis en güe y güi"
+        },
+        {
+          "id": "ort_gj_3_terminaciones_ger_gir_aje",
+          "titulo": "Verbos en -ger, -gir y palabras terminadas en -aje"
+        }
+      ],
+      "unidadesRevisadas": 0,
+      "explicacionesSinVisual": 0,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": null,
+      "pdfRepasoExiste": false,
+      "diapositivas": 0,
+      "preguntasCierre": 0,
+      "preguntasCierreReutilizadas": 0
+    },
+    {
+      "semanas": "3",
+      "tema": "ortografia_h",
+      "orden": 4,
+      "materia": "lengua",
+      "fase": 1,
+      "fichaInicial": "Reconocer palabras con h en un mensaje",
+      "objetivosEfectivos": [
+        {
+          "id": "ort_h_0_observar_palabras",
+          "titulo": "La H que vemos aunque no suene"
+        },
+        {
+          "id": "ort_h_1_diptongos_iniciales_hie_hue",
+          "titulo": "Hielo y huevo: comienzos que se parecen"
+        },
+        {
+          "id": "ort_h_2_verbos_haber_hacer_hablar",
+          "titulo": "Palabras que van juntas: hacer e hizo"
+        },
+        {
+          "id": "ort_h_3_hum_seguido_vocal",
+          "titulo": "Humo, humedad y humilde"
+        },
+        {
+          "id": "ort_h_4_comienzos_con_significado",
+          "titulo": "Hidro-: un comienzo relacionado con agua"
+        },
+        {
+          "id": "ort_h_5_familias_sin_generalizar",
+          "titulo": "Mirar la palabra completa"
+        }
+      ],
+      "unidadesRevisadas": 0,
+      "explicacionesSinVisual": 0,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/ortografia_h.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 6,
+      "preguntasCierre": 0,
+      "preguntasCierreReutilizadas": 0
+    },
+    {
+      "semanas": "4",
+      "tema": "ortografia_c_s_z",
+      "orden": 5,
+      "materia": "lengua",
+      "fase": 1,
+      "fichaInicial": "Mirar cómo cambia una palabra",
+      "objetivosEfectivos": [
+        {
+          "id": "ort_csz_1_plurales_z_a_c",
+          "titulo": "Cambio de Z a C en plurales y diminutivos"
+        },
+        {
+          "id": "ort_csz_2_diminutivos_cito_cita",
+          "titulo": "Diminutivos en -cito, -cita y terminaciones en -ito, -ita"
+        },
+        {
+          "id": "ort_csz_3_terminaciones_anza_ez_oso",
+          "titulo": "Sustantivos en -anza, -ez, -eza (Z) y adjetivos en -oso, -osa (S)"
+        }
+      ],
+      "unidadesRevisadas": 0,
+      "explicacionesSinVisual": 0,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": null,
+      "pdfRepasoExiste": false,
+      "diapositivas": 0,
+      "preguntasCierre": 0,
+      "preguntasCierreReutilizadas": 0
+    },
+    {
+      "semanas": "5-6",
+      "tema": "tildes_generales_agudas_graves_esdrujulas",
+      "orden": 6,
+      "materia": "lengua",
+      "fase": 1,
+      "fichaInicial": "Escuchar qué parte suena más fuerte",
+      "objetivosEfectivos": [
+        {
+          "id": "leng_til_0_silabas",
+          "titulo": "Separar una palabra en sílabas"
+        },
+        {
+          "id": "leng_til_1_tonica",
+          "titulo": "Escuchar la sílaba tónica"
+        },
+        {
+          "id": "leng_til_2_agudas",
+          "titulo": "Agudas: fuerza en la última sílaba"
+        },
+        {
+          "id": "leng_til_3_graves",
+          "titulo": "Graves: fuerza en la penúltima sílaba"
+        },
+        {
+          "id": "leng_til_4_esdrujulas",
+          "titulo": "Esdrújulas: fuerza en la antepenúltima"
+        },
+        {
+          "id": "leng_til_5_sobresdrujulas",
+          "titulo": "Sobresdrújulas: fuerza antes de la antepenúltima"
+        }
+      ],
+      "unidadesRevisadas": 6,
+      "explicacionesSinVisual": 6,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": "/apuntes/bases-tildes_generales_agudas_graves_esdrujulas.pdf",
+      "pdfRepasoExiste": true,
+      "diapositivas": 6,
+      "preguntasCierre": 6,
+      "preguntasCierreReutilizadas": 6
+    },
+    {
+      "semanas": "6-7",
+      "tema": "diptongo_hiato",
+      "orden": 7,
+      "materia": "lengua",
+      "fase": 2,
+      "fichaInicial": "Ver si dos vocales van juntas",
+      "objetivosEfectivos": [
+        {
+          "id": "dip_hiat_1_clasificacion_vocales",
+          "titulo": "Vocales abiertas y cerradas"
+        },
+        {
+          "id": "dip_hiat_2_diptongo",
+          "titulo": "Diptongo: dos vocales en la misma sílaba"
+        },
+        {
+          "id": "dip_hiat_3_hiato",
+          "titulo": "Hiato común e hiato acentual (vocal cerrada tónica)"
+        }
+      ],
+      "unidadesRevisadas": 0,
+      "explicacionesSinVisual": 0,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": null,
+      "pdfRepasoExiste": false,
+      "diapositivas": 0,
+      "preguntasCierre": 0,
+      "preguntasCierreReutilizadas": 0
+    },
+    {
+      "semanas": "7-8",
+      "tema": "tilde_diacritica_monosilabos",
+      "orden": 8,
+      "materia": "lengua",
+      "fase": 3,
+      "fichaInicial": "Una tilde puede distinguir usos",
+      "objetivosEfectivos": [
+        {
+          "id": "tild_diac_1_regla_monosilabos",
+          "titulo": "Regla general: los monosílabos no llevan tilde"
+        },
+        {
+          "id": "tild_diac_2_pares_el_tu_mi",
+          "titulo": "Pares diacríticos frecuentes: él/el, tú/tu, mí/mi"
+        },
+        {
+          "id": "tild_diac_3_pares_si_te_se_mas_de",
+          "titulo": "Pares diacríticos especiales: sí/si, té/te, sé/se, más/mas, dé/de"
+        }
+      ],
+      "unidadesRevisadas": 0,
+      "explicacionesSinVisual": 0,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": null,
+      "pdfRepasoExiste": false,
+      "diapositivas": 0,
+      "preguntasCierre": 0,
+      "preguntasCierreReutilizadas": 0
+    },
+    {
+      "semanas": "9-10",
+      "tema": "sustantivos_genero_numero_tipo",
+      "orden": 9,
+      "materia": "lengua",
+      "fase": 2,
+      "fichaInicial": "Nombrar para que se entienda",
+      "objetivosEfectivos": [
+        {
+          "id": "sust_1_clasificacion_semantica",
+          "titulo": "Clasificación semántica del sustantivo"
+        },
+        {
+          "id": "sust_2_genero_numero_morfologia",
+          "titulo": "Género y número del sustantivo"
+        }
+      ],
+      "unidadesRevisadas": 0,
+      "explicacionesSinVisual": 0,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": null,
+      "pdfRepasoExiste": false,
+      "diapositivas": 0,
+      "preguntasCierre": 0,
+      "preguntasCierreReutilizadas": 0
+    },
+    {
+      "semanas": "10-11",
+      "tema": "verbos_modo_indicativo_tiempos",
+      "orden": 10,
+      "materia": "lengua",
+      "fase": 2,
+      "fichaInicial": "Contar cuándo ocurre algo",
+      "objetivosEfectivos": [
+        {
+          "id": "verb_1_infinitivo_raiz_desinencia",
+          "titulo": "Infinitivo, raíz y desinencias de las tres conjugaciones"
+        },
+        {
+          "id": "verb_2_tiempos_simples_indicativo",
+          "titulo": "Tiempos simples del modo indicativo"
+        },
+        {
+          "id": "verb_3_tiempos_compuestos",
+          "titulo": "Tiempos compuestos con el verbo auxiliar haber"
+        }
+      ],
+      "unidadesRevisadas": 0,
+      "explicacionesSinVisual": 0,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": null,
+      "pdfRepasoExiste": false,
+      "diapositivas": 0,
+      "preguntasCierre": 0,
+      "preguntasCierreReutilizadas": 0
+    },
+    {
+      "semanas": "11-12",
+      "tema": "sujeto_predicado_nucleo",
+      "orden": 11,
+      "materia": "lengua",
+      "fase": 4,
+      "fichaInicial": "Encontrar de quién se dice algo",
+      "objetivosEfectivos": [
+        {
+          "id": "sint_suj_pred_1_reconocimiento_verbo",
+          "titulo": "El verbo conjugado como núcleo del predicado"
+        },
+        {
+          "id": "sint_suj_pred_2_sujeto_expreso_tacito",
+          "titulo": "Identificación del sujeto por concordancia: expreso y tácito"
+        }
+      ],
+      "unidadesRevisadas": 0,
+      "explicacionesSinVisual": 0,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": null,
+      "pdfRepasoExiste": false,
+      "diapositivas": 0,
+      "preguntasCierre": 0,
+      "preguntasCierreReutilizadas": 0
+    },
+    {
+      "semanas": "12-13",
+      "tema": "concordancia_sujeto_verbo",
+      "orden": 12,
+      "materia": "lengua",
+      "fase": 4,
+      "fichaInicial": "Cambiar juntos sujeto y verbo",
+      "objetivosEfectivos": [
+        {
+          "id": "conc_sv_1_persona_numero",
+          "titulo": "Concordancia obligatoria en número y persona"
+        },
+        {
+          "id": "conc_sv_2_sujetos_compuestos",
+          "titulo": "Concordancia con sujetos compuestos y núcleos coordinados"
+        }
+      ],
+      "unidadesRevisadas": 0,
+      "explicacionesSinVisual": 0,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": null,
+      "pdfRepasoExiste": false,
+      "diapositivas": 0,
+      "preguntasCierre": 0,
+      "preguntasCierreReutilizadas": 0
+    },
+    {
+      "semanas": "15-16",
+      "tema": "discurso_conectores_sinonimos",
+      "orden": 13,
+      "materia": "lengua",
+      "fase": 3,
+      "fichaInicial": "Mostrar cómo se relacionan las ideas",
+      "objetivosEfectivos": [
+        {
+          "id": "disc_con_1_conectores_clasificacion",
+          "titulo": "Clasificación y uso de conectores textuales"
+        },
+        {
+          "id": "disc_con_2_sinonimos_antonimos",
+          "titulo": "Sinónimos y antónimos en contexto"
+        }
+      ],
+      "unidadesRevisadas": 0,
+      "explicacionesSinVisual": 0,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": null,
+      "pdfRepasoExiste": false,
+      "diapositivas": 0,
+      "preguntasCierre": 0,
+      "preguntasCierreReutilizadas": 0
+    },
+    {
+      "semanas": "16-20",
+      "tema": "produccion_escrita_narracion",
+      "orden": 14,
+      "materia": "lengua",
+      "fase": 4,
+      "fichaInicial": "Contar una pequeña historia con orden",
+      "objetivosEfectivos": [
+        {
+          "id": "prod_1_estructura_narrativa",
+          "titulo": "Estructura del relato: situación inicial, conflicto y desenlace"
+        },
+        {
+          "id": "prod_2_conectores_temporales",
+          "titulo": "Conectores temporales y coherencia cronológica"
+        },
+        {
+          "id": "prod_3_recursos_expresivos",
+          "titulo": "Recursos expresivos: descripción, comparaciones y diálogo"
+        }
+      ],
+      "unidadesRevisadas": 0,
+      "explicacionesSinVisual": 0,
+      "visualesQueSonTablas": 0,
+      "visualesQueSonLecturas": 0,
+      "pdfRepaso": null,
+      "pdfRepasoExiste": false,
+      "diapositivas": 0,
+      "preguntasCierre": 0,
+      "preguntasCierreReutilizadas": 0
+    }
+  ]
+}
