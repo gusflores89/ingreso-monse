@@ -20,3 +20,10 @@ La entrada de R25 seguía siendo demasiado textual: solo seis fichas tenían dia
 - Compilación de producción y comprobación del despliegue registradas al publicar.
 
 Las capturas e informes se guardan fuera del repositorio, en `implementacion-r26` dentro de las visualizaciones de Codex. La revisión pedagógica del agente especialista corrigió conservación del total, duración, vocabulario, correspondencia entre texto y dibujo y posición de anotaciones. Esto valida la implementación; la comprensión y el interés de Abril requieren observar cómo la usa.
+
+## Publicación comprobada
+
+- Código: `f9f97a3`. Compilaciones local y remota correctas.
+- Despliegue: `dpl_5zaPukyRS8iysiGG4zTNHmpWhuKp`, proyecto `ingreso-monse-2027`, equipo `team_nkDsEQsdaJKVvmE4bo5WPSpD`.
+- Se desplegó con `--skip-domain`, se comprobó el manifiesto idéntico y la respuesta 401 sin autenticación mediante `vercel curl`, y se promovió ese despliegue.
+- Dominio: https://www.ingresomonserrat.online . Las dos pruebas de navegador pasaron también contra el dominio público: `produccion/browser-results.json` y `produccion/recorrido/api-real-r25.json`, sin errores. La prueba de API/base confirmó la eliminación de la cuenta sintética (`cleanup: true`). Los 40 PDF publicados coinciden con los revisados.
