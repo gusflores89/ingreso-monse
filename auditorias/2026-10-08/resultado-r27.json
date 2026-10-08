@@ -1,0 +1,3822 @@
+{
+  "fecha": "2026-10-08",
+  "alcance": "Inventario efectivo; no certifica exhaustividad oficial ni aprendizaje",
+  "unidades": 326,
+  "nuevas": 114,
+  "temas": [
+    {
+      "tema": "numeros_naturales_sistema_decimal",
+      "materia": "matematica",
+      "paginas": 13,
+      "pdf": "/apuntes/bases-numeros_naturales_sistema_decimal.pdf",
+      "unidades": [
+        {
+          "id": "entrada_contar",
+          "titulo": "Contar una ficha por vez",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "entrada_conservar",
+          "titulo": "Mover las fichas no cambia cuántas hay",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "entrada_juntar",
+          "titulo": "Sumar es juntar cantidades",
+          "pagina": 3,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "entrada_quitar",
+          "titulo": "Restar es ver cuánto queda",
+          "pagina": 4,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "entrada_diez",
+          "titulo": "Diez fichas forman un paquete",
+          "pagina": 5,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_num_decenas",
+          "titulo": "Diez unidades forman una decena",
+          "pagina": 6,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_num_posicion",
+          "titulo": "El lugar de cada cifra",
+          "pagina": 7,
+          "nuevaR27": false,
+          "visual": "posicional",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_num_orden",
+          "titulo": "Comparar desde el lugar más grande",
+          "pagina": 8,
+          "nuevaR27": false,
+          "visual": "recta",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_naturales_recta",
+          "titulo": "Cada marca conserva la misma distancia",
+          "pagina": 9,
+          "nuevaR27": true,
+          "visual": "recta",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "entrada_llevar",
+          "titulo": "Cambiar diez sueltas por un paquete",
+          "pagina": 10,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_num_suma",
+          "titulo": "Sumar y reagrupar",
+          "pagina": 11,
+          "nuevaR27": false,
+          "visual": "canjes",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "entrada_desarmar",
+          "titulo": "Abrir un paquete para poder quitar",
+          "pagina": 12,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_num_resta",
+          "titulo": "Restar y comprobar",
+          "pagina": 13,
+          "nuevaR27": false,
+          "visual": "canjes",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "transferencia-r27-numeros_naturales_sistema_decimal-0",
+          "objetivo_id": "mat_num_posicion"
+        },
+        {
+          "actividad_id": "prof_r27_naturales_recta-t1",
+          "objetivo_id": "prof_r27_naturales_recta"
+        },
+        {
+          "actividad_id": "prof_r27_naturales_recta-t2",
+          "objetivo_id": "prof_r27_naturales_recta"
+        }
+      ]
+    },
+    {
+      "tema": "tablas_multiplicar_2_5",
+      "materia": "matematica",
+      "paginas": 6,
+      "pdf": "/apuntes/bases-tablas_multiplicar_2_5.pdf",
+      "unidades": [
+        {
+          "id": "entrada_grupos",
+          "titulo": "Hacer grupos con la misma cantidad",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_tab_grupos",
+          "titulo": "Multiplicar cuenta grupos iguales",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "puente_filas",
+          "titulo": "Contar por filas",
+          "pagina": 3,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "puente_doble",
+          "titulo": "Hacer el doble",
+          "pagina": 4,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_tab_dobles",
+          "titulo": "Dobles y el orden de los factores",
+          "pagina": 5,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_tab_cinco",
+          "titulo": "Contar de cinco en cinco",
+          "pagina": 6,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "transferencia-r27-tablas_multiplicar_2_5-0",
+          "objetivo_id": "mat_tab_grupos"
+        },
+        {
+          "actividad_id": "transferencia-r27-tablas_multiplicar_2_5-1",
+          "objetivo_id": "mat_tab_dobles"
+        },
+        {
+          "actividad_id": "transferencia-r27-tablas_multiplicar_2_5-2",
+          "objetivo_id": "mat_tab_cinco"
+        }
+      ]
+    },
+    {
+      "tema": "tablas_multiplicar_6_8",
+      "materia": "matematica",
+      "paginas": 5,
+      "pdf": "/apuntes/bases-tablas_multiplicar_6_8.pdf",
+      "unidades": [
+        {
+          "id": "puente_seis",
+          "titulo": "Seis filas: tres y otras tres",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "puente_ocho",
+          "titulo": "Ocho filas: cuatro y otras cuatro",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_tab_seis_ocho",
+          "titulo": "Construir las tablas del seis y del ocho",
+          "pagina": 3,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "puente_siete",
+          "titulo": "Siete filas: cinco y otras dos",
+          "pagina": 4,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_tab_siete",
+          "titulo": "Siete grupos: cinco más dos",
+          "pagina": 5,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "transferencia-r27-tablas_multiplicar_6_8-0",
+          "objetivo_id": "mat_tab_seis_ocho"
+        },
+        {
+          "actividad_id": "transferencia-r27-tablas_multiplicar_6_8-1",
+          "objetivo_id": "mat_tab_siete"
+        },
+        {
+          "actividad_id": "transferencia-r27-tablas_multiplicar_6_8-2",
+          "objetivo_id": "puente_ocho"
+        }
+      ]
+    },
+    {
+      "tema": "tablas_multiplicar_9_10",
+      "materia": "matematica",
+      "paginas": 4,
+      "pdf": "/apuntes/bases-tablas_multiplicar_9_10.pdf",
+      "unidades": [
+        {
+          "id": "puente_diez",
+          "titulo": "Paquetes de diez",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_tab_diez",
+          "titulo": "Multiplicar por diez cambia el valor",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "puente_nueve",
+          "titulo": "De diez filas a nueve",
+          "pagina": 3,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_tab_nueve",
+          "titulo": "Nueve veces: diez veces menos una",
+          "pagina": 4,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "transferencia-r27-tablas_multiplicar_9_10-0",
+          "objetivo_id": "mat_tab_diez"
+        },
+        {
+          "actividad_id": "transferencia-r27-tablas_multiplicar_9_10-1",
+          "objetivo_id": "mat_tab_nueve"
+        },
+        {
+          "actividad_id": "transferencia-r27-tablas_multiplicar_9_10-2",
+          "objetivo_id": "puente_nueve"
+        }
+      ]
+    },
+    {
+      "tema": "numeros_romanos",
+      "materia": "matematica",
+      "paginas": 3,
+      "pdf": "/apuntes/bases-numeros_romanos.pdf",
+      "unidades": [
+        {
+          "id": "mat_rom_sumar",
+          "titulo": "Leer símbolos romanos que suman",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_rom_restar",
+          "titulo": "Los seis pares que restan",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_romanos_escribir",
+          "titulo": "Armar el número romano por partes",
+          "pagina": 3,
+          "nuevaR27": true,
+          "visual": "colecciones",
+          "pasos": 3,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "transferencia-r27-numeros_romanos-0",
+          "objetivo_id": "mat_rom_restar"
+        },
+        {
+          "actividad_id": "prof_r27_romanos_escribir-t1",
+          "objetivo_id": "prof_r27_romanos_escribir"
+        },
+        {
+          "actividad_id": "prof_r27_romanos_escribir-t2",
+          "objetivo_id": "prof_r27_romanos_escribir"
+        }
+      ]
+    },
+    {
+      "tema": "division_1_digito",
+      "materia": "matematica",
+      "paginas": 4,
+      "pdf": "/apuntes/bases-division_1_digito.pdf",
+      "unidades": [
+        {
+          "id": "entrada_repartir",
+          "titulo": "Dar una ficha a cada plato",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_div_repartir",
+          "titulo": "Repartir la misma cantidad",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_div_resto",
+          "titulo": "Lo que sobra es el resto",
+          "pagina": 3,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_div_descomponer",
+          "titulo": "Dividir en partes conocidas",
+          "pagina": 4,
+          "nuevaR27": false,
+          "visual": "reparto_decenas",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "transferencia-r27-division_1_digito-0",
+          "objetivo_id": "mat_div_repartir"
+        },
+        {
+          "actividad_id": "transferencia-r27-division_1_digito-1",
+          "objetivo_id": "mat_div_resto"
+        },
+        {
+          "actividad_id": "transferencia-r27-division_1_digito-2",
+          "objetivo_id": "mat_div_descomponer"
+        }
+      ]
+    },
+    {
+      "tema": "divisibilidad_primos_mcm_mcd",
+      "materia": "matematica",
+      "paginas": 18,
+      "pdf": "/apuntes/bases-divisibilidad_primos_mcm_mcd.pdf",
+      "unidades": [
+        {
+          "id": "puente_saltos",
+          "titulo": "Avanzar con saltos iguales",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "saltos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "bases_multiplos_saltos",
+          "titulo": "Múltiplos: avanzar con saltos iguales",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "saltos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "puente_encuentro",
+          "titulo": "Encontrar el primer encuentro",
+          "pagina": 3,
+          "nuevaR27": false,
+          "visual": "saltos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "div_primos_4_mcm",
+          "titulo": "MCM: el primer encuentro",
+          "pagina": 4,
+          "nuevaR27": false,
+          "visual": "saltos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "puente_agrupamientos",
+          "titulo": "Armar grupos y mirar qué sobra",
+          "pagina": 5,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "puente_divisor",
+          "titulo": "Divisor: un tamaño que encaja",
+          "pagina": 6,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "div_primos_1_multiplos_divisores",
+          "titulo": "Divisores: repartir sin que sobre",
+          "pagina": 7,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "bases_criterio_2",
+          "titulo": "Divisible por 2",
+          "pagina": 8,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "bases_criterio_3",
+          "titulo": "Divisible por 3",
+          "pagina": 9,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "bases_criterio_5",
+          "titulo": "Divisible por 5",
+          "pagina": 10,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "bases_criterio_10",
+          "titulo": "Divisible por 10",
+          "pagina": 11,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "div_primos_3_primos_compuestos",
+          "titulo": "Primos y compuestos",
+          "pagina": 12,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "puente_comunes",
+          "titulo": "El mayor grupo que sirve para ambos",
+          "pagina": 13,
+          "nuevaR27": false,
+          "visual": "datos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "div_primos_5_mcd",
+          "titulo": "MCD: el mayor divisor compartido",
+          "pagina": 14,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_fact_primos",
+          "titulo": "Desarmar un número en factores primos",
+          "pagina": 15,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_fact_mcm",
+          "titulo": "MCM: reunir los factores necesarios",
+          "pagina": 16,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_fact_mcd",
+          "titulo": "MCD: conservar solo lo que comparten",
+          "pagina": 17,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_elegir_mcm_mcd",
+          "titulo": "¿Buscamos coincidir o repartir sin sobrantes?",
+          "pagina": 18,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 3,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "transferencia-r27-divisibilidad_primos_mcm_mcd-0",
+          "objetivo_id": "div_primos_4_mcm"
+        },
+        {
+          "actividad_id": "transferencia-r27-divisibilidad_primos_mcm_mcd-2",
+          "objetivo_id": "prof_fact_primos"
+        },
+        {
+          "actividad_id": "prof_r27_elegir_mcm_mcd-t2",
+          "objetivo_id": "prof_r27_elegir_mcm_mcd"
+        }
+      ]
+    },
+    {
+      "tema": "fracciones_concepto",
+      "materia": "matematica",
+      "paginas": 20,
+      "pdf": "/apuntes/bases-fracciones_concepto.pdf",
+      "unidades": [
+        {
+          "id": "frac_con_1_partes_iguales",
+          "titulo": "Primero, partes del mismo tamaño",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "barras",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "entrada_denominador",
+          "titulo": "Contar todas las partes del entero",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "barras",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "entrada_numerador",
+          "titulo": "Contar las partes pintadas",
+          "pagina": 3,
+          "nuevaR27": false,
+          "visual": "barras",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "frac_con_2_num_den",
+          "titulo": "Cómo se escribe una fracción",
+          "pagina": 4,
+          "nuevaR27": false,
+          "visual": "barras",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "fr24_mitad",
+          "titulo": "La mitad: un grupo de dos iguales",
+          "pagina": 5,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_entero_desde_una_parte",
+          "titulo": "Si conozco una mitad, puedo armar las dos",
+          "pagina": 6,
+          "nuevaR27": true,
+          "visual": "colecciones",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_entero_desde_parte",
+          "titulo": "Una parte permite reconstruir el entero",
+          "pagina": 7,
+          "nuevaR27": true,
+          "visual": "fracciones",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "frac_con_3_unidad_referencia",
+          "titulo": "La mitad de una colección",
+          "pagina": 8,
+          "nuevaR27": false,
+          "visual": "barras",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "fr24_equivalencia",
+          "titulo": "Cortar otra vez sin agregar",
+          "pagina": 9,
+          "nuevaR27": false,
+          "visual": "fracciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "frac_con_4_equivalencias_visuales",
+          "titulo": "La misma cantidad, otros cortes",
+          "pagina": 10,
+          "nuevaR27": false,
+          "visual": "barras",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_frac_amplificar",
+          "titulo": "Más cortes, la misma cantidad",
+          "pagina": 11,
+          "nuevaR27": false,
+          "visual": "barras",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "fr24_reagrupar",
+          "titulo": "Juntar partes sin cambiar la cantidad",
+          "pagina": 12,
+          "nuevaR27": false,
+          "visual": "fracciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_frac_simplificar",
+          "titulo": "Menos cortes, la misma cantidad",
+          "pagina": 13,
+          "nuevaR27": false,
+          "visual": "barras",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_frac_comparar_denominador",
+          "titulo": "Comparar partes del mismo tamaño",
+          "pagina": 14,
+          "nuevaR27": false,
+          "visual": "barras",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_frac_comparar_numerador",
+          "titulo": "Igual cantidad de partes, distinto tamaño",
+          "pagina": 15,
+          "nuevaR27": false,
+          "visual": "barras",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "fr24_enteros",
+          "titulo": "Juntar partes para formar enteros",
+          "pagina": 16,
+          "nuevaR27": false,
+          "visual": "fracciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_fracciones_recta",
+          "titulo": "Las fracciones también son números",
+          "pagina": 17,
+          "nuevaR27": true,
+          "visual": "recta",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "prof_frac_clasificar",
+          "titulo": "Fracciones menores, mayores o iguales a enteros",
+          "pagina": 18,
+          "nuevaR27": false,
+          "visual": "fracciones_grupos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_frac_a_mixto",
+          "titulo": "Agrupar partes para formar enteros",
+          "pagina": 19,
+          "nuevaR27": false,
+          "visual": "barras",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_frac_desde_mixto",
+          "titulo": "Contar todas las partes de un mixto",
+          "pagina": 20,
+          "nuevaR27": false,
+          "visual": "fracciones",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "prof_r27_entero_desde_una_parte-t1",
+          "objetivo_id": "prof_r27_entero_desde_una_parte"
+        },
+        {
+          "actividad_id": "prof_r27_entero_desde_parte-t2",
+          "objetivo_id": "prof_r27_entero_desde_parte"
+        },
+        {
+          "actividad_id": "prof_r27_fracciones_recta-t2",
+          "objetivo_id": "prof_r27_fracciones_recta"
+        }
+      ]
+    },
+    {
+      "tema": "fracciones_operaciones",
+      "materia": "matematica",
+      "paginas": 19,
+      "pdf": "/apuntes/bases-fracciones_operaciones.pdf",
+      "unidades": [
+        {
+          "id": "fr24_sumar",
+          "titulo": "Juntar partes del mismo entero",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "fracciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "fr24_restar",
+          "titulo": "Quitar partes del mismo tamaño",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "fracciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "frac_op_1_igual_denominador",
+          "titulo": "Sumar partes del mismo tamaño",
+          "pagina": 3,
+          "nuevaR27": false,
+          "visual": "barras",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "fr24_comunes",
+          "titulo": "Cambiar los cortes para poder juntar",
+          "pagina": 4,
+          "nuevaR27": false,
+          "visual": "fracciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "fr24_sumadistinta",
+          "titulo": "Primero igualar, después juntar",
+          "pagina": 5,
+          "nuevaR27": false,
+          "visual": "fracciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_op_preparar",
+          "titulo": "Preparar partes del mismo tamaño",
+          "pagina": 6,
+          "nuevaR27": false,
+          "visual": "fracciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_op_comparar",
+          "titulo": "Comparar con un denominador común",
+          "pagina": 7,
+          "nuevaR27": false,
+          "visual": "barras",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "frac_op_2_distinto_denominador",
+          "titulo": "Buscar partes del mismo tamaño",
+          "pagina": 8,
+          "nuevaR27": false,
+          "visual": "barras",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "fr24_restadistinta",
+          "titulo": "Igualar los cortes antes de quitar",
+          "pagina": 9,
+          "nuevaR27": false,
+          "visual": "fracciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_op_restar",
+          "titulo": "Restar fracciones de distinto denominador",
+          "pagina": 10,
+          "nuevaR27": false,
+          "visual": "fracciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_fraccion_desconocida",
+          "titulo": "Completar un entero con partes del mismo tamaño",
+          "pagina": 11,
+          "nuevaR27": true,
+          "visual": "fracciones",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "fr24_cantidad",
+          "titulo": "Tomar algunos grupos de fichas",
+          "pagina": 12,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "frac_op_3_fraccion_cantidad",
+          "titulo": "Una fracción de una colección",
+          "pagina": 13,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "fr24_partedeparte",
+          "titulo": "Tomar la mitad de una parte",
+          "pagina": 14,
+          "nuevaR27": false,
+          "visual": "fracciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "frac_op_4_multiplicacion",
+          "titulo": "Una parte de otra parte",
+          "pagina": 15,
+          "nuevaR27": false,
+          "visual": "barras",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "fr24_caben",
+          "titulo": "Contar cuántas porciones caben",
+          "pagina": 16,
+          "nuevaR27": false,
+          "visual": "fracciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_op_dividir_medida",
+          "titulo": "Dividir también pregunta cuántas partes caben",
+          "pagina": 17,
+          "nuevaR27": false,
+          "visual": "barras",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_porciones_no_unitarias",
+          "titulo": "Una porción también puede tener dos o más partes",
+          "pagina": 18,
+          "nuevaR27": true,
+          "visual": "porcion_comparada",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "frac_op_5_division",
+          "titulo": "Cuántas porciones entran",
+          "pagina": 19,
+          "nuevaR27": false,
+          "visual": "fracciones",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "transferencia-r27-fracciones_operaciones-0",
+          "objetivo_id": "frac_op_2_distinto_denominador"
+        },
+        {
+          "actividad_id": "prof_r27_fraccion_desconocida-t1",
+          "objetivo_id": "prof_r27_fraccion_desconocida"
+        },
+        {
+          "actividad_id": "prof_r27_porciones_no_unitarias-t2",
+          "objetivo_id": "prof_r27_porciones_no_unitarias"
+        }
+      ]
+    },
+    {
+      "tema": "fracciones_del_resto",
+      "materia": "matematica",
+      "paginas": 7,
+      "pdf": "/apuntes/bases-fracciones_del_resto.pdf",
+      "unidades": [
+        {
+          "id": "fr24_resto",
+          "titulo": "Separar lo usado de lo que queda",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_resto_entero",
+          "titulo": "Primero averiguamos cuánto queda",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "fr24_referencia",
+          "titulo": "Del resto: cambia la cantidad de referencia",
+          "pagina": 3,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "fr24_mitaddelresto",
+          "titulo": "La mitad de lo que quedó",
+          "pagina": 4,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_resto_nuevo_total",
+          "titulo": "Una fracción de lo que quedó",
+          "pagina": 5,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_resto_inverso",
+          "titulo": "Lo que queda también es una parte del inicio",
+          "pagina": 6,
+          "nuevaR27": true,
+          "visual": "fracciones",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_dos_restos_inversos",
+          "titulo": "Volver hacia atrás, un consumo por vez",
+          "pagina": 7,
+          "nuevaR27": true,
+          "visual": "fracciones",
+          "pasos": 3,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "prof_r27_resto_inverso-t1",
+          "objetivo_id": "prof_r27_resto_inverso"
+        },
+        {
+          "actividad_id": "prof_r27_dos_restos_inversos-t1",
+          "objetivo_id": "prof_r27_dos_restos_inversos"
+        },
+        {
+          "actividad_id": "prof_r27_dos_restos_inversos-t2",
+          "objetivo_id": "prof_r27_dos_restos_inversos"
+        }
+      ]
+    },
+    {
+      "tema": "decimales_conversion",
+      "materia": "matematica",
+      "paginas": 19,
+      "pdf": "/apuntes/bases-decimales_conversion.pdf",
+      "unidades": [
+        {
+          "id": "mat_dec_fraccion",
+          "titulo": "Décimos y centésimos",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "liquidos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_decimal_posicion",
+          "titulo": "La coma ayuda a contar partes pequeñas",
+          "pagina": 2,
+          "nuevaR27": true,
+          "visual": "recta",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "prof_dec_milesimos",
+          "titulo": "Un lugar para cada parte",
+          "pagina": 3,
+          "nuevaR27": false,
+          "visual": "liquidos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_dec_ceros",
+          "titulo": "Ceros que conservan el valor",
+          "pagina": 4,
+          "nuevaR27": false,
+          "visual": "liquidos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_dec_comparar",
+          "titulo": "Comparar decimales lugar por lugar",
+          "pagina": 5,
+          "nuevaR27": false,
+          "visual": "liquidos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_dec_a_fraccion",
+          "titulo": "Escribir el decimal como fracción",
+          "pagina": 6,
+          "nuevaR27": false,
+          "visual": "liquidos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_dec_desde_fraccion",
+          "titulo": "Dividir para pasar a decimal",
+          "pagina": 7,
+          "nuevaR27": false,
+          "visual": "liquidos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_decimales_periodicos",
+          "titulo": "Cuando una división sigue repitiendo",
+          "pagina": 8,
+          "nuevaR27": true,
+          "visual": "recta",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "mat_dec_sumar",
+          "titulo": "Sumar decimales alineando la coma",
+          "pagina": 9,
+          "nuevaR27": false,
+          "visual": "liquidos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_dec_sumar_distintas",
+          "titulo": "Sumar décimos y centésimos",
+          "pagina": 10,
+          "nuevaR27": false,
+          "visual": "liquidos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_dec_restar",
+          "titulo": "Restar decimales",
+          "pagina": 11,
+          "nuevaR27": false,
+          "visual": "liquidos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_dec_restar_reagrupar",
+          "titulo": "Restar cuando necesitamos cambiar una unidad",
+          "pagina": 12,
+          "nuevaR27": false,
+          "visual": "canjes",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_dec_escalar",
+          "titulo": "Diez veces más, diez veces menos",
+          "pagina": 13,
+          "nuevaR27": false,
+          "visual": "posicional",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_dec_producto",
+          "titulo": "Multiplicar decimales por un natural",
+          "pagina": 14,
+          "nuevaR27": false,
+          "visual": "liquidos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_dec_producto",
+          "titulo": "Multiplicar dos cantidades decimales",
+          "pagina": 15,
+          "nuevaR27": false,
+          "visual": "liquidos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_dec_dividir",
+          "titulo": "Repartir una cantidad decimal",
+          "pagina": 16,
+          "nuevaR27": false,
+          "visual": "liquidos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_dec_dividir_natural",
+          "titulo": "Repartir también los centésimos",
+          "pagina": 17,
+          "nuevaR27": false,
+          "visual": "liquidos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_dec_dividir_decimal",
+          "titulo": "Dividir por una cantidad decimal",
+          "pagina": 18,
+          "nuevaR27": false,
+          "visual": "liquidos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_dec_dos_pasos",
+          "titulo": "Un problema, dos cuentas pequeñas",
+          "pagina": 19,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "prof_r27_decimal_posicion-t1",
+          "objetivo_id": "prof_r27_decimal_posicion"
+        },
+        {
+          "actividad_id": "prof_r27_decimales_periodicos-t1",
+          "objetivo_id": "prof_r27_decimales_periodicos"
+        },
+        {
+          "actividad_id": "prof_r27_decimales_periodicos-t2",
+          "objetivo_id": "prof_r27_decimales_periodicos"
+        }
+      ]
+    },
+    {
+      "tema": "potenciacion_y_raiz_cuadrada",
+      "materia": "matematica",
+      "paginas": 4,
+      "pdf": "/apuntes/bases-potenciacion_y_raiz_cuadrada.pdf",
+      "unidades": [
+        {
+          "id": "mat_pot_repetir",
+          "titulo": "Una potencia repite factores",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_exponentes_uno_cero",
+          "titulo": "Una potencia también puede tener exponente uno",
+          "pagina": 2,
+          "nuevaR27": true,
+          "visual": "colecciones",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_cubo_capas",
+          "titulo": "Un cubo tiene filas, columnas y capas",
+          "pagina": 3,
+          "nuevaR27": true,
+          "visual": "colecciones",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "mat_raiz_cuadrado",
+          "titulo": "La raíz busca el lado del cuadrado",
+          "pagina": 4,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "prof_r27_exponentes_uno_cero-t1",
+          "objetivo_id": "prof_r27_exponentes_uno_cero"
+        },
+        {
+          "actividad_id": "prof_r27_cubo_capas-t1",
+          "objetivo_id": "prof_r27_cubo_capas"
+        },
+        {
+          "actividad_id": "prof_r27_cubo_capas-t2",
+          "objetivo_id": "prof_r27_cubo_capas"
+        }
+      ]
+    },
+    {
+      "tema": "jerarquia_operaciones",
+      "materia": "matematica",
+      "paginas": 4,
+      "pdf": "/apuntes/bases-jerarquia_operaciones.pdf",
+      "unidades": [
+        {
+          "id": "mat_jer_producto",
+          "titulo": "Antes de sumar, resolvemos los productos",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_jer_parentesis",
+          "titulo": "Los paréntesis indican por dónde empezar",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_jerarquia_igual",
+          "titulo": "Multiplicar y dividir tienen el mismo turno",
+          "pagina": 3,
+          "nuevaR27": true,
+          "visual": "colecciones",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_colocar_parentesis",
+          "titulo": "Los paréntesis pueden cambiar el resultado",
+          "pagina": 4,
+          "nuevaR27": true,
+          "visual": "arreglo",
+          "pasos": 3,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "prof_r27_jerarquia_igual-t1",
+          "objetivo_id": "prof_r27_jerarquia_igual"
+        },
+        {
+          "actividad_id": "prof_r27_colocar_parentesis-t1",
+          "objetivo_id": "prof_r27_colocar_parentesis"
+        },
+        {
+          "actividad_id": "prof_r27_colocar_parentesis-t2",
+          "objetivo_id": "prof_r27_colocar_parentesis"
+        }
+      ]
+    },
+    {
+      "tema": "si_me_la_longitud",
+      "materia": "matematica",
+      "paginas": 10,
+      "pdf": "/apuntes/bases-si_me_la_longitud.pdf",
+      "unidades": [
+        {
+          "id": "mat_long_metros",
+          "titulo": "El metro y el centímetro",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "recta",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_med_long_escala",
+          "titulo": "Una escala para medir longitudes",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "recta",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_med_long_menor",
+          "titulo": "Contar varios pasos hacia unidades menores",
+          "pagina": 3,
+          "nuevaR27": false,
+          "visual": "recta",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_med_long_mayor",
+          "titulo": "Agrupar en unidades mayores",
+          "pagina": 4,
+          "nuevaR27": false,
+          "visual": "recta",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_med_long_decimal",
+          "titulo": "Cuando la medida incluye parte de una unidad",
+          "pagina": 5,
+          "nuevaR27": false,
+          "visual": "recta",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_long_combinar",
+          "titulo": "Sumar longitudes con la misma unidad",
+          "pagina": 6,
+          "nuevaR27": false,
+          "visual": "recta",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_med_long_problema",
+          "titulo": "Convertir primero, cortar después",
+          "pagina": 7,
+          "nuevaR27": false,
+          "visual": "tramo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_prob_datos",
+          "titulo": "Leer qué nos piden y elegir los datos",
+          "pagina": 8,
+          "nuevaR27": false,
+          "visual": "datos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_prob_plan_cortes",
+          "titulo": "Ordenar el plan antes de hacer las cuentas",
+          "pagina": 9,
+          "nuevaR27": false,
+          "visual": "datos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_prob_cortes",
+          "titulo": "Resolver y comprobar varios cortes",
+          "pagina": 10,
+          "nuevaR27": false,
+          "visual": "datos",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "transferencia-r27-si_me_la_longitud-0",
+          "objetivo_id": "mat_long_metros"
+        },
+        {
+          "actividad_id": "transferencia-r27-si_me_la_longitud-1",
+          "objetivo_id": "prof_med_long_problema"
+        },
+        {
+          "actividad_id": "transferencia-r27-si_me_la_longitud-2",
+          "objetivo_id": "prof_prob_cortes"
+        }
+      ]
+    },
+    {
+      "tema": "si_me_la_masa_capacidad_tiempo",
+      "materia": "matematica",
+      "paginas": 12,
+      "pdf": "/apuntes/bases-si_me_la_masa_capacidad_tiempo.pdf",
+      "unidades": [
+        {
+          "id": "mat_med_masa_capacidad",
+          "titulo": "Mil partes: gramos y mililitros",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_med_masa_escala",
+          "titulo": "La escala de la masa",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_med_cap_escala",
+          "titulo": "La escala de la capacidad",
+          "pagina": 3,
+          "nuevaR27": false,
+          "visual": "liquidos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_med_masa_decimal",
+          "titulo": "Partes de un kilogramo",
+          "pagina": 4,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_med_masa_problema",
+          "titulo": "Cuánto queda en la bolsa",
+          "pagina": 5,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_prob_porciones",
+          "titulo": "Preparar varias porciones y guardar el resto",
+          "pagina": 6,
+          "nuevaR27": false,
+          "visual": "datos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_med_cap_problema",
+          "titulo": "Repartir una bebida en vasos",
+          "pagina": 7,
+          "nuevaR27": false,
+          "visual": "liquidos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_prob_vasos",
+          "titulo": "Llenar solo los vasos que alcanzan",
+          "pagina": 8,
+          "nuevaR27": false,
+          "visual": "datos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_prob_sobra",
+          "titulo": "Conservar el líquido que sobra",
+          "pagina": 9,
+          "nuevaR27": false,
+          "visual": "datos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_med_tiempo",
+          "titulo": "Una hora tiene sesenta minutos",
+          "pagina": 10,
+          "nuevaR27": false,
+          "visual": "recta",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_med_tiempo_resto",
+          "titulo": "Agrupar minutos en horas",
+          "pagina": 11,
+          "nuevaR27": false,
+          "visual": "recta",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_med_tiempo_duracion",
+          "titulo": "Cuánto dura una actividad",
+          "pagina": 12,
+          "nuevaR27": false,
+          "visual": "recta",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "transferencia-r27-si_me_la_masa_capacidad_tiempo-0",
+          "objetivo_id": "prof_med_masa_problema"
+        },
+        {
+          "actividad_id": "transferencia-r27-si_me_la_masa_capacidad_tiempo-1",
+          "objetivo_id": "prof_med_cap_problema"
+        },
+        {
+          "actividad_id": "transferencia-r27-si_me_la_masa_capacidad_tiempo-2",
+          "objetivo_id": "prof_med_tiempo_duracion"
+        }
+      ]
+    },
+    {
+      "tema": "geometria_angulos",
+      "materia": "matematica",
+      "paginas": 14,
+      "pdf": "/apuntes/bases-geometria_angulos.pdf",
+      "unidades": [
+        {
+          "id": "prof_r27_recta_segmento",
+          "titulo": "¿Tiene principio o final?",
+          "pagina": 1,
+          "nuevaR27": true,
+          "visual": "rectas",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_plano_semiplano",
+          "titulo": "Una recta separa el plano en dos lados",
+          "pagina": 2,
+          "nuevaR27": true,
+          "visual": "semiplano",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "prof_geo_elementos",
+          "titulo": "Dos lados que nacen del mismo punto",
+          "pagina": 3,
+          "nuevaR27": false,
+          "visual": "angulo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_ang_clases",
+          "titulo": "Comparar una abertura con un ángulo recto",
+          "pagina": 4,
+          "nuevaR27": false,
+          "visual": "angulo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_geo_transportador",
+          "titulo": "Empezar por el cero correcto",
+          "pagina": 5,
+          "nuevaR27": false,
+          "visual": "angulo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_geo_trazado",
+          "titulo": "Construir un ángulo con transportador",
+          "pagina": 6,
+          "nuevaR27": false,
+          "visual": "angulo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_geo_perpendiculares",
+          "titulo": "Rectas que forman cuatro ángulos rectos",
+          "pagina": 7,
+          "nuevaR27": false,
+          "visual": "angulo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_paralelas_secantes",
+          "titulo": "Rectas que se cruzan y rectas que no",
+          "pagina": 8,
+          "nuevaR27": true,
+          "visual": "rectas",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "mat_ang_complemento",
+          "titulo": "Dos ángulos que completan una abertura",
+          "pagina": 9,
+          "nuevaR27": false,
+          "visual": "angulo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_geo_opuestos",
+          "titulo": "Ángulos enfrentados en un cruce",
+          "pagina": 10,
+          "nuevaR27": false,
+          "visual": "angulo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_angulos_compuestos",
+          "titulo": "Juntar aberturas sin superponerlas",
+          "pagina": 11,
+          "nuevaR27": true,
+          "visual": "angulo",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "prof_geo_bisectriz",
+          "titulo": "Partir una abertura en dos iguales",
+          "pagina": 12,
+          "nuevaR27": false,
+          "visual": "angulo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_geo_compas",
+          "titulo": "Trazar la bisectriz con regla y compás",
+          "pagina": 13,
+          "nuevaR27": false,
+          "visual": "angulo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_geo_mediatriz",
+          "titulo": "Encontrar la mitad y trazar una perpendicular",
+          "pagina": 14,
+          "nuevaR27": false,
+          "visual": "mediatriz",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "prof_r27_recta_segmento-t1",
+          "objetivo_id": "prof_r27_recta_segmento"
+        },
+        {
+          "actividad_id": "prof_r27_paralelas_secantes-t1",
+          "objetivo_id": "prof_r27_paralelas_secantes"
+        },
+        {
+          "actividad_id": "prof_r27_angulos_compuestos-t2",
+          "objetivo_id": "prof_r27_angulos_compuestos"
+        }
+      ]
+    },
+    {
+      "tema": "geometria_triangulos",
+      "materia": "matematica",
+      "paginas": 6,
+      "pdf": "/apuntes/bases-geometria_triangulos.pdf",
+      "unidades": [
+        {
+          "id": "prof_fig_vertices",
+          "titulo": "Reconocer lados y vértices de un triángulo",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "poligono",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_tri_lados",
+          "titulo": "Clasificar triángulos por sus lados",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "poligono",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_tri_angulos",
+          "titulo": "Los tres ángulos suman 180 grados",
+          "pagina": 3,
+          "nuevaR27": false,
+          "visual": "poligono",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_fig_angulos",
+          "titulo": "Clasificar mirando los tres ángulos",
+          "pagina": 4,
+          "nuevaR27": false,
+          "visual": "poligono",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_fig_existencia",
+          "titulo": "Comprobar si tres lados pueden cerrar",
+          "pagina": 5,
+          "nuevaR27": false,
+          "visual": "segmentos",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_plan_triangulo_tres_lados",
+          "titulo": "Planear un triángulo y comprobarlo en papel",
+          "pagina": 6,
+          "nuevaR27": true,
+          "visual": "poligono",
+          "pasos": 3,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "transferencia-r27-geometria_triangulos-0",
+          "objetivo_id": "mat_tri_lados"
+        },
+        {
+          "actividad_id": "transferencia-r27-geometria_triangulos-2",
+          "objetivo_id": "prof_fig_existencia"
+        },
+        {
+          "actividad_id": "prof_r27_plan_triangulo_tres_lados-t2",
+          "objetivo_id": "prof_r27_plan_triangulo_tres_lados"
+        }
+      ]
+    },
+    {
+      "tema": "geometria_cuadrilateros_circunferencia",
+      "materia": "matematica",
+      "paginas": 6,
+      "pdf": "/apuntes/bases-geometria_cuadrilateros_circunferencia.pdf",
+      "unidades": [
+        {
+          "id": "prof_fig_poligonos",
+          "titulo": "Contar el borde de un polígono",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "poligono",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_fig_diagonales",
+          "titulo": "Unir vértices que no son vecinos",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "poligono",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_cuad_lados",
+          "titulo": "Cuatro lados y líneas paralelas",
+          "pagina": 3,
+          "nuevaR27": false,
+          "visual": "poligono",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_familias_cuadrilateros",
+          "titulo": "Mirar pares de lados antes de nombrar",
+          "pagina": 4,
+          "nuevaR27": true,
+          "visual": "poligono",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_romboide_diagonales",
+          "titulo": "Unir esquinas que no son vecinas",
+          "pagina": 5,
+          "nuevaR27": true,
+          "visual": "poligono",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "mat_circ_radio",
+          "titulo": "Radio y diámetro",
+          "pagina": 6,
+          "nuevaR27": false,
+          "visual": "circunferencia",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "prof_r27_familias_cuadrilateros-t1",
+          "objetivo_id": "prof_r27_familias_cuadrilateros"
+        },
+        {
+          "actividad_id": "prof_r27_romboide_diagonales-t1",
+          "objetivo_id": "prof_r27_romboide_diagonales"
+        },
+        {
+          "actividad_id": "prof_r27_romboide_diagonales-t2",
+          "objetivo_id": "prof_r27_romboide_diagonales"
+        }
+      ]
+    },
+    {
+      "tema": "perimetros_simples",
+      "materia": "matematica",
+      "paginas": 9,
+      "pdf": "/apuntes/bases-perimetros_simples.pdf",
+      "unidades": [
+        {
+          "id": "mat_per_rectangulo",
+          "titulo": "Recorrer todo el borde",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "poligono",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_fig_per_tri",
+          "titulo": "Rodear un triángulo con cinta",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "poligono",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_fig_per_regular",
+          "titulo": "Sumar lados iguales sin perder ninguno",
+          "pagina": 3,
+          "nuevaR27": false,
+          "visual": "poligono",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_per_circunferencia",
+          "titulo": "Medir el borde de una circunferencia",
+          "pagina": 4,
+          "nuevaR27": false,
+          "visual": "circunferencia",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_semicircunferencia",
+          "titulo": "Medio arco y el camino de vuelta",
+          "pagina": 5,
+          "nuevaR27": true,
+          "visual": "circunferencia",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "prof_prob_plan_per",
+          "titulo": "Preparar un plan para rodear varias veces",
+          "pagina": 6,
+          "nuevaR27": false,
+          "visual": "poligono",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_prob_vueltas",
+          "titulo": "Calcular la cinta para varias vueltas",
+          "pagina": 7,
+          "nuevaR27": false,
+          "visual": "poligono",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_prob_rollos",
+          "titulo": "Comprar rollos completos que alcancen",
+          "pagina": 8,
+          "nuevaR27": false,
+          "visual": "poligono",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_prob_costo",
+          "titulo": "Calcular cuánto cuesta la cinta",
+          "pagina": 9,
+          "nuevaR27": false,
+          "visual": "poligono",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "transferencia-r27-perimetros_simples-0",
+          "objetivo_id": "mat_per_rectangulo"
+        },
+        {
+          "actividad_id": "prof_r27_semicircunferencia-t1",
+          "objetivo_id": "prof_r27_semicircunferencia"
+        },
+        {
+          "actividad_id": "prof_r27_semicircunferencia-t2",
+          "objetivo_id": "prof_r27_semicircunferencia"
+        }
+      ]
+    },
+    {
+      "tema": "perimetros_compuestos",
+      "materia": "matematica",
+      "paginas": 11,
+      "pdf": "/apuntes/bases-perimetros_compuestos.pdf",
+      "unidades": [
+        {
+          "id": "mat_per_union",
+          "titulo": "Los lados compartidos quedan adentro",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "poligono",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_per_faltante",
+          "titulo": "Encontrar un tramo que falta",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "tramo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_lado_desde_perimetro",
+          "titulo": "El perímetro ayuda a encontrar un lado",
+          "pagina": 3,
+          "nuevaR27": true,
+          "visual": "poligono",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_perimetro_lado_doble",
+          "titulo": "Si un lado es el doble, contá partes iguales",
+          "pagina": 4,
+          "nuevaR27": true,
+          "visual": "poligono",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "prof_fig_borde_l",
+          "titulo": "Recorrer un contorno con entrante",
+          "pagina": 5,
+          "nuevaR27": false,
+          "visual": "poligono",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_perimetro_varios_tramos",
+          "titulo": "Completar medidas antes de recorrer el borde",
+          "pagina": 6,
+          "nuevaR27": true,
+          "visual": "poligono",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_perimetros_unidos",
+          "titulo": "Unir dos patios sin contar la división interior",
+          "pagina": 7,
+          "nuevaR27": true,
+          "visual": "poligono",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "prof_fig_area_unidad",
+          "titulo": "Cubrir con cuadrados de un centímetro",
+          "pagina": 8,
+          "nuevaR27": false,
+          "visual": "poligono",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_fig_area_rect",
+          "titulo": "Pasar de filas a una multiplicación",
+          "pagina": 9,
+          "nuevaR27": false,
+          "visual": "poligono",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_fig_area_tri",
+          "titulo": "Un triángulo que ocupa medio rectángulo",
+          "pagina": 10,
+          "nuevaR27": false,
+          "visual": "poligono",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_fig_area_l",
+          "titulo": "Cubrir una figura por partes",
+          "pagina": 11,
+          "nuevaR27": false,
+          "visual": "poligono",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "prof_r27_lado_desde_perimetro-t1",
+          "objetivo_id": "prof_r27_lado_desde_perimetro"
+        },
+        {
+          "actividad_id": "prof_r27_perimetro_varios_tramos-t1",
+          "objetivo_id": "prof_r27_perimetro_varios_tramos"
+        },
+        {
+          "actividad_id": "prof_r27_perimetros_unidos-t2",
+          "objetivo_id": "prof_r27_perimetros_unidos"
+        }
+      ]
+    },
+    {
+      "tema": "graficos_estadisticos",
+      "materia": "matematica",
+      "paginas": 4,
+      "pdf": "/apuntes/bases-graficos_estadisticos.pdf",
+      "unidades": [
+        {
+          "id": "mat_graf_leer",
+          "titulo": "Leer qué cuenta cada dato",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "barras",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_graf_escala",
+          "titulo": "Una marca puede valer más de uno",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "arreglo",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_grafico_barras",
+          "titulo": "Leer barras con una escala",
+          "pagina": 3,
+          "nuevaR27": true,
+          "visual": "barras",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_grafico_fraccion",
+          "titulo": "Del gráfico a una parte del total",
+          "pagina": 4,
+          "nuevaR27": true,
+          "visual": "barras",
+          "pasos": 3,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "prof_r27_grafico_barras-t1",
+          "objetivo_id": "prof_r27_grafico_barras"
+        },
+        {
+          "actividad_id": "prof_r27_grafico_fraccion-t1",
+          "objetivo_id": "prof_r27_grafico_fraccion"
+        },
+        {
+          "actividad_id": "prof_r27_grafico_fraccion-t2",
+          "objetivo_id": "prof_r27_grafico_fraccion"
+        }
+      ]
+    },
+    {
+      "tema": "proporcionalidad_regla_3",
+      "materia": "matematica",
+      "paginas": 4,
+      "pdf": "/apuntes/bases-proporcionalidad_regla_3.pdf",
+      "unidades": [
+        {
+          "id": "mat_prop_unidad",
+          "titulo": "Primero averiguamos cuánto vale uno",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "barras",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_prop_otro_total",
+          "titulo": "Del valor de uno a otra cantidad",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "barras",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_proporcion_reducir",
+          "titulo": "Una receta más pequeña conserva las proporciones",
+          "pagina": 3,
+          "nuevaR27": true,
+          "visual": "colecciones",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_receta_conversion_resto",
+          "titulo": "Planear una receta y comprobar cuánto queda",
+          "pagina": 4,
+          "nuevaR27": true,
+          "visual": "liquidos",
+          "pasos": 3,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "transferencia-r27-proporcionalidad_regla_3-0",
+          "objetivo_id": "mat_prop_unidad"
+        },
+        {
+          "actividad_id": "prof_r27_proporcion_reducir-t2",
+          "objetivo_id": "prof_r27_proporcion_reducir"
+        },
+        {
+          "actividad_id": "prof_r27_receta_conversion_resto-t2",
+          "objetivo_id": "prof_r27_receta_conversion_resto"
+        }
+      ]
+    },
+    {
+      "tema": "secuencias_aritmeticas",
+      "materia": "matematica",
+      "paginas": 3,
+      "pdf": "/apuntes/bases-secuencias_aritmeticas.pdf",
+      "unidades": [
+        {
+          "id": "mat_sec_salto",
+          "titulo": "Repetir siempre el mismo salto",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "recta",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_sec_restar",
+          "titulo": "Secuencias que bajan",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "recta",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_sucesion_descubrir",
+          "titulo": "Mirar qué cambia entre vecinos",
+          "pagina": 3,
+          "nuevaR27": true,
+          "visual": "recta",
+          "pasos": 3,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "transferencia-r27-secuencias_aritmeticas-0",
+          "objetivo_id": "mat_sec_restar"
+        },
+        {
+          "actividad_id": "prof_r27_sucesion_descubrir-t1",
+          "objetivo_id": "prof_r27_sucesion_descubrir"
+        },
+        {
+          "actividad_id": "prof_r27_sucesion_descubrir-t2",
+          "objetivo_id": "prof_r27_sucesion_descubrir"
+        }
+      ]
+    },
+    {
+      "tema": "secuencias_geometricas_fibonacci",
+      "materia": "matematica",
+      "paginas": 3,
+      "pdf": "/apuntes/bases-secuencias_geometricas_fibonacci.pdf",
+      "unidades": [
+        {
+          "id": "mat_sec_factor",
+          "titulo": "Repetir una multiplicación",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "barras",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_sec_fibonacci",
+          "titulo": "Sumar los dos anteriores",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_sucesion_dos_pasos",
+          "titulo": "Una regla puede tener dos acciones",
+          "pagina": 3,
+          "nuevaR27": true,
+          "visual": "colecciones",
+          "pasos": 3,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "transferencia-r27-secuencias_geometricas_fibonacci-0",
+          "objetivo_id": "mat_sec_fibonacci"
+        },
+        {
+          "actividad_id": "prof_r27_sucesion_dos_pasos-t1",
+          "objetivo_id": "prof_r27_sucesion_dos_pasos"
+        },
+        {
+          "actividad_id": "prof_r27_sucesion_dos_pasos-t2",
+          "objetivo_id": "prof_r27_sucesion_dos_pasos"
+        }
+      ]
+    },
+    {
+      "tema": "secuencias_alfanumericas_y_figuras",
+      "materia": "matematica",
+      "paginas": 4,
+      "pdf": "/apuntes/bases-secuencias_alfanumericas_y_figuras.pdf",
+      "unidades": [
+        {
+          "id": "mat_sec_ciclo",
+          "titulo": "Un bloque que se repite",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_sec_dos_reglas",
+          "titulo": "Separar letras y números",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_giros",
+          "titulo": "Girar conserva la figura y cambia hacia dónde apunta",
+          "pagina": 3,
+          "nuevaR27": true,
+          "visual": "poligono",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "prof_r27_ciclo_lejano",
+          "titulo": "Saltar ciclos completos para llegar lejos",
+          "pagina": 4,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 3,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "prof_r27_giros-t1",
+          "objetivo_id": "prof_r27_giros"
+        },
+        {
+          "actividad_id": "prof_r27_ciclo_lejano-t1",
+          "objetivo_id": "prof_r27_ciclo_lejano"
+        },
+        {
+          "actividad_id": "prof_r27_ciclo_lejano-t2",
+          "objetivo_id": "prof_r27_ciclo_lejano"
+        }
+      ]
+    },
+    {
+      "tema": "ecuaciones_con_imagenes_2_incognitas",
+      "materia": "matematica",
+      "paginas": 2,
+      "pdf": "/apuntes/bases-ecuaciones_con_imagenes_2_incognitas.pdf",
+      "unidades": [
+        {
+          "id": "mat_igual_simbolo",
+          "titulo": "El mismo símbolo conserva su valor",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "mat_igual_dos",
+          "titulo": "Reemplazar lo conocido para hallar lo que falta",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "colecciones",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "transferencia-r27-ecuaciones_con_imagenes_2_incognitas-0",
+          "objetivo_id": "mat_igual_simbolo"
+        },
+        {
+          "actividad_id": "transferencia-r27-ecuaciones_con_imagenes_2_incognitas-1",
+          "objetivo_id": "mat_igual_dos"
+        },
+        {
+          "actividad_id": "transferencia-r27-ecuaciones_con_imagenes_2_incognitas-2",
+          "objetivo_id": "mat_igual_dos"
+        }
+      ]
+    },
+    {
+      "tema": "comprension_lectora_literal_inferida",
+      "materia": "lengua",
+      "paginas": 22,
+      "pdf": "/apuntes/bases-comprension_lectora_literal_inferida.pdf",
+      "unidades": [
+        {
+          "id": "leng_lect_1_literal",
+          "titulo": "Encontrar lo que el texto dice",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_precision",
+          "titulo": "Elegir el dato que responde a la pregunta",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_orden",
+          "titulo": "Reconstruir el orden de los hechos",
+          "pagina": 3,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_referencias",
+          "titulo": "Reconocer de quién o de qué se habla",
+          "pagina": 4,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_contexto",
+          "titulo": "Entender una palabra por lo que la rodea",
+          "pagina": 5,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_causa",
+          "titulo": "Entender causas, finalidades y consecuencias",
+          "pagina": 6,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_lect_2_inferencia",
+          "titulo": "Usar una pista del texto",
+          "pagina": 7,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_evidencia",
+          "titulo": "Justificar una inferencia con una pista",
+          "pagina": 8,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_limites",
+          "titulo": "Reconocer lo que todavía no sabemos",
+          "pagina": 9,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_res_tema",
+          "titulo": "Reconocer de qué trata todo el texto",
+          "pagina": 10,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_res_detalles",
+          "titulo": "Separar lo esencial de un detalle",
+          "pagina": 11,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_lect_3_idea_central",
+          "titulo": "Contar la idea más importante",
+          "pagina": 12,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_res_titulo",
+          "titulo": "Elegir un título que abarque el texto",
+          "pagina": 13,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_res_reformular",
+          "titulo": "Decir una idea con otras palabras",
+          "pagina": 14,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_res_unir",
+          "titulo": "Unir las ideas de dos párrafos",
+          "pagina": 15,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_res_revisar",
+          "titulo": "Revisar que el resumen sea fiel",
+          "pagina": 16,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_esc_frase",
+          "titulo": "Escribir una idea con tus palabras",
+          "pagina": 17,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_esc_causa",
+          "titulo": "Escribir el problema y su solución",
+          "pagina": 18,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_esc_resumen",
+          "titulo": "Escribir un resumen breve de dos párrafos",
+          "pagina": 19,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_evi_dato",
+          "titulo": "Encontrar la frase que responde",
+          "pagina": 20,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_evi_causa",
+          "titulo": "Buscar la frase que explica por qué",
+          "pagina": 21,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_evi_inferencia",
+          "titulo": "Elegir una pista para una conclusión",
+          "pagina": 22,
+          "nuevaR27": false,
+          "visual": "lectura",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "transferencia-r27-comprension_lectora_literal_inferida-0",
+          "objetivo_id": "leng_lect_1_literal"
+        },
+        {
+          "actividad_id": "transferencia-r27-comprension_lectora_literal_inferida-1",
+          "objetivo_id": "leng_prof_causa"
+        },
+        {
+          "actividad_id": "transferencia-r27-comprension_lectora_literal_inferida-2",
+          "objetivo_id": "leng_prof_limites"
+        }
+      ]
+    },
+    {
+      "tema": "ortografia_b_v",
+      "materia": "lengua",
+      "paginas": 11,
+      "pdf": "/apuntes/bases-ortografia_b_v.pdf",
+      "unidades": [
+        {
+          "id": "leng_bv_1_mb_nv",
+          "titulo": "Mirar la letra anterior: mb y nv",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_bv_2_bu_bur_bus",
+          "titulo": "Reconocer comienzos: bu-, bur-, bus-",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_bv_3_aba",
+          "titulo": "Contar lo que hacíamos: -aba",
+          "pagina": 3,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_bv_4_iba",
+          "titulo": "Recordar iba, ibas e íbamos",
+          "pagina": 4,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_bv_5_adjetivos",
+          "titulo": "Palabras que describen: -ivo e -iva",
+          "pagina": 5,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_bv_6_tuve",
+          "titulo": "Tres formas del pasado con V",
+          "pagina": 6,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_br_bl",
+          "titulo": "B delante de R y L",
+          "pagina": 7,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_bir_buir",
+          "titulo": "Escribir y contribuir; vivir, servir y hervir",
+          "pagina": 8,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_verbos_con_b",
+          "titulo": "Seis familias que miramos con B",
+          "pagina": 9,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_bi_bis_biz_bio",
+          "titulo": "Bicicleta y biografía: comienzos con significado",
+          "pagina": 10,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_biblio_bilidad",
+          "titulo": "Libros, habilidades y tres excepciones",
+          "pagina": 11,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "leng_prof_r27_br_bl-t6",
+          "objetivo_id": "leng_prof_r27_br_bl"
+        },
+        {
+          "actividad_id": "leng_prof_r27_verbos_con_b-t7",
+          "objetivo_id": "leng_prof_r27_verbos_con_b"
+        },
+        {
+          "actividad_id": "leng_prof_r27_biblio_bilidad-t7",
+          "objetivo_id": "leng_prof_r27_biblio_bilidad"
+        }
+      ]
+    },
+    {
+      "tema": "ortografia_g_j_gu_gu",
+      "materia": "lengua",
+      "paginas": 6,
+      "pdf": "/apuntes/bases-ortografia_g_j_gu_gu.pdf",
+      "unidades": [
+        {
+          "id": "leng_prof_r27_gue",
+          "titulo": "GUE y GUI: una U que no suena",
+          "pagina": 1,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_dieresis",
+          "titulo": "GÜE y GÜI: los puntitos hacen sonar la U",
+          "pagina": 2,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_ger_gir",
+          "titulo": "Recoger y dirigir; tejer y crujir",
+          "pagina": 3,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_aje",
+          "titulo": "Terminaciones -aje y -jería",
+          "pagina": 4,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_geo_logia",
+          "titulo": "La Tierra y lo que estudiamos",
+          "pagina": 5,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_gente_gencia",
+          "titulo": "Exigente y exigencia: observar el final",
+          "pagina": 6,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "leng_prof_r27_gue-t6",
+          "objetivo_id": "leng_prof_r27_gue"
+        },
+        {
+          "actividad_id": "leng_prof_r27_aje-t6",
+          "objetivo_id": "leng_prof_r27_aje"
+        },
+        {
+          "actividad_id": "leng_prof_r27_gente_gencia-t7",
+          "objetivo_id": "leng_prof_r27_gente_gencia"
+        }
+      ]
+    },
+    {
+      "tema": "ortografia_h",
+      "materia": "lengua",
+      "paginas": 6,
+      "pdf": "/apuntes/bases-ortografia_h.pdf",
+      "unidades": [
+        {
+          "id": "ort_h_0_observar_palabras",
+          "titulo": "La H que vemos aunque no suene",
+          "pagina": 1,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "ort_h_1_diptongos_iniciales_hie_hue",
+          "titulo": "Hielo y huevo: comienzos que se parecen",
+          "pagina": 2,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "ort_h_2_verbos_haber_hacer_hablar",
+          "titulo": "Palabras que van juntas: hacer e hizo",
+          "pagina": 3,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "ort_h_3_hum_seguido_vocal",
+          "titulo": "Humo, humedad y humilde",
+          "pagina": 4,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "ort_h_4_comienzos_con_significado",
+          "titulo": "Hidro-: un comienzo relacionado con agua",
+          "pagina": 5,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "ort_h_5_familias_sin_generalizar",
+          "titulo": "Mirar la palabra completa",
+          "pagina": 6,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "ort_h_0_observar_palabras-r27-6",
+          "objetivo_id": "ort_h_0_observar_palabras"
+        },
+        {
+          "actividad_id": "ort_h_3_hum_seguido_vocal-r27-6",
+          "objetivo_id": "ort_h_3_hum_seguido_vocal"
+        },
+        {
+          "actividad_id": "ort_h_5_familias_sin_generalizar-r27-7",
+          "objetivo_id": "ort_h_5_familias_sin_generalizar"
+        }
+      ]
+    },
+    {
+      "tema": "ortografia_c_s_z",
+      "materia": "lengua",
+      "paginas": 6,
+      "pdf": "/apuntes/bases-ortografia_c_s_z.pdf",
+      "unidades": [
+        {
+          "id": "leng_prof_r27_plural_z",
+          "titulo": "De una Z a muchas C: pez y peces",
+          "pagina": 1,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_diminutivos",
+          "titulo": "Nubecita y casita: miramos de dónde viene cada una",
+          "pagina": 2,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_oso_eza",
+          "titulo": "Nombrar una cualidad y describirla",
+          "pagina": 3,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_anza_ez",
+          "titulo": "Confianza y rapidez: palabras que nombran una idea",
+          "pagina": 4,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_cion_sion",
+          "titulo": "Familias que ayudan a escribir -ción y -sión",
+          "pagina": 5,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_rr",
+          "titulo": "R y RR: escuchar y mirar la posición",
+          "pagina": 6,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "leng_prof_r27_plural_z-t6",
+          "objetivo_id": "leng_prof_r27_plural_z"
+        },
+        {
+          "actividad_id": "leng_prof_r27_anza_ez-t6",
+          "objetivo_id": "leng_prof_r27_anza_ez"
+        },
+        {
+          "actividad_id": "leng_prof_r27_rr-t7",
+          "objetivo_id": "leng_prof_r27_rr"
+        }
+      ]
+    },
+    {
+      "tema": "tildes_generales_agudas_graves_esdrujulas",
+      "materia": "lengua",
+      "paginas": 8,
+      "pdf": "/apuntes/bases-tildes_generales_agudas_graves_esdrujulas.pdf",
+      "unidades": [
+        {
+          "id": "leng_til_0_silabas",
+          "titulo": "Separar una palabra en sílabas",
+          "pagina": 1,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_til_1_tonica",
+          "titulo": "Escuchar la sílaba tónica",
+          "pagina": 2,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_til_2_agudas",
+          "titulo": "Agudas: fuerza en la última sílaba",
+          "pagina": 3,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_til_3_graves",
+          "titulo": "Graves: fuerza en la penúltima sílaba",
+          "pagina": 4,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_til_4_esdrujulas",
+          "titulo": "Esdrújulas: fuerza en la antepenúltima",
+          "pagina": 5,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_til_5_sobresdrujulas",
+          "titulo": "Sobresdrújulas: fuerza antes de la antepenúltima",
+          "pagina": 6,
+          "nuevaR27": false,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_mente",
+          "titulo": "Al agregar -mente, miramos la palabra inicial",
+          "pagina": 7,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_compuestas_tilde",
+          "titulo": "Unidas o con guion: no se acentúan igual",
+          "pagina": 8,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "transferencia-r27-tildes_generales_agudas_graves_esdrujulas-0",
+          "objetivo_id": "leng_til_1_tonica"
+        },
+        {
+          "actividad_id": "leng_prof_r27_mente-t6",
+          "objetivo_id": "leng_prof_r27_mente"
+        },
+        {
+          "actividad_id": "leng_prof_r27_compuestas_tilde-t7",
+          "objetivo_id": "leng_prof_r27_compuestas_tilde"
+        }
+      ]
+    },
+    {
+      "tema": "diptongo_hiato",
+      "materia": "lengua",
+      "paginas": 2,
+      "pdf": "/apuntes/bases-diptongo_hiato.pdf",
+      "unidades": [
+        {
+          "id": "leng_prof_r27_vocales",
+          "titulo": "Vocales que comparten o separan sílaba",
+          "pagina": 1,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_hiato_tilde",
+          "titulo": "La I o U fuerte puede separar las vocales",
+          "pagina": 2,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "leng_prof_r27_vocales-t6",
+          "objetivo_id": "leng_prof_r27_vocales"
+        },
+        {
+          "actividad_id": "leng_prof_r27_hiato_tilde-t6",
+          "objetivo_id": "leng_prof_r27_hiato_tilde"
+        },
+        {
+          "actividad_id": "leng_prof_r27_hiato_tilde-t7",
+          "objetivo_id": "leng_prof_r27_hiato_tilde"
+        }
+      ]
+    },
+    {
+      "tema": "tilde_diacritica_monosilabos",
+      "materia": "lengua",
+      "paginas": 6,
+      "pdf": "/apuntes/bases-tilde_diacritica_monosilabos.pdf",
+      "unidades": [
+        {
+          "id": "leng_prof_r27_tu_mi",
+          "titulo": "Tu mochila y tú: cambia lo que queremos decir",
+          "pagina": 1,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_el_te",
+          "titulo": "El libro, él y el té",
+          "pagina": 2,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_si_se",
+          "titulo": "Sí acepta; si pone una condición. Sé no es se",
+          "pagina": 3,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_de_mas",
+          "titulo": "Dé viene de dar; más agrega cantidad",
+          "pagina": 4,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_preguntas",
+          "titulo": "Qué y cómo al preguntar, aun sin signos",
+          "pagina": 5,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_aun",
+          "titulo": "Aún es todavía; aun puede ser incluso",
+          "pagina": 6,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "leng_prof_r27_tu_mi-t6",
+          "objetivo_id": "leng_prof_r27_tu_mi"
+        },
+        {
+          "actividad_id": "leng_prof_r27_de_mas-t6",
+          "objetivo_id": "leng_prof_r27_de_mas"
+        },
+        {
+          "actividad_id": "leng_prof_r27_aun-t7",
+          "objetivo_id": "leng_prof_r27_aun"
+        }
+      ]
+    },
+    {
+      "tema": "sustantivos_genero_numero_tipo",
+      "materia": "lengua",
+      "paginas": 7,
+      "pdf": "/apuntes/bases-sustantivos_genero_numero_tipo.pdf",
+      "unidades": [
+        {
+          "id": "leng_prof_r27_nombres",
+          "titulo": "Palabras para nombrar: comunes y propios",
+          "pagina": 1,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_numero",
+          "titulo": "Una y varias: singular y plural",
+          "pagina": 2,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_colectivos",
+          "titulo": "Una abeja y un enjambre",
+          "pagina": 3,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_abstractos",
+          "titulo": "Objetos y sentimientos: concreto y abstracto",
+          "pagina": 4,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_genero",
+          "titulo": "El mapa y la mano: el género no depende solo del final",
+          "pagina": 5,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_articulos",
+          "titulo": "Palabras que acompañan: el, la, un, una",
+          "pagina": 6,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_adjetivos",
+          "titulo": "Describir con adjetivos",
+          "pagina": 7,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "leng_prof_r27_nombres-t6",
+          "objetivo_id": "leng_prof_r27_nombres"
+        },
+        {
+          "actividad_id": "leng_prof_r27_abstractos-t7",
+          "objetivo_id": "leng_prof_r27_abstractos"
+        },
+        {
+          "actividad_id": "leng_prof_r27_adjetivos-t7",
+          "objetivo_id": "leng_prof_r27_adjetivos"
+        }
+      ]
+    },
+    {
+      "tema": "verbos_modo_indicativo_tiempos",
+      "materia": "lengua",
+      "paginas": 14,
+      "pdf": "/apuntes/bases-verbos_modo_indicativo_tiempos.pdf",
+      "unidades": [
+        {
+          "id": "leng_prof_r27_infinitivo",
+          "titulo": "El nombre de una acción: infinitivo",
+          "pagina": 1,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_personas",
+          "titulo": "Quién habla: yo, vos, ella, nosotros",
+          "pagina": 2,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_raiz_desinencia",
+          "titulo": "Una parte se conserva y otra cambia",
+          "pagina": 3,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_presente",
+          "titulo": "Ahora o habitualmente: presente",
+          "pagina": 4,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_pasados",
+          "titulo": "Dos formas de mirar el pasado: canté y cantaba",
+          "pagina": 5,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_futuro",
+          "titulo": "Lo que vendrá: futuro simple",
+          "pagina": 6,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_condicional",
+          "titulo": "Lo que haría: condicional simple",
+          "pagina": 7,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_participio",
+          "titulo": "Dos piezas para un tiempo compuesto",
+          "pagina": 8,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_perfecto_compuesto",
+          "titulo": "He terminado: mirar desde ahora algo ya ocurrido",
+          "pagina": 9,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_pluscuamperfecto",
+          "titulo": "Antes de otro momento pasado: había salido",
+          "pagina": 10,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_futuro_perfecto",
+          "titulo": "Para ese momento ya habré terminado",
+          "pagina": 11,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_condicional_compuesto",
+          "titulo": "Habría participado: imaginar otro pasado",
+          "pagina": 12,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_preterito_anterior",
+          "titulo": "Apenas hubo terminado, salió: dos hechos pasados",
+          "pagina": 13,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_tiempos_en_texto",
+          "titulo": "Seguir los tiempos dentro de una historia",
+          "pagina": 14,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "leng_prof_r27_infinitivo-t6",
+          "objetivo_id": "leng_prof_r27_infinitivo"
+        },
+        {
+          "actividad_id": "leng_prof_r27_participio-t6",
+          "objetivo_id": "leng_prof_r27_participio"
+        },
+        {
+          "actividad_id": "leng_prof_r27_tiempos_en_texto-t7",
+          "objetivo_id": "leng_prof_r27_tiempos_en_texto"
+        }
+      ]
+    },
+    {
+      "tema": "sujeto_predicado_nucleo",
+      "materia": "lengua",
+      "paginas": 4,
+      "pdf": "/apuntes/bases-sujeto_predicado_nucleo.pdf",
+      "unidades": [
+        {
+          "id": "leng_prof_r27_sujeto",
+          "titulo": "De quién hablamos y qué contamos",
+          "pagina": 1,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_nucleos",
+          "titulo": "Uno o dos núcleos del sujeto",
+          "pagina": 2,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_predicado",
+          "titulo": "Uno o dos verbos: predicado simple y compuesto",
+          "pagina": 3,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_tacito",
+          "titulo": "Cuando el sujeto no está escrito",
+          "pagina": 4,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "leng_prof_r27_sujeto-t6",
+          "objetivo_id": "leng_prof_r27_sujeto"
+        },
+        {
+          "actividad_id": "leng_prof_r27_predicado-t6",
+          "objetivo_id": "leng_prof_r27_predicado"
+        },
+        {
+          "actividad_id": "leng_prof_r27_tacito-t7",
+          "objetivo_id": "leng_prof_r27_tacito"
+        }
+      ]
+    },
+    {
+      "tema": "concordancia_sujeto_verbo",
+      "materia": "lengua",
+      "paginas": 2,
+      "pdf": "/apuntes/bases-concordancia_sujeto_verbo.pdf",
+      "unidades": [
+        {
+          "id": "leng_prof_r27_concordancia",
+          "titulo": "El verbo acompaña al núcleo del sujeto",
+          "pagina": 1,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_concordancia_nombre",
+          "titulo": "Nombre, artículo y adjetivo se acompañan",
+          "pagina": 2,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "leng_prof_r27_concordancia-t6",
+          "objetivo_id": "leng_prof_r27_concordancia"
+        },
+        {
+          "actividad_id": "leng_prof_r27_concordancia_nombre-t6",
+          "objetivo_id": "leng_prof_r27_concordancia_nombre"
+        },
+        {
+          "actividad_id": "leng_prof_r27_concordancia_nombre-t7",
+          "objetivo_id": "leng_prof_r27_concordancia_nombre"
+        }
+      ]
+    },
+    {
+      "tema": "discurso_conectores_sinonimos",
+      "materia": "lengua",
+      "paginas": 6,
+      "pdf": "/apuntes/bases-discurso_conectores_sinonimos.pdf",
+      "unidades": [
+        {
+          "id": "leng_prof_r27_conectores",
+          "titulo": "Porque, por eso y pero conectan ideas distintas",
+          "pagina": 1,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_conectores_temporales",
+          "titulo": "Antes, después y mientras ordenan lo que pasa",
+          "pagina": 2,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_sinonimos",
+          "titulo": "La palabra adecuada depende de la frase",
+          "pagina": 3,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_antonimos_contexto",
+          "titulo": "Buscar un contrario que sirva en esa frase",
+          "pagina": 4,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_funciones",
+          "titulo": "Para qué se dice: informar, pedir o expresar",
+          "pagina": 5,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_cohesion",
+          "titulo": "Que el texto siga un hilo: coherencia y cohesión",
+          "pagina": 6,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "leng_prof_r27_conectores-t6",
+          "objetivo_id": "leng_prof_r27_conectores"
+        },
+        {
+          "actividad_id": "leng_prof_r27_antonimos_contexto-t6",
+          "objetivo_id": "leng_prof_r27_antonimos_contexto"
+        },
+        {
+          "actividad_id": "leng_prof_r27_cohesion-t7",
+          "objetivo_id": "leng_prof_r27_cohesion"
+        }
+      ]
+    },
+    {
+      "tema": "produccion_escrita_narracion",
+      "materia": "lengua",
+      "paginas": 12,
+      "pdf": "/apuntes/bases-produccion_escrita_narracion.pdf",
+      "unidades": [
+        {
+          "id": "leng_prof_r27_momentos",
+          "titulo": "Una historia en tres momentos",
+          "pagina": 1,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_narrador",
+          "titulo": "Quién cuenta la historia: el narrador",
+          "pagina": 2,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_recursos",
+          "titulo": "Comparar, dar vida y escribir sonidos",
+          "pagina": 3,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_imagenes_sensoriales",
+          "titulo": "Palabras que ayudan a imaginar con los sentidos",
+          "pagina": 4,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_puntuacion",
+          "titulo": "Puntos y comas ayudan a leer",
+          "pagina": 5,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_punto_coma",
+          "titulo": "El punto y coma: unir sin amontonar",
+          "pagina": 6,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 2,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_taller_1",
+          "titulo": "Planificar: pensar una solución antes de escribir",
+          "pagina": 7,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_taller_2",
+          "titulo": "Del plan al borrador: una historia breve",
+          "pagina": 8,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_taller_3",
+          "titulo": "Revisar y reescribir un final",
+          "pagina": 9,
+          "nuevaR27": true,
+          "visual": "mapa",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_puente_texto_1",
+          "titulo": "Leer un párrafo y armar un plan",
+          "pagina": 10,
+          "nuevaR27": true,
+          "visual": "lectura",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_puente_texto_2",
+          "titulo": "Leer dos párrafos y escribir un borrador",
+          "pagina": 11,
+          "nuevaR27": true,
+          "visual": "lectura",
+          "pasos": 3,
+          "actividades": 6
+        },
+        {
+          "id": "leng_prof_r27_puente_texto_3",
+          "titulo": "Leer tres párrafos y revisar una versión propia",
+          "pagina": 12,
+          "nuevaR27": true,
+          "visual": "lectura",
+          "pasos": 3,
+          "actividades": 6
+        }
+      ],
+      "cierre": [
+        {
+          "actividad_id": "leng_prof_r27_momentos-t6",
+          "objetivo_id": "leng_prof_r27_momentos"
+        },
+        {
+          "actividad_id": "leng_prof_r27_puntuacion-t7",
+          "objetivo_id": "leng_prof_r27_puntuacion"
+        },
+        {
+          "actividad_id": "leng_prof_r27_puente_texto_3-t7",
+          "objetivo_id": "leng_prof_r27_puente_texto_3"
+        }
+      ]
+    }
+  ]
+}

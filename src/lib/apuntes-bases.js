@@ -1069,6 +1069,45 @@ const UNIDADES = [
     }
   },
   {
+    "id": "prof_r27_fraccion_desconocida",
+    "tema": "fracciones_operaciones",
+    "titulo": "Completar un entero con partes del mismo tamaño",
+    "explicacion": "Un cuadro vacío representa un número que falta. Primero expresamos lo que tenemos y el entero con el mismo denominador. Después contamos las partes que faltan; al sumar, el entero debe quedar completo.",
+    "ejemplo": "3/5 + □/15 = 1. Tres quintos son 9/15 y el entero es 15/15. Faltan 6/15: en el cuadro va 6.",
+    "pasos": [
+      "Cambiamos 3/5 por 9/15 sin cambiar la cantidad.",
+      "15 − 9 = 6 partes por completar.",
+      "Comprobamos: 9/15 + 6/15 = 15/15 = 1."
+    ],
+    "pista": "El cuadro está en el numerador: escribí cuántas partes faltan, no el denominador.",
+    "visual": {
+      "tipo": "fracciones",
+      "titulo": "Nueve partes ocupadas; completamos las quince",
+      "barras": [
+        {
+          "label": "9/15",
+          "partes": [
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "p",
+            "v",
+            "v",
+            "v",
+            "v",
+            "v",
+            "v"
+          ]
+        }
+      ]
+    }
+  },
+  {
     "id": "fr24_cantidad",
     "tema": "fracciones_operaciones",
     "titulo": "Tomar algunos grupos de fichas",
@@ -1224,6 +1263,25 @@ const UNIDADES = [
         "pintadas": 4
       }
     ]
+  },
+  {
+    "id": "prof_r27_porciones_no_unitarias",
+    "tema": "fracciones_operaciones",
+    "titulo": "Una porción también puede tener dos o más partes",
+    "explicacion": "Para saber cuántas porciones caben, dibujamos la cantidad y una porción usando partes del mismo tamaño. Comparamos cuántas partes tiene cada una. Si tenemos menos de una porción, el resultado es una fracción de esa porción.",
+    "ejemplo": "Hay 4/3 L y cada porción es de 2/3 L. Dibujamos cuatro tercios y los agrupamos de a dos: alcanzan para 2 porciones.",
+    "pasos": [
+      "La cantidad tiene 4 tercios; una porción tiene 2 tercios.",
+      "4 ÷ 2 = 2 porciones. Si cambian los denominadores, buscamos primero partes iguales.",
+      "El cálculo coincide: 4/3 × 3/2 = 12/6 = 2."
+    ],
+    "pista": "Compará cantidad y porción con la misma unidad. Una porción incompleta también se puede expresar como fracción.",
+    "visual": {
+      "tipo": "porcion_comparada",
+      "cantidad": 4,
+      "porcion": 2,
+      "denominador": 3
+    }
   },
   {
     "id": "frac_op_5_division",
@@ -2550,22 +2608,12 @@ const UNIDADES = [
     ],
     "pista": "Si las unidades llegan a diez, llevá una decena.",
     "visual": {
-      "tipo": "mapa",
-      "titulo": "Juntamos 27 y 15",
-      "nodos": [
-        {
-          "titulo": "Miramos",
-          "texto": "20 + 10 = 30"
-        },
-        {
-          "titulo": "Relacionamos",
-          "texto": "7 + 5 = 12 = 10 + 2"
-        },
-        {
-          "titulo": "Comprobamos",
-          "texto": "30 + 10 + 2 = 42"
-        }
-      ]
+      "tipo": "canjes",
+      "a": 27,
+      "b": 15,
+      "operacion": "suma",
+      "resolver": true,
+      "titulo": "27 + 15: juntamos fichas y cerramos una barra"
     }
   },
   {
@@ -2605,22 +2653,12 @@ const UNIDADES = [
     ],
     "pista": "Podés cambiar una decena por diez unidades.",
     "visual": {
-      "tipo": "mapa",
-      "titulo": "Cambiamos una decena por diez unidades",
-      "nodos": [
-        {
-          "titulo": "Miramos",
-          "texto": "42 = 30 + 12"
-        },
-        {
-          "titulo": "Relacionamos",
-          "texto": "Quitamos 10 y 7"
-        },
-        {
-          "titulo": "Comprobamos",
-          "texto": "20 + 5 = 25"
-        }
-      ]
+      "tipo": "canjes",
+      "a": 42,
+      "b": 17,
+      "operacion": "resta",
+      "resolver": true,
+      "titulo": "42 − 17: abrimos una decena para poder quitar"
     }
   },
   {
@@ -3014,22 +3052,10 @@ const UNIDADES = [
     ],
     "pista": "Separá una parte grande que puedas dividir y repartí lo que queda.",
     "visual": {
-      "tipo": "mapa",
-      "titulo": "Repartimos 84 en cuatro partes iguales",
-      "nodos": [
-        {
-          "titulo": "Miramos",
-          "texto": "80 ÷ 4 = 20 para cada parte"
-        },
-        {
-          "titulo": "Relacionamos",
-          "texto": "4 ÷ 4 = 1 para cada parte"
-        },
-        {
-          "titulo": "Comprobamos",
-          "texto": "20 + 1 = 21 en cada una"
-        }
-      ]
+      "tipo": "reparto_decenas",
+      "total": 84,
+      "grupos": 4,
+      "resolver": true
     }
   },
   {
@@ -3652,25 +3678,13 @@ const UNIDADES = [
     ],
     "pista": "Podés cambiar una unidad por cien centésimos y conservar el total.",
     "visual": {
-      "tipo": "liquidos",
-      "titulo": "Cinco litros menos lo que usamos",
-      "recipientes": [
-        {
-          "ml": 5000,
-          "label": "Había 5 L",
-          "capacidad": 5000
-        },
-        {
-          "ml": 1750,
-          "label": "Usamos 1,75 L",
-          "capacidad": 5000
-        },
-        {
-          "ml": 3250,
-          "label": "Quedan 3,25 L",
-          "capacidad": 5000
-        }
-      ],
+      "tipo": "canjes",
+      "a": 500,
+      "b": 175,
+      "base": 100,
+      "operacion": "resta",
+      "resolver": true,
+      "titulo": "5 − 1,75: abrimos un entero en centésimos",
       "operadores": [
         "−",
         "="
@@ -6225,6 +6239,53 @@ const UNIDADES = [
     }
   },
   {
+    "id": "prof_r27_perimetros_unidos",
+    "tema": "perimetros_compuestos",
+    "titulo": "Unir dos patios sin contar la división interior",
+    "explicacion": "Al unir dos patios por un lado completo, ese lado queda adentro. Los perímetros separados lo contaban dos veces: una por cada patio. Para cercar solamente el borde exterior, descontamos esas dos copias.",
+    "ejemplo": "Dos patios rectangulares tienen perímetros de 14 m y 16 m. Comparten un lado completo de 3 m. El borde exterior mide 14 + 16 − 3 − 3 = 24 m.",
+    "pasos": [
+      "Marcamos el lado compartido y vemos que ya no está en el borde.",
+      "Sumar 14 y 16 da 30 m, pero incluye dos veces los 3 m interiores.",
+      "Quitamos 6 m: 30 − 6 = 24 m de cerco."
+    ],
+    "pista": "Seguí el borde con el dedo. El lado que queda entre los patios no forma parte del cerco exterior.",
+    "visual": {
+      "tipo": "poligono",
+      "puntos": [
+        [
+          0,
+          0
+        ],
+        [
+          9,
+          0
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "auxiliares": [
+        [
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            3
+          ]
+        ]
+      ],
+      "nota": "La línea interior une los patios; no se cerca."
+    }
+  },
+  {
     "id": "prof_fig_area_unidad",
     "tema": "perimetros_compuestos",
     "titulo": "Cubrir con cuadrados de un centímetro",
@@ -6580,6 +6641,44 @@ const UNIDADES = [
           "label": "Porción 4",
           "cantidad": 2
         }
+      ]
+    }
+  },
+  {
+    "id": "prof_r27_receta_conversion_resto",
+    "tema": "proporcionalidad_regla_3",
+    "titulo": "Planear una receta y comprobar cuánto queda",
+    "explicacion": "Un problema puede pedir varias decisiones. Primero ajustamos la receta a las personas. Después expresamos las cantidades con la misma unidad y restamos de lo que tenemos. Escribimos qué significa cada resultado antes de seguir.",
+    "ejemplo": "Para 4 personas usamos 3/4 L. Para 6 personas: 750 mL ÷ 4 × 6 = 1125 mL. Si tenemos 1500 mL, quedan 375 mL.",
+    "pasos": [
+      "3/4 L son 750 mL. Cada persona necesita 750 ÷ 4 = 187,5 mL.",
+      "Para 6: 187,5 × 6 = 1125 mL.",
+      "Quedan 1500 − 1125 = 375 mL. Comprobamos: 1125 + 375 = 1500."
+    ],
+    "pista": "Separá el plan en tres pasos: personas, misma unidad y cantidad que queda.",
+    "visual": {
+      "tipo": "liquidos",
+      "titulo": "Tenemos, usamos y conservamos",
+      "recipientes": [
+        {
+          "ml": 1500,
+          "capacidad": 2000,
+          "label": "Tenemos"
+        },
+        {
+          "ml": 1125,
+          "capacidad": 2000,
+          "label": "Usamos"
+        },
+        {
+          "ml": 375,
+          "capacidad": 2000,
+          "label": "Queda"
+        }
+      ],
+      "operadores": [
+        "−",
+        "="
       ]
     }
   },
@@ -7111,6 +7210,66 @@ const UNIDADES = [
     }
   },
   {
+    "id": "leng_prof_r27_geo_logia",
+    "tema": "ortografia_g_j_gu_gu",
+    "titulo": "La Tierra y lo que estudiamos",
+    "explicacion": "Geo- se relaciona con la Tierra y lleva G: geografía estudia lugares y territorios; geología estudia la Tierra, sus materiales y cambios. El final -logía también lleva G y aparece en nombres de estudios: biología estudia los seres vivos. No necesitamos saber todo sobre esas ciencias para mirar su escritura.",
+    "ejemplo": "geo-: geografía, geología; -logía: biología, geología.",
+    "pasos": [
+      "Localizá el comienzo geo- o el final -logía.",
+      "En estos elementos escribimos G; leé la palabra completa con su significado."
+    ],
+    "pista": "Localizá el comienzo geo- o el final -logía.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "geo-: Tierra → geografía"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "-logía: estudio → biología"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "geología reúne ambos elementos"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_gente_gencia",
+    "tema": "ortografia_g_j_gu_gu",
+    "titulo": "Exigente y exigencia: observar el final",
+    "explicacion": "Exigente describe a quien pide mucho cuidado; exigencia nombra lo que pide. Urgente es algo que necesita atención pronta; urgencia nombra esa necesidad. Las terminaciones -gente y -gencia se escriben con G. Observamos también inteligente e inteligencia. No cambiamos solo una letra al formar otra palabra: leemos cada modelo completo.",
+    "ejemplo": "exigente → exigencia; urgente → urgencia; inteligente → inteligencia.",
+    "pasos": [
+      "Buscá el final -gente o -gencia.",
+      "Compará la palabra completa con su pareja y escribí G."
+    ],
+    "pista": "Buscá el final -gente o -gencia.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "exigente → exigencia"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "urgente → urgencia"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "-gente / -gencia se escriben con G"
+        }
+      ]
+    }
+  },
+  {
     "id": "leng_prof_r27_plural_z",
     "tema": "ortografia_c_s_z",
     "titulo": "De una Z a muchas C: pez y peces",
@@ -7226,6 +7385,36 @@ const UNIDADES = [
         {
           "titulo": "Recordá",
           "texto": "En estos modelos: -anza / -ez con Z"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_cion_sion",
+    "tema": "ortografia_c_s_z",
+    "titulo": "Familias que ayudan a escribir -ción y -sión",
+    "explicacion": "El sonido no alcanza para elegir C o S. Miramos familias ya escritas: preparar → preparación, educar → educación, actuar → actuación; comprender → comprensión, dividir → división, imprimir → impresión. Estas parejas son modelos, no una regla que sirva para cualquier verbo. Si una familia nueva no está explicada, consultamos su escritura.",
+    "ejemplo": "educar → educación; comprender → comprensión; imprimir → impresión.",
+    "pasos": [
+      "Buscá la pareja escrita en el modelo: verbo y nombre relacionado.",
+      "Recuperá la escritura completa. No inventes una regla por el sonido."
+    ],
+    "pista": "Buscá la pareja escrita en el modelo: verbo y nombre relacionado.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "preparar → preparación"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "comprender → comprensión"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "La familia orienta; el sonido solo no alcanza"
         }
       ]
     }
@@ -8045,6 +8234,36 @@ const UNIDADES = [
     }
   },
   {
+    "id": "leng_prof_r27_tiempos_en_texto",
+    "tema": "verbos_modo_indicativo_tiempos",
+    "titulo": "Seguir los tiempos dentro de una historia",
+    "explicacion": "Un texto puede combinar varios tiempos. Primero leemos qué sucede; después miramos el verbo señalado y su forma. Canté presenta un hecho terminado; cantaba, un hábito o algo en desarrollo; había cantado, algo anterior a otro pasado. Cantaré sitúa un hecho futuro; habré cantado lo presenta terminado antes de un momento futuro. Usamos los tiempos que ya estudiamos, de a uno.",
+    "ejemplo": "Luz había preparado la mochila. Después salió. Había preparado ocurre antes de salió: es pretérito pluscuamperfecto.",
+    "pasos": [
+      "Leé la historia y localizá solo el verbo indicado.",
+      "Relacioná su forma con el modelo aprendido y comprobá cuándo sucede."
+    ],
+    "pista": "Leé la historia y localizá solo el verbo indicado.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "Leé el texto antes de clasificar"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "había preparado → antes de salió"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Miramos una forma verbal por vez"
+        }
+      ]
+    }
+  },
+  {
     "id": "leng_prof_r27_sujeto",
     "tema": "sujeto_predicado_nucleo",
     "titulo": "De quién hablamos y qué contamos",
@@ -8495,6 +8714,36 @@ const UNIDADES = [
     }
   },
   {
+    "id": "leng_prof_r27_imagenes_sensoriales",
+    "tema": "produccion_escrita_narracion",
+    "titulo": "Palabras que ayudan a imaginar con los sentidos",
+    "explicacion": "Una imagen sensorial describe algo que podríamos ver, oír, oler, saborear o sentir al tocar. No tiene que ser un dibujo: el perfume del pan ayuda a imaginar un olor. Elegimos un detalle relacionado con la escena. La frase estaba allí informa dónde, pero no describe una sensación.",
+    "ejemplo": "Vi una luz amarilla. Oí un golpe seco. Olí pan recién hecho. Probé un sabor ácido. Toqué una tela áspera.",
+    "pasos": [
+      "Buscá el detalle concreto: color, sonido, olor, sabor o textura.",
+      "Elegí el sentido que nombra la frase; no agregues sensaciones que no dice."
+    ],
+    "pista": "Buscá el detalle concreto: color, sonido, olor, sabor o textura.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "Ver / oír / oler / saborear / tocar"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "El olor del pan → olfato"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Un detalle ayuda a imaginar la escena"
+        }
+      ]
+    }
+  },
+  {
     "id": "leng_prof_r27_puntuacion",
     "tema": "produccion_escrita_narracion",
     "titulo": "Puntos y comas ayudan a leer",
@@ -8520,6 +8769,36 @@ const UNIDADES = [
         {
           "titulo": "Recordá",
           "texto": "Sujeto + verbo: sin coma entre ellos"
+        }
+      ]
+    }
+  },
+  {
+    "id": "leng_prof_r27_punto_coma",
+    "tema": "produccion_escrita_narracion",
+    "titulo": "El punto y coma: unir sin amontonar",
+    "explicacion": "El punto y coma (;) puede separar dos oraciones completas muy relacionadas: Ana riega; Leo poda. También ayuda a separar grupos de una lista que ya tienen comas: Ana trajo manzanas, peras y uvas; Leo, pan y queso. Después de Leo, la coma ocupa el lugar de trajo para no repetirlo. No se coloca punto y coma entre un sujeto y su verbo. A veces también serviría un punto; acá practicamos el uso posible del punto y coma.",
+    "ejemplo": "La lluvia paró; salimos al patio. Cada lado cuenta una idea completa.",
+    "pasos": [
+      "Buscá dos ideas completas relacionadas o grupos de una lista con comas internas.",
+      "No separes con ; quién hace algo de lo que hace. Un punto también puede ser válido entre oraciones."
+    ],
+    "pista": "Buscá dos ideas completas relacionadas o grupos de una lista con comas internas.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "Ana riega; Leo poda."
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "Dos oraciones relacionadas"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "No cortar: Ana / riega"
         }
       ]
     }
@@ -8825,6 +9104,36 @@ const UNIDADES = [
     }
   },
   {
+    "id": "leng_prof_r27_biblio_bilidad",
+    "tema": "ortografia_b_v",
+    "titulo": "Libros, habilidades y tres excepciones",
+    "explicacion": "Biblio- se relaciona con libros y se escribe con B: biblioteca es un lugar con libros y bibliografía, una lista de obras consultadas. La terminación -bilidad suele llevar B: habilidad, amabilidad, posibilidad. Aprendemos juntas tres excepciones con V: movilidad, civilidad y servilidad. Movilidad es poder moverse; civilidad, trato respetuoso; servilidad, obediencia excesiva.",
+    "ejemplo": "biblioteca / habilidad; excepciones: movilidad, civilidad, servilidad.",
+    "pasos": [
+      "Mirá si aparece biblio- o el final -bilidad.",
+      "Antes de elegir B, compará con las tres excepciones escritas en el modelo."
+    ],
+    "pista": "Mirá si aparece biblio- o el final -bilidad.",
+    "visual": {
+      "tipo": "mapa",
+      "titulo": "Del ejemplo a la idea",
+      "nodos": [
+        {
+          "titulo": "Observá",
+          "texto": "biblio-: libros → biblioteca"
+        },
+        {
+          "titulo": "Relacioná",
+          "texto": "-bilidad: habilidad / posibilidad"
+        },
+        {
+          "titulo": "Recordá",
+          "texto": "Excepciones: movilidad, civilidad, servilidad"
+        }
+      ]
+    }
+  },
+  {
     "id": "leng_prof_r27_mente",
     "tema": "tildes_generales_agudas_graves_esdrujulas",
     "titulo": "Al agregar -mente, miramos la palabra inicial",
@@ -9036,6 +9345,63 @@ const UNIDADES = [
         }
       ]
     }
+  },
+  {
+    "id": "leng_prof_r27_puente_texto_1",
+    "tema": "produccion_escrita_narracion",
+    "titulo": "Leer un párrafo y armar un plan",
+    "explicacion": "Primero leemos un párrafo para encontrar quién está, qué quiere y qué problema aparece. Subrayamos una pista del texto. Un plan puede ser muy corto: personaje → problema → una posible acción. No hace falta inventar toda la historia todavía.",
+    "ejemplo": "Plan posible: Mila → el viento tiró las hojas → cerrar la ventana y juntarlas.",
+    "pasos": [
+      "Leé por partes; podés volver al párrafo o pedir que te lo lean.",
+      "Anotá personaje, problema y acción antes de escribir.",
+      "Releé lo escrito y mejorá una parte que no se entienda."
+    ],
+    "pista": "Volvé al párrafo donde aparece el problema; usá ese dato para ordenar tu respuesta.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Leamos este modelo por partes",
+      "texto": "Mila preparó una mesa para dibujar con su hermano. Puso las hojas junto a la ventana abierta. Una ráfaga las tiró al suelo, justo cuando él llegaba con los lápices."
+    },
+    "alcance_evidencia": "Práctica guiada de lectura y escritura. La respuesta final no demuestra por sí sola que haya realizado una revisión autónoma ni acredita preparación para el examen."
+  },
+  {
+    "id": "leng_prof_r27_puente_texto_2",
+    "tema": "produccion_escrita_narracion",
+    "titulo": "Leer dos párrafos y escribir un borrador",
+    "explicacion": "Leemos por partes y hacemos una pausa al final de cada párrafo. El primero presenta un problema; el segundo cuenta qué hicieron. Para el borrador unimos situación, problema y acción con nuestras palabras. Puede ser breve: interesa que otra persona entienda la relación, no llenar renglones.",
+    "ejemplo": "Borrador posible: Mila iba a dibujar con su hermano. El viento tiró las hojas. Cerraron la ventana y sostuvieron los papeles para poder empezar.",
+    "pasos": [
+      "Leé por partes; podés volver al párrafo o pedir que te lo lean.",
+      "Anotá personaje, problema y acción antes de escribir.",
+      "Releé lo escrito y mejorá una parte que no se entienda."
+    ],
+    "pista": "Volvé al párrafo donde aparece el problema; usá ese dato para ordenar tu respuesta.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Leamos este modelo por partes",
+      "texto": "Mila preparó una mesa para dibujar con su hermano. Puso las hojas junto a la ventana abierta. Una ráfaga las tiró al suelo, justo cuando él llegaba con los lápices.\n\nMila cerró la ventana y juntó los papeles. Su hermano puso una piedra limpia sobre la pila para sostenerla. Al revisar las hojas, vieron que una había quedado debajo de la mesa."
+    },
+    "alcance_evidencia": "Práctica guiada de lectura y escritura. La respuesta final no demuestra por sí sola que haya realizado una revisión autónoma ni acredita preparación para el examen."
+  },
+  {
+    "id": "leng_prof_r27_puente_texto_3",
+    "tema": "produccion_escrita_narracion",
+    "titulo": "Leer tres párrafos y revisar una versión propia",
+    "explicacion": "Leemos un párrafo por vez. Después escribimos una versión breve con nuestras palabras: comienzo, problema y resolución. Para revisarla buscamos una acción poco clara y un detalle que permita imaginar la escena. Podemos mejorar una palabra o agregar una oración. No se exige una extensión de examen.",
+    "ejemplo": "Borrador: Mila encontró eso. Revisión: Mila encontró una hoja con una mancha de polvo y la dio vuelta para dibujar. Ahora se entiende qué encontró y aparece un detalle visible.",
+    "pasos": [
+      "Leé por partes; podés volver al párrafo o pedir que te lo lean.",
+      "Anotá personaje, problema y acción antes de escribir.",
+      "Releé lo escrito y mejorá una parte que no se entienda."
+    ],
+    "pista": "Volvé al párrafo donde aparece el problema; usá ese dato para ordenar tu respuesta.",
+    "visual": {
+      "tipo": "lectura",
+      "titulo": "Leamos este modelo por partes",
+      "texto": "Mila preparó una mesa para dibujar con su hermano. Puso las hojas junto a la ventana abierta. Una ráfaga las tiró al suelo, justo cuando él llegaba con los lápices.\n\nMila cerró la ventana y juntó los papeles. Su hermano puso una piedra limpia sobre la pila para sostenerla. Al revisar las hojas, vieron que una había quedado debajo de la mesa.\n\nLa hoja tenía una mancha pequeña de polvo. Mila la dio vuelta y descubrió que podía dibujar del otro lado. Su hermano acercó una silla y ambos acomodaron los materiales antes de empezar. Esta vez dejaron la pila lejos de la ventana."
+    },
+    "alcance_evidencia": "Práctica guiada de lectura y escritura. La respuesta final no demuestra por sí sola que haya realizado una revisión autónoma ni acredita preparación para el examen."
   }
 ];
 export function getFichaBase(tema) {

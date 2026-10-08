@@ -28,7 +28,7 @@ function key(id, index, expected) {
   eq([...u.actividades, ...u.transferencia][index].respuesta_correcta, expected, `${id} ${index}`);
 }
 
-eq(units.length, 32, 'Unidades completas, no stubs');
+eq(units.length, 36, 'Unidades completas, no stubs');
 for (const u of units) {
   assert.ok(topics.has(u.tema), u.tema);
   assert.ok(u.id.startsWith('prof_r27_'));
@@ -200,5 +200,10 @@ assert.match(construction.actividad_en_papel, /regla y compás/);
 num('plan_triangulo_tres_lados', 0, dist(A, C));
 num('plan_triangulo_tres_lados', 1, dist(B, C));
 key('plan_triangulo_tres_lados', 4, 2 + 3 > 6 ? 'Sí' : 'No');
+
+['2','3','3/2','3/4','9/10','2','8/9','5/4'].forEach((v,i)=>key('porciones_no_unitarias',i,v));
+[6,4,4,4,6,6,3,15].forEach((v,i)=>num('fraccion_desconocida',i,v));
+[375,750,250,500,1000,750,250,750].forEach((v,i)=>num('receta_conversion_resto',i,v));
+[24,18,24,22,26,30,30,36].forEach((v,i)=>num('perimetros_unidos',i,v));
 
 console.log(`R27 Matemática: ${units.length} unidades, ${questionIds.size} actividades únicas, ${units.length * 2} transferencias reservadas. ${checks} comprobaciones de esquema, geometría y aritmética correctas.`);

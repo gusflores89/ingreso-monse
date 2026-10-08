@@ -92,10 +92,19 @@ export const VISUALES_R27={
 };
 
 export function aplicarVisualesR27(unidades){
+ VISUALES_R27.mat_num_suma={tipo:'canjes',a:27,b:15,operacion:'suma',resolver:true,titulo:'27 + 15: juntamos fichas y cerramos una barra'};
+ VISUALES_R27.mat_num_resta={tipo:'canjes',a:42,b:17,operacion:'resta',resolver:true,titulo:'42 − 17: abrimos una decena para poder quitar'};
+ VISUALES_R27.mat_div_descomponer={tipo:'reparto_decenas',total:84,grupos:4,resolver:true};
+ VISUALES_R27.prof_dec_restar_reagrupar={tipo:'canjes',a:500,b:175,base:100,operacion:'resta',resolver:true,titulo:'5 − 1,75: abrimos un entero en centésimos'};
  for(const id of ['mat_dec_sumar','prof_dec_sumar_distintas'])VISUALES_R27[id].operadores=['+','='];
  for(const id of ['mat_dec_restar','prof_dec_restar_reagrupar'])VISUALES_R27[id].operadores=['−','='];
  for(const u of unidades){
   if(VISUALES_R27[u.id])u.visual=VISUALES_R27[u.id];
+  if(['mat_num_suma','mat_num_resta','mat_div_descomponer','prof_dec_restar_reagrupar'].includes(u.id))for(const a of u.actividades){
+   const ns=a.enunciado.match(/\d+(?:,\d+)?/g).map(n=>Number(n.replace(',','.')));
+   if(u.id==='mat_div_descomponer')a.visual={tipo:'reparto_decenas',total:ns[0],grupos:ns[1],resolver:false};
+   else {const decimal=u.id==='prof_dec_restar_reagrupar';a.visual={tipo:'canjes',a:Math.round(ns[0]*(decimal?100:1)),b:Math.round(ns[1]*(decimal?100:1)),base:decimal?100:10,operacion:u.id==='mat_num_suma'?'suma':'resta',resolver:false,titulo:decimal?'Abrimos un entero en partes más pequeñas':'Conservamos la cantidad al cambiar piezas'};}
+  }
   if(!u.visual && u.id.startsWith('leng_')){
    // Se conserva el ejemplo completo en el cuerpo; el mapa resalta relaciones cortas.
    const ejemplos={leng_bv_1_mb_nv:['tambor → M + B','enviar → N + V'],leng_bv_2_bu_bur_bus:['burbuja → BUR','buscar → BUS'],leng_bv_3_aba:['saltar → saltaba','-aba se escribe con B'],leng_bv_4_iba:['ir → iba','La familia de iba lleva B'],leng_bv_5_adjetivos:['activo → -ivo','creativa → -iva'],leng_bv_6_tuve:['tener → tuve','estar → estuve; andar → anduve'],leng_til_0_silabas:['pe · lo · ta','Tres sílabas'],leng_til_1_tonica:['ca · MI · sa','MI lleva la fuerza; no tiene tilde'],leng_til_2_agudas:['ca · FÉ','Última sílaba; termina en vocal'],leng_til_3_graves:['ÁR · bol','Penúltima; termina en L'],leng_til_4_esdrujulas:['MÚ · si · ca','Antepenúltima; siempre lleva tilde'],leng_til_5_sobresdrujulas:['DÍ · ga · se · lo','Antes de la antepenúltima']};

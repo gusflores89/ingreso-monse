@@ -30,7 +30,7 @@ async function callBiblioteca(db,query,own=true,access=true){let status=200,body
   await page.getByRole('searchbox').fill('');await page.getByRole('button',{name:'Lengua',exact:true}).click();assert.equal(await page.locator('article').count(),14);
   await page.getByRole('button',{name:'Matemática',exact:true}).click();assert.equal(await page.locator('article').count(),26);
   report.checks.push('40 temas, filtros 26/14, búsqueda por subtemas y enlaces al material completo');
-  const samples=['prof_frac_clasificar','mat_dec_fraccion','prof_dec_sumar_distintas','prof_dec_escalar','prof_r27_semicircunferencia','prof_r27_plano_semiplano','leng_prof_r27_tu_mi','ort_h_0_observar_palabras'];
+  const samples=['prof_frac_clasificar','mat_dec_fraccion','prof_dec_sumar_distintas','prof_dec_escalar','prof_r27_semicircunferencia','prof_r27_plano_semiplano','leng_prof_r27_tu_mi','ort_h_0_observar_palabras','mat_num_suma','mat_num_resta','mat_div_descomponer','prof_dec_restar_reagrupar','prof_r27_porciones_no_unitarias','prof_r27_fraccion_desconocida','prof_r27_receta_conversion_resto','prof_r27_perimetros_unidos','leng_prof_r27_puente_texto_3'];
   const selected=[...new Map([...fichas.map(f=>getUnidadesPublicas(f.tema)[0]),...fichas.flatMap(f=>getUnidadesPublicas(f.tema).filter(u=>samples.includes(u.id)))].map(u=>[u.id,u])).values()];
   for(const u of selected){
    await page.goto(base+`/biblioteca?user_id=${h.user.id}&tema=${u.tema}&unidad=${u.id}`,{waitUntil:'networkidle'});

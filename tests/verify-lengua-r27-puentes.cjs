@@ -120,3 +120,84 @@ assert.match(get('verbos_con_b').pasos.join(' '), /No todas las formas muestran 
 assert.match(get('diminutivos').explicacion, /no todos los diminutivos llevan C/);
 assert.equal(activityIds.size, 120);
 console.log(`Lengua R27: ${ids.length} puentes, 120 actividades, 30 transferencias reservadas; secuencia, modelos de haber, escritura por familias y contrastes lingüísticos verificados. Catálogo: ${units.length} unidades.`);
+
+// Segunda ampliación: cobertura puntual y puente hacia textos más extensos.
+const nuevos = ['biblio_bilidad','geo_logia','gente_gencia','cion_sion','imagenes_sensoriales','punto_coma','tiempos_en_texto','puente_texto_1','puente_texto_2','puente_texto_3'];
+assert.equal(units.length,78);
+for (const [a,b] of [['bi_bis_biz_bio','biblio_bilidad'],['aje','geo_logia'],['geo_logia','gente_gencia'],['anza_ez','cion_sion'],['recursos','imagenes_sensoriales'],['puntuacion','punto_coma'],['preterito_anterior','tiempos_en_texto'],['taller_3','puente_texto_1'],['imagenes_sensoriales','puente_texto_1'],['puente_texto_1','puente_texto_2'],['puente_texto_2','puente_texto_3']])prior(a,b);
+const nuevosIds=new Set();
+for(const id of nuevos){
+ const u=get(id);assert.ok(u && u.explicacion && u.ejemplo && u.pasos.length);
+ assert.equal(u.actividades.length,6);assert.equal(u.transferencia.length,2);
+ if(u.visual.tipo==='mapa')assert.ok(u.visual.nodos.every(n=>n.texto.length<=80));
+ else {assert.equal(u.visual.tipo,'lectura');assert.equal(u.visual.texto,u.actividades[0].visual.texto);assert.ok(!u.ejemplo.includes(u.visual.texto),'El ejemplo no debe repetir el pasaje completo');}
+ for(const a of [...u.actividades,...u.transferencia]){
+  assert.ok(!nuevosIds.has(a.id));nuevosIds.add(a.id);
+  assert.ok(a.visual.texto && a.paso_resuelto);
+  if(id.startsWith('puente_texto_') && u.actividades.includes(a)){
+   assert.equal(a.creacion_libre,true);assert.ok(a.rubrica_escritura.length>=3);
+   assert.equal(a.opciones,undefined,'La escritura no se reemplaza por reconocimiento entre opciones');
+   assert.ok(a.rubrica_escritura.every(r=>r.id&&r.descripcion));
+   assert.match(u.alcance_evidencia,/no demuestra.*revisión autónoma.*ni acredita/);
+  }else{
+   assert.equal(new Set(a.opciones).size,a.opciones.length);
+   assert.equal(a.opciones.filter(o=>o===a.respuesta_correcta).length,1);
+   if(id.startsWith('puente_texto_')){
+    assert.equal(a.rubrica_escritura,undefined,'El cierre de opciones no debe evaluar una narración');
+    assert.equal(a.creacion_libre,undefined);
+    assert.match(a.alcance_evidencia,/no evalúa la capacidad de redactar/);
+   }
+  }
+ }
+ for(const t of u.transferencia)assert.ok(!practiceTexts.has(t.visual.texto),'Texto reservado presente en práctica: '+t.id);
+}
+const claves = {
+ biblio_bilidad:['b','b','b','b','v','v','v','b'],
+ geo_logia:Array(8).fill('g'),gente_gencia:Array(8).fill('g'),
+ cion_sion:['c','s','c','s','c','s','c','s'],
+ imagenes_sensoriales:['Vista','Oído','Olfato','Gusto','Tacto','Oído','Vista','Olfato'],
+ tiempos_en_texto:['Pretérito imperfecto','Pretérito perfecto simple','Pretérito pluscuamperfecto','Futuro simple','Futuro perfecto','Condicional simple','Pretérito pluscuamperfecto','Pretérito perfecto simple'],
+};
+for(const [id,clavesEsperadas] of Object.entries(claves)){
+ const u=get(id);[...u.actividades,...u.transferencia].forEach((a,i)=>assert.equal(a.respuesta_correcta,clavesEsperadas[i],a.id));
+}
+const palabras=[
+ ['biblio_bilidad',['biblioteca','bibliografía','habilidad','amabilidad','movilidad','civilidad','servilidad','posibilidad']],
+ ['geo_logia',['geografía','biología','geología','geología','geografía','biología','geología','biología']],
+ ['gente_gencia',['exigente','exigencia','urgente','urgencia','inteligente','inteligencia','urgente','exigencia']],
+ ['cion_sion',['preparación','comprensión','educación','división','actuación','impresión','preparación','comprensión']],
+];
+for(const [id,esperadas] of palabras){
+ const u=get(id),modelo=[u.explicacion,u.ejemplo,...u.pasos].join(' ').toLowerCase();
+ [...u.actividades,...u.transferencia].forEach((a,i)=>{
+  const completada=a.visual.texto.replace('_',a.respuesta_correcta).toLowerCase();
+  assert.ok(completada.includes(esperadas[i]),a.id+': sustitución ortográfica');
+  assert.ok(modelo.includes(esperadas[i]),a.id+': modelo antes de evaluar');
+ });
+}
+assert.match(get('cion_sion').explicacion,/no una regla que sirva para cualquier verbo/);
+assert.match(get('punto_coma').explicacion,/la coma ocupa el lugar de trajo/);
+assert.match(get('punto_coma').explicacion,/también serviría un punto/);
+const puntoEsperado=['Ana riega; Leo poda.','La lluvia paró; salimos al patio.','El agua hirvió; apagamos el fuego.','Ana trajo lápices, gomas y hojas; Leo, reglas y libros.','El perro duerme; la gata juega.','Hacía frío; buscamos las camperas.','El tren llegó; guardamos los libros.','Eva trajo arroz, lentejas y sal; Tomi, frutas y pan.'];
+[...get('punto_coma').actividades,...get('punto_coma').transferencia].forEach((a,i)=>assert.equal(a.respuesta_correcta,puntoEsperado[i]));
+for(let i=0;i<8;i++){
+ let anterior=0;
+ for(let nivel=1;nivel<=3;nivel++){
+  const u=get('puente_texto_'+nivel),a=[...u.actividades,...u.transferencia][i];
+  const partes=a.visual.texto.split('\n\n');assert.equal(partes.length,nivel);
+  const palabras=a.visual.texto.trim().split(/\s+/).length;
+  assert.ok(palabras>anterior && palabras<=140,'Crecimiento gradual, sin texto de examen de golpe');anterior=palabras;
+  assert.match(u.pasos[0],/pedir que te lo lean/);
+ }
+}
+// No reutilizamos como reservadas historias ya expuestas en ningún taller práctico.
+const historiasPracticadas=units.flatMap(u=>u.actividades.map(a=>a.visual?.texto||''));
+for(let nivel=1;nivel<=3;nivel++)for(const t of get('puente_texto_'+nivel).transferencia){
+ const primera=t.visual.texto.split('\n\n')[0];
+ assert.ok(historiasPracticadas.every(texto=>!texto.includes(primera)),'Historia reservada filtrada a la práctica');
+}
+assert.equal(nuevosIds.size,80);
+const reservasPuente=[1,2,3].flatMap(n=>get('puente_texto_'+n).transferencia);
+assert.deepEqual(Array.from(reservasPuente,a=>a.respuesta_correcta),['Falta una pieza del rompecabezas.','Se mojó una tarjeta.','Revisar debajo de la tapa que estaba en la silla.','Volvió a escribirlo en otra tarjeta.','La pieza azul tenía una punta blanca.','El papel mojado se sentía blando entre sus dedos.']);
+for(const u of units)for(const t of u.transferencia||[]){assert.ok(t.opciones?.includes(t.respuesta_correcta),'Contrato del cierre de opciones: '+t.id);assert.equal(t.rubrica_escritura,undefined);}
+console.log('Segunda ampliación: 10 unidades, 60 prácticas y 20 reservadas; ortografía, modelos previos, tiempos, progresión de textos y rúbricas comprobados. No acredita cobertura oficial total.');

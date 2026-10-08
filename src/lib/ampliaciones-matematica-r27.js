@@ -596,6 +596,54 @@ const construirTriangulo = unidad(
   ], { despues_de: 'prof_fig_existencia', alcance_evidencia: 'Estas actividades verifican la comprensión del plan y de la comprobación. La ejecución de una construcción requiere hacer y revisar el dibujo en papel; no queda certificada por opción múltiple.',
     actividad_en_papel: 'Con regla y compás, construí un triángulo de lados 3, 4 y 5 cm. Medí los tres lados al terminar y mostrale el dibujo a una persona que te acompañe. Podés rehacer los trazos.' });
 
+const mcdR27=(x,y)=>y?mcdR27(y,x%y):x;
+const simplificarR27=(n,d)=>{const g=mcdR27(n,d);return d/g===1?String(n/g):`${n/g}/${d/g}`;};
+const compararPorciones=(n,d,p,q)=>{const comun=d*q/mcdR27(d,q);return {tipo:'porcion_comparada',cantidad:n*comun/d,porcion:p*comun/q,denominador:comun};};
+const porcionesNoUnitarias=unidad('prof_r27_porciones_no_unitarias','fracciones_operaciones','Una porción también puede tener dos o más partes',
+ 'Para saber cuántas porciones caben, dibujamos la cantidad y una porción usando partes del mismo tamaño. Comparamos cuántas partes tiene cada una. Si tenemos menos de una porción, el resultado es una fracción de esa porción.',
+ 'Hay 4/3 L y cada porción es de 2/3 L. Dibujamos cuatro tercios y los agrupamos de a dos: alcanzan para 2 porciones.',
+ ['La cantidad tiene 4 tercios; una porción tiene 2 tercios.', '4 ÷ 2 = 2 porciones. Si cambian los denominadores, buscamos primero partes iguales.', 'El cálculo coincide: 4/3 × 3/2 = 12/6 = 2.'],
+ 'Compará cantidad y porción con la misma unidad. Una porción incompleta también se puede expresar como fracción.',
+ compararPorciones(4,3,2,3),[[4,3,2,3],[6,5,2,5],[3,4,2,4],[1,2,2,3],[3,5,2,3],[4,5,2,5],[2,3,3,4],[5,6,2,3]].map(([n,d,p,q])=>{
+  const v=compararPorciones(n,d,p,q),respuesta=simplificarR27(n*q,d*p);
+  return a(`Tenemos ${n}/${d} L. Una porción mide ${p}/${q} L. ¿Cuántas porciones, completas o fraccionarias, representa la cantidad?`,respuesta,[simplificarR27(d*p,n*q),simplificarR27(n*p,d*q)].filter((s,i,all)=>s!==respuesta&&all.indexOf(s)===i).concat(['0','10']).slice(0,2),
+   `En partes de 1/${v.denominador}, la cantidad tiene ${v.cantidad} partes y la porción ${v.porcion}.\n${v.cantidad} ÷ ${v.porcion} = ${respuesta} porciones.\nMultiplicar ${n}/${d} por ${q}/${p} da lo mismo.`,v);
+ }),{antes_de:'frac_op_5_division'});
+
+const parteQueFalta=unidad('prof_r27_fraccion_desconocida','fracciones_operaciones','Completar un entero con partes del mismo tamaño',
+ 'Un cuadro vacío representa un número que falta. Primero expresamos lo que tenemos y el entero con el mismo denominador. Después contamos las partes que faltan; al sumar, el entero debe quedar completo.',
+ '3/5 + □/15 = 1. Tres quintos son 9/15 y el entero es 15/15. Faltan 6/15: en el cuadro va 6.',
+ ['Cambiamos 3/5 por 9/15 sin cambiar la cantidad.', '15 − 9 = 6 partes por completar.', 'Comprobamos: 9/15 + 6/15 = 15/15 = 1.'],
+ 'El cuadro está en el numerador: escribí cuántas partes faltan, no el denominador.',
+ fraccion(9,15,'Nueve partes ocupadas; completamos las quince'),[[3,5,15],[1,2,8],[2,3,12],[3,4,16],[1,3,9],[2,5,10],[5,6,18],[3,8,24]].map(([n,d,t])=>{
+  const tomadas=n*t/d,faltan=t-tomadas;return a(`${n}/${d} + □/${t} = 1. ¿Qué número va en el cuadro?`,faltan,[t,tomadas===faltan?faltan+1:tomadas],`${n}/${d} = ${tomadas}/${t}; 1 = ${t}/${t}.\nFaltan ${t} − ${tomadas} = ${faltan} partes.`,fraccion(tomadas,t,'La barra entera vale uno'));
+ }),{despues_de:'prof_op_restar'});
+
+const recetaIntegrada=unidad('prof_r27_receta_conversion_resto','proporcionalidad_regla_3','Planear una receta y comprobar cuánto queda',
+ 'Un problema puede pedir varias decisiones. Primero ajustamos la receta a las personas. Después expresamos las cantidades con la misma unidad y restamos de lo que tenemos. Escribimos qué significa cada resultado antes de seguir.',
+ 'Para 4 personas usamos 3/4 L. Para 6 personas: 750 mL ÷ 4 × 6 = 1125 mL. Si tenemos 1500 mL, quedan 375 mL.',
+ ['3/4 L son 750 mL. Cada persona necesita 750 ÷ 4 = 187,5 mL.', 'Para 6: 187,5 × 6 = 1125 mL.', 'Quedan 1500 − 1125 = 375 mL. Comprobamos: 1125 + 375 = 1500.'],
+ 'Separá el plan en tres pasos: personas, misma unidad y cantidad que queda.',
+ {tipo:'liquidos',titulo:'Tenemos, usamos y conservamos',recipientes:[{ml:1500,capacidad:2000,label:'Tenemos'},{ml:1125,capacidad:2000,label:'Usamos'},{ml:375,capacidad:2000,label:'Queda'}],operadores:['−','=']},
+ [[4,750,6,1500],[2,500,5,2000],[4,1000,3,1000],[3,750,4,1500],[5,1250,2,1500],[6,1500,5,2000],[4,500,6,1000],[8,2000,3,1500]].map(([personas,ml,nuevas,total])=>{
+  const uso=ml/personas*nuevas,resto=total-uso;
+  return a(`Una receta para ${personas} personas usa ${ml/1000} L. Haremos para ${nuevas} personas y tenemos ${total} mL. ¿Cuántos mL quedan?`.replace(/\d+\.\d+/g,s=>s.replace('.',',')),resto,[total+uso,uso===resto?resto+100:uso],
+   `${ml/1000} L = ${ml} mL.\nCada persona: ${ml} ÷ ${personas} = ${ml/personas} mL. Para ${nuevas}: ${uso} mL.\nQuedan ${total} − ${uso} = ${resto} mL.`,
+   {tipo:'liquidos',titulo:'Datos de la receta',recipientes:[{ml,capacidad:2500,label:'Para '+personas},{ml:total,capacidad:2500,label:'Disponible'}]});
+ }),{despues_de:'prof_r27_proporcion_reducir',prerrequisitos_temas:['si_me_la_masa_capacidad_tiempo','decimales_conversion']});
+
+const dosPatios=(w1,w2,h)=>rectangulo(w1+w2,h,{auxiliares:[[[w1,0],[w1,h]]],nota:'La línea interior une los patios; no se cerca.'});
+const perimetrosUnidos=unidad('prof_r27_perimetros_unidos','perimetros_compuestos','Unir dos patios sin contar la división interior',
+ 'Al unir dos patios por un lado completo, ese lado queda adentro. Los perímetros separados lo contaban dos veces: una por cada patio. Para cercar solamente el borde exterior, descontamos esas dos copias.',
+ 'Dos patios rectangulares tienen perímetros de 14 m y 16 m. Comparten un lado completo de 3 m. El borde exterior mide 14 + 16 − 3 − 3 = 24 m.',
+ ['Marcamos el lado compartido y vemos que ya no está en el borde.', 'Sumar 14 y 16 da 30 m, pero incluye dos veces los 3 m interiores.', 'Quitamos 6 m: 30 − 6 = 24 m de cerco.'],
+ 'Seguí el borde con el dedo. El lado que queda entre los patios no forma parte del cerco exterior.',
+ dosPatios(4,5,3),[[4,5,3],[3,4,2],[6,2,4],[5,3,3],[7,4,2],[4,6,5],[8,3,4],[5,7,6]].map(([w1,w2,h])=>{
+  const p1=2*(w1+h),p2=2*(w2+h),p=2*(w1+w2+h);
+  return a(`Dos patios rectangulares tienen perímetros de ${p1} m y ${p2} m. Se unen por un lado completo de ${h} m. ¿Cuánto mide el borde exterior?`,p,[p1+p2,p1+p2-h],
+   `Sumamos los perímetros: ${p1+p2} m.\nEl lado común se contó dos veces: ${h} × 2 = ${h*2} m.\nBorde exterior: ${p1+p2} − ${h*2} = ${p} m.`,dosPatios(w1,w2,h));
+ }),{despues_de:'prof_r27_perimetro_varios_tramos'});
+
 export const UNIDADES_MATEMATICA_R27 = [
   naturalesRecta, enteroDesdeUnaParte, enteroDesdeParte, fraccionRecta, restoInverso, dosRestos,
   decimalesPosicion, periodicos, exponentes, cubos, ordenIgual, colocarParentesis,
@@ -603,5 +651,5 @@ export const UNIDADES_MATEMATICA_R27 = [
   ladoDesdePerimetro, graficosEscala, graficosFraccion, recetas, sucesiones,
   sucesionCompuesta, escribirRomanos, elegirMcmMcd, planoSemiplano,
   angulosCompuestos, perimetroRelaciones, perimetroTramos,
-  giros, cicloLejano, construirTriangulo,
+  giros, cicloLejano, construirTriangulo,porcionesNoUnitarias,parteQueFalta,recetaIntegrada,perimetrosUnidos,
 ];

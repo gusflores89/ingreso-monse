@@ -127,7 +127,7 @@ export const PRERREQUISITOS = {
   si_me_la_longitud: ["numeros_naturales_sistema_decimal"],
   si_me_la_masa_capacidad_tiempo: ["si_me_la_longitud"],
   graficos_estadisticos: ["numeros_naturales_sistema_decimal", "fracciones_concepto"],
-  proporcionalidad_regla_3: ["division_1_digito", "fracciones_operaciones"],
+  proporcionalidad_regla_3: ["division_1_digito", "fracciones_operaciones", "si_me_la_masa_capacidad_tiempo", "decimales_conversion"],
   secuencias_aritmeticas: ["numeros_naturales_sistema_decimal"],
   secuencias_geometricas_fibonacci: ["secuencias_aritmeticas"],
   ecuaciones_con_imagenes_2_incognitas: ["numeros_naturales_sistema_decimal"],

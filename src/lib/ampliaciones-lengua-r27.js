@@ -419,6 +419,149 @@ agregar('conectores_temporales',D,'Antes, después y mientras ordenan lo que pas
   ['En una obra, el público aplaude mientras los actores saludan. ¿Qué cuenta mientras?', 'Aplausos y saludos ocurren al mismo tiempo', 'Mientras relaciona dos acciones simultáneas; no indica que una tenga que terminar antes.', ['Aplausos y saludos ocurren al mismo tiempo','Los actores saludan solo después del aplauso']],
  ],mapa('antes → después: orden','mientras: al mismo tiempo','finalmente: último paso'));
 
+// Ampliación puntual del cuadernillo: modelos explícitos, sin prometer reglas universales.
+agregar('biblio_bilidad','ortografia_b_v','Libros, habilidades y tres excepciones',
+ 'Biblio- se relaciona con libros y se escribe con B: biblioteca es un lugar con libros y bibliografía, una lista de obras consultadas. La terminación -bilidad suele llevar B: habilidad, amabilidad, posibilidad. Aprendemos juntas tres excepciones con V: movilidad, civilidad y servilidad. Movilidad es poder moverse; civilidad, trato respetuoso; servilidad, obediencia excesiva.',
+ 'biblioteca / habilidad; excepciones: movilidad, civilidad, servilidad.',
+ ['Mirá si aparece biblio- o el final -bilidad.','Antes de elegir B, compará con las tres excepciones escritas en el modelo.'],
+ 'Completá la palabra usando los modelos.', ['b','v'],[
+ ['Consulté un libro en la _iblioteca.','b','Biblioteca empieza con biblio-, relacionado con libros.'],
+ ['Hizo una lista de obras: una _ibliografía.','b','Bibliografía contiene biblio-, con B.'],
+ ['Practicar mejora mi ha_ilidad.','b','Habilidad tiene la terminación -bilidad con B.'],
+ ['Saludó con ama_ilidad.','b','Amabilidad sigue el modelo de -bilidad.'],
+ ['La silla facilita su mo_ilidad, es decir, que pueda moverse.','v','Movilidad es una de las excepciones que aprendimos.'],
+ ['Tratar con respeto es actuar con ci_ilidad.','v','Civilidad es una excepción con V.'],
+ ['Obedecer de manera excesiva puede ser ser_ilidad.','v','Servilidad es la tercera excepción del modelo, con V.'],
+ ['Hay una posi_ilidad de lluvia.','b','Posibilidad termina en -bilidad y no es una de las excepciones vistas.'],
+ ],mapa('biblio-: libros → biblioteca','-bilidad: habilidad / posibilidad','Excepciones: movilidad, civilidad, servilidad'));
+
+agregar('geo_logia',G,'La Tierra y lo que estudiamos',
+ 'Geo- se relaciona con la Tierra y lleva G: geografía estudia lugares y territorios; geología estudia la Tierra, sus materiales y cambios. El final -logía también lleva G y aparece en nombres de estudios: biología estudia los seres vivos. No necesitamos saber todo sobre esas ciencias para mirar su escritura.',
+ 'geo-: geografía, geología; -logía: biología, geología.',
+ ['Localizá el comienzo geo- o el final -logía.','En estos elementos escribimos G; leé la palabra completa con su significado.'],
+ '¿Qué letra completa el elemento señalado?', ['g','j'],[
+ ['_eografía: estudio de lugares y territorios.','g','Geo- se escribe con G.'],
+ ['Biolo_ía: estudio de seres vivos.','g','El final -logía se escribe con G.'],
+ ['_eología: estudio de la Tierra y sus materiales.','g','El comienzo geo- lleva G.'],
+ ['Geolo_ía: miramos ahora su terminación.','g','Geología también termina en -logía, con G.'],
+ ['En _eografía observamos mapas.','g','El elemento geo- conserva G en esta frase.'],
+ ['En biolo_ía observamos plantas.','g','Biología mantiene el final -logía.'],
+ ['La _eología ayuda a estudiar las rocas.','g','La palabra comienza con geo-, relacionado con la Tierra.'],
+ ['El estudio de seres vivos se llama biolo_ía.','g','El nombre biología lleva G en -logía.'],
+ ],mapa('geo-: Tierra → geografía','-logía: estudio → biología','geología reúne ambos elementos'));
+
+agregar('gente_gencia',G,'Exigente y exigencia: observar el final',
+ 'Exigente describe a quien pide mucho cuidado; exigencia nombra lo que pide. Urgente es algo que necesita atención pronta; urgencia nombra esa necesidad. Las terminaciones -gente y -gencia se escriben con G. Observamos también inteligente e inteligencia. No cambiamos solo una letra al formar otra palabra: leemos cada modelo completo.',
+ 'exigente → exigencia; urgente → urgencia; inteligente → inteligencia.',
+ ['Buscá el final -gente o -gencia.','Compará la palabra completa con su pareja y escribí G.'],
+ 'Completá la terminación que aprendimos.', ['g','j'],[
+ ['Una tarea exi_ente pide mucho cuidado.','g','Exigente termina en -gente, con G.'],
+ ['La exi_encia era entregar el trabajo completo.','g','Exigencia termina en -gencia.'],
+ ['Un pedido ur_ente necesita atención pronta.','g','Urgente termina en -gente.'],
+ ['Atendieron la ur_encia.','g','Urgencia termina en -gencia.'],
+ ['Tuvo una idea inteli_ente.','g','Inteligente sigue el modelo de -gente.'],
+ ['Usó su inteli_encia para resolver el problema.','g','Inteligencia termina en -gencia.'],
+ ['El aviso dice que el arreglo es ur_ente.','g','Urgente conserva G en este nuevo contexto.'],
+ ['Una exi_encia del juego es respetar los turnos.','g','Exigencia mantiene su terminación -gencia.'],
+ ],mapa('exigente → exigencia','urgente → urgencia','-gente / -gencia se escriben con G'));
+
+agregar('cion_sion',C,'Familias que ayudan a escribir -ción y -sión',
+ 'El sonido no alcanza para elegir C o S. Miramos familias ya escritas: preparar → preparación, educar → educación, actuar → actuación; comprender → comprensión, dividir → división, imprimir → impresión. Estas parejas son modelos, no una regla que sirva para cualquier verbo. Si una familia nueva no está explicada, consultamos su escritura.',
+ 'educar → educación; comprender → comprensión; imprimir → impresión.',
+ ['Buscá la pareja escrita en el modelo: verbo y nombre relacionado.','Recuperá la escritura completa. No inventes una regla por el sonido.'],
+ 'Completá el nombre usando la familia enseñada.', ['c','s'],[
+ ['preparar → prepara_ión de la mochila.','c','El modelo es preparar → preparación, con C.'],
+ ['comprender → compren_ión del texto.','s','Comprensión pertenece a la familia que observamos con S.'],
+ ['educar → educa_ión.','c','Educación es el modelo escrito con C.'],
+ ['dividir → divi_ión.','s','División pertenece a la pareja dividir → división, con S.'],
+ ['actuar → actua_ión en la obra.','c','Actuación se escribe con C en el modelo de actuar.'],
+ ['imprimir → impre_ión de una página.','s','Impresión es el modelo de imprimir, con S.'],
+ ['La prepara_ión de la merienda llevó unos minutos. Familia: preparar.','c','En otro contexto, preparación conserva C.'],
+ ['La compren_ión de las instrucciones ayudó al grupo. Familia: comprender.','s','Comprensión conserva la S de la familia enseñada.'],
+ ],mapa('preparar → preparación','comprender → comprensión','La familia orienta; el sonido solo no alcanza'));
+
+agregar('imagenes_sensoriales',N,'Palabras que ayudan a imaginar con los sentidos',
+ 'Una imagen sensorial describe algo que podríamos ver, oír, oler, saborear o sentir al tocar. No tiene que ser un dibujo: el perfume del pan ayuda a imaginar un olor. Elegimos un detalle relacionado con la escena. La frase estaba allí informa dónde, pero no describe una sensación.',
+ 'Vi una luz amarilla. Oí un golpe seco. Olí pan recién hecho. Probé un sabor ácido. Toqué una tela áspera.',
+ ['Buscá el detalle concreto: color, sonido, olor, sabor o textura.','Elegí el sentido que nombra la frase; no agregues sensaciones que no dice.'],
+ '¿Qué sentido aparece nombrado en esta descripción?', ['Vista','Oído','Olfato','Gusto','Tacto'],[
+ ['Vi el brillo rojo de la manzana.','Vista','Vi y brillo rojo describen lo que se ve.'],
+ ['Oí el crujido de las hojas secas.','Oído','Oí y crujido presentan un sonido.'],
+ ['Olí el perfume de las flores.','Olfato','Olí y perfume presentan un olor.'],
+ ['Probé el sabor ácido del limón.','Gusto','Probé y sabor ácido describen el gusto.'],
+ ['Al tocar la piedra, sentí su superficie rugosa.','Tacto','La frase dice al tocar y describe la textura.'],
+ ['Escuché el zumbido de una abeja.','Oído','Escuché y zumbido nombran un sonido.'],
+ ['Desde la ventana vi una nube anaranjada.','Vista','El texto describe una imagen que se ve: forma y color.'],
+ ['Al abrir la bolsa, percibí el olor del café.','Olfato','El detalle explícito es el olor, percibido con el olfato.'],
+ ],mapa('Ver / oír / oler / saborear / tocar','El olor del pan → olfato','Un detalle ayuda a imaginar la escena'));
+
+agregar('punto_coma',N,'El punto y coma: unir sin amontonar',
+ 'El punto y coma (;) puede separar dos oraciones completas muy relacionadas: Ana riega; Leo poda. También ayuda a separar grupos de una lista que ya tienen comas: Ana trajo manzanas, peras y uvas; Leo, pan y queso. Después de Leo, la coma ocupa el lugar de trajo para no repetirlo. No se coloca punto y coma entre un sujeto y su verbo. A veces también serviría un punto; acá practicamos el uso posible del punto y coma.',
+ 'La lluvia paró; salimos al patio. Cada lado cuenta una idea completa.',
+ ['Buscá dos ideas completas relacionadas o grupos de una lista con comas internas.','No separes con ; quién hace algo de lo que hace. Un punto también puede ser válido entre oraciones.'],
+ '¿Cuál opción usa correctamente el punto y coma?', [],[
+ ['Queremos relacionar lo que hacen Ana y Leo.','Ana riega; Leo poda.','Los dos lados son oraciones completas relacionadas.',['Ana riega; Leo poda.','Ana; riega y Leo poda.']],
+ ['Queremos contar qué pasó tras la lluvia.','La lluvia paró; salimos al patio.','Separa dos ideas completas; no corta el sujeto del verbo.',['La lluvia paró; salimos al patio.','La lluvia; paró y salimos al patio.']],
+ ['Queremos relacionar dos acciones en la cocina.','El agua hirvió; apagamos el fuego.','Cada lado expresa una oración completa.',['El agua hirvió; apagamos el fuego.','El agua; hirvió y apagamos el fuego.']],
+ ['Queremos separar grupos que contienen comas.','Ana trajo lápices, gomas y hojas; Leo, reglas y libros.','El punto y coma distingue los dos grupos; las comas ordenan elementos dentro de ellos.',['Ana trajo lápices, gomas y hojas; Leo, reglas y libros.','Ana trajo; lápices, gomas y hojas y Leo, reglas y libros.']],
+ ['Queremos relacionar lo que hace cada mascota.','El perro duerme; la gata juega.','Ambos lados cuentan una acción completa.',['El perro duerme; la gata juega.','El perro; duerme y la gata juega.']],
+ ['Queremos relacionar el frío con una decisión.','Hacía frío; buscamos las camperas.','Une ideas relacionadas sin cortar sujeto y verbo.',['Hacía frío; buscamos las camperas.','Nosotros; buscamos las camperas.']],
+ ['Queremos relacionar la llegada del tren con una acción.','El tren llegó; guardamos los libros.','Llegada y acción son dos ideas completas relacionadas.',['El tren llegó; guardamos los libros.','El tren; llegó y guardamos los libros.']],
+ ['Queremos separar los grupos de comida que trajeron.','Eva trajo arroz, lentejas y sal; Tomi, frutas y pan.','El punto y coma separa grupos con comas interiores.',['Eva trajo arroz, lentejas y sal; Tomi, frutas y pan.','Eva; trajo arroz, lentejas y sal; Tomi, frutas y pan.']],
+ ],mapa('Ana riega; Leo poda.','Dos oraciones relacionadas','No cortar: Ana / riega'));
+
+agregar('tiempos_en_texto',V,'Seguir los tiempos dentro de una historia',
+ 'Un texto puede combinar varios tiempos. Primero leemos qué sucede; después miramos el verbo señalado y su forma. Canté presenta un hecho terminado; cantaba, un hábito o algo en desarrollo; había cantado, algo anterior a otro pasado. Cantaré sitúa un hecho futuro; habré cantado lo presenta terminado antes de un momento futuro. Usamos los tiempos que ya estudiamos, de a uno.',
+ 'Luz había preparado la mochila. Después salió. Había preparado ocurre antes de salió: es pretérito pluscuamperfecto.',
+ ['Leé la historia y localizá solo el verbo indicado.','Relacioná su forma con el modelo aprendido y comprobá cuándo sucede.'],
+ '¿Qué tiempo tiene la forma verbal señalada?', [],[
+ ['Antes, Mara caminaba hasta la escuela cada día. Ayer viajó en colectivo por la lluvia. Miramos caminaba.','Pretérito imperfecto','Caminaba presenta una costumbre pasada.',['Pretérito imperfecto','Futuro simple']],
+ ['Cada tarde Tomi jugaba en el patio. Ayer encontró una pluma junto al árbol y la guardó. Miramos encontró.','Pretérito perfecto simple','Encontró presenta un hecho terminado del pasado.',['Pretérito perfecto simple','Pretérito imperfecto']],
+ ['El grupo llegó al salón. Eva había acomodado las sillas antes de que llegaran sus compañeros. Miramos había acomodado.','Pretérito pluscuamperfecto','Había acomodado es anterior a otro momento pasado: la llegada.',['Pretérito pluscuamperfecto','Pretérito perfecto compuesto']],
+ ['Hoy preparamos los materiales. Mañana construiremos un refugio para los pájaros. Miramos construiremos.','Futuro simple','Construiremos sitúa la acción después del momento de hablar.',['Futuro simple','Condicional simple']],
+ ['Mañana recibiremos visitas a las cinco. Para esa hora habremos ordenado la sala. Miramos habremos ordenado.','Futuro perfecto','Habremos ordenado presenta la acción terminada antes de las cinco de mañana.',['Futuro perfecto','Pretérito perfecto compuesto']],
+ ['Luz desea conocer el mar. Viajaría en verano si pudiera ahorrar para el pasaje. Miramos viajaría.','Condicional simple','Viajaría presenta algo condicionado a poder ahorrar.',['Condicional simple','Futuro simple']],
+ ['Antes de la función, Nico había revisado las luces. Cuando abrió la sala, todo estaba listo. Miramos había revisado.','Pretérito pluscuamperfecto','La revisión ocurrió antes de la apertura, también pasada.',['Pretérito pluscuamperfecto','Pretérito anterior']],
+ ['Sofi cuidaba el jardín cada semana. El martes plantó una semilla nueva y regó la tierra. Miramos plantó.','Pretérito perfecto simple','Plantó presenta la acción del martes como un hecho terminado.',['Pretérito perfecto simple','Pretérito imperfecto']],
+ ],mapa('Leé el texto antes de clasificar','había preparado → antes de salió','Miramos una forma verbal por vez'));
+
+// Textos originales crecientes. La escritura se evalúa con criterios, nunca por
+// coincidencia exacta con el ejemplo. Las reservas verifican comprensión mediante
+// opciones: el cierre actual no admite calificar producción escrita con rúbricas.
+const relatosPuenteR27=[
+ {inicio:'Mila preparó una mesa para dibujar con su hermano. Puso las hojas junto a la ventana abierta. Una ráfaga las tiró al suelo, justo cuando él llegaba con los lápices.',desarrollo:'Mila cerró la ventana y juntó los papeles. Su hermano puso una piedra limpia sobre la pila para sostenerla. Al revisar las hojas, vieron que una había quedado debajo de la mesa.',detalle:'La hoja tenía una mancha pequeña de polvo. Mila la dio vuelta y descubrió que podía dibujar del otro lado. Su hermano acercó una silla y ambos acomodaron los materiales antes de empezar. Esta vez dejaron la pila lejos de la ventana.',plan:'La ventana estaba abierta; el viento tiró las hojas; Mila las juntó y las sujetaron.'},
+ {inicio:'Teo llevó una planta al patio de su casa. Quería ponerla al sol, pero al levantar la maceta notó que la tierra caía por una grieta. Se detuvo para buscar ayuda.',desarrollo:'Su abuela acercó otro recipiente con agujeros abajo. Entre los dos pasaron la planta con cuidado, sin tirar de las hojas. Después juntaron la tierra que había quedado sobre el piso.',detalle:'La tierra húmeda tenía un olor intenso. Teo miró dónde apoyar la nueva maceta para que nadie la pateara al pasar. Eligió un rincón junto a la pared y puso un plato debajo. La planta quedó firme y él pudo regarla sin apuro.',plan:'La maceta estaba rajada; perdía tierra; Teo y su abuela cambiaron el recipiente.'},
+ {inicio:'Rita preparó un picnic con su prima. Guardaron fruta y vasos en una bolsa. Al llegar a la plaza, descubrieron que habían dejado la manta en casa y el pasto estaba mojado.',desarrollo:'Buscaron un banco seco bajo los árboles. Limpiaron el asiento con un pañuelo y apoyaron allí la bolsa. Luego acomodaron la fruta para compartirla sin tener que sentarse sobre el pasto.',detalle:'Desde el banco escuchaban las hojas moverse con el viento. Rita repartió las manzanas y su prima guardó los papeles para llevarlos a un cesto. Comieron tranquilas mirando pasar las bicicletas. Al terminar, revisaron que el banco quedara tan limpio como lo habían encontrado.',plan:'Faltaba la manta y el pasto estaba mojado; buscaron un banco seco para merendar.'},
+ {inicio:'Simón armó una pista para sus autitos en el cuarto. Usó una tabla como puente entre dos cajas. Cuando pasó el auto más grande, una caja se movió y el puente quedó torcido.',desarrollo:'Simón retiró el auto y acomodó las cajas sobre una alfombra. Probó empujarlas suavemente para comprobar que no se deslizaran. Después volvió a colocar la tabla y empezó con el auto más pequeño.',detalle:'Las ruedas hicieron un ruido suave sobre la madera. Esta vez la tabla quedó apoyada en ambos extremos y no se movió. Simón dejó el auto grande a un lado hasta terminar la prueba. Cuando vio que todo estaba firme, pudo completar el recorrido.',plan:'Una caja se movía; Simón estabilizó las cajas y probó el puente con cuidado.'},
+ {inicio:'Vera quiso leer un cuento en el patio. Se sentó en una silla, pero el sol le daba justo en los ojos. Tapó la página con la mano y vio que así tampoco podía leer cómoda.',desarrollo:'Miró alrededor y encontró una sombra al lado de la pared. Movió la silla hasta allí y apoyó el libro en sus rodillas. Ahora podía ver las letras sin tener que cubrirse la cara.',detalle:'Desde su nuevo lugar veía unas flores amarillas junto a la puerta. Vera buscó la página que había dejado y siguió la historia. Al terminar, puso un papel como señalador y cerró el libro. Decidió recordar ese rincón para volver a leer otra tarde.',plan:'El sol molestaba para leer; Vera llevó la silla a la sombra y continuó el cuento.'},
+ {inicio:'Dani salió a caminar con su papá después de la lluvia. Cerca de la esquina había un charco que ocupaba casi toda la vereda. Intentó rodearlo, pero junto al borde también había barro.',desarrollo:'Los dos retrocedieron hasta una entrada ancha y seca. Desde allí buscaron una parte libre de agua sin bajar a la calle. Avanzaron despacio y consiguieron pasar por el lado de la pared.',detalle:'Dani sintió el aire fresco en la cara. Al otro lado del charco miró sus zapatillas y vio que seguían limpias. Su papá le mostró el camino que habían recorrido. Continuaron la caminata conversando sobre cómo habían elegido una ruta que se pudiera pasar sin mojarse.',plan:'El charco y el barro cortaban el paso; buscaron un recorrido seco por la vereda.'},
+ {inicio:'Nora llevó un rompecabezas a casa de su amiga. Separaron las piezas sobre la mesa y empezaron por los bordes. Cuando casi terminaban, notaron que faltaba una pieza cerca de la esquina del dibujo.',desarrollo:'Dejaron de mover las piezas y revisaron la caja vacía. Nora recordó que había apoyado la tapa sobre una silla. Al levantarla encontraron la pieza que faltaba y la llevaron a la mesa.',detalle:'La pieza azul tenía una punta blanca como el cielo del dibujo. Las amigas compararon su forma con el espacio vacío y la giraron hasta que encajó. Entonces pudieron ver la imagen completa. Antes de guardar el juego, revisaron juntas que no quedara nada sobre la silla.',plan:'Faltaba una pieza; revisaron dónde habían apoyado la tapa y la encontraron.'},
+ {inicio:'Bruno preparó tarjetas para invitar a sus amigos a jugar. Las dejó apiladas junto al vaso de agua. Al mover el brazo, volcó un poco de agua y mojó la tarjeta que estaba arriba.',desarrollo:'Bruno apartó el vaso y secó la mesa. Puso la tarjeta húmeda sobre un paño y revisó las demás. Como el nombre se había borrado, buscó otra tarjeta y volvió a escribirlo con cuidado.',detalle:'El papel mojado se sentía blando entre sus dedos. Bruno esperó antes de guardarlo y separó las tarjetas que estaban secas. Luego las puso en un sobre, lejos del vaso. Así pudo llevar las invitaciones sin que se pegaran unas con otras durante el camino.',plan:'Se mojó una tarjeta y se borró el nombre; Bruno secó la mesa y escribió otra.'},
+];
+for(const [nivel,titulo,explicacion,consigna,criterios] of [
+ [1,'Leer un párrafo y armar un plan','Primero leemos un párrafo para encontrar quién está, qué quiere y qué problema aparece. Subrayamos una pista del texto. Un plan puede ser muy corto: personaje → problema → una posible acción. No hace falta inventar toda la historia todavía.','Escribí un plan breve: quién aparece, qué problema tiene y una acción posible para resolverlo. Usá una pista del párrafo.',[{id:'personaje',descripcion:'Reconoce al personaje del texto.'},{id:'problema',descripcion:'Identifica el problema apoyándose en un dato del párrafo.'},{id:'plan',descripcion:'Propone una acción posible relacionada con ese problema.'}]],
+ [2,'Leer dos párrafos y escribir un borrador','Leemos por partes y hacemos una pausa al final de cada párrafo. El primero presenta un problema; el segundo cuenta qué hicieron. Para el borrador unimos situación, problema y acción con nuestras palabras. Puede ser breve: interesa que otra persona entienda la relación, no llenar renglones.','Contá con tus palabras lo que pasó en los dos párrafos. Incluí el problema y la acción que ayudó a resolverlo. Podés escribir tres o cuatro oraciones; si necesitás menos para decirlo claramente, está bien.',[{id:'situacion',descripcion:'Presenta una situación y personaje coherentes con el texto.'},{id:'problema',descripcion:'Explica el problema central sin agregar contradicciones.'},{id:'accion',descripcion:'Cuenta la acción del segundo párrafo y la relaciona con el problema.'}]],
+ [3,'Leer tres párrafos y revisar una versión propia','Leemos un párrafo por vez. Después escribimos una versión breve con nuestras palabras: comienzo, problema y resolución. Para revisarla buscamos una acción poco clara y un detalle que permita imaginar la escena. Podemos mejorar una palabra o agregar una oración. No se exige una extensión de examen.','Escribí una versión breve de la historia. Releela y entregá una versión revisada donde se entienda cómo se resuelve el problema. Conservá o agregá un detalle sensorial adecuado a la escena. No hace falta copiar todos los hechos ni escribir una cantidad fija de renglones.',[{id:'secuencia',descripcion:'Se entiende comienzo, problema y resolución en un orden coherente.'},{id:'relacion',descripcion:'La acción del personaje responde al problema y tiene un resultado claro.'},{id:'sensorial',descripcion:'Incluye un detalle concreto de vista, oído, olfato, gusto o tacto relacionado con la escena.'},{id:'claridad',descripcion:'La versión entregada puede entenderse; la devolución señala una mejora concreta, sin exigir reproducir el modelo.'}]],
+]){
+ const id='leng_prof_r27_puente_texto_'+nivel;
+ const actividades=relatosPuenteR27.map((r,i)=>{
+  const texto=[r.inicio,...(nivel>1?[r.desarrollo]:[]),...(nivel>2?[r.detalle]:[])].join('\n\n');
+  if(i>=6){
+   const reservadas={
+    1:[['¿Qué problema necesita resolver Nora?','Falta una pieza del rompecabezas.','La mesa se rompió.','El primer párrafo dice que falta una pieza; no cuenta que la mesa esté rota.'],['¿Qué problema necesita resolver Bruno?','Se mojó una tarjeta.','Perdió todos los lápices.','El párrafo cuenta que el agua alcanzó la tarjeta de arriba.']],
+    2:[['¿Qué acción permitió encontrar la pieza?','Revisar debajo de la tapa que estaba en la silla.','Comprar otro rompecabezas.','Recordar dónde estaba la tapa les permitió revisar ese lugar y hallar la pieza.'],['¿Qué hizo Bruno con el nombre que se había borrado?','Volvió a escribirlo en otra tarjeta.','Guardó la tarjeta mojada sin revisarla.','Después de revisar las tarjetas, buscó otra y volvió a escribir el nombre.']],
+    3:[['¿Qué detalle del texto permite imaginar algo mediante la vista?','La pieza azul tenía una punta blanca.','Nora llevó un rompecabezas.','Azul y blanca describen colores: es un detalle visual.'],['¿Qué detalle del texto permite imaginar algo mediante el tacto?','El papel mojado se sentía blando entre sus dedos.','Bruno preparó tarjetas.','Sentir el papel blando entre los dedos describe una sensación de tacto.']],
+   };
+   const [pregunta,correcta,otra,razon]=reservadas[nivel][i-6];
+   return {id:id+'-t'+i,enunciado:pregunta,visual:{tipo:'lectura',titulo:'Otra historia: buscá una pista',texto},respuesta_correcta:correcta,opciones:i%2?[otra,correcta]:[correcta,otra],paso_resuelto:razon,alcance_evidencia:'Comprensión de una parte de un texto nuevo; no evalúa la capacidad de redactar ni revisar un escrito propio.'};
+  }
+  return {id:id+'-'+(i<6?'p':'t')+i,enunciado:consigna,visual:{tipo:'lectura',titulo:'Leé un párrafo por vez',texto},respuesta_correcta:r.plan,creacion_libre:true,rubrica_escritura:criterios,paso_resuelto:'Una guía posible para organizar las ideas es: '+r.plan+' Podés usar otras palabras o una solución propia si la consigna pide imaginar. No hay una única redacción correcta.'};
+ });
+ UNIDADES_LENGUA_R27.push({id,tema:N,titulo,explicacion,
+  ejemplo:nivel===1?'Plan posible: Mila → el viento tiró las hojas → cerrar la ventana y juntarlas.':nivel===2?'Borrador posible: Mila iba a dibujar con su hermano. El viento tiró las hojas. Cerraron la ventana y sostuvieron los papeles para poder empezar.':'Borrador: Mila encontró eso. Revisión: Mila encontró una hoja con una mancha de polvo y la dio vuelta para dibujar. Ahora se entiende qué encontró y aparece un detalle visible.',
+  pasos:['Leé por partes; podés volver al párrafo o pedir que te lo lean.','Anotá personaje, problema y acción antes de escribir.','Releé lo escrito y mejorá una parte que no se entienda.'],pista:'Volvé al párrafo donde aparece el problema; usá ese dato para ordenar tu respuesta.',visual:{tipo:'lectura',titulo:'Leamos este modelo por partes',texto:actividades[0].visual.texto},actividades:actividades.slice(0,6),transferencia:actividades.slice(6),alcance_evidencia:'Práctica guiada de lectura y escritura. La respuesta final no demuestra por sí sola que haya realizado una revisión autónoma ni acredita preparación para el examen.'});
+}
+
 function ubicarUnidadR27(id, ancla, posicion){
  const desde=UNIDADES_LENGUA_R27.findIndex(u=>u.id==='leng_prof_r27_'+id);
  if(desde<0)throw Error('No existe la unidad de Lengua R27: '+id);
@@ -442,3 +585,13 @@ ubicarUnidadR27('bi_bis_biz_bio','verbos_con_b','despues');
 ubicarUnidadR27('compuestas_tilde','mente','despues');
 ubicarUnidadR27('antonimos_contexto','sinonimos','despues');
 ubicarUnidadR27('conectores_temporales','conectores','despues');
+ubicarUnidadR27('biblio_bilidad','bi_bis_biz_bio','despues');
+ubicarUnidadR27('geo_logia','aje','despues');
+ubicarUnidadR27('gente_gencia','geo_logia','despues');
+ubicarUnidadR27('cion_sion','anza_ez','despues');
+ubicarUnidadR27('imagenes_sensoriales','recursos','despues');
+ubicarUnidadR27('punto_coma','puntuacion','despues');
+ubicarUnidadR27('tiempos_en_texto','preterito_anterior','despues');
+ubicarUnidadR27('puente_texto_1','taller_3','despues');
+ubicarUnidadR27('puente_texto_2','puente_texto_1','despues');
+ubicarUnidadR27('puente_texto_3','puente_texto_2','despues');

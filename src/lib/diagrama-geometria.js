@@ -7,6 +7,52 @@ export function crearDiagramaGeometria(d = {}) {
  const arc=(x,y,r,start,end,color='#64748b',dash=false,width=1)=>{
   const steps=Math.max(2,Math.ceil(Math.abs(end-start)/2));line(Array.from({length:steps+1},(_,i)=>point(x,y,r,start+(end-start)*i/steps)),color,dash,width);
  };
+ if(d.tipo==='canjes'){
+  const base=d.base||10,ad=Math.floor(d.a/base),au=d.a%base,bd=Math.floor(d.b/base),bu=d.b%base;
+  const sumar=d.operacion==='suma',dd=sumar?ad+bd:ad-(au<bu?1:0),uu=sumar?au+bu:au+(au<bu?base:0);
+  text(240,23,d.titulo||'La cantidad se conserva al cambiar las piezas','#172554',15);
+  text(240,45,base===100?'Cada cuadrado entero tiene 100 centésimos.':'Cada barra tiene 10 unidades. Cada punto es una unidad.','#475569',12);
+  const resultado=sumar?d.a+d.b:d.a-d.b;
+  const filas=[{label:sumar?'Juntamos':'Al empezar',d:sumar?ad+bd:ad,u:sumar?au+bu:au},
+   {label:sumar?'Canje de 10':'Abrimos una pieza',d:sumar?Math.floor(resultado/base):dd,u:sumar?resultado%base:uu},
+   d.resolver?{label:'Quedan',d:Math.floor(resultado/base),u:resultado%base}:{label:sumar?'Contá las piezas':'Ahora quitá',d:sumar?0:bd,u:sumar?0:bu}];
+  filas.forEach((f,i)=>{const y=73+i*77;text(70,y+16,f.label,'#172554',12);
+   for(let k=0;k<f.d;k++){const x=143+k*(base===100?23:15),w=base===100?20:10,h=base===100?20:40;
+    line([[x,y],[x+w,y],[x+w,y+h],[x,y+h],[x,y]],'#2563eb',false,1);
+    for(let j=1;j<10;j++){line([[x,y+j*h/10],[x+w,y+j*h/10]],'#60a5fa',false,.6);if(base===100)line([[x+j*w/10,y],[x+j*w/10,y+h]],'#60a5fa',false,.6);}
+   }
+   const cols=base===100?20:10,dx=base===100?5:10;
+   for(let k=0;k<f.u;k++)arc(340+(k%cols)*dx,y+5+Math.floor(k/cols)*(base===100?5:13),base===100?1.2:3,0,360,'#b45309',false,1.5);
+  });
+  text(240,299,base===100?'Un entero se puede abrir en 100 partes iguales.':'Abrir o cerrar una barra no agrega ni quita fichas.','#475569',12);
+  return {trazos,textos,ancho:480,alto:310};
+ }
+ if(d.tipo==='reparto_decenas'){
+  const grandes=Math.floor(d.total/d.grupos/10),resto=d.total-grandes*10*d.grupos;
+  text(240,24,`${d.total} fichas en ${d.grupos} grupos iguales`,'#172554',16);
+  text(240,46,'Una barra contiene diez fichas. Los puntos son fichas sueltas.','#475569',12);
+  text(240,71,d.resolver?'Cada grupo recibe las mismas piezas.':`Ya repartimos las barras. Faltan estas ${resto} fichas:`,'#172554',13);
+  if(!d.resolver)for(let k=0;k<resto;k++)arc(130+(k%16)*14,94+Math.floor(k/16)*15,3,0,360,'#b45309',false,2);
+  const w=430/d.grupos;
+  for(let i=0;i<d.grupos;i++){const x=25+i*w,y=139;line([[x,y],[x+w-6,y],[x+w-6,263],[x,263],[x,y]],'#64748b',false,1);
+   text(x+w/2-3,159,'Grupo '+(i+1),'#172554',12);
+   for(let k=0;k<grandes;k++){const xx=x+13+k*20;line([[xx,175],[xx+12,175],[xx+12,225],[xx,225],[xx,175]],'#2563eb',false,1);for(let j=1;j<10;j++)line([[xx,175+j*5],[xx+12,175+j*5]],'#60a5fa',false,1);}
+   if(d.resolver)for(let k=0;k<resto/d.grupos;k++)arc(x+13+k*13,246,3,0,360,'#b45309',false,2);
+  }
+  text(240,294,d.resolver?'Contá barras y fichas de un solo grupo.':'Repartí las fichas sueltas de a una, por turnos.','#475569',13);
+  return {trazos,textos,ancho:480,alto:310};
+ }
+ if(d.tipo==='porcion_comparada'){
+  const max=Math.max(d.cantidad,d.porcion,d.denominador),w=335/max;
+  text(240,25,'Comparamos con partes del mismo tamaño','#172554',16);
+  [{n:d.cantidad,label:'Cantidad'},{n:d.porcion,label:'Una porción'}].forEach((f,i)=>{const y=65+i*86;text(68,y+22,f.label,'#172554',13);
+   for(let j=0;j<f.n;j++){const x=125+j*w;line([[x,y],[x+w,y],[x+w,y+35],[x,y+35],[x,y]],i?'#15803d':'#2563eb',false,2);}
+   text(285,y+58,`${f.n} partes de 1/${d.denominador}`,'#172554',13);
+  });
+  const end=125+d.denominador*w;line([[125,243],[end,243]],'#475569',false,2);text((125+end)/2,268,'Esta longitud representa 1 litro.','#475569',12);
+  text(240,299,'¿Cuántas porciones, o qué parte de una, tenemos?','#172554',13);
+  return {trazos,textos,ancho:480,alto:310};
+ }
  if(d.tipo==='liquidos'){
   text(240,22,d.titulo || 'La misma cantidad en otra forma','#172554',16);
   text(28,38,'mL','#475569',10);
