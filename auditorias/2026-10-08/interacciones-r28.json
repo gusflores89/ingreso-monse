@@ -265,5 +265,334 @@
       "tipo": "historia",
       "titulo": "Construir una historia y mejorar un detalle"
     }
-  ]
+  ],
+  "resultado": {
+    "commit_producto": "f2edd3d",
+    "deployment": "dpl_HaTvPSEM8AF2Dd4iorpzaE88SPAh",
+    "url": "https://www.ingresomonserrat.online",
+    "build_local": true,
+    "build_vercel": true,
+    "regresion_previa": true,
+    "combinaciones_matematicas": 904,
+    "verificacion_lengua": 14,
+    "browser_produccion": {
+      "base": "https://www.ingresomonserrat.online",
+      "temas": [
+        {
+          "tema": "numeros_naturales_sistema_decimal",
+          "action": "control con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "tablas_multiplicar_2_5",
+          "action": "control con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "tablas_multiplicar_6_8",
+          "action": "control con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "tablas_multiplicar_9_10",
+          "action": "control con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "numeros_romanos",
+          "action": "control con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "division_1_digito",
+          "action": "control con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "divisibilidad_primos_mcm_mcd",
+          "action": "control con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "fracciones_concepto",
+          "action": "selector",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "fracciones_operaciones",
+          "action": "selector",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "fracciones_del_resto",
+          "action": "control con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "decimales_conversion",
+          "action": "selector",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "potenciacion_y_raiz_cuadrada",
+          "action": "control con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "jerarquia_operaciones",
+          "action": "control con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "si_me_la_longitud",
+          "action": "control con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "si_me_la_masa_capacidad_tiempo",
+          "action": "control con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "geometria_angulos",
+          "action": "control con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "geometria_triangulos",
+          "action": "control con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "geometria_cuadrilateros_circunferencia",
+          "action": "control con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "perimetros_simples",
+          "action": "control con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "perimetros_compuestos",
+          "action": "control con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "graficos_estadisticos",
+          "action": "botón con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "proporcionalidad_regla_3",
+          "action": "control con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "secuencias_aritmeticas",
+          "action": "control con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "secuencias_geometricas_fibonacci",
+          "action": "botón con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "secuencias_alfanumericas_y_figuras",
+          "action": "botón con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "ecuaciones_con_imagenes_2_incognitas",
+          "action": "control con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "comprension_lectora_literal_inferida",
+          "action": "botón con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "ortografia_b_v",
+          "action": "botón con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "ortografia_g_j_gu_gu",
+          "action": "botón con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "ortografia_h",
+          "action": "botón con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "ortografia_c_s_z",
+          "action": "botón con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "tildes_generales_agudas_graves_esdrujulas",
+          "action": "botón con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "diptongo_hiato",
+          "action": "botón con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "tilde_diacritica_monosilabos",
+          "action": "botón con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "sustantivos_genero_numero_tipo",
+          "action": "botón con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "verbos_modo_indicativo_tiempos",
+          "action": "botón con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "sujeto_predicado_nucleo",
+          "action": "botón con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "concordancia_sujeto_verbo",
+          "action": "botón con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "discurso_conectores_sinonimos",
+          "action": "botón con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        },
+        {
+          "tema": "produccion_escrita_narracion",
+          "action": "botón con teclado",
+          "reinicio": true,
+          "pc": true,
+          "movil": true
+        }
+      ],
+      "errors": [],
+      "writes": [],
+      "realDatabase": false,
+      "oraculos": [
+        "1/2 + 1/3 = 5/6, equivalencias y reinicio al cambiar cantidad",
+        "8 ÷ 4 = 2",
+        "radio 3 m → diámetro 6 m",
+        "recorrido de seis lados → perímetro 20 m"
+      ]
+    },
+    "recorrido_produccion": {
+      "base": "https://www.ingresomonserrat.online",
+      "realDatabase": true,
+      "realAPI": true,
+      "realAI": false,
+      "checks": [
+        "API real: no permite saltar pasos ni crear práctica/taller antes de la lectura",
+        "R28: explorar y reiniciar no acredita lectura, sesiones ni progreso",
+        "PC/móvil: lectura, pausa, recarga, error de red, ejemplo visual, ayuda sin nota y apertura de microlección",
+        "Sesión restaurada protegida y conservada; respuesta directa bloqueada con 409",
+        "Biblioteca: 40 fichas, filtros 26/14, relectura; avance persistente en otro navegador",
+        "Dashboard familiar enlaza la biblioteca; lectura inaccesible muestra error y permite reintentar",
+        "Cuenta ajena 403, sin sesión 401; respuesta de taller 409 y repaso espaciado protegido",
+        "Los 40 PDF publicados coinciden con los archivos revisados",
+        "Biblioteca nueva: progreso real de solo lectura; cuenta ajena 403 y sin sesión 401",
+        "Los 40 apuntes completos (326 páginas) coinciden con los PDF revisados"
+      ],
+      "errors": [],
+      "cleanup": true
+    },
+    "logs_error_vercel": 0,
+    "limites": [
+      "No se midió todavía la comprensión o el interés de Abril con estas experiencias.",
+      "Sin evaluación de respuestas generadas por IA: los laboratorios son deterministas."
+    ]
+  }
 }
