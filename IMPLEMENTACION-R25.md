@@ -37,4 +37,9 @@ Las capturas y el informe de ejecución están en la carpeta externa `implementa
 
 ## Publicación
 
-Pendiente de registrar la URL y la verificación del despliegue de producción.
+- Código: commit `aee6adf`.
+- Proyecto verificado: `ingreso-monse-2027`, equipo `team_nkDsEQsdaJKVvmE4bo5WPSpD`.
+- Despliegue `dpl_2eLShjyN1AP1tdtdUMedhW3ezej2`, producción READY. Compilación remota correcta. Primero se desplegó con `--skip-domain`, se verificaron manifiesto y protección de API mediante `vercel curl`, y luego se promovió el mismo despliegue.
+- Dominio comprobado: https://www.ingresomonserrat.online . Biblioteca: `/biblioteca?user_id=<cuenta>`.
+- La prueba real completa pasó también en el dominio público, incluidas cuenta ajena 403, falta de sesión 401, taller/repaso protegidos y los 40 PDF byte a byte. Informe `implementacion-r25/produccion/api-real-r25.json`: `errors: []`, `cleanup: true`.
+- No se alteraron usuarios reales. Las cuentas sintéticas, sesiones, marcas de lectura y continuidad se eliminaron y se verificó su ausencia.

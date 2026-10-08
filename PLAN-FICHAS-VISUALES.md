@@ -28,3 +28,7 @@
 ## Límites que deben observarse con Abril
 
 Una comprobación acompañada confirma que recorrió el material, no que entendió todo. Observar si reconoce la relación en otro contexto y ajustar la longitud, vocabulario o representación. La ficha inicial no habilita procedimientos avanzados por sí sola.
+
+## Estado
+
+Las seis etapas quedaron implementadas y verificadas el 7 de octubre de 2026. Los 40 PDF y el recorrido de lectura están publicados en ingresomonserrat.online. Evidencia y límites en `IMPLEMENTACION-R25.md`.
