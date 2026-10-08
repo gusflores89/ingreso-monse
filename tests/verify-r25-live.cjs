@@ -30,6 +30,15 @@ const report={base,realDatabase:true,realAPI:true,realAI:false,checks:[],errors:
  const url=base+`/tutoria?user_id=${userId}&tema=${topic}&modo=REPASO`;
  await page.goto(url,{waitUntil:'domcontentloaded'});await page.getByRole('heading',{name:'¿Para qué nos sirve?',exact:true}).waitFor();
  assert.equal(await page.getByRole('button',{name:'Enviar respuesta',exact:true}).count(),0);
+ // R28: explorar objetos no acredita lectura, práctica ni dominio.
+ const lab=page.locator(`[data-explorador-tema="${topic}"]`);
+ await lab.getByLabel('Partes del primer litro').selectOption('4');
+ await lab.getByRole('slider',{name:'Partes con jugo',exact:false}).press('ArrowRight');
+ assert.equal((await read()).lectura.paso,0);
+ assert.equal(ok(await db.from('sesiones').select('id').eq('user_id',userId)).length,0);
+ assert.equal(ok(await db.from('progreso').select('*').eq('user_id',userId)).length,0);
+ await lab.getByRole('button',{name:'Volver al ejemplo inicial',exact:true}).click();
+ report.checks.push('R28: explorar y reiniciar no acredita lectura, sesiones ni progreso');
  await page.screenshot({path:path.join(out,'lectura-pc.png'),fullPage:true});
  // Un fallo transitorio no completa un paso ni pierde el contenido.
  await page.route('**/api/fichas',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'No pudimos guardar este paso. Volvé a intentar.'})}),{times:1});

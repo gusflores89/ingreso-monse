@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import LecturaModulo from '@/components/LecturaModulo';
 import ApoyoVisual from '@/components/ApoyoVisual';
+import ExploradorModulo from '@/components/ExploradorModulo';
 import { getFichaBase, getUnidadesPublicas } from '@/lib/apuntes-bases';
 import nombres from '@/lib/nombres-temas.json';
 import { coincideBusqueda } from '@/lib/busqueda-biblioteca';
@@ -23,6 +24,13 @@ export default function Biblioteca(){
  if(!userId)return <main className={styles.reader}><h1>Mi biblioteca</h1><a href="/">Ingresá con tu cuenta para ver el avance.</a></main>;
  const base=`/biblioteca?user_id=${encodeURIComponent(userId)}`,volver=`/tutoria?user_id=${encodeURIComponent(userId)}`;
  const enlace=(t,u)=>`${base}&tema=${encodeURIComponent(t)}${u?`&unidad=${encodeURIComponent(u)}`:''}`;
+ if(tema&&router.query.explorar==='1'&&nombres[tema])return <main className={styles.reader}>
+  <a href={base}>Todos los temas</a><h1>{nombres[tema]}</h1>
+  <p>Tocá los controles y mirá qué cambia. Podés probar tantas veces como quieras.</p>
+  <ExploradorModulo key={tema} tema={tema}/>
+  <p><a href={enlace(tema)}>Leer la ficha y ver más ejemplos</a></p>
+  <p><a href={`${volver}&tema=${encodeURIComponent(tema)}&modo=REPASO`}>Volver a mi recorrido con ayuda</a></p>
+ </main>;
  if(tema&&unidadId){
   const unidades=getUnidadesPublicas(tema),u=unidades.find(x=>x.id===unidadId);
   if(!u)return <main className={styles.reader}><h1>Esta explicación no está disponible</h1><a href={base}>Volver a la biblioteca</a></main>;
@@ -30,6 +38,7 @@ export default function Biblioteca(){
   return <main className={styles.reader}>
    <a href={base}>Todos los temas</a><p className={styles.eyebrow}>{nombres[tema]} · idea {i+1} de {unidades.length}</p>
    <h1>{u.titulo}</h1><p>{u.explicacion}</p><ApoyoVisual datos={u.visual} permitirExplorar />
+   <ExploradorModulo key={tema} tema={tema} plegado />
    <section className={styles.scene}><h2>Miremos un ejemplo</h2><p>{u.ejemplo}</p><ol>{u.pasos.map((p,j)=><li key={j}>{p}</li>)}</ol></section>
    <p className={styles.guidance}>{u.pista}</p>
    {u.actividad_en_papel&&<section className={styles.contrast}><h2>Probalo en papel</h2><p>{u.actividad_en_papel}</p><p className={styles.note}>{u.alcance_evidencia}</p></section>}
@@ -50,6 +59,7 @@ export default function Biblioteca(){
   <div className={styles.catalog}>{visibles?.map(f=>{const us=getUnidadesPublicas(f.tema),apunte=getFichaBase(f.tema);return <article key={f.tema} className={styles.card}>
    <small>{f.materia}</small><h2>{nombres[f.tema]}</h2><p>{f.titulo}</p><p className={styles.note}>{f.completada?'Ficha inicial recorrida':f.paso?`Ficha inicial · paso ${f.paso+1} de 4`:'Ficha inicial por descubrir'}. Leer y dominar una habilidad son pasos diferentes.</p>
    <a href={enlace(f.tema)}>{f.completada?'Releer la ficha inicial':'Empezar por la ficha'}</a><a href={f.pdf_url} target="_blank" rel="noopener noreferrer">PDF de introducción · 2 páginas</a>
+   <a href={`${enlace(f.tema)}&explorar=1`}>Explorar con ejemplos interactivos</a>
    {apunte&&<a href={`${apunte.pdf_url}?r=27`} target="_blank" rel="noopener noreferrer">Apunte completo · {us.length} ideas</a>}
    <details open={Boolean(query)}><summary>Explorar {us.length} explicaciones</summary><ol className={styles.unitList}>{us.map(u=><li key={u.id}><a href={enlace(f.tema,u.id)}>{u.titulo}</a></li>)}</ol></details>
   </article>;})}</div>

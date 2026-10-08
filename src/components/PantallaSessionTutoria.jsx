@@ -10,6 +10,7 @@ import { fetchRegistrado, leerEnvioPendiente, restaurarEnvioPendiente } from "@/
 import { TEMAS_BASES, VERSION_BASES } from "@/lib/metadatos-bases";
 import { puedeRetomarMision } from "@/lib/continuidad-mision";
 import ApoyoVisual from "./ApoyoVisual";
+import ExploradorModulo from "./ExploradorModulo";
 import { visualizacionSegura } from "@/lib/visualizaciones-seguras";
 import { useEffect, useMemo, useRef, useState } from "react";
 import PantallaCasoResuelto from "./PantallaCasoResuelto";
@@ -1165,6 +1166,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       )}
 
       {!misionTerminada && <ApoyoVisual permitirExplorar={pregunta?.tipo === 'leccion' && pasoActual < 2} datos={pregunta?.tipo === 'leccion' ? (pasoActual === 0 ? pregunta.visual_apoyo : pasoActualData?.contenido?.visual) : pregunta?.visual_apoyo} />}
+      {!misionTerminada && !evaluacion && pregunta?.tipo === 'leccion' && pasoActual < 2 && <ExploradorModulo key={activeTema+':laboratorio'} tema={activeTema} plegado />}
       {loading && <p className="status">{tutor.nombre} esta pensando...</p>}
       {error && <p className="error" role="alert" style={{ color: "#fecaca" }}>{error}</p>}
 
@@ -2206,6 +2208,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                     </div>
 
                     <ApoyoVisual datos={currentSlide.visual_apoyo} permitirExplorar />
+                    <ExploradorModulo key={activeTema+':repaso'} tema={activeTema} plegado />
                     {/* Controles de Slide */}
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto", paddingTop: "20px", borderTop: "1px solid #2a204d" }}>
                       <button

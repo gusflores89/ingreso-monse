@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './LecturaModulo.module.css';
 import EscenaFicha from './EscenaFicha';
+import ExploradorModulo from './ExploradorModulo';
 
 export default function LecturaModulo({ userId, tema, children, onContinuar, releer = false }) {
   const [datos, setDatos] = useState(null);
@@ -68,7 +69,8 @@ export default function LecturaModulo({ userId, tema, children, onContinuar, rel
         </ol>
         <h2 ref={titulo} tabIndex={-1}>{['¿Para qué nos sirve?', f.ejemplo.titulo, 'La misma idea en otro lugar', 'Miremos un caso'][paso]}</h2>
         {paso === 0 && <>
-          <EscenaFicha ficha={f} paso={paso} />
+          <ExploradorModulo key={tema} tema={tema} />
+          <details className={styles.mapaOpcional}><summary>Ver también el ejemplo de la ficha</summary><EscenaFicha ficha={f} paso={paso} /></details>
           <p className={styles.scene}>{f.exploracion && <><strong>Así empieza el ejemplo:</strong><br /></>}{f.situacion}</p>
           <details className={styles.mapaOpcional}><summary>Conectamos lo que vimos</summary>
           <div className={styles.map} aria-label="Relaciones entre las ideas">

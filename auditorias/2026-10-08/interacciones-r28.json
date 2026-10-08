@@ -1,0 +1,269 @@
+{
+  "revision": "R28",
+  "fecha": "2026-10-08",
+  "objetivo": "Explorar una relación conceptual por módulo: acción, representación, explicación y reinicio.",
+  "alcance": {
+    "matematica": 26,
+    "lengua": 14,
+    "total": 40,
+    "limite": "Una experiencia introductoria por módulo; no convierte las 326 microlecciones en actividades manipulables ni acredita dominio.",
+    "persistencia": "Exploración local sin notas, llamadas a IA ni escritura de progreso.",
+    "ubicaciones": [
+      "Ficha inicial",
+      "Biblioteca",
+      "Explicación de tutoría",
+      "Repaso"
+    ],
+    "pdf": "Los PDF son material estático. Esta entrega añade interacción en la app."
+  },
+  "validacion": [
+    "tests/verify-r28-matematicas.mjs",
+    "tests/verify-r28-lengua.mjs",
+    "tests/verify-r28-browser.cjs",
+    "tests/verify-r25-live.cjs",
+    "npm test",
+    "npm run build"
+  ],
+  "modulos": [
+    {
+      "tema": "numeros_naturales_sistema_decimal",
+      "materia": "Matemática",
+      "tipo": "canjes",
+      "titulo": "Diez sueltos forman un paquete"
+    },
+    {
+      "tema": "tablas_multiplicar_2_5",
+      "materia": "Matemática",
+      "tipo": "grupos",
+      "titulo": "Armar grupos iguales"
+    },
+    {
+      "tema": "tablas_multiplicar_6_8",
+      "materia": "Matemática",
+      "tipo": "grupos",
+      "titulo": "Filas de seis, siete u ocho"
+    },
+    {
+      "tema": "tablas_multiplicar_9_10",
+      "materia": "Matemática",
+      "tipo": "grupos",
+      "titulo": "Filas de nueve o diez"
+    },
+    {
+      "tema": "numeros_romanos",
+      "materia": "Matemática",
+      "tipo": "romanos",
+      "titulo": "Construir un número romano"
+    },
+    {
+      "tema": "division_1_digito",
+      "materia": "Matemática",
+      "tipo": "reparto",
+      "titulo": "Repartir sin confundir con multiplicar"
+    },
+    {
+      "tema": "divisibilidad_primos_mcm_mcd",
+      "materia": "Matemática",
+      "tipo": "divisibilidad",
+      "titulo": "¿Cuándo coinciden los saltos?"
+    },
+    {
+      "tema": "fracciones_concepto",
+      "materia": "Matemática",
+      "tipo": "fraccion",
+      "titulo": "El mismo litro, dividido en partes"
+    },
+    {
+      "tema": "fracciones_operaciones",
+      "materia": "Matemática",
+      "tipo": "sumaFracciones",
+      "titulo": "Juntar jugo en partes del mismo tamaño"
+    },
+    {
+      "tema": "fracciones_del_resto",
+      "materia": "Matemática",
+      "tipo": "resto",
+      "titulo": "Una parte de lo que queda"
+    },
+    {
+      "tema": "decimales_conversion",
+      "materia": "Matemática",
+      "tipo": "decimal",
+      "titulo": "La misma cantidad, dos escrituras"
+    },
+    {
+      "tema": "potenciacion_y_raiz_cuadrada",
+      "materia": "Matemática",
+      "tipo": "cuadrado",
+      "titulo": "Construir y desarmar un cuadrado"
+    },
+    {
+      "tema": "jerarquia_operaciones",
+      "materia": "Matemática",
+      "tipo": "orden",
+      "titulo": "Las cajas cambian qué hacemos primero"
+    },
+    {
+      "tema": "si_me_la_longitud",
+      "materia": "Matemática",
+      "tipo": "longitud",
+      "titulo": "Medir el mismo largo"
+    },
+    {
+      "tema": "si_me_la_masa_capacidad_tiempo",
+      "materia": "Matemática",
+      "tipo": "medidas",
+      "titulo": "Cambiar la unidad, conservar la cantidad"
+    },
+    {
+      "tema": "geometria_angulos",
+      "materia": "Matemática",
+      "tipo": "angulo",
+      "titulo": "Abrir un giro"
+    },
+    {
+      "tema": "geometria_triangulos",
+      "materia": "Matemática",
+      "tipo": "triangulo",
+      "titulo": "Tres ángulos que completan 180°"
+    },
+    {
+      "tema": "geometria_cuadrilateros_circunferencia",
+      "materia": "Matemática",
+      "tipo": "circulo",
+      "titulo": "Del centro al borde, y de borde a borde"
+    },
+    {
+      "tema": "perimetros_simples",
+      "materia": "Matemática",
+      "tipo": "perimetro",
+      "titulo": "Recorrer el borde de una huerta"
+    },
+    {
+      "tema": "perimetros_compuestos",
+      "materia": "Matemática",
+      "tipo": "compuesto",
+      "titulo": "Rodear una huerta con un rincón recortado"
+    },
+    {
+      "tema": "graficos_estadisticos",
+      "materia": "Matemática",
+      "tipo": "grafico",
+      "titulo": "Cada voto hace crecer una barra"
+    },
+    {
+      "tema": "proporcionalidad_regla_3",
+      "materia": "Matemática",
+      "tipo": "proporcion",
+      "titulo": "Una receta que crece sin cambiar el sabor"
+    },
+    {
+      "tema": "secuencias_aritmeticas",
+      "materia": "Matemática",
+      "tipo": "secuencia",
+      "titulo": "Repetir el mismo salto"
+    },
+    {
+      "tema": "secuencias_geometricas_fibonacci",
+      "materia": "Matemática",
+      "tipo": "fibonacci",
+      "titulo": "Dos maneras de hacer crecer una serie"
+    },
+    {
+      "tema": "secuencias_alfanumericas_y_figuras",
+      "materia": "Matemática",
+      "tipo": "ciclo",
+      "titulo": "Descubrir qué vuelve a empezar"
+    },
+    {
+      "tema": "ecuaciones_con_imagenes_2_incognitas",
+      "materia": "Matemática",
+      "tipo": "equilibrio",
+      "titulo": "Descubrir dos cantidades escondidas"
+    },
+    {
+      "tema": "comprension_lectora_literal_inferida",
+      "materia": "Lengua",
+      "tipo": "pistas",
+      "titulo": "Encontrar una pista en una historia"
+    },
+    {
+      "tema": "ortografia_b_v",
+      "materia": "Lengua",
+      "tipo": "familia",
+      "titulo": "Construir una familia con B"
+    },
+    {
+      "tema": "ortografia_g_j_gu_gu",
+      "materia": "Lengua",
+      "tipo": "sonido_u",
+      "titulo": "La U puede sonar o quedar silenciosa"
+    },
+    {
+      "tema": "ortografia_h",
+      "materia": "Lengua",
+      "tipo": "familia",
+      "titulo": "Conservar la H al construir una familia"
+    },
+    {
+      "tema": "ortografia_c_s_z",
+      "materia": "Lengua",
+      "tipo": "plural_z",
+      "titulo": "De uno a varios: Z cambia a C"
+    },
+    {
+      "tema": "tildes_generales_agudas_graves_esdrujulas",
+      "materia": "Lengua",
+      "tipo": "acento",
+      "titulo": "Mover la sílaba que suena más fuerte"
+    },
+    {
+      "tema": "diptongo_hiato",
+      "materia": "Lengua",
+      "tipo": "vocales",
+      "titulo": "Vocales juntas o en sílabas distintas"
+    },
+    {
+      "tema": "tilde_diacritica_monosilabos",
+      "materia": "Lengua",
+      "tipo": "sentido",
+      "titulo": "La tilde ayuda a distinguir un uso"
+    },
+    {
+      "tema": "sustantivos_genero_numero_tipo",
+      "materia": "Lengua",
+      "tipo": "nombres",
+      "titulo": "Nombrar una clase o a alguien en particular"
+    },
+    {
+      "tema": "verbos_modo_indicativo_tiempos",
+      "materia": "Lengua",
+      "tipo": "tiempo",
+      "titulo": "Mover una acción en el tiempo"
+    },
+    {
+      "tema": "sujeto_predicado_nucleo",
+      "materia": "Lengua",
+      "tipo": "oracion",
+      "titulo": "Armar quién hace algo y qué hace"
+    },
+    {
+      "tema": "concordancia_sujeto_verbo",
+      "materia": "Lengua",
+      "tipo": "concordancia",
+      "titulo": "Cambiar la cantidad y acompañarla con el verbo"
+    },
+    {
+      "tema": "discurso_conectores_sinonimos",
+      "materia": "Lengua",
+      "tipo": "conectores",
+      "titulo": "Conectar una causa, un resultado o un contraste"
+    },
+    {
+      "tema": "produccion_escrita_narracion",
+      "materia": "Lengua",
+      "tipo": "historia",
+      "titulo": "Construir una historia y mejorar un detalle"
+    }
+  ]
+}
