@@ -117,6 +117,7 @@ export default function AdminPage() {
           <Kpi label="Full" value={resumen.full || 0} />
           <Kpi label="Activos 7 días" value={resumen.activos7d || 0} />
           <Kpi label="Sesiones" value={resumen.sesionesTotales || 0} />
+          <Kpi label="⭐ Estrellas" value={(data?.usuarios || []).reduce((acc, u) => acc + (u.rasgos_especiales?.estrellas_totales || 0), 0)} />
         </div>
 
         <section className="admin-panel">
@@ -207,12 +208,21 @@ function UserCard({ usuario, onUpdate }) {
         <span>{usuario.codigo_acceso || "sin codigo"}</span>
         {usuario.edad && <span>{usuario.edad} años</span>}
         {usuario.grado && <span>{usuario.grado}</span>}
+        <span style={{ background: "rgba(245, 158, 11, 0.15)", color: "#fbbf24", border: "1px solid rgba(245, 158, 11, 0.3)", fontWeight: "700" }}>
+          ⭐ {usuario.rasgos_especiales?.estrellas_totales || 0} estrellas
+        </span>
+        {usuario.nombre_tutor && (
+          <span style={{ background: "rgba(16, 185, 129, 0.15)", color: "#34d399", border: "1px solid rgba(16, 185, 129, 0.3)", fontWeight: "600" }}>
+            Tutor: {usuario.nombre_tutor}
+          </span>
+        )}
       </div>
 
       <div className="admin-user-metrics">
         <Metric label="Sesiones" value={usuario.metricas?.total_sesiones || 0} />
         <Metric label="Acierto" value={`${usuario.metricas?.tasa_acierto || 0}%`} />
         <Metric label="Temas" value={usuario.metricas?.temas_trabajados || 0} />
+        <Metric label="Estrellas" value={`⭐ ${usuario.rasgos_especiales?.estrellas_totales || 0}`} />
       </div>
 
       <div className="admin-user-last">
@@ -229,6 +239,9 @@ function UserCard({ usuario, onUpdate }) {
 
       <div className="admin-user-actions" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "10px" }}>
         <a href={dashboardUrl} className="admin-action-btn">Dashboard padres</a>
+        <a href={`${dashboardUrl}#recompensas`} className="admin-action-btn" style={{ borderColor: "#fbbf24", color: "#fbbf24", fontWeight: "700" }}>
+          🎁 Ver Recompensas (⭐ {usuario.rasgos_especiales?.estrellas_totales || 0})
+        </a>
         <a href={tutoriaUrl} className="admin-action-btn">Abrir tutoría</a>
         <button
           type="button"

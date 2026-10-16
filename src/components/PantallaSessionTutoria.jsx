@@ -85,6 +85,11 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       if (res.ok) {
         const d = await res.json();
         setPremiosData(d);
+        const estrellasReales = Number(d.estrellas_totales ?? d.estrellas_disponibles ?? 0);
+        if (estrellasReales > 0) {
+          setEstrellasAcumuladas((prev) => Math.max(prev, estrellasReales));
+          saveStars(Math.max(getSavedStars(), estrellasReales));
+        }
       }
     } catch (e) {
       console.error("Error al cargar datos de premios:", e);
@@ -1084,7 +1089,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             boxShadow: "0 0 14px rgba(168, 85, 247, 0.3)"
           }}>
             <span>{pregunta?.repaso_espaciado ? "🔄 Repaso breve · 1 reto" : `🎯 Reto ${Math.min(3, desafiosCompletadosMision + 1)} de 3`}</span>
-            {estrellasAcumuladas > 0 && (
+            {Math.max(estrellasAcumuladas, premiosData?.estrellas_totales || 0) > 0 && (
               <span style={{
                 background: "#fbbf24",
                 color: "#451a03",
@@ -1093,7 +1098,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                 fontWeight: "900",
                 fontSize: "0.82rem"
               }}>
-                ⭐ {estrellasAcumuladas}
+                ⭐ {Math.max(estrellasAcumuladas, premiosData?.estrellas_totales || 0)}
               </span>
             )}
           </div>
@@ -1131,7 +1136,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
               fontWeight: "900",
               fontSize: "0.82rem"
             }}>
-              ⭐ {premiosData?.estrellas_disponibles ?? estrellasAcumuladas}
+              ⭐ {premiosData?.estrellas_disponibles ?? Math.max(estrellasAcumuladas, premiosData?.estrellas_totales || 0)}
             </span>
           </button>
 

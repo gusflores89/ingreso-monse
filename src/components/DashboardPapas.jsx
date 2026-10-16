@@ -556,7 +556,16 @@ export default function DashboardPapas({ userId }) {
 
           <PremiosSectionPapas
             userId={data.usuario.id}
-            premiosData={premiosData}
+            premiosData={premiosData || (data?.premios ? {
+              premios_config: data.premios.config,
+              canjes: data.premios.canjes,
+              canjes_pendientes: data.premios.canjes_pendientes,
+              canjes_entregados: data.premios.canjes_entregados,
+              estrellas_totales: data.premios.balance?.estrellasTotales,
+              estrellas_disponibles: data.premios.balance?.estrellasDisponibles,
+              estrellas_gastadas: data.premios.balance?.estrellasGastadas,
+              insignias: data.premios.insignias,
+            } : null)}
             loading={premiosLoading}
             onUpdate={loadPremios}
           />

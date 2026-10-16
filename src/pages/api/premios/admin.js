@@ -7,7 +7,7 @@ import { getPremiosConfig, calcularBalanceEstrellas, INSIGNIAS_ANIME } from "@/l
 export default async function handler(req, res) {
   res.setHeader("Cache-Control", "private, no-store");
   if (!requireMethod(req, res, ["GET", "POST"])) return;
-  if (!requireAccess(req, res, ["parent", "admin", "student"])) return;
+  if (req.method === "POST" && !requireAccess(req, res, ["admin", "student"])) return;
 
   const userId = req.method === "GET" ? req.query?.user_id : req.body?.user_id;
   if (!userId) {
@@ -35,7 +35,7 @@ export default async function handler(req, res) {
     }
 
     const resolvedUserId = usuario.id;
-    if (!requireOwnership(req, res, resolvedUserId)) return;
+    if (req.method === "POST" && !requireOwnership(req, res, resolvedUserId)) return;
 
     // Obtener estrellas totales desde continuidad_misiones
     let estrellasTotales = 0;

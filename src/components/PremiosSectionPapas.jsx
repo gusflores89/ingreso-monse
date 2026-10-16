@@ -115,7 +115,7 @@ export default function PremiosSectionPapas({ userId, premiosData, loading, onUp
   };
 
   return (
-    <section className="dashboard-panel dashboard-section" style={{ margin: "24px 0", animation: "fadeInUp 0.4s ease both" }}>
+    <section id="recompensas" className="dashboard-panel dashboard-section" style={{ margin: "24px 0", animation: "fadeInUp 0.4s ease both" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "10px", marginBottom: "16px" }}>
         <div>
           <h3 style={{ margin: 0, fontSize: "1.2rem", fontWeight: "700", color: "#ffffff", display: "flex", alignItems: "center", gap: "8px" }}>
