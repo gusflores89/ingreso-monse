@@ -7,6 +7,7 @@ import { crearSincronizador } from "@/lib/sincronizacion-mision";
 import RepasoSugerido from "./RepasoSugerido";
 import { accesoTema } from "@/lib/acceso-temas";
 import { fetchRegistrado, leerEnvioPendiente, restaurarEnvioPendiente } from "@/lib/envios-cliente";
+import ModalPremiosEstudiante from "./ModalPremiosEstudiante";
 import { TEMAS_BASES, VERSION_BASES } from "@/lib/metadatos-bases";
 import { puedeRetomarMision } from "@/lib/continuidad-mision";
 import ApoyoVisual from "./ApoyoVisual";
@@ -74,6 +75,27 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
   const [estrellasAcumuladas, setEstrellasAcumuladas] = useState(0);
   const [pistaActiva, setPistaActiva] = useState(null);
   const [forzarPractica, setForzarPractica] = useState(Boolean(forzarPracticaProp));
+  const [showPremiosModal, setShowPremiosModal] = useState(false);
+  const [premiosData, setPremiosData] = useState(null);
+
+  const cargarPremios = async () => {
+    if (!user_id) return;
+    try {
+      const res = await fetch(`/api/premios/admin?user_id=${encodeURIComponent(user_id)}`);
+      if (res.ok) {
+        const d = await res.json();
+        setPremiosData(d);
+      }
+    } catch (e) {
+      console.error("Error al cargar datos de premios:", e);
+    }
+  };
+
+  useEffect(() => {
+    if (user_id) {
+      cargarPremios();
+    }
+  }, [user_id]);
 
   const activeTema = pregunta?.tema || tema || "";
   const getStorageKey = () => `monse_mision_${user_id || "abril"}`;
@@ -1023,6 +1045,43 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             <span>{pregunta?.repaso_espaciado ? "🔄 Repaso breve · 1 reto" : `🎯 Reto ${Math.min(3, desafiosCompletadosMision + 1)} de 3`}</span>
             {estrellasAcumuladas > 0 && <span>⭐ {estrellasAcumuladas}</span>}
           </div>
+
+          {/* Botón de Cofre de Premios & Álbum Anime */}
+          <button
+            type="button"
+            onClick={() => {
+              cargarPremios();
+              setShowPremiosModal(true);
+            }}
+            style={{
+              background: "linear-gradient(135deg, rgba(16, 185, 129, 0.22) 0%, rgba(5, 150, 105, 0.28) 100%)",
+              border: "1px solid rgba(16, 185, 129, 0.55)",
+              color: "#34d399",
+              padding: "5px 12px",
+              borderRadius: "20px",
+              fontSize: "0.82rem",
+              fontWeight: "600",
+              cursor: "pointer",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "7px",
+              boxShadow: "0 0 12px rgba(16, 185, 129, 0.2)",
+              transition: "transform 150ms ease"
+            }}
+            title="Abrir Cofre de Premios y Álbum Anime"
+          >
+            <span>🎁 Cofre & Álbum</span>
+            <span style={{
+              background: "rgba(16, 185, 129, 0.35)",
+              padding: "2px 8px",
+              borderRadius: "12px",
+              color: "#a7f3d0",
+              fontWeight: 700,
+              fontSize: "0.8rem"
+            }}>
+              ⭐ {premiosData?.estrellas_disponibles ?? estrellasAcumuladas}
+            </span>
+          </button>
 
           <button type="button" disabled={loading} onClick={()=>handleSelectTema('comprension_lectora_literal_inferida')}>📚 Leer y escribir</button>
           {pregunta?.plan !== 'trial' && <button type="button" disabled={loading} onClick={()=>handleSelectTema('fracciones_concepto',{modo:'REPASO',forzar_practica:true})}>🌱 Aprender fracciones</button>}
@@ -2126,6 +2185,23 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             )}
           </div>
         </div>
+      )}
+      {showPremiosModal && (
+        <ModalPremiosEstudiante
+          isOpen={showPremiosModal}
+          onClose={() => setShowPremiosModal(false)}
+          userId={user_id}
+          premiosConfig={premiosData?.premios_config || []}
+          balance={{
+            estrellasDisponibles: premiosData?.estrellas_disponibles ?? estrellasAcumuladas,
+            estrellasTotales: premiosData?.estrellas_totales ?? Math.max(estrellasAcumuladas, 262)
+          }}
+          canjes={premiosData?.canjes || []}
+          insignias={premiosData?.insignias || []}
+          onCanjeExitoso={() => {
+            cargarPremios();
+          }}
+        />
       )}
       {showHelpModal && (
         <div className="topic-modal-overlay" onClick={() => setShowHelpModal(false)} style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(11, 8, 26, 0.85)", zIndex: 1000, display: "flex", justifyContent: "center", alignItems: "center", backdropFilter: "blur(6px)" }}>

@@ -2,7 +2,7 @@ import { getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { requireMethod } from "@/lib/http";
 import { requireAccess, requireOwnership } from "@/lib/access";
 
-const AVATARES_VALIDOS = new Set(["atenea", "nyx", "lux", "buho"]);
+const AVATARES_VALIDOS = new Set(["atenea", "nyx", "lux", "buho", "maomao"]);
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;

@@ -33,6 +33,16 @@ const AVATARES = [
     estilo: "k-pop",
   },
   {
+    id: "maomao",
+    nombre: "Maomao",
+    descripcion: "Boticaria y detective",
+    imagen: "/avatars/maomao.png",
+    imagenMini: "/avatars/maomao.png",
+    color: "#10B981",
+    colorClaro: "#064e3b",
+    estilo: "manga",
+  },
+  {
     id: "buho",
     nombre: "Buho",
     descripcion: "Sabio ancestral",

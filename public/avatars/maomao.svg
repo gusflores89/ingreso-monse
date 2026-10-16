@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Maomao">
+  <!-- Fondo circular herbal / boticaria -->
+  <circle cx="100" cy="100" r="94" fill="#ECFDF5" stroke="#10B981" stroke-width="8"/>
+  
+  <!-- Coletas / Moños laterales característicos -->
+  <circle cx="48" cy="88" r="22" fill="#064E3B"/>
+  <circle cx="152" cy="88" r="22" fill="#064E3B"/>
+  <!-- Lazos de las coletas -->
+  <path d="M42 96c-8 12-14 26-10 32 6 6 18-2 20-14" fill="#F43F5E"/>
+  <path d="M158 96c8 12 14 26 10 32-6 6-18-2-20-14" fill="#F43F5E"/>
+  
+  <!-- Base del cabello posterior -->
+  <path d="M48 110c0-45 22-75 52-75s52 30 52 75c0 40-23 68-52 68s-52-28-52-68Z" fill="#064E3B"/>
+  
+  <!-- Rostro -->
+  <path d="M60 102c0 28 18 48 40 48s40-20 40-48c0-26-18-42-40-42s-40 16-40 42Z" fill="#FFF1E6"/>
+  
+  <!-- Flequillo y mechones de Maomao -->
+  <path d="M56 86c12-22 28-32 44-32s32 10 44 32c-12-6-24-9-44-9s-32 3-44 9Z" fill="#047857"/>
+  <path d="M72 82c6 14 14 24 20 28-2-12 0-22 4-28-10-2-18-1-24 0Z" fill="#065F46"/>
+  <path d="M128 82c-6 14-14 24-20 28 2-12 0-22-4-28 10-2 18-1 24 0Z" fill="#065F46"/>
+  
+  <!-- Horquilla de jade y flor -->
+  <path d="M136 56l18-8" stroke="#34D399" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="136" cy="56" r="7" fill="#F43F5E"/>
+  <circle cx="136" cy="56" r="3" fill="#FDE047"/>
+
+  <!-- Cejas inteligentes -->
+  <path d="M72 98c4-4 12-4 18-1" fill="none" stroke="#064E3B" stroke-width="3" stroke-linecap="round"/>
+  <path d="M128 98c-4-4-12-4-18-1" fill="none" stroke="#064E3B" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Ojos violeta / magenta curiosos -->
+  <ellipse cx="80" cy="112" rx="11" ry="13" fill="#8B5CF6"/>
+  <ellipse cx="120" cy="112" rx="11" ry="13" fill="#8B5CF6"/>
+  <ellipse cx="80" cy="113" rx="7" ry="9" fill="#4C1D95"/>
+  <ellipse cx="120" cy="113" rx="7" ry="9" fill="#4C1D95"/>
+  <!-- Brillos en los ojos -->
+  <circle cx="83" cy="108" r="4" fill="#FFFFFF"/>
+  <circle cx="123" cy="108" r="4" fill="#FFFFFF"/>
+  <circle cx="77" cy="116" r="2" fill="#FFFFFF"/>
+  <circle cx="117" cy="116" r="2" fill="#FFFFFF"/>
+
+  <!-- Pecas características en nariz y mejillas -->
+  <circle cx="76" cy="122" r="1.5" fill="#D97706"/>
+  <circle cx="81" cy="123" r="1.5" fill="#D97706"/>
+  <circle cx="86" cy="122" r="1.5" fill="#D97706"/>
+  <circle cx="114" cy="122" r="1.5" fill="#D97706"/>
+  <circle cx="119" cy="123" r="1.5" fill="#D97706"/>
+  <circle cx="124" cy="122" r="1.5" fill="#D97706"/>
+  <circle cx="98" cy="120" r="1.5" fill="#D97706"/>
+  <circle cx="102" cy="120" r="1.5" fill="#D97706"/>
+
+  <!-- Nariz pequeña y sonrisa perspicaz -->
+  <path d="M100 120v4" stroke="#E29578" stroke-width="2" stroke-linecap="round"/>
+  <path d="M92 134c5 5 11 5 16 0" fill="none" stroke="#E11D48" stroke-width="3.5" stroke-linecap="round"/>
+  
+  <!-- Cuello y Hanfu de Boticaria (verde esmeralda y blanco) -->
+  <path d="M90 148h20v14H90z" fill="#FFF1E6"/>
+  <path d="M52 160c14 18 30 24 48 24s34-6 48-24c-14-12-32-16-48-16s-34 4-48 16Z" fill="#047857"/>
+  <path d="M82 154l18 26 18-26" fill="none" stroke="#ECFDF5" stroke-width="5" stroke-linecap="round"/>
+  <path d="M74 162l26 24 26-24" fill="none" stroke="#10B981" stroke-width="4" stroke-linecap="round"/>
+</svg>

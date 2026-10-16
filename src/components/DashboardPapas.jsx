@@ -1,4 +1,5 @@
 import RecorridoFamiliar from "@/components/RecorridoFamiliar";
+import PremiosSectionPapas from "@/components/PremiosSectionPapas";
 import { useEffect, useState, useRef } from "react";
 import { TRIAL_TOPICS } from "@/lib/planes";
 import { getPdfUrl } from "@/lib/diapositivas";
@@ -97,10 +98,29 @@ export default function DashboardPapas({ userId }) {
   const [configPedagogicaLoading, setConfigPedagogicaLoading] = useState(false);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const [selectedResourceName, setSelectedResourceName] = useState("");
+  const [premiosData, setPremiosData] = useState(null);
+  const [premiosLoading, setPremiosLoading] = useState(false);
+
+  const loadPremios = async () => {
+    if (!userId) return;
+    setPremiosLoading(true);
+    try {
+      const res = await fetch(`/api/premios/admin?user_id=${encodeURIComponent(userId)}`);
+      if (res.ok) {
+        const pJson = await res.json();
+        setPremiosData(pJson);
+      }
+    } catch (err) {
+      console.error("Error al cargar premios en panel:", err);
+    } finally {
+      setPremiosLoading(false);
+    }
+  };
 
   const load = async () => {
     setLoading(true);
     setError("");
+    loadPremios();
 
     try {
       const [progresoResult, tareasResult] = await Promise.allSettled([
@@ -533,6 +553,13 @@ export default function DashboardPapas({ userId }) {
             handleRevisar={handleRevisar}
             guardando={guardandoRevision}
           />}
+
+          <PremiosSectionPapas
+            userId={data.usuario.id}
+            premiosData={premiosData}
+            loading={premiosLoading}
+            onUpdate={loadPremios}
+          />
 
           {/* Biblioteca de Descargas Adicionales */}
           <section className="dashboard-panel dashboard-section" style={{ margin: "24px 0", animation: "fadeInUp 0.4s ease both" }}>

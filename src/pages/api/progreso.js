@@ -9,6 +9,7 @@ import { buildAlumnoProfile } from "@/lib/alumno";
 import { getUserPlan } from "@/lib/planes";
 import { loadUser, loadUserByCode } from "@/lib/usuarios";
 import { checkDailyRateLimit } from "@/lib/rateLimit";
+import { getPremiosConfig, calcularBalanceEstrellas, INSIGNIAS_ANIME } from "@/lib/premios";
 
 export default async function handler(req, res) {
   res.setHeader("Cache-Control", "private, no-store");
@@ -132,6 +133,26 @@ export default async function handler(req, res) {
       }
     }
 
+    let estrellasTotales = 0;
+    try {
+      const { data: cont } = await supabase
+        .from("continuidad_misiones")
+        .select("estado")
+        .eq("user_id", resolvedUserId)
+        .maybeSingle();
+      if (cont?.estado?.estrellas) estrellasTotales = cont.estado.estrellas;
+    } catch {}
+    estrellasTotales = Math.max(estrellasTotales, usuario.rasgos_especiales?.estrellas_totales || 0);
+    const balancePremios = calcularBalanceEstrellas(usuario, estrellasTotales);
+    const premios = {
+      config: getPremiosConfig(usuario),
+      balance: balancePremios,
+      canjes: balancePremios.canjes,
+      canjes_pendientes: balancePremios.canjesPendientes,
+      canjes_entregados: balancePremios.canjesEntregados,
+      insignias: INSIGNIAS_ANIME,
+    };
+
     res.status(200).json({
       usuario: { ...usuario, plan },
       progreso,
@@ -139,6 +160,7 @@ export default async function handler(req, res) {
       sesiones_recientes: sesiones,
       examenes_aprobados: examenesAprobados,
       metricas,
+      premios,
       insight_markdown: insightMarkdown,
       insight_error: insightError,
     });

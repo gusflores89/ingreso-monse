@@ -500,7 +500,7 @@ function normalizeTutorPreference(preference) {
 }
 
 function isValidAvatar(avatar) {
-  return ["atenea", "nyx", "lux", "buho"].includes(avatar);
+  return ["atenea", "nyx", "lux", "buho", "maomao"].includes(avatar);
 }
 
 function isValidHexColor(color) {
@@ -508,11 +508,11 @@ function isValidHexColor(color) {
 }
 
 function tutorNameForAvatar(avatar) {
-  return { atenea: "Atenea", nyx: "Nyx", lux: "Lux", buho: "Buho" }[avatar] || "Buho";
+  return { atenea: "Atenea", nyx: "Nyx", lux: "Lux", buho: "Buho", maomao: "Maomao" }[avatar] || "Buho";
 }
 
 function colorForAvatar(avatar) {
-  return { atenea: "#7F77DD", nyx: "#378ADD", lux: "#1D9E75", buho: "#D85A30" }[avatar] || "#D85A30";
+  return { atenea: "#7F77DD", nyx: "#378ADD", lux: "#1D9E75", buho: "#D85A30", maomao: "#10B981" }[avatar] || "#D85A30";
 }
 
 async function resolverTemaDeReingreso(supabase, userId) {
