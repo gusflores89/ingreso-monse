@@ -175,23 +175,39 @@ export default function Login() {
           </div>
 
           {/* INTEGRATED PORTAL LOGIN */}
-          <div className="landing-hero-portal" id="login-section">
+          <div
+            className="landing-hero-portal"
+            id="login-section"
+            style={{
+              "--tutor-color": avatarSeleccionado.color,
+              "--tutor-color-light": avatarSeleccionado.colorClaro,
+              "--tutor-color-glow": `${avatarSeleccionado.color}55`,
+            }}
+          >
             <section className="avatar-login-shell" aria-labelledby="portal-title" style={{ width: "100%", margin: 0, padding: 0 }}>
-              <div className="avatar-hero" style={{ padding: "0 0 16px 0" }}>
+              <div className="avatar-hero" style={{ padding: "0 0 16px 0", textAlign: "center" }}>
                 <div
                   className="avatar-main"
                   style={{
                     borderColor: avatarSeleccionado.color,
                     backgroundColor: avatarSeleccionado.colorClaro,
-                    width: "72px",
-                    height: "72px",
+                    width: "78px",
+                    height: "78px",
+                    borderRadius: "50%",
+                    border: `2.5px solid ${avatarSeleccionado.color}`,
+                    boxShadow: `0 0 24px ${avatarSeleccionado.color}55`,
+                    margin: "0 auto",
+                    display: "grid",
+                    placeItems: "center",
+                    overflow: "hidden",
                   }}
                 >
                   <img
                     src={avatarSeleccionado.imagen}
                     alt={avatarSeleccionado.nombre}
-                    width="72"
-                    height="72"
+                    width="78"
+                    height="78"
+                    style={{ objectFit: "cover" }}
                     onError={(e) => {
                       if (e.target.src.endsWith(".png")) {
                         e.target.src = e.target.src.replace(".png", ".svg");
@@ -199,39 +215,36 @@ export default function Login() {
                     }}
                   />
                 </div>
-                <h2 id="portal-title" style={{ color: avatarSeleccionado.color, fontSize: "1.6rem", margin: "8px 0 0" }}>
+                <h2 id="portal-title" style={{ color: avatarSeleccionado.color, fontSize: "1.65rem", fontWeight: "800", margin: "10px 0 0", letterSpacing: "-0.02em" }}>
                   {avatarSeleccionado.nombre}
                 </h2>
-                <p style={{ margin: "2px 0 0" }}>{avatarSeleccionado.descripcion}</p>
+                <p style={{ margin: "4px 0 0", color: "#94a3b8", fontSize: "0.92rem", fontWeight: "500" }}>
+                  {avatarSeleccionado.descripcion}
+                </p>
               </div>
 
-              <div className="avatar-login-card" style={{ boxShadow: "0 10px 30px rgba(0,0,0,0.3)" }}>
-                <p className="avatar-picker-label" style={{ fontSize: "0.85rem", marginBottom: "8px" }}>Elegí tu guía</p>
-                <div className="avatar-picker-grid" style={{ gap: "8px", marginBottom: "16px" }}>
+              <div className="avatar-login-card">
+                <p className="avatar-picker-label" style={{ fontSize: "0.85rem", marginBottom: "10px", color: "#cbd5e1", fontWeight: "600", textAlign: "center" }}>
+                  Elegí tu tutor/a guía
+                </p>
+                <div className="avatar-picker-grid">
                   {AVATARES.map((avatar) => {
                     const selected = avatarSeleccionado.id === avatar.id;
                     return (
                       <button
                         type="button"
                         key={avatar.id}
-                        className="avatar-option"
+                        className={`avatar-option ${selected ? "selected" : ""}`}
                         onClick={() => elegirAvatar(avatar)}
-                        style={{
-                          backgroundColor: selected ? avatar.colorClaro : "transparent",
-                          borderColor: selected ? avatar.color : "transparent",
-                          color: selected ? avatar.color : "#64748B",
-                          padding: "6px",
-                          borderRadius: "8px",
-                        }}
                         aria-pressed={selected}
-                        title={avatar.descripcion}
+                        title={`${avatar.nombre} — ${avatar.descripcion}`}
                       >
-                        <span style={{ backgroundColor: avatar.colorClaro, width: "32px", height: "32px" }}>
+                        <span style={{ backgroundColor: avatar.colorClaro }}>
                           <img
                             src={avatar.imagenMini}
                             alt=""
-                            width="32"
-                            height="32"
+                            width="34"
+                            height="34"
                             aria-hidden="true"
                             onError={(e) => {
                               if (e.target.src.endsWith(".png")) {
@@ -240,13 +253,13 @@ export default function Login() {
                             }}
                           />
                         </span>
-                        <strong style={{ fontSize: "0.8rem", marginTop: "4px" }}>{avatar.nombre}</strong>
+                        <strong style={{ color: selected ? avatar.color : "#94a3b8" }}>{avatar.nombre}</strong>
                       </button>
                     );
                   })}
                 </div>
 
-                <label className="avatar-login-field" style={{ gap: "4px", marginBottom: "12px" }}>
+                <label className="avatar-login-field">
                   Tu código de alumno
                   <input
                     type="text"
@@ -257,11 +270,10 @@ export default function Login() {
                     }}
                     placeholder="Escribí tu código..."
                     maxLength={12}
-                    style={{ padding: "10px", fontSize: "0.95rem" }}
                   />
                 </label>
 
-                <label className="avatar-login-field" style={{ gap: "4px", marginBottom: "16px" }}>
+                <label className="avatar-login-field">
                   Contraseña familiar
                   <input
                     type="password"
@@ -271,31 +283,29 @@ export default function Login() {
                       if (event.key === "Enter") handleLogin();
                     }}
                     placeholder="Contraseña..."
-                    style={{ padding: "10px", fontSize: "0.95rem" }}
                   />
                 </label>
 
-                {error && <p className="error avatar-login-error" style={{ fontSize: "0.85rem", margin: "0 0 12px 0" }}>{error}</p>}
+                {error && <p className="error avatar-login-error" style={{ fontSize: "0.88rem", margin: "0 0 12px 0", color: "#f87171" }}>{error}</p>}
 
                 <button
                   type="button"
                   className="avatar-login-submit"
                   onClick={handleLogin}
                   disabled={!codigo.trim() || !password.trim() || loading}
-                  style={{ backgroundColor: loading ? "#CBD5E1" : avatarSeleccionado.color, padding: "12px", fontSize: "0.95rem" }}
                 >
                   {loading ? "Entrando..." : "Entrar a practicar"}
                 </button>
 
                 <div className="avatar-signup" style={{ marginTop: "14px", display: "flex", flexDirection: "column", gap: "8px", alignItems: "center" }}>
                   <div style={{ display: "flex", gap: "10px", alignItems: "center", justifyContent: "center" }}>
-                    <p style={{ fontSize: "0.85rem", margin: 0 }}>¿No tenés código?</p>
-                    <a href="/setup" style={{ color: avatarSeleccionado.color, fontSize: "0.85rem", fontWeight: "600" }}>
-                      Registrate con un adulto
+                    <p style={{ fontSize: "0.85rem", margin: 0, color: "#94a3b8" }}>¿No tenés código?</p>
+                    <a href="/setup" style={{ color: avatarSeleccionado.color, fontSize: "0.85rem", fontWeight: "600", textDecoration: "none" }}>
+                      Registrate con un adulto →
                     </a>
                   </div>
-                  <div style={{ width: "100%", height: "1px", backgroundColor: "rgba(255, 255, 255, 0.05)", margin: "4px 0" }} />
-                  <a href="/papas" style={{ color: "#94a3b8", fontSize: "0.85rem", fontWeight: "600", display: "flex", alignItems: "center", gap: "4px", textDecoration: "none" }} className="parent-link-hover">
+                  <div style={{ width: "100%", height: "1px", backgroundColor: "rgba(255, 255, 255, 0.08)", margin: "4px 0" }} />
+                  <a href="/papas" style={{ color: "#cbd5e1", fontSize: "0.85rem", fontWeight: "600", display: "flex", alignItems: "center", gap: "6px", textDecoration: "none" }} className="parent-link-hover">
                     👨‍👩‍👧‍👦 Acceso para Padres / Descargas
                   </a>
                 </div>
@@ -313,9 +323,9 @@ export default function Login() {
 
           <div className="landing-features-grid">
             <article className="landing-feature-card">
-              <div className="landing-feature-icon" aria-hidden="true">🤖</div>
+              <div className="landing-feature-icon" aria-hidden="true">🧪</div>
               <h3>Tutores con IA 24/7</h3>
-              <p>Cuatro guías interactivos adaptados al estilo de aprendizaje de tu hijo. Explican paso a paso con paciencia infinita, resolviendo dudas teóricas en segundos.</p>
+              <p>Guías interactivos como Maomao y Nyx adaptados al estilo de aprendizaje de tu hijo. Explican paso a paso con paciencia infinita, resolviendo dudas teóricas en segundos.</p>
             </article>
 
             <article className="landing-feature-card">
