@@ -56,7 +56,7 @@ export default async function handler(req, res) {
     // Persistir preferencias del tutor/avatar de forma atómica para evitar race conditions
     const { avatar, nombre_tutor, color_tema } = req.body || {};
     if (avatar || nombre_tutor || color_tema) {
-      const AVATARES_VALIDOS = new Set(["atenea", "nyx", "lux", "buho"]);
+      const AVATARES_VALIDOS = new Set(["atenea", "nyx", "lux", "buho", "maomao"]);
       const avatarSeguro = AVATARES_VALIDOS.has(avatar) ? avatar : "buho";
       const nuevosRasgos = {
         ...(usuario.rasgos_especiales || {}),

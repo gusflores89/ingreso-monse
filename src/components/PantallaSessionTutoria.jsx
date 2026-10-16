@@ -434,7 +434,11 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       const anterior = pregunta?.tipo === 'concreta' ? null : {pregunta,sesionId,respuesta,evaluacion,pasoActual,pasoEjemplo,intento,pistaActiva,respuestasExamen};
       const res = await fetch('/api/sesion/concreta',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({accion:'iniciar',user_id,tema:activeTema,habilidad:habilidad || pregunta?.habilidad_concreta || null,continuar})});
       const data=await res.json();if(!res.ok)throw Error(data.error);
-      const nueva={avatar:pregunta?.avatar,avatar_imagen:pregunta?.avatar_imagen,nombre_tutor:pregunta?.nombre_tutor,color_tema:pregunta?.color_tema,...data,plan:pregunta?.plan};
+      const effectiveAvatar = tutor_preference?.avatar || (pregunta?.avatar && pregunta.avatar !== 'nyx' ? pregunta.avatar : 'maomao');
+      const safeAvatar = (effectiveAvatar === 'nyx' || !['atenea', 'nyx', 'lux', 'buho', 'maomao'].includes(effectiveAvatar)) ? 'maomao' : effectiveAvatar;
+      const safeNombre = safeAvatar === 'maomao' ? 'Maomao' : (tutor_preference?.nombre_tutor || pregunta?.nombre_tutor || 'Profe');
+      const safeColor = safeAvatar === 'maomao' ? '#10B981' : (tutor_preference?.color_tema || pregunta?.color_tema || '#D85A30');
+      const nueva={avatar:safeAvatar,avatar_imagen:`/avatars/${safeAvatar}.png`,nombre_tutor:safeNombre,color_tema:safeColor,...data,plan:pregunta?.plan};
       const updates={pregunta:nueva,sesionId:data.sesion_id,respuesta:'',borrador:'',evaluacion:null,pasoActual:0,pasoEjemplo:0,intento:1,pistaActiva:null,...(anterior?{actividadAnterior:anterior}:{}),...(resetMision?{desafios:0,retosCompletadosIds:[],misionTerminada:false}:{})};
       if(!saveMissionState(updates))throw Error('No pudimos guardar el cambio de actividad.');
       setPregunta(nueva);setSesionId(data.sesion_id);setRespuesta('');setEvaluacion(null);setPasoActual(0);setPasoEjemplo(0);setIntento(1);setPistaActiva(null);
@@ -930,15 +934,33 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
   };
 
   const theme = themeForTema(activeTema);
-  const tutorAvatar = pregunta?.avatar || tutor_preference?.avatar || "buho";
+  const rawAvatar = tutor_preference?.avatar || (pregunta?.avatar && pregunta.avatar !== "nyx" ? pregunta.avatar : "maomao");
+  const tutorAvatar = (rawAvatar === "nyx" || !["atenea", "nyx", "lux", "buho", "maomao"].includes(rawAvatar)) ? "maomao" : rawAvatar;
+  const tutorNombre = tutorAvatar === "maomao" ? "Maomao" : (tutor_preference?.nombre_tutor || pregunta?.nombre_tutor || "Profe");
+  const tutorColor = tutorAvatar === "maomao" ? "#10B981" : (tutor_preference?.color_tema || pregunta?.color_tema || "#D85A30");
   const tutor = {
-    nombre: pregunta?.nombre_tutor || tutor_preference?.nombre_tutor || "Profe",
-    color: pregunta?.color_tema || tutor_preference?.color_tema || "#D85A30",
+    nombre: tutorNombre,
+    color: tutorColor,
     avatar: tutorAvatar,
-    imagen:
-      pregunta?.avatar_imagen ||
-      `/avatars/${tutorAvatar}.png`,
+    imagen: `/avatars/${tutorAvatar}.png`,
   };
+
+  useEffect(() => {
+    if (pregunta && (pregunta.avatar === "nyx" || pregunta.avatar !== tutor.avatar)) {
+      setPregunta((prev) => prev ? ({
+        ...prev,
+        avatar: tutor.avatar,
+        nombre_tutor: tutor.nombre,
+        color_tema: tutor.color,
+        avatar_imagen: tutor.imagen
+      }) : prev);
+      saveMissionState({
+        avatar: tutor.avatar,
+        nombre_tutor: tutor.nombre,
+        color_tema: tutor.color
+      });
+    }
+  }, [pregunta?.avatar, tutor.avatar]);
   const pasos = useMemo(() => {
     if (!pregunta || pregunta.tipo !== "leccion") return [];
 
@@ -1024,26 +1046,56 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         {estadoSync === "guardado" ? "☁️ Avance sincronizado" : estadoSync === "local" ? "💾 Guardado en esta computadora" : estadoSync === "pendiente" ? "Guardando el avance…" : estadoSync === "cargando" ? "Buscando tu misión guardada…" : "No pudimos sincronizar. Conservamos la copia de esta computadora."}
         {estadoSync === "error" && <button type="button" onClick={async()=>{if(!sincronizador.current || await sincronizador.current.iniciar())window.location.reload();}}>Reintentar sincronización</button>}
       </div>
-      <header className="session-header student-session-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
+      <header className="session-header student-session-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "12px", background: "rgba(17, 13, 33, 0.92)", padding: "12px 18px", borderRadius: "16px", border: "1px solid rgba(255, 255, 255, 0.12)", boxShadow: "0 4px 20px rgba(0, 0, 0, 0.4)" }}>
         <TutorHeader tutor={tutor} />
-        <a href={`/biblioteca?user_id=${encodeURIComponent(user_id)}`} style={{color:'#c4e4ff',padding:'10px'}}>Mis fichas y PDF</a>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
-          {/* Indicador pedagógico de Micro-Misión */}
-          <div style={{
-            background: "rgba(139, 92, 246, 0.18)",
-            border: "1px solid rgba(139, 92, 246, 0.4)",
-            padding: "5px 12px",
+        <a
+          href={`/biblioteca?user_id=${encodeURIComponent(user_id)}`}
+          style={{
+            background: "#0c4a6e",
+            border: "1.5px solid #38bdf8",
+            color: "#ffffff",
+            padding: "8px 16px",
             borderRadius: "20px",
-            fontSize: "0.82rem",
-            fontWeight: "600",
-            color: "#c084fc",
+            fontSize: "0.85rem",
+            fontWeight: "800",
+            textDecoration: "none",
             display: "inline-flex",
             alignItems: "center",
-            gap: "8px",
-            boxShadow: "0 0 10px rgba(139, 92, 246, 0.15)"
+            gap: "6px",
+            boxShadow: "0 2px 8px rgba(56, 189, 248, 0.3)",
+            transition: "all 150ms ease"
+          }}
+        >
+          📄 Mis fichas y PDF
+        </a>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+          {/* Indicador pedagógico de Micro-Misión */}
+          <div style={{
+            background: "#241442",
+            border: "1.5px solid #a855f7",
+            padding: "7px 16px",
+            borderRadius: "20px",
+            fontSize: "0.86rem",
+            fontWeight: "800",
+            color: "#ffffff",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "10px",
+            boxShadow: "0 0 14px rgba(168, 85, 247, 0.3)"
           }}>
             <span>{pregunta?.repaso_espaciado ? "🔄 Repaso breve · 1 reto" : `🎯 Reto ${Math.min(3, desafiosCompletadosMision + 1)} de 3`}</span>
-            {estrellasAcumuladas > 0 && <span>⭐ {estrellasAcumuladas}</span>}
+            {estrellasAcumuladas > 0 && (
+              <span style={{
+                background: "#fbbf24",
+                color: "#451a03",
+                padding: "2px 8px",
+                borderRadius: "12px",
+                fontWeight: "900",
+                fontSize: "0.82rem"
+              }}>
+                ⭐ {estrellasAcumuladas}
+              </span>
+            )}
           </div>
 
           {/* Botón de Cofre de Premios & Álbum Anime */}
@@ -1054,76 +1106,113 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
               setShowPremiosModal(true);
             }}
             style={{
-              background: "linear-gradient(135deg, rgba(16, 185, 129, 0.22) 0%, rgba(5, 150, 105, 0.28) 100%)",
-              border: "1px solid rgba(16, 185, 129, 0.55)",
-              color: "#34d399",
-              padding: "5px 12px",
+              background: "linear-gradient(135deg, #064e3b 0%, #047857 100%)",
+              border: "1.5px solid #34d399",
+              color: "#ffffff",
+              padding: "7px 16px",
               borderRadius: "20px",
-              fontSize: "0.82rem",
-              fontWeight: "600",
+              fontSize: "0.86rem",
+              fontWeight: "800",
               cursor: "pointer",
               display: "inline-flex",
               alignItems: "center",
-              gap: "7px",
-              boxShadow: "0 0 12px rgba(16, 185, 129, 0.2)",
+              gap: "8px",
+              boxShadow: "0 0 16px rgba(52, 211, 153, 0.4)",
               transition: "transform 150ms ease"
             }}
             title="Abrir Cofre de Premios y Álbum Anime"
           >
             <span>🎁 Cofre & Álbum</span>
             <span style={{
-              background: "rgba(16, 185, 129, 0.35)",
+              background: "#fef08a",
               padding: "2px 8px",
               borderRadius: "12px",
-              color: "#a7f3d0",
-              fontWeight: 700,
-              fontSize: "0.8rem"
+              color: "#854d0e",
+              fontWeight: "900",
+              fontSize: "0.82rem"
             }}>
               ⭐ {premiosData?.estrellas_disponibles ?? estrellasAcumuladas}
             </span>
           </button>
 
-          <button type="button" disabled={loading} onClick={()=>handleSelectTema('comprension_lectora_literal_inferida')}>📚 Leer y escribir</button>
-          {pregunta?.plan !== 'trial' && <button type="button" disabled={loading} onClick={()=>handleSelectTema('fracciones_concepto',{modo:'REPASO',forzar_practica:true})}>🌱 Aprender fracciones</button>}
+          <button
+            type="button"
+            disabled={loading}
+            onClick={()=>handleSelectTema('comprension_lectora_literal_inferida')}
+            style={{
+              background: "#1e1b4b",
+              border: "1.5px solid #818cf8",
+              color: "#ffffff",
+              padding: "7px 14px",
+              borderRadius: "8px",
+              fontWeight: "800",
+              fontSize: "0.84rem",
+              cursor: "pointer",
+              boxShadow: "0 2px 6px rgba(0,0,0,0.3)"
+            }}
+          >
+            📚 Leer y escribir
+          </button>
+          {pregunta?.plan !== 'trial' && (
+            <button
+              type="button"
+              disabled={loading}
+              onClick={()=>handleSelectTema('fracciones_concepto',{modo:'REPASO',forzar_practica:true})}
+              style={{
+                background: "#064e3b",
+                border: "1.5px solid #34d399",
+                color: "#ffffff",
+                padding: "7px 14px",
+                borderRadius: "8px",
+                fontWeight: "800",
+                fontSize: "0.84rem",
+                cursor: "pointer",
+                boxShadow: "0 2px 6px rgba(0,0,0,0.3)"
+              }}
+            >
+              🌱 Aprender fracciones
+            </button>
+          )}
           {pregunta?.tema_sugerido && !pregunta.tema_sugerido.completado && pregunta.tema === pregunta.tema_sugerido.tema && (
-            <span className="plan-badge-tutoria" style={{ fontSize: "0.82rem", padding: "4px 12px", borderRadius: "20px", backgroundColor: "rgba(139, 92, 246, 0.2)", color: "#c084fc", border: "1px solid rgba(139, 92, 246, 0.4)", fontWeight: "600", display: "inline-flex", alignItems: "center", gap: "4px", boxShadow: "0 0 10px rgba(139, 92, 246, 0.15)" }}>
+            <span className="plan-badge-tutoria" style={{ fontSize: "0.84rem", padding: "6px 14px", borderRadius: "20px", backgroundColor: "#3b0764", color: "#f3e8ff", border: "1.5px solid #c084fc", fontWeight: "800", display: "inline-flex", alignItems: "center", gap: "6px", boxShadow: "0 0 10px rgba(192, 132, 252, 0.3)" }}>
               🎯 Misión Familiar
             </span>
           )}
 
-          {pregunta?.tipo !== 'concreta' && <button
-            type="button"
-            onClick={abrirTeoria}
-            style={{
-              background: "rgba(139, 92, 246, 0.2)",
-              border: "1px solid rgba(139, 92, 246, 0.4)",
-              color: "#c084fc",
-              padding: "6px 12px",
-              borderRadius: "8px",
-              fontWeight: "600",
-              fontSize: "0.83rem",
-              cursor: "pointer",
-              transition: "all 200ms ease",
-              boxShadow: "0 0 10px rgba(139, 92, 246, 0.15)"
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-1px)"}
-            onMouseLeave={(e) => e.currentTarget.style.transform = "none"}
-          >
-            💡 Explicación y PDFs
-          </button>}
+          {pregunta?.tipo !== 'concreta' && (
+            <button
+              type="button"
+              onClick={abrirTeoria}
+              style={{
+                background: "#4c1d95",
+                border: "1.5px solid #c084fc",
+                color: "#ffffff",
+                padding: "7px 14px",
+                borderRadius: "8px",
+                fontWeight: "800",
+                fontSize: "0.84rem",
+                cursor: "pointer",
+                transition: "all 200ms ease",
+                boxShadow: "0 0 10px rgba(192, 132, 252, 0.3)"
+              }}
+            >
+              💡 Explicación y PDFs
+            </button>
+          )}
           <button
             type="button"
             onClick={() => setShowTopicModal(true)}
             style={{
-              background: "rgba(255, 255, 255, 0.08)",
-              border: "1px solid rgba(255, 255, 255, 0.12)",
+              background: "#1e293b",
+              border: "1.5px solid #94a3b8",
               color: "#ffffff",
-              padding: "6px 12px",
+              padding: "7px 14px",
               borderRadius: "8px",
-              fontWeight: "600",
-              fontSize: "0.83rem",
+              fontWeight: "800",
+              fontSize: "0.84rem",
               cursor: "pointer",
-              transition: "all 200ms ease"
+              transition: "all 200ms ease",
+              boxShadow: "0 2px 6px rgba(0,0,0,0.3)"
             }}
           >
             📖 Elegir Tema
@@ -1133,15 +1222,16 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             type="button"
             onClick={handleGuardarYSalir}
             style={{
-              background: "rgba(255, 255, 255, 0.05)",
-              border: "1px solid rgba(255, 255, 255, 0.12)",
-              color: "#94a3b8",
-              padding: "6px 12px",
+              background: "#1e293b",
+              border: "1.5px solid #64748b",
+              color: "#ffffff",
+              padding: "7px 14px",
               borderRadius: "8px",
-              fontSize: "0.82rem",
-              fontWeight: "500",
+              fontSize: "0.84rem",
+              fontWeight: "800",
               cursor: "pointer",
-              transition: "all 150ms ease"
+              transition: "all 150ms ease",
+              boxShadow: "0 2px 6px rgba(0,0,0,0.3)"
             }}
             title="Guardar y salir por hoy"
           >
@@ -1209,10 +1299,40 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
 
       <MensajesFamiliares key={user_id} userId={user_id} />
       {pregunta && pregunta.tipo !== 'concreta' && !misionTerminada && CURRICULUM_MATEMATICA.some(t=>t.tema===activeTema) && (
-        <section style={{padding:16,margin:'16px 0',border:'1px solid #7091c5',borderRadius:12,background:'#17243b',color:'#f1f5ff'}}>
-          <strong>Podemos empezar con objetos y una idea por vez.</strong>
-          <p>Tu actividad queda guardada para volver cuando quieras.</p>
-          <button type="button" className="primary" disabled={loading} onClick={()=>iniciarConcreto()}>Probemos con objetos</button>
+        <section style={{
+          padding: "16px 22px",
+          margin: "18px 0",
+          border: "1.5px solid #38bdf8",
+          borderRadius: 14,
+          background: "linear-gradient(135deg, #0f233a 0%, #172c47 100%)",
+          color: "#ffffff",
+          boxShadow: "0 4px 16px rgba(0,0,0,0.4)"
+        }}>
+          <strong style={{ fontSize: "1.05rem", color: "#ffffff", display: "block", marginBottom: "4px" }}>
+            Podemos empezar con objetos y una idea por vez.
+          </strong>
+          <p style={{ color: "#bae6fd", fontSize: "0.9rem", margin: "0 0 12px 0" }}>
+            Tu actividad queda guardada para volver cuando quieras.
+          </p>
+          <button
+            type="button"
+            className="primary"
+            disabled={loading}
+            onClick={()=>iniciarConcreto()}
+            style={{
+              background: "#0284c7",
+              border: "1.5px solid #38bdf8",
+              color: "#ffffff",
+              fontWeight: "800",
+              fontSize: "0.9rem",
+              padding: "10px 20px",
+              borderRadius: "8px",
+              cursor: "pointer",
+              boxShadow: "0 2px 8px rgba(2, 132, 199, 0.4)"
+            }}
+          >
+            Probemos con objetos
+          </button>
         </section>
       )}
       {pregunta?.tipo === 'concreta' && !misionTerminada && <TallerConcreto key={sesionId} reto={pregunta} respuesta={respuesta} evaluacion={evaluacion} loading={loading}
@@ -2599,13 +2719,33 @@ function MarkdownRenderer({ content }) {
 }
 
 function TutorHeader({ tutor }) {
+  const isMaomao = tutor.avatar === "maomao";
+  const tutorColor = isMaomao ? "#10B981" : (tutor.color || "#D85A30");
+
   return (
-    <div className="tutor-chip">
+    <div
+      className="tutor-chip"
+      style={{
+        background: "#161226",
+        border: `2px solid ${tutorColor}`,
+        boxShadow: `0 0 14px ${tutorColor}44`,
+        padding: "6px 14px 6px 8px",
+        borderRadius: "999px",
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "10px"
+      }}
+    >
       <img
         src={tutor.imagen}
         alt={tutor.nombre}
-        width="40"
-        height="40"
+        width="44"
+        height="44"
+        style={{
+          borderRadius: "50%",
+          border: `2px solid ${tutorColor}`,
+          objectFit: "cover"
+        }}
         onError={(e) => {
           if (e.target.src.endsWith(".png")) {
             e.target.src = e.target.src.replace(".png", ".svg");
@@ -2613,8 +2753,12 @@ function TutorHeader({ tutor }) {
         }}
       />
       <div>
-        <strong style={{ color: tutor.color }}>{tutor.nombre}</strong>
-        <span>Tu tutor/a</span>
+        <strong style={{ color: "#ffffff", fontSize: "1.05rem", fontWeight: 800, letterSpacing: "0.2px", display: "block" }}>
+          {tutor.nombre}
+        </strong>
+        <span style={{ color: isMaomao ? "#34d399" : tutorColor, fontSize: "0.78rem", fontWeight: 700 }}>
+          Tu tutora
+        </span>
       </div>
     </div>
   );

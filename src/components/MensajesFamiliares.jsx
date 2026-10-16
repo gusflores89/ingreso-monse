@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const boton={background:"#16324d",color:"#f8fafc",border:"1px solid #64748b",borderRadius:10,padding:"10px 16px",minHeight:44};
+const boton={background:"#0f2b48",color:"#ffffff",border:"1.5px solid #38bdf8",borderRadius:10,padding:"10px 18px",minHeight:44,fontWeight:700,fontSize:"0.88rem",boxShadow:"0 2px 8px rgba(0,0,0,0.3)"};
 const dia=v=>v ? new Intl.DateTimeFormat("es-AR",{timeZone:"America/Argentina/Buenos_Aires",dateStyle:"short"}).format(new Date(v)) : "";
 export default function MensajesFamiliares({userId}) {
   const [abierto,setAbierto]=useState(false),[pagina,setPagina]=useState(0),[data,setData]=useState(null),[error,setError]=useState(""),[loading,setLoading]=useState(false),[refresh,setRefresh]=useState(0);

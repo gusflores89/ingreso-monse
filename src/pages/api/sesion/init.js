@@ -132,7 +132,14 @@ export default async function handler(req, res) {
       }
     }
     const tutorOverrides = normalizeTutorPreference(tutor_preference);
-    const usuarioConTutor = { ...usuario, ...tutorOverrides };
+    const avatarFromTraits = isValidAvatar(usuario.rasgos_especiales?.avatar) ? usuario.rasgos_especiales.avatar : null;
+    const usuarioConTutor = {
+      avatar: tutorOverrides.avatar || avatarFromTraits || usuario.avatar || "maomao",
+      nombre_tutor: tutorOverrides.nombre_tutor || usuario.rasgos_especiales?.nombre_tutor || usuario.nombre_tutor || "Maomao",
+      color_tema: tutorOverrides.color_tema || usuario.rasgos_especiales?.color_tema || usuario.color_tema || "#10B981",
+      ...usuario,
+      ...tutorOverrides,
+    };
     const alumno = buildAlumnoProfile(usuarioConTutor);
     const tutor = getTutorPayload(usuarioConTutor);
     const plan = getUserPlan(usuario);
@@ -473,11 +480,19 @@ function isMissingLessonsTable(error) {
 }
 
 function getTutorPayload(usuario = {}) {
-  const avatar = isValidAvatar(usuario.avatar) ? usuario.avatar : "buho";
+  const avatar = isValidAvatar(usuario.avatar)
+    ? usuario.avatar
+    : isValidAvatar(usuario.rasgos_especiales?.avatar)
+    ? usuario.rasgos_especiales.avatar
+    : "maomao";
   return {
     avatar,
-    nombre_tutor: usuario.nombre_tutor || tutorNameForAvatar(avatar),
-    color_tema: isValidHexColor(usuario.color_tema) ? usuario.color_tema : colorForAvatar(avatar),
+    nombre_tutor: usuario.nombre_tutor || usuario.rasgos_especiales?.nombre_tutor || tutorNameForAvatar(avatar),
+    color_tema: isValidHexColor(usuario.color_tema)
+      ? usuario.color_tema
+      : isValidHexColor(usuario.rasgos_especiales?.color_tema)
+      ? usuario.rasgos_especiales.color_tema
+      : colorForAvatar(avatar),
     avatar_imagen: `/avatars/${avatar}.png`,
   };
 }
