@@ -35,10 +35,22 @@ export default async function handler(req, res) {
     const rasgos = usuario.rasgos_especiales || {};
     const labData = rasgos.laboratorio || {
       formulas_completadas: 0,
+      por_tipo: {
+        division: 0,
+        multiplicacion: 0,
+        suma_resta: 0,
+      },
       racha_actual: 0,
       insignias: [],
       historial: [],
       salvoconducto_ganado: false,
+    };
+
+    // Asegurar estructura de por_tipo por retrocompatibilidad
+    const porTipoActual = {
+      division: labData.por_tipo?.division || 0,
+      multiplicacion: labData.por_tipo?.multiplicacion || 0,
+      suma_resta: labData.por_tipo?.suma_resta || 0,
     };
 
     // Estrellas actuales
@@ -59,7 +71,10 @@ export default async function handler(req, res) {
         ok: true,
         user_id: resolvedUserId,
         nombre: usuario.nombre,
-        laboratorio: labData,
+        laboratorio: {
+          ...labData,
+          por_tipo: porTipoActual,
+        },
         estrellas_totales: estrellasTotales,
       });
     }
@@ -79,11 +94,31 @@ export default async function handler(req, res) {
       estrellasSumadas = 2; // +2 estrellas por fórmula
       estrellasTotales += estrellasSumadas;
 
-      // Desbloqueo de insignias
-      if (tipo_operacion === "division" && !con_pista) {
-        insigniasActuales.add("insignia_division_maomao");
+      // Incrementar por tipo de operación
+      if (tipo_operacion === "division") {
+        porTipoActual.division += 1;
+        if (!con_pista) {
+          insigniasActuales.add("insignia_division_maomao");
+        }
+      } else if (tipo_operacion === "multiplicacion") {
+        porTipoActual.multiplicacion += 1;
+      } else {
+        porTipoActual.suma_resta += 1;
       }
-      if (nuevasCompletadas >= 40 && !nuevoSalvoconducto) {
+
+      // Requisitos del Salvoconducto Imperial al Shopping:
+      // Mínimo 15 divisiones, mínimo 15 multiplicaciones, hasta 10 sumas/restas válidas
+      const puntosSalvoconducto =
+        porTipoActual.division +
+        porTipoActual.multiplicacion +
+        Math.min(porTipoActual.suma_resta, 10);
+
+      const cumpleRequisitos =
+        porTipoActual.division >= 15 &&
+        porTipoActual.multiplicacion >= 15 &&
+        puntosSalvoconducto >= 40;
+
+      if (cumpleRequisitos && !nuevoSalvoconducto) {
         nuevoSalvoconducto = true;
         insigniasActuales.add("insignia_salvoconducto");
       }
@@ -104,6 +139,7 @@ export default async function handler(req, res) {
 
     const nuevoLabData = {
       formulas_completadas: nuevasCompletadas,
+      por_tipo: porTipoActual,
       racha_actual: nuevaRacha,
       insignias: Array.from(insigniasActuales),
       historial: nuevoHistorial,

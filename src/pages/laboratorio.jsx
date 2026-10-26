@@ -2,83 +2,177 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-// Generador didáctico de operaciones equilibradas para 11 años
-function generarOperacion(modo = "division") {
-  if (modo === "division") {
-    // Tablas del 2 al 9 con división exacta
-    const b = Math.floor(Math.random() * 8) + 2; // divisor entre 2 y 9 (ej: 4)
-    const resultado = Math.floor(Math.random() * 8) + 2; // cociente entre 2 y 9 (ej: 3)
-    const a = b * resultado; // dividendo exacto (ej: 12)
+// Generador didáctico de operaciones equilibradas y desafiantes para 11 años
+function generarOperacion(modo = "mixto") {
+  let modoEfectivo = modo;
+  if (modo === "mixto") {
+    // 50% división, 35% multiplicación, 15% suma/resta desafiante
+    const r = Math.random();
+    if (r < 0.50) modoEfectivo = "division";
+    else if (r < 0.85) modoEfectivo = "multiplicacion";
+    else modoEfectivo = "suma_resta";
+  }
+
+  if (modoEfectivo === "division") {
+    const combinacionesDivision = [
+      { a: 12, b: 4, r: 3 },
+      { a: 12, b: 3, r: 4 },
+      { a: 14, b: 2, r: 7 },
+      { a: 16, b: 4, r: 4 },
+      { a: 18, b: 3, r: 6 },
+      { a: 18, b: 6, r: 3 },
+      { a: 21, b: 3, r: 7 },
+      { a: 21, b: 7, r: 3 },
+      { a: 24, b: 4, r: 6 },
+      { a: 24, b: 6, r: 4 },
+      { a: 24, b: 8, r: 3 },
+      { a: 27, b: 9, r: 3 },
+      { a: 28, b: 4, r: 7 },
+      { a: 28, b: 7, r: 4 },
+      { a: 32, b: 4, r: 8 },
+      { a: 32, b: 8, r: 4 },
+      { a: 35, b: 7, r: 5 },
+      { a: 35, b: 5, r: 7 },
+      { a: 36, b: 6, r: 6 },
+      { a: 36, b: 9, r: 4 },
+      { a: 36, b: 4, r: 9 },
+      { a: 40, b: 8, r: 5 },
+      { a: 42, b: 6, r: 7 },
+      { a: 42, b: 7, r: 6 },
+      { a: 45, b: 9, r: 5 },
+      { a: 48, b: 6, r: 8 },
+      { a: 48, b: 8, r: 6 },
+      { a: 54, b: 9, r: 6 },
+      { a: 54, b: 6, r: 9 },
+      { a: 56, b: 7, r: 8 },
+      { a: 56, b: 8, r: 7 },
+      { a: 63, b: 7, r: 9 },
+      { a: 63, b: 9, r: 7 },
+      { a: 64, b: 8, r: 8 },
+      { a: 72, b: 8, r: 9 },
+      { a: 72, b: 9, r: 8 },
+      { a: 81, b: 9, r: 9 },
+      { a: 48, b: 4, r: 12 },
+      { a: 72, b: 6, r: 12 },
+      { a: 84, b: 7, r: 12 },
+      { a: 96, b: 8, r: 12 },
+    ];
+    const elegida = combinacionesDivision[Math.floor(Math.random() * combinacionesDivision.length)];
     return {
-      a,
-      b,
+      a: elegida.a,
+      b: elegida.b,
       op: "÷",
       tipo: "division",
-      resultado,
-      pistaInversa: `${b} × ¿ ? = ${a}`,
-      enunciado: `¿Cuánto es ${a} dividido ${b}?`,
-      preguntaBoticaria: `Tengo ${a} pociones y ${b} estantes iguales. ¿Cuántas van en cada estante?`,
+      resultado: elegida.r,
+      pistaInversa: `${elegida.b} × ¿ ? = ${elegida.a}`,
+      enunciado: `¿Cuánto es ${elegida.a} dividido ${elegida.b}?`,
+      preguntaBoticaria: `Tengo ${elegida.a} pociones y ${elegida.b} estantes iguales. ¿Cuántas van en cada estante?`,
     };
   }
 
-  if (modo === "multiplicacion") {
-    const a = Math.floor(Math.random() * 8) + 2;
-    const b = Math.floor(Math.random() * 8) + 2;
+  if (modoEfectivo === "multiplicacion") {
+    const combinacionesMult = [
+      { a: 3, b: 7, r: 21 },
+      { a: 4, b: 6, r: 24 },
+      { a: 4, b: 7, r: 28 },
+      { a: 4, b: 8, r: 32 },
+      { a: 4, b: 9, r: 36 },
+      { a: 6, b: 6, r: 36 },
+      { a: 6, b: 7, r: 42 },
+      { a: 6, b: 8, r: 48 },
+      { a: 6, b: 9, r: 54 },
+      { a: 7, b: 7, r: 49 },
+      { a: 7, b: 8, r: 56 },
+      { a: 7, b: 9, r: 63 },
+      { a: 8, b: 8, r: 64 },
+      { a: 8, b: 9, r: 72 },
+      { a: 9, b: 9, r: 81 },
+      { a: 12, b: 4, r: 48 },
+      { a: 12, b: 5, r: 60 },
+      { a: 11, b: 6, r: 66 },
+      { a: 12, b: 7, r: 84 },
+      { a: 14, b: 3, r: 42 },
+      { a: 15, b: 4, r: 60 },
+    ];
+    const base = combinacionesMult[Math.floor(Math.random() * combinacionesMult.length)];
+    const invertir = Math.random() > 0.5;
+    const a = invertir ? base.b : base.a;
+    const b = invertir ? base.a : base.b;
     return {
       a,
       b,
       op: "×",
       tipo: "multiplicacion",
-      resultado: a * b,
+      resultado: base.r,
       pistaInversa: `${a} grupos de ${b}`,
       enunciado: `¿Cuánto es ${a} por ${b}?`,
       preguntaBoticaria: `Si cada frasco lleva ${b} gotas y preparo ${a} frascos, ¿cuántas gotas uso?`,
     };
   }
 
-  if (modo === "suma_resta") {
-    const esResta = Math.random() > 0.5;
-    if (esResta) {
-      const a = Math.floor(Math.random() * 25) + 10;
-      const b = Math.floor(Math.random() * (a - 4)) + 3;
-      return {
-        a,
-        b,
-        op: "-",
-        tipo: "resta",
-        resultado: a - b,
-        pistaInversa: `Si a ${a} le quitás ${b}...`,
-        enunciado: `¿Cuánto es ${a} menos ${b}?`,
-        preguntaBoticaria: `Había ${a} hojas de menta y usamos ${b}. ¿Cuántas quedan?`,
-      };
-    } else {
-      const a = Math.floor(Math.random() * 25) + 5;
-      const b = Math.floor(Math.random() * 20) + 5;
-      return {
-        a,
-        b,
-        op: "+",
-        tipo: "suma",
-        resultado: a + b,
-        pistaInversa: `Juntar ${a} con ${b}`,
-        enunciado: `¿Cuánto es ${a} más ${b}?`,
-        preguntaBoticaria: `Juntamos ${a} flores de loto con ${b} flores de jazmín. ¿Total?`,
-      };
-    }
+  // Suma o Resta desafiante de 2 cifras con llevada mental
+  const esResta = Math.random() > 0.5;
+  if (esResta) {
+    const restasDesafiantes = [
+      { a: 63, b: 27, r: 36 },
+      { a: 72, b: 35, r: 37 },
+      { a: 81, b: 46, r: 35 },
+      { a: 94, b: 38, r: 56 },
+      { a: 85, b: 47, r: 38 },
+      { a: 73, b: 28, r: 45 },
+      { a: 64, b: 37, r: 27 },
+      { a: 100, b: 34, r: 66 },
+      { a: 100, b: 47, r: 53 },
+      { a: 91, b: 54, r: 37 },
+      { a: 52, b: 26, r: 26 },
+      { a: 83, b: 49, r: 34 },
+    ];
+    const rElegida = restasDesafiantes[Math.floor(Math.random() * restasDesafiantes.length)];
+    return {
+      a: rElegida.a,
+      b: rElegida.b,
+      op: "-",
+      tipo: "resta",
+      resultado: rElegida.r,
+      pistaInversa: `Pensá cuánto le falta a ${rElegida.b} para llegar a ${rElegida.a}`,
+      enunciado: `¿Cuánto es ${rElegida.a} menos ${rElegida.b}?`,
+      preguntaBoticaria: `Teníamos ${rElegida.a} gramos de polvo de hierbas y usamos ${rElegida.b}. ¿Cuántos gramos quedan?`,
+    };
+  } else {
+    const sumasDesafiantes = [
+      { a: 38, b: 47, r: 85 },
+      { a: 46, b: 37, r: 83 },
+      { a: 58, b: 25, r: 83 },
+      { a: 67, b: 28, r: 95 },
+      { a: 49, b: 36, r: 85 },
+      { a: 54, b: 38, r: 92 },
+      { a: 37, b: 48, r: 85 },
+      { a: 65, b: 27, r: 92 },
+      { a: 48, b: 39, r: 87 },
+      { a: 57, b: 36, r: 93 },
+      { a: 29, b: 64, r: 93 },
+      { a: 45, b: 48, r: 93 },
+    ];
+    const sElegida = sumasDesafiantes[Math.floor(Math.random() * sumasDesafiantes.length)];
+    return {
+      a: sElegida.a,
+      b: sElegida.b,
+      op: "+",
+      tipo: "suma",
+      resultado: sElegida.r,
+      pistaInversa: `Sumá decenas (${Math.floor(sElegida.a / 10) * 10} + ${Math.floor(sElegida.b / 10) * 10}) y luego sumá las unidades`,
+      enunciado: `¿Cuánto es ${sElegida.a} más ${sElegida.b}?`,
+      preguntaBoticaria: `Juntamos ${sElegida.a} hojas secas con ${sElegida.b} flores medicinales. ¿Total?`,
+    };
   }
-
-  // Mixto: elige entre división (40%), multiplicación (30%), suma/resta (30%)
-  const r = Math.random();
-  if (r < 0.45) return generarOperacion("division");
-  if (r < 0.75) return generarOperacion("multiplicacion");
-  return generarOperacion("suma_resta");
 }
 
 export default function LaboratorioPage() {
   const router = useRouter();
   const userId = (router.query.user_id || "ABRIL").toString();
 
-  const [modo, setModo] = useState("division"); // division | multiplicacion | suma_resta | mixto
+  // El modo por defecto es "mixto" (Desafío Imperial con 50% división y 35% multiplicación)
+  const [modo, setModo] = useState("mixto"); // mixto | division | multiplicacion | suma_resta
   const [operacionActual, setOperacionActual] = useState(null);
   const [entrada, setEntrada] = useState("");
   const [feedback, setFeedback] = useState(null); // { tipo: 'exito'|'error', mensaje: string }
@@ -90,6 +184,11 @@ export default function LaboratorioPage() {
   // Progreso cargado de la API
   const [progresoLab, setProgresoLab] = useState({
     formulas_completadas: 0,
+    por_tipo: {
+      division: 0,
+      multiplicacion: 0,
+      suma_resta: 0,
+    },
     racha_actual: 0,
     insignias: [],
     salvoconducto_ganado: false,
@@ -117,7 +216,7 @@ export default function LaboratorioPage() {
       }
     };
     cargar();
-    nuevaOperacion("division");
+    nuevaOperacion("mixto");
   }, [router.isReady, userId]);
 
   // Generar nueva operación
@@ -189,9 +288,17 @@ export default function LaboratorioPage() {
     const esCorrecto = numIngresado === operacionActual.resultado;
 
     if (esCorrecto) {
+      const tipoOp = operacionActual.tipo;
+      const sumaCupoAlcanzado = (tipoOp === "suma" || tipoOp === "resta") && (progresoLab.por_tipo?.suma_resta || 0) >= 10;
+
+      let mensajeExito = `¡Exacto! ${operacionActual.a} ${operacionActual.op} ${operacionActual.b} = ${operacionActual.resultado}. ¡Fórmula perfecta! 🧪✨ (+2 ⭐)`;
+      if (sumaCupoAlcanzado) {
+        mensajeExito += ` (Nota: Ya completaste el cupo de sumas/restas para el shopping. ¡Pasá a división o multiplicación para avanzar el Salvoconducto!)`;
+      }
+
       setFeedback({
         tipo: "exito",
-        mensaje: `¡Exacto! ${operacionActual.a} ${operacionActual.op} ${operacionActual.b} = ${operacionActual.resultado}. ¡Fórmula perfecta! 🧪✨ (+2 ⭐)`,
+        mensaje: mensajeExito,
       });
 
       setGuardando(true);
@@ -203,7 +310,7 @@ export default function LaboratorioPage() {
             user_id: userId,
             acierto: true,
             con_pista: mostrarPista,
-            tipo_operacion: operacionActual.tipo,
+            tipo_operacion: tipoOp,
             detalle: `${operacionActual.a} ${operacionActual.op} ${operacionActual.b} = ${operacionActual.resultado}`,
           }),
         });
@@ -223,17 +330,17 @@ export default function LaboratorioPage() {
         setGuardando(false);
       }
 
-      // Siguiente operación tras 1.4 segundos de celebración
       setTimeout(() => {
         nuevaOperacion();
       }, 1400);
     } else {
-      // Error constructivo y andamiaje pedagógico
       let ayudaTexto = "";
       if (operacionActual.tipo === "division") {
         ayudaTexto = `Probemos pensar al revés: ¿Qué número multiplicado por ${operacionActual.b} da ${operacionActual.a}?`;
+      } else if (operacionActual.tipo === "multiplicacion") {
+        ayudaTexto = `Pensalo como ${operacionActual.a} grupos de ${operacionActual.b}. ¡Podés abrir la mesa de boticaria o la pizarra para comprobarlo!`;
       } else {
-        ayudaTexto = `Cerca, pero revisemos con calma. ¡Podés tocar "Ver en la mesa de boticaria" o rayar en la pizarra!`;
+        ayudaTexto = `Cerca, pero revisemos el cálculo. Podés rayar en la pizarra para no perder la llevada.`;
       }
 
       setFeedback({
@@ -266,7 +373,7 @@ export default function LaboratorioPage() {
 
     ctx.lineWidth = 3;
     ctx.lineCap = "round";
-    ctx.strokeStyle = "#34d399"; // Verde esmeralda boticaria
+    ctx.strokeStyle = "#34d399";
 
     ctx.lineTo(x, y);
     ctx.stroke();
@@ -280,7 +387,16 @@ export default function LaboratorioPage() {
     ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
   };
 
-  const porcentajeMeta = Math.min(100, Math.round(((progresoLab.formulas_completadas || 0) / 40) * 100));
+  // Balance del Salvoconducto Imperial
+  const porTipo = progresoLab.por_tipo || { division: 0, multiplicacion: 0, suma_resta: 0 };
+  const divCount = porTipo.division || 0;
+  const multCount = porTipo.multiplicacion || 0;
+  const sumaCount = porTipo.suma_resta || 0;
+
+  // Requisitos: mínimo 15 divisiones, mínimo 15 multiplicaciones, hasta 10 sumas/restas
+  const sumaValida = Math.min(sumaCount, 10);
+  const puntosValidosSalvoconducto = divCount + multCount + sumaValida;
+  const porcentajeMeta = Math.min(100, Math.round((Math.min(puntosValidosSalvoconducto, 40) / 40) * 100));
 
   return (
     <div className="laboratorio-screen" style={{ minHeight: "100vh", background: "#080c14", color: "#f8fafc", fontFamily: "'Inter', sans-serif", padding: "16px 20px" }}>
@@ -308,23 +424,53 @@ export default function LaboratorioPage() {
 
       {/* BARRA DEL SALVOCONDUCTO IMPERIAL AL SHOPPING */}
       <section style={{ maxWidth: "980px", margin: "20px auto 0", background: "rgba(15, 23, 42, 0.75)", backdropFilter: "blur(16px)", border: "1.5px solid rgba(16, 185, 129, 0.3)", borderRadius: "16px", padding: "18px 24px", boxShadow: "0 10px 30px rgba(0, 0, 0, 0.5)" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px", marginBottom: "10px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px", marginBottom: "8px" }}>
           <div>
-            <strong style={{ fontSize: "0.98rem", color: "#fef08a", display: "flex", alignItems: "center", gap: "6px" }}>
+            <strong style={{ fontSize: "1rem", color: "#fef08a", display: "flex", alignItems: "center", gap: "6px" }}>
               📜 Misión Imperial: Salvoconducto al Shopping (McDonald&apos;s + Cine + Manga)
             </strong>
             <span style={{ fontSize: "0.82rem", color: "#94a3b8" }}>
-              Completá 40 fórmulas resueltas para ganar el pergamino oficial acordado con mamá y papá
+              Requisito equilibrado: mínimo 15 divisiones, 15 multiplicaciones y hasta 10 sumas/restas
             </span>
           </div>
           <div style={{ fontWeight: "800", fontSize: "1rem", color: "#34d399" }}>
-            {progresoLab.formulas_completadas || 0} / 40 Fórmulas ({porcentajeMeta}%)
+            {Math.min(puntosValidosSalvoconducto, 40)} / 40 Fórmulas ({porcentajeMeta}%)
           </div>
         </div>
 
-        {/* Barra de llenado */}
+        {/* Barra de progreso global */}
         <div style={{ width: "100%", height: "12px", background: "rgba(255, 255, 255, 0.08)", borderRadius: "6px", overflow: "hidden", position: "relative" }}>
           <div style={{ width: `${porcentajeMeta}%`, height: "100%", background: "linear-gradient(90deg, #10b981 0%, #34d399 50%, #fef08a 100%)", transition: "width 0.4s ease", borderRadius: "6px" }} />
+        </div>
+
+        {/* Medidores de balance pedagógico por tipo */}
+        <div style={{ display: "flex", gap: "10px", marginTop: "12px", flexWrap: "wrap" }}>
+          <div style={{ flex: 1, minWidth: "160px", background: divCount >= 15 ? "rgba(16, 185, 129, 0.15)" : "rgba(30, 41, 59, 0.5)", border: divCount >= 15 ? "1px solid #10b981" : "1px solid rgba(255, 255, 255, 0.1)", borderRadius: "10px", padding: "6px 12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <span style={{ fontSize: "0.82rem", color: divCount >= 15 ? "#34d399" : "#cbd5e1" }}>
+              ➗ División: <strong>{divCount} / 15</strong>
+            </span>
+            <span style={{ fontSize: "0.75rem", fontWeight: "800", color: divCount >= 15 ? "#34d399" : "#94a3b8" }}>
+              {divCount >= 15 ? "✓ Listo" : `Faltan ${15 - divCount}`}
+            </span>
+          </div>
+
+          <div style={{ flex: 1, minWidth: "160px", background: multCount >= 15 ? "rgba(56, 189, 248, 0.15)" : "rgba(30, 41, 59, 0.5)", border: multCount >= 15 ? "1px solid #38bdf8" : "1px solid rgba(255, 255, 255, 0.1)", borderRadius: "10px", padding: "6px 12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <span style={{ fontSize: "0.82rem", color: multCount >= 15 ? "#38bdf8" : "#cbd5e1" }}>
+              ✖️ Multiplicación: <strong>{multCount} / 15</strong>
+            </span>
+            <span style={{ fontSize: "0.75rem", fontWeight: "800", color: multCount >= 15 ? "#38bdf8" : "#94a3b8" }}>
+              {multCount >= 15 ? "✓ Listo" : `Faltan ${15 - multCount}`}
+            </span>
+          </div>
+
+          <div style={{ flex: 1, minWidth: "160px", background: sumaCount >= 10 ? "rgba(168, 85, 247, 0.15)" : "rgba(30, 41, 59, 0.5)", border: sumaCount >= 10 ? "1px solid #a855f7" : "1px solid rgba(255, 255, 255, 0.1)", borderRadius: "10px", padding: "6px 12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <span style={{ fontSize: "0.82rem", color: sumaCount >= 10 ? "#c084fc" : "#cbd5e1" }}>
+              ➕➖ Suma & Resta: <strong>{sumaValida} / 10</strong>
+            </span>
+            <span style={{ fontSize: "0.75rem", fontWeight: "800", color: sumaCount >= 10 ? "#c084fc" : "#94a3b8" }}>
+              {sumaCount >= 10 ? "✓ Cupo max." : `${10 - sumaCount} para cupo`}
+            </span>
+          </div>
         </div>
 
         {progresoLab.salvoconducto_ganado && (
@@ -355,7 +501,7 @@ export default function LaboratorioPage() {
             { estrellas: 100, icono: "🍔", titulo: "Salida al McDonald's", desc: "Tu combo favorito" },
             { estrellas: 150, icono: "📚", titulo: "Tomo de Manga", desc: "El que elijas" },
             { estrellas: 200, icono: "💵", titulo: "$10.000 Pesos", desc: "Dinero en efectivo" },
-            { estrellas: 250, icono: "🛍️", titulo: "Salida al Shopping", desc: "Mc + Cine + Manga" }
+            { estrellas: 250, icono: "🛍️", titulo: "Salida al Shopping", desc: "Mc + Cine + Manga" },
           ].map((h) => {
             const alcanzado = estrellasTotales >= h.estrellas;
             return (
@@ -367,7 +513,7 @@ export default function LaboratorioPage() {
                   borderRadius: "10px",
                   padding: "10px 12px",
                   textAlign: "center",
-                  transition: "all 0.2s ease"
+                  transition: "all 0.2s ease",
                 }}
               >
                 <div style={{ fontSize: "1.4rem", marginBottom: "2px" }}>{h.icono}</div>
@@ -387,10 +533,10 @@ export default function LaboratorioPage() {
       {/* SELECTOR DE MODOS */}
       <section style={{ maxWidth: "980px", margin: "18px auto 0", display: "flex", gap: "8px", flexWrap: "wrap", justifyContent: "center" }}>
         {[
-          { id: "division", label: "➗ División & Familia Inversa (Recomendado)", color: "#10b981" },
-          { id: "multiplicacion", label: "✖️ Multiplicación", color: "#38bdf8" },
-          { id: "suma_resta", label: "➕➖ Suma & Resta", color: "#a855f7" },
-          { id: "mixto", label: "🎲 Desafío Mixto", color: "#f59e0b" },
+          { id: "mixto", label: "🎲 Desafío Imperial Equilibrado (Recomendado)", color: "#f59e0b" },
+          { id: "division", label: "➗ Especialista en División", color: "#10b981" },
+          { id: "multiplicacion", label: "✖️ Especialista en Multiplicación", color: "#38bdf8" },
+          { id: "suma_resta", label: "➕➖ Suma & Resta Desafiante", color: "#a855f7" },
         ].map((item) => {
           const activo = modo === item.id;
           return (
@@ -416,8 +562,15 @@ export default function LaboratorioPage() {
         })}
       </section>
 
+      {/* AVISO DE CUPO DE SUMAS/RESTAS */}
+      {modo === "suma_resta" && sumaCount >= 10 && (
+        <div style={{ maxWidth: "680px", margin: "10px auto 0", background: "rgba(168, 85, 247, 0.12)", border: "1px solid #a855f7", borderRadius: "10px", padding: "8px 14px", textAlign: "center", fontSize: "0.82rem", color: "#e9d5ff" }}>
+          💡 Ya alcanzaste el cupo de sumas y restas (10/10) para el shopping. Las que resuelvas acá te seguirán sumando <strong>+2 ⭐</strong>, pero para el Salvoconducto Imperial pasá al <strong>Desafío Equilibrado, División o Multiplicación</strong>.
+        </div>
+      )}
+
       {/* ÁREA CENTRAL DEL JUEGO */}
-      <main style={{ maxWidth: "680px", margin: "24px auto", background: "rgba(18, 24, 38, 0.8)", backdropFilter: "blur(20px)", border: "1px solid rgba(255, 255, 255, 0.12)", borderRadius: "24px", padding: "28px 24px", boxShadow: "0 20px 45px rgba(0,0,0,0.6)", textAlign: "center" }}>
+      <main style={{ maxWidth: "680px", margin: "20px auto", background: "rgba(18, 24, 38, 0.8)", backdropFilter: "blur(20px)", border: "1px solid rgba(255, 255, 255, 0.12)", borderRadius: "24px", padding: "28px 24px", boxShadow: "0 20px 45px rgba(0,0,0,0.6)", textAlign: "center" }}>
         {operacionActual && (
           <>
             {/* Mensaje sutil de Maomao */}
@@ -433,19 +586,48 @@ export default function LaboratorioPage() {
               <span style={{ fontSize: "clamp(2.5rem, 8vw, 3.8rem)", fontWeight: "800", color: "#f8fafc", letterSpacing: "2px" }}>
                 {operacionActual.a} {operacionActual.op} {operacionActual.b} =
               </span>
-              <div style={{ minWidth: "90px", height: "70px", background: "rgba(10, 15, 26, 0.9)", border: "2.5px solid #10b981", borderRadius: "16px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "2.8rem", fontWeight: "900", color: "#34d399", boxShadow: "0 0 20px rgba(16, 185, 129, 0.35)", padding: "0 12px" }}>
-                {entrada || "?"}
+
+              {/* Casillero de respuesta con cursor */}
+              <div
+                style={{
+                  minWidth: "110px",
+                  height: "76px",
+                  background: "rgba(15, 23, 42, 0.9)",
+                  border: "2.5px solid #10b981",
+                  borderRadius: "16px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "clamp(2rem, 6vw, 3rem)",
+                  fontWeight: "900",
+                  color: "#34d399",
+                  padding: "0 16px",
+                  boxShadow: "0 0 25px rgba(16, 185, 129, 0.3)",
+                }}
+              >
+                {entrada || <span style={{ opacity: 0.35, fontSize: "2rem" }}>¿?</span>}
               </div>
             </div>
 
-            {/* FEEDBACK PEDAGÓGICO */}
+            {/* Feedback animado */}
             {feedback && (
-              <div style={{ marginBottom: "16px", padding: "10px 16px", borderRadius: "12px", background: feedback.tipo === "exito" ? "rgba(34, 197, 94, 0.15)" : "rgba(239, 68, 68, 0.15)", border: `1.5px solid ${feedback.tipo === "exito" ? "#22c55e" : "#ef4444"}`, color: feedback.tipo === "exito" ? "#86efac" : "#fca5a5", fontSize: "0.95rem", fontWeight: "600" }}>
+              <div
+                style={{
+                  padding: "12px 18px",
+                  borderRadius: "12px",
+                  margin: "16px 0",
+                  fontSize: "0.95rem",
+                  fontWeight: "700",
+                  background: feedback.tipo === "exito" ? "rgba(16, 185, 129, 0.2)" : "rgba(239, 68, 68, 0.2)",
+                  border: feedback.tipo === "exito" ? "1.5px solid #10b981" : "1.5px solid #ef4444",
+                  color: feedback.tipo === "exito" ? "#34d399" : "#fca5a5",
+                }}
+              >
                 {feedback.mensaje}
               </div>
             )}
 
-            {/* BOTONES DE AYUDA (Mesa de Boticaria & Pizarra) */}
+            {/* Botones de apoyo: Pista / Mesa de boticaria y Pizarra */}
             <div style={{ display: "flex", gap: "10px", justifyContent: "center", marginBottom: "20px", flexWrap: "wrap" }}>
               <button
                 type="button"
@@ -486,13 +668,13 @@ export default function LaboratorioPage() {
             {mostrarPista && (
               <div style={{ background: "rgba(10, 14, 24, 0.85)", border: "1px solid rgba(16, 185, 129, 0.3)", borderRadius: "16px", padding: "18px", marginBottom: "20px", textAlign: "center" }}>
                 <strong style={{ color: "#34d399", fontSize: "0.95rem", display: "block", marginBottom: "8px" }}>
-                  Mesa de Trabajo: Repartiendo {operacionActual.a} ingredientes en {operacionActual.b} grupos
+                  Mesa de Trabajo: {operacionActual.enunciado}
                 </strong>
                 <p style={{ color: "#94a3b8", fontSize: "0.85rem", margin: "0 0 14px" }}>
                   Secreto de boticaria: <span style={{ color: "#fef08a", fontWeight: "700" }}>{operacionActual.pistaInversa}</span>
                 </p>
 
-                {/* Gráficos de pociones repartidas */}
+                {/* Gráficos de división: pociones en estantes */}
                 {operacionActual.tipo === "division" && (
                   <div style={{ display: "grid", gridTemplateColumns: `repeat(${Math.min(operacionActual.b, 4)}, 1fr)`, gap: "10px", maxWidth: "420px", margin: "0 auto" }}>
                     {Array.from({ length: operacionActual.b }).map((_, gIdx) => (
@@ -500,14 +682,44 @@ export default function LaboratorioPage() {
                         <span style={{ fontSize: "0.72rem", color: "#34d399", fontWeight: "700", display: "block" }}>
                           Estante {gIdx + 1}
                         </span>
-                        <div style={{ fontSize: "1.3rem", marginTop: "4px" }}>
-                          {"🧪".repeat(operacionActual.resultado)}
+                        <div style={{ fontSize: "1.1rem", marginTop: "4px" }}>
+                          {"🧪".repeat(Math.min(operacionActual.resultado, 6))}
+                          {operacionActual.resultado > 6 && <span style={{ fontSize: "0.8rem", color: "#fef08a" }}> +{operacionActual.resultado - 6}</span>}
                         </div>
                         <small style={{ color: "#f8fafc", fontWeight: "700", fontSize: "0.8rem" }}>
                           {operacionActual.resultado} pociones
                         </small>
                       </div>
                     ))}
+                  </div>
+                )}
+
+                {/* Gráficos de multiplicación: frascos con gotas */}
+                {operacionActual.tipo === "multiplicacion" && (
+                  <div style={{ display: "grid", gridTemplateColumns: `repeat(${Math.min(operacionActual.a, 4)}, 1fr)`, gap: "10px", maxWidth: "420px", margin: "0 auto" }}>
+                    {Array.from({ length: operacionActual.a }).map((_, gIdx) => (
+                      <div key={gIdx} style={{ background: "rgba(56, 189, 248, 0.12)", border: "1.5px solid #38bdf8", borderRadius: "10px", padding: "8px 4px" }}>
+                        <span style={{ fontSize: "0.72rem", color: "#38bdf8", fontWeight: "700", display: "block" }}>
+                          Frasco {gIdx + 1}
+                        </span>
+                        <div style={{ fontSize: "1.1rem", marginTop: "4px" }}>
+                          {"💧".repeat(Math.min(operacionActual.b, 6))}
+                          {operacionActual.b > 6 && <span style={{ fontSize: "0.8rem", color: "#fef08a" }}> +{operacionActual.b - 6}</span>}
+                        </div>
+                        <small style={{ color: "#f8fafc", fontWeight: "700", fontSize: "0.8rem" }}>
+                          {operacionActual.b} gotas
+                        </small>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Apoyo para Suma / Resta */}
+                {(operacionActual.tipo === "suma" || operacionActual.tipo === "resta") && (
+                  <div style={{ background: "rgba(168, 85, 247, 0.12)", border: "1.5px solid #a855f7", borderRadius: "10px", padding: "10px 14px", maxWidth: "440px", margin: "0 auto" }}>
+                    <p style={{ margin: 0, color: "#e2e8f0", fontSize: "0.9rem" }}>
+                      💡 <strong style={{ color: "#fef08a" }}>Estrategia mental:</strong> {operacionActual.pistaInversa}
+                    </p>
                   </div>
                 )}
               </div>
@@ -579,7 +791,7 @@ export default function LaboratorioPage() {
                   cursor: "pointer",
                 }}
               >
-                ⌫ Borrar
+                ⌫
               </button>
 
               <button
@@ -657,7 +869,7 @@ export default function LaboratorioPage() {
                 Pase Oficial a la Capital para: Abril
               </p>
               <p style={{ margin: 0, color: "#cbd5e1", fontSize: "0.92rem", lineHeight: "1.5" }}>
-                Por completar con valentía y esfuerzo 40 fórmulas matemáticas en el laboratorio imperial. 
+                Por completar con maestría y variedad el desafío de 40 fórmulas (divisiones, multiplicaciones y cálculo mental) en el laboratorio imperial.
                 <br /><br />
                 <strong>Premio otorgado:</strong> Tarde de Shopping, Cine, McDonald&apos;s y Tomo de Manga acordado con mamá y papá.
               </p>
