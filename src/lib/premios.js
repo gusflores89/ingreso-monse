@@ -21,6 +21,13 @@ export const PREMIOS_DEFAULT = [
     descripcion: "Un tomo nuevo del manga que estés leyendo para sumar a tu biblioteca."
   },
   {
+    id: "premio_shopping",
+    titulo: "Salida al Shopping: McDonald's, Cine y Manga a elección",
+    estrellas: 150,
+    icono: "🛍️",
+    descripcion: "Tarde libre completa para pasear, comer hamburguesas, ver una película y elegir tu manga favorito."
+  },
+  {
     id: "premio_especial",
     titulo: "Premio sorpresa especial acordado en familia",
     estrellas: 200,
@@ -74,6 +81,24 @@ export const INSIGNIAS_ANIME = [
     icono: "⭐",
     descripcion: "Por acumular más de 100 estrellas de puro esfuerzo y superación.",
     condicion: "estrellas_100"
+  },
+  {
+    id: "insignia_division_maomao",
+    personaje: "Maomao",
+    anime: "Los Diarios de la Boticaria",
+    titulo: "Sello de la Balanza Inversa",
+    icono: "⚖️",
+    descripcion: "Por dominar la división reconociendo la multiplicación que la resuelve sin dudar.",
+    condicion: "division_maestra"
+  },
+  {
+    id: "insignia_salvoconducto",
+    personaje: "Maomao",
+    anime: "Los Diarios de la Boticaria",
+    titulo: "Salvoconducto Imperial al Shopping",
+    icono: "📜",
+    descripcion: "¡Misión cumplida! Pase oficial para la salida al shopping acordada con mamá y papá.",
+    condicion: "salvoconducto_completado"
   }
 ];
 

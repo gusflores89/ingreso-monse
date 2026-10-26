@@ -1178,6 +1178,27 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
               🌱 Aprender fracciones
             </button>
           )}
+          <a
+            href={`/laboratorio?user_id=${encodeURIComponent(user_id)}`}
+            style={{
+              background: "linear-gradient(135deg, #064e3b 0%, #0d9488 100%)",
+              border: "1.5px solid #2dd4bf",
+              color: "#ffffff",
+              padding: "7px 14px",
+              borderRadius: "8px",
+              fontWeight: "800",
+              fontSize: "0.84rem",
+              cursor: "pointer",
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "6px",
+              boxShadow: "0 0 12px rgba(45, 212, 191, 0.35)"
+            }}
+            title="Minijuego de cálculo mental y Salvoconducto Imperial"
+          >
+            🧪 Laboratorio de Fórmulas
+          </a>
           {pregunta?.tema_sugerido && !pregunta.tema_sugerido.completado && pregunta.tema === pregunta.tema_sugerido.tema && (
             <span className="plan-badge-tutoria" style={{ fontSize: "0.84rem", padding: "6px 14px", borderRadius: "20px", backgroundColor: "#3b0764", color: "#f3e8ff", border: "1.5px solid #c084fc", fontWeight: "800", display: "inline-flex", alignItems: "center", gap: "6px", boxShadow: "0 0 10px rgba(192, 132, 252, 0.3)" }}>
               🎯 Misión Familiar
