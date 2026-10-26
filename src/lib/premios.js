@@ -1,38 +1,45 @@
 export const PREMIOS_DEFAULT = [
   {
-    id: "premio_cena",
-    titulo: "Elegir la cena o postre del viernes",
-    estrellas: 30,
-    icono: "🍰",
-    descripcion: "Elegís qué comemos o qué postre rico disfrutamos para cerrar la semana."
+    id: "premio_pin_anime",
+    titulo: "Pin o sticker de anime a elección",
+    estrellas: 50,
+    icono: "📍",
+    descripcion: "Elegís un pin, llavero o sticker de tu anime favorito (Demon Slayer, Haikyuu, Maomao, etc.)."
   },
   {
     id: "premio_helado",
-    titulo: "Salida a merendar o heladería",
-    estrellas: 60,
+    titulo: "Salida a merendar o helado a elección",
+    estrellas: 50,
     icono: "🍦",
-    descripcion: "Tarde de merienda o paseo a la heladería que más te guste."
+    descripcion: "Paseo a la heladería o merienda rica con los gustos que más quieras."
+  },
+  {
+    id: "premio_mcdonalds",
+    titulo: "Salida al McDonald's (Combo favorito)",
+    estrellas: 100,
+    icono: "🍔",
+    descripcion: "Almuerzo o cena en McDonald's para disfrutar tu combo y hamburguesa favorita."
   },
   {
     id: "premio_manga",
     titulo: "Tomo de manga a elección",
-    estrellas: 120,
+    estrellas: 150,
     icono: "📚",
     descripcion: "Un tomo nuevo del manga que estés leyendo para sumar a tu biblioteca."
   },
   {
-    id: "premio_shopping",
-    titulo: "Salida al Shopping: McDonald's, Cine y Manga a elección",
-    estrellas: 150,
-    icono: "🛍️",
-    descripcion: "Tarde libre completa para pasear, comer hamburguesas, ver una película y elegir tu manga favorito."
+    id: "premio_efectivo",
+    titulo: "$10.000 pesos en efectivo para lo que quieras",
+    estrellas: 200,
+    icono: "💵",
+    descripcion: "Tu propio dinero para ahorrar, comprar cosas en una salida o gastar en lo que elijas libremente."
   },
   {
-    id: "premio_especial",
-    titulo: "Premio sorpresa especial acordado en familia",
-    estrellas: 200,
-    icono: "🎁",
-    descripcion: "Una salida, juego o regalo especial acordado previamente con mamá y papá."
+    id: "premio_shopping",
+    titulo: "Salida al Shopping: McDonald's + Cine + Manga",
+    estrellas: 250,
+    icono: "🛍️",
+    descripcion: "Tarde libre completa para pasear por el shopping, comer en McDonald's, ver una película y elegir tu manga favorito."
   }
 ];
 

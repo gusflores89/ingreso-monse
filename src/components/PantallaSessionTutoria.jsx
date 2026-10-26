@@ -1272,6 +1272,105 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         </div>
       </header>
 
+      {/* BANNER DE HITOS CADA 50 ESTRELLAS */}
+      {(() => {
+        const estrellasDisponibles = premiosData?.estrellas_disponibles ?? Math.max(estrellasAcumuladas, 0);
+        if (estrellasDisponibles < 50) return null;
+
+        const premiosCanjeables = (premiosData?.premios_config || [])
+          .filter(p => p.estrellas <= estrellasDisponibles)
+          .sort((a, b) => b.estrellas - a.estrellas);
+
+        const premioMaximo = premiosCanjeables[0];
+        const hitos = [50, 100, 150, 200, 250];
+        const proximoHito = hitos.find(h => h > estrellasDisponibles);
+        const faltanParaSiguiente = proximoHito ? proximoHito - estrellasDisponibles : null;
+
+        return (
+          <div style={{
+            margin: "14px 0 22px 0",
+            background: "linear-gradient(135deg, rgba(245, 158, 11, 0.18) 0%, rgba(16, 185, 129, 0.15) 100%)",
+            border: "1.5px solid rgba(245, 158, 11, 0.55)",
+            borderRadius: "14px",
+            padding: "14px 20px",
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "14px",
+            boxShadow: "0 6px 20px rgba(245, 158, 11, 0.2)"
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "14px", flex: 1, minWidth: "280px" }}>
+              <span style={{ fontSize: "2.2rem", filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.4))" }}>
+                {premioMaximo?.icono || "🎉"}
+              </span>
+              <div>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
+                  <strong style={{ color: "#fef08a", fontSize: "1.02rem" }}>
+                    ¡Hito alcanzado! Tenés {estrellasDisponibles} ⭐ disponibles
+                  </strong>
+                  <span style={{
+                    fontSize: "0.74rem",
+                    fontWeight: "800",
+                    background: "linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)",
+                    color: "#ffffff",
+                    padding: "3px 9px",
+                    borderRadius: "12px",
+                    letterSpacing: "0.03em"
+                  }}>
+                    {premiosCanjeables.length} PREMIOS DESBLOQUEADOS
+                  </span>
+                </div>
+                <p style={{ color: "#fde68a", fontSize: "0.88rem", margin: "3px 0 0 0", lineHeight: "1.35" }}>
+                  {premioMaximo ? (
+                    <>
+                      ¡Desbloqueaste premios de 50 ⭐ (Helado, Pin) hasta <strong>{premioMaximo.titulo}</strong> ({premioMaximo.estrellas} ⭐)!
+                    </>
+                  ) : (
+                    "¡Alcanzaste tu hito de estrellas para canjear premios familiares!"
+                  )}
+                  {proximoHito ? (
+                    <span style={{ display: "block", color: "#a7f3d0", fontSize: "0.82rem", marginTop: "2px" }}>
+                      🎯 Próximo gran premio a las <strong>{proximoHito} ⭐</strong> (¡te faltan solo {faltanParaSiguiente} ⭐!).
+                    </span>
+                  ) : (
+                    <span style={{ display: "block", color: "#a7f3d0", fontSize: "0.82rem", marginTop: "2px" }}>
+                      🏆 ¡Completaste todos los hitos estelares hasta el Shopping (250 ⭐)!
+                    </span>
+                  )}
+                </p>
+              </div>
+            </div>
+            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+              <button
+                type="button"
+                onClick={() => {
+                  cargarPremios();
+                  setShowPremiosModal(true);
+                }}
+                style={{
+                  padding: "10px 18px",
+                  borderRadius: "10px",
+                  background: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
+                  color: "#0f172a",
+                  fontSize: "0.9rem",
+                  fontWeight: "800",
+                  border: "none",
+                  cursor: "pointer",
+                  boxShadow: "0 4px 14px rgba(245, 158, 11, 0.4)",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  transition: "transform 150ms ease"
+                }}
+              >
+                <span>🎁 Abrir Cofre y Canjear</span>
+              </button>
+            </div>
+          </div>
+        );
+      })()}
+
       {pregunta?.tema_sugerido && !pregunta.tema_sugerido.completado && pregunta.tema !== pregunta.tema_sugerido.tema && (
         <div style={{
           margin: "16px 0 24px 0",

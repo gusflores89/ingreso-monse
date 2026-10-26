@@ -339,6 +339,51 @@ export default function LaboratorioPage() {
         )}
       </section>
 
+      {/* ESCALERA DE HITOS CADA 50 ESTRELLAS */}
+      <section style={{ maxWidth: "980px", margin: "14px auto 0", background: "rgba(15, 23, 42, 0.6)", backdropFilter: "blur(12px)", border: "1px solid rgba(245, 158, 11, 0.35)", borderRadius: "14px", padding: "14px 20px", boxShadow: "0 4px 15px rgba(0, 0, 0, 0.3)" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px", flexWrap: "wrap", gap: "8px" }}>
+          <span style={{ fontSize: "0.88rem", fontWeight: "700", color: "#fef08a", display: "flex", alignItems: "center", gap: "6px" }}>
+            ⭐ Premios cada 50 Estrellas (¡Cada fórmula resuelta te suma +2 ⭐ directas a tu cofre!)
+          </span>
+          <span style={{ fontSize: "0.78rem", color: "#94a3b8" }}>
+            Canjeables en tu Cofre de Tutoría
+          </span>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))", gap: "10px" }}>
+          {[
+            { estrellas: 50, icono: "📍🍦", titulo: "Pin Anime / Helado", desc: "A tu elección" },
+            { estrellas: 100, icono: "🍔", titulo: "Salida al McDonald's", desc: "Tu combo favorito" },
+            { estrellas: 150, icono: "📚", titulo: "Tomo de Manga", desc: "El que elijas" },
+            { estrellas: 200, icono: "💵", titulo: "$10.000 Pesos", desc: "Dinero en efectivo" },
+            { estrellas: 250, icono: "🛍️", titulo: "Salida al Shopping", desc: "Mc + Cine + Manga" }
+          ].map((h) => {
+            const alcanzado = estrellasTotales >= h.estrellas;
+            return (
+              <div
+                key={h.estrellas}
+                style={{
+                  background: alcanzado ? "rgba(16, 185, 129, 0.12)" : "rgba(30, 41, 59, 0.45)",
+                  border: alcanzado ? "1.5px solid #10b981" : "1px solid rgba(255, 255, 255, 0.08)",
+                  borderRadius: "10px",
+                  padding: "10px 12px",
+                  textAlign: "center",
+                  transition: "all 0.2s ease"
+                }}
+              >
+                <div style={{ fontSize: "1.4rem", marginBottom: "2px" }}>{h.icono}</div>
+                <div style={{ fontWeight: "800", fontSize: "0.82rem", color: alcanzado ? "#34d399" : "#f1f5f9" }}>
+                  {h.titulo}
+                </div>
+                <div style={{ fontSize: "0.72rem", color: "#94a3b8" }}>{h.desc}</div>
+                <div style={{ marginTop: "4px", fontSize: "0.76rem", fontWeight: "700", color: alcanzado ? "#fef08a" : "#64748b" }}>
+                  {alcanzado ? `✓ Desbloqueado (${h.estrellas} ⭐)` : `${h.estrellas} ⭐`}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
       {/* SELECTOR DE MODOS */}
       <section style={{ maxWidth: "980px", margin: "18px auto 0", display: "flex", gap: "8px", flexWrap: "wrap", justifyContent: "center" }}>
         {[
