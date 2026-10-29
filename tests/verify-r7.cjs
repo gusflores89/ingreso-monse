@@ -7,7 +7,7 @@ const cas=load('src/lib/registro-envios.js',['cambiarSesion']);
 const ok=r=>{if(r.error)throw Error(r.error.message);return r.data;};
 const base={id:'session-test',user_id:user.id,tema:'produccion_escrita',tipo_pregunta:'examen_final',es_correcta:null,created_at:'2026-09-12T00:30:00Z',pregunta_generada:'Contá una historia.',respuesta_usuario:'Un día viajamos.',ia_parametros_usados:{revision_pendiente:true,objetivo_id:'original',eventos_pedagogicos:[]}};
 async function request(database,endpoint,body={},query={},overrides={}) {
- const deps={...summary,...cas,...curriculum,requireMethod:(req,res,method)=>{if(req.method===method)return true;res.status(405).json({});return false;},requireAccess:()=>true,requireOwnership:(req,res,id)=>{if(id===user.id)return true;res.status(403).json({error:'Forbidden'});return false;},getSupabaseAdmin:()=>database,assertSupabaseOk:ok,...overrides};
+ const deps={...summary,...cas,...curriculum,requireMethod:(req,res,method)=>{if(req.method===method)return true;res.status(405).json({});return false;},requireAccess:()=>true,requireOwnership:(req,res,id)=>{if(id===user.id)return true;res.status(403).json({error:'Forbidden'});return false;},getSupabaseAdmin:()=>database,assertSupabaseOk:ok,precioAccesoCompletoArs:()=>19900,...overrides};
  const {handler}=load(endpoint,['handler'],deps);let status,output,headers={};
  await handler({method:endpoint.endsWith('/recorrido.js') || endpoint.endsWith('/progreso.js')?'GET':'POST',body,query:{user_id:user.id,...query}}, {setHeader(k,v){headers[k]=v;},status(v){status=v;return this;},json(v){output=v;}});
  return {status,output,headers};
@@ -52,6 +52,6 @@ const history='src/pages/api/familia/recorrido.js',review='src/pages/api/familia
  assert.equal((await request(db({tareas_manuscritas:[{id:'paper-test',user_id:'another',estado:'completada'}]}),paper,pb)).status,403);count++;
  const dashboardDb=db({sesiones:[],progreso:[],alertas:[]});
  const dashboard=await request(dashboardDb,'src/pages/api/progreso.js',{}, {skip_insight:'true'}, {loadUser:async()=>({data:user}),loadUserByCode:async()=>({data:user}),buildAlumnoProfile:()=>({}),getUserPlan:()=> 'full',checkDailyRateLimit:()=>{throw Error('Read-only panel must not check AI quota');},callOpenRouter:()=>{throw Error('No AI call');}});
- assert.equal(dashboard.status,200);assert.equal(dashboard.output.insight_markdown,'');count++;
+ assert.equal(dashboard.status,200);assert.equal(dashboard.output.insight_markdown,'');assert.equal(dashboard.output.precio_acceso_completo,19900);count++;
  console.log(JSON.stringify({passed:count,realAI:false,realDatabase:false}));
 })().catch(e=>{console.error(e);process.exitCode=1});

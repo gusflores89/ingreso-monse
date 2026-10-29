@@ -4,6 +4,8 @@ import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { TRIAL_DEFAULT_TOPIC } from "@/lib/planes";
 import { hashFamilyPassword } from "@/lib/access";
 import { sendWelcomeEmail } from "@/lib/email";
+import { sendMetaEvent } from "@/lib/meta-capi";
+import { SITE_URL } from "@/lib/sitio";
 
 export default async function handler(req, res) {
   if (!requireMethod(req, res, "POST")) return;
@@ -23,7 +25,12 @@ export default async function handler(req, res) {
     grado,
     fecha_nacimiento,
     password_familiar,
+    consentimiento_adulto,
   } = req.body || {};
+
+  if (consentimiento_adulto !== true) {
+    return res.status(400).json({ error: "Se necesita el consentimiento de una persona adulta responsable." });
+  }
 
   const validationError = validateSetupInput({ nombre, email, fecha_examen, edad, fecha_nacimiento, estilo_aprendizaje, password_familiar });
   if (validationError) return res.status(400).json({ error: validationError });
@@ -46,6 +53,8 @@ export default async function handler(req, res) {
             ...rasgos_especiales,
             plan: "trial",
             access_password_hash: hashFamilyPassword(password_familiar),
+            consentimiento_adulto: true,
+            consentimiento_en: new Date().toISOString(),
           },
           edad: edad ? Number(edad) : null,
           grado: grado || null,
@@ -73,6 +82,14 @@ export default async function handler(req, res) {
         plan: "trial",
       }).catch((err) => console.error("[email] Error asincrono en bienvenida:", err));
     }
+
+    sendMetaEvent({
+      eventName: "CompleteRegistration",
+      eventId: usuario.id,
+      userId: usuario.id,
+      sourceUrl: `${SITE_URL}/setup`,
+      req,
+    }).catch(() => {});
 
     res.status(200).json({ usuario, plan, cuenta: { plan: "trial", estado: "activa" } });
   } catch (error) {

@@ -1,4 +1,6 @@
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
+import { sendMetaEvent } from "@/lib/meta-capi";
+import { SITE_URL } from "@/lib/sitio";
 
 export default async function handler(req, res) {
   // Solo procesar peticiones POST (los webhooks de Mercado Pago son POST)
@@ -85,7 +87,16 @@ export default async function handler(req, res) {
       "No se pudo actualizar el plan del usuario a Full"
     );
 
-    console.log(`[webhook-mp] ¡ÉXITO! El plan del usuario ${usuario.nombre} (id: ${userId}) fue activado a FULL automáticamente.`);
+    console.log(`[webhook-mp] Plan activado a FULL para el usuario ${userId}.`);
+
+    sendMetaEvent({
+      eventName: "Purchase",
+      eventId: String(paymentId),
+      userId,
+      value: Number(payment.transaction_amount),
+      currency: payment.currency_id || "ARS",
+      sourceUrl: `${SITE_URL}/papas`,
+    }).catch(() => {});
 
     // 6. Retornar éxito a Mercado Pago
     return res.status(200).json({ status: "success", plan: "full", user_id: userId });

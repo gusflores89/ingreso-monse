@@ -7,6 +7,7 @@ import { MODEL_DASHBOARD, buildPromptDashboard } from "@/lib/prompts";
 import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { buildAlumnoProfile } from "@/lib/alumno";
 import { getUserPlan } from "@/lib/planes";
+import { precioAccesoCompletoArs } from "@/lib/precio";
 import { loadUser, loadUserByCode } from "@/lib/usuarios";
 import { checkDailyRateLimit } from "@/lib/rateLimit";
 import { getPremiosConfig, calcularBalanceEstrellas, INSIGNIAS_ANIME } from "@/lib/premios";
@@ -163,6 +164,7 @@ export default async function handler(req, res) {
       premios,
       insight_markdown: insightMarkdown,
       insight_error: insightError,
+      precio_acceso_completo: precioAccesoCompletoArs(),
     });
   } catch (error) {
     console.error(error);

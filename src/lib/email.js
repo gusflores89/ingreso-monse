@@ -199,7 +199,7 @@ function buildWelcomeHTML({ nombre, codigo_acceso, plan, trialTopics, siteUrl })
                           Cada uno de estos 4 temas de prueba incluye lecciones guiadas por la IA y un mini-examen final para comprobar el avance.
                         </p>`
                         : `<p style="margin:0;font-size:14px;color:#b8b0d8;line-height:1.6;">
-                          Acceso ilimitado a los m&aacute;s de 37 temas del curr&iacute;culum completo de ingreso (Matem&aacute;ticas y Lengua) con pr&aacute;ctica digital adaptativa, cuaderno f&iacute;sico y ex&aacute;menes simulacro.
+                          Acceso ilimitado a los m&aacute;s de 37 temas del curr&iacute;culum completo de ingreso (Matem&aacute;ticas y Lengua) con pr&aacute;ctica digital adaptativa, cuaderno f&iacute;sico y simulacros cronometrados por materia.
                         </p>`
                     }
                   </td>
@@ -236,4 +236,33 @@ function buildWelcomeHTML({ nombre, codigo_acceso, plan, trialTopics, siteUrl })
   </table>
 </body>
 </html>`;
+}
+
+function escaparHtml(valor) {
+  return String(valor || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+export async function sendArrepentimientoEmail({ destino, nombreAdulto, email, fechaCompra, pagoId, mensaje }) {
+  const client = getResendClient();
+  const html = `
+    <p>Solicitud recibida desde el Botón de Arrepentimiento.</p>
+    <ul>
+      <li>Persona adulta: ${escaparHtml(nombreAdulto)}</li>
+      <li>Email: ${escaparHtml(email)}</li>
+      <li>Fecha de compra: ${escaparHtml(fechaCompra || "no indicada")}</li>
+      <li>Pago: ${escaparHtml(pagoId || "no indicado")}</li>
+    </ul>
+    <p>${escaparHtml(mensaje || "Sin mensaje adicional.").replace(/\n/g, "<br />")}</p>
+  `;
+  await client.emails.send({
+    from: FROM_EMAIL,
+    to: destino,
+    replyTo: email,
+    subject: "Arrepentimiento — Ingreso Monse",
+    html,
+  });
 }

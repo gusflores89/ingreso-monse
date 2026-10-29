@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import Head from "next/head";
 
 export default function AdminPage() {
   const [password, setPassword] = useState("");
@@ -67,6 +68,9 @@ export default function AdminPage() {
   if (!authed) {
     return (
       <main className="admin-console-screen">
+        <Head>
+          <meta name="robots" content="noindex, nofollow" />
+        </Head>
         <form className="admin-login-card" onSubmit={login}>
           <p className="eyebrow">Admin privado</p>
           <h1>Panel de usuarios</h1>
@@ -97,6 +101,9 @@ export default function AdminPage() {
 
   return (
     <main className="admin-console-screen">
+      <Head>
+        <meta name="robots" content="noindex, nofollow" />
+      </Head>
       <section className="admin-console">
         <header className="admin-console-hero">
           <div>
