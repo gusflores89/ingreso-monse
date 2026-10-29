@@ -162,7 +162,7 @@ export default function Login() {
               Preparate para el examen con tu propio <span>Tutor de IA</span>
             </h1>
             <p className="subtitle">
-              El método interactivo de práctica diaria diseñado para pre-adolescentes (10-12 años). Aprendé Matemática y Lengua jugando con explicaciones personalizadas y simulacros reales.
+              El método interactivo de práctica diaria diseñado para pre-adolescentes (10-12 años). Aprendé Matemática y Lengua con explicaciones personalizadas y simulacros cronometrados.
             </p>
             <div className="landing-hero-cta">
               <button type="button" className="landing-btn-primary" onClick={scrollToLogin}>

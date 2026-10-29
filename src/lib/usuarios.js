@@ -12,6 +12,19 @@ export async function loadUser(supabase, userId) {
   return { data, error };
 }
 
+const UUID_USUARIO = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+export async function resolverUsuario(supabase, rawId) {
+  const clean = String(rawId || "").trim();
+  if (!clean || clean.length > 100) return null;
+  if (UUID_USUARIO.test(clean)) {
+    const { data } = await loadUser(supabase, clean);
+    if (data) return data;
+  }
+  const { data } = await loadUserByCode(supabase, clean.toUpperCase());
+  return data || null;
+}
+
 export async function loadUserByCode(supabase, code) {
   const { data, error } = await supabase.from("usuarios")
     .select("id, nombre, email, edad, grado, fecha_examen, nivel_inicial, estilo_aprendizaje, rasgos_especiales, codigo_acceso")

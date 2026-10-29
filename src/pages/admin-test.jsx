@@ -1,10 +1,15 @@
 import { useState } from "react";
+import Head from "next/head";
 import { CURRICULUM_LENGUA, CURRICULUM_MATEMATICA } from "@/lib/curriculum";
+import { hasAccess } from "@/lib/access";
 
-const DEFAULT_TEST_USER_ID = "f8dbb32d-2498-4fd3-839a-9387b79f01a2";
+export async function getServerSideProps({ req }) {
+  if (!hasAccess(req, "admin")) return { notFound: true };
+  return { props: {} };
+}
 
 export default function AdminTest() {
-  const [userId, setUserId] = useState(DEFAULT_TEST_USER_ID);
+  const [userId, setUserId] = useState("");
   const [temaSeleccionado, setTemaSeleccionado] = useState("");
   const [capa, setCapa] = useState(1);
   const [adminPassword, setAdminPassword] = useState("");
@@ -97,6 +102,9 @@ export default function AdminTest() {
 
   return (
     <main className="admin-test-page">
+      <Head>
+        <meta name="robots" content="noindex, nofollow" />
+      </Head>
       <section className="admin-test-card">
         <header className="admin-test-header">
           <p className="eyebrow">Testing interno</p>
@@ -117,7 +125,7 @@ export default function AdminTest() {
 
           <label>
             User ID del alumno/a
-            <input type="text" value={userId} onChange={(event) => setUserId(event.target.value)} />
+            <input type="text" value={userId} onChange={(event) => setUserId(event.target.value)} placeholder="ID del estudiante" />
           </label>
 
           <label>

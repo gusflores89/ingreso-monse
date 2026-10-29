@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import DashboardPapas from "@/components/DashboardPapas";
+import { trackMeta } from "@/lib/analytics";
 
 export default function PapasPage() {
   const router = useRouter();
@@ -13,6 +14,34 @@ export default function PapasPage() {
       setShowSuccessModal(true);
     }
   }, [router.isReady, router.query.pago]);
+
+  useEffect(() => {
+    if (!router.isReady || !queryUserId || router.query.pago !== "exitoso") return undefined;
+    const paymentId = primerValor(router.query.payment_id) || primerValor(router.query.collection_id);
+    const status = primerValor(router.query.status) || primerValor(router.query.collection_status);
+    if (!paymentId || (status && status !== "approved")) return undefined;
+    const clave = `monse_purchase_${paymentId}`;
+    try {
+      if (sessionStorage.getItem(clave)) return undefined;
+    } catch {
+      return undefined;
+    }
+    let cancelado = false;
+    (async () => {
+      try {
+        const res = await fetch(`/api/pagos/estado?user_id=${encodeURIComponent(queryUserId)}&payment_id=${encodeURIComponent(paymentId)}`);
+        const data = await res.json();
+        if (!res.ok || !data.confirmed || cancelado) return;
+        sessionStorage.setItem(clave, "1");
+        trackMeta("Purchase", { value: data.value, currency: data.currency || "ARS" }, data.event_id || paymentId);
+      } catch {
+        /* La compra sigue confirmada por el webhook aunque el pixel no dispare. */
+      }
+    })();
+    return () => {
+      cancelado = true;
+    };
+  }, [router.isReady, router.query, queryUserId]);
 
   const handleCloseModal = () => {
     setShowSuccessModal(false);
@@ -51,7 +80,7 @@ export default function PapasPage() {
               <input
                 value={userId}
                 onChange={(event) => setUserId(event.target.value)}
-                placeholder="Ej: ABRIL (el código del alumno)"
+                placeholder="Código de acceso del estudiante"
                 required
               />
             </label>
@@ -124,7 +153,7 @@ export default function PapasPage() {
               lineHeight: "1.6",
               marginBottom: "28px"
             }}>
-              ¡Felicitaciones! El plan de tu hijo/a ahora es <strong>Completo</strong>. Disfrutá de acceso ilimitado a las 5 fases de estudio, cuadernillo a mano y simulacros.
+              ¡Felicitaciones! El plan de tu hijo/a ahora es <strong>Completo</strong>. Disfrutá de acceso ilimitado a las fases de estudio, cuadernillo a mano y simulacros cronometrados por materia.
             </p>
 
             <div style={{
@@ -142,7 +171,7 @@ export default function PapasPage() {
                 {[
                   { emoji: "🚀", text: "Las 5 fases y los 37 temas completos" },
                   { emoji: "📝", text: "Ejercicios de dictado y escritura a mano" },
-                  { emoji: "⏱️", text: "Simulacros de examen reales cronometrados" },
+                  { emoji: "⏱️", text: "Simulacros cronometrados de Matemática y Lengua" },
                   { emoji: "📊", text: "Análisis cualitativo IA para padres" }
                 ].map((item, idx) => (
                   <li key={idx} style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "0.95rem", color: "#e8e4f0" }}>
@@ -200,4 +229,8 @@ export default function PapasPage() {
       )}
     </main>
   );
+}
+
+function primerValor(value) {
+  return Array.isArray(value) ? value[0] : value;
 }

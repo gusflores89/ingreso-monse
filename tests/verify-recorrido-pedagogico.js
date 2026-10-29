@@ -53,7 +53,7 @@ console.log('✅ Prompts formativos sin penalización injusta ante consulta de d
 console.log('\n--- 3. Verificación de Código en PantallaSessionTutoria.jsx ---');
 const tutoriaCode = fs.readFileSync(path.join(PROJECT_DIR, 'src/components/PantallaSessionTutoria.jsx'), 'utf8');
 
-if (!tutoriaCode.includes('getStarsStorageKey = () => `monse_estrellas_${user_id || "abril"}`')) {
+if (!tutoriaCode.includes('getStarsStorageKey = () => `monse_estrellas_${user_id || "alumno"}`')) {
   throw new Error('FALLO: getStarsStorageKey no está definido para separar estrellas de la misión diaria');
 }
 if (!tutoriaCode.includes('base.fecha === hoy')) {

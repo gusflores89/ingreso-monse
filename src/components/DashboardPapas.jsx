@@ -1,5 +1,8 @@
 import RecorridoFamiliar from "@/components/RecorridoFamiliar";
 import PremiosSectionPapas from "@/components/PremiosSectionPapas";
+import { trackMeta } from "@/lib/analytics";
+import { nombreParaMostrar } from "@/lib/alumno";
+import { PRECIO_ACCESO_COMPLETO_ARS, formatearPesosARS } from "@/lib/precio";
 import { useEffect, useState, useRef } from "react";
 import { TRIAL_TOPICS } from "@/lib/planes";
 import { getPdfUrl } from "@/lib/diapositivas";
@@ -287,6 +290,13 @@ export default function DashboardPapas({ userId }) {
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "No se pudo generar el cobro.");
+      if (json.preference_id) {
+        trackMeta("InitiateCheckout", {
+          value: json.precio,
+          currency: json.moneda || "ARS",
+          content_name: "Acceso Completo",
+        }, json.preference_id);
+      }
 
       const targetUrl = json.init_point || json.sandbox_init_point;
       if (targetUrl) {
@@ -542,7 +552,7 @@ export default function DashboardPapas({ userId }) {
             </article>
           </section>
 
-          <RecorridoFamiliar key={data.usuario.id} userId={data.usuario.id} />
+          <RecorridoFamiliar key={data.usuario.id} userId={data.usuario.id} nombreAlumno={data.usuario.nombre} />
           {errorTareas && <p role="alert">{errorTareas} <button type="button" onClick={load}>Reintentar tareas</button></p>}
           {!errorTareas && <HandwritingSection
             tareasPendientes={tareasPendientes}
@@ -556,6 +566,7 @@ export default function DashboardPapas({ userId }) {
 
           <PremiosSectionPapas
             userId={data.usuario.id}
+            nombreAlumno={nombreParaMostrar(data.usuario.nombre, "tu hijo/a")}
             premiosData={premiosData || (data?.premios ? {
               premios_config: data.premios.config,
               canjes: data.premios.canjes,
@@ -766,7 +777,7 @@ export default function DashboardPapas({ userId }) {
                       display: "inline-block",
                       marginBottom: "12px"
                     }}>
-                      ⚡ PROMO LANZAMIENTO CICLO 2027 (PAGO ÚNICO)
+                      Pago único
                     </span>
                     <h3 style={{ fontSize: "1.45rem", fontWeight: "700", color: "#e8e4f0", margin: "0 0 8px 0" }}>
                       {trialCompletados === 4 ? "🎉 ¡Muestra de Prueba Completada!" : "💎 Desbloqueá el Acceso Completo a IngresoMonse"}
@@ -786,14 +797,11 @@ export default function DashboardPapas({ userId }) {
                     textAlign: "right",
                     minWidth: "200px"
                   }}>
-                    <span style={{ fontSize: "0.85rem", color: "#9590a6", textDecoration: "line-through", display: "block", marginBottom: "2px" }}>
-                      $29.900 ARS
-                    </span>
-                    <strong style={{ fontSize: "1.6rem", color: "#10b981", fontWeight: "700", display: "block", lineHeight: "1.2" }}>
-                      $19.900 ARS
+                    <strong style={{ fontSize: "1.6rem", color: "#e8e4f0", fontWeight: "700", display: "block", lineHeight: "1.2" }}>
+                      {formatearPesosARS(data?.precio_acceso_completo || PRECIO_ACCESO_COMPLETO_ARS)} ARS
                     </strong>
-                    <span style={{ fontSize: "0.78rem", color: "#34d399", fontWeight: "600" }}>
-                      ¡Ahorrás un 33% hoy!
+                    <span style={{ fontSize: "0.78rem", color: "#9590a6", fontWeight: "600" }}>
+                      Precio único del Acceso Completo
                     </span>
                   </div>
                 </div>

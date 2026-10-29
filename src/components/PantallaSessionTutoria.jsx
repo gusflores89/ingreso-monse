@@ -103,8 +103,8 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
   }, [user_id]);
 
   const activeTema = pregunta?.tema || tema || "";
-  const getStorageKey = () => `monse_mision_${user_id || "abril"}`;
-  const getStarsStorageKey = () => `monse_estrellas_${user_id || "abril"}`;
+  const getStorageKey = () => `monse_mision_${user_id || "alumno"}`;
+  const getStarsStorageKey = () => `monse_estrellas_${user_id || "alumno"}`;
 
   const getSavedStars = () => {
     if (typeof window === "undefined") return 0;
@@ -166,7 +166,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         ...updates,
         // CAMPOS GARANTIZADOS DEL DÍA ACTUAL (NUNCA SOBRESCRITOS POR BASE ANTERIOR)
         fecha: hoy,
-        user_id: user_id || base.user_id || "abril",
+        user_id: user_id || base.user_id || "alumno",
         desafios: updates.desafios !== undefined ? updates.desafios : (esMismoDia ? (base.desafios ?? desafiosCompletadosMision) : 0),
         retosCompletadosIds: updates.retosCompletadosIds !== undefined ? updates.retosCompletadosIds : (esMismoDia ? (base.retosCompletadosIds ?? retosCompletadosIds) : []),
         misionTerminada: updates.misionTerminada !== undefined ? updates.misionTerminada : (esMismoDia ? (base.misionTerminada ?? misionTerminada) : false),
@@ -324,7 +324,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
               try {
                 localStorage.setItem(getStorageKey(), JSON.stringify({
                   fecha: hoy,
-                  user_id: user_id || saved.user_id || "abril",
+                  user_id: user_id || saved.user_id || "alumno",
                   tema: tema || savedTema || activeTema,
                   desafios: 0,
                   retosCompletadosIds: [],
@@ -558,7 +558,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "No se pudo consultar al tutor.");
       setEvaluacion(data);
-      // NO declaramos el reto completado acá: Abril debe poder leer la explicación y probar con ayuda
+      // NO declaramos el reto completado acá: el estudiante debe poder leer la explicación y probar con ayuda
       saveMissionState({
         evaluacion: data,
         respuesta: "",
@@ -1198,6 +1198,25 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             title="Minijuego de cálculo mental y Salvoconducto Imperial"
           >
             🧪 Laboratorio de Fórmulas
+          </a>
+          <a
+            href={`/simulacro?user_id=${encodeURIComponent(user_id)}`}
+            style={{
+              background: "#1e1b4b",
+              border: "1.5px solid #a78bfa",
+              color: "#ffffff",
+              padding: "7px 14px",
+              borderRadius: "8px",
+              fontWeight: "800",
+              fontSize: "0.84rem",
+              cursor: "pointer",
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "6px"
+            }}
+          >
+            ⏱️ Simulacro
           </a>
           {pregunta?.tema_sugerido && !pregunta.tema_sugerido.completado && pregunta.tema === pregunta.tema_sugerido.tema && (
             <span className="plan-badge-tutoria" style={{ fontSize: "0.84rem", padding: "6px 14px", borderRadius: "20px", backgroundColor: "#3b0764", color: "#f3e8ff", border: "1.5px solid #c084fc", fontWeight: "800", display: "inline-flex", alignItems: "center", gap: "6px", boxShadow: "0 0 10px rgba(192, 132, 252, 0.3)" }}>
@@ -2414,8 +2433,13 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                     />
 
                     <div style={{padding:20,borderRadius:12,border:"1px solid #2a204d",color:"#a59ec9"}}>
-                      <h4 style={{margin:"0 0 6px",color:"#e8e4f0"}}>Simulacros de ingreso</h4>
-                      <p style={{margin:0}}>Los simulacros completos todavía no están disponibles. Por ahora, podés aprender y practicar cada tema.</p>
+                      <h4 style={{margin:"0 0 6px",color:"#e8e4f0"}}>Simulacros cronometrados</h4>
+                      <p style={{margin:"0 0 10px"}}>60 minutos de Matemática o de Lengua, con ejercicios de la plataforma y el puntaje al final. No reemplazan el examen oficial.</p>
+                      {pregunta?.plan === "trial" ? (
+                        <p style={{margin:0}}>Están incluidos en el Acceso Completo. Se activan desde el panel familiar.</p>
+                      ) : (
+                        <a href={`/simulacro?user_id=${encodeURIComponent(user_id)}`} style={{color:"#c4b5fd",fontWeight:700}}>Empezar un simulacro</a>
+                      )}
                     </div>
                   </>
                 );
@@ -2439,7 +2463,8 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
           premiosConfig={premiosData?.premios_config || []}
           balance={{
             estrellasDisponibles: premiosData?.estrellas_disponibles ?? estrellasAcumuladas,
-            estrellasTotales: premiosData?.estrellas_totales ?? Math.max(estrellasAcumuladas, 262)
+            estrellasTotales: premiosData?.estrellas_totales ?? estrellasAcumuladas,
+            retosCompletados: Array.isArray(retosCompletadosIds) ? retosCompletadosIds.length : 0
           }}
           canjes={premiosData?.canjes || []}
           insignias={premiosData?.insignias || []}

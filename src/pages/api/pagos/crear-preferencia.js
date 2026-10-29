@@ -1,6 +1,8 @@
 import { requireMethod } from "@/lib/http";
 import { requireAccess, requireOwnership } from "@/lib/access";
-import { assertSupabaseOk, getSupabaseAdmin } from "@/lib/supabaseAdmin";
+import { getSupabaseAdmin } from "@/lib/supabaseAdmin";
+import { precioAccesoCompletoArs } from "@/lib/precio";
+import { sendMetaEvent } from "@/lib/meta-capi";
 
 export default async function handler(req, res) {
   // Validar método POST
@@ -47,9 +49,7 @@ export default async function handler(req, res) {
 
     if (!requireOwnership(req, res, usuario.id)) return;
 
-    const price = process.env.PLAN_FULL_PRICE 
-      ? parseInt(process.env.PLAN_FULL_PRICE, 10) 
-      : 19900; // $19.900 ARS por defecto (pago único)
+    const price = precioAccesoCompletoArs();
 
     let siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ingresomonserrat.online";
     // Mercado Pago no permite localhost ni IPs locales para back_urls.
@@ -70,7 +70,7 @@ export default async function handler(req, res) {
           {
             id: "ingresomonse_full_access",
             title: `💎 IngresoMonse - Acceso Completo para ${usuario.nombre}`,
-            description: "Acceso completo e ilimitado a todos los temas de la currícula de ingreso, cuaderno físico y simulacros.",
+            description: "Acceso completo a los temas de Matemática y Lengua, cuaderno físico y simulacros cronometrados por materia.",
             quantity: 1,
             currency_id: "ARS",
             unit_price: price,
@@ -102,11 +102,22 @@ export default async function handler(req, res) {
 
     const preference = await mpRes.json();
 
-    // 3. Devolver los links de pago (init_point de producción y sandbox_init_point de prueba)
+    sendMetaEvent({
+      eventName: "InitiateCheckout",
+      eventId: preference.id,
+      userId: usuario.id,
+      value: price,
+      currency: "ARS",
+      sourceUrl: `${siteUrl}/papas`,
+      req,
+    }).catch(() => {});
+
     res.status(200).json({
       preference_id: preference.id,
-      init_point: preference.init_point, // Enlace real
-      sandbox_init_point: preference.sandbox_init_point, // Enlace de prueba
+      init_point: preference.init_point,
+      sandbox_init_point: preference.sandbox_init_point,
+      precio: price,
+      moneda: "ARS",
     });
   } catch (error) {
     console.error("[crear-preferencia] Error al crear preferencia de cobro:", error);

@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { insigniaDesbloqueada } from "@/lib/insignias";
 
-export default function PremiosSectionPapas({ userId, premiosData, loading, onUpdate }) {
+export default function PremiosSectionPapas({ userId, premiosData, loading, onUpdate, nombreAlumno = "tu hijo/a" }) {
   const [actionLoading, setActionLoading] = useState(null);
   const [editandoPremios, setEditandoPremios] = useState(false);
   const [premiosConfig, setPremiosConfig] = useState(premiosData?.premios_config || []);
@@ -30,7 +31,7 @@ export default function PremiosSectionPapas({ userId, premiosData, loading, onUp
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "No se pudo actualizar el canje.");
-      setSuccessMsg(`¡Genial! Marcaste "${premioTitulo}" como entregado a Abril.`);
+      setSuccessMsg(`¡Genial! Marcaste "${premioTitulo}" como entregado a ${nombreAlumno}.`);
       if (onUpdate) await onUpdate();
     } catch (err) {
       setErrorMsg(err.message);
@@ -40,7 +41,7 @@ export default function PremiosSectionPapas({ userId, premiosData, loading, onUp
   };
 
   const handleCancelarCanje = async (canjeId) => {
-    if (!window.confirm("¿Deseas cancelar esta solicitud y reembolsar las estrellas a Abril?")) return;
+    if (!window.confirm(`¿Cancelar esta solicitud y devolver las estrellas a ${nombreAlumno}?`)) return;
     setActionLoading(canjeId);
     setErrorMsg("");
     setSuccessMsg("");
@@ -56,7 +57,7 @@ export default function PremiosSectionPapas({ userId, premiosData, loading, onUp
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "No se pudo cancelar el canje.");
-      setSuccessMsg("Solicitud cancelada. Las estrellas fueron devueltas a la cuenta de Abril.");
+      setSuccessMsg(`Solicitud cancelada. Las estrellas volvieron a la cuenta de ${nombreAlumno}.`);
       if (onUpdate) await onUpdate();
     } catch (err) {
       setErrorMsg(err.message);
@@ -190,7 +191,7 @@ export default function PremiosSectionPapas({ userId, premiosData, loading, onUp
         <div style={{ background: "rgba(17, 13, 36, 0.8)", border: "1px solid rgba(139, 92, 246, 0.3)", borderRadius: "12px", padding: "18px", marginBottom: "20px" }}>
           <h4 style={{ margin: "0 0 10px 0", color: "#c084fc", fontSize: "0.95rem" }}>Editar opciones y costo de premios</h4>
           <p style={{ margin: "0 0 14px 0", color: "#a59ec9", fontSize: "0.82rem" }}>
-            Ajustá cuántas estrellas cuesta cada premio acordado con Abril o agregá nuevos.
+            Ajustá cuántas estrellas cuesta cada premio acordado con {nombreAlumno} o agregá nuevos.
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "16px" }}>
             {premiosConfig.map((p) => (
@@ -283,7 +284,7 @@ export default function PremiosSectionPapas({ userId, premiosData, loading, onUp
 
         {canjesPendientes.length === 0 ? (
           <div style={{ background: "rgba(255, 255, 255, 0.02)", border: "1px dashed rgba(255, 255, 255, 0.1)", borderRadius: "10px", padding: "16px", textAlign: "center", color: "#a59ec9", fontSize: "0.85rem" }}>
-            🎉 No hay canjes pendientes. Abril tiene ⭐ {estrellasDisponibles} listas para canjear cuando quiera desde su pantalla.
+            🎉 No hay canjes pendientes. {nombreAlumno} tiene ⭐ {estrellasDisponibles} listas para canjear cuando quiera desde su pantalla.
           </div>
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
@@ -371,14 +372,13 @@ export default function PremiosSectionPapas({ userId, premiosData, loading, onUp
         </details>
       )}
 
-      {/* Resumen del Álbum Anime de Abril */}
       <div>
         <h4 style={{ margin: "0 0 10px 0", color: "#ffffff", fontSize: "0.95rem", display: "flex", alignItems: "center", gap: "6px" }}>
-          <span>📖</span> Álbum Anime de Abril (Insignias por Esfuerzo)
+          <span>📖</span> Álbum anime de {nombreAlumno}
         </h4>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))", gap: "10px" }}>
           {insignias.map((insignia) => {
-            const desbloqueada = estrellasTotales >= insignia.estrellas_requeridas;
+            const desbloqueada = insigniaDesbloqueada(insignia, { estrellasTotales });
             return (
               <div
                 key={insignia.id}

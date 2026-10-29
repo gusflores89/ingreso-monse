@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { insigniaDesbloqueada } from "@/lib/insignias";
 
 export default function ModalPremiosEstudiante({
   isOpen,
@@ -8,7 +9,8 @@ export default function ModalPremiosEstudiante({
   balance = {},
   canjes = [],
   insignias = [],
-  onCanjeExitoso
+  onCanjeExitoso,
+  retosCompletados = 0
 }) {
   const [activeTab, setActiveTab] = useState("premios"); // 'premios' | 'insignias'
   const [loadingCanje, setLoadingCanje] = useState(false);
@@ -418,13 +420,7 @@ export default function ModalPremiosEstudiante({
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "14px" }}>
               {insignias.map((ins) => {
-                // Condiciones de desbloqueo:
-                // maomao: siempre desbloqueada
-                // anya: si tiene >= 100 estrellas totales
-                // hinata: si tiene >= 5 retos completados (Abril tiene más de 10)
-                // tanjiro: desbloqueada
-                // akaneko: desbloqueada
-                const desbloqueada = true; // Abril ya superó las condiciones base
+                const desbloqueada = insigniaDesbloqueada(ins, { estrellasTotales, retosCompletados });
 
                 return (
                   <div
@@ -462,14 +458,14 @@ export default function ModalPremiosEstudiante({
                           {ins.anime}
                         </span>
                         <span style={{
-                          background: "rgba(34, 197, 94, 0.2)",
-                          color: "#4ade80",
+                          background: desbloqueada ? "rgba(34, 197, 94, 0.2)" : "rgba(148, 163, 184, 0.15)",
+                          color: desbloqueada ? "#4ade80" : "#94a3b8",
                           fontSize: "0.7rem",
                           fontWeight: "700",
                           padding: "2px 6px",
                           borderRadius: "6px"
                         }}>
-                          ¡Coleccionada!
+                          {desbloqueada ? "¡Coleccionada!" : "Todavía no"}
                         </span>
                       </div>
                       <h4 style={{ margin: "4px 0 2px", fontSize: "0.98rem", color: "#ffffff", fontWeight: "700" }}>

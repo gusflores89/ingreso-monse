@@ -169,7 +169,7 @@ function generarOperacion(modo = "mixto") {
 
 export default function LaboratorioPage() {
   const router = useRouter();
-  const userId = (router.query.user_id || "ABRIL").toString();
+  const userId = (typeof router.query.user_id === "string" ? router.query.user_id : "").trim();
 
   // El modo por defecto es "mixto" (Desafío Imperial con 50% división y 35% multiplicación)
   const [modo, setModo] = useState("mixto"); // mixto | division | multiplicacion | suma_resta
@@ -193,7 +193,8 @@ export default function LaboratorioPage() {
     insignias: [],
     salvoconducto_ganado: false,
   });
-  const [estrellasTotales, setEstrellasTotales] = useState(312);
+  const [estrellasTotales, setEstrellasTotales] = useState(0);
+  const [nombreEstudiante, setNombreEstudiante] = useState("");
   const [guardando, setGuardando] = useState(false);
 
   // Canvas para la pizarra de garabatos
@@ -202,7 +203,7 @@ export default function LaboratorioPage() {
 
   // Cargar progreso del laboratorio
   useEffect(() => {
-    if (!router.isReady) return;
+    if (!router.isReady || !userId) return;
     const cargar = async () => {
       try {
         const res = await fetch(`/api/laboratorio/progreso?user_id=${encodeURIComponent(userId)}`);
@@ -210,6 +211,7 @@ export default function LaboratorioPage() {
           const data = await res.json();
           if (data.laboratorio) setProgresoLab(data.laboratorio);
           if (data.estrellas_totales) setEstrellasTotales(data.estrellas_totales);
+          if (data.nombre) setNombreEstudiante(data.nombre);
         }
       } catch (err) {
         console.error("Error al cargar progreso del laboratorio:", err);
@@ -397,6 +399,26 @@ export default function LaboratorioPage() {
   const sumaValida = Math.min(sumaCount, 10);
   const puntosValidosSalvoconducto = divCount + multCount + sumaValida;
   const porcentajeMeta = Math.min(100, Math.round((Math.min(puntosValidosSalvoconducto, 40) / 40) * 100));
+
+  if (!router.isReady) {
+    return (
+      <main className="login-screen">
+        <p className="status">Cargando...</p>
+      </main>
+    );
+  }
+
+  if (!userId) {
+    return (
+      <main className="login-screen">
+        <section className="login-card login-card-standalone">
+          <h1>Entrá desde tu sesión</h1>
+          <p className="login-help">El laboratorio usa la cuenta con la que estás practicando.</p>
+          <a className="primary link-button" href="/">Ir al inicio</a>
+        </section>
+      </main>
+    );
+  }
 
   return (
     <div className="laboratorio-screen" style={{ minHeight: "100vh", background: "#080c14", color: "#f8fafc", fontFamily: "'Inter', sans-serif", padding: "16px 20px" }}>
@@ -866,7 +888,7 @@ export default function LaboratorioPage() {
             </h2>
             <div style={{ background: "rgba(254, 240, 138, 0.1)", border: "1px dashed #fef08a", borderRadius: "14px", padding: "16px", margin: "16px 0", textAlign: "left" }}>
               <p style={{ margin: "0 0 8px", color: "#fef08a", fontWeight: "800", fontSize: "1.05rem" }}>
-                Pase Oficial a la Capital para: Abril
+                Pase oficial para: {nombreEstudiante || "el estudiante"}
               </p>
               <p style={{ margin: 0, color: "#cbd5e1", fontSize: "0.92rem", lineHeight: "1.5" }}>
                 Por completar con maestría y variedad el desafío de 40 fórmulas (divisiones, multiplicaciones y cálculo mental) en el laboratorio imperial.

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
+import { trackMeta } from "@/lib/analytics";
 
 export default function PantallaSetup({ onComplete }) {
   const router = useRouter();
@@ -21,6 +23,7 @@ export default function PantallaSetup({ onComplete }) {
     estilo_aprendizaje: "visual_ejemplos",
     dislexia: false,
   });
+  const [aceptaTerminos, setAceptaTerminos] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [setupExitoso, setSetupExitoso] = useState(null);
@@ -47,10 +50,12 @@ export default function PantallaSetup({ onComplete }) {
           nivel_inicial: form.nivel_inicial,
           estilo_aprendizaje: form.estilo_aprendizaje,
           rasgos_especiales: { dislexia: form.dislexia },
+          consentimiento_adulto: aceptaTerminos,
         }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "No se pudo completar el setup.");
+      trackMeta("CompleteRegistration", { status: "trial" }, data.usuario?.id);
       setSetupExitoso(data);
       onComplete?.(data);
     } catch (err) {
@@ -265,6 +270,13 @@ export default function PantallaSetup({ onComplete }) {
         <label className="check-row">
           <input type="checkbox" checked={form.dislexia} onChange={(event) => update("dislexia", event.target.checked)} />
           Rasgo a contemplar: dislexia
+        </label>
+
+        <label className="check-row">
+          <input type="checkbox" checked={aceptaTerminos} onChange={(event) => setAceptaTerminos(event.target.checked)} required />
+          <span>
+            Soy la persona adulta responsable y acepto los <Link href="/terminos">Términos y Condiciones</Link> y la <Link href="/privacidad">Política de Privacidad</Link>.
+          </span>
         </label>
 
         {error && <p className="error">{error}</p>}

@@ -1,3 +1,9 @@
+export function nombreParaMostrar(nombre, fallback = "tu hijo/a") {
+  const limpio = String(nombre || "").replace(/\s+/g, " ").trim();
+  if (limpio.length < 2 || limpio.length > 50) return fallback;
+  return limpio;
+}
+
 export function buildAlumnoProfile(usuario = {}) {
   const rasgos = usuario.rasgos_especiales || {};
   const edad = usuario.edad || calcularEdadDesdeFecha(usuario.fecha_nacimiento) || inferirEdadDesdeExamen(usuario.fecha_examen);
