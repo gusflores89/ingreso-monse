@@ -413,7 +413,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         .then((res) => res.json())
         .then((data) => {
           if (data) {
-            setUserProgress(data.progreso || []);
+            setUserProgress(data.metricas?.progreso_temas || data.progreso || []);
             const approved = new Set(
               data.examenes_aprobados && data.examenes_aprobados.length
                 ? data.examenes_aprobados
@@ -500,17 +500,40 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       if (!res.ok) throw new Error(data.error || "No se pudo evaluar la respuesta.");
       setEvaluacion(data);
 
+      const preguntaActualizada = data.progreso_objetivo && pregunta
+        ? {
+            ...pregunta,
+            progreso_objetivo: {
+              ...(pregunta.progreso_objetivo || {}),
+              ...data.progreso_objetivo,
+            },
+          }
+        : pregunta;
+      if (data.progreso_objetivo) {
+        setPregunta(preguntaActualizada);
+      }
+
       if (data.es_correcta || data.revision_pendiente) {
-        // Superó el reto o quedó en revisión diferida: guardar explícitamente la evaluación junto con el reto completado
+        // Superó el reto: +2 autónomo (1° intento), +1 con pista (2° intento), +3 bono de maestría al conquistar escalón
+        const estrellasBase = data.revision_pendiente ? 2 : (intento > 1 ? 1 : 2);
+        const bonoEscalon = data.progreso_objetivo?.escalon_conquistado ? 3 : 0;
+        const estrellasGanadas = estrellasBase + bonoEscalon;
         setPistaActiva(null);
-        registrarDesafioCompletado(sesionId, 2, {
+        registrarDesafioCompletado(sesionId, estrellasGanadas, {
           evaluacion: data,
           respuesta,
           borrador: "",
           pistaActiva: null,
+          ...(data.progreso_objetivo && preguntaActualizada ? { pregunta: preguntaActualizada } : {}),
         });
       } else {
-        saveMissionState({ evaluacion: data, intento, respuesta, borrador: respuesta });
+        saveMissionState({
+          evaluacion: data,
+          intento,
+          respuesta,
+          borrador: respuesta,
+          ...(data.progreso_objetivo && preguntaActualizada ? { pregunta: preguntaActualizada } : {}),
+        });
       }
     } catch (err) {
       setError(err.message);
@@ -624,7 +647,8 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         const nextIds = [...retosCompletadosIds, id];
         const nuevosDesafios = nextIds.length;
         const starsBase = Math.max(getSavedStars(), estrellasAcumuladas);
-        const newStars = starsBase + 2;
+        const estrellasPaso = (!evaluacion.es_correcta && !evaluacion.no_visto) ? 0 : (evaluacion.no_visto ? 0 : 2);
+        const newStars = starsBase + estrellasPaso;
         const terminada = nuevosDesafios >= 3 || Boolean(pregunta?.repaso_espaciado);
         setRetosCompletadosIds(nextIds);
         setDesafiosCompletadosMision(nuevosDesafios);
@@ -1028,10 +1052,242 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
     if(!saveMissionState(updates))throw Error('No pudimos guardar la actividad. Tu lectura ya está guardada.');
     setPregunta(data);setSesionId(data.sesion_id);setRespuesta('');setEvaluacion(null);setPasoActual(0);setPasoEjemplo(0);setIntento(1);setPistaActiva(null);
   };
-  if (pregunta?.tipo === 'lectura_modulo') return <>
-    {error && <p role="alert" className="error">{error}</p>}
-    <LecturaModulo key={`${user_id}:${activeTema}`} userId={user_id} tema={activeTema} onContinuar={continuarTrasLectura} />
-  </>;
+  const topicModalNode = showTopicModal ? (
+        <div className="topic-modal-overlay" onClick={() => setShowTopicModal(false)} style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(11, 8, 26, 0.85)", zIndex: 1000, display: "flex", justifyContent: "center", alignItems: "center", backdropFilter: "blur(6px)" }}>
+          <div className="topic-modal-card" onClick={(e) => e.stopPropagation()} style={{ background: "#110d24", border: "1px solid #2a204d", borderRadius: "16px", width: "min(780px, 95%)", maxHeight: "88vh", display: "flex", flexDirection: "column", boxShadow: "0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(99, 102, 241, 0.15)" }}>
+            {/* Header */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 24px", borderBottom: "1px solid #2a204d" }}>
+              <div>
+                <h3 style={{ margin: 0, fontSize: "1.3rem", fontWeight: "700", color: "#ffffff", letterSpacing: "-0.3px", display: "flex", alignItems: "center", gap: "10px" }}>
+                  <span>🎓</span> El Camino del Aspirante
+                </h3>
+                <p style={{ margin: "4px 0 0 0", fontSize: "0.82rem", color: "#a59ec9" }}>Elegí un tema disponible. Cada escalón nuevo se apoya en lo que ya aprendiste.</p>
+              </div>
+              <button type="button" onClick={() => setShowTopicModal(false)} style={{ background: "transparent", border: "none", color: "#9590a6", fontSize: "1.8rem", cursor: "pointer", transition: "color 150ms", padding: "0 4px" }}>&times;</button>
+            </div>
+
+            {/* Scrollable Phases Container */}
+            <div style={{ padding: "24px", overflowY: "auto", flex: 1, display: "flex", flexDirection: "column", gap: "28px" }}>
+              {modalLoading && (
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "40px", color: "#a855f7" }}>
+                  <span style={{ fontSize: "1.1rem", fontWeight: "500" }}>Cargando tu progreso escolar...</span>
+                </div>
+              )}
+
+              {!modalLoading && (() => {
+                const opcionesAcceso = {plan: pregunta?.plan || "full", aprobados: completedExams, rutaFlexible: bypassLocks};
+                const isTopicUnlocked = tema => accesoTema(tema, opcionesAcceso).habilitado;
+                const topicsFase1 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 1);
+                const topicsFase2 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 2);
+                const topicsFase3 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 3);
+                const topicsFase4 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 4);
+
+                const approvedFase1 = topicsFase1.filter(t => completedExams.has(t.tema)).length;
+                const approvedFase2 = topicsFase2.filter(t => completedExams.has(t.tema)).length;
+                const approvedFase3 = topicsFase3.filter(t => completedExams.has(t.tema)).length;
+                const approvedFase4 = topicsFase4.filter(t => completedExams.has(t.tema)).length;
+
+                const unlockedFase1 = topicsFase1.some(t => isTopicUnlocked(t.tema));
+                const unlockedFase2 = topicsFase2.some(t => isTopicUnlocked(t.tema));
+                const unlockedFase3 = topicsFase3.some(t => isTopicUnlocked(t.tema));
+                const unlockedFase4 = topicsFase4.some(t => isTopicUnlocked(t.tema));
+
+                return (
+                  <>
+                    {/* FASE 1 */}
+                    <PhaseSection
+                      number={1}
+                      title="Primeros pasos"
+                      subtitle="Contar, leer y descubrir cómo se escriben las palabras."
+                      unlocked={unlockedFase1}
+                      approvedCount={approvedFase1}
+                      totalCount={topicsFase1.length}
+                      topics={topicsFase1}
+                      completedExams={completedExams}
+                      activeTema={activeTema}
+                      pregunta={pregunta}
+                      handleSelectTema={handleSelectTema}
+                      setShowTopicModal={setShowTopicModal}
+                      userProgress={userProgress}
+                      bypassLocks={bypassLocks}
+                    />
+
+                    {/* FASE 2 */}
+                    <PhaseSection
+                      number={2}
+                      title="Fracciones y palabras"
+                      subtitle="Partir en partes iguales, buscar múltiplos y conocer las palabras."
+                      unlocked={unlockedFase2}
+                      requiredText="Cada tema indica qué conocimientos previos necesita."
+                      approvedCount={approvedFase2}
+                      totalCount={topicsFase2.length}
+                      topics={topicsFase2}
+                      completedExams={completedExams}
+                      activeTema={activeTema}
+                      pregunta={pregunta}
+                      handleSelectTema={handleSelectTema}
+                      setShowTopicModal={setShowTopicModal}
+                      userProgress={userProgress}
+                      bypassLocks={bypassLocks}
+                    />
+
+                    {/* FASE 3 */}
+                    <PhaseSection
+                      number={3}
+                      title="Conectar ideas"
+                      subtitle="Usar lo aprendido para resolver, comprender y conectar ideas."
+                      unlocked={unlockedFase3}
+                      requiredText="Cada tema indica qué conocimientos previos necesita."
+                      approvedCount={approvedFase3}
+                      totalCount={topicsFase3.length}
+                      topics={topicsFase3}
+                      completedExams={completedExams}
+                      activeTema={activeTema}
+                      pregunta={pregunta}
+                      handleSelectTema={handleSelectTema}
+                      setShowTopicModal={setShowTopicModal}
+                      userProgress={userProgress}
+                      bypassLocks={bypassLocks}
+                    />
+
+                    {/* FASE 4 */}
+                    <PhaseSection
+                      number={4}
+                      title="Formas, medidas e historias"
+                      subtitle="Explorar figuras y medidas, descubrir patrones y escribir historias."
+                      unlocked={unlockedFase4}
+                      requiredText="Cada tema indica qué conocimientos previos necesita."
+                      approvedCount={approvedFase4}
+                      totalCount={topicsFase4.length}
+                      topics={topicsFase4}
+                      completedExams={completedExams}
+                      activeTema={activeTema}
+                      pregunta={pregunta}
+                      handleSelectTema={handleSelectTema}
+                      setShowTopicModal={setShowTopicModal}
+                      userProgress={userProgress}
+                      bypassLocks={bypassLocks}
+                    />
+
+                    <div style={{padding:20,borderRadius:12,border:"1px solid #2a204d",color:"#a59ec9"}}>
+                      <h4 style={{margin:"0 0 6px",color:"#e8e4f0"}}>Simulacros de ingreso</h4>
+                      <p style={{margin:0}}>Los simulacros completos todavía no están disponibles. Por ahora, podés aprender y practicar cada tema.</p>
+                    </div>
+                  </>
+                );
+              })()}
+            </div>
+
+            {/* Trial Banner Footer */}
+            {pregunta?.plan === "trial" && (
+              <div style={{ padding: "12px 20px", background: "rgba(239, 68, 68, 0.05)", borderTop: "1px solid #2a204d", borderRadius: "0 0 16px 16px", fontSize: "0.8rem", color: "#fca5a5", textAlign: "center" }}>
+                💡 En la muestra gratuita tienes 4 temas disponibles. El acceso completo incluye más temas para aprender paso a paso.
+              </div>
+            )}
+          </div>
+        </div>
+  ) : null;
+
+  if (pregunta?.tipo === 'lectura_modulo') {
+    const temaNombre = (activeTema || "").replaceAll("_", " ");
+    const totalEsc = pregunta?.total_escalones || null;
+    return (
+      <div style={{ minHeight: "100vh", padding: "16px 14px 40px", maxWidth: "920px", margin: "0 auto" }}>
+        <header style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: "12px",
+          background: "linear-gradient(135deg, rgba(17, 24, 39, 0.96) 0%, rgba(15, 23, 42, 0.96) 100%)",
+          border: `1.5px solid ${tutor.color || "#10B981"}`,
+          borderRadius: "16px",
+          padding: "14px 18px",
+          marginBottom: "16px",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.4)"
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "14px", flex: 1, minWidth: "240px" }}>
+            <img
+              src={tutor.imagen}
+              alt={tutor.nombre}
+              width="52"
+              height="52"
+              style={{
+                borderRadius: "50%",
+                border: `2px solid ${tutor.color || "#10B981"}`,
+                boxShadow: "0 0 14px rgba(16, 185, 129, 0.35)",
+                objectFit: "cover"
+              }}
+            />
+            <div>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
+                <strong style={{ color: "#ffffff", fontSize: "1rem" }}>
+                  ¡Hola! Soy {tutor.nombre}
+                </strong>
+                {pregunta?.plan === "trial" && (
+                  <span style={{
+                    fontSize: "0.74rem",
+                    fontWeight: "800",
+                    background: "rgba(56, 189, 248, 0.15)",
+                    color: "#38bdf8",
+                    border: "1px solid rgba(56, 189, 248, 0.35)",
+                    padding: "2px 8px",
+                    borderRadius: "12px"
+                  }}>
+                    Muestra Gratuita · 4 temas activos
+                  </span>
+                )}
+              </div>
+              <p style={{ margin: "4px 0 0", color: "#cbd5e1", fontSize: "0.86rem", lineHeight: "1.4" }}>
+                Estamos en <strong style={{ color: "#34d399", textTransform: "capitalize" }}>{temaNombre}</strong>
+                {totalEsc ? ` (${totalEsc} escalones paso a paso)` : ""}. Descubramos juntos la idea clave para destrabar los desafíos interactivos.
+              </p>
+            </div>
+          </div>
+
+          <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+            <button
+              type="button"
+              onClick={() => setShowTopicModal(true)}
+              style={{
+                background: "#1e293b",
+                border: "1.5px solid #38bdf8",
+                color: "#ffffff",
+                padding: "9px 16px",
+                borderRadius: "10px",
+                fontWeight: "800",
+                fontSize: "0.86rem",
+                cursor: "pointer",
+                boxShadow: "0 4px 12px rgba(56, 189, 248, 0.25)"
+              }}
+            >
+              📖 Elegir Tema / Ver Mapa
+            </button>
+            <button
+              type="button"
+              onClick={handleGuardarYSalir}
+              style={{
+                background: "rgba(255,255,255,0.06)",
+                border: "1px solid rgba(255,255,255,0.2)",
+                color: "#e2e8f0",
+                padding: "9px 14px",
+                borderRadius: "10px",
+                fontWeight: "700",
+                fontSize: "0.84rem",
+                cursor: "pointer"
+              }}
+            >
+              ← Inicio
+            </button>
+          </div>
+        </header>
+
+        {error && <p role="alert" className="error">{error}</p>}
+        <LecturaModulo key={`${user_id}:${activeTema}`} userId={user_id} tema={activeTema} onContinuar={continuarTrasLectura} />
+        {topicModalNode}
+      </div>
+    );
+  }
 
   const pantalla = (
     <section
@@ -1162,7 +1418,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             <button
               type="button"
               disabled={loading}
-              onClick={()=>handleSelectTema('fracciones_concepto',{modo:'REPASO',forzar_practica:true})}
+              onClick={()=>handleSelectTema('fracciones_concepto',{modo:'NORMAL',forzar_practica:true})}
               style={{
                 background: "#064e3b",
                 border: "1.5px solid #34d399",
@@ -1272,101 +1528,162 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         </div>
       </header>
 
-      {/* BANNER DE HITOS CADA 50 ESTRELLAS */}
+      {/* RUTA DE APRENDIZAJE DEL TEMA EN VIVO */}
+      {(() => {
+        const objProg = evaluacion?.progreso_objetivo || pregunta?.progreso_objetivo;
+        if (!objProg || !objProg.total_escalones || misionTerminada) return null;
+
+        const temaNombreLimpio = (activeTema || "").replaceAll("_", " ");
+        const totalEscalones = objProg.total_escalones;
+        const numeroEscalon = objProg.numero_escalon || 1;
+        const escalonesConquistados = objProg.tema_completado
+          ? totalEscalones
+          : Math.max(0, numeroEscalon - 1);
+        const pctEscalones = Math.min(100, Math.round((escalonesConquistados / totalEscalones) * 100));
+        const sellosLogrados = Math.min(2, objProg.aciertos_independientes || 0);
+        const aciertosGuiadosResto = (objProg.aciertos_con_ayuda || 0) % 3;
+
+        return (
+          <section
+            aria-label="Tu Ruta de Aprendizaje en este Tema"
+            style={{
+              margin: "16px 0 12px 0",
+              background: "linear-gradient(135deg, rgba(16, 185, 129, 0.14) 0%, rgba(56, 189, 248, 0.1) 100%)",
+              border: "1.5px solid rgba(52, 211, 153, 0.45)",
+              borderRadius: "16px",
+              padding: "16px 20px",
+              boxShadow: "0 8px 24px rgba(0, 0, 0, 0.3)"
+            }}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "12px", marginBottom: "10px" }}>
+              <div>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
+                  <span style={{
+                    fontSize: "0.75rem",
+                    fontWeight: "800",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em",
+                    background: "rgba(16, 185, 129, 0.2)",
+                    color: "#34d399",
+                    border: "1px solid rgba(52, 211, 153, 0.4)",
+                    padding: "2px 10px",
+                    borderRadius: "12px"
+                  }}>
+                    🧭 Ruta de Aprendizaje · <span style={{ textTransform: "capitalize" }}>{temaNombreLimpio}</span>
+                  </span>
+                  <span style={{ fontSize: "0.82rem", color: "#94a3b8", fontWeight: "700" }}>
+                    {escalonesConquistados} / {totalEscalones} escalones conquistados
+                  </span>
+                </div>
+                <h3 style={{ margin: "6px 0 0", color: "#ffffff", fontSize: "1.06rem", fontWeight: "800" }}>
+                  {objProg.tema_completado
+                    ? `🎓 ¡Todos los escalones completados (${totalEscalones}/${totalEscalones})!`
+                    : `Escalón ${numeroEscalon} de ${totalEscalones}: ${objProg.objetivo_titulo || pregunta?.unidad_titulo || "Paso actual"}`}
+                </h3>
+              </div>
+
+              {/* Sellos de Dominio del Escalón Actual */}
+              {!objProg.tema_completado && (
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
+                  {[1, 2].map((n) => {
+                    const cumplido = sellosLogrados >= n;
+                    return (
+                      <span
+                        key={n}
+                        style={{
+                          padding: "5px 12px",
+                          borderRadius: "20px",
+                          fontSize: "0.8rem",
+                          fontWeight: "800",
+                          background: cumplido ? "rgba(16, 185, 129, 0.25)" : "rgba(15, 23, 42, 0.7)",
+                          border: cumplido ? "1.5px solid #34d399" : "1.5px dashed rgba(148, 163, 184, 0.45)",
+                          color: cumplido ? "#a7f3d0" : "#cbd5e1",
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "5px"
+                        }}
+                      >
+                        {cumplido ? "🟢" : "⚪"} Sello {n}
+                      </span>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            {/* Barra visual de escalones */}
+            <div style={{ width: "100%", height: "10px", background: "rgba(15, 23, 42, 0.85)", borderRadius: "8px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)" }}>
+              <div style={{
+                width: `${pctEscalones}%`,
+                height: "100%",
+                background: "linear-gradient(90deg, #10b981 0%, #38bdf8 100%)",
+                transition: "width 0.35s ease",
+                borderRadius: "8px"
+              }} />
+            </div>
+
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "8px", marginTop: "8px", fontSize: "0.82rem", color: "#cbd5e1" }}>
+              <span>
+                {objProg.tema_completado
+                  ? "Ya consolidaste todos los escalones. ¡Podés probar el cierre final cuando quieras!"
+                  : (
+                    <>
+                      Lográ 2 aciertos sin ayuda (o 3 con pista) para conquistar este escalón y destrabar:{" "}
+                      <strong style={{ color: "#38bdf8" }}>{objProg.proximo_escalon_titulo || "Siguiente habilidad"}</strong>{" "}
+                      <span style={{ color: "#fbbf24", fontWeight: "800" }}>(+3 ⭐ Bono de Maestría)</span>
+                    </>
+                  )}
+              </span>
+              {!objProg.tema_completado && (objProg.aciertos_con_ayuda || 0) > 0 && (
+                <span style={{ color: "#fde68a", fontWeight: "700", fontSize: "0.78rem" }}>
+                  💡 Práctica guiada: {aciertosGuiadosResto}/3 para 1 sello
+                </span>
+              )}
+            </div>
+          </section>
+        );
+      })()}
+
+      {/* AVISO COMPACTO DE COFRE (DISCRETO PARA PRIORIZAR LA RUTA DE APRENDIZAJE) */}
       {(() => {
         const estrellasDisponibles = premiosData?.estrellas_disponibles ?? Math.max(estrellasAcumuladas, 0);
         if (estrellasDisponibles < 50) return null;
-
-        const premiosCanjeables = (premiosData?.premios_config || [])
-          .filter(p => p.estrellas <= estrellasDisponibles)
-          .sort((a, b) => b.estrellas - a.estrellas);
-
-        const premioMaximo = premiosCanjeables[0];
-        const hitos = [50, 100, 150, 200, 250];
-        const proximoHito = hitos.find(h => h > estrellasDisponibles);
-        const faltanParaSiguiente = proximoHito ? proximoHito - estrellasDisponibles : null;
-
         return (
           <div style={{
-            margin: "14px 0 22px 0",
-            background: "linear-gradient(135deg, rgba(245, 158, 11, 0.18) 0%, rgba(16, 185, 129, 0.15) 100%)",
-            border: "1.5px solid rgba(245, 158, 11, 0.55)",
-            borderRadius: "14px",
-            padding: "14px 20px",
+            margin: "0 0 16px 0",
+            background: "rgba(245, 158, 11, 0.08)",
+            border: "1px solid rgba(245, 158, 11, 0.3)",
+            borderRadius: "10px",
+            padding: "8px 14px",
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "space-between",
             alignItems: "center",
-            gap: "14px",
-            boxShadow: "0 6px 20px rgba(245, 158, 11, 0.2)"
+            gap: "10px",
+            fontSize: "0.82rem"
           }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "14px", flex: 1, minWidth: "280px" }}>
-              <span style={{ fontSize: "2.2rem", filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.4))" }}>
-                {premioMaximo?.icono || "🎉"}
-              </span>
-              <div>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
-                  <strong style={{ color: "#fef08a", fontSize: "1.02rem" }}>
-                    ¡Hito alcanzado! Tenés {estrellasDisponibles} ⭐ disponibles
-                  </strong>
-                  <span style={{
-                    fontSize: "0.74rem",
-                    fontWeight: "800",
-                    background: "linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)",
-                    color: "#ffffff",
-                    padding: "3px 9px",
-                    borderRadius: "12px",
-                    letterSpacing: "0.03em"
-                  }}>
-                    {premiosCanjeables.length} PREMIOS DESBLOQUEADOS
-                  </span>
-                </div>
-                <p style={{ color: "#fde68a", fontSize: "0.88rem", margin: "3px 0 0 0", lineHeight: "1.35" }}>
-                  {premioMaximo ? (
-                    <>
-                      ¡Desbloqueaste premios de 50 ⭐ (Helado, Pin) hasta <strong>{premioMaximo.titulo}</strong> ({premioMaximo.estrellas} ⭐)!
-                    </>
-                  ) : (
-                    "¡Alcanzaste tu hito de estrellas para canjear premios familiares!"
-                  )}
-                  {proximoHito ? (
-                    <span style={{ display: "block", color: "#a7f3d0", fontSize: "0.82rem", marginTop: "2px" }}>
-                      🎯 Próximo gran premio a las <strong>{proximoHito} ⭐</strong> (¡te faltan solo {faltanParaSiguiente} ⭐!).
-                    </span>
-                  ) : (
-                    <span style={{ display: "block", color: "#a7f3d0", fontSize: "0.82rem", marginTop: "2px" }}>
-                      🏆 ¡Completaste todos los hitos estelares hasta el Shopping (250 ⭐)!
-                    </span>
-                  )}
-                </p>
-              </div>
-            </div>
-            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-              <button
-                type="button"
-                onClick={() => {
-                  cargarPremios();
-                  setShowPremiosModal(true);
-                }}
-                style={{
-                  padding: "10px 18px",
-                  borderRadius: "10px",
-                  background: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
-                  color: "#0f172a",
-                  fontSize: "0.9rem",
-                  fontWeight: "800",
-                  border: "none",
-                  cursor: "pointer",
-                  boxShadow: "0 4px 14px rgba(245, 158, 11, 0.4)",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  transition: "transform 150ms ease"
-                }}
-              >
-                <span>🎁 Abrir Cofre y Canjear</span>
-              </button>
-            </div>
+            <span style={{ color: "#fde68a" }}>
+              🎁 Tenés <strong style={{ color: "#fef08a" }}>{estrellasDisponibles} ⭐</strong> en tu cofre · <span style={{ color: "#cbd5e1" }}>Subir de escalón suma +3 ⭐ extra de Maestría.</span>
+            </span>
+            <button
+              type="button"
+              onClick={() => {
+                cargarPremios();
+                setShowPremiosModal(true);
+              }}
+              style={{
+                padding: "4px 12px",
+                borderRadius: "8px",
+                background: "rgba(245, 158, 11, 0.2)",
+                border: "1px solid rgba(245, 158, 11, 0.5)",
+                color: "#fef08a",
+                fontSize: "0.78rem",
+                fontWeight: "700",
+                cursor: "pointer"
+              }}
+            >
+              Ver Cofre de Premios
+            </button>
           </div>
         );
       })()}
@@ -2023,6 +2340,44 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             }
           />
 
+          {evaluacion?.progreso_objetivo?.escalon_conquistado && (
+            <div style={{
+              marginTop: "14px",
+              padding: "14px 18px",
+              background: "linear-gradient(135deg, rgba(16, 185, 129, 0.22) 0%, rgba(245, 158, 11, 0.18) 100%)",
+              border: "1.5px solid #10b981",
+              borderRadius: "12px",
+              textAlign: "left",
+              boxShadow: "0 6px 20px rgba(16, 185, 129, 0.2)"
+            }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "8px", marginBottom: "4px" }}>
+                <strong style={{ color: "#34d399", fontSize: "1.02rem" }}>
+                  🏆 ¡ESCALÓN CONQUISTADO! (+3 ⭐ Bono de Maestría)
+                </strong>
+                <span style={{
+                  background: "#fbbf24",
+                  color: "#451a03",
+                  padding: "2px 10px",
+                  borderRadius: "12px",
+                  fontSize: "0.78rem",
+                  fontWeight: "900"
+                }}>
+                  Avance de aprendizaje
+                </span>
+              </div>
+              {evaluacion.progreso_objetivo.escalon_anterior_titulo && (
+                <p style={{ margin: "4px 0", color: "#f8fafc", fontSize: "0.9rem" }}>
+                  Dominaste: <strong>{evaluacion.progreso_objetivo.escalon_anterior_titulo}</strong>.
+                </p>
+              )}
+              <p style={{ margin: 0, color: "#a7f3d0", fontSize: "0.86rem" }}>
+                {evaluacion.progreso_objetivo.tema_completado
+                  ? "🎓 ¡Completaste todos los escalones de este tema! Ya podés probar el cierre final."
+                  : `🚀 Destrabaste el Escalón ${evaluacion.progreso_objetivo.numero_escalon} de ${evaluacion.progreso_objetivo.total_escalones}: "${evaluacion.progreso_objetivo.objetivo_titulo}".`}
+              </p>
+            </div>
+          )}
+
           {pregunta?.escritura_guiada && respuesta && <section aria-label="Tu texto guardado" style={{padding:16,marginTop:16,background:'rgba(255,255,255,.06)',borderRadius:10}}><strong>Tu texto</strong><p style={{whiteSpace:'pre-wrap',overflowWrap:'anywhere'}}>{respuesta}</p></section>}
 
           {/* Tarjeta explicativa si avisó que todavía no lo vio */}
@@ -2296,141 +2651,7 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         </div>
       )}
 
-      {showTopicModal && (
-        <div className="topic-modal-overlay" onClick={() => setShowTopicModal(false)} style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(11, 8, 26, 0.85)", zIndex: 1000, display: "flex", justifyContent: "center", alignItems: "center", backdropFilter: "blur(6px)" }}>
-          <div className="topic-modal-card" onClick={(e) => e.stopPropagation()} style={{ background: "#110d24", border: "1px solid #2a204d", borderRadius: "16px", width: "min(780px, 95%)", maxHeight: "88vh", display: "flex", flexDirection: "column", boxShadow: "0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(99, 102, 241, 0.15)" }}>
-            {/* Header */}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 24px", borderBottom: "1px solid #2a204d" }}>
-              <div>
-                <h3 style={{ margin: 0, fontSize: "1.3rem", fontWeight: "700", color: "#ffffff", letterSpacing: "-0.3px", display: "flex", alignItems: "center", gap: "10px" }}>
-                  <span>🎓</span> El Camino del Aspirante
-                </h3>
-                <p style={{ margin: "4px 0 0 0", fontSize: "0.82rem", color: "#a59ec9" }}>Elegí un tema disponible. Cada paso nuevo se apoya en lo que ya aprendiste.</p>
-              </div>
-              <button type="button" onClick={() => setShowTopicModal(false)} style={{ background: "transparent", border: "none", color: "#9590a6", fontSize: "1.8rem", cursor: "pointer", transition: "color 150ms", padding: "0 4px" }}>&times;</button>
-            </div>
-
-            {/* Scrollable Phases Container */}
-            <div style={{ padding: "24px", overflowY: "auto", flex: 1, display: "flex", flexDirection: "column", gap: "28px" }}>
-              {modalLoading && (
-                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "40px", color: "#a855f7" }}>
-                  <span style={{ fontSize: "1.1rem", fontWeight: "500" }}>Cargando tu progreso escolar...</span>
-                </div>
-              )}
-
-              {!modalLoading && (() => {
-                const opcionesAcceso = {plan: pregunta?.plan || "full", aprobados: completedExams, rutaFlexible: bypassLocks};
-                const isTopicUnlocked = tema => accesoTema(tema, opcionesAcceso).habilitado;
-                const topicsFase1 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 1);
-                const topicsFase2 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 2);
-                const topicsFase3 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 3);
-                const topicsFase4 = [...CURRICULUM_MATEMATICA, ...CURRICULUM_LENGUA].filter(t => t.fase === 4);
-
-                const approvedFase1 = topicsFase1.filter(t => completedExams.has(t.tema)).length;
-                const approvedFase2 = topicsFase2.filter(t => completedExams.has(t.tema)).length;
-                const approvedFase3 = topicsFase3.filter(t => completedExams.has(t.tema)).length;
-                const approvedFase4 = topicsFase4.filter(t => completedExams.has(t.tema)).length;
-
-                const unlockedFase1 = topicsFase1.some(t => isTopicUnlocked(t.tema));
-                const unlockedFase2 = topicsFase2.some(t => isTopicUnlocked(t.tema));
-                const unlockedFase3 = topicsFase3.some(t => isTopicUnlocked(t.tema));
-                const unlockedFase4 = topicsFase4.some(t => isTopicUnlocked(t.tema));
-
-                return (
-                  <>
-                    {/* FASE 1 */}
-                    <PhaseSection
-                      number={1}
-                      title="Primeros pasos"
-                      subtitle="Contar, leer y descubrir cómo se escriben las palabras."
-                      unlocked={unlockedFase1}
-                      approvedCount={approvedFase1}
-                      totalCount={topicsFase1.length}
-                      topics={topicsFase1}
-                      completedExams={completedExams}
-                      activeTema={activeTema}
-                      pregunta={pregunta}
-                      handleSelectTema={handleSelectTema}
-                      setShowTopicModal={setShowTopicModal}
-                      userProgress={userProgress}
-                      bypassLocks={bypassLocks}
-                    />
-
-                    {/* FASE 2 */}
-                    <PhaseSection
-                      number={2}
-                      title="Fracciones y palabras"
-                      subtitle="Partir en partes iguales, buscar múltiplos y conocer las palabras."
-                      unlocked={unlockedFase2}
-                      requiredText="Cada tema indica qué conocimientos previos necesita."
-                      approvedCount={approvedFase2}
-                      totalCount={topicsFase2.length}
-                      topics={topicsFase2}
-                      completedExams={completedExams}
-                      activeTema={activeTema}
-                      pregunta={pregunta}
-                      handleSelectTema={handleSelectTema}
-                      setShowTopicModal={setShowTopicModal}
-                      userProgress={userProgress}
-                      bypassLocks={bypassLocks}
-                    />
-
-                    {/* FASE 3 */}
-                    <PhaseSection
-                      number={3}
-                      title="Conectar ideas"
-                      subtitle="Usar lo aprendido para resolver, comprender y conectar ideas."
-                      unlocked={unlockedFase3}
-                      requiredText="Cada tema indica qué conocimientos previos necesita."
-                      approvedCount={approvedFase3}
-                      totalCount={topicsFase3.length}
-                      topics={topicsFase3}
-                      completedExams={completedExams}
-                      activeTema={activeTema}
-                      pregunta={pregunta}
-                      handleSelectTema={handleSelectTema}
-                      setShowTopicModal={setShowTopicModal}
-                      userProgress={userProgress}
-                      bypassLocks={bypassLocks}
-                    />
-
-                    {/* FASE 4 */}
-                    <PhaseSection
-                      number={4}
-                      title="Formas, medidas e historias"
-                      subtitle="Explorar figuras y medidas, descubrir patrones y escribir historias."
-                      unlocked={unlockedFase4}
-                      requiredText="Cada tema indica qué conocimientos previos necesita."
-                      approvedCount={approvedFase4}
-                      totalCount={topicsFase4.length}
-                      topics={topicsFase4}
-                      completedExams={completedExams}
-                      activeTema={activeTema}
-                      pregunta={pregunta}
-                      handleSelectTema={handleSelectTema}
-                      setShowTopicModal={setShowTopicModal}
-                      userProgress={userProgress}
-                      bypassLocks={bypassLocks}
-                    />
-
-                    <div style={{padding:20,borderRadius:12,border:"1px solid #2a204d",color:"#a59ec9"}}>
-                      <h4 style={{margin:"0 0 6px",color:"#e8e4f0"}}>Simulacros de ingreso</h4>
-                      <p style={{margin:0}}>Los simulacros completos todavía no están disponibles. Por ahora, podés aprender y practicar cada tema.</p>
-                    </div>
-                  </>
-                );
-              })()}
-            </div>
-
-            {/* Trial Banner Footer */}
-            {pregunta?.plan === "trial" && (
-              <div style={{ padding: "12px 20px", background: "rgba(239, 68, 68, 0.05)", borderTop: "1px solid #2a204d", borderRadius: "0 0 16px 16px", fontSize: "0.8rem", color: "#fca5a5", textAlign: "center" }}>
-                💡 En la muestra gratuita tienes 4 temas disponibles. El acceso completo incluye más temas para aprender paso a paso.
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+      {topicModalNode}
       {showPremiosModal && (
         <ModalPremiosEstudiante
           isOpen={showPremiosModal}
@@ -3584,7 +3805,10 @@ function PhaseSection({
             
             // Buscar estadísticas de progreso del tema
             const prog = userProgress.find((p) => p.tema === item.tema);
-            const tasa = prog ? Math.round(Number(prog.tasa_acierto)) : null;
+            const tasa = prog && Number(prog.total_sesiones) > 0 ? Math.round(Number(prog.tasa_acierto)) : null;
+            const totalEsc = Number(prog?.total_escalones || 0);
+            const compEsc = Number(prog?.escalones_completados || 0);
+            const consolidado = Boolean(prog?.tema_consolidado) || (totalEsc > 0 && compEsc >= totalEsc);
 
             return (
               <button
@@ -3636,6 +3860,15 @@ function PhaseSection({
                   }}>
                     {item.tema.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
                     {!isAllowed && <small style={{display:"block",fontWeight:400,color:"#a59ec9",marginTop:4}}>{acceso.motivo}</small>}
+                    {isAllowed && totalEsc > 0 && (
+                      <small style={{ display: "block", fontWeight: 600, color: consolidado ? "#34d399" : "#94a3b8", marginTop: 3 }}>
+                        {isApproved
+                          ? `✓ ${totalEsc}/${totalEsc} escalones · Aprobado`
+                          : consolidado
+                            ? `✓ ${totalEsc}/${totalEsc} escalones · ¡Listo para cierre!`
+                            : `Escalón ${Math.min(compEsc + 1, totalEsc)} de ${totalEsc}`}
+                      </small>
+                    )}
                   </span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "0.75rem" }}>
@@ -3643,11 +3876,13 @@ function PhaseSection({
                     <span style={{ color: "#a855f7", fontWeight: "600" }}>Estudiando</span>
                   ) : isApproved ? (
                     <span style={{ color: "#10b981", fontWeight: "600", display: "flex", alignItems: "center", gap: "3px" }}>
-                      ✓ {tasa ? `${tasa}%` : ""}
+                      ✓ {totalEsc > 0 ? `${totalEsc}/${totalEsc}` : (tasa ? `${tasa}%` : "")}
                     </span>
                   ) : isAllowed ? (
-                    <span style={{ color: "#a59ec9" }}>
-                      {tasa ? `Prac. ${tasa}%` : "Iniciar"}
+                    <span style={{ color: consolidado ? "#34d399" : "#a59ec9", fontWeight: consolidado ? "700" : "500" }}>
+                      {totalEsc > 0
+                        ? (consolidado ? `✓ ${totalEsc}/${totalEsc}` : `${compEsc}/${totalEsc} esc.`)
+                        : (tasa ? `Prac. ${tasa}%` : "Iniciar")}
                     </span>
                   ) : (
                     <span style={{ color: "#a59ec9" }}>{acceso.pendientes.length ? "Paso previo" : "Acceso completo"}</span>

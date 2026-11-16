@@ -1351,14 +1351,16 @@ export function determinarProximoObjetivo(tema = "", sesiones = []) {
       if (!['practica','multiple','completar','produccion'].includes(s.tipo_pregunta) && p.modo_sesion !== 'practica') continue;
       if (s.es_correcta === false) {
         fallosSeguidos++;
-        if (fallosSeguidos >= 2) { evidencias.clear();stats.explicacionVista=false;stats.necesitaRepaso=true; }
+        if (fallosSeguidos >= 2) { evidencias.clear();stats.explicacionVista=false;stats.necesitaRepaso=true;stats.aciertosConAyuda=0; }
       } else if (s.es_correcta === true) {
         fallosSeguidos=0;
         if (p.resuelto_con_ayuda || p.ayuda_utilizada || p.no_visto) stats.aciertosConAyuda++;
         else evidencias.add(p.actividad_id || s.id || s);
       }
     }
-    stats.aciertosIndependientes = evidencias.size;
+    const bonoGuiado = (stats.explicacionVista && !stats.necesitaRepaso) ? Math.floor(stats.aciertosConAyuda / 3) : 0;
+    stats.evidenciasAutonomas = evidencias.size;
+    stats.aciertosIndependientes = Math.min(2, evidencias.size + bonoGuiado);
     statsPorObjetivo[obj.id] = stats;
   }
 

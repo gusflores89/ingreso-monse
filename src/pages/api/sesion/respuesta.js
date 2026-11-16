@@ -295,6 +295,30 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error, pista_concre
     const esElegible = fnElegible(sesion.tema, todasSesionesTema || []);
     const dominoTema = esElegible && tasaPractica >= 80 && totalPracticas >= 3;
 
+    const estadoObjPost = typeof determinarProximoObjetivo === "function"
+      ? determinarProximoObjetivo(sesion.tema, todasSesionesTema || [])
+      : null;
+    const objetivoRespondidoId = sesion.ia_parametros_usados?.objetivo_id || contexto?.objetivo_id || null;
+    const escalonConquistado = Boolean(
+      estadoObjPost &&
+      !esLeccion &&
+      !esExamenFinal &&
+      evaluacion.es_correcta === true &&
+      objetivoRespondidoId &&
+      (estadoObjPost.temaCompletado || (estadoObjPost.objetivoActual?.id && estadoObjPost.objetivoActual.id !== objetivoRespondidoId))
+    );
+    const progreso_objetivo = estadoObjPost ? {
+      objetivo_id: estadoObjPost.objetivoActual?.id || null,
+      objetivo_titulo: estadoObjPost.objetivoActual?.titulo || null,
+      numero_escalon: estadoObjPost.temaCompletado ? estadoObjPost.totalObjetivos : (estadoObjPost.indiceObjetivo || 0) + 1,
+      total_escalones: estadoObjPost.totalObjetivos || 0,
+      aciertos_independientes: estadoObjPost.aciertosIndependientes || 0,
+      aciertos_con_ayuda: (estadoObjPost.objetivoActual?.id && estadoObjPost.estadosObjetivos?.[estadoObjPost.objetivoActual.id]?.aciertosConAyuda) || 0,
+      tema_completado: Boolean(estadoObjPost.temaCompletado),
+      escalon_conquistado: escalonConquistado,
+      escalon_anterior_titulo: contexto?.objetivo_actual?.titulo || sesion.contexto_json?.leccion?.unidad_titulo || null,
+    } : undefined;
+
     // Detección de bloqueos o dificultad reiterada (ej: 3 o más prácticas recientes fallidas consecutivas o tasa 0)
     // Si la sesión actual es una lección de explicación/repaso y fue acertada, se avanza a práctica guiada sin re-disparar REPASO.
     // Filtrar prácticas fallidas anteriores a la última lección explicativa completada de forma determinista.
@@ -423,6 +447,7 @@ Devuelve SOLO JSON con es_correcta, retroalimentacion, razon_error, pista_concre
         total_practicas: totalPracticas,
         practicas_correctas: practicasCorrectas,
       },
+      ...(progreso_objetivo ? { progreso_objetivo } : {}),
     });
   } catch (error) {
     if (envio && !envio.salida) { try { await liberarEnvio(supabase, sesion_id, envio); } catch {} }

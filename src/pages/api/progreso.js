@@ -10,6 +10,7 @@ import { getUserPlan } from "@/lib/planes";
 import { loadUser, loadUserByCode } from "@/lib/usuarios";
 import { checkDailyRateLimit } from "@/lib/rateLimit";
 import { getPremiosConfig, calcularBalanceEstrellas, INSIGNIAS_ANIME } from "@/lib/premios";
+import { determinarProximoObjetivo, getObjetivosParaTema } from "@/lib/objetivos-pedagogicos";
 
 export default async function handler(req, res) {
   res.setHeader("Cache-Control", "private, no-store");
@@ -71,11 +72,11 @@ export default async function handler(req, res) {
     const sesiones = assertSupabaseOk(
       await supabase
         .from("sesiones")
-        .select("tema, capa, tipo_pregunta, es_correcta, razon_evaluacion, created_at")
+        .select("id, tema, capa, tipo_pregunta, es_correcta, razon_evaluacion, created_at, ia_parametros_usados")
         .eq("user_id", resolvedUserId)
         .not("es_correcta", "is", null)
         .order("created_at", { ascending: false })
-        .limit(80),
+        .limit(500),
       "No se pudieron obtener sesiones recientes"
     );
 
@@ -200,6 +201,9 @@ function buildDashboardMetrics({ progreso, sesiones, alertas, plan, examenesApro
 
     const acceso = accesoTema(topic.tema, {plan, aprobados: approvedExams, rutaFlexible});
     const unlocked = acceso.habilitado;
+    const infoEscalones = typeof determinarProximoObjetivo === "function"
+      ? determinarProximoObjetivo(topic.tema, sesiones || [])
+      : null;
 
     return enrichTopic({
       ...dbItem,
@@ -209,6 +213,9 @@ function buildDashboardMetrics({ progreso, sesiones, alertas, plan, examenesApro
       unlocked,
       requisitos_pendientes: acceso.pendientes,
       motivo_acceso: acceso.motivo,
+      escalones_completados: infoEscalones ? (infoEscalones.temaCompletado ? infoEscalones.totalObjetivos : infoEscalones.indiceObjetivo) : 0,
+      total_escalones: infoEscalones ? infoEscalones.totalObjetivos : 0,
+      tema_consolidado: Boolean(infoEscalones?.temaCompletado),
     });
   });
 

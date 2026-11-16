@@ -181,7 +181,8 @@ export default async function handler(req, res) {
       capaActual = 1;
     }
 
-    if (await exigirLectura(supabase, user_id, temaActual, res, { ...tutor, ...planPayload, capa: capaActual })) return;
+    const totalEscalonesInit = typeof getObjetivosParaTema === "function" ? getObjetivosParaTema(temaActual).length : 0;
+    if (await exigirLectura(supabase, user_id, temaActual, res, { ...tutor, ...planPayload, capa: capaActual, total_escalones: totalEscalonesInit })) return;
 
     const progresoResult = await supabase
       .from("progreso")
@@ -217,6 +218,31 @@ export default async function handler(req, res) {
     contexto.objetivo_id = objetivo_id;
     contexto.objetivo_actual = objetivoActual;
 
+    const listaObjetivos = typeof getObjetivosParaTema === "function" ? getObjetivosParaTema(temaActual) : [];
+    const idxObj = typeof objetivoInfo?.indiceObjetivo === "number" ? objetivoInfo.indiceObjetivo : 0;
+    const totalObj = objetivoInfo?.totalObjetivos || listaObjetivos.length || 1;
+    const temaComp = Boolean(objetivoInfo?.temaCompletado);
+    const statsObjActual = (objetivoInfo?.objetivoActual?.id && objetivoInfo?.estadosObjetivos?.[objetivoInfo.objetivoActual.id]) || {};
+    const proximoObj = listaObjetivos[idxObj + 1] || null;
+    const progreso_objetivo = {
+      objetivo_id: objetivoInfo?.objetivoActual?.id || null,
+      objetivo_titulo: objetivoInfo?.objetivoActual?.titulo || null,
+      numero_escalon: temaComp ? totalObj : idxObj + 1,
+      total_escalones: totalObj,
+      estado: objetivoInfo?.estado || "no_iniciada",
+      aciertos_independientes: objetivoInfo?.aciertosIndependientes || 0,
+      aciertos_con_ayuda: statsObjActual.aciertosConAyuda || 0,
+      tema_completado: temaComp,
+      proximo_escalon_titulo: proximoObj ? proximoObj.titulo : "Cierre final del tema",
+      escalones: listaObjetivos.map((o, idx) => ({
+        id: o.id,
+        numero: idx + 1,
+        titulo: o.titulo,
+        completado: temaComp || idx < idxObj,
+        actual: !temaComp && idx === idxObj,
+      })),
+    };
+
     const unidadBase = getUnidadBase(objetivo_id);
     const responderBase = async () => {
       const modoBase = objetivoInfo.requiereExplicacion || modo === 'REPASO' ? 'leccion' : 'practica';
@@ -239,7 +265,7 @@ export default async function handler(req, res) {
       const recuperado = ultimo?.es_correcta !== false || independientes.filter(s=>new Date(s.created_at)>new Date(ultimo.created_at)).length >= 2;
       const disponible = Boolean(cierre && objetivoInfo.temaCompletado && !aprobado && suficientes && recuperado);
       return res.status(200).json(quitarClaves({...actividad, pregunta:texto, tipo_pregunta:modoBase === 'leccion'?'leccion':actividad.tipo_pregunta,
-        sesion_id:fila.id,tema:temaActual,capa:1,...tutor,...planPayload,examen_disponible:disponible && !pendiente,examen_pendiente:disponible && Boolean(pendiente)}));
+        sesion_id:fila.id,tema:temaActual,capa:1,...tutor,...planPayload,examen_disponible:disponible && !pendiente,examen_pendiente:disponible && Boolean(pendiente),progreso_objetivo}));
     };
     if (unidadBase && !((rendir_examen || retomar_examen) && objetivoInfo.temaCompletado)) return responderBase();
 
@@ -468,6 +494,7 @@ IMPORTANTE:
       examen_pendiente: examenPendiente && objetivoInfo.temaCompletado,
       examen_pendiente_id: examenPendienteId,
       examen_disponible: objetivoInfo.temaCompletado,
+      progreso_objetivo,
     });
   } catch (error) {
     console.error(error);
