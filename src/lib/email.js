@@ -32,10 +32,10 @@ export async function sendWelcomeEmail({ nombre, email, codigo_acceso, plan = "t
   }
 
   const trialTopics = [
-    { emoji: "&#128221;", name: "Tablas del 2 al 5" },
-    { emoji: "&#128221;", name: "Ortografía B y V" },
-    { emoji: "&#128221;", name: "Tablas del 6 al 8" },
-    { emoji: "&#128221;", name: "Ortografía G y J" },
+    { emoji: "&#128290;", name: "Números Naturales y Sistema Decimal" },
+    { emoji: "&#10006;&#65039;", name: "Tablas de Multiplicar (2 al 5)" },
+    { emoji: "&#9997;&#65039;", name: "Ortografía: Uso de B y V" },
+    { emoji: "&#128214;", name: "Comprensión Lectora" },
   ];
 
   const html = buildWelcomeHTML({ nombre, codigo_acceso, plan, trialTopics, siteUrl: SITE_URL });
@@ -236,4 +236,85 @@ function buildWelcomeHTML({ nombre, codigo_acceso, plan, trialTopics, siteUrl })
   </table>
 </body>
 </html>`;
+}
+
+export async function sendReactivationEmail({
+  nombre,
+  email,
+  codigo_acceso,
+  nombre_tutor = "Maomao",
+  tema_actual = "numeros_naturales_sistema_decimal",
+}) {
+  if (!email) {
+    throw new Error("El estudiante no tiene email cargado.");
+  }
+  if (!process.env.RESEND_API_KEY) {
+    throw new Error("RESEND_API_KEY no está configurada en el entorno.");
+  }
+
+  const temaLegible = String(tema_actual || "numeros_naturales_sistema_decimal").replaceAll("_", " ");
+  const html = `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Novedades en IngresoMonse</title>
+</head>
+<body style="margin:0;padding:0;background-color:#0f172a;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#f1f5f9;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#0f172a;">
+    <tr>
+      <td align="center" style="padding:36px 16px;">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#1e293b;border-radius:16px;border:1px solid #334155;overflow:hidden;">
+          <tr>
+            <td style="padding:28px 32px;background:linear-gradient(135deg,#064e3b 0%,#0f766e 100%);text-align:center;">
+              <h1 style="margin:0 0 6px;font-size:24px;color:#ffffff;">&#127775; &iexcl;${nombre_tutor} espera a ${nombre}!</h1>
+              <p style="margin:0;font-size:14px;color:#a7f3d0;">Nuevas mejoras para entrenar rumbo al ingreso al Monserrat</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:28px 32px;">
+              <p style="margin:0 0 14px;font-size:16px;line-height:1.6;color:#e2e8f0;">
+                &iexcl;Hola, familia de <strong>${nombre}</strong>! Vimos que ya crearon su cuenta en <strong>IngresoMonse</strong> (tema actual: <em style="text-transform:capitalize;">${temaLegible}</em>) y queremos contarles las mejoras que acabamos de activar:
+              </p>
+              <ul style="margin:0 0 18px;padding-left:20px;color:#cbd5e1;font-size:14px;line-height:1.65;">
+                <li><strong>&#129517; Ruta de Escalones visible:</strong> Ahora ${nombre} ve paso a paso en qu&eacute; habilidad est&aacute; y qu&eacute; destraba al avanzar.</li>
+                <li><strong>&#9889; Bot&oacute;n de Salto de Nivelaci&oacute;n:</strong> Si los primeros ejercicios iniciales le resultan muy f&aacute;ciles, puede probar una evaluaci&oacute;n r&aacute;pida de 2 preguntas para saltar directo a su nivel real de 5to/6to grado.</li>
+                <li><strong>&#127963; Mini-Simulacro Monserrat:</strong> Preguntas integradoras de Matem&aacute;tica y Lengua disponibles desde el mapa de temas.</li>
+              </ul>
+              <div style="background:#0f172a;border:1px solid #38bdf8;border-radius:12px;padding:16px;text-align:center;margin-bottom:22px;">
+                <p style="margin:0 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:1.2px;color:#38bdf8;font-weight:700;">C&oacute;digo de acceso</p>
+                <p style="margin:0;font-size:28px;font-weight:800;color:#ffffff;letter-spacing:4px;font-family:monospace;">${codigo_acceso}</p>
+              </div>
+              <div style="text-align:center;">
+                <a href="${SITE_URL}" target="_blank" style="display:inline-block;padding:14px 36px;background:linear-gradient(135deg,#10b981 0%,#059669 100%);color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;border-radius:10px;">
+                  Ingresar ahora &rarr;
+                </a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:18px 32px;background:#0f172a;border-top:1px solid #334155;text-align:center;font-size:12px;color:#94a3b8;">
+              Pod&eacute;s responder este correo si necesit&aacute;s ayuda para ubicar el nivel ideal de ${nombre}.
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+
+  const resend = getResendClient();
+  const { data, error } = await resend.emails.send({
+    from: FROM_EMAIL,
+    to: [email],
+    replyTo: "gus.flores89@gmail.com",
+    subject: `🌟 ¡${nombre_tutor} espera a ${nombre} con nuevas funciones en IngresoMonse!`,
+    html,
+  });
+
+  if (error) {
+    throw new Error(error.message || "Error de Resend al enviar recordatorio.");
+  }
+  return data;
 }

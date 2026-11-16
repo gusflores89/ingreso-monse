@@ -24,14 +24,44 @@ export default async function handler(req, res) {
           .select("id, user_id, tema, tipo_pregunta, es_correcta, created_at")
           .in("user_id", userIds)
           .order("created_at", { ascending: false })
-          .limit(500)
+          .limit(2000)
       : { data: [], error: null };
 
     if (sesionesError) throw sesionesError;
 
+    const { data: continuidades } = userIds.length
+      ? await supabase
+          .from("continuidad_misiones")
+          .select("user_id, estado, updated_at")
+          .in("user_id", userIds)
+      : { data: [] };
+
+    const contByUser = new Map((continuidades || []).map((c) => [c.user_id, c]));
     const metricsByUser = buildMetricsByUser(sesiones || []);
     const enrichedUsers = (usuarios || []).map((usuario) => {
       const metrics = metricsByUser[usuario.id] || emptyMetrics();
+      const cont = contByUser.get(usuario.id);
+      const estrellasReales = Math.max(
+        Number(usuario.rasgos_especiales?.estrellas_totales || 0),
+        Number(cont?.estado?.estrellas || 0)
+      );
+      const temaActual = cont?.estado?.tema || metrics.ultima_sesion?.tema || null;
+      const tipoPantalla = cont?.estado?.pregunta?.tipo || null;
+      const pasoLectura = cont?.estado?.pregunta?.lectura?.paso ?? null;
+      const ultimoMovimiento =
+        [metrics.ultima_sesion?.created_at, cont?.updated_at, usuario.created_at]
+          .filter(Boolean)
+          .sort((a, b) => new Date(b) - new Date(a))[0] || usuario.created_at;
+
+      let etapa = `Alumno activo (${metrics.total_sesiones} sesiones)`;
+      if (metrics.total_sesiones === 0 && tipoPantalla === "lectura_modulo") {
+        etapa = `Frenado en lectura inicial (Paso ${(pasoLectura ?? 0) + 1} de 4)`;
+      } else if (metrics.total_sesiones === 0) {
+        etapa = "Registrado sin iniciar tutoría";
+      } else if (metrics.total_sesiones <= 3) {
+        etapa = `Exploración inicial (${metrics.total_sesiones} sesiones)`;
+      }
+
       return {
         id: usuario.id,
         nombre: usuario.nombre,
@@ -47,6 +77,15 @@ export default async function handler(req, res) {
         plan: getUserPlan(usuario),
         subscription_status: usuario.subscription_status || usuario.rasgos_especiales?.subscription_status || "trial",
         estilo_aprendizaje: usuario.estilo_aprendizaje,
+        estrellas_reales: estrellasReales,
+        embudo: {
+          ultimo_movimiento: ultimoMovimiento,
+          tema_actual: temaActual,
+          tipo_pantalla: tipoPantalla,
+          paso_lectura: pasoLectura,
+          etapa,
+          alerta_abandono: Boolean(metrics.total_sesiones <= 3),
+        },
         rasgos_especiales: (() => {
           const { access_password_hash, ...rasgosSeguros } = usuario.rasgos_especiales || {};
           return rasgosSeguros;

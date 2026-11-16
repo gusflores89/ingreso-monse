@@ -117,7 +117,7 @@ export default function AdminPage() {
           <Kpi label="Full" value={resumen.full || 0} />
           <Kpi label="Activos 7 días" value={resumen.activos7d || 0} />
           <Kpi label="Sesiones" value={resumen.sesionesTotales || 0} />
-          <Kpi label="⭐ Estrellas" value={(data?.usuarios || []).reduce((acc, u) => acc + (u.rasgos_especiales?.estrellas_totales || 0), 0)} />
+          <Kpi label="⭐ Estrellas" value={(data?.usuarios || []).reduce((acc, u) => acc + (u.estrellas_reales ?? u.rasgos_especiales?.estrellas_totales ?? 0), 0)} />
         </div>
 
         <section className="admin-panel">
@@ -164,8 +164,12 @@ function Kpi({ label, value }) {
 
 function UserCard({ usuario, onUpdate }) {
   const [updating, setUpdating] = useState(false);
+  const [sendingEmail, setSendingEmail] = useState(false);
+  const [emailSentMsg, setEmailSentMsg] = useState("");
   const [error, setError] = useState("");
   const ultima = usuario.metricas?.ultima_sesion;
+  const embudo = usuario.embudo || {};
+  const estrellasReales = usuario.estrellas_reales ?? usuario.rasgos_especiales?.estrellas_totales ?? 0;
   const dashboardUrl = `/papas?user_id=${encodeURIComponent(usuario.id)}`;
   const tutoriaUrl = `/tutoria?user_id=${encodeURIComponent(usuario.id)}`;
   const testUrl = `/admin-test`;
@@ -192,6 +196,32 @@ function UserCard({ usuario, onUpdate }) {
     }
   };
 
+  const enviarReactivacion = async () => {
+    if (!usuario.email || sendingEmail) return;
+    setSendingEmail(true);
+    setEmailSentMsg("");
+    setError("");
+
+    try {
+      const res = await fetch("/api/admin/reactivar-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id: usuario.id }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "No se pudo enviar el correo.");
+      setEmailSentMsg(`✓ Email enviado a ${data.enviado_a}`);
+      onUpdate?.();
+    } catch (err) {
+      setError(err.message);
+      alert(err.message);
+    } finally {
+      setSendingEmail(false);
+    }
+  };
+
+  const ultimoEmail = usuario.rasgos_especiales?.ultimo_email_reactivacion;
+
   return (
     <article className="admin-user-card">
       <div className="admin-user-main">
@@ -209,11 +239,22 @@ function UserCard({ usuario, onUpdate }) {
         {usuario.edad && <span>{usuario.edad} años</span>}
         {usuario.grado && <span>{usuario.grado}</span>}
         <span style={{ background: "rgba(245, 158, 11, 0.15)", color: "#fbbf24", border: "1px solid rgba(245, 158, 11, 0.3)", fontWeight: "700" }}>
-          ⭐ {usuario.rasgos_especiales?.estrellas_totales || 0} estrellas
+          ⭐ {estrellasReales} estrellas
         </span>
         {usuario.nombre_tutor && (
           <span style={{ background: "rgba(16, 185, 129, 0.15)", color: "#34d399", border: "1px solid rgba(16, 185, 129, 0.3)", fontWeight: "600" }}>
             Tutor: {usuario.nombre_tutor}
+          </span>
+        )}
+        {embudo.etapa && (
+          <span style={{
+            background: embudo.alerta_abandono ? "rgba(245, 158, 11, 0.2)" : "rgba(16, 185, 129, 0.15)",
+            color: embudo.alerta_abandono ? "#fde68a" : "#34d399",
+            border: embudo.alerta_abandono ? "1px solid #f59e0b" : "1px solid rgba(16, 185, 129, 0.35)",
+            fontWeight: "700",
+          }}>
+            {embudo.alerta_abandono ? "⚠️ " : "🧭 "}
+            {embudo.etapa}
           </span>
         )}
       </div>
@@ -222,27 +263,59 @@ function UserCard({ usuario, onUpdate }) {
         <Metric label="Sesiones" value={usuario.metricas?.total_sesiones || 0} />
         <Metric label="Acierto" value={`${usuario.metricas?.tasa_acierto || 0}%`} />
         <Metric label="Temas" value={usuario.metricas?.temas_trabajados || 0} />
-        <Metric label="Estrellas" value={`⭐ ${usuario.rasgos_especiales?.estrellas_totales || 0}`} />
+        <Metric label="Estrellas" value={`⭐ ${estrellasReales}`} />
       </div>
 
       <div className="admin-user-last">
-        <strong>Última actividad</strong>
+        <strong>Última actividad / Embudo</strong>
         {ultima ? (
           <p>
             {formatDateTime(ultima.created_at)} · {formatTema(ultima.tema)} ·{" "}
             {ultima.es_correcta === null ? "sin evaluar" : ultima.es_correcta ? "correcto" : "incorrecto"}
           </p>
+        ) : embudo.tema_actual ? (
+          <p>
+            {formatDateTime(embudo.ultimo_movimiento)} · {formatTema(embudo.tema_actual)} ·{" "}
+            {embudo.tipo_pantalla === "lectura_modulo"
+              ? `lectura previa (Paso ${(embudo.paso_lectura ?? 0) + 1} de 4)`
+              : (embudo.tipo_pantalla || "sin iniciar")}
+          </p>
         ) : (
-          <p>Sin sesiones todavía.</p>
+          <p>Sin sesiones todavía ({formatDateTime(usuario.created_at)}).</p>
+        )}
+        {(emailSentMsg || ultimoEmail) && (
+          <small style={{ color: "#34d399", display: "block", marginTop: "4px" }}>
+            {emailSentMsg || `Último email de reactivación: ${formatDateTime(ultimoEmail)}`}
+          </small>
         )}
       </div>
 
       <div className="admin-user-actions" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "10px" }}>
         <a href={dashboardUrl} className="admin-action-btn">Dashboard padres</a>
         <a href={`${dashboardUrl}#recompensas`} className="admin-action-btn" style={{ borderColor: "#fbbf24", color: "#fbbf24", fontWeight: "700" }}>
-          🎁 Ver Recompensas (⭐ {usuario.rasgos_especiales?.estrellas_totales || 0})
+          🎁 Ver Recompensas (⭐ {estrellasReales})
         </a>
         <a href={tutoriaUrl} className="admin-action-btn">Abrir tutoría</a>
+        {usuario.email && (
+          <button
+            type="button"
+            onClick={enviarReactivacion}
+            disabled={sendingEmail}
+            style={{
+              cursor: sendingEmail ? "wait" : "pointer",
+              backgroundColor: emailSentMsg || ultimoEmail ? "#0f766e" : "#2563eb",
+              color: "#ffffff",
+              border: "none",
+              borderRadius: "6px",
+              padding: "5px 12px",
+              fontWeight: "600",
+              fontSize: "0.85rem",
+              transition: "all 0.2s ease",
+            }}
+          >
+            {sendingEmail ? "Enviando..." : emailSentMsg || ultimoEmail ? "✓ Re-enviar Email" : "📧 Enviar Email Reactivación"}
+          </button>
+        )}
         <button
           type="button"
           onClick={togglePlan}

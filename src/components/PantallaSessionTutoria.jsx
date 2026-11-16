@@ -77,6 +77,102 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
   const [forzarPractica, setForzarPractica] = useState(Boolean(forzarPracticaProp));
   const [showPremiosModal, setShowPremiosModal] = useState(false);
   const [premiosData, setPremiosData] = useState(null);
+  const [saltoModal, setSaltoModal] = useState(null);
+  const [simulacroModal, setSimulacroModal] = useState(null);
+
+  const abrirSaltoNivel = async () => {
+    if (!user_id || !activeTema) return;
+    setSaltoModal({ loading: true, data: null, respuestas: {}, resultado: null, error: "" });
+    try {
+      const res = await fetch("/api/sesion/salto-nivel", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ accion: "obtener", user_id, tema: activeTema }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "No pudimos abrir el salto de nivel.");
+      setSaltoModal({ loading: false, data, respuestas: {}, resultado: null, error: "" });
+    } catch (err) {
+      setSaltoModal({ loading: false, data: null, respuestas: {}, resultado: null, error: err.message });
+    }
+  };
+
+  const enviarSaltoNivel = async () => {
+    if (!saltoModal?.data?.preguntas?.length || saltoModal.loading) return;
+    setSaltoModal((prev) => ({ ...prev, loading: true, error: "" }));
+    try {
+      const res = await fetch("/api/sesion/salto-nivel", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          accion: "evaluar",
+          user_id,
+          tema: activeTema,
+          respuestas: saltoModal.respuestas || {},
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "No pudimos evaluar el salto de nivel.");
+      if (data.aprobado && data.estrellas_bono) {
+        const nextStars = Math.max(getSavedStars(), estrellasAcumuladas) + Number(data.estrellas_bono);
+        setEstrellasAcumuladas(nextStars);
+        saveStars(nextStars);
+        cargarPremios();
+      }
+      setSaltoModal((prev) => ({ ...prev, loading: false, resultado: data }));
+    } catch (err) {
+      setSaltoModal((prev) => ({ ...prev, loading: false, error: err.message }));
+    }
+  };
+
+  const abrirSimulacro = async () => {
+    if (!user_id) return;
+    setShowTopicModal(false);
+    setSimulacroModal({ loading: true, preguntas: [], respuestas: {}, resultado: null, error: "" });
+    try {
+      const res = await fetch("/api/sesion/simulacro", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ accion: "iniciar", user_id }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "No pudimos iniciar el simulacro.");
+      setSimulacroModal({ loading: false, preguntas: data.preguntas || [], respuestas: {}, resultado: null, error: "" });
+    } catch (err) {
+      setSimulacroModal({ loading: false, preguntas: [], respuestas: {}, resultado: null, error: err.message });
+    }
+  };
+
+  const enviarSimulacro = async () => {
+    if (!simulacroModal?.preguntas?.length || simulacroModal.loading) return;
+    setSimulacroModal((prev) => ({ ...prev, loading: true, error: "" }));
+    try {
+      const res = await fetch("/api/sesion/simulacro", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          accion: "evaluar",
+          user_id,
+          preguntas_ids: simulacroModal.preguntas.map((p) => ({
+            actividad_id: p.actividad_id,
+            objetivo_id: p.objetivo_id,
+          })),
+          respuestas: simulacroModal.respuestas || {},
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "No pudimos corregir el simulacro.");
+      if (data.estrellas_ganadas) {
+        const nextStars = Math.max(getSavedStars(), estrellasAcumuladas) + Number(data.estrellas_ganadas);
+        setEstrellasAcumuladas(nextStars);
+        saveStars(nextStars);
+        cargarPremios();
+      }
+      setSimulacroModal((prev) => ({ ...prev, loading: false, resultado: data }));
+    } catch (err) {
+      setSimulacroModal((prev) => ({ ...prev, loading: false, error: err.message }));
+    }
+  };
 
   const cargarPremios = async () => {
     if (!user_id) return;
@@ -1169,9 +1265,41 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                       bypassLocks={bypassLocks}
                     />
 
-                    <div style={{padding:20,borderRadius:12,border:"1px solid #2a204d",color:"#a59ec9"}}>
-                      <h4 style={{margin:"0 0 6px",color:"#e8e4f0"}}>Simulacros de ingreso</h4>
-                      <p style={{margin:0}}>Los simulacros completos todavía no están disponibles. Por ahora, podés aprender y practicar cada tema.</p>
+                    <div style={{
+                      padding: 20,
+                      borderRadius: 14,
+                      background: "linear-gradient(135deg, rgba(16, 185, 129, 0.14) 0%, rgba(56, 189, 248, 0.12) 100%)",
+                      border: "1.5px solid rgba(56, 189, 248, 0.4)",
+                      color: "#e2e8f0",
+                      display: "flex",
+                      flexWrap: "wrap",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      gap: "14px"
+                    }}>
+                      <div style={{ flex: 1, minWidth: "240px" }}>
+                        <h4 style={{ margin: "0 0 6px", color: "#ffffff", fontSize: "1.02rem" }}>🏛️ Mini-Simulacro Integrador Monserrat</h4>
+                        <p style={{ margin: 0, fontSize: "0.84rem", color: "#cbd5e1" }}>
+                          Ponete a prueba con 6 preguntas mixtas (3 de Matemática + 3 de Lengua) al estilo del examen real. Aprobando con 4/6 ganás +10 ⭐.
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={abrirSimulacro}
+                        style={{
+                          padding: "10px 18px",
+                          borderRadius: "10px",
+                          background: "linear-gradient(135deg, #0284c7 0%, #0369a1 100%)",
+                          border: "1.5px solid #38bdf8",
+                          color: "#ffffff",
+                          fontWeight: "800",
+                          fontSize: "0.86rem",
+                          cursor: "pointer",
+                          boxShadow: "0 4px 14px rgba(56, 189, 248, 0.3)"
+                        }}
+                      >
+                        🏛️ Iniciar Mini-Simulacro (+10 ⭐)
+                      </button>
                     </div>
                   </>
                 );
@@ -1186,6 +1314,231 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
             )}
           </div>
         </div>
+  ) : null;
+
+  const saltoModalNode = saltoModal ? (
+    <div className="topic-modal-overlay" onClick={() => !saltoModal.loading && setSaltoModal(null)} style={{ position: "fixed", inset: 0, background: "rgba(11, 8, 26, 0.88)", zIndex: 1100, display: "flex", justifyContent: "center", alignItems: "center", padding: "16px", backdropFilter: "blur(6px)" }}>
+      <div onClick={(e) => e.stopPropagation()} style={{ background: "#0f172a", border: "1.5px solid #f59e0b", borderRadius: "18px", width: "min(680px, 100%)", maxHeight: "90vh", overflowY: "auto", padding: "24px", boxShadow: "0 20px 50px rgba(0,0,0,0.65)", color: "#f8fafc" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "14px", borderBottom: "1px solid rgba(255,255,255,0.1)", paddingBottom: "12px" }}>
+          <div>
+            <h3 style={{ margin: 0, color: "#fef08a", fontSize: "1.2rem", fontWeight: "800" }}>⚡ Salto de Nivelación Rápida</h3>
+            <p style={{ margin: "4px 0 0", color: "#cbd5e1", fontSize: "0.84rem" }}>
+              Respondé estas preguntas sin ayuda para demostrar que ya dominás este bloque y avanzar directo a tu nivel real.
+            </p>
+          </div>
+          <button type="button" onClick={() => setSaltoModal(null)} style={{ background: "transparent", border: "none", color: "#94a3b8", fontSize: "1.6rem", cursor: "pointer" }}>&times;</button>
+        </div>
+
+        {saltoModal.loading && !saltoModal.data && <p style={{ color: "#38bdf8" }}>Preparando prueba rápida...</p>}
+        {saltoModal.error && <p role="alert" style={{ color: "#fca5a5", background: "rgba(239,68,68,0.15)", padding: "10px 14px", borderRadius: "8px" }}>{saltoModal.error}</p>}
+
+        {saltoModal.data && !saltoModal.data.disponible && (
+          <div style={{ padding: "16px", background: "rgba(255,255,255,0.05)", borderRadius: "12px" }}>
+            <p style={{ margin: "0 0 12px" }}>Ya estás en los últimos escalones de este tema. ¡Seguí practicando acá para completar el cierre!</p>
+            <button type="button" className="primary" onClick={() => setSaltoModal(null)}>Entendido</button>
+          </div>
+        )}
+
+        {saltoModal.data?.disponible && !saltoModal.resultado && (
+          <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
+            <div style={{ background: "rgba(245, 158, 11, 0.12)", border: "1px solid rgba(245, 158, 11, 0.35)", borderRadius: "10px", padding: "10px 14px", fontSize: "0.85rem", color: "#fde68a" }}>
+              🎯 Si acertás ambas, saltás del <strong>Escalón {saltoModal.data.escalon_actual}</strong> directo al <strong>Escalón {saltoModal.data.escalon_destino} de {saltoModal.data.total_escalones}</strong> (+5 ⭐).
+            </div>
+
+            {saltoModal.data.preguntas.map((pq, idx) => (
+              <div key={pq.actividad_id} style={{ background: "rgba(30, 41, 59, 0.65)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "12px", padding: "16px" }}>
+                <small style={{ color: "#34d399", fontWeight: "700", display: "block", marginBottom: "6px" }}>
+                  Desafío {idx + 1} · {pq.unidad_titulo}
+                </small>
+                <p style={{ margin: "0 0 12px", fontWeight: "600", fontSize: "1rem", color: "#ffffff" }}>{parseInlineMarkdown(pq.pregunta)}</p>
+                {pq.visual_apoyo && <div style={{ marginBottom: "12px" }}><ApoyoVisual datos={pq.visual_apoyo} /></div>}
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "8px" }}>
+                  {(pq.opciones || []).map((op) => {
+                    const sel = saltoModal.respuestas?.[pq.actividad_id] === op;
+                    return (
+                      <button
+                        key={op}
+                        type="button"
+                        onClick={() => setSaltoModal((prev) => ({ ...prev, respuestas: { ...(prev.respuestas || {}), [pq.actividad_id]: op } }))}
+                        style={{
+                          padding: "10px 14px",
+                          borderRadius: "10px",
+                          border: sel ? "2px solid #f59e0b" : "1px solid rgba(255,255,255,0.15)",
+                          background: sel ? "rgba(245, 158, 11, 0.22)" : "rgba(15, 23, 42, 0.7)",
+                          color: "#ffffff",
+                          fontWeight: sel ? "800" : "500",
+                          cursor: "pointer",
+                          textAlign: "left"
+                        }}
+                      >
+                        {parseInlineMarkdown(op)}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+
+            <button
+              type="button"
+              className="primary"
+              disabled={saltoModal.loading || saltoModal.data.preguntas.some((pq) => !saltoModal.respuestas?.[pq.actividad_id])}
+              onClick={enviarSaltoNivel}
+              style={{ width: "100%", padding: "12px", fontWeight: "800" }}
+            >
+              {saltoModal.loading ? "Corrigiendo..." : "⚡ Comprobar nivel y saltar"}
+            </button>
+          </div>
+        )}
+
+        {saltoModal.resultado && (
+          <div style={{
+            padding: "18px",
+            borderRadius: "14px",
+            background: saltoModal.resultado.aprobado ? "rgba(16, 185, 129, 0.16)" : "rgba(245, 158, 11, 0.14)",
+            border: saltoModal.resultado.aprobado ? "1.5px solid #10b981" : "1.5px solid #f59e0b",
+          }}>
+            <h4 style={{ margin: "0 0 8px", fontSize: "1.15rem", color: saltoModal.resultado.aprobado ? "#34d399" : "#fde68a" }}>
+              {saltoModal.resultado.aprobado ? "🏆 ¡Salto de Nivel Aprobado!" : "💡 Sigamos desde este escalón"}
+            </h4>
+            <p style={{ margin: "0 0 16px", color: "#e2e8f0", lineHeight: "1.5" }}>{saltoModal.resultado.mensaje}</p>
+            <button
+              type="button"
+              className="primary"
+              onClick={() => {
+                const aprobado = saltoModal.resultado.aprobado;
+                setSaltoModal(null);
+                if (aprobado) {
+                  handleSelectTema(activeTema, { forzar_practica: true });
+                }
+              }}
+              style={{ width: "100%", padding: "12px", fontWeight: "800" }}
+            >
+              {saltoModal.resultado.aprobado ? `🚀 Ir al Escalón ${saltoModal.resultado.escalon_destino}` : "Seguir aprendiendo paso a paso"}
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  ) : null;
+
+  const simulacroModalNode = simulacroModal ? (
+    <div className="topic-modal-overlay" onClick={() => !simulacroModal.loading && setSimulacroModal(null)} style={{ position: "fixed", inset: 0, background: "rgba(11, 8, 26, 0.88)", zIndex: 1100, display: "flex", justifyContent: "center", alignItems: "center", padding: "16px", backdropFilter: "blur(6px)" }}>
+      <div onClick={(e) => e.stopPropagation()} style={{ background: "#0f172a", border: "1.5px solid #38bdf8", borderRadius: "18px", width: "min(760px, 100%)", maxHeight: "90vh", overflowY: "auto", padding: "24px", boxShadow: "0 20px 50px rgba(0,0,0,0.65)", color: "#f8fafc" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "14px", borderBottom: "1px solid rgba(255,255,255,0.1)", paddingBottom: "12px" }}>
+          <div>
+            <h3 style={{ margin: 0, color: "#38bdf8", fontSize: "1.2rem", fontWeight: "800" }}>🏛️ Mini-Simulacro Integrador Monserrat</h3>
+            <p style={{ margin: "4px 0 0", color: "#cbd5e1", fontSize: "0.84rem" }}>
+              6 preguntas reales de Matemática y Lengua combinadas. Probá cómo rendirías hoy.
+            </p>
+          </div>
+          <button type="button" onClick={() => setSimulacroModal(null)} style={{ background: "transparent", border: "none", color: "#94a3b8", fontSize: "1.6rem", cursor: "pointer" }}>&times;</button>
+        </div>
+
+        {simulacroModal.loading && simulacroModal.preguntas.length === 0 && <p style={{ color: "#38bdf8" }}>Armando tu examen integrador...</p>}
+        {simulacroModal.error && <p role="alert" style={{ color: "#fca5a5", background: "rgba(239,68,68,0.15)", padding: "10px 14px", borderRadius: "8px" }}>{simulacroModal.error}</p>}
+
+        {simulacroModal.preguntas.length > 0 && !simulacroModal.resultado && (
+          <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
+            {simulacroModal.preguntas.map((pq, idx) => (
+              <div key={pq.actividad_id} style={{ background: "rgba(30, 41, 59, 0.65)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "12px", padding: "16px" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
+                  <small style={{ color: pq.materia === "lengua" ? "#c084fc" : "#34d399", fontWeight: "800" }}>
+                    {pq.materia === "lengua" ? "✍️ Lengua" : "🔢 Matemática"} · Pregunta {idx + 1} de {simulacroModal.preguntas.length}
+                  </small>
+                  <small style={{ color: "#94a3b8", textTransform: "capitalize" }}>{pq.tema?.replaceAll("_", " ")}</small>
+                </div>
+                <p style={{ margin: "0 0 12px", fontWeight: "600", fontSize: "1rem", color: "#ffffff" }}>{parseInlineMarkdown(pq.pregunta)}</p>
+                {pq.visual_apoyo && <div style={{ marginBottom: "12px" }}><ApoyoVisual datos={pq.visual_apoyo} /></div>}
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "8px" }}>
+                  {(pq.opciones || []).map((op) => {
+                    const sel = simulacroModal.respuestas?.[pq.actividad_id] === op;
+                    return (
+                      <button
+                        key={op}
+                        type="button"
+                        onClick={() => setSimulacroModal((prev) => ({ ...prev, respuestas: { ...(prev.respuestas || {}), [pq.actividad_id]: op } }))}
+                        style={{
+                          padding: "10px 14px",
+                          borderRadius: "10px",
+                          border: sel ? "2px solid #38bdf8" : "1px solid rgba(255,255,255,0.15)",
+                          background: sel ? "rgba(56, 189, 248, 0.22)" : "rgba(15, 23, 42, 0.7)",
+                          color: "#ffffff",
+                          fontWeight: sel ? "800" : "500",
+                          cursor: "pointer",
+                          textAlign: "left"
+                        }}
+                      >
+                        {parseInlineMarkdown(op)}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+
+            <button
+              type="button"
+              className="primary"
+              disabled={simulacroModal.loading || simulacroModal.preguntas.some((pq) => !simulacroModal.respuestas?.[pq.actividad_id])}
+              onClick={enviarSimulacro}
+              style={{ width: "100%", padding: "12px", fontWeight: "800" }}
+            >
+              {simulacroModal.loading ? "Corrigiendo simulacro..." : "🏛️ Entregar Mini-Simulacro"}
+            </button>
+          </div>
+        )}
+
+        {simulacroModal.resultado && (
+          <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+            <div style={{
+              padding: "18px",
+              borderRadius: "14px",
+              background: simulacroModal.resultado.aprobado ? "rgba(16, 185, 129, 0.16)" : "rgba(56, 189, 248, 0.14)",
+              border: simulacroModal.resultado.aprobado ? "1.5px solid #10b981" : "1.5px solid #38bdf8",
+              textAlign: "center"
+            }}>
+              <h4 style={{ margin: "0 0 6px", fontSize: "1.3rem", color: "#ffffff" }}>
+                Puntaje Global: {simulacroModal.resultado.puntaje}% ({simulacroModal.resultado.correctas} de {simulacroModal.resultado.total})
+              </h4>
+              <p style={{ margin: "0 0 10px", color: "#cbd5e1", fontSize: "0.92rem" }}>
+                🔢 Matemática: <strong>{simulacroModal.resultado.matematica?.correctas}/{simulacroModal.resultado.matematica?.total}</strong> ·{" "}
+                ✍️ Lengua: <strong>{simulacroModal.resultado.lengua?.correctas}/{simulacroModal.resultado.lengua?.total}</strong>
+              </p>
+              <span style={{ background: "#fbbf24", color: "#451a03", padding: "4px 12px", borderRadius: "14px", fontWeight: "900", fontSize: "0.84rem" }}>
+                +{simulacroModal.resultado.estrellas_ganadas} ⭐ acreditadas
+              </span>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+              {(simulacroModal.resultado.detalle || []).map((item, idx) => (
+                <div key={item.actividad_id + idx} style={{
+                  padding: "12px 14px",
+                  borderRadius: "10px",
+                  background: item.es_correcta ? "rgba(16, 185, 129, 0.08)" : "rgba(239, 68, 68, 0.1)",
+                  border: item.es_correcta ? "1px solid rgba(16, 185, 129, 0.35)" : "1px solid rgba(239, 68, 68, 0.35)"
+                }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.84rem", marginBottom: "4px" }}>
+                    <strong>{item.es_correcta ? "✅" : "❌"} {item.unidad_titulo}</strong>
+                    <span style={{ color: "#94a3b8" }}>{item.materia === "lengua" ? "Lengua" : "Matemática"}</span>
+                  </div>
+                  <p style={{ margin: "0 0 4px", fontSize: "0.86rem", color: "#e2e8f0" }}>
+                    Tu respuesta: <strong>{item.respuesta_usuario}</strong> {!item.es_correcta && <>· Correcta: <strong style={{ color: "#34d399" }}>{item.respuesta_correcta}</strong></>}
+                  </p>
+                  {!item.es_correcta && item.explicacion && (
+                    <small style={{ color: "#fde68a", display: "block" }}>💡 {item.explicacion}</small>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <button type="button" className="primary" onClick={() => setSimulacroModal(null)} style={{ width: "100%", padding: "12px", fontWeight: "800" }}>
+              Cerrar y seguir entrenando
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
   ) : null;
 
   if (pregunta?.tipo === 'lectura_modulo') {
@@ -1285,6 +1638,8 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
         {error && <p role="alert" className="error">{error}</p>}
         <LecturaModulo key={`${user_id}:${activeTema}`} userId={user_id} tema={activeTema} onContinuar={continuarTrasLectura} />
         {topicModalNode}
+        {saltoModalNode}
+        {simulacroModalNode}
       </div>
     );
   }
@@ -1638,6 +1993,25 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
                 <span style={{ color: "#fde68a", fontWeight: "700", fontSize: "0.78rem" }}>
                   💡 Práctica guiada: {aciertosGuiadosResto}/3 para 1 sello
                 </span>
+              )}
+              {!objProg.tema_completado && numeroEscalon < totalEscalones && (
+                <button
+                  type="button"
+                  onClick={abrirSaltoNivel}
+                  disabled={loading}
+                  style={{
+                    background: "rgba(245, 158, 11, 0.16)",
+                    border: "1px solid rgba(245, 158, 11, 0.55)",
+                    color: "#fef08a",
+                    padding: "5px 12px",
+                    borderRadius: "8px",
+                    fontSize: "0.78rem",
+                    fontWeight: "800",
+                    cursor: "pointer"
+                  }}
+                >
+                  ⚡ ¿Ya sabés este paso? Probar Salto de Nivel (+5 ⭐)
+                </button>
               )}
             </div>
           </section>
@@ -2142,6 +2516,84 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
               <p style={{ margin: 0, fontSize: "0.75rem", color: "#94a3b8" }}>Retos superados</p>
             </div>
           </div>
+
+          {(() => {
+            const esMat = CURRICULUM_MATEMATICA.some((t) => t.tema === activeTema);
+            const otraMateria = esMat ? "Lengua" : "Matemática";
+            const temaComplementario = esMat
+              ? (pregunta?.plan === "trial" ? "comprension_lectora_literal_inferida" : "ortografia_h")
+              : (pregunta?.plan === "trial" ? "tablas_multiplicar_2_5" : "fracciones_operaciones");
+
+            return (
+              <div style={{
+                margin: "0 0 20px",
+                padding: "16px 18px",
+                borderRadius: "14px",
+                background: "linear-gradient(135deg, rgba(16, 185, 129, 0.16) 0%, rgba(56, 189, 248, 0.14) 100%)",
+                border: "1.5px solid rgba(52, 211, 153, 0.45)",
+                textAlign: "left"
+              }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "8px", flexWrap: "wrap", marginBottom: "6px" }}>
+                  <strong style={{ color: "#34d399", fontSize: "0.96rem" }}>
+                    ⚖️ Combo Dual del Aspirante
+                  </strong>
+                  <span style={{
+                    background: "#fbbf24",
+                    color: "#451a03",
+                    padding: "2px 9px",
+                    borderRadius: "12px",
+                    fontSize: "0.76rem",
+                    fontWeight: "900"
+                  }}>
+                    +5 ⭐ Bono de Equilibrio
+                  </span>
+                </div>
+                <p style={{ margin: "0 0 12px", color: "#e2e8f0", fontSize: "0.86rem", lineHeight: "1.45" }}>
+                  En el ingreso al Monserrat se evalúan las dos materias juntas. Sumá una misión corta de <strong>{otraMateria}</strong> (<span style={{ textTransform: "capitalize" }}>{temaComplementario.replaceAll("_", " ")}</span>) ahora y llevate 5 estrellas extra.
+                </p>
+                <button
+                  type="button"
+                  disabled={loading}
+                  onClick={() => {
+                    const starsNext = Math.max(getSavedStars(), estrellasAcumuladas) + 5;
+                    setEstrellasAcumuladas(starsNext);
+                    saveStars(starsNext);
+                    setDesafiosCompletadosMision(0);
+                    setRetosCompletadosIds([]);
+                    setMisionTerminada(false);
+                    saveMissionState({
+                      desafios: 0,
+                      retosCompletadosIds: [],
+                      misionTerminada: false,
+                      estrellas: starsNext,
+                      borrador: "",
+                      evaluacion: null,
+                      intento: 1,
+                      pasoActual: 0,
+                      pasoEjemplo: 0,
+                      respuesta: "",
+                    });
+                    handleSelectTema(temaComplementario);
+                  }}
+                  style={{
+                    width: "100%",
+                    padding: "11px 16px",
+                    borderRadius: "10px",
+                    background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+                    border: "1.5px solid #34d399",
+                    color: "#ffffff",
+                    fontWeight: "800",
+                    fontSize: "0.9rem",
+                    cursor: "pointer",
+                    boxShadow: "0 4px 14px rgba(16, 185, 129, 0.35)"
+                  }}
+                >
+                  🔥 ¡Aceptar Combo Dual de {otraMateria}! (+5 ⭐)
+                </button>
+              </div>
+            );
+          })()}
+
           <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
             <button
               type="button"
@@ -2652,6 +3104,8 @@ export default function PantallaSessionTutoria({ user_id, tema, capa, modo, tuto
       )}
 
       {topicModalNode}
+      {saltoModalNode}
+      {simulacroModalNode}
       {showPremiosModal && (
         <ModalPremiosEstudiante
           isOpen={showPremiosModal}
